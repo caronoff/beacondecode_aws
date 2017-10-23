@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block title %}Decoded Beacon {% endblock %}
+{% block head %}
+  {{ super() }}
+
+
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/inputgroup.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}" rel="stylesheet">
+<style media="screen" type="text/css">
+     table {
+     width:100%;
+     }
+     td {
+       max-width: 0;
+     }
+     td.columnA {
+     width:10%
+     }
+     td.columnB {
+     width:15%;
+       overflow:hidden;
+       overflow-wrap:break-word;
+       word-wrap: break-word;
+       
+     }
+     td.columnC {
+     width:25%
+     }
+     td.columnD {
+     width:50%
+     }
+
+
++ </style>
+
+      {% endblock %}
+ {% block content %}
+<div class="container">
+  <h2>Decoded Beacon Message</h2>
+  <p>The hex code decoded is: <strong>{{hexcode}}</strong></p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Bit Ranges</th>
+        <th>Binary value</th>
+        <th>Name</th>
+		<th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for item in decoded %}
+      <tr>
+
+        <td class="columnA"> {{ item[0] }} </td>
+		<td class="columnB">{{ item[1] }} </td>
+		<td class="columnC"> {{ item[2] }} </td>
+		<td class="columnD"> {{ item[3] }} </td>
+
+      </tr>
+	{% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}
+{{super()}}
+<script type=text/javascript src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+

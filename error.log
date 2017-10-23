@@ -1,0 +1,72 @@
+[2017-10-12 16:55:46 -0400] [35991] [INFO] Starting gunicorn 19.7.1
+[2017-10-12 16:55:46 -0400] [35991] [INFO] Listening at: http://0.0.0.0:8000 (35991)
+[2017-10-12 16:55:46 -0400] [35991] [INFO] Using worker: sync
+[2017-10-12 16:55:46 -0400] [35994] [INFO] Booting worker with pid: 35994
+[2017-10-12 16:55:46 -0400] [35994] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+ImportError: No module named 'flaskproj'
+[2017-10-12 16:55:46 -0400] [35994] [INFO] Worker exiting (pid: 35994)
+[2017-10-12 16:55:46 -0400] [35991] [INFO] Shutting down: Master
+[2017-10-12 16:55:46 -0400] [35991] [INFO] Reason: Worker failed to boot.
+[2017-10-13 10:16:58 -0400] [36890] [INFO] Starting gunicorn 19.7.1
+[2017-10-13 10:16:58 -0400] [36890] [INFO] Listening at: http://0.0.0.0:8000 (36890)
+[2017-10-13 10:16:58 -0400] [36890] [INFO] Using worker: sync
+[2017-10-13 10:16:58 -0400] [36893] [INFO] Booting worker with pid: 36893
+[2017-10-13 10:16:58 -0400] [36893] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+ImportError: No module named 'flaskproj'
+[2017-10-13 10:16:58 -0400] [36893] [INFO] Worker exiting (pid: 36893)
+[2017-10-13 10:16:58 -0400] [36890] [INFO] Shutting down: Master
+[2017-10-13 10:16:58 -0400] [36890] [INFO] Reason: Worker failed to boot.
+[2017-10-13 15:07:12 -0400] [37650] [INFO] Starting gunicorn 19.7.1
+[2017-10-13 15:07:12 -0400] [37650] [INFO] Listening at: http://0.0.0.0:8000 (37650)
+[2017-10-13 15:07:12 -0400] [37650] [INFO] Using worker: sync
+[2017-10-13 15:07:12 -0400] [37653] [INFO] Booting worker with pid: 37653
+[2017-10-13 15:07:12 -0400] [37653] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/arbiter.py", line 578, in spawn_worker
+    worker.init_process()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/workers/base.py", line 135, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/craig/venvs/flaskproj/lib/python3.5/site-packages/gunicorn/util.py", line 352, in import_app
+    __import__(module)
+ImportError: No module named 'flaskproj'
+[2017-10-13 15:07:12 -0400] [37653] [INFO] Worker exiting (pid: 37653)
+[2017-10-13 15:07:12 -0400] [37650] [INFO] Shutting down: Master
+[2017-10-13 15:07:12 -0400] [37650] [INFO] Reason: Worker failed to boot.
