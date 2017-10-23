@@ -37,16 +37,13 @@
     </div>
     <br>
 
-      <form class="form-signin" id="decodeHex" action="/output" >
+      <form class="form-signin" id="decodeHex" action="/output" method="POST">
         <h2 class="form-signin-heading">Beacon Message Decoder</h2>
         <label for="inputhexcode" class="sr-only">Enter hexidecimal code</label>
           <div class="input-group" data-validate="hex">
         <input type="text" name="hexcode" id="inputhexcode" class="form-control" placeholder="Enter hexidecimal code" required autofocus>
           <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
           </div>
-
-
-
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="hexbutton" disabled>Submit</button>
           <br>
           <div class="modal-body" style="padding:0px">
