@@ -34,11 +34,12 @@ def validatehex():
 @app.route('/output', methods=['GET','POST'])
 def output():
     ## output will only process if hexcode has been validated.
-    outputdata="dummy"
+
     if request.method== 'GET':
         hexcode= str(request.args.get('hexcode'))
     elif request.method == 'POST':
-        hexcode = str(request.form('hexcode'))
+        hexcode = str(request.form['hexcode'])
+        print(hexcode)
 
     if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
         beacon = Gen2.SecondGen(hexcode)
