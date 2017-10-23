@@ -31,7 +31,7 @@ def validatehex():
 
     return jsonify(echostatus=statuscheck, message=message)
 
-@app.route('/output', methods=['GET','POST'])
+@app.route('/<hexcode>', methods=['GET','POST'])
 def output():
     ## output will only process if hexcode has been validated.
 
