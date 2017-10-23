@@ -31,36 +31,35 @@ def validatehex():
 
     return jsonify(echostatus=statuscheck, message=message)
 
-@app.route('/output', methods=['GET','POST'])
+@app.route("/",methods=['GET','POST'])
+@app.route("/index")
 def output():
+
     ## output will only process if hexcode has been validated.
 
     if request.method== 'GET':
-        hexcode= str(request.args.get('hexcode'))
+        return render_template('child.html', title='Home', user='')
+        #hexcode= str(request.args.get('hexcode'))
     elif request.method == 'POST':
         hexcode = str(request.form['hexcode'])
         print(hexcode)
 
-    if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
-        beacon = Gen2.SecondGen(hexcode)
-    else:
-        beacon = decodehex2.BeaconHex(hexcode)
+        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
+            beacon = Gen2.SecondGen(hexcode)
+        else:
+            beacon = decodehex2.BeaconHex(hexcode)
 
-    beacon.processHex(hexcode)
-    ctry = beacon.country()
-    mid = str(ctry[0][1])
-    name = str(ctry[1][1])
+        beacon.processHex(hexcode)
+        ctry = beacon.country()
+        mid = str(ctry[0][1])
+        name = str(ctry[1][1])
 
-    decoded = beacon.tablebin
-    return render_template('output.html',hexcode=hexcode,decoded=decoded)
+        decoded = beacon.tablebin
+        return render_template('output.html',hexcode=hexcode,decoded=decoded)
 
 
 
-@app.route("/")
-@app.route("/index")
-def index():
-    user ={'nickname': 'Craig Aronoff3'}  # fake user
-    return render_template('child.html',title='Home',user=user)
+
 
 if __name__ == "__main__":
     app.run(debug=True,host='0.0.0.0', port=5555)

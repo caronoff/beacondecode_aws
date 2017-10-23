@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Index {{user.nickname}} {% endblock %}
+{% block title %}Index {{user}} {% endblock %}
 
 
 {% block head %}
@@ -37,7 +37,7 @@
     </div>
     <br>
 
-      <form class="form-signin" id="decodeHex" action="/output" method="get" >
+      <form class="form-signin" id="decodeHex" action="" method="post" >
         <h2 class="form-signin-heading">Beacon Message Decoder</h2>
         <label for="inputhexcode" class="sr-only">Enter hexidecimal code</label>
           <div class="input-group" data-validate="hex">
