@@ -34,7 +34,6 @@ def validatehex():
 @app.route("/",methods=['GET','POST'])
 @app.route("/index")
 def output():
-
     ## output will only process if hexcode has been validated.
 
     if request.method== 'GET':
@@ -43,12 +42,10 @@ def output():
     elif request.method == 'POST':
         hexcode = str(request.form['hexcode'])
         print(hexcode)
-
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
         else:
             beacon = decodehex2.BeaconHex(hexcode)
-
         beacon.processHex(hexcode)
         ctry = beacon.country()
         mid = str(ctry[0][1])
