@@ -35,7 +35,7 @@ def validatehex():
 def output():
     ## output will only process if hexcode has been validated.
     outputdata="dummy"
-    if request.method== 'GET':
+    if request.method== 'GET' or request.method=='POST':
         hexcode= str(request.args.get('hexcode'))
         username = str(request.args.get('username'))
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
