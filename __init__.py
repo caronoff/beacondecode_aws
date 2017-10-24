@@ -1,4 +1,4 @@
-from flask import Flask, jsonify,request, render_template, Markup
+from flask import Flask, jsonify,request, render_template, Markup, redirect, url_for
 import re
 import decodehex2
 import definitions
@@ -31,31 +31,31 @@ def validatehex():
 
     return jsonify(echostatus=statuscheck, message=message)
 
+
+
+
 @app.route("/",methods=['GET','POST'])
 @app.route("/index")
-def output():
-    ## output will only process if hexcode has been validated.
-
+def index():
     if request.method== 'GET':
         return render_template('child.html', title='Home', user='')
         #hexcode= str(request.args.get('hexcode'))
     elif request.method == 'POST':
         hexcode = str(request.form['hexcode'])
-        print(hexcode)
-        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
-            beacon = Gen2.SecondGen(hexcode)
-        else:
-            beacon = decodehex2.BeaconHex(hexcode)
-        beacon.processHex(hexcode)
-        ctry = beacon.country()
-        mid = str(ctry[0][1])
-        name = str(ctry[1][1])
-
-        decoded = beacon.tablebin
-        return render_template('output.html',hexcode=hexcode,decoded=decoded)
+        return redirect(url_for('decoded',hexcode))
 
 
 
+
+@app.route("/decoded/<hexcode>")
+def decoded(hexcode):
+    if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
+        beacon = Gen2.SecondGen(hexcode)
+    else:
+        beacon = decodehex2.BeaconHex(hexcode)
+    beacon.processHex(hexcode)
+    decoded = beacon.tablebin
+    return render_template('output.html', hexcode=hexcode, decoded=decoded)
 
 
 if __name__ == "__main__":
