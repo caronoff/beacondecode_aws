@@ -23,3 +23,20 @@
     background-color: rgb(217, 83, 79);
     border-color: rgb(212, 63, 58);
 }
+
+.mapcontainer{
+  width: 100%;
+  margin: 0 auto;
+  margin-top:50px;
+}
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
+}
