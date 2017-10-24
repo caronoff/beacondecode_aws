@@ -47,14 +47,19 @@ def index():
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
+    geocoord=(0,0)
+    locationcheck=False
     if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
         beacon = Gen2.SecondGen(hexcode)
     else:
         beacon = decodehex2.BeaconHex(hexcode)
     beacon.processHex(hexcode)
     decoded = beacon.tablebin
-    print(beacon.has_loc())
-    return render_template('output.html', hexcode=hexcode, decoded=decoded)
+    if beacon.has_loc():
+        geocoord = (beacon.location[0],beacon.location[1])
+        locationcheck=True
+
+    return render_template('output.html', hexcode=hexcode, decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
 
 
 if __name__ == "__main__":
