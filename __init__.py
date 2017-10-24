@@ -56,7 +56,7 @@ def decoded(hexcode):
     beacon.processHex(hexcode)
     decoded = beacon.tablebin
     if beacon.has_loc():
-        geocoord = (beacon.location[0],beacon.location[1])
+        geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         locationcheck=True
 
     return render_template('output.html', hexcode=hexcode, decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
