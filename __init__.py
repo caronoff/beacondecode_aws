@@ -37,7 +37,7 @@ def validatehex():
 @app.route("/",methods=['GET','POST'])
 @app.route("/index")
 def index():
-  if request.method == 'POST':
+    if request.method == 'POST':
         hexcode = str(request.form['hexcode'])
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('child.html', title='Home', user='')
