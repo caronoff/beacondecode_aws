@@ -68,7 +68,7 @@
   </table>
 
   {% if locationcheck %}
-  <p>has location {{ geocoord}}</p>
+  <p>Lat: {{ geocoord[0]}}   Long: {{ geocoord[1]}}</p>
 
   <div class="container">
 
@@ -113,7 +113,7 @@ $(function () {
 
     function initMap() {
 
-        var location = new google.maps.LatLng(50.0875726, 14.4189987);
+        var location = new google.maps.LatLng({{ geocoord[0]}}, {{ geocoord[1]}});
 
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
