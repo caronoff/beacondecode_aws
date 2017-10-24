@@ -42,7 +42,7 @@ def index():
         #hexcode= str(request.args.get('hexcode'))
     elif request.method == 'POST':
         hexcode = str(request.form['hexcode'])
-        return redirect(url_for('decoded',hexcode))
+        return redirect(url_for('decoded',hexcode=hexcode))
 
 
 
