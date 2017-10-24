@@ -53,6 +53,7 @@ def decoded(hexcode):
         beacon = decodehex2.BeaconHex(hexcode)
     beacon.processHex(hexcode)
     decoded = beacon.tablebin
+    print(beacon.has_loc())
     return render_template('output.html', hexcode=hexcode, decoded=decoded)
 
 
