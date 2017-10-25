@@ -24,6 +24,11 @@
     border-color: rgb(212, 63, 58);
 }
 
+.navbar-default {
+  background-color:teal;
+  background-image: none;
+  background-repeat: no-repeat;
+ }
 .container{
   width: 100%;
   margin: 0 auto;
