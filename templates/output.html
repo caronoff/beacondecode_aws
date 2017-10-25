@@ -152,10 +152,18 @@
 <script type=text/javascript>
 var map;
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: {{ geocoord[0]}}, lng: {{ geocoord[1]}}},
-          zoom: 8
-        });
+        var location = new google.maps.LatLng({{ geocoord[0]}}, {{ geocoord[1]}});
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: location,
+            zoom: 3,
+            panControl: false,
+            scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+
+       
       }
     </script>
 
