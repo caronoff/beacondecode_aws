@@ -91,7 +91,9 @@
 <script type=text/javascript>
 
       function initMap() {
-        var location = new google.maps.LatLng({{ geocoord[0]}}, {{ geocoord[1]}});
+        var geocode = JSON.parse(document.getElementById("geocoord").dataset.geocoord);
+
+        var location = new google.maps.LatLng(geocode[0], geocode[1]);
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: location,
