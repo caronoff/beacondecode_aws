@@ -1,5 +1,7 @@
 function initMap() {
-        var location = new google.maps.LatLng({{ geocoord[0]}}, {{ geocoord[1]}});
+        var geocode = JSON.parse(document.getElementById("geocoord").dataset.geocode);
+
+        var location = new google.maps.LatLng(geocode[0], geocode[1]);
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: location,
@@ -24,7 +26,7 @@ function initMap() {
         var contentString = '<div class="info-window">' +
                 '<h3>Alert!</h3>' +
                 '<div class="info-content">' +
-                '<p>beacon distress location {{ geocoord[0]}} , {{ geocoord[1]}}</p>' +
+                '<p>beacon distress location ' + geocode[0] + ' , ' + geocode[1] + '</p>' +
                 '</div>' +
                 '</div>';
 
