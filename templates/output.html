@@ -2,8 +2,6 @@
 {% block title %}Decoded Beacon {% endblock %}
 {% block head %}
   {{ super() }}
-
-
 <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/inputgroup.css') }}" rel="stylesheet">
@@ -26,7 +24,6 @@
        overflow:hidden;
        overflow-wrap:break-word;
        word-wrap: break-word;
-       
      }
      td.columnC {
      width:25%
@@ -34,8 +31,6 @@
      td.columnD {
      width:50%
      }
-
-
 + </style>
 
 {% endblock %}
@@ -68,21 +63,16 @@
   </table>
 
   {% if locationcheck %}
-
-
   <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}">
                     <h1>Lat: {{ geocoord[0]}}   Long: {{ geocoord[1]}}</h1>
-                    <p class="lead">Hex: {{hexcode}}</p>
+                    <p class="lead">Hex: {{hexcode}}</p></div>
 
-                </div>
             </div>
 
         </div>
         <div id="map"></div>
-
-
   {% endif %}
 
 
