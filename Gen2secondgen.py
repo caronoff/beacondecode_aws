@@ -289,7 +289,7 @@ class SecondGen(Gen2Error):
             self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon UIN'.format(str(len(strhex)),str(len(self.bits))))
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
-            self.latitude == 'No latitude data available'
+            self.latitude ='No latitude data available'
             self.tablebin.append(['Unique ID','Second Generation','',''])
             self.tablebin.append(['1',
                                   self.bits[1],
