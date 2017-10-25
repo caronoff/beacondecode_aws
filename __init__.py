@@ -23,10 +23,10 @@ def validatehex():
             if len(ret_data) in [15,30,23,63]:
                 statuscheck = 'valid'
             else:
-                message += '  However, length '+str(len(ret_data)) + ' is not a valid message.  Valid message should be 15,23,30 or 63.'
+                message += '  However, length '+str(len(ret_data)) + ' is not valid.  Valid lengths: 15,23,30 or 63.'
         else:
             statuscheck='not valid'
-            message='Invalid Hexidecimal code.  (A-F-0-9)'
+            message='Invalid Hexidecimal code  (A-F-0-9)'
 
 
     return jsonify(echostatus=statuscheck, message=message)

@@ -75,7 +75,6 @@
         <div id="map"></div>
   {% endif %}
 
-
         <a href="/" class="btn btn-info btn-lg"  style="margin: 0 auto; display:block; text-align: center">
           <span class="glyphicon glyphicon-home"></span> Home
         </a>
@@ -85,6 +84,7 @@
 {% block scripts %}
 {{super()}}
 <script type=text/javascript src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
 <script src="{{ url_for('static', filename='js/gmap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw4IpZdm6D7ob00fF9F9TjuZ2Eeif9QtE&callback=initMap" async defer></script>
 
