@@ -34,7 +34,7 @@
 
  .navbar-brand {
   position: absolute;
-    left: 50%;
+    left: 90%;
     margin-left: -5px;  /* 50% of your logo width */
     display: block;
  }
