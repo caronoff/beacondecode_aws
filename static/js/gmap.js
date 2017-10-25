@@ -5,7 +5,7 @@ function initMap() {
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
             center: location,
-            zoom: 3,
+            zoom: 6,
             panControl: false,
             scrollwheel: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
