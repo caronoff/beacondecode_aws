@@ -25,10 +25,18 @@
 }
 
 .navbar-default {
+  position: relative;
   background-color:transparent;
   background-image: none;
   background-repeat: no-repeat;
   border-color: transparent;
+ }
+
+ .navbar-brand {
+  position: absolute;
+    left: 50%;
+    margin-left: -50px !important;  /* 50% of your logo width */
+    display: block;
  }
 .container{
   width: 100%;
