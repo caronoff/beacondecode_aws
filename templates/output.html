@@ -37,6 +37,8 @@
 
  {% block content %}
 <div class="container">
+
+    <div class="results-table">
   <h2>Decoded Beacon Message</h2>
   <p>The hex code decoded is: <strong>{{hexcode}}</strong></p>
   <table class="table table-striped">
@@ -61,7 +63,7 @@
 	{% endfor %}
     </tbody>
   </table>
-
+</div>
   {% if locationcheck %}
   <div class="container">
             <div class="row">
