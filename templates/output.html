@@ -63,11 +63,11 @@
 	{% endfor %}
     </tbody>
   </table>
-</div>
+
   {% if locationcheck %}
 
 
-      <div class="results-table">
+
             <div class="row">
                 <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}">
                     <h2>Lat: {{ geocoord[0]}}   Long: {{ geocoord[1]}}</h2>
@@ -76,10 +76,11 @@
             </div>
 
         <div id="map"></div>
-  </div>
+
 
 
   {% endif %}
+        </div>
 
         <a href="/" class="btn btn-info btn-lg"  style="margin: 0 auto; display:block; text-align: center">
           <span class="glyphicon glyphicon-home"></span> Home
