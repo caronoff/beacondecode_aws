@@ -8,8 +8,8 @@ body {
 .form-signin {
   max-width: 730px;
   min-height: 400px;
-  padding: 25px;
-  margin-top: 75px;
+  padding: 75px;
+  margin-top: auto;
 
 
 }
