@@ -18,9 +18,9 @@ h1{
 
 
 .results-table {
-  max-width: 730px;
+  max-width: 830px;
   min-height: 400px;
-  padding: 75px;
+  padding: 50px;
   margin: auto;
   margin-top: 100px !important;
 
@@ -29,7 +29,7 @@ h1{
 
 
 .show-map {
-  max-width: 730px;
+  max-width: 830px;
   min-height: 400px;
   padding: 10px;
   margin: auto;
