@@ -50,7 +50,7 @@
 #map{
     height: 0;
     overflow: hidden;
-    padding-bottom: 5.25%;
+    padding-bottom: 22.25%;
     padding-top: 30px;
-    position: relative;
+    position: bottom;
 }
