@@ -21,6 +21,7 @@ h1{
   min-height: 400px;
   padding: 75px;
   margin: auto;
+  margin-top: 100px !important;
   background-color: #BFBFB8;
 }
 
@@ -29,7 +30,7 @@ h1{
 .show-map {
   max-width: 730px;
   min-height: 400px;
-  padding: 75px;
+  padding: 10px;
   margin: auto;
 
 }
