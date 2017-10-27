@@ -9,13 +9,14 @@ body {
   max-width: 730px;
   min-height: 400px;
   padding: 25px;
+  margin-top: 75px;
 
-  margin: 0 auto;
+
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 25px;
-  margin-top: 75px;
+
 }
 .form-signin .checkbox {
   font-weight: normal;
