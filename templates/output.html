@@ -66,6 +66,8 @@
 </div>
   {% if locationcheck %}
   <div class="container">
+
+      <div class="show-map">
             <div class="row">
                 <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}">
                     <h1>Lat: {{ geocoord[0]}}   Long: {{ geocoord[1]}}</h1>
@@ -73,8 +75,11 @@
 
             </div>
 
-        </div>
         <div id="map"></div>
+  </div>
+
+  </div>
+
   {% endif %}
 
         <a href="/" class="btn btn-info btn-lg"  style="margin: 0 auto; display:block; text-align: center">
