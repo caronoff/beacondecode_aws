@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/validatehex', methods=['GET','POST'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
-    print(ret_data)
+
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
@@ -38,7 +38,7 @@ def validatehex():
 @app.route("/index")
 def index():
     if request.method == 'POST':
-        hexcode = str(request.form['hexcode'])
+        hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('child.html', title='Home', user='')
 
