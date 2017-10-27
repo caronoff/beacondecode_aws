@@ -62,22 +62,23 @@
     </tbody>
   </table>
 
-<div class="row">
-  <div class="col col-md-8">.col .col-md-8</div>
-  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
-</div>
+
 
 
   {% if locationcheck %}
 
-            <div class="row">
-                <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}">
-                    <h2>Lat: {{ geocoord[0]}}   Long: {{ geocoord[1]}}</h2>
-                    </div>
 
-            </div>
+                <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}"></div>
 
-        <div id="map"></div>
+
+
+         <div id="map"></div>
+        <div class="row">
+  <div class="col col-md-6">Lat: {{ geocoord[0]}}</div>
+  <div class="col-6 col-md-6">Long: {{ geocoord[1]}}</div>
+</div>
+
+
 
 
 
