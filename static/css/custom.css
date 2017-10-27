@@ -26,7 +26,9 @@ h1{
 
 }
 
-
+.btn-toolbar {
+margin-top: 100px;
+}
 
 .show-map {
   max-width: 830px;
