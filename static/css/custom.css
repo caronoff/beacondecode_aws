@@ -27,7 +27,11 @@ h1{
 }
 
 .btn-toolbar {
-margin-top: 100px;
+max-width: 930px;
+  min-height: 400px;
+  padding: 5px;
+  margin: auto;
+  margin-top: 100px ;
 }
 
 .show-map {
