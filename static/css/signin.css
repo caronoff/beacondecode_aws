@@ -7,7 +7,7 @@ body {
 
 .form-signin {
   max-width: 730px;
-  min-height: 200px;
+  min-height: 300px;
   padding: 25px;
 
   margin: 0 auto;
@@ -15,6 +15,7 @@ body {
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 25px;
+  margin-top: 75px;
 }
 .form-signin .checkbox {
   font-weight: normal;
