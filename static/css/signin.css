@@ -7,7 +7,9 @@ body {
 
 .form-signin {
   max-width: 730px;
+  min-height: 400px;
   padding: 25px;
+  margin-top: 50px;
   margin: 0 auto;
 }
 .form-signin .form-signin-heading,
