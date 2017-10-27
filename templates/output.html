@@ -37,7 +37,6 @@
 
  {% block content %}
 <div class="container">
-
     <div class="results-table">
   <h2>Decoded Beacon Message</h2>
   <p>The hex code decoded is: <strong>{{hexcode}}</strong></p>
@@ -53,7 +52,6 @@
     <tbody>
 	{% for item in decoded %}
       <tr>
-
         <td class="columnA"> {{ item[0] }} </td>
 		<td class="columnB">{{ item[1] }} </td>
 		<td class="columnC"> {{ item[2] }} </td>
@@ -64,9 +62,13 @@
     </tbody>
   </table>
 
+<div class="row">
+  <div class="col col-md-8">.col .col-md-8</div>
+  <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+</div>
+
+
   {% if locationcheck %}
-
-
 
             <div class="row">
                 <div id="geocoord" class="col-lg-8 col-lg-offset-2" data-geocode="{{ geocoord|tojson }}">
