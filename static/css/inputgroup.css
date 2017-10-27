@@ -24,7 +24,7 @@
     border-color: rgb(212, 63, 58);
 }
 
-.navbar-default {
+.navbar {
   position: relative;
   background-color:transparent;
   background-image: none;
@@ -32,7 +32,7 @@
   border-color: transparent;
  }
 
- .navbar-brand {
+ .brand {
   position: absolute;
     left: 50%;
     margin-left: -50px !important;  /* 50% of your logo width */
