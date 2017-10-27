@@ -23,3 +23,13 @@ h1{
   margin: auto;
   background-color: #BFBFB8;
 }
+
+
+
+.show-map {
+  max-width: 730px;
+  min-height: 400px;
+  padding: 75px;
+  margin: auto;
+
+}
