@@ -5,6 +5,8 @@ body {
   background-color: #B8BFBF;
 }
 
+
+.wrapper { position:relative; width:1280px; }
 .form-signin {
   max-width: 730px;
   position: relative;
