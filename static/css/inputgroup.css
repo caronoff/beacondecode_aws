@@ -55,7 +55,7 @@
     position: bottom;
 }
 
-.footer {
+#footer {
   padding: 3rem 1.5rem;
   text-align: left;
   position: absolute;bottom: 0;
