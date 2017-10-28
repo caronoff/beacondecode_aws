@@ -27,6 +27,7 @@
 .navbar {
   position: relative;
   background-color:transparent;
+  top:0;
   background-image: none;
   background-repeat: no-repeat;
   border-color: transparent;
@@ -34,6 +35,7 @@
 
  .brand {
   position: absolute;
+  top:0;
     left: 50%;
     margin-left: -100px !important;  /* 50% of your logo width */
     display: block;

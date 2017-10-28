@@ -6,27 +6,34 @@ body {
 }
 
 
-.wrapper { position:relative; width:1280px; }
+
+
 .form-signin {
-  max-width: 730px;
+  max-width: 780px;
   position: relative;
-  min-height: 400px;
+  min-height: 300px;
   padding: 75px;
   margin: auto;
 }
 
 #myform {
 
-  position: absolute;
-  border: 3px solid #73AD21;
+  position:relative; width:1280px; 
+  max-width: 780px;
+  position: relative;
+  min-height: 600px;
+  padding: 75px;
+  margin: auto;
+  
+  
 }
 
 #intro {
   padding: 3rem 1.5rem;
   text-align: center;
-  position: fixed;
-    bottom: 0;
-    right: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
     }
 
 .form-signin .form-signin-heading,
