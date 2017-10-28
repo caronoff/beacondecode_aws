@@ -7,10 +7,11 @@ body {
 
 .form-signin {
   max-width: 730px;
+  position: relative;
   min-height: 400px;
   padding: 75px;
   margin: auto;
-
+}
 #intro {
   padding: 3rem 1.5rem;
   text-align: center;
@@ -22,7 +23,7 @@ body {
 
 
 }
-}
+
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 25px;
