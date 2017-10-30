@@ -11,7 +11,7 @@ function initMap() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions);
-        var markerImage = document.getElementById('marker').value;
+        var markerImage = "https://maps.google.com/mapfiles/kml/shapes/firedept.png";
 
         var marker = new google.maps.Marker({
             position: location,
