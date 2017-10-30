@@ -13,7 +13,7 @@ function initMap() {
         var map = new google.maps.Map(mapCanvas, mapOptions);
 
 
-        var markerImage = document.getElementById("marker").dataset.marker;
+        var markerImage = "";
 
         var marker = new google.maps.Marker({
             position: location,
