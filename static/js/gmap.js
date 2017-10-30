@@ -14,7 +14,7 @@ function initMap() {
 
 
         var markerImage =document.getElementById("marker").dataset.marker;
-        alert(document.getElementById("marker").dataset.marker)
+        alert(document.getElementById("marker").dataset.marker);
         var marker = new google.maps.Marker({
             position: location,
             map: map,
