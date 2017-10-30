@@ -12,7 +12,7 @@ function initMap() {
         }
         var map = new google.maps.Map(mapCanvas, mapOptions);
         var markerImage = "https://maps.google.com/mapfiles/kml/shapes/firedept.png";
-        alert("hello");
+        alert(document.getElementById("marker").dataset.marker);
         var marker = new google.maps.Marker({
             position: location,
             map: map,
