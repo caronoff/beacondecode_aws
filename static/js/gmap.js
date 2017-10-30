@@ -11,8 +11,8 @@ function initMap() {
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions);
-        var markerImage = document.getElementById("marker").dataset.marker;
-        alert(document.getElementById("marker").dataset.marker);
+        var markerImage = "/static/css/images/marker.png"
+
         var marker = new google.maps.Marker({
             position: location,
             map: map,
