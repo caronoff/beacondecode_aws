@@ -67,8 +67,9 @@
 
 
                 <div id="geocoord"  data-geocode="{{ geocoord|tojson }}"></div>
+                <div id="marker" data-marker="{{ url_for('static', filename='css/images/marker.png')| tojson }}"></div>
 
-            <div id="map"></div>
+    <div id="map"></div>
         <div class="row">
   <div class="col col-md-6">Lat: {{ geocoord[0]}}  Long: {{ geocoord[1]}}</div>
   <div class="col-6 col-md-6"></div>
