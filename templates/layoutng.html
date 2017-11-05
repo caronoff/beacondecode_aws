@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="notesApp" lang="en">
+<html lang="en">
 <head>
 
 	{% block head %}
@@ -20,8 +20,8 @@
 	  <title>Cospas-Sarsat - {% block title %}{% endblock %}</title>
 	{% endblock %}
 	      </head>
-<body ng-controller="MainCtrl as ctrl">
-	
+<body ng-app ng-init="firstName = 'John'; lastName = 'Doe';">
+
 <div class="navbar navbar-default">
     <div class="navbar-inner">
         <div class="container">
@@ -38,6 +38,12 @@
         </div>
     </div>
 </div>
+
+<strong>First name:</strong> {{'{{firstName}}'}}<br />
+  <strong>Last name:</strong> <span ng-bind="lastName"></span><br />
+  <br />
+  <label>Set the first name: <input type="text" ng-model="firstName"/></label><br />
+  <label>Set the last name: <input type="text" ng-model="lastName"/></label>
 
 
 
