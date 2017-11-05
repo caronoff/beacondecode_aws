@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="notesApp" lang="en">
+<head>
+
+	{% block head %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+-->
+
+	<!-- Bootstrap core CSS -->
+
+	  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static', filename='css/inputgroup.css') }}" rel="stylesheet">
+	  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	  <title>Cospas-Sarsat - {% block title %}{% endblock %}</title>
+	{% endblock %}
+	      </head>
+<body ng-controller="MainCtrl as ctrl">
+	
+<div class="navbar navbar-default">
+    <div class="navbar-inner">
+        <div class="container">
+
+
+
+            <a class="brand" href="#">
+                <img alt="logo" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+			    {% block content %}{% endblock %}
+
+
+
+
+				<div id="footer">
+						{% block footer %}
+							&copy; Copyright 2017 by <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
+						{% endblock %}
+				</div>
+
+<!-- Placed at the end of the document so the pages load faster -->
+{% block scripts %}
+
+<script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+	<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="{{url_for('static', filename='js/jquery-3.1.1.min.js') }}">\x3C/script>')</script>
+	<script src="{{ url_for('static', filename='js/popper.min.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug-->
+    <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+
+
+{% endblock %}
+
+</body>
+</html>
