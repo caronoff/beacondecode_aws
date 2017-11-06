@@ -43,6 +43,9 @@ def index():
     return render_template('child.html', title='Home', user='')
 
 
+@app.route("/encodehex")
+def encodehex():
+    return render_template("encodehex.html")
 
 
 @app.route("/decoded/<hexcode>")
