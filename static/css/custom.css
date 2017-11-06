@@ -19,7 +19,7 @@ h1{
 
 .results-table {
   max-width: 930px;
-  min-height: 400px;
+  min-height: 200px;
   padding: 5px;
   margin: auto;
   margin-top: 25px !important;
@@ -28,10 +28,10 @@ h1{
 
 .btn-toolbar {
   max-width: 930px;
-  min-height: 400px;
+  min-height: 200px;
   padding: 5px;
   margin: auto;
-  margin-top: 100px ;
+  margin-top: 25px ;
 }
 
 .show-map {
