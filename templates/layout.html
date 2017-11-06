@@ -102,8 +102,9 @@
     <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
 
 <script type=text/javascript>
-$("#navbar li").each(function(){
-    removeClass("active");
+$("#navbar li").each(function(index){
+    $(this).removeClass("active");
+    console.log( index + ": " + $( this ).text() );
 });
 </script>
 {% endblock %}
