@@ -42,6 +42,15 @@ h1{
 
 }
 
+.centered {
+  position:relative; width:1280px;
+  max-width: 780px;
+  position: relative;
+  min-height: 600px;
+  padding: 75px;
+  margin: auto;
+    }
+
 
 .aboutus {
   max-width: 780px;
