@@ -47,6 +47,7 @@ def index():
 def encodehex():
     return render_template("encodehex.html")
 
+
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
     geocoord=(0,0)
