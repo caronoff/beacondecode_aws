@@ -22,45 +22,7 @@
 	      </head>
 <body>
 
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
 
-        <div class="navbar-header">
-            <button button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" rel="home" href="https://cospas-sarsat.int/en/" title="International Cospas-Sarsat Programme">
-                <img style="max-width:150px; margin-top: -7px;" alt="logo"
-					 src="{{ url_for('static', filename='images/logo.png') }}">
-			</a>
-        </div>
-
-        <div id="navbar" class="collapse navbar-collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                <li id="homepage"><a href="/">Decode</a></li>
-                 <li id="encoder" class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encode<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Create Unique Hex</li>
-
-                        <li><a href="/encodehex">First generation beacon</a></li>
-                        <li><a href="/encodehex">Second generation beacon</a></li>
-                    </ul>
-                </li>
-                <li id="about"><a href="/about">About</a></li>
-                <li><a href="#">Contact</a></li>
-
-            </ul>
-
-		</div>
-
-    </div>
-</div>
 
 <!--
 <div class="navbar navbar-default">
@@ -109,13 +71,7 @@ $("#navbar li").each(function(index){
 });
 </script>
 
-<script type=text/javascript>
-    $(".nav li").on("click", function() {
-      $(".nav li").removeClass("active");
-      $(this).addClass("active");
-    });
 
-</script>
 {% endblock %}
 
 </body>
