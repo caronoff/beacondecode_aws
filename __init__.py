@@ -47,6 +47,9 @@ def index():
 def encodehex():
     return render_template("encodehex.html")
 
+@app.route("/about")
+def encodehex():
+    return render_template("about.html")
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
