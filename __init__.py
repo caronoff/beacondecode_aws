@@ -45,7 +45,11 @@ def index():
 
 @app.route("/encodehex")
 def encodehex():
-    return render_template("encodehex.html")
+    countries=[]
+    for key in definitions.countrydic:
+        countries.append('{} ({})'.format(definitions.countrydic[key], key))
+    countries.sort()
+    return render_template("encodehex.html", countries=countries)
 
 @app.route("/about")
 def about():
