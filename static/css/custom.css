@@ -53,12 +53,9 @@ h1{
 
 
 .aboutus {
-  max-width: 780px;
-  min-height: 300px;
-  padding: 75px;
-  margin: auto;
+  padding: 3rem 1.5rem;
   text-align: center;
-  position: relative;
+  position: absolute;
   bottom: 0;
   right: 0;
   }
