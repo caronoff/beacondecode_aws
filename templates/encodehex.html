@@ -5,6 +5,7 @@
 <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 {% endblock %}
@@ -20,6 +21,74 @@
 
 
 
+    <div class="container">
+      <form name="test" action="#">
+        <div class="form-group" id="combo-group">
+          <label for="combo">Initial select</label>
+          <select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
+            {% for country in countries %}
+                <option value="{{country}}">{{country}}</option>
+            {% endfor %}
+
+          </select>
+        </div>
+        <p class="debug">Selected value (<tt>change</tt> event): <strong class="selected">-</strong></p>
+
+        <h2>Test it!</h2>
+
+        <p>
+          <button class="btn btn-primary" id="setup">Set it as a combobox</button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="selectedOption"
+                  disabled="disabled">
+            Get selected option
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="val"
+                  disabled="disabled">
+            Get value
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="values"
+                  disabled="disabled">
+            Available values
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="select"
+                  disabled="disabled">
+            Select ...
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="clear"
+                  disabled="disabled">
+            Clear
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="disable"
+                  disabled="disabled">
+            Disable
+          </button>
+        </p>
+
+        <p>
+          <button class="btn btn-default" id="enable"
+                  disabled="disabled">
+            Enable
+          </button>
+        </p>
+      </form>
 
 
 
@@ -28,7 +97,6 @@
 
 
 
-<div class="container">
 
 
 <div class="btn-toolbar">
@@ -37,24 +105,64 @@
         </a>
 </div>
 
+</div>
 
 
 
-
-  </div>
 {% endblock %}
 
 
 {% block scripts %}
 {{super()}}
+<script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
+ <script type="text/javascript">
+$(function() {
+  $("#setup").click(function() {
+    var x = $("#combo").btComboBox().on('change', function() {
+      $(".debug > .selected").text($(this).btComboBox('value'))
+    });
+    $(this).removeClass("btn-primary").addClass("btn-default").
+      attr("disabled", "disabled");
+    $("#selectedOption, #val, #values, #select, #clear, #disable, #enable").
+      removeAttr("disabled");
+    return false
+  });
+  $("#selectedOption").click(function() {
+    alert("Selected option is: " + $("#combo").btComboBox('selectedOption'));
+    return false
+  });
+  $("#val").click(function() {
+    alert("Value (of selected option) is: " +
+      $("#combo").btComboBox('value'));
+    return false
+  });
 
-
-<script type=text/javascript>
-    $('#encoder').addClass("active");
-
-</script>
-
+  $("#values").click(function() {
+    alert("Values from available options are: " +
+      $("#combo").btComboBox('values'));
+    return false
+  });
+  $("#select").click(function() {
+    var c = $("#combo"), vs = c.btComboBox('values');
+    var v = prompt("Type value to be selected (among " + vs + ")", vs[0]);
+    c.btComboBox({'action':"select",'value':v});
+    return false
+  });
+  $("#clear").click(function() {
+    $("#combo").btComboBox('clear');
+    return false
+  });
+  $("#disable").click(function() {
+    $("#combo").btComboBox('disable');
+    return false
+  });
+  $("#enable").click(function() {
+    $("#combo").btComboBox('enable');
+    return false
+  });
+});
+    </script> 
 
 
 
