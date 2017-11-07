@@ -37,6 +37,7 @@
 
  {% block content %}
 <div class="container">
+    <div id="decodetable">
     <div class="results-table">
   <h2>Decoded Beacon Message</h2>
   <p>The hex code decoded is: <strong>{{hexcode}}</strong></p>
@@ -73,7 +74,7 @@
         <div class="row">
   <div class="col col-md-6">Lat: {{ geocoord[0]}}  Long: {{ geocoord[1]}}</div>
   <div class="col-6 col-md-6"></div>
-</div>
+    </div>
 
 
 
@@ -86,7 +87,7 @@
           <span class="glyphicon glyphicon-home" style="color:gray"></span> Return
         </a>
 </div>
-
+    </div>
 </div>
 {% endblock %}
 {% block scripts %}
