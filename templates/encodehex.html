@@ -5,7 +5,7 @@
 <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 {% endblock %}
@@ -23,10 +23,24 @@
             {% endfor %}
 
           </select>
+
+
+
+
         </div>
+
+
+<div class="ui-widget">
+  <label for="tags">Tags: </label>
+  <input id="tags">
+</div>
+
+
+
+
         <p class="debug">Selected value (<tt>change</tt> event): <strong class="selected">-</strong></p>
 
-        <h2>Test it!</h2>
+        
 
         
       </form>
@@ -57,48 +71,38 @@
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
-
-
- <script type="text/javascript">
-$(function() {
-  $("#setup").click(function() {
-    var x = $("#combo").on('change', function() {
-      $(".debug > .selected").text($(this).btComboBox('value'))
-    });
-    $(this).removeClass("btn-primary").addClass("btn-default").
-      attr("disabled", "disabled");
-    $("#selectedOption, #val, #values, #select, #clear, #disable, #enable").
-      removeAttr("disabled");
-    return false
-  });
-  $("#selectedOption").click(function() {
-    alert("Selected option is: " + $("#combo").btComboBox('selectedOption'));
-    return false
-  });
-  $("#val").click(function() {
-    alert("Value (of selected option) is: " +
-      $("#combo").btComboBox('value'));
-    return false
-  });
-
-  $("#values").click(function() {
-    alert("Values from available options are: " +
-      $("#combo").btComboBox('values'));
-    return false
-  });
-  $("#select").click(function() {
-    var c = $("#combo"), vs = c.btComboBox('values');
-    var v = prompt("Type value to be selected (among " + vs + ")", vs[0]);
-    c.btComboBox({'action':"select",'value':v});
-    return false
-  });
-  $("#clear").click(function() {
-    $("#combo").btComboBox('clear');
-    return false
-  });
+<script type="text/javascript">
+$('#combo').on('change', function() {
   
+$(".debug > .selected").text(this.value);
 });
-    </script> 
+
+</script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    
+    $( "#tags" ).autocomplete({
+      
+
+      source: function(request, response) {
+            $.getJSON("{{url_for('autocomplete')}}",{
+                q: request.term, // in flask, "q" will be the argument to look for using request.args
+            }, function(data) {
+                response(data.matching_results); // matching_results from jsonify
+            });
+        },
+        minLength: 2,
+        select: function(event, ui) {
+            console.log(ui.item.value); // not in your question, but might help later
+        }
+
+
+      });
+  });
+  </script>
+
 
 
 
