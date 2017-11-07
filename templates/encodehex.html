@@ -57,10 +57,12 @@
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
+
+
  <script type="text/javascript">
 $(function() {
   $("#setup").click(function() {
-    var x = $("#combo").btComboBox().on('change', function() {
+    var x = $("#combo").on('change', function() {
       $(".debug > .selected").text($(this).btComboBox('value'))
     });
     $(this).removeClass("btn-primary").addClass("btn-default").
@@ -94,14 +96,7 @@ $(function() {
     $("#combo").btComboBox('clear');
     return false
   });
-  $("#disable").click(function() {
-    $("#combo").btComboBox('disable');
-    return false
-  });
-  $("#enable").click(function() {
-    $("#combo").btComboBox('enable');
-    return false
-  });
+  
 });
     </script> 
 
