@@ -37,7 +37,7 @@
 
  {% block content %}
 <div class="container">
-    <div id="decodetable">
+
     <div class="results-table">
   <h2>Decoded Beacon Message</h2>
   <p>The hex code decoded is: <strong>{{hexcode}}</strong></p>
@@ -63,23 +63,14 @@
     </tbody>
   </table>
 
-
   {% if locationcheck %}
-
-
                 <div id="geocoord"  data-geocode="{{ geocoord|tojson }}"></div>
                 <div id="marker" data-marker= "{{url_for('static', filename='css/images/marker.png')}}"></div>
-
     <div id="map"></div>
         <div class="row">
   <div class="col col-md-6">Lat: {{ geocoord[0]}}  Long: {{ geocoord[1]}}</div>
   <div class="col-6 col-md-6"></div>
     </div>
-
-
-
-
-
   {% endif %}
 </div>
 <div class="btn-toolbar">
@@ -87,7 +78,7 @@
           <span class="glyphicon glyphicon-home" style="color:gray"></span> Return
         </a>
 </div>
-    </div>
+
 </div>
 {% endblock %}
 {% block scripts %}
