@@ -16,13 +16,22 @@ h1{
     color: #999;
 }
 
+#decodetable {
+  position:relative;
+  width:850px;
+  max-width: 1000px;
+  position: top;
+  min-height: 600px;
+  padding: 75px;
+  margin: auto;
 
+}
 .results-table {
-  max-width: 930px;
-  min-height: 200px;
-  padding: 5px;
-  text-align: left;
-  margin-top: 15px !important;
+    max-width: 1000px;
+  position: relative;
+  min-height: 300px;
+  padding: 25px;
+  margin: auto;
 }
 
 .btn-toolbar {
