@@ -20,11 +20,9 @@ h1{
 .results-table {
   max-width: 930px;
   min-height: 200px;
-  position: centered;
   padding: 5px;
-
+  text-align: center;
   margin-top: 15px !important;
-
 }
 
 .btn-toolbar {
