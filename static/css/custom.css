@@ -50,3 +50,15 @@ h1{
   margin: auto;
     }
 
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: bottom;
+}
+
