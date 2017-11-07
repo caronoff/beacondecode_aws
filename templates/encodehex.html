@@ -5,7 +5,7 @@
 <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 {% endblock %}
@@ -47,19 +47,6 @@
 
 
 
-
-
-
-
-
-
-
-<div class="btn-toolbar">
-        <a href="/" class="btn btn-danger"  style="margin-top: auto ; display:block; text-align: center">
-          <span class="glyphicon glyphicon-home" style="color:gray"></span> Home
-        </a>
-</div>
-
 </div>
 
 
@@ -73,13 +60,12 @@
 
 <script type="text/javascript">
 $('#combo').on('change', function() {
-  
 $(".debug > .selected").text(this.value);
 });
 
 </script>
 
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   <script>
   $( function() {
     
