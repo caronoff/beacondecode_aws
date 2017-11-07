@@ -8,15 +8,16 @@ body {
 
 
 .form-signin {
-  max-width: 780px;
+  max-width: 1000px;
   position: relative;
   min-height: 300px;
   padding: 25px;
   margin: auto;
 }
 #myform {
-  position:relative; width:780px;
-  max-width: 780px;
+  position:relative;
+  width:850px;
+  max-width: 1000px;
   position: top;
   min-height: 600px;
   padding: 75px;
