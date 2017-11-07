@@ -32,7 +32,7 @@
         
         <label for="inputhexcode" class="sr-only">Enter hexidecimal code</label>
           <div class="input-group" data-validate="hex">
-        <input type="text" name="hexcode" id="inputhexcode" class="form-control" placeholder="Enter hexidecimal code" required autofocus>
+        <input type="text" name="hexcode" id="inputhexcode" title="Enter valid hexidecimal (A-E 0-9)" class="form-control" placeholder="Enter hexidecimal code" required autofocus >
           <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
           </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="hexbutton" disabled>Submit</button>
@@ -58,6 +58,7 @@
 
 
 {% endblock %}
+
 {% block scripts %}
 {{ super() }}
 
@@ -70,30 +71,10 @@ function submitcode(){
 }
 </script>
 
+<script type=text/javascript>
+    $('[title]').tooltip();
+</script>
 
-
-<!-- <script type=text/javascript> 
-$(document).ready(function(){
-$('#inputhexcode').on('keyup change',function()
-        {var $form = $(this).closest('form');
-        $.getJSON
-            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val()},function(data)
-                {$("#statuscheck").text(data.echostatus);
-                if(data.echostatus=='valid'){$form.find(':input[type="submit"]').prop('disabled', false);
-                $("#echoResult").text("");}
-                else{
-                   $form.find(':input[type="submit"]').prop('disabled', true);
-                   $("#echoResult").text(data.message);
-                   $('#echoResult').show();
-
-                    }
-                }
-            );
-             return false;
-        }
-    ); //end bind
-}
-);  </script>-->
 
 <script type=text/javascript>
  
@@ -151,20 +132,3 @@ $('#inputhexcode').on('keyup change',function()
 
 {% endblock %}
 
-<!--
-<script type=text/javascript>function submitcode(){$("#decodeHex").submit();}</script>
-<script type=text/javascript> $(function()
-{$('#hexbutton').bind
-    ('click',function()
-        {$.getJSON
-            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val()},function(data)
-                {$("#echoResult").text(data.echostatus);
-                if(data.echostatus=='valid'){submitcode();}else{ $("#echoResult").text(data.echostatus + ' not good');}
-                }
-            );
-             return false;
-        }
-    ); //end bind
-}
-);  </script>
--->
