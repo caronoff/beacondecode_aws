@@ -11,7 +11,7 @@ COUNTRIES=[]
 for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
-print(COUNTRIES)
+
 @app.route('/validatehex', methods=['GET','POST'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
