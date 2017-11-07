@@ -5,9 +5,7 @@ h1{
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 40px;
 }
 
-#map {
-    width: 100%; height: 400px; margin-top: 40px; margin-bottom: 0px;
-}
+
 
 .info-window {
     font-family: 'Montserrat', sans-serif;
