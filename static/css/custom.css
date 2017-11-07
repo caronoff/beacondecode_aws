@@ -20,9 +20,9 @@ h1{
 .results-table {
   max-width: 930px;
   min-height: 200px;
-  position: centered;
+  position: relative;
   padding: 5px;
-
+  margin: auto;
   margin-top: 15px !important;
 
 }
