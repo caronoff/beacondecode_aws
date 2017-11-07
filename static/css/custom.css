@@ -18,23 +18,12 @@ h1{
 
 #decodetable {
   position:relative;
-  width:850px;
-  max-width: 1000px;
-
+  width:1000px;
   min-height: 600px;
-  padding: 75px;
-  margin: auto;
-
-}
-
-
-.results-table {
-    max-width: 1000px;
-  position: relative;
-  min-height: 300px;
-  padding: 25px;
+  padding: 50px;
   margin: auto;
 }
+
 
 .btn-toolbar {
   max-width: 930px;
@@ -65,8 +54,9 @@ h1{
 #map_container{
   position: relative;
 }
+
 #map{
-    height: 0;
+    height: auto;
     overflow: hidden;
     padding-bottom: 22.25%;
     padding-top: 30px;
