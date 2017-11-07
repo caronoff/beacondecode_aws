@@ -17,7 +17,7 @@ body {
 #myform {
   position:relative; width:780px;
   max-width: 780px;
-  position: relative;
+  position: top;
   min-height: 600px;
   padding: 75px;
   margin: auto;
