@@ -17,41 +17,22 @@ h1{
 #decodetable {
   position:relative;
   width:1000px;
-  min-height: 600px;
+  min-height: 1000px;
   padding: 50px;
   margin: auto;
 }
 
 
 .btn-toolbar {
-  max-width: 930px;
+  max-width: 1000px;
   min-height: 200px;
   padding: 5px;
   margin: auto;
   margin-top: 25px ;
 }
 
-.show-map {
-  max-width: 830px;
-  min-height: 400px;
-  padding: 5px;
-  margin: auto;
-
-}
-
-.centered {
-  position:relative; width:1280px;
-  max-width: 930px;
-  position: relative;
-  min-height: 600px;
-  padding: 75px;
-  margin: auto;
-    }
 
 
-#map_container{
-  position: relative;
-}
 
 #map{
     height: auto;
