@@ -7,8 +7,11 @@ import Gen2secondgen as Gen2
 import Gen2functions
 app = Flask(__name__)
 
-
-
+COUNTRIES=[]
+for key in definitions.countrydic:
+    COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
+COUNTRIES.sort()
+print(COUNTRIES)
 @app.route('/validatehex', methods=['GET','POST'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
@@ -42,6 +45,12 @@ def index():
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('child.html', title='Home', user='')
 
+@app.route("/autocomplete",methods=['GET'])
+def autocomplete():
+    search = request.args.get('q')
+    
+    results= [k for k in COUNTRIES if k.upper().startswith(search.upper())]
+    return jsonify(matching_results=results)
 
 @app.route("/encodehex")
 def encodehex():
