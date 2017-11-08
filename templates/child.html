@@ -78,7 +78,7 @@ $('#inputhexcode').on('keyup change',function()
 
                 else{
                         $form.find(':input[type="submit"]').prop('disabled', true);
-                        $("#echoResult").text(data.message);
+                        $("#echoResult").text('<pre>'+data.message+'</pre>');
                         $addon.removeClass('success');
 				        $addon.addClass('danger');
 				        $icon.attr('class', 'glyphicon glyphicon-remove');
