@@ -37,7 +37,7 @@ h1{
     position: bottom;
 }
 .form-control {
-    width:378px;
+    max-width:378px;
     }
 #pieces  {
     width:678px;
