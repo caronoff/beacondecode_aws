@@ -60,7 +60,7 @@ h1{
     z-index:2;
 }
 
-
-.radio{
-    vertical-align: middle;
-    }
+input[type="radio"] {
+    margin: 4px 4px 4px 4px;
+    width: 2%;
+}
