@@ -36,7 +36,9 @@ h1{
     padding-top: 30px;
     position: bottom;
 }
-
+.form-control {
+    width:378px;
+    }
 #pieces  {
     width:678px;
     top:0px;
