@@ -77,7 +77,8 @@ $(".debug > .selected").text(this.value);
 
 <script type="text/javascript">
 $('#myForm input').on('change', function() {
-   var panelselect = $('input[name=optradio]:checked', '#myForm').val());
+   var panelselect = $('input[name=optradio]:checked', '#myForm').val();
+    console.log(panelselect);
    if(panelselect=='1'){
         $('#1').show();
         $('#2').hide();} else {
