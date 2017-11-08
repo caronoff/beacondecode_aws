@@ -546,7 +546,7 @@ class BeaconHex(HexError):
             
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['65-85',default,'Default bits',''])                
-            
+                self._loc=False
 
         #   National Location protocols - PLB, ELT and EPIRB
         elif typelocprotbin in definitions.natloctypes: #['1000','1010','1011','1111']:            
