@@ -31,15 +31,24 @@
         </div>
 
 
+ <form id="genform" class="form-inline" role="form">
+       <div class="form-group">
+      <label class="control-label">Beacon Generation: </label>
+    </div>
+
+<div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="optgen" id="gen_1" value="1" checked="">First Generation</label>
+      </div>
+</div>
 
 
-          <label class="checkbox-inline"><input type="radio" name="optgen" value="1">First Generation</label>
-
-
-          <label class="checkbox-inline"><input type="radio" name="optgen" value="2">Second Generation</label>
-
-
-
+<div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="optgen"  id="gen_2" value="2">Second Generation</label>
+      </div>
+</div>
+</form>
 
 
          <input type="radio" name="beacontype" value="ELT">ELT<br>
@@ -93,8 +102,8 @@ $(".debug > .selected").text(this.value);
 </script>
 
 <script type="text/javascript">
-$('#myForm input').on('change', function() {
-   var panelselect = $('input[name=optgen]:checked', '#myForm').val();
+$('#genform input').on('change', function() {
+   var panelselect = $('input[name=optgen]:checked', '#genform').val();
     console.log(panelselect);
    if(panelselect=='1'){
         $('#1').show();
