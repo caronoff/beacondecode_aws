@@ -464,6 +464,7 @@ class BeaconHex(HexError):
         if typelocprotbin in definitions.stdloctypes : #['0010','0011','0100','0101','0110','0111','1100','1110']
             default='011111111101111111111'
             self._loctype='Standard Location'
+            self._loc = False
             
             self.hex15=Fcn.bin2hex(self.bin[26:65]+default)
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol', definitions.locprottype[typelocprotbin]])
@@ -545,7 +546,8 @@ class BeaconHex(HexError):
                                           str(self.bch.bch2calc())])                             
             
             elif self.type=='15 Hex ID':
-                self.tablebin.append(['65-85',default,'Default bits',''])                
+                self.tablebin.append(['65-85',default,'Default bits',''])
+                print('hiiseuiudf')
                 self._loc=False
 
         #   National Location protocols - PLB, ELT and EPIRB
@@ -632,6 +634,7 @@ class BeaconHex(HexError):
 
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['59-85',default,'Default bits',''])
+
                 self._loc=False
             
             
