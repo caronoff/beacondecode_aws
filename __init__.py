@@ -73,7 +73,7 @@ def decoded(hexcode):
     else:
         beacon = decodehex2.BeaconHex(hexcode)
     beacon.processHex(hexcode)
-    print(beacon.has_loc())
+    print(beacon._loc)
     decoded = beacon.tablebin
     if beacon._loc==True:
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
