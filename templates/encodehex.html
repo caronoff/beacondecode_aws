@@ -77,8 +77,14 @@ $(".debug > .selected").text(this.value);
 
 <script type="text/javascript">
 $('#myForm input').on('change', function() {
-   alert($('input[name=optradio]:checked', '#myForm').val());
-   alert($("#myform input[type='radio']:checked").val());
+   var panelselect = $('input[name=optradio]:checked', '#myForm').val());
+   if(panelselect=='1'){
+        $('#1').show();
+        $('#2').hide();} else {
+         $('#2').show();
+        $('#1').hide();
+}
+
 
 });
 </script>
