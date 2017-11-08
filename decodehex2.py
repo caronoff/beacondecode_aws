@@ -632,7 +632,7 @@ class BeaconHex(HexError):
 
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['59-85',default,'Default bits',''])
-            
+                self._loc=False
             
             
         # RLS Location Protocol 
