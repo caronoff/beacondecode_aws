@@ -681,7 +681,7 @@ class BeaconHex(HexError):
                                       str(self.bch.bch2calc())])
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['67-85',default,'Default bits',''])
-
+                self._loc = False
 
 
             
