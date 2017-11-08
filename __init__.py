@@ -70,9 +70,10 @@ def decoded(hexcode):
     locationcheck=False
     if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
         beacon = Gen2.SecondGen(hexcode)
+
     else:
         beacon = decodehex2.BeaconHex(hexcode)
-    #beacon.processHex(hexcode)
+    #
     print(beacon._loc)
     decoded = beacon.tablebin
     if beacon._loc==True:
