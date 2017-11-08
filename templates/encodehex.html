@@ -39,8 +39,21 @@
 
 
 
+        <div class="radio">
+         <label><input type="radio" name="beacontype" value="ELT">ELT</label>
+        </div>
 
+        <div class="radio">
+          <label><input type="radio" name="beacontype" value="EPIRB">EPIRB</label>
+        </div>
 
+         <div class="radio">
+          <label><input type="radio" name="beacontype" value="PLB">PLB</label>
+        </div>
+
+         <div class="radio">
+          <label><input type="radio" name="beacontype" value="TEST">Test or Spare</label>
+        </div>
 
 
 
@@ -50,18 +63,20 @@
 
 
           <div id="pieces">
-        <div id="1" style="display: none;" class="panel">
-            <div class="form-group">
-              <label for="input1">Input for first gen:</label>
-              <input type="text" class="form-control" id="input1">
-            </div>
-        </div>
-        <div id="2" style="display: none;" class="panel">
-            <div class="form-group">
-                <label for="input2">Input for second gen:</label>
-                <input type="text" class="form-control" id="input2">
-            </div>
-        </div>
+                <div id="1" style="display: none;" class="panel">
+                    <div class="form-group">
+                      <label for="input1">Input for first gen:</label>
+                      <input type="text" class="form-control" id="input1">
+                    </div>
+                </div>
+
+
+                <div id="2" style="display: none;" class="panel">
+                    <div class="form-group">
+                        <label for="input2">Input for second gen:</label>
+                        <input type="text" class="form-control" id="input2">
+                    </div>
+                </div>
 
 
         </div>
@@ -94,12 +109,21 @@ $('#myForm input').on('change', function() {
          $('#2').show();
         $('#1').hide();
 }
-
-
 });
 </script>
 
-  <script>
+<script type="text/javascript">
+$('#myForm input').on('change', function() {
+   var btype = $('input[name=beacontype]:checked', '#myForm').val();
+    console.log(btype);
+});
+</script>
+
+
+
+
+
+<script>
   $( function() {
     
     $( "#tags" ).autocomplete({
