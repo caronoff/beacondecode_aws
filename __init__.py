@@ -79,7 +79,7 @@ def decoded(hexcode):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         locationcheck=True
 
-    return render_template('output.html', hexcode=hexcode, decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
+    return render_template('output.html', hexcode=hexcode.upper(), decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
 
 
 if __name__ == "__main__":
