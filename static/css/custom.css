@@ -60,8 +60,11 @@ h1{
     z-index:2;
 }
 
+.form-inline {
+    padding:12px;
+}
 
-.form-inline, .radio-inline, .checkbox-inline , .control-label {
+.radio-inline, .checkbox-inline , .control-label {
     width: 100px;
     padding: 12px;
 
