@@ -59,8 +59,3 @@ h1{
     right: 0px;
     z-index:2;
 }
-
-input[type="radio"] {
-    margin: 4px 4px 4px 4px;
-    width: 2%;
-}
