@@ -59,14 +59,10 @@ h1{
     right: 0px;
     z-index:2;
 }
-.form-inline  {
-    margin-left:10px;
 
-   padding: 12px;
-}
 
 
 .radio-inline, .checkbox-inline , .control-label {
     width: 200px;
-    padding-left:12px;
+
  }
