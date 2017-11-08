@@ -163,6 +163,8 @@ class BeaconHex(HexError):
         
                     
     def has_loc(self):
+        if self.type=='15 Hex ID':
+            self._loc=False
         return self._loc
     
     def protocolflag(self):
