@@ -681,7 +681,7 @@ class BeaconHex(HexError):
                                       str(self.bch.bch2calc())])
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['67-85',default,'Default bits',''])
-
+                self._loc = False
 
 
             
@@ -733,7 +733,7 @@ class BeaconHex(HexError):
                                       str(self.bch.bch2calc())])
             elif self.type=='15 Hex ID':
                 self.tablebin.append(['67-85',default,'Default bits',''])
-
+                self._loc = False
         if Fcn.is_number(declat) and Fcn.is_number(latdelta) and Fcn.is_number(declng) and Fcn.is_number(longdelta):
             self._loc=True
             a=self.update_locd((abs(declat)+latdelta),latdir)         
@@ -744,9 +744,9 @@ class BeaconHex(HexError):
             b=declng
 
             
-
-        self.tablebin.append(['','','Composite location','{} {}'.format(a,b)])
-        self.location=(a,b)        
+        if self._loc:
+            self.tablebin.append(['','','Composite location','{} {}'.format(a,b)])
+            self.location=(a,b)
         self._btype=btype
         self.tac=tano
 
