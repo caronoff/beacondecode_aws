@@ -72,11 +72,12 @@ def decoded(hexcode):
         beacon = Gen2.SecondGen(hexcode)
     else:
         beacon = decodehex2.BeaconHex(hexcode)
-    beacon.processHex(hexcode)
+    #beacon.processHex(hexcode)
     print(beacon._loc)
     decoded = beacon.tablebin
     if beacon._loc==True:
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
+
         locationcheck=True
 
     return render_template('output.html', hexcode=hexcode.upper(), decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
