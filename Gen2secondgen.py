@@ -22,7 +22,8 @@ class SecondGen(Gen2Error):
 
     def __init__(self, hexCode=None):
         self.bits = '0' * 250
-
+        if hexCode:
+            self.processHex(hexcode)
     def processHex(self, strhex):
 
         ##All second generation beacon messages must be EXACTLY 250 bits
