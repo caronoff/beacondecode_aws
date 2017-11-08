@@ -50,8 +50,8 @@
 
 
           <div id="pieces">
-        <div id="1" style="visibility:hidden" class="panel">First Div</div>
-        <div id="2" style="visibility:hidden" class="panel">Second Div</div>
+        <div id="1" style="visibility:visible" class="panel">First Div</div>
+        <div id="2" style="visibility:visible" class="panel">Second Div</div>
             </div>
 
 
@@ -80,10 +80,10 @@ $('#myForm input').on('change', function() {
    var panelselect = $('input[name=optradio]:checked', '#myForm').val();
     console.log(panelselect);
    if(panelselect=='1'){
-        $('#1').css("visibility", "visible");
-        $('#2').css("visibility", "hidden");} else {
-         $('#2').css("visibility", "visible");
-        $('#1').css("visibility", "hidden");
+        $('#1').show();
+        $('#2').hide();} else {
+         $('#2').show();
+        $('#1').hide();
 }
 
 
