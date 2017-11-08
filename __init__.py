@@ -26,7 +26,7 @@ def validatehex():
             if len(ret_data) in [15,30,23,63]:
                 statuscheck = 'valid'
             else:
-                message += Markup('  Wrong length '+str(len(ret_data)) + '<br>Valid lengths: 15 hex,23 hex  30 or 63 hex.')
+                message += '  Bad length '+str(len(ret_data)) + Markup('</br>')+ 'Valid lengths: 15 hex, 23 hex, 30 or 63 hex'
         else:
             statuscheck='not valid'
             message='Invalid Hexidecimal code  (A-F-0-9)'
