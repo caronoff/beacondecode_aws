@@ -66,8 +66,7 @@ h1{
 }
 
 
-.radio-inline, .checkbox-inline {
+.radio-inline, .checkbox-inline , .control-label {
     width: 200px;
-
     padding-left:12px;
  }
