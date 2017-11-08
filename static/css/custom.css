@@ -5,8 +5,6 @@ h1{
     text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 40px;
 }
 
-
-
 .info-window {
     font-family: 'Montserrat', sans-serif;
 }
@@ -22,7 +20,6 @@ h1{
   margin: auto;
 }
 
-
 .btn-toolbar {
   max-width: 1000px;
   min-height: 200px;
@@ -30,8 +27,6 @@ h1{
   margin: auto;
   margin-top: 25px ;
 }
-
-
 
 
 #map{
