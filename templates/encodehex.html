@@ -30,11 +30,13 @@
           <input id="tags">
         </div>
 
+
+
         <div class="radio">
-          <label><input type="radio" name="optradio" value="1">First Generation</label>
+          <label class="checkbox-inline"><input type="radio" name="optgen" value="1">First Generation</label>
         </div>
         <div class="radio">
-          <label><input type="radio" name="optradio" value="2">Second Generation</label>
+          <label class="checkbox-inline"><input type="radio" name="optgen" value="2">Second Generation</label>
         </div>
 
 
@@ -92,7 +94,7 @@ $(".debug > .selected").text(this.value);
 
 <script type="text/javascript">
 $('#myForm input').on('change', function() {
-   var panelselect = $('input[name=optradio]:checked', '#myForm').val();
+   var panelselect = $('input[name=optgen]:checked', '#myForm').val();
     console.log(panelselect);
    if(panelselect=='1'){
         $('#1').show();
