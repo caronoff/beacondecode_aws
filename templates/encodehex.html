@@ -116,8 +116,8 @@ $('#genform input').on('change', function() {
 </script>
 
 <script type="text/javascript">
-$('#myForm input').on('change', function() {
-   var btype = $('input[name=beacontype]:checked', '#myForm').val();
+$('beacontype input').on('change', function() {
+   var btype = $('input[name=beacontype]:checked', '#beacontype').val();
     console.log(btype);
 });
 </script>
