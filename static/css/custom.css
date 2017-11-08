@@ -37,3 +37,23 @@ h1{
     position: bottom;
 }
 
+#pieces  {
+    width:678px;
+    top:0px;
+    float:right;
+    position:relative;
+}
+
+#1 {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    z-index:1;
+}
+
+#2 {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    z-index:2;
+}
