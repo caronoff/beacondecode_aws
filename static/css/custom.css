@@ -67,6 +67,7 @@ h1{
 
 
 .radio-inline, .checkbox-inline {
+    width: 200px;
 
     padding-left:12px;
  }
