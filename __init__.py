@@ -14,10 +14,11 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
+    ret_data1 = str(request.args.get('a')).strip()
+    ret_data2 = str(request.args.get('b')).strip()
 
-
-    pass
-    return jsonify(echostatus=statuscheck, message=message)
+    returndata = ret_data1 + 'hello' + ret_data2
+    return jsonify(returndata=returndata)
 
 
 
