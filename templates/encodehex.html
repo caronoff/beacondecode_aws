@@ -57,6 +57,9 @@
          <input type="radio" name="beacontype" value="EPIRB">EPIRB<br>
          <input type="radio" name="beacontype" value="PLB">PLB<br>
          <input type="radio" name="beacontype" value="TEST">Test or Spare
+         <input type="text" name="country" class="form-control" >
+
+
 
 </form>
 
@@ -107,7 +110,7 @@
 $("#done").click(function() {
   var formdata = $('form').serialize();
   alert(formdata);
-  alert($('#tags').val());
+
 });
 </script>
 
@@ -158,7 +161,11 @@ $('#beacontype input').on('change', function() {
         },
         minLength: 2,
         select: function(event, ui) {
-            console.log(ui.item.value);
+            var country = ui.item.value
+            console.log(country);
+             $('input[name="country"]').val(country);
+
+
         }
 
 
