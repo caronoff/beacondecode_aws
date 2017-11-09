@@ -109,8 +109,9 @@ $("#done").click(function() {
   var ctry=$('#ctry').val();
   console.log(n_input,ctry);
   $.getJSON($SCRIPT_ROOT+'/processhex', {a: n_input, b: ctry},function(data){
-
+            if(data.echostatus=='valid'){alert(data.returndata);} else {
             $('#input2').text(data.returndata);
+            alert('BAD');}
 
                 });
 

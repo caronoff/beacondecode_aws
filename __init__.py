@@ -17,9 +17,9 @@ def processhex():
     ret_data1 = str(request.args.get('a')).strip()
     ret_data2 = str(request.args.get('b')).strip()
 
-    returndata = ret_data1 + 'hello' + ret_data2
-    print('hi')
-    return jsonify(returndata=returndata)
+    retdata = ret_data1 + 'hello' + ret_data2
+    statuscheck = 'valid'
+    return jsonify(returndata=retdata,echostatus=statuscheck)
 
 
 
