@@ -74,7 +74,7 @@
                 <div id="1" style="display: none;" class="panel">
                     <div class="form-group">
                       <label for="input1">Input for first gen:</label>
-                      <input type="text" class="form-control" name="input1">
+                      <input type="text" class="form-control" id="input1">
                     </div>
                 </div>
 
@@ -107,7 +107,8 @@
 <script type="text/javascript">
 $("#done").click(function() {
   var formdata = $('form').serialize();
-  alert('input[name=input1]'.val());
+  var n_input = $('input1').val();
+  alert(n_input);
 
 });
 </script>
