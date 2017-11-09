@@ -86,7 +86,11 @@
               </form>
 
         </div>
-
+        <div class="btn-toolbar">
+        <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
+          <span class="glyphicon glyphicon-ok" style="color:gray"></span> Return
+        </a>
+</div>
 </div>
 
 
@@ -97,6 +101,13 @@
 {% block scripts %}
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
+
+
+<script type="text/javascript">
+$("#done").click(function() {
+  alert('process');
+});
+</script>
 
 <script type="text/javascript">
 $('#combo').on('change', function() {
