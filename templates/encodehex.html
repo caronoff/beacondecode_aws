@@ -109,6 +109,17 @@ $("#done").click(function() {
   var ctry=$('#ctry').val();
   console.log(n_input,ctry);
 
+  $.getJSON(
+            $SCRIPT_ROOT+'/processhex', {a: n_input, b: ctry},function(data){
+            alert(data.returndata);
+
+
+                });
+
+
+            );
+
+
 
 });
 </script>
