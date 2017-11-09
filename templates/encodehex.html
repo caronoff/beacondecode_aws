@@ -105,7 +105,8 @@
 
 <script type="text/javascript">
 $("#done").click(function() {
-  alert('process');
+  var formdata = $('form').serialize();
+  alert(formdata);
 });
 </script>
 
