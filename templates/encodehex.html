@@ -17,8 +17,8 @@
 
  <form id="genform" class="form-inline" role="form">
        <div class="form-group">
-      <label class="control-label">Beacon Generation: </label>
-    </div>
+            <label class="control-label">Beacon Generation: </label>
+       </div>
 
 <div class="form-group">
       <div class="radio">
@@ -44,16 +44,14 @@
             {% for country in countries %}
                 <option value="{{country}}">{{country}}</option>
             {% endfor %}
-
           </select>
-
-        </div>
-            -->
+        </div>            -->
         <div class="ui-widget">
           <label for="tags">Country Code: </label>
           <input id="tags">
         </div>
       </form>
+
 <form id="beacontype" class="form-inline" role="form">
          <input type="radio" name="beacontype" value="ELT">ELT<br>
          <input type="radio" name="beacontype" value="EPIRB">EPIRB<br>
@@ -69,21 +67,23 @@
 
 
           <div id="pieces">
+              <form>
                 <div id="1" style="display: none;" class="panel">
                     <div class="form-group">
                       <label for="input1">Input for first gen:</label>
                       <input type="text" class="form-control" id="input1">
                     </div>
                 </div>
+              </form>
 
-
+              <form>
                 <div id="2" style="display: none;" class="panel">
                     <div class="form-group">
                         <label for="input2">Input for second gen:</label>
                         <input type="text" class="form-control" id="input2">
                     </div>
                 </div>
-
+              </form>
 
         </div>
 

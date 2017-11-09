@@ -36,6 +36,7 @@ h1{
     padding-top: 30px;
     position: bottom;
 }
+
 .form-control {
     max-width:378px;
     }
@@ -67,5 +68,4 @@ h1{
 .radio-inline, .checkbox-inline , .control-label {
     width: 200px;
     padding: 12px;
-
  }
