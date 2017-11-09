@@ -58,7 +58,7 @@
          <input type="radio" name="beacontype" value="PLB">PLB<br>
          <input type="radio" name="beacontype" value="TEST">Test or Spare
          <input type="text" style="visibility: hidden" name="country" id="ctry">
-
+         <input type="text" name="decoded" id="decoded">
 </form>
 
 
@@ -109,7 +109,11 @@ $("#done").click(function() {
   var ctry=$('#ctry').val();
   console.log(n_input,ctry);
   $.getJSON($SCRIPT_ROOT+'/processhex', {a: n_input, b: ctry},function(data){
-            if(data.echostatus=='valid'){alert(data.returndata); console.log(data.returndata);} else {
+            if(data.echostatus=='valid'){
+                alert(data.returndata);
+                console.log(data.returndata);
+                $('#decoded').text(data.returndata);}
+            else {
             $('#input2').text(data.returndata);
             alert('BAD');}
 
