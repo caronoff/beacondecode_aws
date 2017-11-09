@@ -110,7 +110,7 @@ $("#done").click(function() {
   console.log(n_input,ctry);
   $.getJSON($SCRIPT_ROOT+'/processhex', {a: n_input, b: ctry},function(data){
             alert(data.returndata);
-            $('#input1').text(data.returndata);
+            $('#input2').text(data.returndata);
 
                 });
 
