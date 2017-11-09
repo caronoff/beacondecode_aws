@@ -57,9 +57,7 @@
          <input type="radio" name="beacontype" value="EPIRB">EPIRB<br>
          <input type="radio" name="beacontype" value="PLB">PLB<br>
          <input type="radio" name="beacontype" value="TEST">Test or Spare
-         <input type="text" name="country" >
-
-
+         <input type="text" style="visibility: hidden" name="country" id="ctry">
 
 </form>
 
@@ -107,8 +105,10 @@
 <script type="text/javascript">
 $("#done").click(function() {
   var formdata = $('form').serialize();
-  var n_input = $('input1').val();
+  var n_input = $('#input1').val();
+  var ctry=$('#ctry').val();
   alert(n_input);
+  alert(ctry);
 
 });
 </script>
