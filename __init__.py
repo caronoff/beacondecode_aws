@@ -12,7 +12,16 @@ for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
-@app.route('/validatehex', methods=['GET','POST'])
+@app.route('/processhex', methods=['GET'])
+def processhex():
+
+
+    pass
+    return jsonify(echostatus=statuscheck, message=message)
+
+
+
+@app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
 
