@@ -71,13 +71,11 @@ h1{
  }
 
  #process{
-
     font:bold 14px;
     position: fixed;
     bottom: 0;
-    width:100%;
+    width:50%;
     height:auto;
     padding:1%;
-
 
 }
