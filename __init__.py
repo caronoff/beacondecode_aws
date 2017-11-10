@@ -14,13 +14,15 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-    #ret_data1 = str(request.args.get('a')).strip()
-    #ret_data2 = str(request.args.get('b')).strip()
-    f=request.args.get('beacontype')
+
+    btype=request.args.get('beacontype')
+    ctry=request.args.get('country')
+    gen=str(request.args.get('optgen'))
+    in1 = str(request.args.get('input1'))
     print(type(f))
     print(f)
 
-    retdata = f   # ret_data1 + 'hello' + ret_data2
+    retdata = btype+ctry+gen+in1
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
