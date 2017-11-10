@@ -58,7 +58,7 @@
          <input type="radio" name="beacontype" value="PLB">PLB<br>
          <input type="radio" name="beacontype" value="TEST">Test or Spare
          <input type="text" style="visibility: hidden" name="country" id="ctry">
-         <input type="text" name="decoded" id="decoded">
+
 </form>
 
 
@@ -93,7 +93,7 @@
         </a>
 </div>
 
-
+<div id="decoded"></div>
 {% endblock %}
 
 
@@ -112,10 +112,10 @@ $("#done").click(function() {
             if(data.echostatus=='valid'){
 
                 console.log(data.returndata);
-                $('#decoded').val(data.returndata);}
+                $('#decoded').text(data.returndata);}
             else {
-            $('#input2').text(data.returndata);
-            alert('BAD');}
+            $('#decoded').text(data.echostatus);
+            }
 
                 });
 
