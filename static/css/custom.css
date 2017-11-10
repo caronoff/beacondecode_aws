@@ -69,3 +69,14 @@ h1{
     width: 200px;
     padding: 12px;
  }
+
+ #process{
+    background-color:#fff;
+    font:bold 14px;
+    color:#1E88E5;
+    width:100%;
+    height:auto;
+    padding:1%;
+    border-top:1px solid #1E88E5;
+
+}
