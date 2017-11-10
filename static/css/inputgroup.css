@@ -46,3 +46,14 @@
   margin-top:25px;
 }
 
+#footer{
+
+    font:bold 14px;
+    position: fixed;
+    bottom: 0;
+    width:100%;
+    height:auto;
+    padding:1%;
+    border-top:1px solid #1E88E5;
+
+}
