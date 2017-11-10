@@ -79,3 +79,17 @@ h1{
     padding:1%;
 
 }
+
+
+#decoded{
+    text-align:left;
+    background-color:#fff;
+    color:#1E88E5;
+    position: relative;
+    float: right;
+    width:25%;
+    height: 20px;
+
+
+
+}
