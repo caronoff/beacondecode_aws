@@ -19,8 +19,6 @@ def processhex():
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
     in1 = str(request.args.get('input1'))
-    print(type(f))
-    print(f)
 
     retdata = btype+ctry+gen+in1
     statuscheck = 'valid'
