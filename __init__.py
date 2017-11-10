@@ -18,7 +18,8 @@ def processhex():
     ret_data2 = str(request.args.get('b')).strip()
     f=request.args.get('allform')
     print(type(f))
-
+    print(request.get_json('allform'))
+    print(request.get_json(f))
     retdata = ret_data1 + 'hello' + ret_data2
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
