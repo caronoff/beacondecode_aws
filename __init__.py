@@ -16,7 +16,7 @@ COUNTRIES.sort()
 def processhex():
     ret_data1 = str(request.args.get('a')).strip()
     ret_data2 = str(request.args.get('b')).strip()
-    btype=request.args.get('beacontype')
+    btype=request.args.get('allform')['beacontype']
 
     retdata = ret_data1 + 'hello' + ret_data2 +  btype
     statuscheck = 'valid'
