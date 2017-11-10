@@ -19,13 +19,11 @@
        <div class="form-group">
             <label class="control-label">Beacon Generation: </label>
        </div>
-
 <div class="form-group">
       <div class="radio">
         <label class="radio-inline control-label"><input type="radio" name="optgen" id="gen_1" value="1" >First (T.001)</label>
       </div>
 </div>
-
 
 <div class="form-group">
       <div class="radio">
@@ -36,29 +34,47 @@
 
 
         <form id='countryForm' name="test" action="#">
-
-            <!--
-        <div class="form-group" id="combo-group">
-          <label for="combo">Initial select</label>
-          <select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
-            {% for country in countries %}
-                <option value="{{country}}">{{country}}</option>
-            {% endfor %}
-          </select>
-        </div>            -->
+            <!--<div class="form-group" id="combo-group"><label for="combo">Initial select</label><select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
+            {% for country in countries %} <option value="{{country}}">{{country}}</option>{% endfor %} </select>  </div>            -->
         <div class="ui-widget">
-          <label for="tags">Country Code: </label>
+          <label for="tags">Country: </label>
           <input id="tags">
         </div>
       </form>
 
 <form id="beacontype" class="form-inline" role="form">
-         <input type="radio" name="beacontype" value="ELT">ELT<br>
-         <input type="radio" name="beacontype" value="EPIRB">EPIRB<br>
-         <input type="radio" name="beacontype" value="PLB">PLB<br>
-         <input type="radio" name="beacontype" value="TEST">Test or Spare
-         <input type="text" style="visibility: hidden" name="country" id="ctry">
+    <div class="form-group">
+            <label class="control-label">Beacon Type: </label>
+       </div>
 
+    <div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="ELT" >ELT</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="EPIRB" >EPIRB</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="PLB" >PLB</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="radio">
+        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="TEST" >Test or Spare</label>
+      </div>
+    </div>
+
+         
+
+
+    <input type="text" style="visibility: hidden" name="country" id="ctry">
 </form>
 
 
@@ -101,11 +117,8 @@
 {% block scripts %}
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
-
-
 <script type="text/javascript">
 $("#done").click(function() {
-
   var n_input = $('#input1').val();
   var ctry=$('#ctry').val();
   console.log(n_input,ctry);
@@ -117,9 +130,6 @@ $("#done").click(function() {
             $('#decoded').text(data.echostatus);
             }
                 });
-
-
-
 });
 </script>
 
@@ -153,14 +163,9 @@ $('#beacontype input').on('change', function() {
 
 
 
-
-
 <script>
   $( function() {
-    
     $( "#tags" ).autocomplete({
-      
-
       source: function(request, response) {
             $.getJSON("{{url_for('autocomplete')}}",{
                 q: request.term, // in flask, "q" will be the argument to look for using request.args
@@ -173,11 +178,7 @@ $('#beacontype input').on('change', function() {
             var country = ui.item.value
             console.log(country);
              $('input[name="country"]').val(country);
-
-
         }
-
-
       });
   });
   </script>
