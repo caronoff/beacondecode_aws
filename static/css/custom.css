@@ -71,9 +71,10 @@ h1{
  }
 
  #process{
-    background-color:#fff;
+
     font:bold 14px;
-    color:#1E88E5;
+    position: fixed;
+    bottom: 0;
     width:100%;
     height:auto;
     padding:1%;
