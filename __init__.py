@@ -19,7 +19,7 @@ def processhex():
     formdata=request.args.get('allform')
     print(type(formdata))
     print(formdata)
-    print(request.form['beacontype'])
+    print(jsonify(request.form['beacontype']))
     retdata = ret_data1 + 'hello' + ret_data2
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
