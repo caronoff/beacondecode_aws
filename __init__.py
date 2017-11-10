@@ -16,9 +16,9 @@ COUNTRIES.sort()
 def processhex():
     ret_data1 = str(request.args.get('a')).strip()
     ret_data2 = str(request.args.get('b')).strip()
-    for k in request.form:
-        print(key,request.form[key])
-    retdata = ret_data1 + 'hello' + ret_data2
+    btype=request.form['beacontype']
+    country=request.form['country']
+    retdata = ret_data1 + 'hello' + ret_data2 + country + btype
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
