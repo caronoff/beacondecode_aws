@@ -18,7 +18,7 @@ def processhex():
     ret_data2 = str(request.args.get('b')).strip()
     formdata=request.args.get('allform')
     print(type(formdata))
-    print(i)
+    print(formdata)
     print(request.form['beacontype'])
     retdata = ret_data1 + 'hello' + ret_data2
     statuscheck = 'valid'
