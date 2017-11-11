@@ -1,6 +1,4 @@
 from flask import Flask, jsonify,request, render_template, Markup, redirect, url_for
-from flask_wtf import FlaskForm
-from wtforms import StringField
 
 import re
 import decodehex2
@@ -10,7 +8,6 @@ import Gen2secondgen as Gen2
 import Gen2functions
 app = Flask(__name__)
 # add wtf  hfgffg
-app.secret_key = 'example'
 
 
 COUNTRIES=[]
@@ -19,22 +16,6 @@ for key in definitions.countrydic:
 COUNTRIES.sort()
 
 
-class OurForm(FlaskForm):
-    foo = StringField('foo')
-
-@app.route('/testwtf')
-def home():
-    form = OurForm()
-    return render_template('example.html', form=form)
-
-
-
-@app.route('/something', methods=['post'])
-def something():
-    form = OurForm()
-    if form.validate_on_submit():
-        return jsonify(data={'message': 'hello {}'.format(form.foo.data)})
-    return jsonify(data=form.errors)
 
 
 @app.route('/processhex', methods=['GET'])
@@ -44,7 +25,6 @@ def processhex():
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
     in1 = str(request.args.get('input1'))
-
     retdata = btype+ctry+gen+in1
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
