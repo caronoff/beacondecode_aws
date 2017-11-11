@@ -78,7 +78,6 @@ body {
 
 #myform {
   position:relative;
-
   max-width: 1000px;
   position: top;
   min-height: 600px;
@@ -126,8 +125,6 @@ body {
   border-top-right-radius: 0;
 }
 
-
-
 .info-window {
     font-family: 'Montserrat', sans-serif;
 }
@@ -137,7 +134,6 @@ body {
 
 #decodetable {
   position:relative;
-
   min-height: 1000px;
   padding: 10px;
   margin: auto;
