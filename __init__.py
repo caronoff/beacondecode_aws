@@ -35,7 +35,7 @@ def home():
 
 
 
-@app.route('/something/', methods=['post'])
+@app.route('/something', methods=['post'])
 def something():
     form = OurForm()
     if form.validate_on_submit():
