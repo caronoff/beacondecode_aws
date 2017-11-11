@@ -1,5 +1,4 @@
 from flask import Flask, jsonify,request, render_template, Markup, redirect, url_for
-
 import re
 import decodehex2
 import definitions
@@ -7,16 +6,11 @@ import sys
 import Gen2secondgen as Gen2
 import Gen2functions
 app = Flask(__name__)
-# add wtf  hfgffg
-
 
 COUNTRIES=[]
 for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
-
-
-
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
@@ -25,6 +19,7 @@ def processhex():
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
     in1 = str(request.args.get('input1'))
+
     retdata = btype+ctry+gen+in1
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
