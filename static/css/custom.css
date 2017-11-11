@@ -155,7 +155,8 @@ body {
     padding-top: 30px;
     position: bottom;
 }
-
+.panel-body {
+background:#FFCCFF;}
 #pieces  {
     width:678px;
     top:0px;
