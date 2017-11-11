@@ -6,7 +6,7 @@ import sys
 import Gen2secondgen as Gen2
 import Gen2functions
 app = Flask(__name__)
-# add wtf
+# add wtf  hfgffg
 COUNTRIES=[]
 for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
