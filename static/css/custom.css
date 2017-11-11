@@ -48,7 +48,7 @@
 
 #footer{
     font:bold 14px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width:100%;
     height:auto;
