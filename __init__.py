@@ -13,20 +13,14 @@ app = Flask(__name__)
 app.secret_key = 'example'
 
 
-
 COUNTRIES=[]
 for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
 
-
 class OurForm(FlaskForm):
     foo = StringField('foo')
-
-
-
-
 
 @app.route('/testwtf')
 def home():
