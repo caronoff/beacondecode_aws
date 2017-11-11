@@ -74,6 +74,8 @@ body {
   padding: 25px;
   margin: auto;
 }
+
+
 #myform {
   position:relative;
 
@@ -158,9 +160,6 @@ body {
     position: bottom;
 }
 
-.form-control {
-    max-width:378px;
-    }
 #pieces  {
     width:678px;
     top:0px;
