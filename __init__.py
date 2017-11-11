@@ -20,8 +20,8 @@ def processhex():
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
     in1 = str(request.args.get('input1'))
-
-    retdata = btype+ctry+gen+in1
+    protocol=str(request.args.get('protocol'))
+    retdata = btype+ctry+gen+in1+protocol
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
