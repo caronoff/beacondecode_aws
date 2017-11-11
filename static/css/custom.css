@@ -192,7 +192,7 @@ body {
 
  #process{
     font:bold 14px;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width:50%;
     height:auto;
