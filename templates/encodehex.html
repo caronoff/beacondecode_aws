@@ -11,20 +11,20 @@
 {% block content %}
 
 
-    <div class="container">
 
 
- <form id="genform" class="form-inline" role="form">
-       <div class="form-group">
+
+ <form id="genform" class="form-inline" style="width:600px" role="form">
+       <div class="form-group"  >
             <label class="control-label">Beacon Generation: </label>
        </div>
-<div class="form-group">
+<div class="form-group" >
       <div class="radio">
         <label class="radio-inline control-label"><input type="radio" name="optgen" id="gen_1" value="1" >First (T.001)</label>
       </div>
 </div>
 
-<div class="form-group">
+<div class="form-group" >
       <div class="radio">
         <label class="radio-inline control-label"><input type="radio" name="optgen"  id="gen_2" value="2">Second (T.018)</label>
       </div>
@@ -34,9 +34,9 @@
 
 
 
-<form id="beacontype" class="form-inline" role="form">
+<form id="beacontype" class="form-inline" role="form" style="width:800px">
     <div class="form-group">
-            <label class="control-label">Beacon Type: </label>
+            <label class="control-label">Beacon:</label>
        </div>
 
     <div class="form-group">
@@ -59,13 +59,12 @@
 
     <div class="form-group">
       <div class="radio">
-        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="TEST" >Test or Spare</label>
+        <label class="radio-inline control-label"><input type="radio" name="beacontype" value="TEST" >Test/Spare</label>
       </div>
     </div>
 
-      <label for="protocol">Select encoding protocol:</label>
+      <label for="protocol">Protocol:</label>
                         <select id="protocol" name="protocol" class="form-control">
-
                               <option value="001">Mustard</option>
                               <option value="010">Ketchup</option>
                               <option value="011">Relish</option>
@@ -75,20 +74,21 @@
     <input type="text" style="visibility: hidden" name="country" id="ctry">
 </form>
 
-
  <form id='countryForm' name="test" action="#">
             <!--<div class="form-group" id="combo-group"><label for="combo">Initial select</label><select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
             {% for country in countries %} <option value="{{country}}">{{country}}</option>{% endfor %} </select>  </div>            -->
-        <div class="ui-widget">
+        <div class="ui-widget" style="margin:25px;">
           <label for="tags">Country: </label>
           <input id="tags">
         </div>
-      </form>
-
+</form>
 
 
 
           <div id="pieces">
+
+
+
               <form id="genformpanel" class="form-inline" role="form">
                 <div id="1" style="display: none;" class="panel panel-default">
                     <div class="panel-heading">First-generation beacon identification:</div>
@@ -96,6 +96,8 @@
                     <div class="panel-body">
                       <label for="input1">Input for first gen:</label>
                       <input type="text" class="form-control" name="input1" id="input1">
+                        <label for="input3">Input for first gen:</label>
+                      <input type="text" class="form-control" name="input3" id="input3">
                     </div>
                 </div>
                 <div id="2" style="display: none;" class="panel panel-default">
@@ -109,20 +111,20 @@
         </div>
 
 
-       <div class="btn-toolbar" id="process">
+
+
+
+
+
+
+
+
+
+<div class="btn-toolbar" id="process">
         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
           <span class="glyphicon glyphicon-ok" style="color:gray"></span> Done
         </a><div id="decoded"></div>
         </div>
-
-
-
-
-        <div id="footer">
-							&copy; Copyright 2017 by <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
-        </div>
-        </div>
-
 
 {% endblock %}
 
