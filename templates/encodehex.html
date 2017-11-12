@@ -3,9 +3,8 @@
 {% block head %}
   {{ super() }}
 <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
 
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 {% endblock %}
@@ -85,21 +84,30 @@
 
           <div id="pieces">
               <form id="genformpanel" class="form-inline" role="form">
-                <div id="1" style="display: none;" class="panel">
-                    <div class="form-group">
+                <div id="1" style="display: none;" class="panel panel-default">
+                    <div class="panel-heading">First-generation beacon identification:</div>
+
+                    <div class="panel-body">
+                        <label for="protocol">Select encoding protocol:</label>
+                        <select id="protocol" name="protocol" class="form-control">
+
+                              <option value="001">Mustard</option>
+                              <option value="010">Ketchup</option>
+                              <option value="011">Relish</option>
+                            </select>
                       <label for="input1">Input for first gen:</label>
                       <input type="text" class="form-control" name="input1" id="input1">
                     </div>
                 </div>
 
-                <div id="2" style="display: none;" class="panel">
-                    <div class="form-group">
+                <div id="2" style="display: none;" class="panel panel-default">
+                    <div class="panel-heading">Second-generation beacon identification</div>
+                    <div class="panel-body">
                         <label for="input2">Input for second gen:</label>
                         <input type="text" class="form-control" name="input2" id="input2">
                     </div>
                 </div>
               </form>
-
         </div>
 
 
@@ -107,6 +115,13 @@
         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
           <span class="glyphicon glyphicon-ok" style="color:gray"></span> Done
         </a><div id="decoded"></div>
+        </div>
+
+
+
+
+        <div id="footer">
+							&copy; Copyright 2017 by <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
         </div>
         </div>
 
@@ -117,6 +132,24 @@
 {% block scripts %}
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
+
+<script type="text/javascript">
+    var newOptions = {"Option 1": "value1",
+  "Option 2": "value2",
+  "Option 3": "value3"
+};
+
+var $el = $("#protocol");
+$el.empty(); // remove old options
+$.each(newOptions, function(key,value) {
+  $el.append($("<option></option>")
+     .attr("value", value).text(key));
+});
+
+
+
+
+</script>
 <script type="text/javascript">
 $("#done").click(function() {
   var n_input = $('#input1').val();
