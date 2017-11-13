@@ -141,8 +141,9 @@ body {
 
 #decodetable {
   position:relative;
+  width:75%;
   min-height: 1000px;
-  padding: 10px;
+  padding: 30px;
   margin: auto;
 }
 
@@ -161,7 +162,7 @@ body {
 background:#FFCCFF;}
 
 #pieces  {
-    width:600px;
+
     top:0px;
     float:left;
     position:relative;
@@ -181,13 +182,19 @@ background:#FFCCFF;}
     z-index:2;
 }
 
-.form-inline {
+
+.form-inline .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+/* .form-inline {
     padding:15px;
 }
 
 .form-group {
 width:100px;
 }
+*/
 
 .radio-inline, .checkbox-inline , .control-label {
     padding: 12px;
