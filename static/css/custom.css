@@ -78,7 +78,7 @@ body {
   max-width: 1000px;
   position: relative;
   min-height: 300px;
-  padding: 50px;
+  padding: 30px;
   margin: auto;
 }
 
@@ -88,7 +88,7 @@ body {
   max-width: 1000px;
   position: top;
   min-height: 600px;
-  padding: 50px;
+  padding: 30px;
   margin: auto;
 
 }
@@ -143,7 +143,7 @@ body {
   position:relative;
   width:75%;
   min-height: 1000px;
-  padding: 30px;
+  padding: 20px;
   margin: auto;
 }
 
