@@ -38,6 +38,7 @@
                             </div>
                             <div class="col-xs-6">
                                 <select class="form-control" id="id_protocol" name="protocol" disabled>
+                                    <option value="0">---select---</option>
                                 <option value="001">Mustard</option>
                                 <option value="010">Ketchup</option>
                                 <option value="011">Relish</option>
@@ -117,17 +118,7 @@
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
 <script type="text/javascript">
-    var newOptions = {"Option 1": "value1",
-  "Option 2": "value2",
-  "Option 3": "value3"
-};
 
-var $el = $("#id_protocol");
-$el.empty(); // remove old options
-$.each(newOptions, function(key,value) {
-  $el.append($("<option></option>")
-     .attr("value", value).text(key));
-});
 
 
 
@@ -155,9 +146,36 @@ $("#done").click(function() {
 function checkprotocol(){
  var pval = $('#id_gen').val() ;
   var beacon = $('#id_beacontype').val() ;
- alert(pval);
- alert(beacon);
- if(pval!='0' && beacon!='0'){$("#id_protocol").prop('disabled', false);} else {$("#id_protocol").prop('disabled', true);}
+
+ if(pval!='0' && beacon!='0'){$("#id_protocol").prop('disabled', false);
+  newopt;
+
+ } else {
+
+ $("#id_protocol").prop('disabled', true);
+ $("#id_protocol").empty() ;
+
+ }
+
+ };
+
+
+function newopt(){
+  var newOptions = {
+ "---select new---":"0",
+ "Option 1": "value1",
+  "Option 2": "value2",
+  "Option 3": "value3"
+};
+
+var $el = $("#id_protocol");
+$el.empty(); // remove old options
+$.each(newOptions, function(key,value) {
+  $el.append($("<option></option>")
+     .attr("value", value).text(key));
+});
+
+
 
  };
 </script>
