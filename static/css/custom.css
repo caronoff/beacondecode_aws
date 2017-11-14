@@ -74,6 +74,14 @@ body {
 }
 
 
+#myform {
+  position:relative;
+  max-width: 1000px;
+  position: top;
+  min-height: 600px;
+  padding: 30px;
+  margin: auto;
+}
 
 .form-signin {
   max-width: 1000px;
@@ -84,16 +92,15 @@ body {
 }
 
 
-#myform {
-  position:relative;
+.centerpane{
+ position:relative;
   max-width: 1000px;
   position: top;
   min-height: 600px;
   padding: 30px;
   margin: auto;
-
 }
-
+}
 #intro {
   padding: 3rem 1.5rem;
   text-align: center;
@@ -148,13 +155,6 @@ body {
   margin: auto;
 }
 
-.centerpane{
- position:relative;
-  width:100%;
-  color: #999;
-  padding: 20px;
-  margin: auto;
-}
 
 
 #map{
