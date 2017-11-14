@@ -22,7 +22,8 @@
                         <div class="content row">
                             <div class="col-xs-3" style="padding-right: 5px;">
                                 <select class="form-control" id="id_gen" name="optgen">
-                                <option value="1" selected >First (T.001)</option>
+                                <option value="0" selected >---select---</option>
+                                <option value="1"  >First (T.001)</option>
                                 <option value="2">Second (T.018)</option>
                                 </select>
                             </div>
@@ -148,10 +149,16 @@ $("#done").click(function() {
 });
 </script>
 <script type="text/javascript">
- $('#id_beacontype').on('change', function() {alert('beacon');} );
- $('#id_gen').on('change', function() {alert('generation');} );
+ $('#id_gen').on('change', checkprotocol );
+ $('#id_beacontype').on('change', checkprotocol );
 
-function checkprotocol(){;};
+function checkprotocol(){
+ var pval = $('#id_beacontype').value ;
+  var beacon = $('#id_beacontype').value ;
+ alert(pval);
+ alert(beacon);
+
+ };
 </script>
 
 <script type="text/javascript">
