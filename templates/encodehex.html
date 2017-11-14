@@ -117,13 +117,7 @@
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
-<script type="text/javascript">
 
-
-
-
-
-</script>
 <script type="text/javascript">
 $("#done").click(function() {
   var n_input = $('#id_input1').val();
@@ -147,10 +141,7 @@ function checkprotocol(){
  var pval = $('#id_gen').val() ;
   var beacon = $('#id_beacontype').val() ;
 
- if(pval!='0' && beacon!='0'){$("#id_protocol").prop('disabled', false);
-  newopt;
-
- } else {
+ if(pval!='0' && beacon!='0'){newopt();} else {
 
  $("#id_protocol").prop('disabled', true);
  $("#id_protocol").empty() ;
@@ -161,6 +152,7 @@ function checkprotocol(){
 
 
 function newopt(){
+ $("#id_protocol").prop('disabled', false);
   var newOptions = {
  "---select new---":"0",
  "Option 1": "value1",
