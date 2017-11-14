@@ -97,15 +97,14 @@ def decoded(hexcode):
     locationcheck=False
     if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
         beacon = Gen2.SecondGen(hexcode)
-        if beacon.has_loc():
-            geocoord = (float(beacon.location[0]), float(beacon.location[1]))
-            locationcheck = True
+
     else:
         beacon = decodehex2.BeaconHex(hexcode)
-        if beacon.has_loc():
-            geocoord = (float(beacon.location[0]),float(beacon.location[1]))
-            locationcheck=True
-    print(locationcheck)
+
+    if beacon.has_loc():
+        geocoord = (float(beacon.location[0]),float(beacon.location[1]))
+        locationcheck=True
+
     #
 
     decoded = beacon.tablebin
