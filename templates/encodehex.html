@@ -145,7 +145,7 @@ function checkprotocol(){
 
  $("#id_protocol").prop('disabled', true);
  $("#id_protocol").empty() ;
-
+ $("#id_protocol").append($("<option></option>").attr("value",'0').text('---select---'));
  }
 
  };
