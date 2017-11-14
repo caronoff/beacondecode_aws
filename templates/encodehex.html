@@ -157,6 +157,7 @@ function checkprotocol(){
   var beacon = $('#id_beacontype').val() ;
  alert(pval);
  alert(beacon);
+ if(pval!='0' && beacon!='0'){$("#id_gen").prop('disabled', false);} else {$("#id_gen").prop('disabled', true);}
 
  };
 </script>
