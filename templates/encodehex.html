@@ -160,12 +160,15 @@ $('#id_protocol').on('change', function() {
    var pselect = this.value;
    console.log(pselect);
    $('.tohide').hide();
-   case '1-1-001':
+   switch(pselect){case '1-1-001':
         $('#1').show();
         break;
    case '1-1-100':
          $('#2').show();
          break;
+   default:
+         alert('none');
+}
     });  //end on change
 </script>
 
