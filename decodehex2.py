@@ -163,6 +163,7 @@ class BeaconHex(HexError):
         
                     
     def has_loc(self):
+        print(self.type)
         if self.type=='15 Hex ID':
             self._loc=False
         return self._loc
