@@ -152,27 +152,16 @@ function checkprotocol(){
 
 
 function newopt(a,b){
-
  $.getJSON
- ("{{url_for('filterlist')}}",{a: a, b: b},function(data){alert(data.echostatus);});
-
+ ("{{url_for('filterlist')}}",{a: a, b: b},function(data){
  $("#id_protocol").prop('disabled', false);
-  var newOptions = {
- "---select new---":"0",
- "Option 1": "value1",
-  "Option 2": "value2",
-  "Option 3": "value3"
-};
+ var newOptions = data.returndata;
+ var $el = $("#id_protocol");
+ $el.empty(); // remove old options
+ $.each(newOptions, function(key,value) {
+ $el.append($("<option></option>").attr("value", value).text(key));});
 
-var $el = $("#id_protocol");
-$el.empty(); // remove old options
-$.each(newOptions, function(key,value) {
-  $el.append($("<option></option>")
-     .attr("value", value).text(key));
-});
-
-
-
+ });
  };
 </script>
 
