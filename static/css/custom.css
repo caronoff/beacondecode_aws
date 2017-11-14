@@ -94,9 +94,8 @@ body {
 
 .centerpane{
  position:relative;
-  max-width: 1000px;
+  max-width: 600px;
   position: top;
-  min-height: 600px;
   padding: 30px;
   margin: auto;
 }
