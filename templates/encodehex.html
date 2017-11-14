@@ -134,7 +134,7 @@ $.each(newOptions, function(key,value) {
 </script>
 <script type="text/javascript">
 $("#done").click(function() {
-  var n_input = $('#input1').val();
+  var n_input = $('#id_input1').val();
   var ctry=$('#ctry').val();
   console.log(n_input,ctry);
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data){
