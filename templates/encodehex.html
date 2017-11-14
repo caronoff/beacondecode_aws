@@ -15,16 +15,13 @@
     <div class="row" >
         <div class="col-lg-4" >
             <form class="form-horizontal" action="." method="GET" role="form" id="genform">
-
                 <div class="form-group">
-                    <label class="col-lg-2 control-label" for="gen" data-placement="top" data-toggle="tooltip" title="How many cases have you seen?">Beacon Generation and protocol</label>
+                    <label class="col-lg-2 control-label" for="id_gen" data-placement="top" data-toggle="tooltip" title="title">Beacon Generation and protocol</label>
 
                     <div class="col-lg-10">
                         <div class="content row">
                             <div class="col-xs-3" style="padding-right: 5px;">
-
-
-                                <select class="form-control" id="gen" name="optgen">
+                                <select class="form-control" id="id_gen" name="optgen">
                                 <option value="1" selected >First (T.001)</option>
                                 <option value="2">Second (T.018)</option>
                                 </select>
@@ -150,7 +147,17 @@ $("#done").click(function() {
                 });
 });
 </script>
+<script type="text/javascript">
+ $('#id_beacontype').on('change', function() {alert('beacon');} );
+</script>
 
+<script type="text/javascript">
+ $('#id_gen').on('change', function() {alert('generation');} );
+</script>
+
+<script type="text/javascript">
+checkprotocol(){}
+</script>
 
 <script type="text/javascript">
 $('#gen').on('change', function() {
