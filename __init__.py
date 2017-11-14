@@ -31,7 +31,7 @@ def filterlist():
     protocol=str(request.args.get('a'))
     beacontype=str(request.args.get('b'))
     print('protocol: '+protocol+' and beacon: '+beacontype)
-    selectdic={"---select new---":"0", "Option 1": "value1",  "Option 2": "value2",  "Option 3": "value3"}
+    selectdic={"---select new---":"0", "**Option 1": "value1",  "**Option 2": "value2",  "**Option 3": "value3"}
     statuscheck='valid'
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
