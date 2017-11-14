@@ -26,6 +26,15 @@ def processhex():
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
 
+@app.route('/filterlist', methods=['GET'])
+def filterlist():
+    protocol=str(request.args.get('a'))
+    beacontype=str(request.args.get('b'))
+    print('protocol: '+protocol+' and beacon: '+beacontype)
+    selectdic={"---select new---":"0", "Option 1": "value1",  "Option 2": "value2",  "Option 3": "value3"}
+    statuscheck='valid'
+    return jsonify(returndata=selectdic,echostatus=statuscheck)
+
 
 @app.route('/validatehex', methods=['GET'])
 def validatehex():

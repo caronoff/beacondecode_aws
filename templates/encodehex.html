@@ -141,7 +141,7 @@ function checkprotocol(){
  var pval = $('#id_gen').val() ;
   var beacon = $('#id_beacontype').val() ;
 
- if(pval!='0' && beacon!='0'){newopt();} else {
+ if(pval!='0' && beacon!='0'){newopt(pval,beacon);} else {
 
  $("#id_protocol").prop('disabled', true);
  $("#id_protocol").empty() ;
@@ -151,7 +151,11 @@ function checkprotocol(){
  };
 
 
-function newopt(){
+function newopt(a,b){
+
+ $.getJSON
+ ("{{url_for('filterlist')}}",{a: a, b: b},function(data){alert(data.echostatus);});
+
  $("#id_protocol").prop('disabled', false);
   var newOptions = {
  "---select new---":"0",
