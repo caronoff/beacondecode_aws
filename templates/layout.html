@@ -14,7 +14,6 @@
 
 	<!-- Bootstrap core CSS -->
 	  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-      <link href="{{ url_for('static', filename='css/inputgroup.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	  <title>Cospas-Sarsat - {% block title %}{% endblock %}</title>
@@ -39,9 +38,13 @@
 
 -->
 
+ <div class="container">
 			    {% block content %}{% endblock %}
+	 <div id="footer">
+							&copy; Copyright 2017 by <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
+	 </div>
 
-
+ </div>
 
 <!-- Placed at the end of the document so the pages load faster -->
 {% block scripts %}
