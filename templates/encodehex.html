@@ -153,8 +153,8 @@ $("#done").click(function() {
  $('#id_beacontype').on('change', checkprotocol );
 
 function checkprotocol(){
- var pval = $('#id_beacontype').value ;
-  var beacon = $('#id_beacontype').value ;
+ var pval = $('#id_beacontype').val() ;
+  var beacon = $('#id_beacontype').val() ;
  alert(pval);
  alert(beacon);
 
