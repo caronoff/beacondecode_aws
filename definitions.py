@@ -94,7 +94,7 @@ userprottype = {'011':'Serial User Protocol (see bits 40 to 42)',
                 '111':'Test User Protocol',
                 '110':'Radio Call Sign - EPIRB',
                 '000':'Orbitography Protocol',
-                '100':'National User Protocol ELT/EPIRB/PLB',
+                '100':'National User Protocol ELT/EPIRB/PLB/TEST',
                 '010':'Maritime User Protocol - EPIRB',
                 '101':'Spare - undefined'
                }
@@ -110,7 +110,13 @@ serialusertype = {'000':'ELT with Serial Identification',
                   '101':'Spare'
                  }
 
-
+pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1-100'),(serialusertype['000'],'1-1S-000'),(serialusertype['011'],'1-1S-011'),(serialusertype['001'],'1-1S-001'),
+                       (locprottype['0011'],'1-0-0011'),(locprottype['0100'],'1-0-0100'),(locprottype['0101'],'1-0-0101'),
+                       (locprottype['1000'],'1-0-1000'),(locprottype['1001'] + ' '+eltdt['00'] ,'1-0-1001-00'),
+                       (locprottype['1001'] + ' '+eltdt['01'],'1-0-1001-01'),(locprottype['1001'] + ' '+eltdt['10'],'1-0-1001-10'),(locprottype['1001'] + ' '+eltdt['11'],'1-0-1001-11')],
+                'EPIRB':[(userprottype['110'],'1-1-110'),(userprottype['100'],'1-1-100'),(userprottype['010'],'1-1-010'),(serialusertype['010'],'1-1S-010'),(serialusertype['100'],'1-1S-100')],
+                'PLB':[(userprottype['100'],'1-1-100'),(serialusertype['110'],'1-1S-110')],'TEST':[(userprottype['111'],'1-1-111'),(userprottype['000'],'1-1-000'),(userprottype['100'],'1-1-100')]},
+           '2':{}}
 
 posneg = {'0':'-1', '1':'1'}
 dataflag110 = {'0':'Result of bits 113 to 132 defined nationally',
