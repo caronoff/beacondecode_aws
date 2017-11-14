@@ -435,7 +435,7 @@ class BeaconHex(HexError):
             btype='Std Loc Test'
         elif typelocprotbin=='1111':
             btype='Nat Loc Test'
-        elif typelocprotbin=='1101' :
+        elif typelocprotbin=='1101' :  #RLS beacon
             if self.bin[41:43] == '00' :
                 btype='ELT'
             elif self.bin[41:43] == '01' :
