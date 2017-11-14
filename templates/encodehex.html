@@ -39,9 +39,6 @@
                             <div class="col-xs-6">
                                 <select class="form-control" id="id_protocol" name="protocol" disabled>
                                     <option value="0">---select---</option>
-                                <option value="001">Mustard</option>
-                                <option value="010">Ketchup</option>
-                                <option value="011">Relish</option>
                                 </select>
                             </div>
                         </div>
@@ -70,7 +67,7 @@
 
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
-                <div id="1" style="display: visible;" class="panel panel-default">
+                <div id="1" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-heading">First-generation beacon identification:</div>
 
                     <div class="panel-body">
@@ -80,7 +77,7 @@
                       <input type="text"  class="form-control" name="input3" id="id_input3">
                     </div>
                 </div>
-                <div id="2" style="display: none;" class="panel panel-default">
+                <div id="2" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-heading">Second-generation beacon identification</div>
                     <div class="panel-body">
                         <label for="id_input2">Input for second gen:</label>
@@ -117,7 +114,6 @@
 {{super()}}
 <script src="{{ url_for('static', filename='js/bootstrap-combobox.min.js') }}"></script>
 
-
 <script type="text/javascript">
 $("#done").click(function() {
   var n_input = $('#id_input1').val();
@@ -140,14 +136,9 @@ $("#done").click(function() {
 function checkprotocol(){
  var pval = $('#id_gen').val() ;
   var beacon = $('#id_beacontype').val() ;
-
- if(pval!='0' && beacon!='0'){newopt(pval,beacon);} else {
-
- $("#id_protocol").prop('disabled', true);
- $("#id_protocol").empty() ;
- $("#id_protocol").append($("<option></option>").attr("value",'0').text('---select---'));
- }
-
+  $("#id_protocol").empty() ;
+  $("#id_protocol").append($("<option></option>").attr("value",'0').text('---select---'));
+  if(pval!='0' && beacon!='0'){newopt(pval,beacon);} else {$("#id_protocol").prop('disabled', true);}
  };
 
 
@@ -160,24 +151,22 @@ function newopt(a,b){
  $el.empty(); // remove old options
  $.each(newOptions, function(key,value) {
  $el.append($("<option></option>").attr("value", value).text(key));});
-
  });
  };
 </script>
 
 <script type="text/javascript">
-$('#gen').on('change', function() {
-
-   var panelselect = this.value;
-    console.log(panelselect);
-   if(panelselect=='1'){
+$('#id_protocol').on('change', function() {
+   var pselect = this.value;
+   console.log(pselect);
+   $('.tohide').hide();
+   case '1-1-001':
         $('#1').show();
-        $('#2').hide();}
-    if(panelselect=='2'){
+        break
+   case '1-1-100':
          $('#2').show();
-         $('#1').hide();
-}
-});  //end on change
+         break
+    });  //end on change
 </script>
 
 <script type="text/javascript">
