@@ -31,10 +31,12 @@ def filterlist():
     protocol=str(request.args.get('a'))
     beacontype=str(request.args.get('b'))
     print('protocol: '+protocol+' and beacon: '+beacontype)
-    selectlist=[]
-    selectlist.append(("---select new---","0"))
+
+    selectdic["---select new---"]="0"
+    for l in definitions.pselect[protocol][beacontype]:
+        selectdic[l[0]]=l[1]
     statuscheck='valid'
-    return jsonify(returndata=selectlist,echostatus=statuscheck)
+    return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
 @app.route('/validatehex', methods=['GET'])
