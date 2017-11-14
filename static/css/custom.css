@@ -148,7 +148,13 @@ body {
   margin: auto;
 }
 
-
+.centerpane{
+ position:relative;
+  width:100%;
+  color: #999;
+  padding: 20px;
+  margin: auto;
+}
 
 
 #map{
