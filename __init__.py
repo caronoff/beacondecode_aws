@@ -32,7 +32,7 @@ def filterlist():
     beacontype=str(request.args.get('b'))
     print('protocol: '+protocol+' and beacon: '+beacontype)
 
-    selectdic["---select new---"]="0"
+    selectdic={"---select new---":"0"}
     for l in definitions.pselect[protocol][beacontype]:
         selectdic[l[0]]=l[1]
     statuscheck='valid'
