@@ -271,10 +271,10 @@ class BeaconHex(HexError):
                             'Number of Additional ELTs (bits 68-73):'+str(Fcn.bin2dec(self.bin[68:74])))
                 auxradiodevice='Aux Radio Device: '+self.bin[84:86]+' '+definitions.auxlocdevice[self.bin[84:86]]
                 emergencycode='Emergency Code (109-112): '
-                self.tablebin.append(['44-67',str(self.bin[44:68]),'AirCraft 24 bit identification',str(Fcn.bin2dec(self.bin[44:68]))]) 
+                self.tablebin.append(['44-67',str(self.bin[44:68]),'AirCraft 24 bit identification',str(Fcn.bin2dec(self.bin[44:68]))])
+                self.tablebin.append(['68-73', str(self.bin[68:74]), 'Specific beacon number',  str(Fcn.bin2dec(self.bin[68:74]))])
 
-
-            #   Bit 40-42 : 001 : Aircraft operator designator and serial number
+                #   Bit 40-42 : 001 : Aircraft operator designator and serial number
             #   Aircraft Operator is in bits 44-61
             #   Serial ID is from bit 62-73
             
