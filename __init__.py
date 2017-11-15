@@ -19,9 +19,10 @@ def processhex():
     btype=request.args.get('beacontype')
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
+    tano = str(request.args.get('tano'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    retdata = btype+ctry+gen+in1+protocol
+    retdata = btype+ctry+gen+in1+protocol+'  '+tano
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
