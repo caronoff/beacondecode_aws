@@ -50,23 +50,17 @@
 
 
 
-<div class="col-lg-10">
-    <form class="form-horizontal" action="." method="GET" role="form">
-
-            <div class="ui-widget" style="margin:25px;overflow:hidden;">
-                <label for="tags">Country: </label>
-                <input id="tags" style="width:75%">
-                <input type="text" style="visibility: hidden" name="country" id="ctry">
-            </div>
-
-    </form>
-</div>
-
 
 
 
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
+                <div id="id_ctry" class="ui-widget panel panel-body panel-default">
+                   <label for="tags">Country: </label>
+                   <input id="tags" style="width:75%">
+                   <input type="text" style="visibility: hidden" name="country" id="ctry">
+                </div>
+
                 <div id="id_tano" style="display: none;" class="panel panel-body panel-default tohide">
                     <label for="id_tanoinput">Type Approval certificate number:</label>
                     <input type="text" class="form-control" name="tano" id="id_tanoinput">
