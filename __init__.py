@@ -20,10 +20,11 @@ def processhex():
     ctry=request.args.get('country')
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
+    beaconnoinput = str(request.args.get('beaconnoinput'))
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    retdata = btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput
+    retdata = btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
