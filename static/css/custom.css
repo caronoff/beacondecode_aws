@@ -164,7 +164,8 @@ body {
 }
 
 .panel-body {
-background:#FFCCFF;}
+background:#FFCCFF;
+max-width:400px;}
 
 #pieces  {
 
