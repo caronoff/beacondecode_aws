@@ -11,14 +11,14 @@
 {% block content %}
 
 
-<div id="panelcontainer" class="panel panel-body panel-default">
+<div  class="panel panel-body panel-default">
     <div class="row" >
         <div class="col-lg-4" >
             <form class="form-horizontal" action="." method="GET" role="form" id="genform">
                 <div class="form-group">
                     <label class="col-lg-2 control-label" for="id_gen" data-placement="top" data-toggle="tooltip" title="title">Beacon Generation and protocol</label>
 
-                    <div class="col-xs-10">
+                    <div class="col-lg-10">
                         <div class="content row">
                             <div class="col-xs-3" style="padding-right: 5px;">
                                 <select class="form-control" id="id_gen" name="optgen">
@@ -63,7 +63,15 @@
                     <input type="number" class="form-control" name="tano" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
                 </div>
 
-
+                <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
+                    <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
+                    <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
+                                <option value="00" selected >---select---</option>
+                                <option value="1"  >First (T.001)</option>
+                                <option value="2">Second (T.018)</option>
+                                </select>
+                    <input type="number" class="form-control" name="auxdeviceinput" id="id_auxdeviceinput" min="0" step="1" data-bind="value:id_tanoinput" />
+                </div>
 
                 <div id="1" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-heading">First-generation beacon identification:</div>
@@ -84,27 +92,16 @@
                 </div>
 
                 <div id="1-1-011-011" style="display: none;" class="panel panel-default tohide">
-
+                    <div class="panel-heading">Serial User: ELT 24-bit Address Protocol</div>
                     <div class="panel-body">
 
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
-
+                        <label for="id_beaconno">Specific beacon number:</label>
+                        <input type="text" class="form-control" name="beaconno" id="id_beaconno">
+                        <label for="id_auxdevice">Auxiliary device:</label>
+                        <input type="text" class="form-control" name="auxdevice" id="id_auxdevice">
                     </div>
-                </div>
-                <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
-                    <label for="id_beaconnoinput">Specific beacon number:</label>
-                    <input type="number" class="form-control" name="beaconnoinput" step="1" min="0" max="10" id="id_beaconnoinput" data-bind="value:id_beaconnoinput">
-                </div>
-                <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
-                    <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
-                            <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
-                                <option value="00" selected >No auxiliary radio-locating device</option>
-                                <option value="01"  >121.5 MHz device</option>
-                                <option value="10">Maritime 9 GHz Search and Rescue Radar Transponder (SART)</option>
-                                <option value="11">Other auxiliary radio-locating device(s)</option>
-                            </select>
-
                 </div>
               </form>
         </div>
@@ -193,8 +190,6 @@ $('#id_protocol').on('change', function() {
     case '1-1-011-011':
         $('#id_tano').show();
         $('#1-1-011-011').show();
-        $('#id_beaconno').show();
-        $('#id_auxdevice').show();
         break;
    default:
          alert('none');
