@@ -49,10 +49,6 @@
     </div>
 
 
-
-
-
-
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
                 <div id="id_ctry" style="display: none;" class="ui-widget panel panel-body panel-default tohide">
@@ -66,6 +62,8 @@
                     <label for="id_tanoinput">Type Approval certificate number:</label>
                     <input type="number" class="form-control" name="tano" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
                 </div>
+
+
 
                 <div id="1" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-heading">First-generation beacon identification:</div>
@@ -93,9 +91,17 @@
                         <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                         <label for="id_beaconno">Specific beacon number:</label>
                         <input type="text" class="form-control" name="beaconno" id="id_beaconno">
-                        <label for="id_auxdevice">Auxiliary device:</label>
-                        <input type="text" class="form-control" name="auxdevice" id="id_auxdevice">
                     </div>
+                </div>
+                <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
+                    <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
+                    <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
+                                <option value="00" selected >No auxiliary radio-locating device</option>
+                                <option value="01"  >121.5 MHz device</option>
+                                <option value="10">Maritime 9 GHz Search and Rescue Radar Transponder (SART)</option>
+                                <option value="11">Other auxiliary radio-locating device(s)</option>
+                                </select>
+                    <input type="number" class="form-control" name="auxdeviceinput" id="id_auxdeviceinput" min="0" step="1" data-bind="value:id_tanoinput" />
                 </div>
               </form>
         </div>
@@ -184,6 +190,7 @@ $('#id_protocol').on('change', function() {
     case '1-1-011-011':
         $('#id_tano').show();
         $('#1-1-011-011').show();
+        $('#id_auxdevice').show();
         break;
    default:
          alert('none');
