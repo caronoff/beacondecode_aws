@@ -163,6 +163,12 @@ body {
     position: bottom;
 }
 
+#panelcontainer {
+max-width:800px;
+margin: auto;
+position: relative;
+}
+
 .panel-body {
 background:#FFCCFF;
 max-width:700px;
