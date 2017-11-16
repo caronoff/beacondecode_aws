@@ -83,13 +83,19 @@
                     </div>
                 </div>
 
-                <div id="1-1-011-011" style="display: none;" class="panel panel-default tohide">
 
+                <div id="id_radio_or_mmsi" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
+                        <label for="id_radio_or_mmsi_input">Radio call sign or trailing 6 digits of MMSI:</label>
+                        <input type="text" class="form-control" name="radio_or_mmsi_input" id="id_radio_or_mmsi_input">
+                    </div>
+                </div>
 
+
+                <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
-
                     </div>
                 </div>
                 <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
@@ -190,9 +196,15 @@ $('#id_protocol').on('change', function() {
    case '1-1-100':
          $('#2').show();
          break;
+
+    case '1-1-010':
+        $('#id_radio_or_mmsi').show();
+        $('#id_beaconno').show();
+        $('#id_auxdevice').show();
+        break;
     case '1-1-011-011':
         $('#id_tano').show();
-        $('#1-1-011-011').show();
+        $('#id_elt24bit').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
