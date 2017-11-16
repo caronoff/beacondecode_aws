@@ -84,14 +84,17 @@
                 </div>
 
                 <div id="1-1-011-011" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-heading">Serial User: ELT 24-bit Address Protocol</div>
+
                     <div class="panel-body">
 
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
-                        <label for="id_beaconno">Specific beacon number:</label>
-                        <input type="text" class="form-control" name="beaconno" id="id_beaconno">
+
                     </div>
+                </div>
+                <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
+                    <label for="id_beaconnoinput">Specific beacon number:</label>
+                    <input type="number" class="form-control" name="beaconnoinput" step="1" min="0" max="10" id="id_beaconnoinput" data-bind="value:id_beaconnoinput">
                 </div>
                 <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
                     <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
@@ -190,6 +193,7 @@ $('#id_protocol').on('change', function() {
     case '1-1-011-011':
         $('#id_tano').show();
         $('#1-1-011-011').show();
+        $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
    default:
