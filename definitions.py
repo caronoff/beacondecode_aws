@@ -95,7 +95,7 @@ userprottype = {'011':'Serial User Protocol (see bits 40 to 42)',
                 '110':'Radio Call Sign - EPIRB',
                 '000':'Orbitography Protocol',
                 '100':'National User Protocol ELT/EPIRB/PLB/TEST',
-                '010':'Maritime User Protocol - EPIRB',
+                '010':'Maritime User Protocol MMSI - EPIRB',
                 '101':'Spare - undefined'
                }
 
