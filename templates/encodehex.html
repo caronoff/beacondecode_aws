@@ -210,11 +210,11 @@ $('#id_protocol').on('change', function() {
    case '1-1-100':
          $('#id_nationaluser').show();
          break;
+
     // Test User protocol
    case '1-1-111':
          $('#id_nationaluser').show();
          break;
-
 
    case '1-1-001':
         $('#id_aircraftmarking').show();
@@ -256,12 +256,7 @@ $('#id_protocol').on('change', function() {
 
 </script>
 
-<script>
-    $('#tags).blur(function() {
-        alert('hiu');
-}); //end on change
 
-</script>
 
 <script type="text/javascript">
 $('#id_beacontype').on('change', function() {
@@ -290,6 +285,14 @@ $('#id_beacontype').on('change', function() {
         }
       });
   });
+
+
+
+  $('#tags).blur(function() {
+        alert('hiu');
+  }); //end on change
+
+
   </script>
 
 
