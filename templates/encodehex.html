@@ -267,7 +267,7 @@ $('#id_beacontype').on('change', function() {
 
 
 
-<script>
+<script type="text/javascript">
   $( function() {
     $( "#tags" ).autocomplete({
       source: function(request, response) {
@@ -284,9 +284,16 @@ $('#id_beacontype').on('change', function() {
              $('input[name="country"]').val(country);
         }
       });
-  });
+		change: function (event, ui) {
+                if(!ui.item){
+                    //http://api.jqueryui.com/autocomplete/#event-change -
+                    // The item selected from the menu, if any. Otherwise the property is null
+                    //so clear the item for force selection
+                    $("#tags").val("");
+                }
 
-
+            }
+  	});
 
 
 
