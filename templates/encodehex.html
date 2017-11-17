@@ -275,7 +275,17 @@ $('#id_beacontype').on('change', function() {
             }, function(data) {
                 response(data.matching_results); // matching_results from jsonify
             });
-        change: function (event, ui) {
+
+
+
+
+		},
+        minLength: 2,
+        select: function(event, ui) {
+            var country = ui.item.value
+            console.log(country);
+             $('input[name="country"]').val(country);},
+		change: function (event, ui) {
                 if(!ui.item){
                     //http://api.jqueryui.com/autocomplete/#event-change -
                     // The item selected from the menu, if any. Otherwise the property is null
@@ -287,16 +297,9 @@ $('#id_beacontype').on('change', function() {
 
 
 
-		},
-        minLength: 2,
-        select: function(event, ui) {
-            var country = ui.item.value
-            console.log(country);
-             $('input[name="country"]').val(country);
-        }
-      });
-  });
 
+	  });
+  });
 
 
   </script>
