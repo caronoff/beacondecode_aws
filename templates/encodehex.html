@@ -203,7 +203,7 @@ $('#id_protocol').on('change', function() {
    console.log(pselect);
    $('.tohide').hide();
    $('#id_ctry').show();
-
+    $("#tags").focus();
    switch(pselect){
    // National User protocol
    case '1-1-100':
@@ -291,7 +291,7 @@ $('#id_beacontype').on('change', function() {
                     //so clear the item for force selection
                     $("#tags").val("");
                     $("#tags").focus();
-                    alert('enter something');
+                    alert('Valid selection required');
                 }
 
             }
