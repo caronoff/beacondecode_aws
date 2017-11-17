@@ -158,9 +158,8 @@
 
 <script type="text/javascript">
 $("#done").click(function() {
-  var n_input = $('#id_input1').val();
-  var ctry=$('#ctry').val();
-  console.log(n_input,ctry);
+
+
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data){
             if(data.echostatus=='valid'){
                 console.log(data.returndata);
@@ -291,6 +290,7 @@ $('#id_beacontype').on('change', function() {
                     // The item selected from the menu, if any. Otherwise the property is null
                     //so clear the item for force selection
                     $("#tags").val("");
+                    $("#tags").focus():
                 }
 
             }
