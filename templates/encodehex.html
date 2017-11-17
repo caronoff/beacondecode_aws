@@ -65,12 +65,11 @@
 
 
 
-                <div id="1" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-heading">First-generation beacon identification:</div>
+                <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
 
                     <div class="panel-body">
-                      <label for="id_input1">Input for first gen:</label>
-                      <input type="text" class="form-control" name="input1" id="id_input1">
+                      <label for="id_aircraftmarking_input">Input for first gen:</label>
+                      <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
                         <label for="id_input3">Input for first gen:</label>
                       <input type="text"  class="form-control" name="input3" id="id_input3">
                     </div>
@@ -85,10 +84,10 @@
 
                 <div id="id_radio" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
-                        <label for="id_radio_first4">Radio callsign first 4 characters:</label>
-                        <input type="text" class="form-control" name="radio_first4" id="id_radio_first4">
-                        <label for="id_radio_last3">Radio callsign last 3 digits (numeric):</label>
-                        <input type="number" class="form-control" name="radio_last3" id="id_radio_last3" min="0" max="999" step="1">
+                        <label for="id_radio_first4_input">Radio callsign first 4 characters:</label>
+                        <input type="text" class="form-control" name="radio_first4_input" id="id_radio_first4_input">
+                        <label for="id_radio_last3_input">Radio callsign last 3 digits (numeric):</label>
+                        <input type="number" class="form-control" name="radio_last3_input" id="id_radio_last3_input" min="0" max="999" step="1">
                     </div>
                 </div>
 
@@ -118,7 +117,6 @@
                                 <option value="10">Maritime 9 GHz Search and Rescue Radar Transponder (SART)</option>
                                 <option value="11">Other auxiliary radio-locating device(s)</option>
                             </select>
-
                 </div>
               </form>
         </div>
@@ -208,25 +206,31 @@ $('#id_protocol').on('change', function() {
          $('#2').show();
          break;
 
-    case '1-1-110':
+   case '1-1-001':
+        $('#id_aircraftmarking').show();
+        $('#id_beaconno').show();
+        $('#id_auxdevice').show();
+        break;
+
+   case '1-1-110':
         $('#id_radio').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
 
-    case '1-1-010':
+   case '1-1-010':
         $('#id_radio_or_mmsi').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-    case '1-1-011-011':
+   case '1-1-011-011':
         $('#id_tano').show();
         $('#id_elt24bit').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
    default:
-         alert('none');
+        alert('none');
 }
     });  //end on change
 </script>
