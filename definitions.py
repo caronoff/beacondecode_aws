@@ -110,13 +110,17 @@ serialusertype = {'000':'ELT with Serial Identification',
                   '101':'Spare'
                  }
 
-pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1-100'),(serialusertype['000'],'1-1S-000'),('Serial User Protocol ' +serialusertype['011'],'1-1-011-011'),(serialusertype['001'],'1-1-001'),
+pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1-100'),
+                       ('Serial User Protocol '+ serialusertype['000'],'1-1-011-000'),
+                       ('Serial User Protocol ' +serialusertype['011'],'1-1-011-011'),
+                       ('Serial User Protocol '+ serialusertype['001'],'1-1-011-001'),
                        (locprottype['0011'],'1-0-0011'),(locprottype['0100'],'1-0-0100'),(locprottype['0101'],'1-0-0101'),
                        (locprottype['1000'],'1-0-1000'),(locprottype['1001'] + ' '+eltdt['00'] ,'1-0-1001-00'),
                        (locprottype['1001'] + ' '+eltdt['01'],'1-0-1001-01'),(locprottype['1001'] + ' '+eltdt['10'],'1-0-1001-10'),(locprottype['1001'] + ' '+eltdt['11'],'1-0-1001-11'),('ELT '+locprottype['1101'] ,'1-0-1101-RLS-00')],
                 'EPIRB':[(userprottype['110'],'1-1-110'),(userprottype['100'],'1-1-100'),
                          (userprottype['010'],'1-1-010'),(serialusertype['010'],'1-1S-010'),(serialusertype['100'],'1-1S-100'),('EPIRB '+locprottype['1101'] ,'1-0-1101-RLS-01')],
-                'PLB':[(userprottype['100'],'1-1-100'),(serialusertype['110'],'1-1S-110'),('PLB '+locprottype['1101'] ,'1-0-1101-RLS-10')],'TEST':[(userprottype['111'],'1-1-111'),(userprottype['000'],'1-1-000'),(userprottype['100'],'1-1-100'),('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
+                'PLB':[(userprottype['100'],'1-1-100'),(serialusertype['110'],'1-1S-110'),('PLB '+locprottype['1101'] ,'1-0-1101-RLS-10')],
+                'TEST':[(userprottype['111'],'1-1-111'),(userprottype['000'],'1-1-000'),(userprottype['100'],'1-1-100'),('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
            '2':{}}
 
 posneg = {'0':'-1', '1':'1'}
