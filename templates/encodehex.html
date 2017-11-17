@@ -73,11 +73,11 @@
 
                     </div>
                 </div>
-                <div id="2" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-heading">Second-generation beacon identification</div>
+                <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
+
                     <div class="panel-body">
-                        <label for="id_input2">Input for second gen:</label>
-                        <input type="text" class="form-control" name="input2" id="id_input2">
+                        <label for="id_nationaluser_input">National use 46 bit binary:</label>
+                        <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input">
                     </div>
                 </div>
 
@@ -198,15 +198,14 @@ $('#id_protocol').on('change', function() {
    console.log(pselect);
    $('.tohide').hide();
    $('#id_ctry').show()
-   switch(pselect){case '1-1-001':
-        $('#1').show();
-        break;
+   switch(pselect){
+
    case '1-1-100':
-         $('#2').show();
+         $('#id_nationaluser').show();
          break;
 
    case '1-1-001':
-
+        $('#id_aircraftmarking').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
