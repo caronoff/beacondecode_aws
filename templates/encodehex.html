@@ -66,18 +66,16 @@
 
 
                 <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
-
                     <div class="panel-body">
                       <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
-
                     </div>
                 </div>
                 <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
 
                     <div class="panel-body">
                         <label for="id_nationaluser_input">National use or test use 46 bit binary:</label>
-                        <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input">
+                        <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input" style="width:300px;">
                     </div>
                 </div>
 
@@ -205,13 +203,13 @@ $('#id_protocol').on('change', function() {
    var pselect = this.value;
    console.log(pselect);
    $('.tohide').hide();
-   $('#id_ctry').show()
+   $('#id_ctry').show();
+    $(#tags').focus();
    switch(pselect){
    // National User protocol
    case '1-1-100':
          $('#id_nationaluser').show();
          break;
-
     // Test User protocol
    case '1-1-111':
          $('#id_nationaluser').show();
@@ -254,6 +252,9 @@ $('#id_protocol').on('change', function() {
         alert('none');
 }
     });  //end on change
+
+
+
 </script>
 
 <script type="text/javascript">
