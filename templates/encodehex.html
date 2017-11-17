@@ -87,6 +87,16 @@
                         <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="1" max="4095" step="1">
                     </div>
                 </div>
+
+                <div id="id_serialnumber" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-body">
+                        <label for="id_serialnumber_input">Serial Number:</label>
+                        <input type="number" class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1">
+
+                    </div>
+                </div>
+
+
                 <div id="id_radio" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_radio_first4_input">Radio callsign first 4 characters:</label>
@@ -215,6 +225,13 @@ $('#id_protocol').on('change', function() {
          $('#id_nationaluser').show();
          break;
 
+    // Orbitography
+   case '1-1-000':
+         $('#id_nationaluser').show();
+         break;
+
+
+   //// Aviation User protocol
    case '1-1-001':
         $('#id_aircraftmarking').show();
         $('#id_beaconno').show();
@@ -247,6 +264,19 @@ $('#id_protocol').on('change', function() {
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
+
+    case '1-1-011-000':
+        $('#id_tano').show();
+        $('#id_serialnumber').show();
+        $('#id_auxdevice').show();
+        break;
+
+
+
+
+
+
+
    default:
         alert('none');
 }
