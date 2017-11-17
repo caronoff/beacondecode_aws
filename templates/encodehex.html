@@ -68,7 +68,7 @@
                 <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
 
                     <div class="panel-body">
-                      <label for="id_aircraftmarking_input">Input for first gen:</label>
+                      <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
 
                     </div>
@@ -76,11 +76,19 @@
                 <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
 
                     <div class="panel-body">
-                        <label for="id_nationaluser_input">National use 46 bit binary:</label>
+                        <label for="id_nationaluser_input">National use or test use 46 bit binary:</label>
                         <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input">
                     </div>
                 </div>
 
+                <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-body">
+                        <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
+                        <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
+                        <label for="id_aircraftserial_input">Serial number assigned by operator (1-4095):</label>
+                        <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="1" max="4095" step="1">
+                    </div>
+                </div>
                 <div id="id_radio" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_radio_first4_input">Radio callsign first 4 characters:</label>
@@ -199,10 +207,16 @@ $('#id_protocol').on('change', function() {
    $('.tohide').hide();
    $('#id_ctry').show()
    switch(pselect){
-
+   // National User protocol
    case '1-1-100':
          $('#id_nationaluser').show();
          break;
+
+    // Test User protocol
+   case '1-1-111':
+         $('#id_nationaluser').show();
+         break;
+
 
    case '1-1-001':
         $('#id_aircraftmarking').show();
@@ -221,6 +235,15 @@ $('#id_protocol').on('change', function() {
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
+
+   //Serial user - Aircraft Operatir Designator and Serial Number
+   case '1-1-011-001':
+        $('#id_tano').show();
+        $('#id_aircraftoperator').show();
+        $('#id_auxdevice').show();
+        break;
+
+   //Serial user - Aircraft 24-bit Address
    case '1-1-011-011':
         $('#id_tano').show();
         $('#id_elt24bit').show();
