@@ -266,8 +266,7 @@ $('#id_beacontype').on('change', function() {
 </script>
 
 
-
-<script>
+<script type="text/javascript">
   $( function() {
     $( "#tags" ).autocomplete({
       source: function(request, response) {
@@ -276,7 +275,19 @@ $('#id_beacontype').on('change', function() {
             }, function(data) {
                 response(data.matching_results); // matching_results from jsonify
             });
-        },
+        change: function (event, ui) {
+                if(!ui.item){
+                    //http://api.jqueryui.com/autocomplete/#event-change -
+                    // The item selected from the menu, if any. Otherwise the property is null
+                    //so clear the item for force selection
+                    $("#tags").val("");
+                }
+
+            }
+
+
+
+		},
         minLength: 2,
         select: function(event, ui) {
             var country = ui.item.value
@@ -285,9 +296,6 @@ $('#id_beacontype').on('change', function() {
         }
       });
   });
-
-
-
 
 
 
