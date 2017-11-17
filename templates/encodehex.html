@@ -278,7 +278,7 @@ $('#id_beacontype').on('change', function() {
                 response(data.matching_results); // matching_results from jsonify
             });
         },
-		change: function(event,ui){if(!ui.item){$("tags").val("");},
+		change: function(event,ui){if(!ui.item){$("tags").val("");}
         minLength: 2,
         select: function(event, ui) {
             var country = ui.item.value
