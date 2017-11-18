@@ -249,6 +249,7 @@ $('#id_protocol').on('change', function() {
    case '1-1-011-001':
         $('#id_tano').show();
         $('#id_aircraftoperator').show();
+        $('#id_serialno').show();
         $('#id_auxdevice').show();
         break;
 
@@ -270,7 +271,27 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
         break;
 
+    //ELT-DT Aircraft 24 bit address
+    case '1-0-1001-00':
+        $('#id_elt24bit').show();
+        break;
 
+    //ELT-DT Aircraft operators designator and serial number
+    case '1-0-1001-01':
+        $('#id_aircraftoperator').show();
+        $('#id_serialno').show();
+        break;
+
+
+    //ELT-DT Aircraft TAC and serial number
+    case '1-0-1001-10':
+        $('#id_tano').show();
+        $('#id_serialno').show();
+        break;
+
+    //ELT-DT Aircraft test protocol
+    case '1-0-1001-11':
+        break;
 
 
 
