@@ -83,8 +83,6 @@
                     <div class="panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
-                        <label for="id_aircraftserial_input">Serial number assigned by operator (1-4095):</label>
-                        <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="1" max="4095" step="1">
                     </div>
                 </div>
 
@@ -117,7 +115,7 @@
                 <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
-                        <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
+                        <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                     </div>
                 </div>
                 <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
@@ -249,7 +247,7 @@ $('#id_protocol').on('change', function() {
    case '1-1-011-001':
         $('#id_tano').show();
         $('#id_aircraftoperator').show();
-        $('#id_serialno').show();
+        $('#id_serialnumber').show();
         $('#id_auxdevice').show();
         break;
 
@@ -279,14 +277,14 @@ $('#id_protocol').on('change', function() {
     //ELT-DT Aircraft operators designator and serial number
     case '1-0-1001-01':
         $('#id_aircraftoperator').show();
-        $('#id_serialno').show();
+        $('#id_serialnumber').show();
         break;
 
 
     //ELT-DT Aircraft TAC and serial number
     case '1-0-1001-10':
         $('#id_tano').show();
-        $('#id_serialno').show();
+        $('#id_serialnumber').show();
         break;
 
     //ELT-DT Aircraft test protocol
