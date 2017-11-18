@@ -10,10 +10,10 @@
 {% endblock %}
 {% block content %}
 
+<div class="centerpane">
 
-<div  class="panel panel-body panel-default">
     <div class="row" >
-        <div class="col-lg-4" style="min-width: 500px;">
+        <div class="col-lg-4" >
             <form class="form-horizontal" action="." method="GET" role="form" id="genform">
                 <div class="form-group">
                     <label class="col-lg-2 control-label" for="id_gen" data-placement="top" data-toggle="tooltip" title="title">Beacon Generation and protocol</label>
@@ -51,7 +51,7 @@
 
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
-                <div id="id_ctry" style="display: none;" class="ui-widget panel panel-body panel-default tohide">
+                <div id="id_ctry" style="display: none;" class="ui-widget panel panel-body panel-default">
 
                    <label for="tags">Enter beacon country MID where beacon will be used: </label>
                    <input id="tags" style="width:250px;">
@@ -63,75 +63,35 @@
                     <input type="number" class="form-control" name="tano" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
                 </div>
 
+                <div id="1" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-heading">First-generation beacon identification:</div>
 
-
-                <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
-                      <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
-                      <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
+                      <label for="id_input1">Input for first gen:</label>
+                      <input type="text" class="form-control" name="input1" id="id_input1">
+                        <label for="id_input3">Input for first gen:</label>
+                      <input type="text"  class="form-control" name="input3" id="id_input3">
                     </div>
                 </div>
-                <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
-
+                <div id="2" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-heading">Second-generation beacon identification</div>
                     <div class="panel-body">
-                        <label for="id_nationaluser_input">National use or test use 46 bit binary:</label>
-                        <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input" style="width:300px;">
-                    </div>
-                </div>
-
-                <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
-                        <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
-                        <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
-                        <label for="id_aircraftserial_input">Serial number assigned by operator (1-4095):</label>
-                        <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="1" max="4095" step="1">
+                        <label for="id_input2">Input for second gen:</label>
+                        <input type="text" class="form-control" name="input2" id="id_input2">
                     </div>
                 </div>
 
-                <div id="id_serialnumber" style="display: none;" class="panel panel-default tohide">
+                <div id="1-1-011-011" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-heading">Serial User: ELT 24-bit Address Protocol</div>
                     <div class="panel-body">
-                        <label for="id_serialnumber_input">Serial Number:</label>
-                        <input type="number" class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1">
 
-                    </div>
-                </div>
-
-
-                <div id="id_radio" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
-                        <label for="id_radio_first4_input">Radio callsign first 4 characters:</label>
-                        <input type="text" class="form-control" name="radio_first4_input" id="id_radio_first4_input">
-                        <label for="id_radio_last3_input">Radio callsign last 3 digits (numeric):</label>
-                        <input type="number" class="form-control" name="radio_last3_input" id="id_radio_last3_input" min="0" max="999" step="1">
-                    </div>
-                </div>
-
-                <div id="id_radio_or_mmsi" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
-                        <label for="id_radio_or_mmsi_input">Radio call sign or trailing 6 digits of MMSI:</label>
-                        <input type="text" class="form-control" name="radio_or_mmsi_input" id="id_radio_or_mmsi_input">
-                    </div>
-                </div>
-
-
-                <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
+                        <label for="id_beaconno">Specific beacon number:</label>
+                        <input type="text" class="form-control" name="beaconno" id="id_beaconno">
+                        <label for="id_auxdevice">Auxiliary device:</label>
+                        <input type="text" class="form-control" name="auxdevice" id="id_auxdevice">
                     </div>
-                </div>
-                <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
-                    <label for="id_beaconnoinput">Specific beacon number:</label>
-                    <input type="number" class="form-control" name="beaconnoinput" step="1" min="0" max="10" id="id_beaconnoinput" data-bind="value:id_beaconnoinput">
-                </div>
-                <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
-                    <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
-                            <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
-                                <option value="00" selected >No auxiliary radio-locating device</option>
-                                <option value="01"  >121.5 MHz device</option>
-                                <option value="10">Maritime 9 GHz Search and Rescue Radar Transponder (SART)</option>
-                                <option value="11">Other auxiliary radio-locating device(s)</option>
-                            </select>
                 </div>
               </form>
         </div>
@@ -141,18 +101,15 @@
 
 
 
-                <div class="form-group btn-toolbar" id="process">
-                    <div class="col-lg-offset-4 col-lg-8">
-
-                        <a href="/encodehex" class="btn btn-default" id="refresh" style="margin-top: auto ; display:block; text-align: center">
-                        <span class="glyphicon glyphicon-refresh" style="color:blue"></span>Refresh
-                        </a>
-                        <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
-                        <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
-                        </a>
-                        <div id="decoded"></div>
-                    </div>
-                </div>
+        <div class="form-group btn-toolbar" id="process">
+            <div class="col-lg-offset-4 col-lg-8">
+                <button class="btn" type="reset">Clear</button>
+                <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
+                <span class="glyphicon glyphicon-ok" style="color:gray"></span>Compute
+                </a>
+                <div id="decoded"></div>
+            </div>
+        </div>
 
 
 
@@ -168,8 +125,9 @@
 
 <script type="text/javascript">
 $("#done").click(function() {
-
-
+  var n_input = $('#id_input1').val();
+  var ctry=$('#ctry').val();
+  console.log(n_input,ctry);
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data){
             if(data.echostatus=='valid'){
                 console.log(data.returndata);
@@ -212,83 +170,21 @@ $('#id_protocol').on('change', function() {
    var pselect = this.value;
    console.log(pselect);
    $('.tohide').hide();
-   $('#id_ctry').show();
-    $("#tags").focus();
-   switch(pselect){
-   // National User protocol
+   switch(pselect){case '1-1-001':
+        $('#1').show();
+        break;
    case '1-1-100':
-         $('#id_nationaluser').show();
+         $('#2').show();
          break;
-
-    // Test User protocol
-   case '1-1-111':
-         $('#id_nationaluser').show();
-         break;
-
-    // Orbitography
-   case '1-1-000':
-         $('#id_nationaluser').show();
-         break;
-
-
-   //// Aviation User protocol
-   case '1-1-001':
-        $('#id_aircraftmarking').show();
-        $('#id_beaconno').show();
-        $('#id_auxdevice').show();
-        break;
-
-   case '1-1-110':
-        $('#id_radio').show();
-        $('#id_beaconno').show();
-        $('#id_auxdevice').show();
-        break;
-
-   case '1-1-010':
-        $('#id_radio_or_mmsi').show();
-        $('#id_beaconno').show();
-        $('#id_auxdevice').show();
-        break;
-
-   //Serial user - Aircraft Operatir Designator and Serial Number
-   case '1-1-011-001':
+    case '1-1-011-011':
         $('#id_tano').show();
-        $('#id_aircraftoperator').show();
-        $('#id_auxdevice').show();
+        $('#1-1-011-011').show();
         break;
-
-   //Serial user - Aircraft 24-bit Address
-   case '1-1-011-011':
-        $('#id_tano').show();
-        $('#id_elt24bit').show();
-        $('#id_beaconno').show();
-        $('#id_auxdevice').show();
-        break;
-
-    case '1-1-011-000':
-    case '1-1-011-010':
-    case '1-1-011-100':
-    case '1-1-011-110':
-        $('#id_tano').show();
-        $('#id_serialnumber').show();
-        $('#id_auxdevice').show();
-        break;
-
-
-
-
-
-
-
    default:
-        alert('none');
+         alert('none');
 }
     });  //end on change
-
-
 </script>
-
-
 
 <script type="text/javascript">
 $('#id_beacontype').on('change', function() {
@@ -298,7 +194,8 @@ $('#id_beacontype').on('change', function() {
 </script>
 
 
-<script type="text/javascript">
+
+<script>
   $( function() {
     $( "#tags" ).autocomplete({
       source: function(request, response) {
@@ -307,36 +204,15 @@ $('#id_beacontype').on('change', function() {
             }, function(data) {
                 response(data.matching_results); // matching_results from jsonify
             });
-
-
-
-
-		},
+        },
         minLength: 2,
         select: function(event, ui) {
             var country = ui.item.value
             console.log(country);
-             $('input[name="country"]').val(country);},
-		change: function (event, ui) {
-                if(!ui.item){
-                    //http://api.jqueryui.com/autocomplete/#event-change -
-                    // The item selected from the menu, if any. Otherwise the property is null
-                    //so clear the item for force selection
-                    $("#tags").val("");
-                    $("#tags").focus();
-                    alert('Valid selection required');
-                }
-
-            }
-
-
-
-
-	  });
+             $('input[name="country"]').val(country);
+        }
+      });
   });
-
-
-
   </script>
 
 
