@@ -215,35 +215,30 @@ $('#id_protocol').on('change', function() {
    $('#id_ctry').show();
     $("#tags").focus();
    switch(pselect){
-   // National User protocol
+
+
+
+   // National User protocol - Test User protocol - Orbitography
    case '1-1-100':
-         $('#id_nationaluser').show();
-         break;
-
-    // Test User protocol
    case '1-1-111':
-         $('#id_nationaluser').show();
-         break;
-
-    // Orbitography
    case '1-1-000':
          $('#id_nationaluser').show();
          break;
 
 
-   //// Aviation User protocol
+   // Aviation User protocol
    case '1-1-001':
         $('#id_aircraftmarking').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
+   // Radio callsign
    case '1-1-110':
         $('#id_radio').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
+   // User protocol MMSI
    case '1-1-010':
         $('#id_radio_or_mmsi').show();
         $('#id_beaconno').show();
@@ -265,7 +260,7 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
 
         break;
-
+   //Serial user ELT/EPIRB/PLB
     case '1-1-011-000':
     case '1-1-011-010':
     case '1-1-011-100':
