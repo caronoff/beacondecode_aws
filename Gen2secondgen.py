@@ -31,6 +31,8 @@ class SecondGen(Gen2Error):
         self.bits = Func.hex2bin(strhex)
         self.tablebin = []
         self.rotatingbin = []
+        self.longitude=self.latitude=0
+        self.location=(0,0)
 
 
         if len(self.bits) == 252 or len(self.bits) == 202 or len(self.bits) == 204 or len(self.bits) == 250 :
@@ -292,7 +294,7 @@ class SecondGen(Gen2Error):
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
 
-            self.latitude ='No latitude data available'
+            self.latitude = self.longitude = 'No latitude data available'
             self.tablebin.append(['Unique ID','Second Generation','',''])
             self.tablebin.append(['1',
                                   self.bits[1],

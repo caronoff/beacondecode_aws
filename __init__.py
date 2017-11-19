@@ -54,7 +54,7 @@ def validatehex():
         if len(hexaPattern)==len(ret_data):
 
             message='Valid hexidecimal message.'
-            if len(ret_data) in [15,30,23,63]:
+            if len(ret_data) in [15,30,36,23,63]:
                 statuscheck = 'valid'
             else:
                 message = 'Bad length '+str(len(ret_data)) +  '  Valid lengths: 15 hex, 23 hex, 30 or 63 hex'

@@ -778,8 +778,10 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
+
         elif len(hexcode) == 30 or len(hexcode) == 15:
             beacon=BeaconHex(hexcode)
+
         elif len(strhex) == 36:
             beacon=BeaconHex(hexcode[6:])
         else:
@@ -788,6 +790,10 @@ class Beacon(HexError):
             raise HexError('LengthError', self.type)
             self.beacon=None
         self.beacon=beacon
+        self.latitude=self.beacon.latitude
+        self.longitude=self.beacon.longitude
+        self.location=self.beacon.location
+        self.tablebin=self.beacon.tablebin
     def has_loc(self):
         if self.beacon.type=='uin':
             return False
