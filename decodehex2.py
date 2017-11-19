@@ -7,29 +7,6 @@ import Gen2secondgen as Gen2
 import definitions
 import time
 
-class Beacon(HexError):
-    def __init__(self,hexcode):
-        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
-            beacon = Gen2.SecondGen(hexcode)
-        elif len(hexcode) == 30 or len(hexcode) == 15:
-            beacon=BeaconHex(hexcode)
-        elif len(strhex) == 36:
-            beacon=BeaconHex(hexcode[6:])
-        else:
-            self.type = 'Hex length of ' + str(
-                len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
-            raise HexError('LengthError', self.type)
-            self.beacon=None
-        self.beacon=beacon
-    def has_loc(self):
-        if self.beacon.type=='15 Hex ID':
-            return False
-        elif self.beacon.latitude in ['No latitude data available','Invalid Latitude'] or\
-                        self.beacon.longitude in ['No longitude data available', 'Invalid Longitude']:
-            return False
-        else:
-            return True
-
 
 
 
@@ -796,6 +773,29 @@ class BeaconHex(HexError):
         
 
 
+
+class Beacon(HexError):
+    def __init__(self,hexcode):
+        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
+            beacon = Gen2.SecondGen(hexcode)
+        elif len(hexcode) == 30 or len(hexcode) == 15:
+            beacon=BeaconHex(hexcode)
+        elif len(strhex) == 36:
+            beacon=BeaconHex(hexcode[6:])
+        else:
+            self.type = 'Hex length of ' + str(
+                len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
+            raise HexError('LengthError', self.type)
+            self.beacon=None
+        self.beacon=beacon
+    def has_loc(self):
+        if self.beacon.type=='15 Hex ID':
+            return False
+        elif self.beacon.latitude in ['No latitude data available','Invalid Latitude'] or\
+                        self.beacon.longitude in ['No longitude data available', 'Invalid Longitude']:
+            return False
+        else:
+            return True
 
 
     
