@@ -4,7 +4,7 @@ import re
 import decodehex2
 import definitions
 import sys
-from decodefunctions import is_number
+from decodefunctions import is_number, dec2bin
 app = Flask(__name__)
 
 COUNTRIES=[]
@@ -17,6 +17,7 @@ def processhex():
 
     btype=request.args.get('beacontype')
     ctry=request.args.get('country')
+    ccode=int(re.compile(r'(\d{3})'))
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
     beaconnoinput = str(request.args.get('beaconnoinput'))
@@ -24,7 +25,7 @@ def processhex():
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    retdata = btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3
+    retdata = btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + ccode +':'+str(dec2bin(ccode))
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
@@ -34,7 +35,6 @@ def filterlist():
     protocol=str(request.args.get('a'))
     beacontype=str(request.args.get('b'))
     print('protocol: '+protocol+' and beacon: '+beacontype)
-
     selectdic={"---select new---":"0"}
     for l in definitions.pselect[protocol][beacontype]:
         selectdic[l[0]]=l[1]
