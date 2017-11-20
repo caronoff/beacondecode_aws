@@ -94,7 +94,11 @@ def hextobin(hexval):
         return binval
 
 def str2baudot(strval):
-    pass
+    blist=[]
+    for letter in strval:
+        key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+        blist.append(key)
+    return '-'.join(blist)
 
 
 def baudot(binstr,startpos,endpos,short=False):
