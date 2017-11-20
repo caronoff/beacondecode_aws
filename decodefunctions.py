@@ -93,13 +93,16 @@ def hextobin(hexval):
             binval = '0' + binval
         return binval
 
-def str2baudot(strval):
+def radiobin(strval,decpart):
     blist=[]
     for letter in strval:
         key = next(key for key, value in BAUDOT.items() if value == letter.upper())
         blist.append(key)
-    return '-'.join(blist)
-
+    #a= ''.join(blist)
+    bin2=''
+    for l in decpart:
+        bin= dec2bin(l)
+        bin2=bin2+bin
 
 def baudot(binstr,startpos,endpos,short=False):
     if short:
