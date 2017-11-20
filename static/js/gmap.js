@@ -1,8 +1,6 @@
 function initMap() {
         var geocode = JSON.parse(document.getElementById("geocoord").dataset.geocode);
-        if (typeof geocode != "undefined") {  alert("GOT THERE");}
-}
-        var geocode = JSON.parse(document.getElementById("geocoord").dataset.geocode);
+
 
 
         var location = new google.maps.LatLng(geocode[0], geocode[1]);
