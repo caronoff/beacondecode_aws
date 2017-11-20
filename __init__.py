@@ -4,8 +4,7 @@ import re
 import decodehex2
 import definitions
 import sys
-import Gen2secondgen as Gen2
-import Gen2functions
+from decodefunctions import is_number
 app = Flask(__name__)
 
 COUNTRIES=[]
@@ -100,7 +99,7 @@ def decoded(hexcode):
     geocoord=(0,0)
     locationcheck=False
     beacon=decodehex2.Beacon(hexcode)
-    if beacon.has_loc():
+    if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         locationcheck=True
 
