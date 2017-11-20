@@ -236,8 +236,19 @@ $('#id_protocol').on('change', function() {
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
+
+    //Std Location SSAS MMSI
+    case '1-0-1100':
+        $('#id_radio_or_mmsi').show();
+        break;
+    //Std Location MMSI
+    case '1-0-0010':
+        $('#id_radio_or_mmsi').show();
+        $('#id_beaconno').show();
+        break;
+
    // User protocol MMSI
-   case '1-1-010':
+    case '1-1-010':
         $('#id_radio_or_mmsi').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
@@ -251,6 +262,26 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
         break;
 
+    //Std location - Aircraft Operator Designator and Serial Number
+   case '1-0-0101':
+        $('#id_aircraftoperator').show();
+        $('#id_serialnumber').show();
+        break;
+
+
+    //Std location - Serial
+    case '1-0-0100':
+    case '1-0-0110':
+    case '1-0-0111':
+        $('#id_tano').show();
+        $('#id_serialnumber').show();
+        break;
+
+   //Std location - Aircraft 24-bit Address
+   case '1-0-0011':
+        $('#id_elt24bit').show();
+        break;
+
    //Serial user - Aircraft 24-bit Address
    case '1-1-011-011':
         $('#id_tano').show();
@@ -259,6 +290,8 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
 
         break;
+
+
    //Serial user ELT/EPIRB/PLB
     case '1-1-011-000':
     case '1-1-011-010':
@@ -293,6 +326,8 @@ $('#id_protocol').on('change', function() {
         break;
 
 
+
+        break;
 
 
 
