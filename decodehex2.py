@@ -565,12 +565,13 @@ class BeaconHex(HexError):
            
             self._loctype='National Location'                         
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])                
-            default='011111110000001111111100000' #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
+            default='011111110000001111111100000'
+            #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
             self.tablebin.append(['26-85',self.bin[26:59]+default,'Beacon UIN',self.hex15])
             ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
             self.tablebin.append(['41-58',str(self.bin[41:59]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[41:59])))])
-            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])           
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
             self.courseloc=(declat,declng)
