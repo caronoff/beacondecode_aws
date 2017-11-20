@@ -390,7 +390,7 @@ class BeaconHex(HexError):
                                       str(self.bch.bch2calc())])
 
 
-        if typeuserprotbin not in ['100','000'] and self.has_loc() : # and self.bch.complete=='1':
+        if typeuserprotbin not in ['100','000'] and self.has_loc(): # and self.bch.complete=='1':
             location_data = 'Check for location'
             self.encpos=str(self.bin[107])
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[108],self.bin[109:116],self.bin[116:120])
@@ -405,9 +405,12 @@ class BeaconHex(HexError):
                 b = self.update_locd(declng,lngdir)                
                 
             else:
+                self._loc=False
                 a = declat
                 b = declng
             self.location=(a,b)
+            self.latitude=a
+            self.longitude=b
             self.tablebin.append(['108-119',str(self.bin[108:120]),'Latitude','{} (decimal: {})'.format(lat,a)])                               
             self.tablebin.append(['120-132',str(self.bin[120:133]),'Longitude','{} (decimal: {})'.format(lg,b)])
             self.tablebin.append(['','','Resolved location','{} {}'.format(a,b)])
