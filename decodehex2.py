@@ -396,7 +396,7 @@ class BeaconHex(HexError):
 
         if typeuserprotbin not in ['100','000'] and self.has_loc(): # and self.bch.complete=='1':
             location_data = 'Check for location'
-            print('sadssadassaddsadsadsasdadsfa')
+
             self.encpos=str(self.bin[107])
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[108],self.bin[109:116],self.bin[116:120])
             lg,declng, lngdir,lgminutes=Fcn.longitude(self.bin[120],self.bin[121:129],self.bin[129:133])

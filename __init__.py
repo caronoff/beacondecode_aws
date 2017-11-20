@@ -101,6 +101,7 @@ def decoded(hexcode):
     beacon=decodehex2.Beacon(hexcode)
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
+        print(geocoord)
         locationcheck=True
 
 
