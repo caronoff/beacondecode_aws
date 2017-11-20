@@ -17,7 +17,8 @@ def processhex():
 
     btype=request.args.get('beacontype')
     ctry=request.args.get('country')
-    ccode=int(re.compile(r'(\d{3})'))
+    midpat = re.compile(r'(\d{3})')
+    ccode=int(midpat.search(ctry).groups()[0])
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
     beaconnoinput = str(request.args.get('beaconnoinput'))
