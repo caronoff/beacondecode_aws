@@ -95,6 +95,8 @@ class BeaconHex(HexError):
         self.bch1 = self.bch2 = self.tac = 'na'
         self.courseloc = ('na', 'na')
         self.location = ('na', 'na')
+        self.latitude='na'
+        self.longitude='na'
         self.fixedbits = ''
         self.hex = str(strhex)
         self.count = 1

@@ -31,7 +31,7 @@ class SecondGen(Gen2Error):
         self.bits = Func.hex2bin(strhex)
         self.tablebin = []
         self.rotatingbin = []
-        self.longitude=self.latitude=0
+        self.longitude=self.latitude='na'
         self.location=(0,0)
 
 
