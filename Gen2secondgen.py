@@ -31,11 +31,13 @@ class SecondGen(Gen2Error):
         self.bits = Func.hex2bin(strhex)
         self.tablebin = []
         self.rotatingbin = []
+        self.longitude=self.latitude=0
+        self.location=(0,0)
 
 
         if len(self.bits) == 252 or len(self.bits) == 202 or len(self.bits) == 204 or len(self.bits) == 250 :
 
-
+            self.type="Complete message"
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
 
@@ -288,9 +290,11 @@ class SecondGen(Gen2Error):
 
         elif len(self.bits) == 92:
             self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon UIN'.format(str(len(strhex)),str(len(self.bits))))
+            self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
-            self.latitude ='No latitude data available'
+
+            self.latitude = self.longitude = 'No latitude data available'
             self.tablebin.append(['Unique ID','Second Generation','',''])
             self.tablebin.append(['1',
                                   self.bits[1],
@@ -341,7 +345,7 @@ class SecondGen(Gen2Error):
             self.type = ('Hex string length of ' + str(len(strhex)) + '.'
                          + '\nBit string length of ' + str(len(self.bits)) + '.'
                          + '\nLength of First Gen Beacon Hex String must be 15, 22 or 30'
-                         + '\nLength of Second Gen Beacon Bit String must be 250 bits')
+                         + '\nLength of Second Gen Beacon Bit String must be 252 bits')
             raise Gen2Error('LengthError', self.type)
     def bitlabel(self,a,b,c):
         return str(int(a)-int(c))+'-'+str(int(b)-int(c))

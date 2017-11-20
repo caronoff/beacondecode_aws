@@ -3,8 +3,14 @@
 #print()
 import decodefunctions as Fcn
 ### -*- coding: utf-8 -*-
+import Gen2secondgen as Gen2
 import definitions
 import time
+
+
+
+
+
 
 class Bch:
     def __init__(self, testbin, mtype):
@@ -98,7 +104,7 @@ class BeaconHex(HexError):
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
                 #   15 Hex does not use bit 25 so an extra 0 needs to be padded
-                self.type = '15 Hex ID'
+                self.type = 'uin'
                 pad = '0'* 25
 
 
@@ -134,7 +140,7 @@ class BeaconHex(HexError):
         
         self.id=()
         
-        if  self.type !='15 Hex ID':
+        if  self.type !='uin':
             formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])            
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
@@ -164,7 +170,7 @@ class BeaconHex(HexError):
                     
     def has_loc(self):
 
-        if self.type=='15 Hex ID':
+        if self.type=='uin':
             self._loc=False
         return self._loc
     
@@ -510,7 +516,7 @@ class BeaconHex(HexError):
                 self.tablebin.append(['41-65',str(self.bin[41:66]),'No decode identification',definitions.locprottype[typelocprotbin]])
                 
 
-            if self.type!='15 Hex ID':
+            if self.type!='uin':
                 self.tablebin.append(['65-74',str(self.bin[65:75]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['75-85',str(self.bin[75:86]),'Longitude','{} ({})'.format(lng,declng)])
 
@@ -548,7 +554,7 @@ class BeaconHex(HexError):
                                           'BCH 2',
                                           str(self.bch.bch2calc())])                             
             
-            elif self.type=='15 Hex ID':
+            elif self.type=='uin':
                 self.tablebin.append(['65-85',default,'Default bits',''])
 
                 self._loc=False
@@ -559,16 +565,17 @@ class BeaconHex(HexError):
            
             self._loctype='National Location'                         
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])                
-            default='011111110000001111111100000' #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
+            default='011111110000001111111100000'
+            #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
             self.tablebin.append(['26-85',self.bin[26:59]+default,'Beacon UIN',self.hex15])
             ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
             self.tablebin.append(['41-58',str(self.bin[41:59]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[41:59])))])
-            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])           
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
             self.courseloc=(declat,declng)
-            if self.type!='15 Hex ID':
+            if self.type!='uin':
                 self.tablebin.append(['59-71',str(self.bin[59:72]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['72-85',str(self.bin[72:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])                
@@ -635,7 +642,7 @@ class BeaconHex(HexError):
                                       'BCH 2',
                                       str(self.bch.bch2calc())])
 
-            elif self.type=='15 Hex ID':
+            elif self.type=='uin':
                 self.tablebin.append(['59-85',default,'Default bits',''])
 
                 self._loc=False
@@ -656,7 +663,7 @@ class BeaconHex(HexError):
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             self.courseloc=(declat,declng)
-            if self.type!='15 Hex ID':
+            if self.type!='uin':
                 self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
@@ -685,7 +692,7 @@ class BeaconHex(HexError):
                                   str(self.bin[133:145]),
                                       'BCH 2',
                                       str(self.bch.bch2calc())])
-            elif self.type=='15 Hex ID':
+            elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
 
@@ -716,7 +723,7 @@ class BeaconHex(HexError):
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             self.courseloc=(declat,declng)
 
-            if self.type!='15 Hex ID':
+            if self.type!='uin':
                 self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
@@ -737,7 +744,7 @@ class BeaconHex(HexError):
                                   str(self.bin[133:145]),
                                       'BCH 2',
                                       str(self.bch.bch2calc())])
-            elif self.type=='15 Hex ID':
+            elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
         if Fcn.is_number(declat) and Fcn.is_number(latdelta) and Fcn.is_number(declng) and Fcn.is_number(longdelta):
@@ -753,12 +760,49 @@ class BeaconHex(HexError):
         if self._loc:
             self.tablebin.append(['','','Composite location','{} {}'.format(a,b)])
             self.location=(a,b)
+            self.latitude= a
+            self.longitude = b
+        else:
+            self.location = (0, 0)
+            self.latitude = 0
+            self.longitude = 0
+
+
         self._btype=btype
         self.tac=tano
 
         
 
 
+
+class Beacon(HexError):
+    def __init__(self,hexcode):
+        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
+            beacon = Gen2.SecondGen(hexcode)
+
+        elif len(hexcode) == 30 or len(hexcode) == 15:
+            beacon=BeaconHex(hexcode)
+
+        elif len(strhex) == 36:
+            beacon=BeaconHex(hexcode[6:])
+        else:
+            self.type = 'Hex length of ' + str(
+                len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
+            raise HexError('LengthError', self.type)
+            self.beacon=None
+        self.beacon=beacon
+        self.latitude=self.beacon.latitude
+        self.longitude=self.beacon.longitude
+        self.location=self.beacon.location
+        self.tablebin=self.beacon.tablebin
+    def has_loc(self):
+        if self.beacon.type=='uin':
+            return False
+        elif self.beacon.latitude in ['No latitude data available','Invalid Latitude'] or\
+                        self.beacon.longitude in ['No longitude data available', 'Invalid Longitude']:
+            return False
+        else:
+            return True
 
 
     

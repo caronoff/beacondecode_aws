@@ -54,7 +54,7 @@ def validatehex():
         if len(hexaPattern)==len(ret_data):
 
             message='Valid hexidecimal message.'
-            if len(ret_data) in [15,30,23,63]:
+            if len(ret_data) in [15,30,36,23,63]:
                 statuscheck = 'valid'
             else:
                 message = 'Bad length '+str(len(ret_data)) +  '  Valid lengths: 15 hex, 23 hex, 30 or 63 hex'
@@ -99,21 +99,13 @@ def about():
 def decoded(hexcode):
     geocoord=(0,0)
     locationcheck=False
-    if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
-        beacon = Gen2.SecondGen(hexcode)
-
-    else:
-        beacon = decodehex2.BeaconHex(hexcode)
-
+    beacon=decodehex2.Beacon(hexcode)
     if beacon.has_loc():
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         locationcheck=True
 
-    #
 
-    decoded = beacon.tablebin
-
-    return render_template('output.html', hexcode=hexcode.upper(), decoded=decoded, locationcheck=locationcheck,geocoord=geocoord)
+    return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
 
 
 if __name__ == "__main__":

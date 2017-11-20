@@ -83,8 +83,6 @@
                     <div class="panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
-                        <label for="id_aircraftserial_input">Serial number assigned by operator (1-4095):</label>
-                        <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="1" max="4095" step="1">
                     </div>
                 </div>
 
@@ -117,7 +115,7 @@
                 <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
-                        <input type="text" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
+                        <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                     </div>
                 </div>
                 <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
@@ -215,45 +213,41 @@ $('#id_protocol').on('change', function() {
    $('#id_ctry').show();
     $("#tags").focus();
    switch(pselect){
-   // National User protocol
+
+
+
+   // National User protocol - Test User protocol - Orbitography
    case '1-1-100':
-         $('#id_nationaluser').show();
-         break;
-
-    // Test User protocol
    case '1-1-111':
-         $('#id_nationaluser').show();
-         break;
-
-    // Orbitography
    case '1-1-000':
          $('#id_nationaluser').show();
          break;
 
 
-   //// Aviation User protocol
+   // Aviation User protocol
    case '1-1-001':
         $('#id_aircraftmarking').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
+   // Radio callsign
    case '1-1-110':
         $('#id_radio').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
+   // User protocol MMSI
    case '1-1-010':
         $('#id_radio_or_mmsi').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
 
-   //Serial user - Aircraft Operatir Designator and Serial Number
+   //Serial user - Aircraft Operator Designator and Serial Number
    case '1-1-011-001':
         $('#id_tano').show();
         $('#id_aircraftoperator').show();
+        $('#id_serialnumber').show();
         $('#id_auxdevice').show();
         break;
 
@@ -265,7 +259,7 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
 
         break;
-
+   //Serial user ELT/EPIRB/PLB
     case '1-1-011-000':
     case '1-1-011-010':
     case '1-1-011-100':
@@ -275,7 +269,28 @@ $('#id_protocol').on('change', function() {
         $('#id_auxdevice').show();
         break;
 
+    //ELT-DT Aircraft 24 bit address
+    case '1-0-1001-00':
+        $('#id_elt24bit').show();
+        break;
 
+    //ELT-DT Aircraft operators designator and serial number
+    case '1-0-1001-01':
+        $('#id_aircraftoperator').show();
+        $('#id_serialnumber').show();
+        break;
+
+
+    //ELT-DT Aircraft TAC and serial number
+    case '1-0-1001-10':
+        $('#id_tano').show();
+        $('#id_serialnumber').show();
+        break;
+
+    //ELT-DT Aircraft test protocol
+    case '1-0-1001-11':
+        $('#id_elt24bit').show();
+        break;
 
 
 
