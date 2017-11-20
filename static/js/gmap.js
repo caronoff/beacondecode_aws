@@ -1,6 +1,7 @@
 function initMap() {
         var geocode = JSON.parse(document.getElementById("geocoord").dataset.geocode);
-        if (typeof(geocode) == 'undefined' {alert('undefined');} else {alert(geocode[0].value);}
+        alert(geocode[0].value);
+        if (typeof(geocode) == 'undefined') {alert('undefined');} else {alert(geocode[0].value);}
         var location = new google.maps.LatLng(geocode[0], geocode[1]);
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
