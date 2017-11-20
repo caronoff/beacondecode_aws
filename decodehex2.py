@@ -172,6 +172,8 @@ class BeaconHex(HexError):
 
         if self.type=='uin':
             self._loc=False
+        else:
+            self._loc=True
         return self._loc
     
     def protocolflag(self):
