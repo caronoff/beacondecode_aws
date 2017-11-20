@@ -19,7 +19,7 @@ def processhex():
     ctry=request.args.get('country')
     midpat = re.compile(r'(\d{3})')
     ccode=int(midpat.search(ctry).groups()[0])
-    binctry=dec2bin(ccode)
+    binctry=dec2bin(ccode,10)
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
     beaconnoinput = str(request.args.get('beaconnoinput'))
@@ -27,7 +27,8 @@ def processhex():
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    retdata = btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode) + ' '+str(binctry)
+    binstr= ":".join(protocol.split('-')[1:])+":"+str(binctry)
+    retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
 
