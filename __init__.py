@@ -14,6 +14,7 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
+    msgs=['test message 1','test message 2']
     radio_input = request.args.get('radio_input')
 
     btype=request.args.get('beacontype')
@@ -30,8 +31,8 @@ def processhex():
     protocol=str(request.args.get('protocol'))
     binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_input)['binary']
     retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
-    statuscheck = 'valid'
-    return jsonify(returndata=retdata,echostatus=statuscheck)
+    statuscheck = 'invalid'
+    return jsonify(returndata=retdata,echostatus=statuscheck, messages=msgs)
 
 
 @app.route('/filterlist', methods=['GET'])
