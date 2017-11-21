@@ -101,11 +101,11 @@ def radiobin(strval):
     for letter in strval[:4]:
         key = next(key for key, value in BAUDOT.items() if value == letter.upper())
         blist.append(key)
-    bin1= '-'.join(blist)
-    bin2=' '
+    bin1= ''.join(blist)
+    bin2=''
     for number in strval[4:]:
         bin= dec2bin(number,4)
-        bin2=bin2+'-'+bin
+        bin2=bin2+bin
     pad=(7 - len(strval))*'1010'
     return bin1+bin2+pad
 def baudot(binstr,startpos,endpos,short=False):
