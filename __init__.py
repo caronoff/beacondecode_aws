@@ -32,7 +32,10 @@ def processhex():
     binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_input)['binary']
     retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
     statuscheck = 'invalid'
-    return jsonify(returndata=retdata,echostatus=statuscheck, messages=msgs)
+    msg={}
+    for i in range(len(msgs)):
+        msg[str(i)]=msgs[i]
+    return jsonify(returndata=retdata,echostatus=statuscheck, messages=msg)
 
 
 @app.route('/filterlist', methods=['GET'])
