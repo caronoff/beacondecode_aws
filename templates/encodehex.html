@@ -185,8 +185,8 @@ $("#done").click(function() {
                 $('#decoded').text(data.returndata);}
             else {
             $('#decoded').text(data.echostatus);
-            $('ul li').remove();
-            $.each( data, function( key, val ) {$("#errors").append( "<li id='" + key + "'>" + val + "</li>" );});
+            $('#errors').remove();
+            $.each( data.messages, function( key, val ) {$('#errors').append( "<li id='" + key + "'>" + val + "</li>" );});
             }
    });
 });
