@@ -95,22 +95,39 @@ def hextobin(hexval):
         return binval
 
 def radiobin(strval):
-    if len(strval)>7 or not is_number(strval[4:]):
-        return 'Radio call sign must not exceed 7 characters and last 3 digits need to be numeric'
-    blist=[]
-    for letter in strval[:4]:
-        try:
-            key = next(key for key, value in BAUDOT.items() if value == letter.upper())
-        except StopIteration:
-            return 'Must be alphanumeric'
-        blist.append(key)
-    bin1= ''.join(blist)
-    bin2=''
-    for number in strval[4:]:
-        bin= dec2bin(number,4)
-        bin2=bin2+bin
-    pad=(7 - len(strval))*'1010'
-    return bin1+bin2+pad
+    results={'status':'valid','binary':'','message':[]}
+    msg=[]
+    bin1=bin2=pad=''
+    if len(strval)>7:
+        msg.append('Radio call sign must not exceed 7 characters')
+        results['status']='invalid'
+    if not is_number(strval[4:]):
+        msg.append('Radio Callsign last 3 digits need to be numeric')
+        results['status'] = 'invalid'
+    else:
+        for number in strval[4:]:
+            bin = dec2bin(number, 4)
+            bin2 = bin2 + bin
+
+        for letter in strval[:4]:
+            try:
+                key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                bin1 = bin1 + key
+            except StopIteration:
+                results['status'] = 'invalid'
+                msg.append('Radio call sign must be alphanumeric')
+
+
+
+        pad=(7 - len(strval))*'1010'
+        results['binary']=bin1+bin2+pad
+
+    results['message']=msg
+
+
+    return results
+
+
 def baudot(binstr,startpos,endpos,short=False):
     if short:
         jump=5

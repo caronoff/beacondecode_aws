@@ -166,7 +166,6 @@
 <script type="text/javascript">
 $("#done").click(function() {
 
-
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data){
             if(data.echostatus=='valid'){
                 console.log(data.returndata);

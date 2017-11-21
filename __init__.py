@@ -28,7 +28,7 @@ def processhex():
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_input)
+    binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_input)['binary']
     retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
