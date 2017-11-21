@@ -93,17 +93,20 @@ def hextobin(hexval):
             binval = '0' + binval
         return binval
 
-def radiobin(strval,decpart):
+def radiobin(strval):
+    if len(strval)>7 or not is_number(strval[4:]):
+        return 'Radio call sign must not exceed 7 characters and last 3 digits need to be numeric'
     blist=[]
-    for letter in strval:
+    for letter in strval[:4]:
         key = next(key for key, value in BAUDOT.items() if value == letter.upper())
         blist.append(key)
-    #a= ''.join(blist)
-    bin2=''
-    for l in decpart:
-        bin= dec2bin(l)
-        bin2=bin2+bin
-
+    bin1= '-'.join(blist)
+    bin2=' '
+    for number in strval[4:]:
+        bin= dec2bin(number)
+        bin2=bin2+'-'+bin
+    pad=(7 - len(strval))*'1010'
+    return bin1+bin2+pad
 def baudot(binstr,startpos,endpos,short=False):
     if short:
         jump=5
