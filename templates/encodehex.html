@@ -185,7 +185,7 @@ $("#done").click(function() {
                 $('#decoded').text(data.returndata);}
             else {
             $('#decoded').text(data.echostatus);
-            $('#errors').remove();
+            $('ul li').remove();
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li id='" + key + "'>" + val + "</li>" );});
             }
    });
