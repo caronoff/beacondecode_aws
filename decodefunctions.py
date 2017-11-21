@@ -104,7 +104,7 @@ def radiobin(strval):
     bin1= '-'.join(blist)
     bin2=' '
     for number in strval[4:]:
-        bin= dec2bin(number)
+        bin= dec2bin(number,4)
         bin2=bin2+'-'+bin
     pad=(7 - len(strval))*'1010'
     return bin1+bin2+pad
