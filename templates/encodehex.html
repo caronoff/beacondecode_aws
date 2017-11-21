@@ -155,7 +155,7 @@
     <div id="id_messages">
                     <div class="col-lg-offset-4 col-lg-8">
 
-                        <ul style="list-style-type:circle">
+                        <ul id="errors" style="list-style-type:circle">
                             <li>Coffee</li>
                             <li>Tea</li>
                             <li>Milk</li>
@@ -178,16 +178,17 @@
 <script type="text/javascript">
 $("#done").click(function() {
 
-  $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data){
+  $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
+  {
             if(data.echostatus=='valid'){
                 console.log(data.returndata);
                 $('#decoded').text(data.returndata);}
             else {
             $('#decoded').text(data.echostatus);
             $('ul li').remove();
-            $.each(data.messages,function(key,value){console.log(value)});
+            $.each( data, function( key, val ) {$("#errors").append( "<li id='" + key + "'>" + val + "</li>" );});
             }
-                });
+   });
 });
 </script>
 <script type="text/javascript">
