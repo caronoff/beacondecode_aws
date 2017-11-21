@@ -99,7 +99,10 @@ def radiobin(strval):
         return 'Radio call sign must not exceed 7 characters and last 3 digits need to be numeric'
     blist=[]
     for letter in strval[:4]:
-        key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+        try:
+            key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+        except StopIteration:
+            return 'Must be alphanumeric'
         blist.append(key)
     bin1= ''.join(blist)
     bin2=''
