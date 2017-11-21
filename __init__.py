@@ -14,8 +14,8 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-    radio_first4_input = request.args.get('radio_first4_input')
-    radio_last3_input = request.args.get('radio_last3_input')
+    radio_input = request.args.get('radio_input')
+
     btype=request.args.get('beacontype')
     ctry=request.args.get('country')
     midpat = re.compile(r'(\d{3})')
@@ -28,7 +28,7 @@ def processhex():
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_first4_input,radio_last3_input)
+    binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radiobin(radio_input)
     retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
     statuscheck = 'valid'
     return jsonify(returndata=retdata,echostatus=statuscheck)
