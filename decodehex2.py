@@ -366,7 +366,7 @@ class BeaconHex(HexError):
                 pad = str(a) + str(b)+ str(c)
             else:
                 pad=''
-            radiocallsign=Fcn.baudot(self.bin,40,64)+str(Fcn.bin2dec(self.bin[64:68])) + pad
+            radiocallsign=Fcn.baudot(self.bin,40,64)+pad
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-75',str(self.bin[40:76]),'Radio call sign',radiocallsign])
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
