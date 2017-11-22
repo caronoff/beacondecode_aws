@@ -156,10 +156,8 @@
                     <div class="col-lg-offset-4 col-lg-8">
 
                         <ul id="errors" style="list-style-type:circle">
-                            <li>Coffee</li>
-                            <li>Tea</li>
-                            <li>Milk</li>
-                            </ul>
+
+                        </ul>
                     </div>
     </div>
 
@@ -178,6 +176,8 @@
 <script type="text/javascript">
 $("#done").click(function() {
 
+$('ul li').remove();
+
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
             if(data.echostatus=='valid'){
@@ -185,7 +185,7 @@ $("#done").click(function() {
                 $('#decoded').text(data.returndata);}
             else {
             $('#decoded').text(data.echostatus);
-            $('ul li').remove();
+
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li id='" + key + "'>" + val + "</li>" );});
             }
    });
