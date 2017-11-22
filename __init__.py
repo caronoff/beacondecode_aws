@@ -16,6 +16,7 @@ COUNTRIES.sort()
 def processhex():
     msgs=['test message 1','test message 2']
     radio_input = request.args.get('radio_input')
+    radio_or_mmsi_input = request.args.get('radio_or_mmsi_input')
 
     btype=request.args.get('beacontype')
     ctry=request.args.get('country')
@@ -29,7 +30,12 @@ def processhex():
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
     in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    radio=radiobin(radio_input)
+    if protocol== '1-1-110'  :
+        radio=radiobin(radio_input)
+    elif protocol =='1-1-010':
+        radio = radiobin(radio_or_mmsi_input)
+    elif protocol in ['1-0-1100','1-0-0010']:
+        radio=radiobin(radio_or_mmsi_input,False)
     binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radio['binary']
     retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
     statuscheck = radio['status']

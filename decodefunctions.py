@@ -94,33 +94,56 @@ def hextobin(hexval):
             binval = '0' + binval
         return binval
 
-def radiobin(strval):
+def radiobin(strval,treat_as_baudot=True):
     results={'status':'valid','binary':'','message':[]}
     msg=[]
-    bin1=bin2=pad=''
-    if len(strval)>7:
-        msg.append('Radio call sign must not exceed 7 characters')
-        results['status']='invalid'
-    if not is_number(strval[4:]):
-        msg.append('Radio Callsign last 3 digits need to be numeric')
-        results['status'] = 'invalid'
+    if is_number(strval):
+        # since all numeric, interpret as MMSI last 6 digits
+        if len(strval)>6:
+            msg.append('MMSI must be numeric and less than 6 digits')
+            results['status']='invalid'
+        else:
+
+            bin=''
+            if treat_as_baudot:
+                for letter in strval:
+                    key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                    bin = bin + key
+                results['binary'] = '100100'* (6 - len(strval))+ bin
+            else:
+                # must be a location protocol and use decimal conversion
+                results['binary']= dec2bin(int(strval),20)
+
+
+
+
+
     else:
-        for number in strval[4:]:
-            bin = dec2bin(number, 4)
-            bin2 = bin2 + bin
+        # must have non-numeric therefore be radio call sign
+        bin1=bin2=pad=''
+        if len(strval)>7:
+            msg.append('Radio call sign must not exceed 7 characters')
+            results['status']='invalid'
+        if not is_number(strval[4:]):
+            msg.append('Radio Callsign last 2 digits need to be numeric')
+            results['status'] = 'invalid'
+        else:
+            for number in strval[4:]:
+                bin = dec2bin(number, 4)
+                bin2 = bin2 + bin
 
-        for letter in strval[:4]:
-            try:
-                key = next(key for key, value in BAUDOT.items() if value == letter.upper())
-                bin1 = bin1 + key
-            except StopIteration:
-                results['status'] = 'invalid'
-                msg.append('Radio call sign must be alphanumeric')
+            for letter in strval[:4]:
+                try:
+                    key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                    bin1 = bin1 + key
+                except StopIteration:
+                    results['status'] = 'invalid'
+                    msg.append('Radio call sign must be alphanumeric')
 
 
 
-        pad=(7 - len(strval))*'1010'
-        results['binary']=bin1+bin2+pad
+            pad=(7 - len(strval))*'1010'
+            results['binary']=bin1+bin2+pad
 
     results['message']=msg
 
