@@ -97,7 +97,7 @@ def hextobin(hexval):
 def radiobin(strval,protocol):
     results={'status':'valid','binary':'','message':[]}
     msg=[]
-    if protocol in ['1100','0010']:
+    if protocol in ['1-0-1100','1-0-0010']:
         # this is a location protocol.  Can only be numeric.
         if not is_number(strval):
             # since all numeric, interpret as MMSI last 6 digits
