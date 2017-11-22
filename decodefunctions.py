@@ -111,7 +111,7 @@ def radiobin(strval,protocol):
             results['binary'] = dec2bin(int(strval), 20)
 
 
-    elif protocol=='110':
+    elif protocol=='1-1-110':
         # must have non-numeric therefore be radio call sign
         bin1=bin2=pad=''
         if len(strval)>7:
@@ -134,8 +134,8 @@ def radiobin(strval,protocol):
                     msg.append('Radio call sign must be alphanumeric')
             results['binary']=bin1+bin2+(7 - len(strval))*'1010'
 
-    elif protocol in ['010','2-010']:
-        if len(strval) > 6 and protocol=='010':
+    elif protocol in ['1-1-010','2-010']:
+        if len(strval) > 6 and protocol=='1-1-010':
             msg.append('Maritime protocol must be maximum 6 characters')
             results['status'] = 'invalid'
         elif len(strval) > 7 :
@@ -150,7 +150,7 @@ def radiobin(strval,protocol):
                 except StopIteration:
                     results['status'] = 'invalid'
                     msg.append('Input must be alphanumeric')
-            if protocol=='010':
+            if protocol=='1-1-010':
                 # right justify only 6 characters (1st gen MMSI hybrid)
                 results['binary'] = (6-len(strval))*'100100'+bin
             elif protocol=='2-010':
