@@ -94,7 +94,7 @@ def hextobin(hexval):
             binval = '0' + binval
         return binval
 
-def radiobin(strval,treat_as_baudot=True):
+def radiobin(strval,treat_as_baudot):
     results={'status':'valid','binary':'','message':[]}
     msg=[]
     if is_number(strval):

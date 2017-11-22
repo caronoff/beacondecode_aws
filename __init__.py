@@ -33,7 +33,7 @@ def processhex():
     if protocol== '1-1-110'  :
         radio=radiobin(radio_input)
     elif protocol =='1-1-010':
-        radio = radiobin(radio_or_mmsi_input)
+        radio = radiobin(radio_or_mmsi_input,True,'mmsi')
     elif protocol in ['1-0-1100','1-0-0010']:
         radio=radiobin(radio_or_mmsi_input,False)
     binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radio['binary']
