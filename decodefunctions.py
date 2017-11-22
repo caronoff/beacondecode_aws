@@ -94,31 +94,24 @@ def hextobin(hexval):
             binval = '0' + binval
         return binval
 
-def radiobin(strval,treat_as_baudot):
+def radiobin(strval,protocol):
     results={'status':'valid','binary':'','message':[]}
     msg=[]
-    if is_number(strval):
-        # since all numeric, interpret as MMSI last 6 digits
-        if len(strval)>6:
+    if protocol in ['1100','0010']:
+        # this is a location protocol.  Can only be numeric.
+        if not is_number(strval):
+            # since all numeric, interpret as MMSI last 6 digits
             msg.append('MMSI must be numeric and less than 6 digits')
+            results['status'] = 'invalid'
+        elif len(strval)>6:
+            msg.append('MMSI must be less than 6 digits')
             results['status']='invalid'
         else:
-
-            bin=''
-            if treat_as_baudot:
-                for letter in strval:
-                    key = next(key for key, value in BAUDOT.items() if value == letter.upper())
-                    bin = bin + key
-                results['binary'] = '100100'* (6 - len(strval))+ bin
-            else:
-                # must be a location protocol and use decimal conversion
-                results['binary']= dec2bin(int(strval),20)
+            # must be a location protocol and use decimal conversion
+            results['binary'] = dec2bin(int(strval), 20)
 
 
-
-
-
-    else:
+    elif protocol=='110':
         # must have non-numeric therefore be radio call sign
         bin1=bin2=pad=''
         if len(strval)>7:
@@ -139,11 +132,23 @@ def radiobin(strval,treat_as_baudot):
                 except StopIteration:
                     results['status'] = 'invalid'
                     msg.append('Radio call sign must be alphanumeric')
+            results['binary']=bin1+bin2+(7 - len(strval))*'1010'
 
+    elif protocol=='010':
+        if len(strval) > 6:
+            msg.append('Maritime protocol must be maximum 6 characters')
+            results['status'] = 'invalid'
 
-
-            pad=(7 - len(strval))*'1010'
-            results['binary']=bin1+bin2+pad
+        else:
+            bin=''
+            for letter in strval:
+                try:
+                    key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                    bin = bin + key
+                except StopIteration:
+                    results['status'] = 'invalid'
+                    msg.append('MMSI must be alphanumeric')
+            results['binary'] = (6-len(strval))*'100100'+bin
 
     results['message']=msg
 
