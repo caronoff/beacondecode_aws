@@ -132,8 +132,8 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                          (locprottype['1100'],'1-0-1100'),
                          (locprottype['0110'],'1-0-0110'),
                          (locprottype['0010'] ,'1-0-0010'),
-                         (locprottype['1101'] ,'1-0-1101-01'),
-                         ('EPIRB - Radio call sign','2-010')],
+                         (locprottype['1101'] ,'1-0-1101-01')
+                         ],
                 'PLB':[(userprottype['100'],'1-1-100'),
                        ('Serial User Protocol '+ serialusertype['110'],'1-1-011-110'),
                         ('PLB '+ locprottype['0111'],'1-0-0111'),
@@ -144,7 +144,7 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (userprottype['100'],'1-1-100'),
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
-           '2':{}}
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010')]}}
 
 posneg = {'0':'-1', '1':'1'}
 dataflag110 = {'0':'Result of bits 113 to 132 defined nationally',
