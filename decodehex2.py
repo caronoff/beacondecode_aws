@@ -354,9 +354,19 @@ class BeaconHex(HexError):
             mmsi=bcd=emergencycode=''            
             m=self.bin[40:76]
             pad=''
-            if Fcn.bin2dec(self.bin[72:76])<10:
-                pad=str(Fcn.bin2dec(self.bin[72:76]))            
-            radiocallsign=Fcn.baudot(self.bin,40,64)+str(Fcn.bin2dec(self.bin[64:68])) + str(Fcn.bin2dec(self.bin[68:72]))+pad            
+
+            a= Fcn.bin2dec(self.bin[64:68])
+            b= Fcn.bin2dec(self.bin[68:72])
+            c= Fcn.bin2dec(self.bin[72:76])
+            if a<9 and b>9 and c>9:
+                pad=str(a)
+            elif a<9 and b<9 and c>9:
+                pad = str(a) + str(b)
+            elif a<9 and b<9 and c<9:
+                pad = str(a) + str(b)+ str(c)
+            else:
+                pad=''
+            radiocallsign=Fcn.baudot(self.bin,40,64)+str(Fcn.bin2dec(self.bin[64:68])) + pad
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-75',str(self.bin[40:76]),'Radio call sign',radiocallsign])
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
