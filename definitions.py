@@ -144,14 +144,23 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (userprottype['100'],'1-1-100'),
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
-           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('Sample test launch class','runme')]}}
-
-runclass={'runme':Classinstance}
-
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('Sample test launch function','runfunction'),
+                         ('Sample test launch class', 'runclass')]}}
 
 class Classinstance:
     def __init__(self):
         print("new class")
+        self.output="new class"
+    def getresult(self):
+        return self.output
+
+
+def dome():
+    return "returned data"
+
+runthis={'runfunction':dome,'runclass':Classinstance()}
+
+
 
 
 posneg = {'0':'-1', '1':'1'}

@@ -37,14 +37,17 @@ def processhex():
         radio=radiobin(radio_or_mmsi_input,protocol)
 
 
-    t= definitions.runclass[protocol]
+    t= definitions.runthis[protocol]
+    print(type(t))
+    retdata = t.getresult()
+    #binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radio['binary']
+    #retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
+    #statuscheck = radio['status']
 
-    binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radio['binary']
-    retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
-    statuscheck = radio['status']
+    statuscheck='valid'
     msg={}
-    for i in range(len(radio['message'])):
-        msg[str(i)]=radio['message'][i]
+    #for i in range(len(radio['message'])):
+    #    msg[str(i)]=radio['message'][i]
     return jsonify(returndata=retdata,echostatus=statuscheck, messages=msg)
 
 
