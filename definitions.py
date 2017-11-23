@@ -6,6 +6,35 @@
 ####################################
 # Includes 1st and 2nd Gen 
 
+import re
+
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
+def dec2bin(n, ln=None):
+    '''convert denary integer n to binary string bStr'''
+    n = int(n)
+    bStr = ''
+
+    if n < 0:
+        raise ValueError("must be a positive integer.")
+    # if n == 0: return '0'
+    while n > 0:
+        bStr = str(n % 2) + bStr
+        n = n >> 1
+    if not ln:
+        l = len(bStr)
+    else:
+        l = ln
+    b = '0' * (l - len(bStr)) + bStr
+    return b
+
+
 countrydic = {}
 country = open('countries.csv')
 
@@ -144,21 +173,118 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (userprottype['100'],'1-1-100'),
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
-           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('Sample test launch function','runfunction'),
-                         ('Sample test launch class', 'runclass')]}}
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('Sample test launch function','runclass1'),
+                         ('Sample test launch class', 'runclass2')]}}
+
+
+class Country:
+    def __init__(self,ctrytext,results):
+        self.midpat = re.compile(r'(\d{3})')
+        self.ctxt=ctrytext
+        self.results=results
+    def getmid(self):
+        try:
+            ccode = int(self.midpat.search(self.ctxt).groups()[0])
+            return dec2bin(ccode, 10)
+        except AttributeError:
+            self.results['status'] = 'invalid'
+            self.results['message'].append('Country code is required')
+            return '0000000000'
+
 
 class Classinstance:
-    def __init__(self):
+    def __init__(self,formfields):
         print("new class")
-        self.output="new class"
+        self.output= str(formfields.get('radio_input'))
     def getresult(self):
         return self.output
+
+
+class Hexgen:
+    def __init__(self,formfields):
+        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': []}
+        self.formfields=formfields
+        self.mid=self.getmid()
+        self.auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
+        self.tano = str(self.formfields.get('tano'))
+        print(self.tano+str(len(self.tano)))
+        print(type(self.tano))
+
+    def getmid(self):
+        ctry= str(self.formfields.get('country'))
+        midpat = re.compile(r'(\d{3})')
+
+        try:
+            ccode = int(midpat.search(ctry).groups()[0])
+            return dec2bin(ccode, 10)
+        except AttributeError:
+            self.results['status'] = 'invalid'
+            self.results['message'].append('Country code is required')
+            return '0000000000'
+
+
+
+
+class Mmsi_location_protocol(Hexgen):
+    def __init__(self,formfields,protocol):
+        Hexgen.__init__(self,formfields)
+        self.protocol=protocol
+
+
+    def getresult(self):
+        radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
+        # this is a location protocol.  Can only be numeric.
+        if not is_number(radio_or_mmsi_input):
+            # since all numeric, interpret as MMSI last 6 digits
+            self.results['message'].append('MMSI must be numeric and max 6 digits')
+            self.results['status'] = 'invalid'
+        elif len(radio_or_mmsi_input) > 6:
+            self.results['message'].append('MMSI must be less than 6 digits')
+            self.results['status'] = 'invalid'
+        else:
+            # must be a location protocol and use decimal conversion
+            self.results['binary'] = self.mid + '+'+ dec2bin(int(radio_or_mmsi_input), 20)
+
+        return self.results
+
+
+class Radio_callsign(Hexgen):
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields)
+        self.protocol = protocol
+
+    def getresult(self):
+        radio_input = str(self.formfields.get('radio_input'))
+        # must have non-numeric therefore be radio call sign
+        bin1 = bin2 = pad = ''
+        if len(radio_input) > 7:
+            self.results['message'].append('Radio call sign must not exceed 7 characters')
+            self.results['status'] = 'invalid'
+        if not is_number(radio_input[4:]):
+            self.results['message'].append('Radio Callsign last digits need to be numeric')
+            self.results['status'] = 'invalid'
+        else:
+            for number in radio_input[4:]:
+                bin = dec2bin(number, 4)
+                bin2 = bin2 + bin
+
+            for letter in radio_input[:4]:
+                try:
+                    key = next(key for key, value in baudot.items() if value == letter.upper())
+                    bin1 = bin1 + key
+                except StopIteration:
+                    self.results['status'] = 'invalid'
+                    self.results['message'].append('Radio call sign must be alphanumeric')
+            self.results['binary'] = self.mid + '+'+ bin1 + bin2 + (7 - len(radio_input)) * '1010'
+        return self.results
 
 
 def dome():
     return "returned data"
 
-runthis={'runfunction':dome,'runclass':Classinstance()}
+protocolspecific={'runclass1':dome,
+         '1-1-110':Radio_callsign,
+         '1-0-0010': Mmsi_location_protocol}
 
 
 

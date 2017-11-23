@@ -14,15 +14,12 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-    msgs=['test message 1','test message 2']
+
     radio_input = request.args.get('radio_input')
     radio_or_mmsi_input = request.args.get('radio_or_mmsi_input')
 
     btype=request.args.get('beacontype')
-    ctry=request.args.get('country')
-    midpat = re.compile(r'(\d{3})')
-    ccode=int(midpat.search(ctry).groups()[0])
-    binctry=dec2bin(ccode,10)
+
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
     beaconnoinput = str(request.args.get('beaconnoinput'))
@@ -37,18 +34,13 @@ def processhex():
         radio=radiobin(radio_or_mmsi_input,protocol)
 
 
-    t= definitions.runthis[protocol]
-    print(type(t))
+    t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
-    #binstr= protocol.split('-')[1]+ ":"+str(binctry)+":" + ":".join(protocol.split('-')[2:]) + "::::" + radio['binary']
-    #retdata = binstr +"::"+btype+ctry+gen+in1+protocol+'  '+tano+ 'Aux :'+auxdeviceinput + beaconnoinput + radio_last3 + str(ccode)
-    #statuscheck = radio['status']
-
-    statuscheck='valid'
-    msg={}
-    #for i in range(len(radio['message'])):
-    #    msg[str(i)]=radio['message'][i]
-    return jsonify(returndata=retdata,echostatus=statuscheck, messages=msg)
+    msg=retdata['message']
+    msgs={}
+    for i in range(len(msg)):
+        msgs[str(i)]=msg[i]
+    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs)
 
 
 @app.route('/filterlist', methods=['GET'])
