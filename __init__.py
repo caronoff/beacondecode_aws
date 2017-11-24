@@ -4,7 +4,7 @@ import re
 import decodehex2
 import definitions
 import sys
-from decodefunctions import is_number, dec2bin, radiobin
+from decodefunctions import is_number, dec2bin
 app = Flask(__name__)
 
 COUNTRIES=[]
