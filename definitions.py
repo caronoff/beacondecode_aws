@@ -260,7 +260,9 @@ class Radio_callsign(Hexgen):
         if len(radio_input) > 7:
             self.results['message'].append('Radio call sign must not exceed 7 characters')
             self.results['status'] = 'invalid'
-        if not is_number(radio_input[4:]):
+        elif len(radio_input) < 5:
+            #pass
+        elif len(radio_input) > 4 and not is_number(radio_input[4:]):
             self.results['message'].append('Radio Callsign last digits need to be numeric')
             self.results['status'] = 'invalid'
         else:
@@ -278,13 +280,51 @@ class Radio_callsign(Hexgen):
             self.results['binary'] = self.mid + '+'+ bin1 + bin2 + (7 - len(radio_input)) * '1010'
         return self.results
 
+class Mmsi_or_radio(Hexgen):
+    #radio call sign or trailing 6 digits of MMSI
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields)
+        self.protocol = protocol
+
+    def getresult(self):
+        radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
+        bin = ''
+        for letter in radio_or_mmsi_input:
+            try:
+                key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                bin = bin + key
+            except StopIteration:
+                self.results['status'] = 'invalid'
+                self.results['message'].append('Input must be alphanumeric')
+
+        if len(radio_or_mmsi_input) > 6 and is_number(radio_or_mmsi_input) and self.protocol=='1-1-010':
+            self.results['message'].append('First generation maritime protocol maximum 6 characters')
+            self.results['status'] = 'invalid'
+        elif len(radio_or_mmsi_input) > 6 and self.protocol=='1-1-010':
+            self.results['message'].append('First generation radio call sign must be maximum 6 characters')
+            self.results['status'] = 'invalid'
+
+        elif self.protocol=='1-1-010:
+            # right justify only 6 characters (1st gen MMSI hybrid)
+            self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' + bin
+
+        elif self.protocol=='2-010':
+            # left justify 7 characters (2nd gen radio callsign)
+            self.results['binary'] = bin + (7 - len(radio_or_mmsi_input)) * '100100' + '00'
+        return self.results
+
+
+
 
 def dome():
     return "returned data"
 
 protocolspecific={'runclass1':dome,
-         '1-1-110':Radio_callsign,
-         '1-0-0010': Mmsi_location_protocol}
+                  '1-1-110' :   Radio_callsign,
+                  '1-0-0010':   Mmsi_location_protocol,
+                  '1-0-1100':   Mmsi_location_protocol,
+                  '1-1-010' :    Mmsi_or_radio,
+                  '2-010'   :    Mmsi_or_radio}
 
 
 
