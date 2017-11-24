@@ -14,26 +14,13 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-
-    radio_input = request.args.get('radio_input')
-    radio_or_mmsi_input = request.args.get('radio_or_mmsi_input')
-
     btype=request.args.get('beacontype')
-
     gen=str(request.args.get('optgen'))
     tano = str(request.args.get('tano'))
     beaconnoinput = str(request.args.get('beaconnoinput'))
     radio_last3     =str(request.args.get('radio_last3'))
     auxdeviceinput = str(request.args.get('auxdeviceinput'))
-    in1 = str(request.args.get('input1'))
     protocol=str(request.args.get('protocol'))
-    if protocol in['1-1-110','2-010'] :
-        radio=radiobin(radio_input,protocol)
-
-    elif protocol in ['1-0-1100','1-0-0010','1-1-010']:
-        radio=radiobin(radio_or_mmsi_input,protocol)
-
-
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
     msg=retdata['message']
@@ -41,7 +28,6 @@ def processhex():
     for i in range(len(msg)):
         msgs[str(i)]=msg[i]
     return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs)
-
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
