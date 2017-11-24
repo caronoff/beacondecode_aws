@@ -277,14 +277,8 @@ class Radio_callsign(Hexgen):
             for number in radio_input[4:]:
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
+            bin1= self.getbaudot(radio_input[:4])
 
-            for letter in radio_input[:4]:
-                try:
-                    key = next(key for key, value in baudot.items() if value == letter.upper())
-                    bin1 = bin1 + key
-                except StopIteration:
-                    self.results['status'] = 'invalid'
-                    self.results['message'].append('Radio call sign must be alphanumeric')
             self.results['binary'] = self.mid + '+'+ bin1 + bin2 + (7 - len(radio_input)) * '1010'
         return self.results
 
