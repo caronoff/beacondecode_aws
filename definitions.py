@@ -288,7 +288,11 @@ class Mmsi_or_radio(Hexgen):
         self.protocol = protocol
 
     def getresult(self):
-        radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
+
+        if self.protocol == '2-010':
+            radio_or_mmsi_input = str(self.formfields.get('radio_input'))
+        else:
+            radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
         bin = ''
         for letter in radio_or_mmsi_input:
             try:
