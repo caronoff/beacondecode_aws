@@ -291,7 +291,9 @@ class Mmsi_or_radio(Hexgen):
 
         if self.protocol == '2-010':
             radio_or_mmsi_input = str(self.formfields.get('radio_input'))
-        else:
+        elif self.protocol == '1-1-001':
+            radio_or_mmsi_input=str(self.formfields.get('aircraftmarking_input'))
+        elif self.protocol == '1-1-010':
             radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
         bin = ''
         for letter in radio_or_mmsi_input:
@@ -309,15 +311,22 @@ class Mmsi_or_radio(Hexgen):
             self.results['message'].append('First generation radio call sign must be maximum 6 characters')
             self.results['status'] = 'invalid'
 
+        elif len(radio_or_mmsi_input) > 7 and self.protocol=='1-1-001':
+            self.results['message'].append('First generation aircraft marking maximum 7 characters')
+            self.results['status'] = 'invalid'
+
         elif self.protocol=='1-1-010':
             # right justify only 6 characters (1st gen MMSI hybrid)
             self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' + bin
+
+        elif self.protocol=='1-1-001':
+            # right justify only 7 characters (1st gen Aviation user protocol)
+            self.results['binary'] = (7 - len(radio_or_mmsi_input)) * '100100' + bin
 
         elif self.protocol=='2-010':
             # left justify 7 characters (2nd gen radio callsign)
             self.results['binary'] = bin + (7 - len(radio_or_mmsi_input)) * '100100' + '00'
         return self.results
-
 
 
 
@@ -329,7 +338,8 @@ protocolspecific={'runclass1':dome,
                   '1-0-0010':   Mmsi_location_protocol,
                   '1-0-1100':   Mmsi_location_protocol,
                   '1-1-010' :    Mmsi_or_radio,
-                  '2-010'   :    Mmsi_or_radio}
+                  '2-010'   :    Mmsi_or_radio,
+                  '1-1-001' :     Mmsi_or_radio}
 
 
 
