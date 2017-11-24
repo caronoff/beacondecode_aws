@@ -305,7 +305,7 @@ class Mmsi_or_radio(Hexgen):
             self.results['message'].append('First generation radio call sign must be maximum 6 characters')
             self.results['status'] = 'invalid'
 
-        elif self.protocol=='1-1-010:
+        elif self.protocol=='1-1-010':
             # right justify only 6 characters (1st gen MMSI hybrid)
             self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' + bin
 
