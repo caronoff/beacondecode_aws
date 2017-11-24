@@ -261,7 +261,8 @@ class Radio_callsign(Hexgen):
             self.results['message'].append('Radio call sign must not exceed 7 characters')
             self.results['status'] = 'invalid'
         elif len(radio_input) < 5:
-            #pass
+            pass
+
         elif len(radio_input) > 4 and not is_number(radio_input[4:]):
             self.results['message'].append('Radio Callsign last digits need to be numeric')
             self.results['status'] = 'invalid'
