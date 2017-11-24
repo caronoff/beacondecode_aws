@@ -296,7 +296,7 @@ class Mmsi_or_radio(Hexgen):
         bin = ''
         for letter in radio_or_mmsi_input:
             try:
-                key = next(key for key, value in BAUDOT.items() if value == letter.upper())
+                key = next(key for key, value in baudot.items() if value == letter.upper())
                 bin = bin + key
             except StopIteration:
                 self.results['status'] = 'invalid'
