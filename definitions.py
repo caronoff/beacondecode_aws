@@ -200,8 +200,9 @@ class Hexgen:
         self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :[]}
         self.formfields=formfields
         self.mid=self.getmid()
-        self.auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
-        self.tano = str(self.formfields.get('tano'))
+        self.beacontype = formfields.get('beacontype')
+        self.auxdeviceinput = str(formfields.get('auxdeviceinput'))
+        self.tano = str(formfields.get('tano'))
 
 
     def binhex(self,b,l=0):

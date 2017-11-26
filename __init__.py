@@ -14,10 +14,6 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-    btype=request.args.get('beacontype')
-    gen=str(request.args.get('optgen'))
-    tano = str(request.args.get('tano'))
-    beaconnoinput = str(request.args.get('beaconnoinput'))
 
 
     protocol=str(request.args.get('protocol'))
@@ -25,11 +21,12 @@ def processhex():
     retdata = t.getresult()
 
     msgs={}
-    flderrors={}
+    
     for i in range(len(retdata['message'])):
         msgs[str(i)]=retdata['message'][i]
-        #flderrors[str(i)] = retdata['flderrors'][i]
-    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs, flderrors=flderrors)
+
+    print(retdata['flderrors'])
+    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
