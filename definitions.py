@@ -14,7 +14,8 @@ def is_number(s):
         return True
     except ValueError:
         return False
-
+def bin2hex(binval):
+    return str(hex(int(binval, 2)))[2:].upper().strip('L')
 
 def dec2bin(n, ln=None):
     '''convert denary integer n to binary string bStr'''
@@ -140,9 +141,9 @@ serialusertype = {'000':'ELT with Serial Identification',
                  }
 
 pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1-100'),
-                       ('Serial User Protocol '+ serialusertype['000'],'1-1-011-000'),
-                       ('Serial User Protocol ' +serialusertype['011'],'1-1-011-011'),
-                       ('Serial User Protocol '+ serialusertype['001'],'1-1-011-001'),
+                       ('Serial User '+ serialusertype['000'],'1-1-011-000'),
+                       ('Serial User ' +serialusertype['011'],'1-1-011-011'),
+                       ('Serial User '+ serialusertype['001'],'1-1-011-001'),
                        (locprottype['0011'],'1-0-0011'),
                        (locprottype['0100'],'1-0-0100'),
                        (locprottype['0101'],'1-0-0101'),
@@ -154,8 +155,8 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                        ('ELT '+locprottype['1101'] ,'1-0-1101-00')],
                 'EPIRB':[(userprottype['110'],'1-1-110'),
                          (userprottype['100'],'1-1-100'),
-                        ('Serial User Protocol '+ serialusertype['100'],'1-1-011-100'),
-                        ('Serial User Protocol '+ serialusertype['010'],'1-1-011-010'),
+                        ('Serial User '+ serialusertype['100'],'1-1-011-100'),
+                        ('Serial User '+ serialusertype['010'],'1-1-011-010'),
                          (userprottype['010'],'1-1-010'),
                          (locprottype['1010'],'1-0-1010'),
                          (locprottype['1100'],'1-0-1100'),
@@ -201,8 +202,16 @@ class Hexgen:
         self.mid=self.getmid()
         self.auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
         self.tano = str(self.formfields.get('tano'))
-        print(self.tano+str(len(self.tano)))
-        print(type(self.tano))
+
+
+    def binhex(self,b,l=0):
+        h=""
+        if len(b)%4 >0 or (l>0 and len(b)!=l):
+            self.results['status'] = 'invalid'
+            self.results['message'].append('binary length {} not valid.'.format(str(len(b))))
+        else:
+            h=bin2hex(b)
+        return h
 
     def getmid(self):
         ctry= str(self.formfields.get('country'))
@@ -348,24 +357,25 @@ class Radio_secgen(Hexgen):
         return self.results
 
 class Serial(Hexgen):
-    #ELT Serial
+    #Serial
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields)
         self.protocol = protocol
 
     def getresult(self):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
-        tano = str(self.formfields.get('tano'))
-        auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
-        ta= self.getserial(tano,0,1023,'Type approval number range (0 - 1,023)',10)
-        if tano=='0':
+
+
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10)
+        if self.tano=='0':
             b43='0'
         else:
             b43='1'
 
-        self.results['binary'] = b43 + '+'+ \
+        self.results['binary'] = '1+'+self.mid+ '+'+ self.protocol.split('-')[2]+'+' + \
+                                 self.protocol.split('-')[3] + '+'+ b43 + '+'+ \
             self.getserial(serialnumber_input, 0,1048575,'Serial number range (0 - 1,048,575)',20)  \
-                                 + '+' + ta + '+'+ auxdeviceinput
+                                 + '+' + '0' * 10 + '+' + ta + '+'+ self.auxdeviceinput
         return self.results
 
 
@@ -379,7 +389,10 @@ protocolspecific={'runclass1':dome,
                   '1-1-010' :    Maritime_mmsi,
                   '2-010'   :    Radio_secgen,
                   '1-1-001' :     Aircraftmarking,
-                  '1-1-011-000': Serial}
+                  '1-1-011-000': Serial,
+                  '1-1-011-010': Serial,
+                  '1-1-011-100': Serial,
+                  '1-1-011-110': Serial}
 
 
 

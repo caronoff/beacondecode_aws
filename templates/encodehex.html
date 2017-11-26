@@ -51,10 +51,10 @@
 
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
-                <div id="id_ctry" style="display: none;" class="ui-widget panel panel-body panel-default tohide">
+                <div id="id_ctry" style="display: none;" class="form-group has-error ui-widget panel panel-body panel-default tohide">
 
                    <label for="tags">Enter beacon country MID where beacon will be used: </label>
-                   <input id="tags" style="width:250px;">
+                   <input id="tags" class="form-control" style="width:250px;">
                    <input type="text" style="visibility: hidden" name="country" id="ctry">
                 </div>
 
@@ -147,7 +147,7 @@
                         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
                         </a>
-                        <div id="decoded"></div>
+                        <div id="decoded" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
                     </div>
                 </div>
 
