@@ -23,11 +23,13 @@ def processhex():
     protocol=str(request.args.get('protocol'))
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
-    msg=retdata['message']
+
     msgs={}
-    for i in range(len(msg)):
-        msgs[str(i)]=msg[i]
-    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs)
+    flderrors={}
+    for i in range(len(retdata['message'])):
+        msgs[str(i)]=retdata['message'][i]
+        #flderrors[str(i)] = retdata['flderrors'][i]
+    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs, flderrors=flderrors)
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():

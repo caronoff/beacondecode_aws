@@ -197,7 +197,7 @@ class Country:
 
 class Hexgen:
     def __init__(self,formfields):
-        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': []}
+        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :[]}
         self.formfields=formfields
         self.mid=self.getmid()
         self.auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
@@ -207,8 +207,8 @@ class Hexgen:
     def binhex(self,b,l=0):
         h=""
         if len(b)%4 >0 or (l>0 and len(b)!=l):
-            self.results['status'] = 'invalid'
-            self.results['message'].append('binary length {} not valid.'.format(str(len(b))))
+            self.seterror('binary length {} not valid.'.format(str(len(b))))
+
         else:
             h=bin2hex(b)
         return h
@@ -221,23 +221,25 @@ class Hexgen:
             ccode = int(midpat.search(ctry).groups()[0])
             return dec2bin(ccode, 10)
         except AttributeError:
-            self.results['status'] = 'invalid'
-            self.results['message'].append('Country code is required')
+
+            self.seterror('Country code is required',"id_miderror")
             return '0000000000'
 
+    def seterror(self,errormsg,fld=""):
+        self.results['status'] = 'invalid'
+        self.results['message'].append(errormsg)
+        self.results['flderrors'].append(fld)
 
     def getbaudot(self,strval,max,errormsg):
         bin=''
         if len(strval)>max:
-            self.results['status'] = 'invalid'
-            self.results['message'].append(errormsg)
+            self.seterror(errormsg)
         for letter in strval:
             try:
                 key = next(key for key, value in baudot.items() if value == letter.upper())
                 bin = bin + key
             except StopIteration:
-                self.results['status'] = 'invalid'
-                self.results['message'].append('Input must be alphanumeric')
+                self.seterror('Input must be alphanumeric')
         return bin
 
     def getserial(self,ser,min,max,errormsg,n):
