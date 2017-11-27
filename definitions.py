@@ -324,8 +324,10 @@ class Aircraftmarking(Hexgen):
         auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
         print(auxdeviceinput,self.mid)
 
-        self.results['binary'] ='{}+{}'.format( self.mid,self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'))
-        #             (7 - len(aircraftmarking_input)) * '100100',self.getbaudot(aircraftmarking_input,7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'), \
+        self.results['binary'] ='1 + {} + 001 + {} + {}'.format( self.mid,
+            self.getbaudot(aircraftmarking_input, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'),
+                self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'), (7 - len(aircraftmarking_input)) * '100100',
+                )
         #                         self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'),
         #                          auxdeviceinput)
 
