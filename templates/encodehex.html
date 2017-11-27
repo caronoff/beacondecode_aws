@@ -182,7 +182,8 @@
 <script type="text/javascript">
 $("#done").click(function() {
 $('ul li').remove();
-$('#id_genform').find('span').each(function() {$(this).text(''); console.log($(this).attr('id'))     ;}  );
+$('#id_genform').find('span').each(function() {$(this).text(''); {$(this).hide() ;  console.log($(this).attr('id'))     ;}  );
+
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
             if(data.echostatus=='valid'){
