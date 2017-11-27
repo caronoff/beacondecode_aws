@@ -232,16 +232,16 @@ class Hexgen:
         if fld:
             self.results['flderrors'][fld] = errormsg
 
-    def getbaudot(self,strval,max,errormsg):
+    def getbaudot(self,strval,max,errormsg,flderror):
         bin=''
         if len(strval)>max:
-            self.seterror(errormsg)
+            self.seterror(errormsg,flderror)
         for letter in strval:
             try:
                 key = next(key for key, value in baudot.items() if value == letter.upper())
                 bin = bin + key
             except StopIteration:
-                self.seterror('Input must be alphanumeric')
+                self.seterror('Input must be alphanumeric',flderror)
         return bin
 
     def getserial(self,ser,min,max,errormsg,n,flderror):
@@ -270,11 +270,11 @@ class Mmsi_location_protocol(Hexgen):
         # this is a location protocol.  Can only be numeric.
         if not is_number(radio_or_mmsi_input):
             # since all numeric, interpret as MMSI last 6 digits
-            self.results['message'].append('MMSI must be numeric and max 6 digits')
-            self.results['status'] = 'invalid'
+            self.seterror('MMSI must be numeric and max 6 digits',"id_radio_or_mmsierror")
+
         elif len(radio_or_mmsi_input) > 6:
-            self.results['message'].append('MMSI must be less than 6 digits')
-            self.results['status'] = 'invalid'
+            self.seterror('MMSI must be less than 6 digits',"id_radio_or_mmsierror")
+
         else:
             # must be a location protocol and use decimal conversion
             self.results['binary'] = self.mid + '+'+ dec2bin(int(radio_or_mmsi_input), 20)
@@ -292,15 +292,15 @@ class Radio_callsign(Hexgen):
         # must have non-numeric therefore be radio call sign
         bin1 = bin2 = pad = ''
         if len(radio_input) > 7:
-            self.results['message'].append('Radio call sign must not exceed 7 characters')
-            self.results['status'] = 'invalid'
+            self.seterror('Radio call sign must not exceed 7 characters','id_radioerror')
+
 
 
         elif len(radio_input) > 4 and not is_number(radio_input[4:]):
-            self.results['message'].append('Radio Callsign last digits need to be numeric')
-            self.results['status'] = 'invalid'
+            self.seterror('Radio Callsign last digits need to be numeric','id_radioerror')
+
         else:
-            bin1= self.getbaudot(radio_input[:4],4,"Radio Callsign error")
+            bin1= self.getbaudot(radio_input[:4],4,"Radio Callsign error",'id_radioerror')
             for number in radio_input[4:]:
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
@@ -355,7 +355,7 @@ class Radio_secgen(Hexgen):
     def getresult(self):
 
         radio_input = str(self.formfields.get('radio_input'))
-        self.results['binary'] = self.getbaudot(radio_input, 7,'Radio callsign maximum 7 characters') + \
+        self.results['binary'] = self.getbaudot(radio_input, 7,'Radio callsign maximum 7 characters','id_radioerror') + \
                                  (7 - len(radio_input)) * '100100' + '00'
         return self.results
 
