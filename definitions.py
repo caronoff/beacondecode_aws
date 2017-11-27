@@ -270,10 +270,10 @@ class Mmsi_location_protocol(Hexgen):
         # this is a location protocol.  Can only be numeric.
         if not is_number(radio_or_mmsi_input):
             # since all numeric, interpret as MMSI last 6 digits
-            self.seterror('MMSI must be numeric and max 6 digits',"id_radio_or_mmsierror")
+            self.seterror('MMSI must be numeric and max 6 digits','id_radio_or_mmsierror')
 
         elif len(radio_or_mmsi_input) > 6:
-            self.seterror('MMSI must be less than 6 digits',"id_radio_or_mmsierror")
+            self.seterror('MMSI must be less than 6 digits','id_radio_or_mmsierror')
 
         else:
             # must be a location protocol and use decimal conversion
@@ -311,15 +311,20 @@ class Radio_callsign(Hexgen):
 
 
 class Aircraftmarking(Hexgen):
-
+    # '1-1-001'
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields)
         self.protocol = protocol
 
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
-        self.results['binary'] = (7 - len(aircraftmarking_input)) * '100100' \
-                                 + self.getbaudot(aircraftmarking_input,7,'First generation aircraft marking maximum 7 characters')
+        beaconno_input = str(self.formfields.get('beaconno_input'))
+        self.results['binary'] ='1+{}+001+{}+{}+{}'\
+            .format( self.mid,
+                     (7 - len(aircraftmarking_input)) * '100100',self.getbaudot(aircraftmarking_input,7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'), \
+                                 self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'),
+                                  self.auxdeviceinput)
+
 
         return self.results
 

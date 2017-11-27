@@ -67,8 +67,8 @@
 
 
 
-                <div id="id_aircraftmarking" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
+                    <div class="form-group panel-body">
                       <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
                         <span id="id_aircraftmarkingerror" class="help-block"></span>
@@ -82,16 +82,16 @@
                     </div>
                 </div>
 
-                <div id="id_aircraftoperator" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
+                    <div class="form-group panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
                         <span id="id_aircraftoperatorerror" class="help-block"></span>
                     </div>
                 </div>
 
-                <div id="id_serialnumber" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_serialnumber" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-body form-group">
                         <label for="id_serialnumber_input">Serial Number:</label>
                         <input type="number" class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1">
                         <span id="id_serialnumbererror" class="help-block"></span>
@@ -100,16 +100,16 @@
                 </div>
 
 
-                <div id="id_radio" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_radio" style="display: none;" class="panel panel-default tohide">
+                    <div class="panel-body form-group ">
                         <label for="id_radio_input">Radio callsign:</label>
                         <input type="text" class="form-control" name="radio_input" id="id_radio_input">
                         <span id="id_radioerror" class="help-block"></span>
                     </div>
                 </div>
 
-                <div id="id_radio_or_mmsi" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_radio_or_mmsi" style="display: none;" class="panel panel-default tohide">
+                    <div class="form-group panel-body">
                         <label for="id_radio_or_mmsi_input">Radio call sign or trailing 6 digits of MMSI:</label>
                         <input type="text" class="form-control" name="radio_or_mmsi_input" id="id_radio_or_mmsi_input">
                         <span id="id_radio_or_mmsierror" class="help-block"></span>
@@ -117,18 +117,19 @@
                 </div>
 
 
-                <div id="id_elt24bit" style="display: none;" class="form-group panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
+                    <div class="form-group panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                         <span id="id_elt24biterror" class="help-block"></span>
                     </div>
                 </div>
-                <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
-                    <label for="id_beaconnoinput">Specific beacon number:</label>
-                    <input type="number" class="form-control" name="beaconnoinput" step="1" min="0" max="10" id="id_beaconnoinput" data-bind="value:id_beaconnoinput">
+                <div id="id_beaconno" style="display: none;" class="form-group panel panel-body panel-default tohide">
+                    <label for="id_beaconno_input">Specific beacon number:</label>
+                    <input type="number" class="form-control" name="beaconno_input" step="1" min="0" max="10" id="id_beaconno_input" data-bind="value:id_beaconnoinput">
+                    <span id="id_beaconnoerror" class="help-block"></span>
                 </div>
-                <div id="id_auxdevice" style="display: none;" class="panel panel-body panel-default tohide">
+                <div id="id_auxdevice" style="display: none;" class="form-group panel panel-body panel-default tohide">
                     <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
                             <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
                                 <option value="00" selected >No auxiliary radio-locating device</option>
