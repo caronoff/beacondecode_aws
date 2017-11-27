@@ -49,7 +49,7 @@
     </div>
 
 
-        <div class="col-lg-10">
+        <div id="id_genform"class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
                 <div id="id_ctry" style="display: none;" class="form-group ui-widget panel panel-body panel-default tohide">
 
@@ -191,7 +191,7 @@ $('ul li').remove();
             $('#decoded').text(data.echostatus);
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-            $('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
+            $('#id_genform').find('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
             }
    });
 });
