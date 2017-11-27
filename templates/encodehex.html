@@ -181,9 +181,7 @@
 
 <script type="text/javascript">
 $("#done").click(function() {
-
 $('ul li').remove();
-
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
             if(data.echostatus=='valid'){
@@ -193,7 +191,7 @@ $('ul li').remove();
             $('#decoded').text(data.echostatus);
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-            $('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
+            $('#genform').find('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
             }
    });
 });
