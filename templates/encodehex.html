@@ -182,6 +182,7 @@
 <script type="text/javascript">
 $("#done").click(function() {
 $('ul li').remove();
+$('#id_genform').find('span').each(function() {$(this).text(''); console.log($(this).attr('id'))     ;}  );
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
             if(data.echostatus=='valid'){
@@ -191,7 +192,7 @@ $('ul li').remove();
             $('#decoded').text(data.echostatus);
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-            $('#id_genform').find('span').each(function() {$(this).text(''); console.log($(this).attr('id'))     ;}  );
+
             $.each( data.flderrors, function( key, val ) { $('#'+key).text(val);});
             }
    });
