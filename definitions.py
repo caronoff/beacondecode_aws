@@ -246,10 +246,12 @@ class Hexgen:
 
     def getserial(self,ser,min,max,errormsg,n,flderror):
         bin=''
+
         if not is_number(ser) or int(ser)<min or int(ser)>max:
             self.seterror(errormsg,flderror)
         else:
             bin=dec2bin(ser,n)
+        print(ser,n,bin)
         return bin
 
 
@@ -515,4 +517,3 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
            'Q': '111101', 'P': '101101', 'S': '110100', 'R': '101010', 'U': '111100', 'T': '100001',
            'W': '111001', 'V': '101111', 'Y': '110101', 'X': '110111', 'Z': '110001'}
 
-                
