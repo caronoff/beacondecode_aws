@@ -319,11 +319,12 @@ class Aircraftmarking(Hexgen):
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
         beaconno_input = str(self.formfields.get('beaconno_input'))
+        auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
         self.results['binary'] ='1+{}+001+{}+{}+{}'\
             .format( self.mid,
                      (7 - len(aircraftmarking_input)) * '100100',self.getbaudot(aircraftmarking_input,7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'), \
                                  self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'),
-                                  self.auxdeviceinput)
+                                  auxdeviceinput)
 
 
         return self.results
