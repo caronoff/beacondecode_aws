@@ -321,8 +321,8 @@ class Aircraftmarking(Hexgen):
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
         beaconno_input = str(self.formfields.get('beaconno_input'))
-        auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
-        print(auxdeviceinput,self.mid)
+
+
 
         self.results['binary'] ='1+{}+001+{}+{}+{}'.format( self.mid,
                 (7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'),
@@ -392,6 +392,28 @@ class Serial(Hexgen):
         return self.results
 
 
+class Serial24(Hexgen):
+    #Serial 1-1-011-011
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields)
+        self.protocol = protocol
+
+    def getresult(self):
+        elt24bitaddress_serialuser = str(self.formfields.get('elt24bitaddress_serialuser'))
+        s= self.getserial(elt24bitaddress_serialuser, 0,16777215,'Serial number range (0 - 16,777,215)',24,'id_elt24biterror')
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
+        if self.tano=='0':
+            b43='0'
+        else:
+            b43='1'
+
+
+
+        self.results['binary'] = '1+{}+011011+{}+{}+{}+{}+{}'.format(self.mid, b43,s,self.getserial(beaconno_input, 0, 63,'Beacon number must be numeric (range 0-63)', 6, 'id_beaconnoerror'), ta,self.auxdeviceinput)
+
+        return self.results
+
+
 def dome():
     return "returned data"
 
@@ -405,7 +427,8 @@ protocolspecific={'runclass1':dome,
                   '1-1-011-000': Serial,
                   '1-1-011-010': Serial,
                   '1-1-011-100': Serial,
-                  '1-1-011-110': Serial}
+                  '1-1-011-110': Serial,
+                  '1-1-011-011': Serial24}
 
 
 
