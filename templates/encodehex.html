@@ -194,7 +194,7 @@ $('#id_genform').find('span').each(function() {$(this).text(''); $(this).hide() 
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
 
-            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
+            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).show();$('#'+key).parent().addClass('has-error')    ;      });
             }
    });
 });
