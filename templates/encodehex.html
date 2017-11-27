@@ -51,24 +51,26 @@
 
         <div class="col-lg-10">
             <form id="genformpanel" class="form-inline" role="form">
-                <div id="id_ctry" style="display: none;" class="ui-widget panel panel-body panel-default tohide">
+                <div id="id_ctry" style="display: none;" class="form-group ui-widget panel panel-body panel-default tohide">
 
                    <label for="tags">Enter beacon country MID where beacon will be used: </label>
-                   <input id="tags" style="width:250px;">
+                   <input id="tags" class="form-control" style="width:250px;">
+                    <span id="id_miderror" class="help-block"></span>
                    <input type="text" style="visibility: hidden" name="country" id="ctry">
                 </div>
 
                 <div id="id_tano" style="display: none;" class="panel panel-body panel-default tohide">
                     <label for="id_tanoinput">Type Approval certificate number:</label>
-                    <input type="number" class="form-control" name="tano" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
+                    <input type="number" class="form-control" name="tano" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
                 </div>
 
 
 
-                <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
+                <div id="id_aircraftmarking" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                       <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
+                        <span id="id_aircraftmarkingerror" class="help-block"></span>
                     </div>
                 </div>
                 <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
@@ -79,42 +81,46 @@
                     </div>
                 </div>
 
-                <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
+                <div id="id_aircraftoperator" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
+                        <span id="id_aircraftoperatorerror" class="help-block"></span>
                     </div>
                 </div>
 
-                <div id="id_serialnumber" style="display: none;" class="panel panel-default tohide">
+                <div id="id_serialnumber" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_serialnumber_input">Serial Number:</label>
                         <input type="number" class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1">
+                        <span id="id_serialnumbererror" class="help-block"></span>
 
                     </div>
                 </div>
 
 
-                <div id="id_radio" style="display: none;" class="panel panel-default tohide">
+                <div id="id_radio" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_radio_input">Radio callsign:</label>
                         <input type="text" class="form-control" name="radio_input" id="id_radio_input">
-
+                        <span id="id_radioerror" class="help-block"></span>
                     </div>
                 </div>
 
-                <div id="id_radio_or_mmsi" style="display: none;" class="panel panel-default tohide">
+                <div id="id_radio_or_mmsi" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_radio_or_mmsi_input">Radio call sign or trailing 6 digits of MMSI:</label>
                         <input type="text" class="form-control" name="radio_or_mmsi_input" id="id_radio_or_mmsi_input">
+                        <span id="id_radio_or_mmsierror" class="help-block"></span>
                     </div>
                 </div>
 
 
-                <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
+                <div id="id_elt24bit" style="display: none;" class="form-group panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
+                        <span id="id_elt24biterror" class="help-block"></span>
                     </div>
                 </div>
                 <div id="id_beaconno" style="display: none;" class="panel panel-body panel-default tohide">
@@ -147,7 +153,7 @@
                         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
                         </a>
-                        <div id="decoded"></div>
+                        <div id="decoded" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
                     </div>
                 </div>
 
@@ -186,13 +192,14 @@ $('ul li').remove();
             else {
             $('#decoded').text(data.echostatus);
 
-            $.each( data.messages, function( key, val ) {$('#errors').append( "<li id='" + key + "'>" + val + "</li>" );});
+            $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
+            $('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
             }
    });
 });
 </script>
 <script type="text/javascript">
- $('#id_gen').on('change', checkprotocol );
+ $('#id_gen').on('click', checkprotocol );
  $('#id_beacontype').on('change', checkprotocol );
 
 function checkprotocol(){

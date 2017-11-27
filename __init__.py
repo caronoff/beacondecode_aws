@@ -14,27 +14,26 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-    btype=request.args.get('beacontype')
-    gen=str(request.args.get('optgen'))
-    tano = str(request.args.get('tano'))
-    beaconnoinput = str(request.args.get('beaconnoinput'))
-    radio_last3     =str(request.args.get('radio_last3'))
-    auxdeviceinput = str(request.args.get('auxdeviceinput'))
+
+
     protocol=str(request.args.get('protocol'))
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
-    msg=retdata['message']
+
     msgs={}
-    for i in range(len(msg)):
-        msgs[str(i)]=msg[i]
-    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=msgs)
+    
+    for i in range(len(retdata['message'])):
+        msgs[str(i)]=retdata['message'][i]
+
+    print(retdata['flderrors'])
+    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
     protocol=str(request.args.get('a'))
     beacontype=str(request.args.get('b'))
     print('protocol: '+protocol+' and beacon: '+beacontype)
-    selectdic={"---select new---":"0"}
+    selectdic={"---select protocol---":"0"}
     for l in definitions.pselect[protocol][beacontype]:
         selectdic[l[0]]=l[1]
     statuscheck='valid'

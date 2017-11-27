@@ -14,7 +14,8 @@ def is_number(s):
         return True
     except ValueError:
         return False
-
+def bin2hex(binval):
+    return str(hex(int(binval, 2)))[2:].upper().strip('L')
 
 def dec2bin(n, ln=None):
     '''convert denary integer n to binary string bStr'''
@@ -140,9 +141,9 @@ serialusertype = {'000':'ELT with Serial Identification',
                  }
 
 pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1-100'),
-                       ('Serial User Protocol '+ serialusertype['000'],'1-1-011-000'),
-                       ('Serial User Protocol ' +serialusertype['011'],'1-1-011-011'),
-                       ('Serial User Protocol '+ serialusertype['001'],'1-1-011-001'),
+                       ('Serial User '+ serialusertype['000'],'1-1-011-000'),
+                       ('Serial User ' +serialusertype['011'],'1-1-011-011'),
+                       ('Serial User '+ serialusertype['001'],'1-1-011-001'),
                        (locprottype['0011'],'1-0-0011'),
                        (locprottype['0100'],'1-0-0100'),
                        (locprottype['0101'],'1-0-0101'),
@@ -154,8 +155,8 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                        ('ELT '+locprottype['1101'] ,'1-0-1101-00')],
                 'EPIRB':[(userprottype['110'],'1-1-110'),
                          (userprottype['100'],'1-1-100'),
-                        ('Serial User Protocol '+ serialusertype['100'],'1-1-011-100'),
-                        ('Serial User Protocol '+ serialusertype['010'],'1-1-011-010'),
+                        ('Serial User '+ serialusertype['100'],'1-1-011-100'),
+                        ('Serial User '+ serialusertype['010'],'1-1-011-010'),
                          (userprottype['010'],'1-1-010'),
                          (locprottype['1010'],'1-0-1010'),
                          (locprottype['1100'],'1-0-1100'),
@@ -196,13 +197,22 @@ class Country:
 
 class Hexgen:
     def __init__(self,formfields):
-        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': []}
+        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :[]}
         self.formfields=formfields
         self.mid=self.getmid()
-        self.auxdeviceinput = str(self.formfields.get('auxdeviceinput'))
-        self.tano = str(self.formfields.get('tano'))
-        print(self.tano+str(len(self.tano)))
-        print(type(self.tano))
+        self.beacontype = formfields.get('beacontype')
+        self.auxdeviceinput = str(formfields.get('auxdeviceinput'))
+        self.tano = str(formfields.get('tano'))
+
+
+    def binhex(self,b,l=0):
+        h=""
+        if len(b)%4 >0 or (l>0 and len(b)!=l):
+            self.seterror('binary length {} not valid.'.format(str(len(b))))
+
+        else:
+            h=bin2hex(b)
+        return h
 
     def getmid(self):
         ctry= str(self.formfields.get('country'))
@@ -212,21 +222,38 @@ class Hexgen:
             ccode = int(midpat.search(ctry).groups()[0])
             return dec2bin(ccode, 10)
         except AttributeError:
-            self.results['status'] = 'invalid'
-            self.results['message'].append('Country code is required')
+
+            self.seterror('Country code is required',"id_miderror")
             return '0000000000'
 
+    def seterror(self,errormsg,fld=""):
+        self.results['status'] = 'invalid'
+        self.results['message'].append(errormsg)
+        self.results['flderrors'].append(fld)
 
-    def getbaudot(self,strval):
+    def getbaudot(self,strval,max,errormsg):
         bin=''
+        if len(strval)>max:
+            self.seterror(errormsg)
         for letter in strval:
             try:
                 key = next(key for key, value in baudot.items() if value == letter.upper())
                 bin = bin + key
             except StopIteration:
-                self.results['status'] = 'invalid'
-                self.results['message'].append('Input must be alphanumeric')
+                self.seterror('Input must be alphanumeric')
         return bin
+
+    def getserial(self,ser,min,max,errormsg,n):
+        bin=''
+        if not is_number(ser) or int(ser)<min or int(ser)>max:
+            self.results['status'] = 'invalid'
+            self.results['message'].append(errormsg)
+        else:
+            bin=dec2bin(ser,n)
+        return bin
+
+
+
 
 
 
@@ -267,17 +294,16 @@ class Radio_callsign(Hexgen):
         if len(radio_input) > 7:
             self.results['message'].append('Radio call sign must not exceed 7 characters')
             self.results['status'] = 'invalid'
-        elif len(radio_input) < 5:
-            pass
+
 
         elif len(radio_input) > 4 and not is_number(radio_input[4:]):
             self.results['message'].append('Radio Callsign last digits need to be numeric')
             self.results['status'] = 'invalid'
         else:
+            bin1= self.getbaudot(radio_input[:4],4,"Radio Callsign error")
             for number in radio_input[4:]:
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
-            bin1= self.getbaudot(radio_input[:4])
 
             self.results['binary'] = self.mid + '+'+ bin1 + bin2 + (7 - len(radio_input)) * '1010'
         return self.results
@@ -292,60 +318,68 @@ class Aircraftmarking(Hexgen):
 
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
-        if len(aircraftmarking_input)>7:
-            self.results['message'].append('First generation aircraft marking maximum 7 characters')
-            self.results['status'] = 'invalid'
-        else:
-            self.results['binary'] = (7 - len(aircraftmarking_input)) * '100100' + self.getbaudot(aircraftmarking_input)
+        self.results['binary'] = (7 - len(aircraftmarking_input)) * '100100' \
+                                 + self.getbaudot(aircraftmarking_input,7,'First generation aircraft marking maximum 7 characters')
+
         return self.results
 
-class Mmsi_or_radio(Hexgen):
-    #radio call sign or trailing 6 digits of MMSI
+
+class Maritime_mmsi(Hexgen):
+    # Maritime MMSI can be trailing 6 digits or combination of radio callsign (1-1-010)
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields)
         self.protocol = protocol
 
     def getresult(self):
 
-        if self.protocol == '2-010':
-            radio_or_mmsi_input = str(self.formfields.get('radio_input'))
-
-        elif self.protocol == '1-1-010':
-            radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
-
-
-        bin = ''
-
-        for letter in radio_or_mmsi_input:
-            try:
-                key = next(key for key, value in baudot.items() if value == letter.upper())
-                bin = bin + key
-            except StopIteration:
+        radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
+        if is_number(radio_or_mmsi_input):
+            if len(radio_or_mmsi_input)>6:
+                self.results['message'].append('First generation maritime protocol maximum 6 characters')
                 self.results['status'] = 'invalid'
-                self.results['message'].append('Input must be alphanumeric')
-
-        if len(radio_or_mmsi_input) > 6 and is_number(radio_or_mmsi_input) and self.protocol=='1-1-010':
-            self.results['message'].append('First generation maritime protocol maximum 6 characters')
-            self.results['status'] = 'invalid'
-        elif len(radio_or_mmsi_input) > 6 and self.protocol=='1-1-010':
-            self.results['message'].append('First generation radio call sign must be maximum 6 characters')
-            self.results['status'] = 'invalid'
-
-        elif len(radio_or_mmsi_input) > 7 and self.protocol=='1-1-001':
-            self.results['message'].append('First generation aircraft marking maximum 7 characters')
-            self.results['status'] = 'invalid'
-
-        elif self.protocol=='1-1-010':
-            # right justify only 6 characters (1st gen MMSI hybrid)
-            self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' + bin
 
 
-
-        elif self.protocol=='2-010':
-            # left justify 7 characters (2nd gen radio callsign)
-            self.results['binary'] = bin + (7 - len(radio_or_mmsi_input)) * '100100' + '00'
+        self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' \
+                                     + self.getbaudot(radio_or_mmsi_input, 6,'MMSI marking maximum 6 characters')
         return self.results
 
+
+
+
+class Radio_secgen(Hexgen):
+    #radio call sign
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields)
+        self.protocol = protocol
+
+    def getresult(self):
+
+        radio_input = str(self.formfields.get('radio_input'))
+        self.results['binary'] = self.getbaudot(radio_input, 7,'Radio callsign maximum 7 characters') + \
+                                 (7 - len(radio_input)) * '100100' + '00'
+        return self.results
+
+class Serial(Hexgen):
+    #Serial
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields)
+        self.protocol = protocol
+
+    def getresult(self):
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+
+
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10)
+        if self.tano=='0':
+            b43='0'
+        else:
+            b43='1'
+
+        self.results['binary'] = '1+'+self.mid+ '+'+ self.protocol.split('-')[2]+'+' + \
+                                 self.protocol.split('-')[3] + '+'+ b43 + '+'+ \
+            self.getserial(serialnumber_input, 0,1048575,'Serial number range (0 - 1,048,575)',20)  \
+                                 + '+' + '0' * 10 + '+' + ta + '+'+ self.auxdeviceinput
+        return self.results
 
 
 def dome():
@@ -355,9 +389,13 @@ protocolspecific={'runclass1':dome,
                   '1-1-110' :   Radio_callsign,
                   '1-0-0010':   Mmsi_location_protocol,
                   '1-0-1100':   Mmsi_location_protocol,
-                  '1-1-010' :    Mmsi_or_radio,
-                  '2-010'   :    Mmsi_or_radio,
-                  '1-1-001' :     Aircraftmarking}
+                  '1-1-010' :    Maritime_mmsi,
+                  '2-010'   :    Radio_secgen,
+                  '1-1-001' :     Aircraftmarking,
+                  '1-1-011-000': Serial,
+                  '1-1-011-010': Serial,
+                  '1-1-011-100': Serial,
+                  '1-1-011-110': Serial}
 
 
 
