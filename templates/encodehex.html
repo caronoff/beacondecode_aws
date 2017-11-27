@@ -191,7 +191,8 @@ $('ul li').remove();
             $('#decoded').text(data.echostatus);
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-            $('#id_genform').find('span').each(function() {$(this).text('hi'); console.log($(this).attr('id'))     ;}  );
+            $('#id_genform').find('span').each(function() {$(this).text(''); console.log($(this).attr('id'))     ;}  );
+            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val);});
             }
    });
 });

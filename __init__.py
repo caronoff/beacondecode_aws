@@ -26,7 +26,8 @@ def processhex():
         msgs[str(i)]=retdata['message'][i]
 
     print(retdata['flderrors'])
-    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
+    testerrors={'id_miderror':'test error message'}
+    return jsonify(returndata=retdata['binary'],echostatus=retdata['status'], messages=retdata['message'], flderrors=testerrors)
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
