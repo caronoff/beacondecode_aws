@@ -182,7 +182,7 @@
 <script type="text/javascript">
 $("#done").click(function() {
 $('ul li').remove();
-$('#id_genform').find('span').each(function() {$(this).text(''); $(this).hide() ;  console.log($(this).attr('id'))     ;}  );
+$('#id_genform').find('span').each(function() {$(this).text('');  console.log($(this).attr('id'))     ;}  );
 
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
@@ -194,7 +194,7 @@ $('#id_genform').find('span').each(function() {$(this).text(''); $(this).hide() 
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
 
-            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).show();$('#'+key).parent().addClass('has-error')    ;      });
+            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
             }
    });
 });
