@@ -244,11 +244,10 @@ class Hexgen:
                 self.seterror('Input must be alphanumeric')
         return bin
 
-    def getserial(self,ser,min,max,errormsg,n):
+    def getserial(self,ser,min,max,errormsg,n,flderror):
         bin=''
         if not is_number(ser) or int(ser)<min or int(ser)>max:
-            self.results['status'] = 'invalid'
-            self.results['message'].append(errormsg)
+            self.seterror(errormsg,flderror)
         else:
             bin=dec2bin(ser,n)
         return bin
@@ -370,7 +369,7 @@ class Serial(Hexgen):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
 
 
-        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10)
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
         if self.tano=='0':
             b43='0'
         else:
@@ -378,7 +377,7 @@ class Serial(Hexgen):
 
         self.results['binary'] = '1+'+self.mid+ '+'+ self.protocol.split('-')[2]+'+' + \
                                  self.protocol.split('-')[3] + '+'+ b43 + '+'+ \
-            self.getserial(serialnumber_input, 0,1048575,'Serial number range (0 - 1,048,575)',20)  \
+            self.getserial(serialnumber_input, 0,1048575,'Serial number range (0 - 1,048,575)',20,'id_serialnumbererror')  \
                                  + '+' + '0' * 10 + '+' + ta + '+'+ self.auxdeviceinput
         return self.results
 
