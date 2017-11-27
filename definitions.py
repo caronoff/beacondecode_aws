@@ -197,7 +197,7 @@ class Country:
 
 class Hexgen:
     def __init__(self,formfields):
-        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :[]}
+        self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :{}}
         self.formfields=formfields
         self.mid=self.getmid()
         self.beacontype = formfields.get('beacontype')
@@ -229,7 +229,8 @@ class Hexgen:
     def seterror(self,errormsg,fld=""):
         self.results['status'] = 'invalid'
         self.results['message'].append(errormsg)
-        self.results['flderrors'].append(fld)
+        if fld:
+            self.results['flderrors'][fld] = errormsg
 
     def getbaudot(self,strval,max,errormsg):
         bin=''
