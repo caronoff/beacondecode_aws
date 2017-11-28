@@ -155,7 +155,10 @@
                         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
                         </a>
-                        <div id="decoded" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
+                        <div class="decoded">
+                        <div id="id_decoded" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
+                        <div id="id_hexcode" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -188,11 +191,15 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
 
   $.getJSON($SCRIPT_ROOT+'/processhex',  $('form').serialize(),function(data)
   {
-            if(data.echostatus=='valid'){
+            if(data.echostatus=='valid')
+            {
                 console.log(data.returndata);
-                $('#decoded').text(data.returndata);}
+                $('#id_decoded').text(data.binary);
+                $('#id_hexcode').text(data.hexcode);
+            }
             else {
-            $('#decoded').text(data.echostatus);
+            $('#id_decoded').text(data.echostatus);
+            $('#id_hexcode').text('');
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
 

@@ -14,6 +14,7 @@ def is_number(s):
         return True
     except ValueError:
         return False
+
 def bin2hex(binval):
     return str(hex(int(binval, 2)))[2:].upper().strip('L')
 
@@ -209,7 +210,6 @@ class Hexgen:
         h=""
         if len(b)%4 >0 or (l>0 and len(b)!=l):
             self.seterror('binary length {} not valid.'.format(str(len(b))))
-
         else:
             h=bin2hex(b)
         return h
@@ -254,9 +254,14 @@ class Hexgen:
         print(ser,n,bin)
         return bin
 
-
-
-
+    def sethexcode(self, *args):
+        binstr=''
+        d='-'
+        for a in args:
+            binstr+=str(a)+d
+        binstr=binstr[:-1]
+        self.results['binary']=binstr
+        self.results['hexcode']=self.binhex(''.join(binstr.split(d)))
 
 
 
@@ -313,7 +318,7 @@ class Radio_callsign(Hexgen):
 
 
 class Aircraftmarking(Hexgen):
-    # '1-1-001'
+    # aviation user protocol '1-1-001'
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields)
         self.protocol = protocol
@@ -321,16 +326,9 @@ class Aircraftmarking(Hexgen):
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
         beaconno_input = str(self.formfields.get('beaconno_input'))
-
-
-
-        self.results['binary'] ='1+{}+001+{}+{}+{}'.format( self.mid,
-                (7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror'),
-                self.getserial(beaconno_input,0,3,'Beacon number must be numeric (range 0-3)',2,'id_beaconnoerror'),
-
-                self.auxdeviceinput)
-
-
+        acrft=(7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror')
+        sno= self.getserial(beaconno_input, 0, 3, 'Beacon number must be numeric (range 0-3)', 2, 'id_beaconnoerror')
+        self.sethexcode('1',self.mid,'001',acrft,sno,self.auxdeviceinput)
         return self.results
 
 
