@@ -61,17 +61,15 @@
 
                 <div id="id_tano" style="display: none;" class="form-group panel panel-body panel-default tohide">
                     <label for="id_tanoinput">Type Approval certificate number:</label>
-                    <input type="number" class="form-control" name="tano" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" />
+                    <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
                 </div>
-
-
 
                 <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                       <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
-                        <span id="id_aircraftmarkingerror" class="help-block"></span>
+                      <span id="id_aircraftmarkingerror" class="help-block"></span>
                     </div>
                 </div>
                 <div id="id_nationaluser" style="display: none;" class="panel panel-default tohide">
@@ -81,23 +79,20 @@
                         <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input" style="width:300px;">
                     </div>
                 </div>
-
                 <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
-                    <div class="form-group panel-body">
+                    <div class="panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
                         <span id="id_aircraftoperatorerror" class="help-block"></span>
                     </div>
                 </div>
 
-                <div id="id_serialnumber" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body form-group">
-                        <label for="id_serialnumber_input">Serial Number:</label>
-                        <input type="number" class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1">
-                        <span id="id_serialnumbererror" class="help-block"></span>
-
-                    </div>
+                <div id="id_serialnumber" style="display: none;" class="form-group panel panel-body panel-default tohide">
+                    <label for="id_serialnumber_input">Serial Number:</label>
+                    <input type="number"  class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1" data-bind="value:id_serialnumber_input">
+                    <span id="id_serialnumbererror" class="help-block"></span>
                 </div>
+
 
 
                 <div id="id_radio" style="display: none;" class="panel panel-default tohide">
@@ -117,12 +112,12 @@
                 </div>
 
 
-                <div id="id_elt24bit" style="display: none;" class="panel panel-default tohide">
-                    <div class="form-group panel-body">
+                <div id="id_elt24bit" style="display: none;" class="form-group panel-body panel panel-default tohide">
+
                         <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
                         <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                         <span id="id_elt24biterror" class="help-block"></span>
-                    </div>
+
                 </div>
                 <div id="id_beaconno" style="display: none;" class="form-group panel panel-body panel-default tohide">
                     <label for="id_beaconno_input">Specific beacon number:</label>
