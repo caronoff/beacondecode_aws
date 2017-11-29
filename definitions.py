@@ -242,13 +242,18 @@ class Hexgen:
         if fld:
             self.results['flderrors'][fld] = errormsg
 
-    def getbaudot(self,strval,min, max,errormsg,flderror):
+    def getbaudot(self,strval,min, max,errormsg,flderror,short=False):
         bin=''
+        if short and not strval.isalpha():
+            self.seterror('Only alphabetic characters A-Z', flderror)
+
         if len(strval)>max or len(strval)<min:
             self.seterror(errormsg,flderror)
         for letter in strval:
             try:
                 key = next(key for key, value in baudot.items() if value == letter.upper())
+                if short:
+                    key=key[1:]
                 bin = bin + key
             except StopIteration:
                 self.seterror('Input must be alphanumeric',flderror)
@@ -367,7 +372,8 @@ class Radio_secgen(Hexgen):
 
 
 class Aircraftoperator(Hexgen):
-    # Aircraft operator 011-001
+    # Aircraft operator 011-001 (user)
+    # Aircraft operator 0101 (standard location)
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields,protocol)
 
@@ -382,6 +388,22 @@ class Aircraftoperator(Hexgen):
         sn = self.getserial(serialnumber_input, 0, 4095, 'Serial number range (0 - 4,095)', 12,'id_serialnumbererror')
         ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
         self.sethexcode('1', self.mid, '011', self.protocol.split('-')[3], b43,acftop, sn, ta,self.auxdeviceinput)
+        return self.results
+
+
+
+class Aircraftoperator_location(Hexgen):
+
+    # Aircraft operator 0101 (standard location)
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        aircraftoperator_input = str(self.formfields.get('aircraftoperator_input'))
+        acftop=self.getbaudot(aircraftoperator_input,3,3,'Aircraft operator must be 3 alphabetic digits','id_aircraftoperatorerror',True)
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 511, 'Serial number range (0 - 511)', 9,'id_serialnumbererror')
+        self.sethexcode('0', self.mid, '0101', acftop, sn,'0111111111','01111111111')
         return self.results
 
 
@@ -459,6 +481,7 @@ protocolspecific={
                   '1-0-0110': Serial_location,
                   '1-0-0111':  Serial_location,
                   '1-1-011-001': Aircraftoperator,
+                   '1-0-0101': Aircraftoperator_location,
                   '1-1-011-011': Serial24
                 }
 
