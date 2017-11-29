@@ -406,7 +406,7 @@ class Air24bit_location(Hexgen):
     #Aircreft 24 bit location 0011
     def getresult(self):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
-        sn = self.getserial(serialnumber_input, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_serialnumbererror')
+        sn = self.getserial(serialnumber_input, 0, 16777215, 'sSerial number range (0 - 16,777,215)', 24,'id_serialnumbererror')
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],  sn,'0111111111','01111111111' )
         return self.results
 
