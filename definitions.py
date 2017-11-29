@@ -197,9 +197,10 @@ class Country:
 
 
 class Hexgen:
-    def __init__(self,formfields):
+    def __init__(self,formfields,protocol):
         self.results = {'status': 'valid', 'binary': '', 'hexcode': '', 'message': [],'flderrors' :{}}
         self.formfields=formfields
+        self.protocol=protocol
         self.mid=self.getmid()
         self.beacontype = formfields.get('beacontype')
         self.auxdeviceinput = str(formfields.get('auxdeviceinput'))
@@ -276,60 +277,48 @@ class Hexgen:
 
 
 class Mmsi_location_protocol(Hexgen):
+    # EPIRB - MMSI/Location Protocol 1-0-0010 or SAAS 1-0-11000
     def __init__(self,formfields,protocol):
-        Hexgen.__init__(self,formfields)
-        self.protocol=protocol
+        Hexgen.__init__(self,formfields,protocol)
 
 
     def getresult(self):
         radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
+        beaconno_input = str(self.formfields.get('beaconno_input'))
+        sno = self.getserial(beaconno_input, 0, 15, 'Beacon number must be numeric (range 0-15)', 4 , 'id_beaconnoerror')
         # this is a location protocol.  Can only be numeric.
-        if not is_number(radio_or_mmsi_input):
+        if not is_number(radio_or_mmsi_input) or len(radio_or_mmsi_input) > 6:
             # since all numeric, interpret as MMSI last 6 digits
             self.seterror('MMSI must be numeric and max 6 digits','id_radio_or_mmsierror')
 
-        elif len(radio_or_mmsi_input) > 6:
-            self.seterror('MMSI must be less than 6 digits','id_radio_or_mmsierror')
 
         else:
             # must be a location protocol and use decimal conversion
+            mmsi = dec2bin(int(radio_or_mmsi_input), 20)
             self.results['binary'] = self.mid + '+'+ dec2bin(int(radio_or_mmsi_input), 20)
-
+            self.sethexcode('0', self.mid, '0010', mmsi,sno,'0111111111','01111111111' )
         return self.results
 
 
 class Radio_callsign(Hexgen):
     # Radio callsign '1-1-110'
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
-
+        Hexgen.__init__(self, formfields,protocol)
     def getresult(self):
         radio_input = str(self.formfields.get('radio_input'))
         # must have non-numeric therefore be radio call sign
         bin1 = bin2 = pad = ''
-        beaconno_input = str(self.formfields.get('beaconno_input'))
-        if is_number(beaconno_input):
-            sno = self.getbaudot(beaconno_input, 1, 1, 'Beacon number must be in range 0-9', 'id_beaconnoerror')
-        else:
-            self.seterror('Beacon number must be numeric (range 0-9)', 'id_beaconnoerror')
-            sno= '001101'
-
         if len(radio_input) > 7:
             self.seterror('Radio call sign must not exceed 7 characters','id_radioerror')
-
         elif len(radio_input) > 4 and not is_number(radio_input[4:]):
             self.seterror('Radio Callsign last digits need to be numeric','id_radioerror')
-
         else:
             bin1= self.getbaudot(radio_input[:4],1,4,"Radio Callsign error (at least 1 digit)",'id_radioerror')
             for number in radio_input[4:]:
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
-
             radio= bin1 + bin2 + (7 - len(radio_input)) * '1010'
-
-            self.sethexcode('1', self.mid, '110', radio, sno, '00', self.auxdeviceinput)
+            self.sethexcode('1', self.mid, '110', radio, self.beaconbaudot(), '00', self.auxdeviceinput)
         return self.results
 
 
@@ -339,22 +328,21 @@ class Radio_callsign(Hexgen):
 class Aircraftmarking(Hexgen):
     # aviation user protocol '1-1-001'
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
+        Hexgen.__init__(self, formfields,protocol)
 
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
         beaconno_input = str(self.formfields.get('beaconno_input'))
+        sno = self.getserial(beaconno_input, 0, 3, 'Beacon number must be numeric (range 0-3)', 2, 'id_beaconnoerror')
         acrft=(7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input,1, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror')
-        sno= self.getserial(beaconno_input, 0, 3, 'Beacon number must be numeric (range 0-3)', 2, 'id_beaconnoerror')
+
         self.sethexcode('1',self.mid,'001',acrft,sno,self.auxdeviceinput)
         return self.results
 
 class Maritime_mmsi(Hexgen):
     # Maritime MMSI can be trailing 6 digits or combination of radio callsign (1-1-010)
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
+        Hexgen.__init__(self, formfields,protocol)
 
     def getresult(self):
         radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
@@ -363,17 +351,6 @@ class Maritime_mmsi(Hexgen):
                 self.seterror('First generation maritime protocol maximum 6 characters','id_radio_or_mmsierror')
 
         radio= (6 - len(radio_or_mmsi_input)) * '100100'+ self.getbaudot(radio_or_mmsi_input, 1, 6, 'MMSI or radio marking maximum 6 characters', 'id_radio_or_mmsierror')
-
-        beaconno_input = str(self.formfields.get('beaconno_input'))
-        if is_number(beaconno_input):
-            sno = self.getbaudot(beaconno_input, 1, 1, 'Beacon number must be in range 0-9', 'id_beaconnoerror')
-        else:
-            self.seterror('Beacon number must be numeric (range 0-9)', 'id_beaconnoerror')
-            sno = '001101'
-
-
-
-
         self.sethexcode('1', self.mid, '010', radio, self.beaconbaudot(), '00', self.auxdeviceinput)
         return self.results
 
@@ -383,11 +360,10 @@ class Maritime_mmsi(Hexgen):
 class Radio_secgen(Hexgen):
     #radio call sign
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
+        Hexgen.__init__(self, formfields,protocol)
+
 
     def getresult(self):
-
         radio_input = str(self.formfields.get('radio_input'))
         self.results['binary'] = self.getbaudot(radio_input, 1,7,'Radio callsign maximum 7 characters','id_radioerror') + \
                                  (7 - len(radio_input)) * '100100' + '00'
@@ -399,13 +375,9 @@ class Radio_secgen(Hexgen):
 class Aircraftoperator(Hexgen):
     # Aircraft operator 011-001
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
-
-
+        Hexgen.__init__(self, formfields,protocol)
 
     def getresult(self):
-
         if self.tano=='0':
             b43='0'
         else:
@@ -423,10 +395,7 @@ class Aircraftoperator(Hexgen):
 class Serial(Hexgen):
     #Serial 011-000, 011-010, 011-100, 011-110
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
-
-
+        Hexgen.__init__(self, formfields,protocol)
 
     def getresult(self):
         if self.tano=='0':
@@ -443,8 +412,7 @@ class Serial(Hexgen):
 class Serial24(Hexgen):
     #Serial 1-1-011-011
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields)
-        self.protocol = protocol
+        Hexgen.__init__(self, formfields,protocol)
 
     def getresult(self):
         elt24bitaddress_serialuser = str(self.formfields.get('elt24bitaddress_serialuser'))
@@ -456,16 +424,13 @@ class Serial24(Hexgen):
             b43='0'
         else:
             b43='1'
-
         self.sethexcode('1', self.mid, '011', self.protocol.split('-')[3], b43, sn,eltno, ta, self.auxdeviceinput)
-
         return self.results
 
 
-def dome():
-    return "returned data"
 
-protocolspecific={'runclass1':dome,
+
+protocolspecific={
                   '1-1-110' :   Radio_callsign,
                   '1-0-0010':   Mmsi_location_protocol,
                   '1-0-1100':   Mmsi_location_protocol,
@@ -477,7 +442,8 @@ protocolspecific={'runclass1':dome,
                   '1-1-011-100': Serial,
                   '1-1-011-110': Serial,
                   '1-1-011-001': Aircraftoperator,
-                  '1-1-011-011': Serial24}
+                  '1-1-011-011': Serial24
+                }
 
 
 
