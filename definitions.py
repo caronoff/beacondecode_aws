@@ -402,6 +402,14 @@ class Serial(Hexgen):
         self.sethexcode('1', self.mid, '011', self.protocol.split('-')[3], b43, sn, 10*'0', ta,self.auxdeviceinput)
         return self.results
 
+class Air24bit_location(Hexgen):
+    #Aircreft 24 bit location 0011
+    def getresult(self):
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_serialnumbererror')
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2],  sn,'0111111111','01111111111' )
+        return self.results
+
 class Serial_location(Hexgen):
     #Serial location 0100, 0110, 0111
     def getresult(self):
@@ -445,9 +453,10 @@ protocolspecific={
                   '1-1-011-010': Serial,
                   '1-1-011-100': Serial,
                   '1-1-011-110': Serial,
-                   '1-0-0100': Serial_location,
-                   '1-0-0110': Serial_location,
-                   '1-0-0111':  Serial_location,
+                  '1-0-0011' : Air24bit_location,
+                  '1-0-0100': Serial_location,
+                  '1-0-0110': Serial_location,
+                  '1-0-0111':  Serial_location,
                   '1-1-011-001': Aircraftoperator,
                   '1-1-011-011': Serial24
                 }
