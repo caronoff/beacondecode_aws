@@ -290,13 +290,11 @@ class Mmsi_location_protocol(Hexgen):
         if not is_number(radio_or_mmsi_input) or len(radio_or_mmsi_input) > 6:
             # since all numeric, interpret as MMSI last 6 digits
             self.seterror('MMSI must be numeric and max 6 digits','id_radio_or_mmsierror')
-
-
         else:
             # must be a location protocol and use decimal conversion
             mmsi = dec2bin(int(radio_or_mmsi_input), 20)
             self.results['binary'] = self.mid + '+'+ dec2bin(int(radio_or_mmsi_input), 20)
-            self.sethexcode('0', self.mid, '0010', mmsi,sno,'0111111111','01111111111' )
+            self.sethexcode('0', self.mid, self.location.split('-')[2], mmsi,sno,'0111111111','01111111111' )
         return self.results
 
 
@@ -320,10 +318,6 @@ class Radio_callsign(Hexgen):
             radio= bin1 + bin2 + (7 - len(radio_input)) * '1010'
             self.sethexcode('1', self.mid, '110', radio, self.beaconbaudot(), '00', self.auxdeviceinput)
         return self.results
-
-
-
-
 
 class Aircraftmarking(Hexgen):
     # aviation user protocol '1-1-001'
@@ -408,6 +402,16 @@ class Serial(Hexgen):
         self.sethexcode('1', self.mid, '011', self.protocol.split('-')[3], b43, sn, 10*'0', ta,self.auxdeviceinput)
         return self.results
 
+class Serial_location(Hexgen):
+    #Serial location 0100, 0110, 0111
+    def getresult(self):
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14,'id_serialnumbererror')
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
+        self.sethexcode('0', self.mid, self.location.split('-')[2], ta , sn,'0111111111','01111111111' )
+        return self.results
+
+
 
 class Serial24(Hexgen):
     #Serial 1-1-011-011
@@ -441,6 +445,9 @@ protocolspecific={
                   '1-1-011-010': Serial,
                   '1-1-011-100': Serial,
                   '1-1-011-110': Serial,
+                   '1-0-0100': Serial_location,
+                   '1-0-0110': Serial_location,
+                   '1-0-0111':  Serial_location,
                   '1-1-011-001': Aircraftoperator,
                   '1-1-011-011': Serial24
                 }
