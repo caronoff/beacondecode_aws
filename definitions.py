@@ -307,7 +307,7 @@ class Radio_callsign(Hexgen):
             self.seterror('Radio Callsign last digits need to be numeric','id_radioerror')
 
         else:
-            bin1= self.getbaudot(radio_input[:4],4,"Radio Callsign error",'id_radioerror')
+            bin1= self.getbaudot(radio_input[:4],1,4,"Radio Callsign error (at least 1 digit)",'id_radioerror')
             for number in radio_input[4:]:
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
@@ -326,7 +326,7 @@ class Aircraftmarking(Hexgen):
     def getresult(self):
         aircraftmarking_input=str(self.formfields.get('aircraftmarking_input'))
         beaconno_input = str(self.formfields.get('beaconno_input'))
-        acrft=(7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror')
+        acrft=(7 - len(aircraftmarking_input)) * '100100'+self.getbaudot(aircraftmarking_input,1, 7,'First generation aircraft marking maximum 7 characters','id_aircraftmarkingerror')
         sno= self.getserial(beaconno_input, 0, 3, 'Beacon number must be numeric (range 0-3)', 2, 'id_beaconnoerror')
         self.sethexcode('1',self.mid,'001',acrft,sno,self.auxdeviceinput)
         return self.results
@@ -341,10 +341,10 @@ class Maritime_mmsi(Hexgen):
         radio_or_mmsi_input = str(self.formfields.get('radio_or_mmsi_input'))
         if is_number(radio_or_mmsi_input):
             if len(radio_or_mmsi_input)>6:
-                self.results['message'].append('First generation maritime protocol maximum 6 characters')
-                self.results['status'] = 'invalid'
+                self.seterror('First generation maritime protocol maximum 6 characters','id_radio_or_mmsierror')
+
         self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' \
-                                     + self.getbaudot(radio_or_mmsi_input, 6,'MMSI marking maximum 6 characters')
+                                     + self.getbaudot(radio_or_mmsi_input, 1,6,'MMSI marking maximum 6 characters')
         return self.results
 
 
@@ -359,7 +359,7 @@ class Radio_secgen(Hexgen):
     def getresult(self):
 
         radio_input = str(self.formfields.get('radio_input'))
-        self.results['binary'] = self.getbaudot(radio_input, 7,'Radio callsign maximum 7 characters','id_radioerror') + \
+        self.results['binary'] = self.getbaudot(radio_input, 1,7,'Radio callsign maximum 7 characters','id_radioerror') + \
                                  (7 - len(radio_input)) * '100100' + '00'
         return self.results
 
