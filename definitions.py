@@ -290,6 +290,7 @@ class Mmsi_location_protocol(Hexgen):
 
 
 class Radio_callsign(Hexgen):
+    # Radio callsign '1-1-110'
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields)
         self.protocol = protocol
@@ -298,10 +299,15 @@ class Radio_callsign(Hexgen):
         radio_input = str(self.formfields.get('radio_input'))
         # must have non-numeric therefore be radio call sign
         bin1 = bin2 = pad = ''
+        beaconno_input = str(self.formfields.get('beaconno_input'))
+        if is_number(beaconno_input):
+            sno = self.getbaudot(beaconno_input, 1, 1, 'Beacon number must be in range 0-9', 'id_beaconnoerror')
+        else:
+            self.seterror('Beacon number must be numeric (range 0-9)', 'id_beaconnoerror')
+            sno= '001101'
+
         if len(radio_input) > 7:
             self.seterror('Radio call sign must not exceed 7 characters','id_radioerror')
-
-
 
         elif len(radio_input) > 4 and not is_number(radio_input[4:]):
             self.seterror('Radio Callsign last digits need to be numeric','id_radioerror')
@@ -312,8 +318,12 @@ class Radio_callsign(Hexgen):
                 bin = dec2bin(number, 4)
                 bin2 = bin2 + bin
 
-            self.results['binary'] = self.mid + '+'+ bin1 + bin2 + (7 - len(radio_input)) * '1010'
+            radio= bin1 + bin2 + (7 - len(radio_input)) * '1010'
+
+            self.sethexcode('1', self.mid, '110', radio, sno, '00', self.auxdeviceinput)
         return self.results
+
+
 
 
 
