@@ -205,6 +205,15 @@ class Hexgen:
         self.auxdeviceinput = str(formfields.get('auxdeviceinput'))
         self.tano = str(formfields.get('tano_input'))
 
+    def beaconbaudot(self):
+        beaconno_input = str(self.formfields.get('beaconno_input'))
+
+        if is_number(beaconno_input):
+            sno = self.getbaudot(beaconno_input, 1, 1, 'Beacon number must be in range 0-9', 'id_beaconnoerror')
+        else:
+            self.seterror('Beacon number must be numeric (range 0-9)', 'id_beaconnoerror')
+            sno = '001101'
+        return sno
 
     def binhex(self,b,l=0):
         h=""
@@ -353,8 +362,19 @@ class Maritime_mmsi(Hexgen):
             if len(radio_or_mmsi_input)>6:
                 self.seterror('First generation maritime protocol maximum 6 characters','id_radio_or_mmsierror')
 
-        self.results['binary'] = (6 - len(radio_or_mmsi_input)) * '100100' \
-                                     + self.getbaudot(radio_or_mmsi_input, 1,6,'MMSI marking maximum 6 characters')
+        radio= (6 - len(radio_or_mmsi_input)) * '100100'+ self.getbaudot(radio_or_mmsi_input, 1, 6, 'MMSI or radio marking maximum 6 characters', 'id_radio_or_mmsierror')
+
+        beaconno_input = str(self.formfields.get('beaconno_input'))
+        if is_number(beaconno_input):
+            sno = self.getbaudot(beaconno_input, 1, 1, 'Beacon number must be in range 0-9', 'id_beaconnoerror')
+        else:
+            self.seterror('Beacon number must be numeric (range 0-9)', 'id_beaconnoerror')
+            sno = '001101'
+
+
+
+
+        self.sethexcode('1', self.mid, '010', radio, self.beaconbaudot(), '00', self.auxdeviceinput)
         return self.results
 
 
