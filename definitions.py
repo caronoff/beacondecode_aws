@@ -294,7 +294,7 @@ class Mmsi_location_protocol(Hexgen):
             # must be a location protocol and use decimal conversion
             mmsi = dec2bin(int(radio_or_mmsi_input), 20)
             self.results['binary'] = self.mid + '+'+ dec2bin(int(radio_or_mmsi_input), 20)
-            self.sethexcode('0', self.mid, self.location.split('-')[2], mmsi,sno,'0111111111','01111111111' )
+            self.sethexcode('0', self.mid, self.protocol.split('-')[2], mmsi,sno,'0111111111','01111111111' )
         return self.results
 
 
@@ -408,7 +408,7 @@ class Serial_location(Hexgen):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
         sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14,'id_serialnumbererror')
         ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
-        self.sethexcode('0', self.mid, self.location.split('-')[2], ta , sn,'0111111111','01111111111' )
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
         return self.results
 
 
