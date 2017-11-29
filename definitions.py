@@ -360,7 +360,7 @@ class Radio_secgen(Hexgen):
         radio_input = str(self.formfields.get('radio_input'))
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
 
-        radio = self.getbaudot(radio_input, 1, 7, 'Radio callsign maximum 7 characters', 'id_radioerror') +  (7 - len(radio_input)) * '100100' + '00','id_radioerror')
+        radio = self.getbaudot(radio_input, 1, 7, 'Radio callsign maximum 7 characters', 'id_radioerror') +  (7 - len(radio_input)) * '100100' + '00'
         sn = self.getserial(serialnumber_input, 0, 4095, 'Serial number range (0 - 4,095)', 10, 'id_serialnumbererror')
         ta = self.getserial(self.tano, 0, 1023, 'Type approval number range (0 - 1,023)', 20, 'id_tanoerror')
         self.sethexcode('1', self.mid, '101', ta, sn,radio,'1')
