@@ -405,8 +405,8 @@ class Serial(Hexgen):
 class Air24bit_location(Hexgen):
     #Aircreft 24 bit location 0011
     def getresult(self):
-        serialnumber_input = str(self.formfields.get('serialnumber_input'))
-        sn = self.getserial(serialnumber_input, 0, 16777215, 'sSerial number range (0 - 16,777,215)', 24,'id_serialnumbererror')
+        elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
+        sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'sSerial number range (0 - 16,777,215)', 24,'id_serialnumbererror')
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],  sn,'0111111111','01111111111' )
         return self.results
 
@@ -414,6 +414,7 @@ class Serial_location(Hexgen):
     #Serial location 0100, 0110, 0111
     def getresult(self):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
+
         sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14,'id_serialnumbererror')
         ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
         self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
