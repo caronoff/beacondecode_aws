@@ -356,8 +356,8 @@ class Secondgen(Hexgen):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
         tano = str(formfields.get('tano_input'))
         self.ptype = protocol.split('-')[1]
-        self.sn= self.getserial(serialnumber_input, 0, 4095, 'Serial number range (0 - 4,095)', 10, 'id_serialnumbererror')
-        self.ta= self.getserial(tano, 0, 1023, 'Type approval number range (0 - 1,023)', 20, 'id_tanoerror')
+        self.sn= self.getserial(serialnumber_input, 0, 1023, 'Serial number range (0 - 1,023)', 10, 'id_serialnumbererror')
+        self.ta= self.getserial(tano, 0, 1048575, 'Type approval number range (0 - 1,048,575)', 20, 'id_tanoerror')
 
 
 class Mmsi_secgen(Secondgen):
