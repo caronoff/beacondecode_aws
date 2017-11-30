@@ -370,10 +370,15 @@ class Mmsi_secgen(Secondgen):
         mmsi= self.getserial(mmsi_input, 0, 999999, 'Serial number 6 digit maximum range (0 - 999999)', 20, 'id_mmsierror')
         mmsi6digit= (6-len(mmsi_input))*'0' + mmsi_input
         mmsi=dec2bin(str(int(self.mid,2))+ str(mmsi6digit),30)
+        epirbais_input = str(self.formfields.get('epirbais_input'))
+        if len(epirbais_input) == 0:
+            epirbais = dec2bin(10922,14)
+        else:
+            epirbais= self.getserial(epirbais_input, 0, 9999, 'EPIRB AIS range error (0 - 9999)', 14, 'id_epirbaiserror')
         print(mmsi)
         print(len(mmsi))
         print(str(int(self.mid,2))+ str(mmsi6digit))
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,mmsi,'1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,mmsi, epirbais, '1')
         return self.results
 
 
