@@ -370,6 +370,9 @@ class Mmsi_secgen(Secondgen):
         mmsi= self.getserial(mmsi_input, 0, 999999, 'Serial number 6 digit maximum range (0 - 999999)', 20, 'id_mmsierror')
         mmsi6digit= (6-len(mmsi_input))*'0' + mmsi_input
         mmsi=dec2bin(str(int(self.mid,2))+ str(mmsi6digit),30)
+        print(mmsi)
+        print(len(mmsi))
+        print(str(int(self.mid,2))+ str(mmsi6digit))
         self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,mmsi,'1')
         return self.results
 
