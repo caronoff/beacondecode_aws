@@ -108,8 +108,8 @@
                 </div>
 
                 <div id="id_mmsi" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                        <label for="id_mmsi_input">MMSI format 9 digit MIDXXXXXX:</label>
-                        <input type="number" class="form-control" name="mmsi_input" min="0" max="999999999" step="1" id="id_mmsi_input" data-bind="value:id_mmsi_input">
+                        <label for="id_mmsi_input">MMSI format 6 digit max (exclude MID) :</label>
+                        <input type="number" class="form-control" name="mmsi_input" min="0" max="999999" step="1" id="id_mmsi_input" data-bind="value:id_mmsi_input">
                         <span id="id_mmsierror" class="help-block"></span>
                 </div>
 
@@ -262,7 +262,6 @@ $('#id_protocol').on('change', function() {
         break;
 
     // Radio call sign 2nd Gen
-
      case '2-010':
         $('#id_tano').show();
         $('#id_radio').show();
@@ -270,7 +269,6 @@ $('#id_protocol').on('change', function() {
         break;
 
    // MMSI 2nd Gen
-
      case '2-001':
         $('#id_tano').show();
         $('#id_mmsi').show();

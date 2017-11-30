@@ -175,7 +175,7 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (userprottype['100'],'1-1-100'),
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
-           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('MMSI (MIDxxxxxx)','2-001'),
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001'),
                          ('Sample test launch class', 'runclass2')]}}
 
 
@@ -366,9 +366,11 @@ class Mmsi_secgen(Secondgen):
         Secondgen.__init__(self, formfields,protocol)
 
     def getresult(self):
-        radio_input = str(self.formfields.get('radio_input'))
-        radio = self.getbaudot(radio_input, 1, 7, 'Radio callsign maximum 7 characters', 'id_radioerror') +  (7 - len(radio_input)) * '100100' + '00'
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,radio,'1')
+        mmsi_input = str(self.formfields.get('mmsi_input'))
+        mmsi= self.getserial(mmsi_input, 0, 999999, 'Serial number 6 digit maximum range (0 - 999999)', 20, 'id_mmsierror')
+        mmsi6digit= (6-len(mmsi_input))*'0' + mmsi_input
+        mmsi=dec2bin(str(int(self.mid,2))+ str(mmsi6digit),30)
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,mmsi,'1')
         return self.results
 
 
@@ -478,7 +480,7 @@ protocolspecific={
                   '1-0-1100':   Mmsi_location_protocol,
                   '1-1-010' :    Maritime_mmsi,
                   '2-010'   :    Radio_secgen,
-                  '2-001'    :   Mmsi_secgen,
+                  '2-001'   :   Mmsi_secgen,
                   '1-1-001' :     Aircraftmarking,
                   '1-1-011-000': Serial,
                   '1-1-011-010': Serial,
