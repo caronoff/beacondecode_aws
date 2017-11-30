@@ -350,6 +350,14 @@ class Maritime_mmsi(Hexgen):
         self.sethexcode('1', self.mid, '010', radio, self.beaconbaudot(), '00', self.auxdeviceinput)
         return self.results
 
+class Secondgen(Hexgen):
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        tano = str(formfields.get('tano_input'))
+        self.ptype = protocol.split('-')[1]
+        self.sn= self.getserial(serialnumber_input, 0, 4095, 'Serial number range (0 - 4,095)', 10, 'id_serialnumbererror')
+        self.ta= self.getserial(tano, 0, 1023, 'Type approval number range (0 - 1,023)', 20, 'id_tanoerror')
 
 class Radio_secgen(Secondgen):
     #radio call sign
@@ -363,14 +371,6 @@ class Radio_secgen(Secondgen):
         return self.results
 
 
-class Secondgen(Hexgen):
-    def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields,protocol)
-        serialnumber_input = str(self.formfields.get('serialnumber_input'))
-        tano = str(formfields.get('tano_input'))
-        self.ptype = protocol.split('-')[1]
-        self.sn= self.getserial(serialnumber_input, 0, 4095, 'Serial number range (0 - 4,095)', 10, 'id_serialnumbererror')
-        self.ta= self.getserial(tano, 0, 1023, 'Type approval number range (0 - 1,023)', 20, 'id_tanoerror')
 
 
 
