@@ -463,14 +463,32 @@ class Serial(Hexgen):
 
 class Air24bit_location(Hexgen):
     #Aircreft 24 bit location 0011
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
     def getresult(self):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],  sn,'0111111111','01111111111' )
         return self.results
 
+class Air24bit_locationdt(Hexgen):
+    #Aircreft 24 bit location ELT-DT   1001-00
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
+        sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
+        self.sethexcode('0', self.mid, '1001','00', sn,'011111111','0111111111' )
+        return self.results
+
+
 class Serial_location(Hexgen):
     #Serial location 0100, 0110, 0111
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
     def getresult(self):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
         sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14,'id_serialnumbererror')
@@ -510,6 +528,7 @@ protocolspecific={
                   '1-1-011-100': Serial,
                   '1-1-011-110': Serial,
                   '1-0-0011' : Air24bit_location,
+                  '1-0-1001-00' : Air24bit_locationdt,
                   '1-0-0100': Serial_location,
                   '1-0-0110': Serial_location,
                   '1-0-0111':  Serial_location,
