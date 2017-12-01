@@ -176,7 +176,9 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST '+locprottype['1101'] ,'1-0-1101-RLS-11')]},
            '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001'),
-                         ('Sample test launch class', 'runclass2')]}}
+                         ('Sample test launch class', 'runclass2')],
+                'ELT' : [('ELT - Aircraft marking - tail','2-011')]
+                }}
 
 
 class Country:
@@ -394,6 +396,18 @@ class Radio_secgen(Secondgen):
         return self.results
 
 
+class Aircraftmarking_secgen(Secondgen):
+    #Aircraftmarking - Second Gen 2-011
+    def __init__(self, formfields, protocol):
+        Secondgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        aircraftmarking_input = str(self.formfields.get('aircraftmarking_input'))
+        aircraftmarking = (7 - len(aircraftmarking_input)) * '100100'+ self.getbaudot(radio_input, 1, 7, 'Aircraft marking maximum 7 characters', 'id_aircraftmarkingerror') + '00'
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,aircraftmarking,'1')
+        return self.results
+
+
 
 
 
@@ -489,6 +503,7 @@ protocolspecific={
                   '1-1-010' :    Maritime_mmsi,
                   '2-010'   :    Radio_secgen,
                   '2-001'   :   Mmsi_secgen,
+                  '2-011'  :    Aircraftmarking_secgen,
                   '1-1-001' :     Aircraftmarking,
                   '1-1-011-000': Serial,
                   '1-1-011-010': Serial,
