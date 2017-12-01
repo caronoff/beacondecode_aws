@@ -403,7 +403,7 @@ class Aircraftmarking_secgen(Secondgen):
 
     def getresult(self):
         aircraftmarking_input = str(self.formfields.get('aircraftmarking_input'))
-        aircraftmarking = (7 - len(aircraftmarking_input)) * '100100'+ self.getbaudot(radio_input, 1, 7, 'Aircraft marking maximum 7 characters', 'id_aircraftmarkingerror') + '00'
+        aircraftmarking = (7 - len(aircraftmarking_input)) * '100100'+ self.getbaudot(aircraftmarking_input, 1, 7, 'Aircraft marking maximum 7 characters', 'id_aircraftmarkingerror') + '00'
         self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,aircraftmarking,'1')
         return self.results
 
