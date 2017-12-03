@@ -514,6 +514,17 @@ class Serial24(Hexgen):
         self.sethexcode('1', self.mid, '011', self.protocol.split('-')[3], b43, sn,eltno, ta, self.auxdeviceinput)
         return self.results
 
+class National(Hexgen):
+    #National or test use 1-1-111, 1-1-100, 1-1-111, 1-1-000
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        nationaluser_input= str(self.formfields.get('nationaluser_input'))
+        nationaluser = self.getserial(nationaluser_input, 0, 70368744177663, 'Maximum value exceeded', 46,'id_nationalerror')
+        self.sethexcode('1', self.mid, self.protocol.split('-')[2],nationaluser)
+        return self.results
+
 protocolspecific={
                   '1-1-110' :   Radio_callsign,
                   '1-0-0010':   Mmsi_location_protocol,
@@ -534,7 +545,10 @@ protocolspecific={
                   '1-0-0111':  Serial_location,
                   '1-1-011-001': Aircraftoperator,
                    '1-0-0101': Aircraftoperator_location,
-                  '1-1-011-011': Serial24
+                  '1-1-011-011': Serial24,
+                  '1-1-100': National,
+                  '1-1-111': National,
+                  '1-1-000': National
                 }
 
 
@@ -647,4 +661,5 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
            'K': '111110', 'J': '111010', 'M': '100111', 'L': '101001', 'O': '100011', 'N': '100110',
            'Q': '111101', 'P': '101101', 'S': '110100', 'R': '101010', 'U': '111100', 'T': '100001',
            'W': '111001', 'V': '101111', 'Y': '110101', 'X': '110111', 'Z': '110001'}
+
 
