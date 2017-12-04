@@ -733,8 +733,8 @@ class BeaconHex(HexError):
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'Aircraft 24 bit address','#{}'.format(str(Fcn.bin2dec(self.bin[43:67])))])
             elif str(self.bin[41:43])=='01':
             # Aircraft operator designator
-                self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,61,True)])
-                self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[61:67]))])
+                self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,58,True)])
+                self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[58:67]))])
             elif str(self.bin[41:43])=='11':
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','reserved'])
 
