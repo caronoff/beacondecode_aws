@@ -501,7 +501,7 @@ class Elt_dt_test(Hexgen):
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields,protocol)
     def getresult(self):
-        self.sethexcode('0', self.mid, '100111', '0'*24, '0111111111', '01111111111')
+        self.sethexcode('0', self.mid, '100111', '0'*24, '011111111', '0111111111')
         return self.results
 
 
