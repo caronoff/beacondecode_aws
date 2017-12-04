@@ -418,7 +418,7 @@ class Air24bit_secgen(Secondgen):
     def getresult(self):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sn, '1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sn,'0'*20, '1')
         return self.results
 
 
