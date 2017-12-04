@@ -410,6 +410,17 @@ class Aircraftmarking_secgen(Secondgen):
 
 
 
+class Air24bit_secgen(Secondgen):
+    #Aircreft 24 bit location 2-100
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
+        sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sm, '1')
+        return self.results
+
 
 
 class Aircraftoperator(Hexgen):
@@ -471,17 +482,6 @@ class Air24bit_location(Hexgen):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],  sn,'0111111111','01111111111' )
-        return self.results
-
-class Air24bit_secgen(Hexgen):
-    #Aircreft 24 bit location 2-100
-    def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields,protocol)
-
-    def getresult(self):
-        elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
-        sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sm, '1')
         return self.results
 
 
