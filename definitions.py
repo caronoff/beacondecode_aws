@@ -506,7 +506,7 @@ class Serial24(Hexgen):
         beaconno_input =  str(self.formfields.get('beaconno_input'))
         sn= self.getserial(elt24bitaddress_serialuser, 0,16777215,'Serial number range (0 - 16,777,215)',24,'id_elt24biterror')
         ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
-        eltno =self.getserial(beaconno_input ,0,63,'Beacon identification error range (0 -63)',6,'id_beaconnoerror')
+        eltno =self.getserial(beaconno_input ,0,63,'Beacon identification number range must be 0 - 63',6,'id_beaconnoerror')
         if self.tano=='0':
             b43='0'
         else:
@@ -515,7 +515,7 @@ class Serial24(Hexgen):
         return self.results
 
 class National(Hexgen):
-    #National or test use 1-1-111, 1-1-100, 1-1-111, 1-1-000
+    # National location 1-1-111, 1-1-100, 1-1-111, 1-1-000
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields,protocol)
 
@@ -523,6 +523,18 @@ class National(Hexgen):
         nationaluser_input= str(self.formfields.get('nationaluser_input'))
         nationaluser = self.getserial(nationaluser_input, 0, 70368744177663, 'Maximum value exceeded', 46,'id_nationalerror')
         self.sethexcode('1', self.mid, self.protocol.split('-')[2],nationaluser)
+        return self.results
+
+class National_location(Hexgen):
+    # National 1-0-1000, 1-0-1010, 1-0-1011, 1-0-1111
+
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        national_input= str(self.formfields.get('nationaluser_input'))
+        national = self.getserial(national_input, 0, 262143, 'Maximum value exceeded', 18,'id_nationalerror')
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2],nationaluser)
         return self.results
 
 protocolspecific={
@@ -548,7 +560,11 @@ protocolspecific={
                   '1-1-011-011': Serial24,
                   '1-1-100': National,
                   '1-1-111': National,
-                  '1-1-000': National
+                  '1-1-000': National,
+                  '1-0-1000': National_location ,
+                  '1-0-1010' : National_location,
+                  '1-0-1011' : National_location,
+                  '1-0-1111' : National_location
                 }
 
 
