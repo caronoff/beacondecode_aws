@@ -79,6 +79,13 @@
                     <span id="id_nationalerror" class="help-block"></span>
 
                 </div>
+                <div id="id_nationallocation" style="display: none;" class="form-group panel panel-body panel-default tohide">
+
+                        <label for="id_nationallocation_input">National use (decmax 262,143) :</label>
+                        <input type="text" class="form-control" name="nationallocation_input" id="id_nationallocation_input" style="width:300px;">
+                    <span id="id_nationallocationerror" class="help-block"></span>
+
+                </div>
                 <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
                     <div class="panel-body">
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
@@ -245,16 +252,23 @@ $('#id_protocol').on('change', function() {
 
 
 
-   // National User protocol / National Location / Test User protocol / Orbitography
+   // National User protocol / Test User protocol / Orbitography
    case '1-1-100':
    case '1-1-111':
    case '1-1-000':
+
+         $('#id_nationaluser').show();
+         break;
+
+// National Location
    case '1-0-1010':
    case '1-0-1000':
    case '1-0-1011':
    case '1-0-1111':
-         $('#id_nationaluser').show();
+         $('#id_nationallocation').show();
          break;
+
+
 
 
     // Aircraft marking - 2nd Gen
