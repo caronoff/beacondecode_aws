@@ -497,7 +497,7 @@ class Serial_location(Hexgen):
         self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
         return self.results
 
-class Elt_dt:
+class Elt_dt(Hexgen):
     pass
 
 class Elt_dt_24bit(Hexgen):
@@ -509,6 +509,23 @@ class Elt_dt_24bit(Hexgen):
         sn = self.getserial(elt24bit, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
         self.sethexcode('0', self.mid, '100100',  sn, '011111111','0111111111')
         return self.results
+
+
+class Elt_dt_aircraft(Hexgen):
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        aircraftoperator_input = str(self.formfields.get('aircraftoperator_input'))
+        acftop=self.getbaudot(aircraftoperator_input,3,3,'Aircraft operator must be 3 alphabetic digits','id_aircraftoperatorerror',True)
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 511, 'Serial number range (0 - 511)', 9,'id_serialnumbererror')
+        self.sethexcode('0', self.mid, '100101', acftop, sn,'011111111','0111111111')
+        return self.results
+
+
+
+
 
 class Serial24(Hexgen):
     #Serial 1-1-011-011
@@ -586,7 +603,7 @@ protocolspecific={
                   '1-0-0110': Serial_location,
                   '1-0-0111':  Serial_location,
                   '1-1-011-001': Aircraftoperator,
-                   '1-0-0101': Aircraftoperator_location,
+                  '1-0-0101': Aircraftoperator_location,
                   '1-1-011-011': Serial24,
                   '1-1-100': National,
                   '1-1-111': National,
@@ -599,7 +616,7 @@ protocolspecific={
                   '1-0-1001-10' : Elt_dt,
                   '1-0-1001-11' : Elt_dt,
                   '1-0-1001-00' : Elt_dt_24bit,
-                  '1-0-1001-01' : Elt_dt,
+                  '1-0-1001-01' : Elt_dt_aircraft,
 
                 }
 
