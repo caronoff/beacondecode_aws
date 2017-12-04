@@ -728,10 +728,12 @@ class BeaconHex(HexError):
                 tano=str(Fcn.bin2dec(self.bin[43:53]))
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'Tac No','#{}'.format(tano)])                      
                 self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
-            elif str(self.bin[41:43])=='00':                
+            elif str(self.bin[41:43])=='00':
+            #24 bit aircraft address
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'Aircraft 24 bit address','#{}'.format(str(Fcn.bin2dec(self.bin[43:67])))])
             elif str(self.bin[41:43])=='01':
-                self.tablebin.append(['43-60',str(self.bin[43:61]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,61)])
+            # Aircraft operator designator
+                self.tablebin.append(['43-60',str(self.bin[43:61]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,61,True)])
                 self.tablebin.append(['61-66',str(self.bin[61:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[61:67]))])
             elif str(self.bin[41:43])=='11':
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','reserved'])
