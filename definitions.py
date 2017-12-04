@@ -174,7 +174,8 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (userprottype['000'],'1-1-000'),
                         (userprottype['100'],'1-1-100'),
                         (locprottype['1111'],'1-0-1111'),
-                        ('TEST - RLS location' ,'1-0-1101')]},
+                        ('TEST - RLS location' ,'1-0-1101'),
+                        ('ELT DT - Test','1-0-1001-11')]},
            '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001'),
                          ('Sample test launch class', 'runclass2')],
                 'ELT' : [('ELT - Aircraft marking - tail','2-011')]
@@ -496,6 +497,16 @@ class Serial_location(Hexgen):
         self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
         return self.results
 
+class Elt_dt_24bit(Hexgen):
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        elt24bit = str(self.formfields.get('elt24bitaddress_serialuser'))
+        sn = self.getserial(elt24bitaddress_serialuser, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
+        self.sethexcode('0', self.mid, '100100',  sn, '011111111','0111111111')
+        return self.results
+
 class Serial24(Hexgen):
     #Serial 1-1-011-011
     def __init__(self, formfields, protocol):
@@ -581,7 +592,12 @@ protocolspecific={
                   '1-0-1010' : National_location,
                   '1-0-1011' : National_location,
                   '1-0-1111' : National_location,
-                  '1-0-1101': Rls_location
+                  '1-0-1101': Rls_location,
+                  '1-0-1001-10' : Elt_dt,
+                  '1-0-1001-11' : Elt_dt,
+                  '1-0-1001-00' : Elt_dt_24bit,
+                  '1-0-1001-01' : Elt_dt,
+
                 }
 
 
