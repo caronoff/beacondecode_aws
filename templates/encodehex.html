@@ -65,12 +65,12 @@
                     <span id="id_tanoerror" class="help-block"></span>
                 </div>
 
-                <div id="id_aircraftmarking" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_aircraftmarking" style="display: none;" class="form-group panel panel-body panel-default tohide">
+
                       <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
                       <span id="id_aircraftmarkingerror" class="help-block"></span>
-                    </div>
+
                 </div>
                 <div id="id_nationaluser" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
@@ -86,13 +86,25 @@
                     <span id="id_nationallocationerror" class="help-block"></span>
 
                 </div>
-                <div id="id_aircraftoperator" style="display: none;" class="panel panel-default tohide">
-                    <div class="panel-body">
+                <div id="id_aircraftoperator" style="display: none;" class="form-group panel panel-body panel-default tohide">
+
                         <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
                         <span id="id_aircraftoperatorerror" class="help-block"></span>
-                    </div>
                 </div>
+
+
+                <div id="id_aircraftserial_secgen" style="display: none;" class="form-group panel panel-body panel-default tohide">
+
+                        <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
+                        <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="0" max="4095" step="1" data-bind="value:id_aircraftserial_input">
+                        <span id="id_aircraftserialerror" class="help-block"></span>
+                </div>
+
+
+
+
+
 
                 <div id="id_serialnumber" style="display: none;" class="form-group panel panel-body panel-default tohide">
                     <label for="id_serialnumber_input">Serial Number:</label>
@@ -361,6 +373,16 @@ $('#id_protocol').on('change', function() {
      case '2-100':
         $('#id_tano').show();
         $('#id_elt24bit').show();
+        $('#id_serialnumber').show();
+        break;
+
+
+
+// Aircraft operator 2nd Gen
+     case '2-101':
+        $('#id_tano').show();
+        $('#id_aircraftoperator').show();
+        $('#id_aircraftserial_secgen').show();
         $('#id_serialnumber').show();
         break;
 
