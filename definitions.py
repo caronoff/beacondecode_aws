@@ -537,6 +537,22 @@ class National_location(Hexgen):
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],nationallocation,'0111111100000','01111111100000')
         return self.results
 
+class Rls_location(Hexgen):
+    # RLS Location 1-0-1101
+
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14, 'id_serialnumbererror')
+        ta = self.getserial(self.tano, 0, 1023, 'Type approval number range (0 - 1,023)', 10, 'id_tanoerror')
+        b=self.beacontype
+        beacondic={'ELT':'00','EPIRB':'01','PLB':'10','TEST':'11'}
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2],beacondic[b], ta, sn, '0111111111', '01111111111')
+        return self.results
+
+
 protocolspecific={
                   '1-1-110' :   Radio_callsign,
                   '1-0-0010':   Mmsi_location_protocol,
@@ -564,7 +580,8 @@ protocolspecific={
                   '1-0-1000': National_location ,
                   '1-0-1010' : National_location,
                   '1-0-1011' : National_location,
-                  '1-0-1111' : National_location
+                  '1-0-1111' : National_location,
+                  '1-0-1101': Rls_location
                 }
 
 
