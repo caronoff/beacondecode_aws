@@ -176,9 +176,11 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST - RLS location' ,'1-0-1101'),
                         ('ELT DT - Test','1-0-1001-11')]},
-           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001'),
-                         ('Sample test launch class', 'runclass2')],
-                'ELT' : [('ELT - Aircraft marking - tail','2-011'),('ELT - Aircraft 24 bit address','2-100')]
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001')
+                         ],
+                'ELT' : [('ELT - Aircraft marking - tail','2-011'),
+                         ('ELT - Aircraft 24 bit address','2-100'),
+                         ('ELT - Aircraft operator','2-101')]
                 }}
 
 
@@ -411,7 +413,7 @@ class Aircraftmarking_secgen(Secondgen):
 
 
 class Air24bit_secgen(Secondgen):
-    #Aircreft 24 bit location 2-100
+    #Aircraft 24 bit location 2-100
     def __init__(self, formfields, protocol):
         Secondgen.__init__(self, formfields,protocol)
 
@@ -420,6 +422,29 @@ class Air24bit_secgen(Secondgen):
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
         self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sn,'0'*20, '1')
         return self.results
+
+
+
+
+class Aircraftoperator_secgen(Secondgen):
+    #Aircraft operator 2-101
+    def __init__(self, formfields, protocol):
+        Secondgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+
+        aircraftoperator_input = str(self.formfields.get('aircraftoperator_input'))
+        acftop = self.getbaudot(aircraftoperator_input, 1, 3, 'Aircraft operator must be 1-3 digits','id_aircraftoperatorerror')
+        sn_input= str(self.formfields.get('aircraftserial_input'))
+        sn= self.getserial(elt24bitaddress_serial, 0, 4095, 'Serial number range (0 - 4,095)', 12,'id_aircraftserialerror')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn,self.ptype, acftop, sn  ,'1'*14,'1')
+        return self.results
+
+
+
+
+
+
 
 
 
@@ -622,6 +647,7 @@ protocolspecific={
                   '2-001'   :   Mmsi_secgen,
                   '2-011'  :    Aircraftmarking_secgen,
                   '2-100' : Air24bit_secgen,
+                  '2-101': Aircraftoperator_secgen,
                   '1-1-001' :     Aircraftmarking,
                   '1-1-011-000': Serial,
                   '1-1-011-010': Serial,
