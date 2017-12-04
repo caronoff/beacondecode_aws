@@ -549,7 +549,7 @@ class Rls_location(Hexgen):
         ta = self.getserial(self.tano, 0, 1023, 'Type approval number range (0 - 1,023)', 10, 'id_tanoerror')
         b=self.beacontype
         beacondic={'ELT':'00','EPIRB':'01','PLB':'10','TEST':'11'}
-        self.sethexcode('0', self.mid, self.protocol.split('-')[2],beacondic[b], ta, sn, '0111111111', '01111111111')
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2],beacondic[b], ta, sn, '011111111', '0111111111')
         return self.results
 
 
