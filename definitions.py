@@ -500,6 +500,19 @@ class Serial_location(Hexgen):
 class Elt_dt(Hexgen):
     pass
 
+
+class Elt_dt_tasn(Hexgen):
+
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+
+    def getresult(self):
+        serialnumber_input = str(self.formfields.get('serialnumber_input'))
+        sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14,'id_serialnumbererror')
+        ta = self.getserial(self.tano,0,1023,'Type approval number range (0 - 1,023)',10,'id_tanoerror')
+        self.sethexcode('0', self.mid, '100110', ta , sn,'011111111','0111111111' )
+        return self.results
+
 class Elt_dt_24bit(Hexgen):
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields,protocol)
@@ -613,7 +626,7 @@ protocolspecific={
                   '1-0-1011' : National_location,
                   '1-0-1111' : National_location,
                   '1-0-1101': Rls_location,
-                  '1-0-1001-10' : Elt_dt,
+                  '1-0-1001-10' : Elt_dt_tasn,
                   '1-0-1001-11' : Elt_dt,
                   '1-0-1001-00' : Elt_dt_24bit,
                   '1-0-1001-01' : Elt_dt_aircraft,
