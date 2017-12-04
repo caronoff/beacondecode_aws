@@ -533,8 +533,8 @@ class National_location(Hexgen):
 
     def getresult(self):
         nationallocation_input= str(self.formfields.get('nationallocation_input'))
-        nationallocation = self.getserial(nationallocation_input, 0, 262143, 'Maximum value exceeded', 18,'id_nationallocationerror')
-        self.sethexcode('0', self.mid, self.protocol.split('-')[2],nationallocation)
+        nationallocation = self.getserial(nationallocation_input, 0, 262143, 'Maximum value (262,143) exceeded', 18,'id_nationallocationerror')
+        self.sethexcode('0', self.mid, self.protocol.split('-')[2],nationallocation,'0111111100000','01111111100000')
         return self.results
 
 protocolspecific={
