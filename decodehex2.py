@@ -292,7 +292,7 @@ class BeaconHex(HexError):
                 btype,s1,s2=('ELT','AirCraft Operator Designator : '+ Fcn.baudot(self.bin,44,62),
                           'Serial # Assigned by Operator: ' + str(Fcn.bin2dec(self.bin[62:74])))
                 auxradiodevice='Aux Radio Device: '+self.bin[84:86]+' '+definitions.auxlocdevice[self.bin[84:86]]
-                self.tablebin.append(['44-61',str(self.bin[44:62]),'AirCraft Operator Designator',Fcn.baudot(self.bin,44,62)])
+                self.tablebin.append(['44-61',str(self.bin[44:62]),'Aircraft Operator Designator',Fcn.baudot(self.bin,44,62)])
                 self.tablebin.append(['62-73',str(self.bin[62:74]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[62:74]))])
             if susertype in ['111','101']:
                 self.tablebin.append(['44-73',str(self.bin[44:74]),'Unknown Serial type',''])
@@ -731,7 +731,7 @@ class BeaconHex(HexError):
             elif str(self.bin[41:43])=='00':                
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'Aircraft 24 bit address','#{}'.format(str(Fcn.bin2dec(self.bin[43:67])))])
             elif str(self.bin[41:43])=='01':
-                self.tablebin.append(['43-60',str(self.bin[43:61]),'AirCraft Operator Designator',Fcn.baudot(self.bin,43,61)])
+                self.tablebin.append(['43-60',str(self.bin[43:61]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,61)])
                 self.tablebin.append(['61-66',str(self.bin[61:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[61:67]))])
             elif str(self.bin[41:43])=='11':
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','reserved'])

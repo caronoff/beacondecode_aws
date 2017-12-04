@@ -20,10 +20,6 @@ def processhex():
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
 
-    msgs={}
-    
-    for i in range(len(retdata['message'])):
-        msgs[str(i)]=retdata['message'][i]
 
     print(retdata['flderrors'])
     testerrors={'id_miderror':'test error message'}
