@@ -497,8 +497,12 @@ class Serial_location(Hexgen):
         self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
         return self.results
 
-class Elt_dt(Hexgen):
-    pass
+class Elt_dt_test(Hexgen):
+    def __init__(self, formfields, protocol):
+        Hexgen.__init__(self, formfields,protocol)
+    def getresult(self):
+        self.sethexcode('0', self.mid, '100111', '0'*26, '0111111111', '01111111111')
+        return self.results
 
 
 class Elt_dt_tasn(Hexgen):
@@ -627,7 +631,7 @@ protocolspecific={
                   '1-0-1111' : National_location,
                   '1-0-1101': Rls_location,
                   '1-0-1001-10' : Elt_dt_tasn,
-                  '1-0-1001-11' : Elt_dt,
+                  '1-0-1001-11' : Elt_dt_test,
                   '1-0-1001-00' : Elt_dt_24bit,
                   '1-0-1001-01' : Elt_dt_aircraft,
 
