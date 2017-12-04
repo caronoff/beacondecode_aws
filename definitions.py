@@ -497,6 +497,9 @@ class Serial_location(Hexgen):
         self.sethexcode('0', self.mid, self.protocol.split('-')[2], ta , sn,'0111111111','01111111111' )
         return self.results
 
+class Elt_dt:
+    pass
+
 class Elt_dt_24bit(Hexgen):
     def __init__(self, formfields, protocol):
         Hexgen.__init__(self, formfields,protocol)
