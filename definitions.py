@@ -413,7 +413,7 @@ class Aircraftmarking_secgen(Secondgen):
 class Air24bit_secgen(Secondgen):
     #Aircreft 24 bit location 2-100
     def __init__(self, formfields, protocol):
-        Hexgen.__init__(self, formfields,protocol)
+        Secondgen.__init__(self, formfields,protocol)
 
     def getresult(self):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
