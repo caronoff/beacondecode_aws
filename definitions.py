@@ -506,7 +506,7 @@ class Elt_dt_24bit(Hexgen):
 
     def getresult(self):
         elt24bit = str(self.formfields.get('elt24bitaddress_serialuser'))
-        sn = self.getserial(elt24bitaddress_serialuser, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
+        sn = self.getserial(elt24bit, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
         self.sethexcode('0', self.mid, '100100',  sn, '011111111','0111111111')
         return self.results
 
