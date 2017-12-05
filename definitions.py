@@ -373,7 +373,7 @@ class Mmsi_secgen(Secondgen):
     def getresult(self):
         mmsi_input = str(self.formfields.get('mmsi_input'))
         if len(mmsi_input) == 0:
-            mmsi=dec2bin(000111111,2)
+            mmsi=dec2bin(111111,2)
         else:
             mmsi= self.getserial(mmsi_input, 0, 999999, 'Serial number 6 digit maximum range (0 - 999999)', 20, 'id_mmsierror')
             mmsi6digit= (6-len(mmsi_input))*'0' + mmsi_input
