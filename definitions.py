@@ -761,10 +761,10 @@ beacon_type = {'00':'ELT',
                '10':'PLB',
                '11':'RLS Test Protocol or spare'}
 
-beacon_rls = {'00':'No automatic RLM Type-1 - No manual RLM Type 2 accepted',
-              '01':'No automatic RLM Type 1 -  Manual RLM Type 2 accepted ',
-              '10':'Automatic RLM Type-1 - No manual RLM Type 2 accepted',
-              '11':'Automatic RLM Type-1 - Manual RLM Type 2 accepted'}
+beacon_rls = {'00':'No automatic RLM Type-1 received - No manual RLM Type 2 received',
+              '01':'No automatic RLM Type 1 received -  Manual RLM Type 2 received ',
+              '10':'Automatic RLM Type-1 received - No manual RLM Type 2 received',
+              '11':'Automatic RLM Type-1  received - Manual RLM Type 2 received'}
 
 rls_provider = {'001':'GALILEO Return Link Service Provider',
                 '010':'GLONASS Return Link Service Provider',
