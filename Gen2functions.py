@@ -128,7 +128,8 @@ def selfTest(selftest_bit):
 
     return selftest_status
 
-
+def getBeaconType(typebinary):
+    return definitions.beacon_type[typebinary]
 
 def cancellation(cancel_bit):
     """Decodes user cancellation bit (Bit 43)

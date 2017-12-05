@@ -750,10 +750,16 @@ inflight_battery = {'00':'<=9 hours autonomy remaining',
                     '10':'>18 hours autonomy remaining',
                     '11':'Battery capacity not available'}
 
+beacon_distress_type = {'00':'Distress',
+               '01':'Distress',
+               '10':'Distress',
+               '11':'RLS Test Protocol'}
+
+
 beacon_type = {'00':'ELT',
                '01':'EPIRB',
                '10':'PLB',
-               '11':'RLS Test Protocol'}
+               '11':'RLS Test Protocol or spare'}
 
 beacon_rls = {'00':'No automatic RLM Type-1 - No manual RLM Type 2 accepted',
               '01':'No automatic RLM Type 1 -  Manual RLM Type 2 accepted ',
