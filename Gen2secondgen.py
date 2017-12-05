@@ -107,18 +107,23 @@ class SecondGen(Gen2Error):
             ################################
             self.vesselIDfill(0,self.bits[91:138])
 
+            ## BIT 138-139  Beacon Type
+            self.tablebin.append(['138-139',
+                                  self.bits[138:140],
+                                  'Beacon Type:',
+                                  Func.getBeaconType(self.bits[138:140])])
 
 
 
-            ##BIT 138-154 Spare bits [137-154]
-            if Func.checkones(self.bits[138:155]):
-                self.tablebin.append(['138-154',
-                                      self.bits[138:155],
+            ##BIT 140-154 Spare bits
+            if Func.checkones(self.bits[140:155]):
+                self.tablebin.append(['140-154',
+                                      self.bits[140:155],
                                       'Spare:',
                                       'OK'])
             else:
-                self.tablebin.append(['138-154',
-                                      self.bits[138:155],
+                self.tablebin.append(['140-154',
+                                      self.bits[140:155],
                                       'Spare:',
                                       'ERROR: Bits 138-154 should be 1s'])
 
