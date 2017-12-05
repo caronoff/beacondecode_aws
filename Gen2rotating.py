@@ -20,14 +20,17 @@ def rotating0(bits):
 
 
     ##BIT 5-10 (159-164) Elapsed time since activation (0 to 63 hours in 1 hour steps)
-    t_act = Func.bin2dec(bits[5:11])
+    t_act = min(Func.bin2dec(bits[5:11]),63)
+
     rotatingbin.append(['159-164 (Rotating field 5-10)',
                         bits[5:11],
                         'Elapsed time since activation:',
                         str(t_act) + ' hours'])
 
-    ##BIT 11-21 (165-175) Time from last encoded location (0 to 2047 minutes in 1 minute steps)
-    t_encoded = Func.bin2dec(bits[11:22])
+    ##BIT 11-21 (165-175) Time from last encoded location (0 to 2046 minutes in 1 minute steps)
+    t_encoded = min(Func.bin2dec(bits[11:22]),2046)
+    if int(t_encoded)==0:
+        t_encoded = 2047
     rotatingbin.append(['165-175 (Rotating field 11-21)',
                         bits[11:22],
                         'Time from last encoded location:',
@@ -165,10 +168,10 @@ def rotating2(bits):
     bits = '0'+ bits
 
     ##BIT 5-6 (159-160) Beacon Type
-    beacon = definitions.beacon_type[bits[5:7]]
+    beacon = definitions.beacon_distress_type[bits[5:7]]
     rotatingbin.append(['159-160 (Rotating field 5-6)',
                         bits[5:7],
-                        'Beacon type',
+                        'Beacon distress type',
                         beacon])
 
     ##BIT 7-12 (161-166) Beacon RLS Capability
@@ -214,22 +217,27 @@ def rotating2(bits):
         if bits[16] == '0':
             rotatingbin.append(['170 (Rotating field 16)',
                                 bits[16],
-                                'RLM Short/Long message identifier',
-                                'Short RLM'])
+                                'Type 1 feedback',
+                                'Type 1 not (yet) received'])
         else:
             rotatingbin.append(['170 (Rotating field 16)',
                                 bits[16],
-                                'RLM Short/Long message identifier',
-                                'Long RLM'])
+                                'Type 1 feedback',
+                                'Type 1 received'])
+        if bits[17] == '0':
+            rotatingbin.append(['171 (Rotating field 17)',
+                                bits[17],
+                                'Type 2 feedback',
+                                'Type 2 not (yet) received'])
+        else:
+            rotatingbin.append(['171 (Rotating field 17)',
+                                bits[17],
+                                'Type 2 feedback',
+                                'Type 2 received'])
 
-        rotatingbin.append(['171 (Rotating field 17)',
-                            bits[17],
-                            'Reserved',
-                            'Reserved'])
 
 
-
-        if (bits[16] == '0') & (bits[17] == '0'):
+        if (bits[16] == '1') & (bits[17] == '0'):
             rotatingbin.append(['172-190 (Rotating field 18-37)',
                                 bits[18:38],
                                 'RLM',
@@ -247,12 +255,12 @@ def rotating2(bits):
 
     ##BIT 38-48 (191-202) Unassigned
     if Func.checkzeros(bits[38:]):
-        rotatingbin.append(['191-202 (Rotating field 38-48)',
+        rotatingbin.append(['192-202 (Rotating field 38-48)',
                             bits[38:],
                             'Unassigned',
                             'OK'])
     else:
-        rotatingbin.append(['191-202 (Rotating field 38-48)',
+        rotatingbin.append(['192-202 (Rotating field 38-48)',
                             bits[38:],
                             'Unassigned',
                             'ERROR: Should be all 0s'])
