@@ -39,7 +39,7 @@ def sec_gen():
     print(rotating_field)
     print(uin)
     if rotating_field == '0000':
-        return redirect(url_for('rotating_g008', hexcode=uin))
+        return render_template(url_for('rotating_g008', hexcode=uin))
     else:
         return redirect(url_for('encodehex'))
 
