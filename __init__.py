@@ -14,13 +14,9 @@ COUNTRIES.sort()
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
-
-
     protocol=str(request.args.get('protocol'))
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
-
-
     print(retdata['flderrors'])
     testerrors={'id_miderror':'test error message'}
     return jsonify(binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
@@ -46,7 +42,6 @@ def validatehex():
     message = 'Enter a valid beacon hex message'
     if len(ret_data) > 0:
         if len(hexaPattern)==len(ret_data):
-
             message='Valid hexidecimal message.'
             if len(ret_data) in [15,30,36,23,63]:
                 statuscheck = 'valid'
@@ -55,11 +50,7 @@ def validatehex():
         else:
             statuscheck='not valid'
             message='Invalid Hexidecimal code  (A-F-0-9)'
-
-
     return jsonify(echostatus=statuscheck, message=message)
-
-
 
 
 @app.route("/",methods=['GET','POST'])
@@ -73,7 +64,6 @@ def index():
 @app.route("/autocomplete",methods=['GET'])
 def autocomplete():
     search = request.args.get('q')
-    
     results= [k for k in COUNTRIES if k.upper().startswith(search.upper())]
     return jsonify(matching_results=results)
 
@@ -98,8 +88,6 @@ def decoded(hexcode):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         print(geocoord)
         locationcheck=True
-
-
     return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
 
 
