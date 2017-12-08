@@ -176,12 +176,13 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                         (locprottype['1111'],'1-0-1111'),
                         ('TEST - RLS location' ,'1-0-1101'),
                         ('ELT DT - Test','1-0-1001-11')]},
-           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),('EPIRB - MMSI (6 digits)','2-001')
+           '2':{'EPIRB':[('EPIRB - Radio call sign','2-010'),
+                         ('EPIRB - MMSI (6 digits)','2-001')
                          ],
                 'ELT' : [('ELT - Aircraft marking - tail','2-011'),
                          ('ELT - Aircraft 24 bit address','2-100'),
                          ('ELT - Aircraft operator','2-101')]
-                }}
+                },'PLB': [('PLB -  No aircraft or maritime identity','2-000')]}
 
 
 class Country:
@@ -363,6 +364,10 @@ class Secondgen(Hexgen):
         self.ptype = protocol.split('-')[1]
         self.sn= self.getserial(serialnumber_input, 0, 1023, 'Serial number range (0 - 1,023)', 10, 'id_serialnumbererror')
         self.ta= self.getserial(tano, 0, 1048575, 'Type approval number range (0 - 1,048,575)', 20, 'id_tanoerror')
+
+    def getresult(self):
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, '0'*44 , '1')
+        return self.results
 
 
 class Mmsi_secgen(Secondgen):
@@ -645,6 +650,7 @@ protocolspecific={
                   '1-0-0010':   Mmsi_location_protocol,
                   '1-0-1100':   Mmsi_location_protocol,
                   '1-1-010' :    Maritime_mmsi,
+                  '2-000'   :   Secondgen,
                   '2-010'   :    Radio_secgen,
                   '2-001'   :   Mmsi_secgen,
                   '2-011'  :    Aircraftmarking_secgen,
