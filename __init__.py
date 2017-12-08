@@ -39,14 +39,14 @@ def sec_gen():
     print(rotating_field)
     print(uin)
     if rotating_field == '0000':
-        return redirect(url_for('rotating_g008', hexcode=uin))
+        return redirect(url_for('rotating', hexcode=uin))
     else:
         return redirect(url_for('encodehex'))
 
 
-@app.route('/rotating_g008/<hexcode>',methods=['GET'])
+@app.route('/rotating/<hexcode>',methods=['GET'])
 def rotating():
-    return render_template(url_for('rotating_g008'),hexcode=hexcode)
+    return render_template(url_for('rotating'),hexcode=hexcode)
 
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
