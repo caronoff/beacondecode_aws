@@ -190,7 +190,10 @@
 
                     <div class="form-group" id="msgtype">
                         <form class="form-horizontal" action="." method="GET" role="form" id="selectlongmsg">
+
                             <div class="col-lg-4"  style="padding-right: 5px;">
+                                <label for="id_hex_second">UIN :</label>
+                                <input type="text"  name="hex_second" id="id_hex_second">
                                 <select class="form-control" id="id_rotatingfield" name="rotatingfield">
                                 <option value="0000">G.008 Objective Requirements</option>
                                 <option value="0001" >In Flight Emergency</option>
@@ -236,7 +239,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 console.log(data.returndata);
                 $('#id_decoded').text(data.binary);
                 $('#id_hexcode').text(data.hexcode);
-                if(data.beacon_gen=='first'){alert('First Gen');} else {alert('Second Gen');}
+                if(data.beacon_gen=='first'){alert('First Gen');} else {$('#id_hex_second').val(data.hexcode);}
             } else {
             $('#id_decoded').text(data.echostatus);
             $('#id_hexcode').text('');
