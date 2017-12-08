@@ -202,7 +202,7 @@
                                 <option value="1111">Cancellation Message</option>
                                 </select>
                             </div>
-                            <input type="submit" value="Submit">
+                            <input type="submit" class="btn" value="Submit">
                         </form>
                     </div>
 
@@ -237,7 +237,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
   {
             if(data.echostatus=='valid')
             {
-                console.log(data.data.binary);
+                console.log(data.binary);
                 $('#id_hexcode').text(data.hexcode);
                 if(data.beacon_gen=='first'){alert('First Gen');} else {$('#id_hex_second').val(data.hexcode);}
             } else {
