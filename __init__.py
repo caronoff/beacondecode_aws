@@ -32,6 +32,20 @@ def filterlist():
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
+@app.route('/sec_gen',methods=['GET'])
+def sec_gen():
+    rotating_field=str(request.args.get('rotatingfield'))
+    uin=str(request.args.get('hex_second'))
+    print(rotating_field)
+    print(uin)
+    if rotating_field == '0000':
+        return redirect(url_for('rotating_g008', hexcode=uin))
+    else:
+        return redirect(url_for('encodehex'))
+
+
+
+
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
