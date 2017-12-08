@@ -216,13 +216,16 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 console.log(data.returndata);
                 $('#id_decoded').text(data.binary);
                 $('#id_hexcode').text(data.hexcode);
+                if(data.beacon_gen=='first'){alert('First Gen');} else {alert('Second Gen');}
+
+
+
             }
             else {
             $('#id_decoded').text(data.echostatus);
             $('#id_hexcode').text('');
 
             $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-
             $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
             }
    });

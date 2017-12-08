@@ -21,7 +21,7 @@
         <input type="text" name="hexcode" id="inputhexcode"  class="form-control" placeholder="Enter hexidecimal code" required autofocus >
           <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
           </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Enter valid hexidecimal (A-E 0-9)" id="hexbutton" disabled>Submit</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Enter valid hexidecimal (A-E 0-9)" id="hexbutton" disabled>Decode Message</button>
         <div class="modal-body" style="strong">
           <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >
               <a id="linkClose" href="#" class="close" >&times;</a>
@@ -36,16 +36,10 @@
 
 
 
-
-
-
-
-
 {% endblock %}
 
 {% block scripts %}
 {{ super() }}
-
 
 <script type=text/javascript>
 function submitcode(){

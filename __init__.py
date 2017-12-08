@@ -17,6 +17,7 @@ def processhex():
     protocol=str(request.args.get('protocol'))
     t= definitions.protocolspecific[protocol](request.args,protocol)
     retdata = t.getresult()
+    beacon_gen = t.getgen()
     print(retdata['flderrors'])
     testerrors={'id_miderror':'test error message'}
     return jsonify(binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
