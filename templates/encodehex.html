@@ -264,13 +264,10 @@ $('#id_protocol').on('change', function() {
     $("#tags").focus();
    switch(pselect){
 
-
-
    // National User protocol / Test User protocol / Orbitography
    case '1-1-100':
    case '1-1-111':
    case '1-1-000':
-
          $('#id_nationaluser').show();
          break;
 
@@ -289,41 +286,12 @@ $('#id_protocol').on('change', function() {
         break;
 
 
-    // Aircraft marking - 2nd Gen
-    case '2-011':
-        $('#id_tano').show();
-        $('#id_serialnumber').show();
-        $('#id_aircraftmarking').show();
-        break;
-
    // Aviation User protocol
    case '1-1-001':
         $('#id_aircraftmarking').show();
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
-    // Radio call sign 2nd Gen
-     case '2-010':
-        $('#id_tano').show();
-        $('#id_radio').show();
-        $('#id_serialnumber').show();
-        break;
-
-   // MMSI 2nd Gen
-     case '2-001':
-        $('#id_tano').show();
-        $('#id_mmsi').show();
-        $('#id_serialnumber').show();
-        break;
-    // PLB 2nd Gen
-
-    case '2-000':
-        $('#id_tano').show();
-        $('#id_serialnumber').show();
-        break;
-
-
 
    // Radio callsign
    case '1-1-110':
@@ -363,7 +331,6 @@ $('#id_protocol').on('change', function() {
         $('#id_serialnumber').show();
         break;
 
-
     //Std location - Serial
     case '1-0-0100':
     case '1-0-0110':
@@ -377,27 +344,6 @@ $('#id_protocol').on('change', function() {
          $('#id_elt24bit').show();
         break;
 
-
-
-// Aircraft 24-bit Address 2nd Gen
-     case '2-100':
-        $('#id_tano').show();
-        $('#id_elt24bit').show();
-        $('#id_serialnumber').show();
-        break;
-
-
-
-// Aircraft operator 2nd Gen
-     case '2-101':
-        $('#id_tano').show();
-        $('#id_aircraftoperator').show();
-        $('#id_aircraftserial_secgen').show();
-        $('#id_serialnumber').show();
-        break;
-
-
-
    //Serial user - Aircraft 24-bit Address
    case '1-1-011-011':
         $('#id_tano').show();
@@ -405,10 +351,6 @@ $('#id_protocol').on('change', function() {
         $('#id_beaconno').show();
         $('#id_auxdevice').show();
         break;
-
-
-
-
 
    //Serial user ELT/EPIRB/PLB
     case '1-1-011-000':
@@ -440,14 +382,51 @@ $('#id_protocol').on('change', function() {
 
     //ELT-DT Aircraft test protocol
     case '1-0-1001-11':
-
         break;
 
 
+    // PLB 2nd Gen
+    case '2-000':
+        $('#id_tano').show();
+        $('#id_serialnumber').show();
+        break;
 
 
+   // MMSI 2nd Gen
+     case '2-001':
+        $('#id_tano').show();
+        $('#id_mmsi').show();
+        $('#id_serialnumber').show();
+        break;
 
+ // Radio call sign 2nd Gen
+     case '2-010':
+        $('#id_tano').show();
+        $('#id_radio').show();
+        $('#id_serialnumber').show();
+        break;
 
+// Aircraft marking - 2nd Gen
+    case '2-011':
+        $('#id_tano').show();
+        $('#id_serialnumber').show();
+        $('#id_aircraftmarking').show();
+        break;
+
+// Aircraft 24-bit Address 2nd Gen
+     case '2-100':
+        $('#id_tano').show();
+        $('#id_elt24bit').show();
+        $('#id_serialnumber').show();
+        break;
+
+// Aircraft operator 2nd Gen
+     case '2-101':
+        $('#id_tano').show();
+        $('#id_aircraftoperator').show();
+        $('#id_aircraftserial_secgen').show();
+        $('#id_serialnumber').show();
+        break;
 
    default:
         alert('none');
