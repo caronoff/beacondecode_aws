@@ -618,7 +618,10 @@ class National(Hexgen):
 
     def getresult(self):
         nationaluser_input= str(self.formfields.get('nationaluser_input'))
-        nationaluser = self.getserial(nationaluser_input, 0, 70368744177663, 'Maximum value exceeded', 46,'id_nationalerror')
+        if nationaluser_input:
+            nationaluser = self.getserial(nationaluser_input, 0, 70368744177663, 'Maximum value exceeded', 46,'id_nationalerror')
+        else:
+            nationaluser=46*'0'
         self.sethexcode('1', self.mid, self.protocol.split('-')[2],nationaluser)
         return self.results
 
