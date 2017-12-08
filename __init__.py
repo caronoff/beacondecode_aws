@@ -45,7 +45,7 @@ def sec_gen():
 
 
 @app.route('/rotating/<hexcode>',methods=['GET'])
-def rotating():
+def rotating(hexcode):
     return render_template(url_for('rotating'),hexcode=hexcode)
 
 @app.route('/validatehex', methods=['GET'])
