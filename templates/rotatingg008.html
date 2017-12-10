@@ -13,14 +13,21 @@
 {% block content %}
 
 
-<div id="id_g008input">
-      <form class="form-signin" id="decodeHex" action="" method="post" >
+<div class="form-group" id="id_g008input">
+      <form class="form-horizontal" id="id_encodeg008" action="" method="post" >
         <h2 class="form-signin-heading">G.008 Objective Requirements {{hexcode}} </h2>
-        <label for="input1" class="sr-only">Enter hexidecimal code</label>
-          <div class="input-group" data-validate="hex">
+
+          <div class="col-lg-2">
+              <div class="form-group">
+          <label class="control-label" for="input1" >Enter hexidecimal code</label>
         <input type="text" name="hexcode" id="input1"  class="form-control" placeholder="Enter ...." required autofocus >
-          <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
-          </div>
+                  </div>
+          <label class="control-label" for="input2" >Enter other</label>
+          <input type="text" name="hexcode" id="input2"  class="form-control" placeholder="Enter other...." required autofocus >
+
+            </div>
+
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" title="Complete all fields" id="encodebutton" >Encode Message</button>
         <div class="modal-body" style="strong">
           <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >

@@ -71,7 +71,15 @@ def index():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('index.html', title='Home', user='') ##child.html
+
+
+@app.route("/decode")
+def decode_beacon():
     return render_template('child.html', title='Home', user='')
+
+
+
 
 @app.route("/autocomplete",methods=['GET'])
 def autocomplete():

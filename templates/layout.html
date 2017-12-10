@@ -1,55 +1,209 @@
 <!doctype html>
 <html lang="en">
-<head>
 
-	{% block head %}
+
+{% block head %}
+<head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+	<style type="text/css">
+		.important { color: #336699; }
+	</style>
 	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 -->
 
 	<!-- Bootstrap core CSS -->
 	  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 	  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link  href="{{ url_for('static', filename='css/navigation.css') }}" rel="stylesheet">
 	  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	  <title>Cospas-Sarsat - {% block title %}{% endblock %}</title>
-	{% endblock %}
-	      </head>
+
+	  <title>C-S {% block title %}{% endblock %}</title>
+
+
+
+
+</head>
+
+{% endblock %}
+
 <body>
 
 
 
-<!--
-<div class="navbar navbar-default">
 
-    <div class="navbar-inner">
+ <div class="navbar-more-overlay"></div>
+<nav class="navbar navbar-inverse navbar-fixed-top animate">
+	<div class="container navbar-more visible-xs">
+
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+			</ul>
+		</div>
 
 
-        <div class="container">
-            <a class="brand" href="#">
-                <img alt="logo" src="{{ url_for('static', filename='images/logo.png') }}"></a>
-        </div>
-    </div>
-</div>
 
--->
 
- <div class="container">
-			    {% block content %}{% endblock %}
-	 <div id="footer">
+
+
+		<div class="container">
+
+
+			<ul class="nav navbar-nav navbar-left mobile-bar">
+				<li>
+					<a href="/">
+						<span class="menu-icon fa fa-home"></span>
+						Home
+					</a>
+				</li>
+				<li>
+					<a href="{{ url_for('decode') }}">
+						<span class="menu-icon fa fa-info"></span>
+						<span class="hidden-xs">Decode message</span>
+						<span class="visible-xs">Decodet</span>
+					</a>
+				</li>
+				<li class="hidden-xs">
+					<a href="#">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Photos
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-ship"></span>
+						Cruises
+					</a>
+				</li>
+				<li class="hidden-xs">
+					<a href="#">
+						<span class="menu-icon fa fa-bell-o"></span>
+						Reservations
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<span class="menu-icon fa fa-phone"></span>
+						<span class="hidden-xs">Contact Us</span>
+						<span class="visible-xs">Contact</span>
+					</a>
+				</li>
+				<li class="visible-xs">
+					<a href="#navbar-more-show">
+						<span class="menu-icon fa fa-bars"></span>
+						More
+					</a>
+				</li>
+			</ul>
+		</div>
+
+
+
+
+</nav>
+
+
+<section class="container">
+	{% block content %}{% endblock %}
+</section>
+
+
+
+ <div id="footer">
 							&copy; Copyright 2017 by <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
 	 </div>
-
- </div>
-
 <!-- Placed at the end of the document so the pages load faster -->
 {% block scripts %}
-
-<script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+	<script type=text/javascript>$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
 	<script type=text/javascript src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="{{url_for('static', filename='js/jquery-3.1.1.min.js') }}">\x3C/script>')</script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -57,11 +211,24 @@
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
 
-
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug-->
-    <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+ <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
 
+ <script type=text/javascript>
+$(document).ready(function() {
+    $('a[href="#navbar-more-show"], .navbar-more-overlay').on('click', function(event) {
+		event.preventDefault();
+		$('body').toggleClass('navbar-more-show');
+		if ($('body').hasClass('navbar-more-show'))	{
+			$('a[href="#navbar-more-show"]').closest('li').addClass('active');
+		}else{
+			$('a[href="#navbar-more-show"]').closest('li').removeClass('active');
+		}
+		return false;
+	});
+});
+
+</script>
 
 
 {% endblock %}
