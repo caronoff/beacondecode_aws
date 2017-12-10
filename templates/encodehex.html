@@ -189,7 +189,7 @@
 
 
                     <div class="form-group" id="msgtype">
-                        <form class="form-horizontal" action="sec_gen" method="GET" role="form" id="selectlongmsg">
+                        <form class="form-horizontal" action="long" method="GET" role="form" id="selectlongmsg">
 
                             <div class="col-lg-2"  style="padding-right: 5px;">
                                 <label class="control-label" for="id_rotatingfield" data-placement="left" data-toggle="tooltip" title="title">Rotating field:</label>
@@ -202,8 +202,8 @@
                                 </select>
                             </div>
                             <div class="decoded">
-                            <label for="id_hex_second">UIN :</label>
-                                <input type="text"  name="hex_second" id="id_hex_second" readonly="readonly">
+                                <input type="hidden"  name="hex_second" id="id_hex_second" >
+                                <input type="hidden"  name="hex_first" id="id_hex_first" >
                             </div>
                             <button type="submit" class="btn-primary" value="Submit">Submit</button>
 
@@ -243,7 +243,8 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
             {
                 console.log(data.binary);
                 $('#id_hexcode').text(data.hexcode);
-                if(data.beacon_gen=='first'){alert('First Gen');} else {$('#id_hex_second').val(data.hexcode);}
+
+                if(data.beacon_gen=='first'){$('#id_hex_first').val(data.hexcode);} else {$('#id_hex_second').val(data.hexcode);}
             } else {
             $('#id_decoded').text(data.echostatus);
             $('#id_hexcode').text('');

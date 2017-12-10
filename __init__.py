@@ -32,16 +32,20 @@ def filterlist():
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
-@app.route('/sec_gen',methods=['GET'])
-def sec_gen():
+@app.route('/long',methods=['GET'])
+def long():
     rotating_field=str(request.args.get('rotatingfield'))
-    uin=str(request.args.get('hex_second'))
-    print(rotating_field)
-    print(uin)
-    if rotating_field == '0000':
-        return render_template('rotatingg008.html', hexcode=uin)
-    else:
-        return redirect(url_for('encodehex'))
+    uin_first=str(request.args.get('hex_first'))
+    uin_second = str(request.args.get('hex_second'))
+    print(len(uin_first),uin_first)
+    print(len(uin_second),uin_second)
+    if uin_first:
+        hexcode=uin_first
+    elif uin_second:
+        hexcode=uin_second
+
+    return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
+
 
 
 
@@ -69,12 +73,19 @@ def validatehex():
 @app.route("/index")
 def index():
     if request.method == 'POST':
+        print('post')
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('indx.html', title='Home', user='')
 
-@app.route("/decode")
+
+@app.route("/decode",methods=['GET','POST'])
 def decode_beacon():
+    if request.method == 'POST':
+        print('post')
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+
     return render_template('decodehex.html', title='Home', user='')
 
 
@@ -100,6 +111,13 @@ def about():
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
+    t=str(request.args.get('type'))
+    print(t)
+    if t=='uin':
+        tmp = 'encodelong.html'
+    else:
+        tmp = 'output.html'
+
     geocoord=(0,0)
     locationcheck=False
     beacon=decodehex2.Beacon(hexcode)
@@ -107,7 +125,7 @@ def decoded(hexcode):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         print(geocoord)
         locationcheck=True
-    return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
+    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
 
 
 if __name__ == "__main__":
