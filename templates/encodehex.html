@@ -180,12 +180,7 @@
                     </div>
                 </div>
 
-                    <div >
-                        <div class="decoded">
-                        <div id="id_decoded" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
-                        <div id="id_hexcode" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
-                        </div>
-                    </div>
+
 
 
                     <div class="form-group" id="msglong">
@@ -200,8 +195,8 @@
                                 <option value="1111">Cancellation Message</option>
                                 </select> </div>-->
                             <div class="decoded">
-                                <input type="hidden"  name="hex_second" id="id_hex_second" >
-                                <input type="hidden"  name="hex_first" id="id_hex_first" >
+                                <div id="id_decoded_error" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
+                                <input type="text"  name="hex_code" id="id_hex_code" readonly>
                             </div>
                             <button type="submit" class="btn-primary" value="Submit">Submit</button>
 
@@ -240,13 +235,12 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
             if(data.echostatus=='valid')
             {
                 console.log(data.binary);
-                $('#id_decoded').text('');
-                $('#id_hexcode').text(data.hexcode);
+                $('#id_decoded_error').text('');
+                $('#id_hex_code').val(data.hexcode);
 
 
-                if(data.beacon_gen=='first'){$('#id_hex_first').val(data.hexcode);} else {$('#id_hex_second').val(data.hexcode);}
             } else {
-                    $('#id_decoded').text(data.echostatus);
+                    $('#id_decoded_error').text(data.echostatus);
                     $('#id_hexcode').text('');
                     $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
                     $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
