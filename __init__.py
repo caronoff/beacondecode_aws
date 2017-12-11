@@ -111,8 +111,6 @@ def about():
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
     t=str(request.args.get('type'))
-    print(t)
-
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
