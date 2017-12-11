@@ -35,16 +35,8 @@ def filterlist():
 @app.route('/long',methods=['GET'])
 def long():
     rotating_field=str(request.args.get('rotatingfield'))
-    uin_first=str(request.args.get('hex_first'))
-    uin_second = str(request.args.get('hex_second'))
-    print(len(uin_first),uin_first)
-    print(len(uin_second),uin_second)
-    if uin_first:
-        hexcode=uin_first
-        print('first gen')
-    elif uin_second:
-        print('second gen')
-        hexcode=uin_second
+    hexcode=str(request.args.get('hex_code'))
+
 
     return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
 
