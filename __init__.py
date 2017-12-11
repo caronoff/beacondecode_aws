@@ -41,7 +41,9 @@ def long():
     print(len(uin_second),uin_second)
     if uin_first:
         hexcode=uin_first
+        print('first gen')
     elif uin_second:
+        print('second gen')
         hexcode=uin_second
 
     return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
@@ -85,10 +87,7 @@ def decode_beacon():
         print('post')
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-
     return render_template('decodehex.html', title='Home', user='')
-
-
 
 
 @app.route("/autocomplete",methods=['GET'])
@@ -113,14 +112,15 @@ def about():
 def decoded(hexcode):
     t=str(request.args.get('type'))
     print(t)
-    if t=='uin':
-        tmp = 'encodelong.html'
-    else:
-        tmp = 'output.html'
 
-    geocoord=(0,0)
-    locationcheck=False
-    beacon=decodehex2.Beacon(hexcode)
+    geocoord = (0, 0)
+    locationcheck = False
+    beacon = decodehex2.Beacon(hexcode)
+    if beacon.gentype=='first':
+        tmp = 'encodelongfirst.html'
+    elif beacon.gentype=='second':
+        tmp = 'encodelongsecond.html'
+
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         print(geocoord)

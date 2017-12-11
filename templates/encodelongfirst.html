@@ -1,0 +1,114 @@
+{% extends "output.html" %}
+{% block title %}Long message{% endblock %}
+
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+{% endblock %}
+<style type="text/css">
+    .important { color: #336699; }
+</style>
+
+{% block content %}
+{{super()}}
+
+<div class="form-group" id="id_g008input">
+      <form class="form-horizontal" id="id_encodeg008" action="" method="post" >
+        <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
+
+          <div class="col-lg-2">
+              <div class="form-group">
+          <label class="control-label" for="input1" >Enter hexidecimal code</label>
+        <input type="text" name="hexcode" id="input1"  class="form-control" placeholder="Enter ...." required autofocus >
+                  </div>
+          <label class="control-label" for="input2" >Enter other</label>
+          <input type="text" name="hexcode" id="input2"  class="form-control" placeholder="Enter other...." required autofocus >
+
+            </div>
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Complete all fields" id="encodebutton" >Encode Message</button>
+        <div class="modal-body" style="strong">
+          <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >
+              <a id="linkClose" href="#" class="close" >&times;</a>
+              <strong>Error! </strong><div id='echoResult'></div></div></span>
+          </div>
+      </form>
+<div id="intro">
+<p class="lead" >Welcome to the 2018 Cospas-Sarsat Beacon Encoder. .<br> </p>
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type=text/javascript>
+function submitcode(){
+    var $form = $(this).closest('form');
+    $form.find(':input[type="submit"]').prop('disabled',false);
+    $("#decodeHex").submit()
+}
+</script>
+
+<script type=text/javascript>
+    $('[title]').tooltip();
+</script>
+
+
+<script type=text/javascript> 
+$(document).ready(function(){
+$('#encodebutton').on('click',function()
+        {var $form = $(this).closest('form'),
+        $group = $(this).closest('.input-group'),
+		$addon = $group.find('.input-group-addon'),
+		$icon = $addon.find('span');
+        $.getJSON
+            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val()},function(data)
+                {$("#statuscheck").text(data.echostatus);
+                if(data.echostatus=='valid'){
+                        $form.find(':input[type="submit"]').prop('disabled', false);
+                        $addon.removeClass('danger');
+				        $addon.addClass('success');
+				        $icon.attr('class', 'glyphicon glyphicon-ok');
+                        $("#echoResult").text("");
+                        $('#hexAlert').hide('fade');
+                        }
+                else{
+                        $form.find(':input[type="submit"]').prop('disabled', true);
+                        $("#echoResult").text(data.message);
+                        $addon.removeClass('success');
+				        $addon.addClass('danger');
+				        $icon.attr('class', 'glyphicon glyphicon-remove');
+				        $('#hexAlert').show('fade');
+				        setTimeout(function(){
+                            $('#hexAlert').hide('fade');
+                            },5000);
+                    }
+                }
+            );
+             return false;        }
+    ); //end bind
+
+        $('#linkClose').click(function(){
+            $('#hexAlert').hide('fade');
+         });
+         $('#hexbutton').mousedown(function(){
+        var mb=$("#statuscheck").text();
+        var $form = $(this).closest('form');
+        if(mb=='valid'){
+        $form.find(':input[type="submit"]').prop('disabled', false);
+        }});
+
+
+}
+);  </script>
+
+
+{% endblock %}
+

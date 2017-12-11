@@ -188,10 +188,9 @@
                     </div>
 
 
-                    <div class="form-group" id="msgtype">
-                        <form class="form-horizontal" action="long" method="GET" role="form" id="selectlongmsg">
-
-                            <div class="col-lg-2"  style="padding-right: 5px;">
+                    <div class="form-group" id="msglong">
+                        <form class="form-horizontal" action="/long" method="GET" role="form" id="selectlongmsg">
+                            <!--<div class="col-lg-2"  style="padding-right: 5px;">
                                 <label class="control-label" for="id_rotatingfield" data-placement="left" data-toggle="tooltip" title="title">Rotating field:</label>
                                 <select class="form-control" id="id_rotatingfield" name="rotatingfield">
                                 <option value="0000">G.008 Objective Requirements</option>
@@ -199,8 +198,7 @@
                                 <option value="0010">RLS Field</option>
                                 <option value="0011">National Use</option>
                                 <option value="1111">Cancellation Message</option>
-                                </select>
-                            </div>
+                                </select> </div>-->
                             <div class="decoded">
                                 <input type="hidden"  name="hex_second" id="id_hex_second" >
                                 <input type="hidden"  name="hex_first" id="id_hex_first" >
@@ -242,15 +240,17 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
             if(data.echostatus=='valid')
             {
                 console.log(data.binary);
+                $('#id_decoded').text('');
                 $('#id_hexcode').text(data.hexcode);
+
 
                 if(data.beacon_gen=='first'){$('#id_hex_first').val(data.hexcode);} else {$('#id_hex_second').val(data.hexcode);}
             } else {
-            $('#id_decoded').text(data.echostatus);
-            $('#id_hexcode').text('');
-            $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
-            $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
-            }
+                    $('#id_decoded').text(data.echostatus);
+                    $('#id_hexcode').text('');
+                    $.each( data.messages, function( key, val ) {$('#errors').append( "<li>" + val + "</li>" );});
+                    $.each( data.flderrors, function( key, val ) { $('#'+key).text(val); $('#'+key).parent().addClass('has-error')    ;      });
+                    }
    });
 });
 </script>
