@@ -36,8 +36,6 @@ def filterlist():
 def long():
     rotating_field=str(request.args.get('rotatingfield'))
     hexcode=str(request.args.get('hex_code'))
-
-
     return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
 
 
