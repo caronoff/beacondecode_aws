@@ -32,21 +32,24 @@ def filterlist():
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
-@app.route('/sec_gen',methods=['GET'])
-def sec_gen():
+@app.route('/long',methods=['GET'])
+def long():
     rotating_field=str(request.args.get('rotatingfield'))
-    uin=str(request.args.get('hex_second'))
-    print(rotating_field)
-    print(uin)
-    if rotating_field == '0000':
-        return redirect(url_for('rotating', hexcode=uin))
-    else:
-        return redirect(url_for('encodehex'))
+    uin_first=str(request.args.get('hex_first'))
+    uin_second = str(request.args.get('hex_second'))
+    print(len(uin_first),uin_first)
+    print(len(uin_second),uin_second)
+    if uin_first:
+        hexcode=uin_first
+        print('first gen')
+    elif uin_second:
+        print('second gen')
+        hexcode=uin_second
+
+    return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
 
 
-@app.route('/rotating/<hexcode>',methods=['GET'])
-def rotating(hexcode):
-    return render_template(url_for('rotating'),hexcode=hexcode)
+
 
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
@@ -72,9 +75,20 @@ def validatehex():
 @app.route("/index")
 def index():
     if request.method == 'POST':
+        print('post')
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('child.html', title='Home', user='')
+    return render_template('indx.html', title='Home', user='')
+
+
+@app.route("/decode",methods=['GET','POST'])
+def decode_beacon():
+    if request.method == 'POST':
+        print('post')
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('decodehex.html', title='Home', user='')
+
 
 @app.route("/autocomplete",methods=['GET'])
 def autocomplete():
@@ -96,14 +110,20 @@ def about():
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
-    geocoord=(0,0)
-    locationcheck=False
-    beacon=decodehex2.Beacon(hexcode)
+    t=str(request.args.get('type'))
+    geocoord = (0, 0)
+    locationcheck = False
+    beacon = decodehex2.Beacon(hexcode)
+    if beacon.gentype=='first':
+        tmp = 'encodelongfirst.html'
+    elif beacon.gentype=='second':
+        tmp = 'encodelongsecond.html'
+
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         print(geocoord)
         locationcheck=True
-    return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
+    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
 
 
 if __name__ == "__main__":

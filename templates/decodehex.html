@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block title %}Index {{user}} {% endblock %}
+
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div id="myform">
+      <form class="form-signin" id="decodeHex" action="/decode"  method="POST">
+        <h2 class="form-signin-heading">Beacon Message Decoder</h2>
+        <label for="inputhexcode" class="sr-only">Enter hexidecimal code</label>
+          <div class="input-group" data-validate="hex">
+        <input type="text" name="hexcode" id="inputhexcode"  class="form-control" placeholder="Enter hexidecimal code" required autofocus >
+          <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+          </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Enter valid hexidecimal (A-E 0-9)" id="hexbutton" disabled>Decode Message</button>
+        <div class="modal-body" style="strong">
+          <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >
+              <a id="linkClose" href="#" class="close" >&times;</a>
+              <strong>Error! </strong><div id='echoResult'></div></div></span>
+          </div>
+      </form>
+<div id="intro">
+<p class="lead" >Welcome to the 2018 Cospas-Sarsat Beacon Decoder. Use this online tool to quickly decode a hexidecimal message.<br> </p>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type=text/javascript>
+function submitcode(){
+    var $form = $(this).closest('form');
+    $form.find(':input[type="submit"]').prop('disabled',false);
+    $("#decodeHex").submit()
+}
+</script>
+
+<script type=text/javascript>
+    $('[title]').tooltip();
+</script>
+
+
+<script type=text/javascript>
+ 
+$(document).ready(function(){
+$('#inputhexcode').on('keyup change',function()
+        {var $form = $(this).closest('form'),
+        $group = $(this).closest('.input-group'),
+		$addon = $group.find('.input-group-addon'),
+		$icon = $addon.find('span');
+        $.getJSON
+            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val()},function(data)
+                {$("#statuscheck").text(data.echostatus);
+                if(data.echostatus=='valid'){
+                        $form.find(':input[type="submit"]').prop('disabled', false);
+                        $addon.removeClass('danger');
+				        $addon.addClass('success');
+				        $icon.attr('class', 'glyphicon glyphicon-ok');
+                        $("#echoResult").text("");
+                        $('#hexAlert').hide('fade');
+                        }
+
+                else{
+                        $form.find(':input[type="submit"]').prop('disabled', true);
+                        $("#echoResult").text(data.message);
+                        $addon.removeClass('success');
+				        $addon.addClass('danger');
+				        $icon.attr('class', 'glyphicon glyphicon-remove');
+				        $('#hexAlert').show('fade');
+				        setTimeout(function(){
+                            $('#hexAlert').hide('fade');
+                            },5000);
+
+
+                    }
+                }
+            );
+             return false;
+        }
+    ); //end bind
+
+        $('#linkClose').click(function(){
+            $('#hexAlert').hide('fade');
+         });
+         $('#hexbutton').mousedown(function(){
+        var mb=$("#statuscheck").text();
+        var $form = $(this).closest('form');
+        if(mb=='valid'){
+        $form.find(':input[type="submit"]').prop('disabled', false);
+        }});
+
+
+}
+);  </script>
+
+
+{% endblock %}
+

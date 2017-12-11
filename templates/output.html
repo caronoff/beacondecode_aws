@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Decoded Beacon {% endblock %}
+{% block title %}Decoded Beacon{% endblock %}
 {% block head %}
   {{ super() }}
 <!-- Custom styles for this template -->
@@ -33,9 +33,7 @@
 {% endblock %}
 
  {% block content %}
-
     <div id="decodetable">
-
   <h2>Decoded Beacon Message</h2>
   <p>The hex code decoded is: <strong style="word-wrap:break-word">{{hexcode}}  </strong></p>
   <table class="table table-striped">
@@ -59,7 +57,7 @@
     </tbody>
   </table>
         <div class="btn-toolbar">
-        <a href="/" class="btn btn-danger"  style="margin-top: auto ; display:block; text-align: center">
+        <a href="/decode" class="btn btn-danger"  style="margin-top: auto ; display:block; text-align: center">
           <span class="glyphicon glyphicon-home" style="color:gray"></span> Return
         </a>
 </div>
@@ -77,15 +75,12 @@
 </div>
 
 
-
 {% endblock %}
 {% block scripts %}
 {{super()}}
 <script type=text/javascript src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-
 <script src="{{ url_for('static', filename='js/gmap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw4IpZdm6D7ob00fF9F9TjuZ2Eeif9QtE&callback=initMap" async defer></script>
-
 
 {% endblock %}
 

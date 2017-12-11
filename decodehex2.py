@@ -799,12 +799,13 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
-
+            self.gentype ='second'
         elif len(hexcode) == 30 or len(hexcode) == 15:
             beacon=BeaconHex(hexcode)
-
+            self.gentype='first'
         elif len(strhex) == 36:
             beacon=BeaconHex(hexcode[6:])
+            self.gentype = 'first'
         else:
             self.type = 'Hex length of ' + str(
                 len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
