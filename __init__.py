@@ -104,10 +104,13 @@ def decoded(hexcode):
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
-    if beacon.gentype=='first':
-        tmp = 'encodelongfirst.html'
-    elif beacon.gentype=='second':
-        tmp = 'encodelongsecond.html'
+    if beacon.type=='uin':
+        if beacon.gentype=='first':
+            tmp = 'encodelongfirst.html'
+        elif beacon.gentype=='second':
+            tmp = 'encodelongsecond.html'
+    else:
+        tmp='decodelongmsg.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
