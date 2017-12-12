@@ -148,7 +148,7 @@ body {
 #decodetable {
   position:relative;
   width:75%;
-  min-height: 500px;
+  min-height: 1000px;
   padding: 20px;
   margin: auto;
 }
@@ -158,9 +158,9 @@ body {
 #map{
     height: auto;
     overflow: hidden;
-    padding-bottom: 10%;
+    padding-bottom: 50%;
     padding-top: 30px;
-    position: top;
+    position: bottom;
 }
 
 #panelcontainer {
@@ -228,8 +228,8 @@ padding: 5px;
     text-align:left;
     background-color:#fff;
     color:#1E88E5;
-    float: left;
-    width:100%;
+    float: right;
+    width:50%;
     border:3px solid #1E88E5;
     padding: 15px;
 
