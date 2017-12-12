@@ -11,35 +11,24 @@
 </style>
 
 {% block content %}
-{{super()}}
 
-<div class="form-group" id="id_g008input">
+<div class="form-group" >
       <form class="form-horizontal" id="id_encodeg008" action="" method="post" >
         <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
 
-          <div class="col-lg-2">
-              <div class="form-group">
-          <label class="control-label" for="input1" >Enter hexidecimal code</label>
-        <input type="text" name="hexcode" id="input1"  class="form-control" placeholder="Enter ...." required autofocus >
-                  </div>
-          <label class="control-label" for="input2" >Enter other</label>
-          <input type="text" name="hexcode" id="input2"  class="form-control" placeholder="Enter other...." required autofocus >
 
-            </div>
-
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Complete all fields" id="encodebutton" >Encode Message</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="encodebutton" >Encode Long Message</button>
         <div class="modal-body" style="strong">
           <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >
               <a id="linkClose" href="#" class="close" >&times;</a>
               <strong>Error! </strong><div id='echoResult'></div></div></span>
           </div>
       </form>
-<div id="intro">
-<p class="lead" >Welcome to the 2018 Cospas-Sarsat Beacon Encoder. .<br> </p>
-    </div>
 
 </div>
+
+
+{{super()}}
 
 
 
