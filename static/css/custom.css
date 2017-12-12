@@ -156,11 +156,11 @@ body {
 
 
 #map{
-    height: 100px;
+    height: auto;
     overflow: hidden;
     padding-bottom: 10%;
     padding-top: 30px;
-    position: bottom;
+    position: top;
 }
 
 #panelcontainer {
