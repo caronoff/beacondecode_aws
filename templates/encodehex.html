@@ -239,7 +239,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 $('#id_decoded_error').text('');
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
-                $("#id_hexcode_btn").prop('value', data.hexcode);
+                $("#id_hexcode_btn").attr('value', data.hexcode);
 
             } else {
                     $('#id_decoded_error').text(data.echostatus);
