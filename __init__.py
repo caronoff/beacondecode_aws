@@ -104,6 +104,7 @@ def decoded(hexcode):
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
+    print(beacon.type)
     if beacon.type=='uin':
         if beacon.gentype=='first':
             tmp = 'encodelongfirst.html'
