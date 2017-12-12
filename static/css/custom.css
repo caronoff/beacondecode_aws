@@ -158,8 +158,8 @@ body {
 #map{
     height: auto;
     overflow: hidden;
-    padding-bottom: 50%;
-    padding-top: 30px;
+    padding-bottom: 15%;
+    padding-top: 15px;
     position: bottom;
 }
 

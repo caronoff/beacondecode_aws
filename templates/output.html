@@ -63,7 +63,7 @@
 </div>
 
   {% if locationcheck %}
-        <p>has location</p>
+        <p>Encoded location</p>
                 <div id="geocoord"  data-geocode="{{ geocoord|tojson }}"></div>
                 <div id="marker" data-marker= "{{url_for('static', filename='css/images/marker.png')}}"></div>
     <div id="map"></div>
