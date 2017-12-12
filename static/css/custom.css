@@ -148,7 +148,7 @@ body {
 #decodetable {
   position:relative;
   width:75%;
-  min-height: 1000px;
+  min-height: 500px;
   padding: 20px;
   margin: auto;
 }
