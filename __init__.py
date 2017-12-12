@@ -36,7 +36,7 @@ def filterlist():
 def long():
     rotating_field=str(request.args.get('rotatingfield'))
     hexcode=str(request.args.get('hex_code'))
-    return redirect(url_for('decoded', hexcode=hexcode, type="uin"))
+    return redirect(url_for('decoded', hexcode=hexcode))
 
 
 
@@ -100,11 +100,11 @@ def about():
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
-    t=str(request.args.get('type'))
+
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
-    print(beacon.type)
+    print(beacon.type=='uin')
     if beacon.type=='uin':
         if beacon.gentype=='first':
             tmp = 'encodelongfirst.html'
