@@ -111,6 +111,7 @@ def decoded(hexcode):
         elif beacon.gentype=='second':
             tmp = 'encodelongsecond.html'
     else:
+        print('default output.html')
         tmp='output.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
