@@ -103,6 +103,7 @@ class BeaconHex(HexError):
         #print strhex
         self._loc = False
         self.tablebin = []
+        self.type=''
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
                 #   15 Hex does not use bit 25 so an extra 0 needs to be padded
@@ -797,6 +798,7 @@ class BeaconHex(HexError):
 
 class Beacon(HexError):
     def __init__(self,hexcode):
+        self.type=''
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
