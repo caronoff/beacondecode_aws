@@ -195,7 +195,7 @@
                                 <option value="1111">Cancellation Message</option>
                                 </select> </div>-->
 
-                            <button type="submit" class="btn-primary" value="Submit">Submit</button>
+                            <button type="submit" style="display: none;" id="id_hexcode_btn" class="btn-primary" value="Submit">Submit</button>
                             <input type="text"  name="hex_code" id="id_hex_code" style="min-width: 500px;" readonly>
                         </form>
                     </div>
@@ -238,7 +238,8 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 console.log(data.binary);
                 $('#id_decoded_error').text('');
                 $('#id_hex_code').val(data.hexcode);
-
+                $("#id_hexcode_btn").prop('value', data.hexcode);
+                $('#id_hexcode_btn').show();
 
             } else {
                     $('#id_decoded_error').text(data.echostatus);
