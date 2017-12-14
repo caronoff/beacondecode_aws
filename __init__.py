@@ -32,9 +32,14 @@ def filterlist():
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
+@app.route('/longfirstgen', methods=['GET'])
+def longfirstgen():
+    hexcode = str(request.args.get('hex_code'))
+    return render_template('encodelongfirstentryform.html', hexcode=hexcode)
+
 @app.route('/long',methods=['GET'])
 def long():
-    rotating_field=str(request.args.get('rotatingfield'))
+
     hexcode=str(request.args.get('hex_code'))
     return redirect(url_for('decoded', hexcode=hexcode))
 
@@ -100,7 +105,6 @@ def about():
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
-
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
@@ -118,6 +122,7 @@ def decoded(hexcode):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
         print(geocoord)
         locationcheck=True
+
     return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
 
 
