@@ -1,4 +1,6 @@
 {% extends "output.html" %}
+{% from "_formhelpers.html" import render_field %}
+
 {% block title %}UIN message{% endblock %}
 
 {% block head %}
@@ -9,10 +11,25 @@
 
 {% block content %}
 
-<div class="form-group" >
-      <form class="form-horizontal"  action="{{ url_for('longfirstgen') }}" >
+<div class="form-group">
+      <form class="form-horizontal"  action="{{ url_for('longfirstgen') }}" method="post" >
         <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
+<dl>
+    {{ render_field(form.username) }}
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    {{ render_field(form.confirm) }}
+    {{ render_field(form.accept_tos) }}
+  </dl>
+
+
+
+
+
+
+
+
         <button class="btn btn-lg btn-primary btn-block" type="submit"  id="encodebutton" >Compute Long Message</button>
       </form>
 </div>

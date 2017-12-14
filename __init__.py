@@ -12,6 +12,20 @@ for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
+
+class RegistrationForm(Form):
+    username = StringField('Username', [validators.Length(min=4, max=25)])
+    email = StringField('Email Address', [validators.Length(min=6, max=35)])
+    password = PasswordField('New Password', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+    accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
+
+
+
+
 @app.route('/processhex', methods=['GET'])
 def processhex():
     protocol=str(request.args.get('protocol'))
@@ -19,6 +33,8 @@ def processhex():
     retdata = t.getresult()
     beacon_gen = t.getgen()
     return jsonify(beacon_gen=beacon_gen,binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
+
+
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
@@ -32,10 +48,19 @@ def filterlist():
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
 
-@app.route('/longfirstgen', methods=['GET'])
+@app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
-    return render_template('encodelongfirstentryform.html', hexcode=hexcode)
+
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(form.username.data, form.email.data,
+                    form.password.data)
+        db_session.add(user)
+        flash('Thanks for registering')
+        return redirect(url_for('about'))
+
+    return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form)
 
 @app.route('/long',methods=['GET'])
 def long():
