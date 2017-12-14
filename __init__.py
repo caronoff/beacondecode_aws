@@ -13,7 +13,7 @@ for key in definitions.countrydic:
 COUNTRIES.sort()
 
 
-class RegistrationForm(Form):
+class FirstGenFormForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email Address', [validators.Length(min=6, max=35)])
     password = PasswordField('New Password', [
@@ -52,12 +52,11 @@ def filterlist():
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
 
-    form = RegistrationForm(request.form)
+    form = FirstGenForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User(form.username.data, form.email.data,
-                    form.password.data)
-        db_session.add(user)
-        flash('Thanks for registering')
+        print(form.username.data)
+        print(hexcode)
+        flash('All entries valid')
         return redirect(url_for('about'))
 
     return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form)
