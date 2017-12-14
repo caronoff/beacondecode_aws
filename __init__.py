@@ -12,7 +12,6 @@ for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
-
 class FirstGenForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email Address', [validators.Length(min=6, max=35)])
@@ -56,8 +55,7 @@ def longfirstgen():
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
-
-        return redirect(url_for('about'))
+        return redirect(url_for('decoded', hexcode=hexcode))
 
     return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form)
 
