@@ -77,7 +77,7 @@ def index():
 
 
 @app.route("/decode")
-def decode_beacon():
+def decode():
     if request.method == 'POST':
         print('post')
         hexcode = str(request.form['hexcode']).strip()
