@@ -56,7 +56,7 @@ def longfirstgen():
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
-        flash('All entries valid')
+
         return redirect(url_for('about'))
 
     return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form)
