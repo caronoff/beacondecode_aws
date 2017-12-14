@@ -76,7 +76,7 @@ def index():
     return render_template('indx.html', title='Home', user='')
 
 
-@app.route("/decode",methods=['GET','POST'])
+@app.route("/decode")
 def decode_beacon():
     if request.method == 'POST':
         print('post')
