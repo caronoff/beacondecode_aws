@@ -1,12 +1,6 @@
 {% extends "output.html" %}
 {% from "_formhelpers.html" import render_field %}
-{% if error %}
-    <ul class=errors>
 
-      <li>{{ error }}</li>
-
-    </ul>
-{% endif %}
 {% block title %}UIN message{% endblock %}
 
 {% block head %}
@@ -18,6 +12,14 @@
 {% block content %}
 
 <div class="form-group">
+
+    {% if error %}
+    <ul class=errors>
+
+      <li>{{ error }}</li>
+
+    </ul>
+{% endif %}
       <form class="form-horizontal"  method="post" >
         <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
