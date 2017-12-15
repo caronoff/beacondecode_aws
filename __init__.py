@@ -50,14 +50,18 @@ def filterlist():
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
-
+    error = None
     form = FirstGenForm(request.form)
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
-        return redirect(url_for('decoded', hexcode=hexcode))
+        if request.form['username']=='craig':
+            flash('You were successfully logged in')
+            return redirect(url_for('decoded', hexcode=hexcode))
+        else:
+            error = 'Invalid credentials'
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form, error=error)
 
 @app.route('/long',methods=['GET'])
 def long():

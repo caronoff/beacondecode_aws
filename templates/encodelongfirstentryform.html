@@ -1,6 +1,12 @@
 {% extends "output.html" %}
 {% from "_formhelpers.html" import render_field %}
+{% if error %}
+    <ul class=errors>
 
+      <li>{{ error }}</li>
+
+    </ul>
+{% endif %}
 {% block title %}UIN message{% endblock %}
 
 {% block head %}
