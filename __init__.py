@@ -102,7 +102,7 @@ def index():
     return render_template('indx.html', title='Home', user='')
 
 
-@app.route("/decode")
+@app.route("/decode",methods=['GET','POST'])
 def decode():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
