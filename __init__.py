@@ -6,6 +6,7 @@ import definitions
 import sys
 from decodefunctions import is_number, dec2bin
 app = Flask(__name__)
+app.secret_key = 'my secret'
 
 COUNTRIES=[]
 for key in definitions.countrydic:
