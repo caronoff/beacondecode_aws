@@ -56,7 +56,7 @@ def longfirstgen():
         print(form.username.data)
         print(hexcode)
         if request.form['username']=='craig':
-            flash('You were successfully logged in')
+            flash('You were successfully logged in'+ str(float(form.latitude.data)))
             return redirect(url_for('decoded', hexcode=hexcode))
         else:
             error = 'Invalid credentials'
