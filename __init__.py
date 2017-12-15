@@ -1,5 +1,5 @@
 from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
+from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField
 import re
 import decodehex2
 import definitions
