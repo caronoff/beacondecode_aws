@@ -18,7 +18,7 @@ class FirstGenForm(Form):
 
 
 
-    latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired()])
+    latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired(), validators.Range(min=0,max=90)])
 
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
