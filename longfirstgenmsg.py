@@ -6,7 +6,7 @@ import time
 
 
 
-from decodefunctions import calcbch
+from decodefunctions import calcbch, bin2hex
 from random import randint
 
 def myround(x, base=5):
@@ -115,22 +115,24 @@ def decode(hex_code):
             binstr = binstr + bch2
 
 
-        nh = decodehex2.bin2hex(binstr[1:])
+        nh = bin2hex(binstr[1:])
         c.processHex(nh)
         newline = '\n{l} {beacon}\n{sn} {deglat}-{ew} {deglong}. \nHex: {longh} {m}.\n15 Hex:{h15}:{test}\n'.format(
             m=c.type, l=c.loctype(), sn=tsouthnorth, ew=teastwest, deglat=latitude / 1000,
-            deglong=longitude / 1000, longh=nh, h15=c.hex15, oldh=line, test=c.hex15 == line.upper(),
+            deglong=longitude / 1000, longh=nh, h15=c.hex15, oldh=hex_code, test=c.hex15 == hex_code.upper(),
             beacon=c.btype())
 
 
 
-        f1.write(newline)
-        f1.write(c.protocoldata() + '\n')
-        f1.write(c.countrydetail.countrydata() + '\n')
-        f1.write(c.identdata() + '\n')
+        print(newline)
+        print(c.protocoldata() + '\n')
+        print(c.countrydetail.countrydata() + '\n')
 
-        f1.write(c.locationdata() + '\n')
-        f1.write('{bch1}\n{bch2}\n'.format(mtype=c.type, bch1=c.bch.writebch1(), bch2=c.bch.writebch2()))
+
+
+
+
+        print('{bch1}\n{bch2}\n'.format(mtype=c.type, bch1=c.bch.writebch1(), bch2=c.bch.writebch2()))
 
     except decodehex2.HexError as e:
         print(e.value, e.message)

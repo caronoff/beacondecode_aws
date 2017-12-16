@@ -182,8 +182,7 @@ class BeaconHex(HexError):
     def protocolflag(self):
         return self._pflag
 
-    def identdata(self):
-        return '  '.join(self._id)
+
         
     def country(self):
         return self.countrydetail._result
