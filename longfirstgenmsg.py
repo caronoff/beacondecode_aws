@@ -95,31 +95,30 @@ def stdloc(lat,long):
         offsets.append(offsetbin)
     return (binlat, binlong, offsets[0], offsets[1])
 
-def natloc(lat,long):
-    latdegrees = round(float(lat / 1000) * 30 , 0)
-    latdegrees = int(float(latdegrees/30))
-    binlat = dec2bin(int(float(latdegrees/30)),7) + dec2bin(int(float((lat-latdegrees)*30)),5)
-
-
-    binlat = dec2bin(int(float(lat / 1000)), 7)
-    (latdegrees-int(float(lat /1000)))
-    longdegrees = round(float(long / 1000) * 30 , 0)
-    binlong = dec2bin(int(float(long / 1000)), 8)
+def natloc(l,lg):
+    lat=float(l/1000)
+    long=float(lg/1000)
+    binlat = dec2bin(int(lat),7) + dec2bin( round(float((lat-int(lat))*30 ),0 ), 5)
+    binlong = dec2bin(int(long), 8) + dec2bin(round(float((long - int(long)) * 30), 0), 5)
     offsets=[]
-    for coord in [(lat,latdegrees),(long,longdegrees)]:
-        dif = float(coord[0] / 1000) - float(coord[1] / 30 )
-        if (dif) > 0:
-            s = '1'
-        else:
-            s = '0'
-        dif = abs(dif)
-        min = int(float(dif * 60))
-        minbin = dec2bin(min , 4)
-        sec = round((dif * 3600),0) - min* 60
-        secbin = dec2bin(round((float(sec / 4)),0), 4)
-        offsetbin = s + minbin + secbin
-        offsets.append(offsetbin)
+    for coord in [l,lg]:
+        offsets.append(min_sec(coord,2,4))
     return (binlat,binlong,offsets[0],offsets[1])
+
+def min_sec(degrees,bits_min, bits_sec):
+    dif = float(degrees - round(degrees,0)) * float ( 30 / 1000 )
+    if (dif) > 0:
+        s = '1'
+    else:
+        s = '0'
+    intdif= int(float( dif / 30))
+    decdif = float( dif / 30) - intdif
+    minutes =int(float(decdif*60))
+    minbin = dec2bin(minutes, bits_min)
+    seconds = round((float(decdif*3600)- float(minutes*60),0)/4)
+    secbin = dec2bin(seconds, bits_sec)
+    return s+minbin+secbin
+
 
 def eltdt_rls(lat,long):
     latdegrees = round(float(lat / 1000) * 2, 0)
