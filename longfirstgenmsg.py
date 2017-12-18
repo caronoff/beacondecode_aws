@@ -169,7 +169,7 @@ def decode(hex_code,latitude,southnorth,longitude,eastwest):
 
         elif c.protocolflag() == 'Location' and c.loctype() in ['ELT-DT Location','RLS Location']:
             bincoord= eltdt_rls(latitude, longitude)
-            binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+            binstr = c.bin[0:25] + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr + bch1 + '11111111' + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
@@ -177,24 +177,18 @@ def decode(hex_code,latitude,southnorth,longitude,eastwest):
 
 
 
-        elif c.protocolflag() == 'Location' and c.loctype() in ['National Location']:
+        elif c.protocolflag() == 'Location' and c.loctype() == 'National Location':
 
             bincoord= natloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + '11111111' + bincoord[2] + bincoord[3]
+            binstr = binstr + bch1 + '110111' + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
 
 
-            co = coord2bin(latitude, longitude, 2, southnorth, eastwest)
-            binstr = c.bin[0:25] + '1' + c.bin[26:59] + co['course']
-            res = co['fine']
-            bch = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch + '110111' + res + '000000'
-            bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
-            binstr = binstr + bch2
+
 
 
         nh = bin2hex(binstr[1:])

@@ -28,8 +28,8 @@
       <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-784">
-              <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state relative-caret-position="508">
+              <caret line="190" column="12" lean-forward="false" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="12" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -184,8 +184,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="604" />
-    <option name="y" value="54" />
+    <option name="x" value="807" />
+    <option name="y" value="44" />
     <option name="width" value="1684" />
     <option name="height" value="937" />
   </component>
@@ -323,13 +323,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
-    </task>
-    <task id="LOCAL-00017" summary="footer relative">
-      <created>1510428608936</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1510428608936</updated>
     </task>
     <task id="LOCAL-00018" summary="footer relative">
       <created>1510428775576</created>
@@ -667,11 +660,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513543094273</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="longfirstgen National Location calculation">
+      <created>1513614766686</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1513614766687</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="604" y="54" width="1684" height="937" extended-state="0" />
+    <frame x="807" y="44" width="1684" height="937" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24160671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -729,7 +729,8 @@
     <MESSAGE value="correct getbaudot bug in length" />
     <MESSAGE value="rotating field for second gen beacon encode" />
     <MESSAGE value="redirects and detect if UIN when encode" />
-    <option name="LAST_COMMIT_MESSAGE" value="redirects and detect if UIN when encode" />
+    <MESSAGE value="longfirstgen National Location calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="longfirstgen National Location calculation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1068,8 +1069,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-784">
-          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state relative-caret-position="508">
+          <caret line="190" column="12" lean-forward="false" selection-start-line="190" selection-start-column="12" selection-end-line="190" selection-end-column="12" />
           <folding>
             <element signature="e#51#82#0" expanded="true" />
           </folding>
