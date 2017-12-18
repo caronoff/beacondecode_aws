@@ -1,5 +1,5 @@
 from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for
-from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField
+from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField
 import re
 import decodehex2
 import definitions
@@ -22,6 +22,9 @@ class FirstGenForm(Form):
     longitude = DecimalField(label='Longitude (0-180)', places=5, validators=[validators.DataRequired(),
                                                                            validators.NumberRange(min=0, max=180,
                                                                                                   message='longitude needs to be 0-180 degrees')])
+
+
+    encodepos = SelectField('Source of Encoded location:', choices = [('0', 'External'),('1', 'Internal')])
 
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
@@ -55,7 +58,7 @@ def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
     error = None
     beacon = decodehex2.BeaconHex(hexcode)
-    print(beacon.protocolflag())
+    loctype = beacon.protocolflag()
     #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
     form = FirstGenForm(request.form)
 
@@ -63,13 +66,16 @@ def longfirstgen():
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
+        if loctype =='User':
+            print(request.form['encodepos'])
+
         if request.form['username']=='craig':
             flash('You were successfully logged in'+ str(float(form.latitude.data)))
             return redirect(url_for('decoded', hexcode=hexcode))
         else:
             error = 'Invalid credentials'
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcode, form=form, error=error)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcode, loctype=loctype, form=form, error=error)
 
 @app.route('/long',methods=['GET'])
 def long():
