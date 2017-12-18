@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/longfirstgenmsg.py" afterPath="$PROJECT_DIR$/longfirstgenmsg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,12 +12,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2322">
+            <state relative-caret-position="2193">
               <caret line="135" column="21" lean-forward="false" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
               <folding />
             </state>
@@ -26,8 +28,8 @@
       <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1024">
-              <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+            <state relative-caret-position="-784">
+              <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -35,21 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="definitions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/definitions.py">
+      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13428">
-              <caret line="746" column="25" lean-forward="true" selection-start-line="746" selection-start-column="25" selection-end-line="746" selection-end-column="25" />
+            <state relative-caret-position="34">
+              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="encodelongsecond.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/encodelongsecond.html">
+      <file leaf-file-name="definitions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/definitions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="12682">
+              <caret line="746" column="25" lean-forward="false" selection-start-line="746" selection-start-column="25" selection-end-line="746" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -58,7 +60,7 @@
       <file leaf-file-name="encodelongfirst.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/encodelongfirst.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="221">
               <caret line="13" column="63" lean-forward="false" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
               <folding />
             </state>
@@ -68,8 +70,8 @@
       <file leaf-file-name="coord.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/coord.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3420">
-              <caret line="194" column="2" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="26" />
+            <state relative-caret-position="3230">
+              <caret line="194" column="2" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -78,11 +80,10 @@
       <file leaf-file-name="decodehex2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/decodehex2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10386">
-              <caret line="581" column="12" lean-forward="true" selection-start-line="581" selection-start-column="12" selection-end-line="581" selection-end-column="12" />
+            <state relative-caret-position="9809">
+              <caret line="581" column="12" lean-forward="false" selection-start-line="581" selection-start-column="12" selection-end-line="581" selection-end-column="12" />
               <folding>
                 <element signature="e#63#92#0" expanded="true" />
-                <marker date="1513446235432" expanded="true" signature="2820:2957" ph="..." />
               </folding>
             </state>
           </provider>
@@ -91,7 +92,7 @@
       <file leaf-file-name="decodefunctions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/decodefunctions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3546">
+            <state relative-caret-position="3349">
               <caret line="198" column="1" lean-forward="false" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
               <folding />
             </state>
@@ -101,7 +102,7 @@
       <file leaf-file-name="Gen2secondgen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gen2secondgen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4860">
+            <state relative-caret-position="4590">
               <caret line="271" column="49" lean-forward="false" selection-start-line="271" selection-start-column="46" selection-end-line="271" selection-end-column="49" />
               <folding>
                 <element signature="e#196#224#0" expanded="true" />
@@ -113,8 +114,8 @@
       <file leaf-file-name="Gen2functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gen2functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9306">
-              <caret line="520" column="56" lean-forward="true" selection-start-line="520" selection-start-column="56" selection-end-line="520" selection-end-column="56" />
+            <state relative-caret-position="8789">
+              <caret line="520" column="56" lean-forward="false" selection-start-line="520" selection-start-column="56" selection-end-line="520" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -183,10 +184,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="354" />
-    <option name="y" value="130" />
-    <option name="width" value="1395" />
-    <option name="height" value="864" />
+    <option name="x" value="604" />
+    <option name="y" value="54" />
+    <option name="width" value="1684" />
+    <option name="height" value="937" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -204,28 +205,21 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <expand>
-            <path>
-              <item name="beacondecode_aws" type="b2602c69:ProjectViewProjectNode" />
-              <item name="beacondecode_aws" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="beacondecode_aws" type="b2602c69:ProjectViewProjectNode" />
-              <item name="beacondecode_aws" type="462c0819:PsiDirectoryNode" />
-              <item name="decodehex2.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="beacondecode_aws" type="b2602c69:ProjectViewProjectNode" />
-              <item name="beacondecode_aws" type="462c0819:PsiDirectoryNode" />
-              <item name="definitions.py" type="8704e2dd:PyFileNode" />
-            </path>
-          </expand>
-          <select />
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beacondecode_aws2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beacondecode_aws2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,7 +245,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.longfirstgenmsg">
-    <configuration name="definitions" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="definitions" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -267,8 +261,9 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
     </configuration>
-    <configuration name="longfirstgenmsg" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="longfirstgenmsg" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -284,6 +279,25 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
     </configuration>
     <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Python.definitions" />
@@ -657,19 +671,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="354" y="130" width="1395" height="864" extended-state="0" />
+    <frame x="604" y="54" width="1684" height="937" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2422045" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24160671" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31709844" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4993954" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28240108" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -866,13 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/signin.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="918">
@@ -976,17 +983,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2322">
-          <caret line="135" column="21" lean-forward="false" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gen2secondgen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4860">
+        <state relative-caret-position="4590">
           <caret line="271" column="49" lean-forward="false" selection-start-line="271" selection-start-column="46" selection-end-line="271" selection-end-column="49" />
           <folding>
             <element signature="e#196#224#0" expanded="true" />
@@ -996,8 +995,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gen2functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9306">
-          <caret line="520" column="56" lean-forward="true" selection-start-line="520" selection-start-column="56" selection-end-line="520" selection-end-column="56" />
+        <state relative-caret-position="8789">
+          <caret line="520" column="56" lean-forward="false" selection-start-line="520" selection-start-column="56" selection-end-line="520" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1006,13 +1005,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1566">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodelongfirst.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
+        <state relative-caret-position="221">
           <caret line="13" column="63" lean-forward="false" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
           <folding />
         </state>
@@ -1020,23 +1018,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/coord.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3420">
-          <caret line="194" column="2" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="26" />
+        <state relative-caret-position="3230">
+          <caret line="194" column="2" lean-forward="false" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/definitions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13428">
-          <caret line="746" column="25" lean-forward="true" selection-start-line="746" selection-start-column="25" selection-end-line="746" selection-end-column="25" />
+        <state relative-caret-position="12682">
+          <caret line="746" column="25" lean-forward="false" selection-start-line="746" selection-start-column="25" selection-end-line="746" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/decodefunctions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3546">
+        <state relative-caret-position="3349">
           <caret line="198" column="1" lean-forward="false" selection-start-line="198" selection-start-column="1" selection-end-line="198" selection-end-column="1" />
           <folding />
         </state>
@@ -1044,19 +1042,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/decodehex2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10386">
-          <caret line="581" column="12" lean-forward="true" selection-start-line="581" selection-start-column="12" selection-end-line="581" selection-end-column="12" />
+        <state relative-caret-position="9809">
+          <caret line="581" column="12" lean-forward="false" selection-start-line="581" selection-start-column="12" selection-end-line="581" selection-end-column="12" />
           <folding>
             <element signature="e#63#92#0" expanded="true" />
-            <marker date="1513446235432" expanded="true" signature="2820:2957" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2193">
+          <caret line="135" column="21" lean-forward="false" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1024">
-          <caret line="84" column="21" lean-forward="false" selection-start-line="84" selection-start-column="21" selection-end-line="84" selection-end-column="21" />
+        <state relative-caret-position="-784">
+          <caret line="106" column="0" lean-forward="true" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
             <element signature="e#51#82#0" expanded="true" />
           </folding>
