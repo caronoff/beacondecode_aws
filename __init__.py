@@ -54,7 +54,11 @@ def filterlist():
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
     error = None
+
+    #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
     form = FirstGenForm(request.form)
+
+
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
@@ -140,6 +144,7 @@ def decoded(hexcode):
     if beacon.type=='uin':
         if beacon.gentype=='first':
             tmp = 'encodelongfirst.html'
+            # redirect with the hexcode, beacon type - different inputs depending on type of first gen
         elif beacon.gentype=='second':
             tmp = 'encodelongsecond.html'
     else:
