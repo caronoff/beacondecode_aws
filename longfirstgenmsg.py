@@ -2,46 +2,9 @@
 from __future__ import division
 import decodehex2
 import definitions
-import time
-
-
 
 from decodefunctions import calcbch, bin2hex,dec2bin
 from random import randint
-
-def myround(x, base=5):
-    return int(base * round(float(x)/base))
-
-
-def roundcoord(coord, minres):
-    deccoord = coord / 1000
-    intcoord = int(deccoord)
-    coordmin_frac = deccoord - intcoord
-    coordmin = coordmin_frac * 60
-    coordsec = (coordmin - int(coordmin)) * 60
-
-    roundcoordmin = myround(coordmin, minres)
-
-    intcoord = int(deccoord)
-    if roundcoordmin == 60:
-        roundcoordmin = 0
-        intcoord = intcoord + 1
-
-    if (-1 * (intcoord + roundcoordmin / 60 - deccoord) * 60) < 0:
-        sign = '0'
-    else:
-        sign = '1'
-
-    binvalues = (bin(int(intcoord + roundcoordmin / 60)),
-                 bin(int(roundcoordmin / minres)),
-                 sign,
-                 bin(int(abs(int(-1 * (intcoord + roundcoordmin / 60 - deccoord) * 60)))),
-                 bin(int(abs(myround(((-1 * (intcoord + roundcoordmin / 60 - deccoord) * 60) - int(
-                     (-1 * (intcoord + roundcoordmin / 60 - deccoord) * 60))) * 60, 4)) / 4))
-                 )
-
-    return binvalues
-
 
 
 def stdloc(lat,long):
