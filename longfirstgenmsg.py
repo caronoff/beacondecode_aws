@@ -42,36 +42,6 @@ def roundcoord(coord, minres):
 
     return binvalues
 
-def coord2bin(latcoord, longcoord, resolution, ns=0, ew=0):
-    blat = roundcoord(latcoord, resolution)
-    blong = roundcoord(longcoord, resolution)
-
-    lat_bin_deg = (7 - len(blat[0][2:])) * '0' + blat[0][2:]
-    long_bin_deg = (8 - len(blong[0][2:])) * '0' + blong[0][2:]
-
-    if resolution == 4:
-        pad_min_len = 4
-        pad_min2_len = 3
-    elif resolution == 15:
-        pad_min_len = 2
-        pad_min2_len = 5
-    elif resolution == 2:
-        pad_min_len = 5
-        pad_min2_len = 2
-
-    lat_bin_min = (pad_min_len - len(blat[1][2:])) * '0' + blat[1][2:]
-    long_bin_min = (pad_min_len - len(blong[1][2:])) * '0' + blong[1][2:]
-
-    lat_bin_min2 = (pad_min2_len - len(blat[3][2:])) * '0' + blat[3][2:]
-    long_bin_min2 = (pad_min2_len - len(blong[3][2:])) * '0' + blong[3][2:]
-
-    lat_bin_sec = (4 - len(blat[4][2:])) * '0' + blat[4][2:]
-    long_bin_sec = (4 - len(blong[4][2:])) * '0' + blong[4][2:]
-    lat = (lat_bin_deg, lat_bin_min, blat[2], lat_bin_min2, lat_bin_sec)
-    long = (long_bin_deg, long_bin_min, blong[2], long_bin_min2, long_bin_sec)
-
-    return dict(course=str(ns) + lat[0] + lat[1] + str(ew) + long[0] + long[1],
-                fine=lat[2] + lat[3] + lat[4] + long[2] + long[3] + long[4])
 
 
 def stdloc(lat,long):
@@ -82,32 +52,18 @@ def stdloc(lat,long):
     offsets = []
     for coord in [(lat, latdegrees), (long, longdegrees)]:
         dif = float(coord[0] / 1000) - float(coord[1] / 4)
-        if (dif) > 0:
-            s = '1'
-        else:
-            s = '0'
-        dif = abs(dif)
-        min = int(float(dif * 60))
-        minbin = dec2bin(min, 5)
-        sec = round((dif * 3600), 0) - min * 60
-        secbin = dec2bin(round((float(sec / 4)), 0), 4)
-        offsetbin = s + minbin + secbin
-        offsets.append(offsetbin)
+        offsets.append(min_sec(dif, 5, 4))
     return (binlat, binlong, offsets[0], offsets[1])
 
 def natloc(l,lg):
     lat=float(l/1000)
     long=float(lg/1000)
     binlat = dec2bin(int(lat),7) + dec2bin( round(float((lat-int(lat))*30 ),0 ), 5)
-    lat_rnd = int(lat) + float(lat-int(lat))*2
     binlong = dec2bin(int(long), 8) + dec2bin(round(float((long - int(long)) * 30), 0), 5)
     offsets=[]
     for coord in [l,lg]:
-        true_coord = float(coord/1000)
-
-        print(int(coord/1000),true_coord,true_coord-int(coord/1000), round(30*(true_coord - int(coord/1000)) ,0)/30 )
-        rnd= true_coord-int(coord/1000) - round(30*(true_coord - int(coord/1000)) ,0)/30
-        print(rnd)
+        print(int(coord/1000),float(coord/1000)-int(coord/1000), round(30*(float(coord/1000) - int(coord/1000)) ,0)/30 )
+        rnd= float(coord/1000)-int(coord/1000) - round(30*(float(coord/1000) - int(coord/1000)) ,0)/30
         offsets.append(min_sec(rnd,2,4))
     return (binlat,binlong,offsets[0],offsets[1])
 
@@ -134,17 +90,8 @@ def eltdt_rls(lat,long):
     offsets=[]
     for coord in [(lat,latdegrees),(long,longdegrees)]:
         dif = float(coord[0] / 1000) - float(coord[1] / 2)
-        if (dif) > 0:
-            s = '1'
-        else:
-            s = '0'
-        dif = abs(dif)
-        min = int(float(dif * 60))
-        minbin = dec2bin(min , 4)
-        sec = round((dif * 3600),0) - min* 60
-        secbin = dec2bin(round((float(sec / 4)),0), 4)
-        offsetbin = s + minbin + secbin
-        offsets.append(offsetbin)
+        offsets.append(min_sec(dif, 4, 4))
+
     return (binlat,binlong,offsets[0],offsets[1])
 
 
@@ -155,20 +102,24 @@ def decode(hex_code,latitude,southnorth,longitude,eastwest):
 
 
         if c.protocolflag() == 'User':
-            bch = calcbch(c.bin[:25] + '1' + c.bin[26:86], "1001101101100111100011", 25, 86, 107)
+            binstr = c.bin[0:25] + '1' + c.bin[26:86]
+            print len(binstr)
+            bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
+            binstr = binstr  + bch1 + '1'
 
-            binstr = c.bin[0:25] + '1' + c.bin[26:86] + bch + '1' + \
-                     coord2bin(latitude, longitude, 4, southnorth, eastwest)['course']
-
+            binstr = binstr + str(southnorth) + dec2bin(int(float(latitude/1000)),7) + \
+                     dec2bin( round(( float(latitude/1000) - int(float(latitude/1000))) * 15,0) ,4) + str(eastwest) + \
+                     dec2bin(int(float(longitude / 1000)), 8) + \
+                     dec2bin(round((float(longitude / 1000) - int(float(longitude / 1000))) * 15, 0), 4)
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
+
 
         elif c.protocolflag() == 'Location' and c.loctype() == 'Standard Location':
             bincoord = stdloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr + bch1 + '110111' + bincoord[2] + bincoord[3]
-
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
@@ -185,28 +136,14 @@ def decode(hex_code,latitude,southnorth,longitude,eastwest):
 
 
         elif c.protocolflag() == 'Location' and c.loctype() == 'National Location':
-
             bincoord= natloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
-            print(len(binstr))
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            print(len(bch1))
             binstr = binstr + bch1 + '110111' + bincoord[2] + bincoord[3] + '000000'
-
-            print(len(bincoord[2]))
-            print(len(bincoord[3]))
-
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
-
-
-
-
-
-        nh = bin2hex(binstr[1:])
-
-        return nh
+        return bin2hex(binstr[1:])
 
     except decodehex2.HexError as e:
         print(e.value, e.message)
@@ -219,7 +156,7 @@ if __name__ == "__main__":
     rls='279A8180103FDFF'
     nat ='A79000000000000'
     nat_loc='27942D56BF81FE0'
-    hex_code = nat_loc
+    hex_code = serialuser
     latitude = randint(0, 89999)
     longitude = randint(0, 179999)
     southnorth = randint(0, 1)
