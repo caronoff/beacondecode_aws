@@ -54,7 +54,8 @@ def filterlist():
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
     error = None
-
+    beacon = decodehex2.Beacon(hexcode)
+    print(beacon.protocolflag())
     #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
     form = FirstGenForm(request.form)
 
