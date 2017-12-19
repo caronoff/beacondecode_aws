@@ -91,7 +91,7 @@ def longfirstgen():
 
     print(form.validate())
     print(request.method)
-    print(request.form.errors())
+
     if request.method == 'POST' and form.validate():
 
 
