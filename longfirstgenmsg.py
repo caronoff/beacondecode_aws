@@ -60,8 +60,8 @@ def eltdt_rls(lat,long):
 
 def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
 
-    latitude=latitude * 1000
-    longitude = longitude * 1000
+    latitude=float(latitude) * 1000
+    longitude = float(longitude) * 1000
     print(type(latitude))
     print(latitude)
     c = decodehex2.BeaconFGB()
