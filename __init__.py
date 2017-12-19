@@ -32,9 +32,9 @@ class FirstGenForm(Form):
     auxdevice = SelectField(label='Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),
                                                                   ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
 
-    rlmtype1 = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Acknowledgement Type-1 not requested and not accepted by this beacon'),('1', 'Acknowledgement Type-1 (automatic acknowledgement) accepted by this beacon')])
+    rlmtypeone = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Acknowledgement Type-1 not requested and not accepted by this beacon'),('1', 'Acknowledgement Type-1 automatic acknowledgement accepted by this beacon')])
 
-    rlmtype2 = SelectField(label='Capability to process RLM Type-1:',choices=[('0', 'Manually generated RLM (such as Acknowledgement Type-2) not requested and not accepted by this beacon'),('1', 'Manually generated RLM (such as Acknowledgement Type-2) accepted by this beacon')])
+    rlmtypetwo = SelectField(label='Capability to process RLM Type-1:',choices=[('0', 'Manually generated RLM such as Acknowledgement Type-2 not requested and not accepted by this beacon'),('1', 'Manually generated RLM such as Acknowledgement Type-2 accepted by this beacon')])
     #
     # feedbacktype1 = SelectField(label='Beacon feedback reception of the RLM Type-1:',choices=[('0', 'Acknowledgement Type-1 not (yet) received by this beacon'),
     #                                                                            ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')])
@@ -116,8 +116,8 @@ def longfirstgen():
         elif ptype == 'RLS Location' :
             suppdata = request.form['encodepos'] + \
                        request.form['auxdevice'] + \
-                       request.form['rlmtype1'] + \
-                       request.form['rlmtype2'] + \
+                       request.form['rlmtypeone'] + \
+                       request.form['rlmtypetwo'] + \
                        request.form['feedbacktype1'] + \
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
