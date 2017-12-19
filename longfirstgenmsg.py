@@ -73,7 +73,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
             binstr = c.bin[0:25] + '1' + c.bin[26:86]
 
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr  + bch1 + '1'
+            binstr = binstr  + bch1 + suppdata
 
             binstr = binstr + str(southnorth) + dec2bin(int(float(latitude/1000)),7) + \
                      dec2bin( round(( float(latitude/1000) - int(float(latitude/1000))) * 15,0) ,4) + str(eastwest) + \
@@ -97,7 +97,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
             bincoord= eltdt_rls(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + '11111111' + bincoord[2] + bincoord[3]
+            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
@@ -107,7 +107,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
             bincoord= natloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + '110111' + bincoord[2] + bincoord[3] + '000000'
+            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3] + '000000'
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 

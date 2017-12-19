@@ -32,15 +32,27 @@
     {{ render_field(form.eastwest) }}
     <br>
     <br>
-    {% if loctype == "User" or loctype == "Standard Location"%}
+    {% if loctype == "User" or loctype == "Standard Location" or loctype == "National Location" or loctype == "RLS Location" %}
     {{ render_field(form.encodepos) }}
     <br>
     {% endif %}
 
-    {% if loctype == "Standard Location" %}
+    {% if loctype == "Standard Location" or loctype == "National Location" or loctype == "RLS Location" %}
     {{ render_field(form.auxdevice) }}
     <br>
     {% endif %}
+
+    {% if loctype == "RLS Location" %}
+    {{ render_field(form.rlmtype1) }}
+    {{ render_field(form.rlmtype2) }}
+    {{ render_field(form.feedbacktype1) }}
+    {{ render_field(form.feedbacktype2) }}
+    {{ render_field(form.rlsprovider) }}
+    <br>
+    {% endif %}
+
+
+
     {{ render_field(form.accept_tos) }}
     <br>
 

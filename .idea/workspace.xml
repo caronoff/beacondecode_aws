@@ -4,6 +4,8 @@
     <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/longfirstgenmsg.py" afterPath="$PROJECT_DIR$/longfirstgenmsg.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodelongfirstentryform.html" afterPath="$PROJECT_DIR$/templates/encodelongfirstentryform.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            <state relative-caret-position="238">
+              <caret line="116" column="23" lean-forward="false" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -27,21 +29,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="encodelongfirstentryform.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/encodelongfirstentryform.html">
+      <file leaf-file-name="definitions.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/definitions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="-12852">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="encodelongfirstentryform.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/encodelongfirstentryform.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
-              <caret line="105" column="83" lean-forward="true" selection-start-line="105" selection-start-column="83" selection-end-line="105" selection-end-column="83" />
+            <state relative-caret-position="253">
+              <caret line="99" column="45" lean-forward="false" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -55,10 +67,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513705167790" expanded="true" signature="63499:63516" ph="..." />
-                <marker date="1513705167790" expanded="true" signature="63499:63534" ph="..." />
-                <marker date="1513705167790" expanded="true" signature="63499:63547" ph="..." />
-                <marker date="1513705167790" expanded="true" signature="63499:63562" ph="..." />
+                <marker date="1513716353484" expanded="true" signature="63951:63968" ph="..." />
+                <marker date="1513716353484" expanded="true" signature="63951:63986" ph="..." />
+                <marker date="1513716353484" expanded="true" signature="63951:63999" ph="..." />
+                <marker date="1513716353484" expanded="true" signature="63951:64014" ph="..." />
               </folding>
             </state>
           </provider>
@@ -79,16 +91,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
               <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="requirements.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/requirements.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -190,16 +192,16 @@
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/decodehex2.py" />
-        <option value="$PROJECT_DIR$/longfirstgenmsg.py" />
         <option value="$PROJECT_DIR$/templates/encodelongfirstentryform.html" />
         <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/longfirstgenmsg.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1012" />
-    <option name="y" value="120" />
-    <option name="width" value="1527" />
+    <option name="x" value="741" />
+    <option name="y" value="99" />
+    <option name="width" value="1688" />
     <option name="height" value="937" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -428,13 +430,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
-    </task>
-    <task id="LOCAL-00039" summary="cleanup selectors in encodehex">
-      <created>1511103398416</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1511103398416</updated>
     </task>
     <task id="LOCAL-00040" summary="group beacon types">
       <created>1511103475311</created>
@@ -772,14 +767,21 @@
       <option name="project" value="LOCAL" />
       <updated>1513704751743</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="longfirstgen National Location calculation">
+      <created>1513713615030</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1513713615030</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1012" y="120" width="1527" height="937" extended-state="0" />
+    <frame x="741" y="99" width="1688" height="937" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2667108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24102871" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31709844" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47037485" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1091,13 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/definitions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12682">
-          <caret line="746" column="25" lean-forward="false" selection-start-line="746" selection-start-column="25" selection-end-line="746" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/decodefunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3349">
@@ -1143,10 +1138,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513705167790" expanded="true" signature="63499:63516" ph="..." />
-            <marker date="1513705167790" expanded="true" signature="63499:63534" ph="..." />
-            <marker date="1513705167790" expanded="true" signature="63499:63547" ph="..." />
-            <marker date="1513705167790" expanded="true" signature="63499:63562" ph="..." />
+            <marker date="1513716353484" expanded="true" signature="63951:63968" ph="..." />
+            <marker date="1513716353484" expanded="true" signature="63951:63986" ph="..." />
+            <marker date="1513716353484" expanded="true" signature="63951:63999" ph="..." />
+            <marker date="1513716353484" expanded="true" signature="63951:64014" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1171,28 +1166,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodelongfirstentryform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="323">
+          <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
+    <entry file="file://$PROJECT_DIR$/definitions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="105" column="83" lean-forward="true" selection-start-line="105" selection-start-column="83" selection-end-line="105" selection-end-column="83" />
-          <folding>
-            <element signature="e#51#82#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-12852">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        <state relative-caret-position="238">
+          <caret line="116" column="23" lean-forward="false" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="99" column="45" lean-forward="false" selection-start-line="99" selection-start-column="45" selection-end-line="99" selection-end-column="45" />
+          <folding>
+            <element signature="e#51#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
