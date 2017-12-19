@@ -84,7 +84,7 @@ class Country:
 
 
 
-class BeaconHex(HexError):
+class BeaconFGB(HexError):
     "decode beacon message hex"
     def __init__(self, strhex=None):
 
@@ -802,10 +802,10 @@ class Beacon(HexError):
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
         elif len(hexcode) == 30 or len(hexcode) == 15:
-            beacon=BeaconHex(hexcode)
+            beacon=BeaconFGB(hexcode)
             self.gentype='first'
         elif len(strhex) == 36:
-            beacon=BeaconHex(hexcode[6:])
+            beacon=BeaconFGB(hexcode[6:])
             self.gentype = 'first'
         else:
             self.type = 'Hex length of ' + str(

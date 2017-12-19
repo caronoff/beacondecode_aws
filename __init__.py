@@ -25,6 +25,7 @@ class FirstGenForm(Form):
 
 
     encodepos = SelectField('Source of Encoded location:', choices = [('0', 'External'),('1', 'Internal')])
+    auxdevice = SelectField('Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),('1', '121.5 MHz auxiliary radio locating device included in beacon')])
 
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
@@ -57,8 +58,12 @@ def filterlist():
 def longfirstgen():
     hexcode = str(request.args.get('hex_code'))
     error = None
-    beacon = decodehex2.BeaconHex(hexcode)
+    beacon = decodehex2.BeaconFGB(hexcode)
     loctype = beacon.protocolflag()
+    if loctype == 'User':
+        ptype= 'User'
+    else:
+        ptype = beacon.loctype()
     #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
     form = FirstGenForm(request.form)
 
@@ -66,16 +71,23 @@ def longfirstgen():
     if request.method == 'POST' and form.validate():
         print(form.username.data)
         print(hexcode)
-        if loctype =='User':
-            print(request.form['encodepos'])
+        if ptype =='User':
+            suppdata=request.form['encodepos']
 
+            # get all data and run longfirstgenmsg.py to compute the hexcode
+
+        elif ptype =='Standard Location':
+            suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
+
+
+        print(suppdata)
         if request.form['username']=='craig':
             flash('You were successfully logged in'+ str(float(form.latitude.data)))
             return redirect(url_for('decoded', hexcode=hexcode))
         else:
             error = 'Invalid credentials'
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcode, loctype=loctype, form=form, error=error)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcode, loctype=ptype, form=form, error=error)
 
 @app.route('/long',methods=['GET'])
 def long():
