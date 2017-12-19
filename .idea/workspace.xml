@@ -40,8 +40,8 @@
       <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="54" column="58" lean-forward="true" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+            <state relative-caret-position="134">
+              <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -55,10 +55,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513703487950" expanded="true" signature="63354:63371" ph="..." />
-                <marker date="1513703487950" expanded="true" signature="63354:63389" ph="..." />
-                <marker date="1513703487950" expanded="true" signature="63354:63402" ph="..." />
-                <marker date="1513703487950" expanded="true" signature="63354:63417" ph="..." />
+                <marker date="1513703623312" expanded="true" signature="63397:63414" ph="..." />
+                <marker date="1513703623312" expanded="true" signature="63397:63432" ph="..." />
+                <marker date="1513703623312" expanded="true" signature="63397:63445" ph="..." />
+                <marker date="1513703623312" expanded="true" signature="63397:63460" ph="..." />
               </folding>
             </state>
           </provider>
@@ -197,8 +197,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="675" />
-    <option name="y" value="107" />
+    <option name="x" value="1012" />
+    <option name="y" value="120" />
     <option name="width" value="1527" />
     <option name="height" value="937" />
   </component>
@@ -428,13 +428,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
-    </task>
-    <task id="LOCAL-00031" summary="footer relative">
-      <created>1510627706555</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1510627706555</updated>
     </task>
     <task id="LOCAL-00032" summary="footer relative">
       <created>1510835638603</created>
@@ -772,11 +765,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513703478529</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="longfirstgen National Location calculation">
+      <created>1513703568646</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1513703568646</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="675" y="107" width="1527" height="937" extended-state="0" />
+    <frame x="1012" y="120" width="1527" height="937" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2667108" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1143,10 +1143,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513703487950" expanded="true" signature="63354:63371" ph="..." />
-            <marker date="1513703487950" expanded="true" signature="63354:63389" ph="..." />
-            <marker date="1513703487950" expanded="true" signature="63354:63402" ph="..." />
-            <marker date="1513703487950" expanded="true" signature="63354:63417" ph="..." />
+            <marker date="1513703623312" expanded="true" signature="63397:63414" ph="..." />
+            <marker date="1513703623312" expanded="true" signature="63397:63432" ph="..." />
+            <marker date="1513703623312" expanded="true" signature="63397:63445" ph="..." />
+            <marker date="1513703623312" expanded="true" signature="63397:63460" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1189,8 +1189,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="54" column="58" lean-forward="true" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+        <state relative-caret-position="134">
+          <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
           <folding>
             <element signature="e#51#82#0" expanded="true" />
           </folding>
