@@ -27,8 +27,11 @@
     {{ render_field(form.username) }}
     <br>
     {{ render_field(form.latitude) }}
+    {{ render_field(form.northsouth) }}
     <br>
     {{ render_field(form.longitude) }}
+    {{ render_field(form.eastwest) }}
+    <br>
     <br>
     {% if loctype == "User" or loctype == "Standard Location"%}
     {{ render_field(form.encodepos) }}
