@@ -33,26 +33,26 @@ class FirstGenForm(Form):
 
     rlmtype1 = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Acknowledgement Type-1 not requested and not accepted by this beacon'),
                                                                                  ('1', 'Acknowledgement Type-1 (automatic acknowledgement) accepted by this beacon')],
-                                                                     validators=[validators.DataRequired()])
+                                                                     )
 
     rlmtype2 = SelectField(label='Capability to process RLM Type-1:',choices=[('0', 'Manually generated RLM (such as Acknowledgement Type-2) not requested and not accepted by this beacon'),
                                                                                ('1', 'Manually generated RLM (such as Acknowledgement Type-2) accepted by this beacon')],
-                                                                    validators=[validators.DataRequired()])
+                                                                    )
 
     feedbacktype1 = SelectField(label='Beacon feedback reception of the RLM Type-1:',choices=[('0', 'Acknowledgement Type-1 not (yet) received by this beacon'),
                                                                                ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')],
-                                                                    validators=[validators.DataRequired()])
+                                                                    )
 
     feedbacktype2 = SelectField(label='Beacon feedback reception of the RLM Type-2:',
                                 choices=[('0', 'Acknowledgement Type-2 not (yet) received by this beacon'),
-                                         ('1', 'Acknowledgement Type-2 received by this beacon')], validators=[validators.DataRequired()])
+                                         ('1', 'Acknowledgement Type-2 received by this beacon')])
 
 
 
     rlsprovider = SelectField(label='RLS Provider Identification:',
                                 choices=[('01', 'GALILEO Return Link Service Provider'),
                                          ('10', 'GLONASS Return Link Service Provider'),
-                                         ('00','Spares (for other RLS providers)')], validators=[validators.DataRequired()])
+                                         ('00','Spares (for other RLS providers)')])
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
 
