@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="longfirstgen National Location calculation">
+    <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/longfirstgenmsg.py" afterPath="$PROJECT_DIR$/longfirstgenmsg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="21" column="132" lean-forward="false" selection-start-line="21" selection-start-column="132" selection-end-line="21" selection-end-column="132" />
+            <state relative-caret-position="56">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -41,8 +40,8 @@
       <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="66" column="12" lean-forward="false" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+            <state relative-caret-position="338">
+              <caret line="122" column="23" lean-forward="false" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="26" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -56,10 +55,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513703986108" expanded="true" signature="63660:63677" ph="..." />
-                <marker date="1513703986108" expanded="true" signature="63660:63695" ph="..." />
-                <marker date="1513703986108" expanded="true" signature="63660:63708" ph="..." />
-                <marker date="1513703986108" expanded="true" signature="63660:63723" ph="..." />
+                <marker date="1513704284244" expanded="true" signature="63557:63574" ph="..." />
+                <marker date="1513704284244" expanded="true" signature="63557:63592" ph="..." />
+                <marker date="1513704284244" expanded="true" signature="63557:63605" ph="..." />
+                <marker date="1513704284244" expanded="true" signature="63557:63620" ph="..." />
               </folding>
             </state>
           </provider>
@@ -430,13 +429,6 @@
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
     </task>
-    <task id="LOCAL-00033" summary="footer relative">
-      <created>1511027255014</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1511027255014</updated>
-    </task>
     <task id="LOCAL-00034" summary="cleanup selectors in encodehex">
       <created>1511028861224</created>
       <option name="number" value="00034" />
@@ -773,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513703767855</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="longfirstgen National Location calculation">
+      <created>1513704004293</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1513704004293</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1144,10 +1143,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513703986108" expanded="true" signature="63660:63677" ph="..." />
-            <marker date="1513703986108" expanded="true" signature="63660:63695" ph="..." />
-            <marker date="1513703986108" expanded="true" signature="63660:63708" ph="..." />
-            <marker date="1513703986108" expanded="true" signature="63660:63723" ph="..." />
+            <marker date="1513704284244" expanded="true" signature="63557:63574" ph="..." />
+            <marker date="1513704284244" expanded="true" signature="63557:63592" ph="..." />
+            <marker date="1513704284244" expanded="true" signature="63557:63605" ph="..." />
+            <marker date="1513704284244" expanded="true" signature="63557:63620" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1180,8 +1179,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="66" column="12" lean-forward="false" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+        <state relative-caret-position="338">
+          <caret line="122" column="23" lean-forward="false" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="26" />
           <folding>
             <element signature="e#51#82#0" expanded="true" />
           </folding>
@@ -1190,8 +1189,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="132" lean-forward="false" selection-start-line="21" selection-start-column="132" selection-end-line="21" selection-end-column="132" />
+        <state relative-caret-position="56">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
           </folding>
