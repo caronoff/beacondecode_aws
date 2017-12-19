@@ -68,7 +68,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
 
         if c.protocolflag() == 'User':
             binstr = c.bin[0:25] + '1' + c.bin[26:86]
-            print len(binstr)
+
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr  + bch1 + '1'
 

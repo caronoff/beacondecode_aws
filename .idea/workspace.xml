@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/longfirstgenmsg.py" afterPath="$PROJECT_DIR$/longfirstgenmsg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodelongfirstentryform.html" afterPath="$PROJECT_DIR$/templates/encodelongfirstentryform.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +15,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -39,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="longfirstgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+            <state relative-caret-position="83">
+              <caret line="54" column="58" lean-forward="true" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
               <folding>
                 <element signature="e#51#82#0" expanded="true" />
               </folding>
@@ -57,10 +55,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513702888090" expanded="true" signature="63463:63480" ph="..." />
-                <marker date="1513702888090" expanded="true" signature="63463:63498" ph="..." />
-                <marker date="1513702888090" expanded="true" signature="63463:63511" ph="..." />
-                <marker date="1513702888090" expanded="true" signature="63463:63526" ph="..." />
+                <marker date="1513703487950" expanded="true" signature="63354:63371" ph="..." />
+                <marker date="1513703487950" expanded="true" signature="63354:63389" ph="..." />
+                <marker date="1513703487950" expanded="true" signature="63354:63402" ph="..." />
+                <marker date="1513703487950" expanded="true" signature="63354:63417" ph="..." />
               </folding>
             </state>
           </provider>
@@ -431,13 +429,6 @@
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
     </task>
-    <task id="LOCAL-00030" summary="footer relative">
-      <created>1510627557818</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1510627557818</updated>
-    </task>
     <task id="LOCAL-00031" summary="footer relative">
       <created>1510627706555</created>
       <option name="number" value="00031" />
@@ -774,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513702411245</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="longfirstgen National Location calculation">
+      <created>1513703478529</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1513703478529</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1145,10 +1143,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513702888090" expanded="true" signature="63463:63480" ph="..." />
-            <marker date="1513702888090" expanded="true" signature="63463:63498" ph="..." />
-            <marker date="1513702888090" expanded="true" signature="63463:63511" ph="..." />
-            <marker date="1513702888090" expanded="true" signature="63463:63526" ph="..." />
+            <marker date="1513703487950" expanded="true" signature="63354:63371" ph="..." />
+            <marker date="1513703487950" expanded="true" signature="63354:63389" ph="..." />
+            <marker date="1513703487950" expanded="true" signature="63354:63402" ph="..." />
+            <marker date="1513703487950" expanded="true" signature="63354:63417" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1179,22 +1177,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#51#82#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="86" column="23" lean-forward="false" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="23" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="54" column="58" lean-forward="true" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
+          <folding>
+            <element signature="e#51#82#0" expanded="true" />
           </folding>
         </state>
       </provider>
