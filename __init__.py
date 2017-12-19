@@ -32,16 +32,13 @@ class FirstGenForm(Form):
                                                                   ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
 
     rlmtype1 = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Acknowledgement Type-1 not requested and not accepted by this beacon'),
-                                                                                 ('1', 'Acknowledgement Type-1 (automatic acknowledgement) accepted by this beacon')],
-                                                                     )
+                                                                                 ('1', 'Acknowledgement Type-1 (automatic acknowledgement) accepted by this beacon')])
 
     rlmtype2 = SelectField(label='Capability to process RLM Type-1:',choices=[('0', 'Manually generated RLM (such as Acknowledgement Type-2) not requested and not accepted by this beacon'),
-                                                                               ('1', 'Manually generated RLM (such as Acknowledgement Type-2) accepted by this beacon')],
-                                                                    )
+                                                                               ('1', 'Manually generated RLM (such as Acknowledgement Type-2) accepted by this beacon')])
 
     feedbacktype1 = SelectField(label='Beacon feedback reception of the RLM Type-1:',choices=[('0', 'Acknowledgement Type-1 not (yet) received by this beacon'),
-                                                                               ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')],
-                                                                    )
+                                                                               ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')])
 
     feedbacktype2 = SelectField(label='Beacon feedback reception of the RLM Type-2:',
                                 choices=[('0', 'Acknowledgement Type-2 not (yet) received by this beacon'),
@@ -102,16 +99,18 @@ def longfirstgen():
         long = request.form['longitude']
         longdir =request.form['eastwest']
         print(ptype)
+
+
         if ptype =='User':
+
             suppdata=request.form['encodepos']
-            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-            return redirect(url_for('decoded', hexcode=hexcodelong))
 
         elif ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-            print('hex',hexcodelong)
-            return redirect(url_for('decoded', hexcode=hexcodelong))
+
+
+
+
 
 
         elif ptype == 'RLS Location' :
@@ -122,16 +121,11 @@ def longfirstgen():
                        request.form['feedbacktype1'] + \
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
-            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-            return redirect(url_for('decoded', hexcode=hexcodelong))
 
 
-
-
-
-
-
-
+        hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+        print('hex', hexcodelong)
+        return redirect(url_for('decoded', hexcode=hexcodelong))
 
     return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, loctype=ptype, form=form, error=error)
 
