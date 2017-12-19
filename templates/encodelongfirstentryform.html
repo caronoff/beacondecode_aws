@@ -39,11 +39,12 @@
 
     {% if loctype == "Standard Location" or loctype == "National Location" or loctype == "RLS Location" %}
     {{ render_field(form.auxdevice) }}
+    {{ render_field(form.rlmtypeone) }}
     <br>
     {% endif %}
 
     {% if loctype == "RLS Location" %}
-    {{ render_field(form.rlmtypeone) }}
+
     {{ render_field(form.rlmtypetwo) }}
     {{ render_field(form.feedbacktype1) }}
     {{ render_field(form.feedbacktype2) }}
