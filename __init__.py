@@ -90,7 +90,7 @@ def longfirstgen():
     #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
     form = FirstGenForm(request.form)
 
-    print(form.validete())
+    print(form.validate())
     print(request.method)
     if request.method == 'POST' and form.validate():
 
