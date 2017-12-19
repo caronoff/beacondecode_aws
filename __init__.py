@@ -26,9 +26,33 @@ class FirstGenForm(Form):
                                                                                                   message='longitude needs to be 0-180 degrees')])
 
 
-    encodepos = SelectField('Source of Encoded location:', choices = [('0', 'External'),('1', 'Internal')])
-    auxdevice = SelectField('Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),('1', '121.5 MHz auxiliary radio locating device included in beacon')])
+    encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
+                                                                            ('1', 'Internal source of encoded location')])
+    auxdevice = SelectField(label='Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),
+                                                                  ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
 
+    rlmtype1 = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Acknowledgement Type-1 not requested and not accepted by this beacon'),
+                                                                                 ('1', 'Acknowledgement Type-1 (automatic acknowledgement) accepted by this beacon')],
+                                                                     validators=[validators.DataRequired()])
+
+    rlmtype2 = SelectField(label='Capability to process RLM Type-1:',choices=[('0', 'Manually generated RLM (such as Acknowledgement Type-2) not requested and not accepted by this beacon'),
+                                                                               ('1', 'Manually generated RLM (such as Acknowledgement Type-2) accepted by this beacon')],
+                                                                    validators=[validators.DataRequired()])
+
+    feedbacktype1 = SelectField(label='Beacon feedback reception of the RLM Type-1:',choices=[('0', 'Acknowledgement Type-1 not (yet) received by this beacon'),
+                                                                               ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')],
+                                                                    validators=[validators.DataRequired()])
+
+    feedbacktype2 = SelectField(label='Beacon feedback reception of the RLM Type-2:',
+                                choices=[('0', 'Acknowledgement Type-2 not (yet) received by this beacon'),
+                                         ('1', 'Acknowledgement Type-2 received by this beacon')], validators=[validators.DataRequired()])
+
+
+
+    rlsprovider = SelectField(label='RLS Provider Identification:',
+                                choices=[('01', 'GALILEO Return Link Service Provider'),
+                                         ('10', 'GLONASS Return Link Service Provider'),
+                                         ('00','Spares (for other RLS providers)')], validators=[validators.DataRequired()])
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
 
@@ -80,11 +104,21 @@ def longfirstgen():
         if ptype =='User':
             suppdata=request.form['encodepos']
 
-            # get all data and run longfirstgenmsg.py to compute the hexcode
-
-        elif ptype =='Standard Location':
+        elif ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-            hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
+
+        elif ptype == 'RLS Location' :
+            suppdata = request.form['encodepos'] + \
+                       request.form['auxdevice'] + \
+                       request.form['rlmtype1'] + \
+                       request.form['rlmtype2'] + \
+                       request.form['feedbacktype1'] + \
+                       request.form['feedbacktype2'] + \
+                       request.form['rlsprovider']
+
+
+
+        hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 
 
