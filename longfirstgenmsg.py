@@ -125,6 +125,7 @@ if __name__ == "__main__":
     nat ='A79000000000000'
     nat_loc='27942D56BF81FE0'
     hex_code = nat_loc
+    suppdat='110111'
     latitude = randint(0, 89999)
     longitude = randint(0, 179999)
     southnorth = randint(0, 1)
@@ -133,9 +134,9 @@ if __name__ == "__main__":
     teastwest = ('East', 'West')[eastwest]
 
 
-    longhex=encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest)
+    longhex=encodelongFGB(hex_code,latitude/1000,southnorth,longitude/1000,eastwest,suppdat)
 
-    c = decodehex2.BeaconHex(longhex)
+    c = decodehex2.BeaconFGB(longhex)
 
     newline = '\n{l} {beacon}\n{sn} {deglat}-{ew} {deglong}. \nHex: {longh} {m}.\n15 Hex:{h15}:{test}\n'.format(
         m=c.type, l=c.loctype(), sn=tsouthnorth, ew=teastwest, deglat=latitude / 1000,
