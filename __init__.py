@@ -103,9 +103,14 @@ def longfirstgen():
         longdir =request.form['eastwest']
         if ptype =='User':
             suppdata=request.form['encodepos']
+            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+            return redirect(url_for('decoded', hexcode=hexcodelong))
 
         elif ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
+            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+            return redirect(url_for('decoded', hexcode=hexcodelong))
+
 
         elif ptype == 'RLS Location' :
             suppdata = request.form['encodepos'] + \
@@ -115,11 +120,12 @@ def longfirstgen():
                        request.form['feedbacktype1'] + \
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
+            hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+            return redirect(url_for('decoded', hexcode=hexcodelong))
 
 
 
-        hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
-        return redirect(url_for('decoded', hexcode=hexcodelong))
+
 
 
 
