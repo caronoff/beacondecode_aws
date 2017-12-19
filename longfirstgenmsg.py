@@ -119,7 +119,7 @@ if __name__ == "__main__":
     rls='279A8180103FDFF'
     nat ='A79000000000000'
     nat_loc='27942D56BF81FE0'
-    hex_code = serialuser
+    hex_code = nat_loc
     latitude = randint(0, 89999)
     longitude = randint(0, 179999)
     southnorth = randint(0, 1)
