@@ -58,8 +58,10 @@ def eltdt_rls(lat,long):
     return (binlat,binlong,offsets[0],offsets[1])
 
 
-def decode(hex_code,latitude,southnorth,longitude,eastwest):
-    c = decodehex2.BeaconHex()
+def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
+    latitude=latitude * 1000
+    longitude = longitude * 1000
+    c = decodehex2.BeaconFGB()
     try:
         c.processHex(str(hex_code.strip()))
 
@@ -82,7 +84,7 @@ def decode(hex_code,latitude,southnorth,longitude,eastwest):
             bincoord = stdloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + '110111' + bincoord[2] + bincoord[3]
+            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
@@ -128,7 +130,7 @@ if __name__ == "__main__":
     teastwest = ('East', 'West')[eastwest]
 
 
-    longhex=decode(hex_code,latitude,southnorth,longitude,eastwest)
+    longhex=encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest)
 
     c = decodehex2.BeaconHex(longhex)
 

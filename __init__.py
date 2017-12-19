@@ -1,5 +1,6 @@
 from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for
-from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField
+from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
+from longfirstgenmsg import encodelongFGB
 import re
 import decodehex2
 import definitions
@@ -17,7 +18,8 @@ class FirstGenForm(Form):
     username = StringField('Username', [validators.Length(min=4, max=25)])
 
 
-
+    northsouth=RadioField(label='Latitude direction:', choices = [('0', 'North'),('1', 'South')])
+    eastwest=RadioField(label='Longitude direction:', choices = [('0', 'East'),('1', 'West')])
     latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired(),validators.NumberRange(min=0,max=90, message='latitude needs to be 0-90 degrees')])
     longitude = DecimalField(label='Longitude (0-180)', places=5, validators=[validators.DataRequired(),
                                                                            validators.NumberRange(min=0, max=180,
@@ -56,9 +58,9 @@ def filterlist():
 
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
-    hexcode = str(request.args.get('hex_code'))
+    hexcodeUIN = str(request.args.get('hex_code'))
     error = None
-    beacon = decodehex2.BeaconFGB(hexcode)
+    beacon = decodehex2.BeaconFGB(hexcodeUIN)
     loctype = beacon.protocolflag()
     if loctype == 'User':
         ptype= 'User'
@@ -70,7 +72,11 @@ def longfirstgen():
 
     if request.method == 'POST' and form.validate():
         print(form.username.data)
-        print(hexcode)
+
+        lat = request.form['latitude']
+        latdir=request.form['northsouth']
+        long = request.form['longitude']
+        longdir =request.form['eastwest']
         if ptype =='User':
             suppdata=request.form['encodepos']
 
@@ -78,16 +84,17 @@ def longfirstgen():
 
         elif ptype =='Standard Location':
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
+            hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
 
 
         print(suppdata)
         if request.form['username']=='craig':
             flash('You were successfully logged in'+ str(float(form.latitude.data)))
-            return redirect(url_for('decoded', hexcode=hexcode))
+            return redirect(url_for('decoded', hexcode=hexcodelong))
         else:
             error = 'Invalid credentials'
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcode, loctype=ptype, form=form, error=error)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, loctype=ptype, form=form, error=error)
 
 @app.route('/long',methods=['GET'])
 def long():
