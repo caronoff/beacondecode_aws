@@ -15,7 +15,7 @@ for key in definitions.countrydic:
 COUNTRIES.sort()
 
 class FirstGenForm(Form):
-    username = StringField('Username', [validators.Length(min=4, max=25)])
+
 
 
     northsouth=RadioField(label='Latitude direction:', choices = [('0', 'North'),('1', 'South')],validators=[validators.DataRequired()])
@@ -87,12 +87,8 @@ def longfirstgen():
             hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
 
 
-        print(suppdata)
-        if request.form['username']=='craig':
-            flash('You were successfully logged in'+ str(float(form.latitude.data)))
-            return redirect(url_for('decoded', hexcode=hexcodelong))
-        else:
-            error = 'Invalid credentials'
+
+
 
     return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, loctype=ptype, form=form, error=error)
 
