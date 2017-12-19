@@ -71,7 +71,7 @@ def longfirstgen():
 
 
     if request.method == 'POST' and form.validate():
-        print(form.username.data)
+
 
         lat = request.form['latitude']
         latdir=request.form['northsouth']
