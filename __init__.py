@@ -85,7 +85,7 @@ def longfirstgen():
         elif ptype =='Standard Location':
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
             hexcodelong=encodelongFGB(hexcodeUIN,lat,latdir,long,longdir, suppdata)
-            return redirect(url_for('decoded', hexcode=hexcodelong))
+        return redirect(url_for('decoded', hexcode=hexcodelong))
 
 
 
