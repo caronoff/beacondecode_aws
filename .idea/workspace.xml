@@ -18,8 +18,8 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="92" column="21" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+            <state relative-caret-position="228">
+              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
               <folding>
                 <element signature="e#0#90#0" expanded="true" />
               </folding>
@@ -40,8 +40,28 @@
       <file leaf-file-name="encodelongfirstentryform.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/encodelongfirstentryform.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+            <state relative-caret-position="331">
+              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="error.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/error.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-127">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_formhelpers.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/_formhelpers.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,10 +85,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513718014343" expanded="true" signature="63788:63805" ph="..." />
-                <marker date="1513718014343" expanded="true" signature="63788:63823" ph="..." />
-                <marker date="1513718014343" expanded="true" signature="63788:63836" ph="..." />
-                <marker date="1513718014343" expanded="true" signature="63788:63851" ph="..." />
+                <marker date="1513718375071" expanded="true" signature="64259:64276" ph="..." />
+                <marker date="1513718375071" expanded="true" signature="64259:64294" ph="..." />
+                <marker date="1513718375071" expanded="true" signature="64259:64307" ph="..." />
+                <marker date="1513718375071" expanded="true" signature="64259:64322" ph="..." />
               </folding>
             </state>
           </provider>
@@ -79,26 +99,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
               <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Project_Default.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="encodelongsecond.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/encodelongsecond.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -244,6 +244,20 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="beacondecode_aws2">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="beacondecode_aws2">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="templates">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -428,20 +442,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
-    </task>
-    <task id="LOCAL-00048" summary="serial user protocol">
-      <created>1511669478854</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1511669478854</updated>
-    </task>
-    <task id="LOCAL-00049" summary="error messages">
-      <created>1511671894151</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1511671894151</updated>
     </task>
     <task id="LOCAL-00050" summary="error messages">
       <created>1511731599482</created>
@@ -772,7 +772,21 @@
       <option name="project" value="LOCAL" />
       <updated>1513718011516</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="longfirstgen National Location calculation">
+      <created>1513718039873</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1513718039873</updated>
+    </task>
+    <task id="LOCAL-00098" summary="longfirstgen National Location calculation">
+      <created>1513718309916</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1513718309916</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -842,20 +856,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/css/signin.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="51" column="20" lean-forward="false" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3600">
@@ -1136,10 +1136,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513718014343" expanded="true" signature="63788:63805" ph="..." />
-            <marker date="1513718014343" expanded="true" signature="63788:63823" ph="..." />
-            <marker date="1513718014343" expanded="true" signature="63788:63836" ph="..." />
-            <marker date="1513718014343" expanded="true" signature="63788:63851" ph="..." />
+            <marker date="1513718375071" expanded="true" signature="64259:64276" ph="..." />
+            <marker date="1513718375071" expanded="true" signature="64259:64294" ph="..." />
+            <marker date="1513718375071" expanded="true" signature="64259:64307" ph="..." />
+            <marker date="1513718375071" expanded="true" signature="64259:64322" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1170,6 +1170,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/error.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/_formhelpers.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/longfirstgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1182,16 +1198,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodelongfirstentryform.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="51" column="9" lean-forward="false" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
+        <state relative-caret-position="331">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="92" column="21" lean-forward="false" selection-start-line="92" selection-start-column="21" selection-end-line="92" selection-end-column="21" />
+        <state relative-caret-position="228">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding>
             <element signature="e#0#90#0" expanded="true" />
           </folding>
