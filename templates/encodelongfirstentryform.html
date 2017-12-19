@@ -30,8 +30,13 @@
     <br>
     {{ render_field(form.longitude) }}
     <br>
-    {% if loctype == "User" %}
+    {% if loctype == "User" or loctype == "Standard Location"%}
     {{ render_field(form.encodepos) }}
+    <br>
+    {% endif %}
+
+    {% if loctype == "Standard Location" %}
+    {{ render_field(form.auxdevice) }}
     <br>
     {% endif %}
     {{ render_field(form.accept_tos) }}
