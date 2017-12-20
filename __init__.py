@@ -86,6 +86,7 @@ def longfirstgen():
     if loctype == 'User':
         ptype= 'User'
         form = FirstGenForm(request.form)
+        suppdata = request.form['encodepos']
     else:
         ptype = beacon.loctype()
         form = FirstGenRLS(request.form)
@@ -99,13 +100,13 @@ def longfirstgen():
         latdir=request.form['northsouth']
         long = request.form['longitude']
         longdir =request.form['eastwest']
-        print(ptype)
 
 
-        if ptype =='User':
-            suppdata=request.form['encodepos']
 
-        elif ptype in ['Standard Location', 'National Location']:
+
+
+
+        if ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
 
         elif ptype == 'RLS Location' :
