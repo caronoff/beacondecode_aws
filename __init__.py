@@ -27,6 +27,10 @@ class FirstGenForm(Form):
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
                                                                             ('1', 'Internal source of encoded location')])
 
+class FirstGenStd(FirstGenForm):
+    auxdevice = SelectField(label='Auxiliary device:',
+                            choices=[('0', 'No auxiliary radio locating device included in beacon'),
+                                     ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
 
 
 class FirstGenRLS(FirstGenForm):
@@ -86,14 +90,15 @@ def longfirstgen():
     if loctype == 'User':
         ptype= 'User'
         form = FirstGenForm(request.form)
-        suppdata = request.form['encodepos']
-
     else:
         ptype = beacon.loctype()
-        form = FirstGenRLS(request.form)
+        if ptype in ['Standard Location', 'National Location']:
+            form= FirstGenStd(request.form)
+        elif ptype=='RLS Location':
+            form = FirstGenRLS(request.form)
 
 
-    print(request.method,ptype=='RLS Location')
+
 
     if request.method == 'POST' and form.validate():
 
@@ -105,8 +110,8 @@ def longfirstgen():
 
 
         if ptype == 'User':
-            pass
-            #suppdata = request.form['encodepos']
+
+            suppdata = request.form['encodepos']
 
 
         elif ptype in ['Standard Location', 'National Location']:
