@@ -51,7 +51,6 @@ class FirstGenRLS(FirstGenForm):
                                          ('10', 'GLONASS Return Link Service Provider'),
                                          ('00','Spares (for other RLS providers)')])
 
-    accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
 
 
@@ -86,10 +85,10 @@ def longfirstgen():
     loctype = beacon.protocolflag()
     if loctype == 'User':
         ptype= 'User'
+        form = FirstGenForm(request.form)
     else:
         ptype = beacon.loctype()
-    #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
-    form = FirstGenRLS(request.form)
+        form = FirstGenRLS(request.form)
 
 
     print(request.method)
