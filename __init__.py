@@ -86,16 +86,19 @@ def longfirstgen():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
     beacon = decodehex2.BeaconFGB(hexcodeUIN)
-    loctype = beacon.protocolflag()
-    if loctype == 'User':
-        ptype= 'User'
+
+    ptype = beacon.loctype()
+
+
+    if ptype == 'User':
         form = FirstGenForm(request.form)
-    else:
-        ptype = beacon.loctype()
-        if ptype in ['Standard Location', 'National Location']:
-            form= FirstGenStd(request.form)
-        elif ptype=='RLS Location':
-            form = FirstGenRLS(request.form)
+    elif ptype in ['Standard Location', 'National Location']:
+        form= FirstGenStd(request.form)
+    elif ptype=='RLS Location':
+        form = FirstGenRLS(request.form)
+    elif ptype == 'National User':
+        return redirect(url_for('decoded', hexcode=hexcodeUIN+'0'*15))
+
 
 
 

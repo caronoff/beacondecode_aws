@@ -144,7 +144,7 @@ class BeaconFGB(HexError):
         self.id=()
         
         if  self.type !='uin':
-            formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])            
+            formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
         
@@ -391,6 +391,7 @@ class BeaconFGB(HexError):
         #   Bit 37-39: 100  National User Protocol                                   #
         ##############################################################################        
         elif typeuserprotbin=='100' :
+            self._loctype = 'National User'
             self._protocol=(self.bin[26],definitions.protocol[self.bin[26]],typeuserprotbin,definitions.userprottype[typeuserprotbin])
             
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
