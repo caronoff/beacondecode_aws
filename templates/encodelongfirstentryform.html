@@ -35,10 +35,9 @@
     {{ render_field(form.encodepos) }}
     <br>
 
-{% if ptype!='User' %}
+{% if ptype not in ['User','ELT-DT Location' ] %}
   {{ render_field(form.auxdevice) }}
     <br>
-
  {% endif %}
 
     {% if ptype=='RLS Location' %}
