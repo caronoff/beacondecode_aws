@@ -138,8 +138,8 @@ def longfirstgen():
                        request.form['rlsprovider']
         elif ptype == 'ELT-DT Location':
             suppdata = request.form['meansactivation'] + request.form['encodedaltitude']
-            print(form.data.get('freshness'))
-            if request.form['freshness']==True:
+            print(form.data.get('freshness'),'sd')
+            if request.form['freshness']=='True':
                 suppdata = suppdata + '11'
             else:
                 suppdata = suppdata + '00'
