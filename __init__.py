@@ -92,7 +92,7 @@ def longfirstgen():
         form = FirstGenRLS(request.form)
 
 
-    print(request.method)
+    print(request.method,ptype=='RLS Location')
 
     if request.method == 'POST' and form.validate():
 
