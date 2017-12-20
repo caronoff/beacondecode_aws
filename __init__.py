@@ -138,13 +138,11 @@ def longfirstgen():
                        request.form['rlsprovider']
         elif ptype == 'ELT-DT Location':
             suppdata = request.form['meansactivation'] + request.form['encodedaltitude']
-            print(form.data.get('freshness'),'sd')
             if form.data.get('freshness')==True:
-                print('it is true')
                 suppdata = suppdata + '11'
             else:
                 suppdata = suppdata + '00'
-            print(suppdata)
+
 
 
         hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
