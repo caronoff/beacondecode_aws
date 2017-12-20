@@ -56,7 +56,26 @@ class FirstGenRLS(FirstGenForm):
                                          ('00','Spares (for other RLS providers)')])
 
 
+class FirstGenELTDT(FirstGenForm):
+    meansactivation=SelectField(label='Means of activation', choices=[('00','Manual activation by user'),('01','Automatic activation by the beacon'),('10','Automatic activation by external means'),('11','Spare')])
 
+    encodedaltitude= SelectField(label='Encoded altitude', choices=[('0000', 'altitude is less than 400 m (1312 ft)'),
+                                                                    ('0001', 'altitude is between 400 m (1312 ft) and 800 m (2625 ft)'),
+                                                                    ('0010', 'altitude is between 800 m (2625 ft) and 1200 m (3937 ft)'),
+                                                                     ('0011','altitude is between 1200 m (3937 ft) and 1600 m (5249 ft)'),
+                                                                     ('0100','altitude is between 1600 m (5249 ft) and 2200 m (7218 ft)'),
+                                                                     ('0101','altitude is between 2200 m (7218 ft) and 2800 m (9186 ft)'),
+                                                                     ('0110','altitude is between 2800 m (9186 ft) and 3400 m (11155 ft)'),
+                                                                     ('0111','altitude is between 3400 m (11155 ft) and 4000 m (13123 ft)'),
+                                                                     ('1000','altitude is between 4000 m (13123 ft) and 4800 m (15748 ft)'),
+                                                                     ('1001','altitude is between 4800 m (15748 ft) and 5600 m (18373 ft)'),
+                                                                    ('1010','altitude is between 5600 m (18373 ft) and 6600 m (21654 ft)'),
+                                                                    ('1011','altitude is between 6600 m (21654 ft) and 7600 m (24934 ft)'),
+                                                                    ('1100','altitude is between 7600 m (24934 ft) and 8800 m (28871 ft)'),
+                                                                    ('1101','altitude is between 8800 m (28871 ft) and 10000 m (32808 ft)'),
+                                                                    ('1110','altitude is greater than 10000 m (32808 ft)'),
+                                                                    ('1111','default value if altitude information is not available')])
+    freshness = BooleanField(label='encoded location is fresh')
 
 
 @app.route('/processhex', methods=['GET'])
@@ -86,16 +105,15 @@ def longfirstgen():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
     beacon = decodehex2.BeaconFGB(hexcodeUIN)
-
     ptype = beacon.loctype()
-
-
     if ptype == 'User':
         form = FirstGenForm(request.form)
     elif ptype in ['Standard Location', 'National Location']:
         form= FirstGenStd(request.form)
     elif ptype=='RLS Location':
         form = FirstGenRLS(request.form)
+    elif ptype == 'ELT-DT Location':
+        form = FirstGenELTDT(request.form)
     elif ptype == 'National User':
         return redirect(url_for('decoded', hexcode=hexcodeUIN+'0'*15))
 
@@ -109,7 +127,6 @@ def longfirstgen():
         latdir=request.form['northsouth']
         long = request.form['longitude']
         longdir =request.form['eastwest']
-
 
 
         if ptype == 'User':
@@ -128,6 +145,13 @@ def longfirstgen():
                        request.form['feedbacktype1'] + \
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
+
+        elif ptype == 'ELT-DT Location':
+            suppdata = request.form['meansactivation'] + request.form['encodedaltitude']
+            if request.form['freshness']==True:
+                suppdata = suppdata + '11'
+            else:
+                suppdata = suppdata + '00'
 
 
         hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)

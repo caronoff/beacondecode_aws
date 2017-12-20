@@ -36,29 +36,26 @@
     <br>
 
 {% if ptype!='User' %}
-
   {{ render_field(form.auxdevice) }}
     <br>
-
 
  {% endif %}
 
     {% if ptype=='RLS Location' %}
-
-
     {{ render_field(form.rlmtypeone) }}
     {{ render_field(form.rlmtypetwo) }}
     {{ render_field(form.feedbacktype1) }}
     {{ render_field(form.feedbacktype2) }}
     {{ render_field(form.rlsprovider) }}
     <br>
+    {% endif %}
+    {% if ptype=='ELT-DT Location' %}
+    {{ render_field(form.meansactivation) }}
+    {{ render_field(form.encodedaltitude) }}
+    {{ render_field(form.freshness) }}
 
 
-
-{% endif %}
-
-
-
+    {% endif %}
   </dl>
 
 
