@@ -118,16 +118,11 @@ def longfirstgen():
         latdir=request.form['northsouth']
         long = request.form['longitude']
         longdir =request.form['eastwest']
-
-
         if ptype == 'User':
-
             suppdata = request.form['encodepos']
-
 
         elif ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-
         elif ptype == 'RLS Location' :
             suppdata = request.form['encodepos'] + \
                        request.form['auxdevice'] + \
@@ -142,8 +137,6 @@ def longfirstgen():
                 suppdata = suppdata + '11'
             else:
                 suppdata = suppdata + '00'
-
-
 
         hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
         print('hex', hexcodelong)
