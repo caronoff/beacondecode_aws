@@ -16,8 +16,8 @@ COUNTRIES.sort()
 
 class FirstGenForm(Form):
 
-    northsouth=RadioField(label='Latitude direction:', choices = [('0', 'North'),('1', 'South')],validators=[validators.DataRequired()])
-    eastwest=RadioField(label='Longitude direction:', choices = [('0', 'East'),('1', 'West')],validators=[validators.DataRequired()])
+    northsouth=RadioField(label='', choices = [('0', 'North'),('1', 'South')],validators=[validators.DataRequired()])
+    eastwest=RadioField(label='', choices = [('0', 'East'),('1', 'West')],validators=[validators.DataRequired()])
     latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired(),validators.NumberRange(min=0,max=90, message='latitude needs to be 0-90 degrees')])
     longitude = DecimalField(label='Longitude (0-180)', places=5, validators=[validators.DataRequired(),
                                                                            validators.NumberRange(min=0, max=180,

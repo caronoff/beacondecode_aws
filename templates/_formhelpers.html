@@ -1,10 +1,10 @@
 {% macro render_field(field) %}
-<table>
+{% if field.type != "RadioField" %}
 <tr>
   <td>{{ field.label }}</td>
   <td>{{ field(**kwargs)|safe }}</td>
 </tr>
-</table>
+{% endif %}
 {% if field.type == "RadioField" %}
 {% for subfield in field %}
     <tr>
