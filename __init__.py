@@ -16,8 +16,6 @@ COUNTRIES.sort()
 
 class FirstGenForm(Form):
 
-
-
     northsouth=RadioField(label='Latitude direction:', choices = [('0', 'North'),('1', 'South')],validators=[validators.DataRequired()])
     eastwest=RadioField(label='Longitude direction:', choices = [('0', 'East'),('1', 'West')],validators=[validators.DataRequired()])
     latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired(),validators.NumberRange(min=0,max=90, message='latitude needs to be 0-90 degrees')])
@@ -29,9 +27,11 @@ class FirstGenForm(Form):
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
                                                                             ('1', 'Internal source of encoded location')])
 
+
+
+class FirstGenRLS(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),
                                                                   ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
-
 
     rlmtypeone = SelectField(label='Capability to process RLM Type-1:', choices = [('0', 'Type-1 not requested and not accepted by this beacon'),('1', 'Acknowledgement Type-1 automatic acknowledgement accepted by this beacon')])
 
@@ -50,6 +50,7 @@ class FirstGenForm(Form):
                                 choices=[('01', 'GALILEO Return Link Service Provider'),
                                          ('10', 'GLONASS Return Link Service Provider'),
                                          ('00','Spares (for other RLS providers)')])
+
     accept_tos = BooleanField('I accept the TOS', [validators.DataRequired()])
 
 
@@ -88,13 +89,12 @@ def longfirstgen():
     else:
         ptype = beacon.loctype()
     #various different forms required depending upon the beacon type.  All requiring coordinates for location plus various supplemental bits
-    form = FirstGenForm(request.form)
+    form = FirstGenRLS(request.form)
 
-    print(form.validate())
+
     print(request.method)
 
     if request.method == 'POST' and form.validate():
-
 
         lat = request.form['latitude']
         latdir=request.form['northsouth']
@@ -104,16 +104,10 @@ def longfirstgen():
 
 
         if ptype =='User':
-
             suppdata=request.form['encodepos']
 
         elif ptype in ['Standard Location', 'National Location']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-
-
-
-
-
 
         elif ptype == 'RLS Location' :
             suppdata = request.form['encodepos'] + \
