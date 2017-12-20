@@ -124,7 +124,7 @@ def longfirstgen():
         print('hex', hexcodelong)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, loctype=ptype, form=form, error=error)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error)
 
 @app.route('/long',methods=['GET'])
 def long():
