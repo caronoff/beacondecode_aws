@@ -136,9 +136,9 @@ def longfirstgen():
                        request.form['feedbacktype1'] + \
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
-
         elif ptype == 'ELT-DT Location':
             suppdata = request.form['meansactivation'] + request.form['encodedaltitude']
+            print(form.data.get('freshness'))
             if request.form['freshness']==True:
                 suppdata = suppdata + '11'
             else:

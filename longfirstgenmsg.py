@@ -124,8 +124,9 @@ if __name__ == "__main__":
     rls='279A8180103FDFF'
     nat ='A79000000000000'
     nat_loc='27942D56BF81FE0'
-    hex_code = eltdt
-    suppdat='11111110'
+    hex_code = std
+    #suppdat='11111110'
+    suppdat = '110111'
     latitude = randint(0, 89999)
     longitude = randint(0, 179999)
     southnorth = randint(0, 1)
