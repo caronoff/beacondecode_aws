@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,10 +84,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1513785252106" expanded="true" signature="64331:64348" ph="..." />
-                <marker date="1513785252106" expanded="true" signature="64331:64366" ph="..." />
-                <marker date="1513785252106" expanded="true" signature="64331:64379" ph="..." />
-                <marker date="1513785252106" expanded="true" signature="64331:64394" ph="..." />
+                <marker date="1513785390755" expanded="true" signature="64456:64473" ph="..." />
+                <marker date="1513785390755" expanded="true" signature="64456:64491" ph="..." />
+                <marker date="1513785390755" expanded="true" signature="64456:64504" ph="..." />
+                <marker date="1513785390755" expanded="true" signature="64456:64519" ph="..." />
               </folding>
             </state>
           </provider>
@@ -443,13 +442,6 @@
       <option name="presentableId" value="Default" />
       <updated>1510413336175</updated>
     </task>
-    <task id="LOCAL-00065" summary="redirects and detect if UIN when encode">
-      <created>1513543094272</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1513543094273</updated>
-    </task>
     <task id="LOCAL-00066" summary="longfirstgen National Location calculation">
       <created>1513614766686</created>
       <option name="number" value="00066" />
@@ -786,7 +778,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513785153896</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="longfirstgen National Location calculation">
+      <created>1513785393238</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1513785393238</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1133,10 +1132,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1513785252106" expanded="true" signature="64331:64348" ph="..." />
-            <marker date="1513785252106" expanded="true" signature="64331:64366" ph="..." />
-            <marker date="1513785252106" expanded="true" signature="64331:64379" ph="..." />
-            <marker date="1513785252106" expanded="true" signature="64331:64394" ph="..." />
+            <marker date="1513785390755" expanded="true" signature="64456:64473" ph="..." />
+            <marker date="1513785390755" expanded="true" signature="64456:64491" ph="..." />
+            <marker date="1513785390755" expanded="true" signature="64456:64504" ph="..." />
+            <marker date="1513785390755" expanded="true" signature="64456:64519" ph="..." />
           </folding>
         </state>
       </provider>
