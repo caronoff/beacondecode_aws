@@ -152,6 +152,7 @@ def longfirstgen():
                 suppdata = suppdata + '11'
             else:
                 suppdata = suppdata + '00'
+            print(suppdata)
 
 
         hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
