@@ -5,6 +5,15 @@
   <td>{{ field(**kwargs)|safe }}</td>
 </tr>
 </table>
+{% if field.type == "RadioField" %}
+{% for subfield in field %}
+    <tr>
+        <td>{{ subfield }}</td>
+        <td>{{ subfield.label }}</td>
+    </tr>
+{% endfor %}
+
+{% endif %}
   {% if field.errors %}
     <ul class=errors>
     {% for error in field.errors %}
