@@ -27,7 +27,7 @@ class FirstGenForm(Form):
 
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
                                                                             ('1', 'Internal source of encoded location')])
-class SGB_g008(FirstGenForm):
+class SGB(FirstGenForm):
     homingdevice = SelectField(label='Homing device:',
                             choices=[('0', 'No auxiliary locating device included in beacon'),
                                      ('1', 'Auxiliary locating device included in beacon')])
@@ -35,7 +35,14 @@ class SGB_g008(FirstGenForm):
     selftest = SelectField(label='Self-Test:',
                                choices=[('0', 'Normal beacon operation'),
                                         ('1', 'Self-test transmition')])
+    beacontype= SelectField(label='Beacon type:',
+                               choices=[('00', 'ELT'),
+                                        ('01', 'EPIRB'),
+                                        ('10', 'PLB')])
 
+
+class SGB_g008(SGB):
+    pass
 
 class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
@@ -126,7 +133,7 @@ def longSGB():
         long = request.form['longitude']
         longdir =request.form['eastwest']
 
-        hexcodelong = request.form['homingdevice'] + request.form['selftest']
+        hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
         print('hex', hexcodelong)
         #return redirect(url_for('decoded', hexcode=hexcodelong))
