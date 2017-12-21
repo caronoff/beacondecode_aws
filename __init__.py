@@ -131,7 +131,7 @@ def longSGB():
         print('hex', hexcodelong)
         #return redirect(url_for('decoded', hexcode=hexcodelong))
 
-    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error)
+    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error)
 
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
