@@ -117,7 +117,7 @@ def longSGB():
 
 
     rotatefld=str(request.args.get('rotatingfield'))
-    print(rotatefld)
+    print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form)}
     form = forms[rotatefld]
     if request.method == 'POST' and form.validate():
