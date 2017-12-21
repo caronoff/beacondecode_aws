@@ -35,6 +35,11 @@ class SGB(FirstGenForm):
     selftest = SelectField(label='Self-Test:',
                                choices=[('0', 'Normal beacon operation'),
                                         ('1', 'Self-test transmition')])
+
+    testprotocol = SelectField(label='Test protocol:',
+                           choices=[('0', 'Normal beacon operation'),
+                                    ('1', 'Test protocol transmition')])
+
     beacontype= SelectField(label='Beacon type:',
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
