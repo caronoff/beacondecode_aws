@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/beacondecode_aws.iml" afterPath="$PROJECT_DIR$/.idea/beacondecode_aws.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="efafads">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/longsecondgenmsg.py" afterPath="$PROJECT_DIR$/longsecondgenmsg.py" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +61,18 @@
       <file leaf-file-name="longsecondgenmsg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/longsecondgenmsg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+            <state relative-caret-position="216">
+              <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="error.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/error.log">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="324">
+              <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -131,49 +128,7 @@
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>air</find>
-      <find>Brand</find>
-      <find>submit()</find>
-      <find>id_hexcode</find>
-      <find>calc</find>
-      <find>bch</find>
-      <find>bin2h</find>
-      <find>indentdata</find>
-      <find>self._id</find>
-      <find>eltdt</find>
-      <find>line</find>
-      <find>coord2bin</find>
-      <find>roundcoord</find>
-      <find>myround</find>
-      <find>BeaconHex</find>
-      <find>BeaconFGB</find>
-      <find>protocolflag</find>
-      <find>loct</find>
-      <find>ptyp</find>
-      <find>ptype</find>
-      <find>user</find>
-      <find>uin</find>
-      <find>loctype</find>
-      <find>protocolfla</find>
-      <find>_pflag</find>
-      <find>userProtocol</find>
-      <find>National user</find>
-      <find>message is current</find>
-      <find>elt-</find>
-      <find>elt-dt</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -209,31 +164,6 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="293" />
-    <option name="y" value="300" />
-    <option name="width" value="1470" />
-    <option name="height" value="946" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Python</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>PyCompatibilityInspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
       <flattenPackages />
@@ -256,6 +186,11 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="beacondecode_aws" type="cbb8eebc:String" user="beacondecode_aws" />
             </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="beacondecode_aws" type="cbb8eebc:String" user="beacondecode_aws" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -263,16 +198,6 @@
       <pane id="ProjectPane" />
       <pane id="Scratches" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="full.screen.before.presentation.mode" value="false" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\beacondecode\beacondecode_aws\templates" />
-      <recent name="C:\beacondecode\beacondecode_aws" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -399,367 +324,22 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="aeaf6b5b-250b-4a9b-9ef4-c97c9ae7a4e5" name="Default" comment="" />
-      <created>1510413336175</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1510413336175</updated>
-    </task>
-    <task id="LOCAL-00084" summary="longfirstgen National Location calculation">
-      <created>1513704364532</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
+    <task id="LOCAL-00001" summary="efafads">
+      <created>1513859998734</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1513704364532</updated>
+      <updated>1513859998734</updated>
     </task>
-    <task id="LOCAL-00085" summary="longfirstgen National Location calculation">
-      <created>1513704452225</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1513704452226</updated>
-    </task>
-    <task id="LOCAL-00086" summary="longfirstgen National Location calculation">
-      <created>1513704645678</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1513704645678</updated>
-    </task>
-    <task id="LOCAL-00087" summary="longfirstgen National Location calculation">
-      <created>1513704751743</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1513704751743</updated>
-    </task>
-    <task id="LOCAL-00088" summary="longfirstgen National Location calculation">
-      <created>1513713615030</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1513713615030</updated>
-    </task>
-    <task id="LOCAL-00089" summary="longfirstgen National Location calculation">
-      <created>1513716368040</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1513716368040</updated>
-    </task>
-    <task id="LOCAL-00090" summary="longfirstgen National Location calculation">
-      <created>1513717185094</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717185094</updated>
-    </task>
-    <task id="LOCAL-00091" summary="longfirstgen National Location calculation">
-      <created>1513717409092</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717409093</updated>
-    </task>
-    <task id="LOCAL-00092" summary="longfirstgen National Location calculation">
-      <created>1513717542730</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717542730</updated>
-    </task>
-    <task id="LOCAL-00093" summary="longfirstgen National Location calculation">
-      <created>1513717675732</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717675732</updated>
-    </task>
-    <task id="LOCAL-00094" summary="longfirstgen National Location calculation">
-      <created>1513717853791</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717853791</updated>
-    </task>
-    <task id="LOCAL-00095" summary="longfirstgen National Location calculation">
-      <created>1513717974090</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1513717974090</updated>
-    </task>
-    <task id="LOCAL-00096" summary="longfirstgen National Location calculation">
-      <created>1513718011516</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1513718011516</updated>
-    </task>
-    <task id="LOCAL-00097" summary="longfirstgen National Location calculation">
-      <created>1513718039873</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1513718039873</updated>
-    </task>
-    <task id="LOCAL-00098" summary="longfirstgen National Location calculation">
-      <created>1513718309916</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1513718309916</updated>
-    </task>
-    <task id="LOCAL-00099" summary="longfirstgen National Location calculation">
-      <created>1513718578873</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1513718578873</updated>
-    </task>
-    <task id="LOCAL-00100" summary="longfirstgen National Location calculation">
-      <created>1513718920170</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1513718920170</updated>
-    </task>
-    <task id="LOCAL-00101" summary="longfirstgen National Location calculation">
-      <created>1513719219706</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1513719219706</updated>
-    </task>
-    <task id="LOCAL-00102" summary="longfirstgen National Location calculation">
-      <created>1513719298527</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1513719298527</updated>
-    </task>
-    <task id="LOCAL-00103" summary="longfirstgen National Location calculation">
-      <created>1513719395637</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1513719395637</updated>
-    </task>
-    <task id="LOCAL-00104" summary="longfirstgen National Location calculation">
-      <created>1513719541128</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1513719541128</updated>
-    </task>
-    <task id="LOCAL-00105" summary="longfirstgen National Location calculation">
-      <created>1513719801357</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1513719801357</updated>
-    </task>
-    <task id="LOCAL-00106" summary="longfirstgen National Location calculation">
-      <created>1513780892980</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1513780892981</updated>
-    </task>
-    <task id="LOCAL-00107" summary="longfirstgen National Location calculation">
-      <created>1513781333630</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1513781333630</updated>
-    </task>
-    <task id="LOCAL-00108" summary="longfirstgen National Location calculation">
-      <created>1513783044127</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1513783044127</updated>
-    </task>
-    <task id="LOCAL-00109" summary="longfirstgen National Location calculation">
-      <created>1513783241589</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1513783241589</updated>
-    </task>
-    <task id="LOCAL-00110" summary="longfirstgen National Location calculation">
-      <created>1513783426714</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1513783426715</updated>
-    </task>
-    <task id="LOCAL-00111" summary="longfirstgen National Location calculation">
-      <created>1513784031751</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1513784031752</updated>
-    </task>
-    <task id="LOCAL-00112" summary="longfirstgen National Location calculation">
-      <created>1513784438387</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1513784438387</updated>
-    </task>
-    <task id="LOCAL-00113" summary="longfirstgen National Location calculation">
-      <created>1513785153896</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1513785153896</updated>
-    </task>
-    <task id="LOCAL-00114" summary="longfirstgen National Location calculation">
-      <created>1513785393238</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1513785393238</updated>
-    </task>
-    <task id="LOCAL-00115" summary="longfirstgen National Location calculation">
-      <created>1513785399572</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1513785399572</updated>
-    </task>
-    <task id="LOCAL-00116" summary="longfirstgen National Location calculation">
-      <created>1513786578821</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1513786578821</updated>
-    </task>
-    <task id="LOCAL-00117" summary="longfirstgen National Location calculation">
-      <created>1513786757257</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1513786757257</updated>
-    </task>
-    <task id="LOCAL-00118" summary="longfirstgen National Location calculation">
-      <created>1513788486033</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1513788486033</updated>
-    </task>
-    <task id="LOCAL-00119" summary="longfirstgen National Location calculation">
-      <created>1513791065878</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1513791065878</updated>
-    </task>
-    <task id="LOCAL-00120" summary="longfirstgen National Location calculation">
-      <created>1513791296493</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1513791296493</updated>
-    </task>
-    <task id="LOCAL-00121" summary="longfirstgen National Location calculation">
-      <created>1513791731155</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1513791731155</updated>
-    </task>
-    <task id="LOCAL-00122" summary="longfirstgen National Location calculation">
-      <created>1513796860941</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1513796860941</updated>
-    </task>
-    <task id="LOCAL-00123" summary="longfirstgen National Location calculation">
-      <created>1513798099929</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798099929</updated>
-    </task>
-    <task id="LOCAL-00124" summary="longfirstgen National Location calculation">
-      <created>1513798363360</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798363360</updated>
-    </task>
-    <task id="LOCAL-00125" summary="longfirstgen National Location calculation">
-      <created>1513798501882</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798501882</updated>
-    </task>
-    <task id="LOCAL-00126" summary="longfirstgen National Location calculation">
-      <created>1513798551553</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798551553</updated>
-    </task>
-    <task id="LOCAL-00127" summary="longfirstgen National Location calculation">
-      <created>1513798789771</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798789771</updated>
-    </task>
-    <task id="LOCAL-00128" summary="longfirstgen National Location calculation">
-      <created>1513798925387</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1513798925387</updated>
-    </task>
-    <task id="LOCAL-00129" summary="longfirstgen National Location calculation">
-      <created>1513799465553</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1513799465554</updated>
-    </task>
-    <task id="LOCAL-00130" summary="longfirstgen National Location calculation">
-      <created>1513799791019</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1513799791019</updated>
-    </task>
-    <task id="LOCAL-00131" summary="longfirstgen National Location calculation">
-      <created>1513800536420</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1513800536420</updated>
-    </task>
-    <task id="LOCAL-00132" summary="longfirstgen National Location calculation">
-      <created>1513805004565</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1513805004565</updated>
-    </task>
-    <option name="localTasksCounter" value="133" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="293" y="300" width="1470" height="946" extended-state="0" />
+    <frame x="196" y="62" width="1470" height="914" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24759285" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24759285" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31709844" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47037485" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -803,19 +383,8 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="dumb" />
-    <MESSAGE value="wtf forms" />
-    <MESSAGE value="footer relative" />
-    <MESSAGE value="cleanup selectors in encodehex" />
-    <MESSAGE value="group beacon types" />
-    <MESSAGE value="use class instance for protocol selection" />
-    <MESSAGE value="serial user protocol" />
-    <MESSAGE value="error messages" />
-    <MESSAGE value="correct getbaudot bug in length" />
-    <MESSAGE value="rotating field for second gen beacon encode" />
-    <MESSAGE value="redirects and detect if UIN when encode" />
-    <MESSAGE value="longfirstgen National Location calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="longfirstgen National Location calculation" />
+    <MESSAGE value="efafads" />
+    <option name="LAST_COMMIT_MESSAGE" value="efafads" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1081,13 +650,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1176,10 +739,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/longsecondgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+        <state relative-caret-position="216">
+          <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
           <folding />
         </state>
       </provider>

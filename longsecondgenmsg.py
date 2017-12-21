@@ -17,6 +17,7 @@ fhex = open('hexout.csv','a')
 # test 3
 # ldkskjdfskljdfsjkl
 # abc
+#xlm
 def printtxt(txt):
     print txt
     f.write(txt)
