@@ -12,7 +12,7 @@ next_step = False
 f = open('outputfile.txt', 'w')
 fhex = open('hexout.csv','a')
 
-
+# test
 def printtxt(txt):
     print txt
     f.write(txt)
