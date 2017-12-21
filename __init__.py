@@ -111,7 +111,7 @@ def filterlist():
 
 
 @app.route('/longSGB', methods=['GET','POST'])
-def longfirstgen():
+def longSGB():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
 
