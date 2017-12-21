@@ -14,15 +14,6 @@ for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
-class SGB_g008(FirstGenForm):
-    homingdevice = SelectField(label='Homing device:',
-                            choices=[('0', 'No auxiliary locating device included in beacon'),
-                                     ('1', 'Auxiliary locating device included in beacon')])
-
-    selftest = SelectField(label='Self-Test:',
-                               choices=[('0', 'Normal beacon operation'),
-                                        ('1', 'Self-test transmition')])
-
 
 class FirstGenForm(Form):
 
@@ -36,6 +27,15 @@ class FirstGenForm(Form):
 
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
                                                                             ('1', 'Internal source of encoded location')])
+class SGB_g008(FirstGenForm):
+    homingdevice = SelectField(label='Homing device:',
+                            choices=[('0', 'No auxiliary locating device included in beacon'),
+                                     ('1', 'Auxiliary locating device included in beacon')])
+
+    selftest = SelectField(label='Self-Test:',
+                               choices=[('0', 'Normal beacon operation'),
+                                        ('1', 'Self-test transmition')])
+
 
 class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
