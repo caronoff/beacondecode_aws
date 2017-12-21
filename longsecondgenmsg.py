@@ -1,4 +1,4 @@
-Second Generation Beacon Decode Program
+#Second Generation Beacon Decode Program
 import csv
 import sys
 import Gen2secondgen as Gen2
