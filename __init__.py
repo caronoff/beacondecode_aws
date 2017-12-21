@@ -14,12 +14,22 @@ for key in definitions.countrydic:
     COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
+class SGB_g008(FirstGenForm):
+    homingdevice = SelectField(label='Homing device:',
+                            choices=[('0', 'No auxiliary locating device included in beacon'),
+                                     ('1', 'Auxiliary locating device included in beacon')])
+
+    selftest = SelectField(label='Self-Test:',
+                               choices=[('0', 'Normal beacon operation'),
+                                        ('1', 'Self-test transmition')])
+
+
 class FirstGenForm(Form):
 
     northsouth=RadioField(label='', choices = [('0', 'North'),('1', 'South')],validators=[validators.DataRequired()])
     eastwest=RadioField(label='', choices = [('0', 'East'),('1', 'West')],validators=[validators.DataRequired()])
-    latitude = DecimalField(label='Latitude (0-90)',places=5, validators=[validators.DataRequired(),validators.NumberRange(min=0,max=90, message='latitude needs to be 0-90 degrees')])
-    longitude = DecimalField(label='Longitude (0-180)', places=5, validators=[validators.DataRequired(),
+    latitude = DecimalField(label='Latitude (0-90)',places=10, validators=[validators.DataRequired(),validators.NumberRange(min=0,max=90, message='latitude needs to be 0-90 degrees')])
+    longitude = DecimalField(label='Longitude (0-180)', places=10, validators=[validators.DataRequired(),
                                                                            validators.NumberRange(min=0, max=180,
                                                                                                   message='longitude needs to be 0-180 degrees')])
 
@@ -99,6 +109,28 @@ def filterlist():
     statuscheck='valid'
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
+
+@app.route('/longSGB', methods=['GET','POST'])
+def longfirstgen():
+    hexcodeUIN = str(request.args.get('hex_code'))
+    error = None
+
+
+    rotatefld=str(request.args.get('rotatingfield'))
+    forms={'0000': SGB_g008(request.form)}
+    form = forms[rotatefld]
+    if request.method == 'POST' and form.validate():
+        lat = request.form['latitude']
+        latdir=request.form['northsouth']
+        long = request.form['longitude']
+        longdir =request.form['eastwest']
+
+        hexcodelong = request.form['homingdevice'] + request.form['selftest']
+        #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+        print('hex', hexcodelong)
+        #return redirect(url_for('decoded', hexcode=hexcodelong))
+
+    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error)
 
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():

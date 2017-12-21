@@ -1,0 +1,55 @@
+{% extends "output.html" %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block title %}UIN message{% endblock %}
+
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="form-group">
+
+    {% if error %}
+    <ul class=errors>
+
+      <li>{{ error }}</li>
+
+    </ul>
+{% endif %}
+      <form class="form-horizontal"  method="post" >
+        <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
+          <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
+<dl>
+    {{ render_field(form.latitude) }}
+    {{ render_field(form.northsouth) }}
+    <br>
+    {{ render_field(form.longitude) }}
+    {{ render_field(form.eastwest) }}
+    <br>
+    <br>
+
+    {{ render_field(form.encodepos) }}
+    <br>
+
+
+    <br>
+    {{ render_field(homingdevice) }}
+    {{ render_field(selftest) }}
+
+
+  </dl>
+
+
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit"  id="encodebutton" >Compute Long Message</button>
+      </form>
+</div>
+
+
+
+{% endblock %}
