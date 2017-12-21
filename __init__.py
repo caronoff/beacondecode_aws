@@ -132,6 +132,7 @@ def longSGB():
     print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form)}
     form = forms[rotatefld]
+    print(form.errors)
     if request.method == 'POST' and form.validate():
         lat = request.form['latitude']
         latdir=request.form['northsouth']
