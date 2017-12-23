@@ -21,7 +21,7 @@
     </ul>
 {% endif %}
       <form class="form-horizontal"  method="post" >
-        <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
+        <h2 class="form-signin-heading">Second Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
 <dl>
     {{ render_field(form.latitude) }}
@@ -30,15 +30,13 @@
     {{ render_field(form.longitude) }}
     {{ render_field(form.eastwest) }}
     <br>
-    <br>
-
-    {{ render_field(form.encodepos) }}
-    <br>
 
 
-    <br>
+
+
     {{ render_field(form.homingdevice) }}
     {{ render_field(form.selftest) }}
+    {{ render_field(form.testprotocol) }}
     {{ render_field(form.beacontype) }}
 
 

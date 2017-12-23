@@ -26,24 +26,24 @@ class FirstGenForm(Form):
 
 
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
-                                                                            ('1', 'Internal source of encoded location')])
+                                                                            ('1', 'Internal source of encoded location')], default='0')
 class SGB(FirstGenForm):
     homingdevice = SelectField(label='Homing device:',
                             choices=[('0', 'No auxiliary locating device included in beacon'),
-                                     ('1', 'Auxiliary locating device included in beacon')])
+                                     ('1', 'Auxiliary locating device included in beacon')], default='1')
 
     selftest = SelectField(label='Self-Test:',
                                choices=[('0', 'Normal beacon operation'),
-                                        ('1', 'Self-test transmition')])
+                                        ('1', 'Self-test transmition')], default='0')
 
-    # testprotocol = SelectField(label='Test protocol:',
-    #                        choices=[('0', 'Normal beacon operation'),
-    #                                 ('1', 'Test protocol transmition')])
+    testprotocol = SelectField(label='Test protocol:',
+                           choices=[('0', 'Normal beacon operation'),
+                                    ('1', 'Test protocol transmition')],default='0')
 
     beacontype = SelectField(label='Beacon type:',
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
-                                        ('10', 'PLB')])
+                                        ('10', 'PLB')], default='00')
 
 
 class SGB_g008(SGB):
@@ -52,30 +52,39 @@ class SGB_g008(SGB):
 class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
                             choices=[('0', 'No auxiliary radio locating device included in beacon'),
-                                     ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
+                                     ('1', '121.5 MHz auxiliary radio locating device included in beacon')], default='0')
 
 
 class FirstGenRLS(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:', choices = [('0', 'No auxiliary radio locating device included in beacon'),
-                                                                  ('1', '121.5 MHz auxiliary radio locating device included in beacon')])
+                                                                  ('1', '121.5 MHz auxiliary radio locating device included in beacon')], default='0')
 
-    rlmtypeone = SelectField(label='Capability to process automatic RLM Type-1:', choices = [('0', 'Type-1 not requested and not accepted by this beacon'),('1', 'Acknowledgement Type-1 automatic acknowledgement accepted by this beacon')])
+    rlmtypeone = SelectField(label='Capability to process automatic RLM Type-1:',
+                             choices = [('0', 'Type-1 not requested and not accepted by this beacon'),
+                                        ('1', 'Acknowledgement Type-1 automatic acknowledgement accepted by this beacon')],
+                             default='0')
 
-    rlmtypetwo = SelectField(label='Capability to process manual RLM Type-2:',choices=[('0', 'Manually generated RLM such as Acknowledgement Type-2 not requested and not accepted by this beacon'),('1', 'Manually generated RLM such as Acknowledgement Type-2 accepted by this beacon')])
+    rlmtypetwo = SelectField(label='Capability to process manual RLM Type-2:',
+                             choices=[('0', 'Manually generated RLM such as Acknowledgement Type-2 not requested and not accepted by this beacon'),
+                                      ('1', 'Manually generated RLM such as Acknowledgement Type-2 accepted by this beacon')],
+                             default='0')
 
     feedbacktype1 = SelectField(label='Beacon feedback reception of the RLM Type-1:',choices=[('0', 'Acknowledgement Type-1 not (yet) received by this beacon'),
-                                                                               ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')])
+                                                                               ('1', 'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon')], default='0')
 
     feedbacktype2 = SelectField(label='Beacon feedback reception of the RLM Type-2:',
                                 choices=[('0', 'Acknowledgement Type-2 not (yet) received by this beacon'),
-                                         ('1', 'Acknowledgement Type-2 received by this beacon')])
+                                         ('1', 'Acknowledgement Type-2 received by this beacon')],
+                                default='0')
 
 
 
     rlsprovider = SelectField(label='RLS Provider Identification:',
-                                choices=[('01', 'GALILEO Return Link Service Provider'),
+                                choices=[('00','Spares (for other RLS providers)'),
+                                         ('01', 'GALILEO Return Link Service Provider'),
                                          ('10', 'GLONASS Return Link Service Provider'),
-                                         ('00','Spares (for other RLS providers)')])
+                                         ],
+                              default='00')
 
 
 class FirstGenELTDT(FirstGenForm):
@@ -132,14 +141,14 @@ def longSGB():
     print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form)}
     form = forms[rotatefld]
-    print(form.errors)
+
     if request.method == 'POST' and form.validate():
         lat = request.form['latitude']
         latdir=request.form['northsouth']
         long = request.form['longitude']
         longdir =request.form['eastwest']
 
-        hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype']
+        hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
         print('hex', hexcodelong)
         #return redirect(url_for('decoded', hexcode=hexcodelong))
