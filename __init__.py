@@ -47,7 +47,8 @@ class SGB(FirstGenForm):
 
 
 class SGB_g008(SGB):
-    pass
+    def extract(self,h):
+        return str(self.homingdevice.data)+'hex'+h
 
 class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
@@ -150,7 +151,7 @@ def longSGB():
 
         hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-        print('hex', hexcodelong)
+        print(form.extract(hexcodeUIN))
         #return redirect(url_for('decoded', hexcode=hexcodelong))
 
     return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error)
