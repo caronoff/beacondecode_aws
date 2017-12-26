@@ -36,7 +36,11 @@
     {{ render_field(form.testprotocol) }}
     {{ render_field(form.beacontype) }}
 
+{% if ptype == '0000' %}
+    {{ render_field(form.hours) }}
+    {{ render_field(form.minutes) }}
 
+{% endif %}
 
   </dl>
 

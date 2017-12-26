@@ -1,11 +1,12 @@
 from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
+from sgbform import SGB, SGB_g008
 from longfirstgenmsg import encodelongFGB
+from decodefunctions import is_number, dec2bin
 import re
 import decodehex2
 import definitions
 import sys
-from decodefunctions import is_number, dec2bin
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
@@ -27,28 +28,6 @@ class FirstGenForm(Form):
 
     encodepos = SelectField(label='Source of Encoded location:', choices = [('0', 'External source of encoded location'),
                                                                             ('1', 'Internal source of encoded location')], default='0')
-class SGB(FirstGenForm):
-    homingdevice = SelectField(label='Homing device:',
-                            choices=[('0', 'No auxiliary locating device included in beacon'),
-                                     ('1', 'Auxiliary locating device included in beacon')], default='1')
-
-    selftest = SelectField(label='Self-Test:',
-                               choices=[('0', 'Normal beacon operation'),
-                                        ('1', 'Self-test transmition')], default='0')
-
-    testprotocol = SelectField(label='Test protocol:',
-                           choices=[('0', 'Normal beacon operation'),
-                                    ('1', 'Test protocol transmition')],default='0')
-
-    beacontype = SelectField(label='Beacon type:',
-                               choices=[('00', 'ELT'),
-                                        ('01', 'EPIRB'),
-                                        ('10', 'PLB')], default='00')
-
-
-class SGB_g008(SGB):
-    def extract(self,h):
-        return str(self.homingdevice.data)+'hex'+h
 
 class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
@@ -151,7 +130,7 @@ def longSGB():
 
         hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-        print(form.extract(hexcodeUIN))
+        print(form.encodelong(hexcodeUIN))
         #return redirect(url_for('decoded', hexcode=hexcodelong))
 
     return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error)
