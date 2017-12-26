@@ -4,7 +4,7 @@ import sys
 import Gen2secondgen as Gen2
 import decodefunctions as Func1
 import Gen2functions as Func2
-import wirtebch
+import writebch
 import definitions
 import math
 next_step = False
@@ -993,7 +993,7 @@ if userInput in 'Yy':
     testbits = bits_maininfo + rotatingfield
     bchbase = bits_maininfo + rotatingfield
     BCH = Func2.calcBCH(bchbase, 0, 202, 250)
-    bch2 = wirtebch.calcBCH(bchbase,0,202,250)
+    bch2 = writebch.calcBCH(bchbase,0,202,250)
     print BCH == bch2
 
     print bchbase
