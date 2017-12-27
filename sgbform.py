@@ -1,13 +1,15 @@
 from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField, validators, DecimalField, SelectField,RadioField
+from decodefunctions import is_number, dec2bin
+from Gen2functions import encodeLatitude,encodeLongitude
 
 class SGB(Form):
 
-    northsouth = RadioField(label='', choices=[('0', 'North'), ('1', 'South')], validators=[validators.DataRequired()])
-    eastwest = RadioField(label='', choices=[('0', 'East'), ('1', 'West')], validators=[validators.DataRequired()])
-    latitude = DecimalField(label='Latitude (0-90)', places=10, validators=[validators.DataRequired(),
+    northsouth = RadioField(label='', choices=[('0', 'North'), ('1', 'South')], validators=[validators.DataRequired()],default='0')
+    eastwest = RadioField(label='', choices=[('0', 'East'), ('1', 'West')], validators=[validators.DataRequired()], default='0')
+    latitude = DecimalField(label='Latitude (0-90)', places=10, validators=[validators.optional(),
                                                                             validators.NumberRange(min=0, max=90,
                                                                                                    message='latitude needs to be 0-90 degrees')])
-    longitude = DecimalField(label='Longitude (0-180)', places=10, validators=[validators.DataRequired(),
+    longitude = DecimalField(label='Longitude (0-180)', places=10, validators=[validators.optional(),
                                                                                validators.NumberRange(min=0, max=180,
                                                                                                       message='longitude needs to be 0-180 degrees')])
 
@@ -31,12 +33,37 @@ class SGB(Form):
 
 
 class SGB_g008(SGB):
-    hours= IntegerField(label='0 to 63 hours in one hour steps since activation, shall be truncated, not rounded',
-                        validators=[validators.DataRequired(),validators.NumberRange(min=0, max=63,
-                                                           message='Needs to be 0-63')])
-    minutes = IntegerField(label='0 to 2047 in one minute steps since last encoded location, truncated, not rounded',
-                        validators=[validators.DataRequired(),validators.NumberRange(min=0, max=2047,
+    hours= IntegerField(label='0 - 63 hours since activation',
+                        validators=[validators.NumberRange(min=0, max=63,
+                                                           message='Needs to be 0-63')],default=0)
+    minutes = IntegerField(label='0 - 2047 min since last encoded location',
+                        validators=[validators.optional(),validators.NumberRange(min=0, max=2046,
                                                            message='Needs to be 0-2047')])
 
-    def encodelong(self,h):
-        return str(self.homingdevice.data)+'hex'+h + str(self.minutes.data)
+    altitude = IntegerField(label='Altitude (-400 to 15,952 meters)',
+                           validators=[validators.optional(),validators.NumberRange(min=-400, max=15952, message='range error')])
+
+    def encodelong(form,h):
+        if form.latitude.data == None:
+            latbin='01111111000001111100000'
+        else:
+            latbin=form.northsouth.data+encodeLatitude(float(form.latitude.data))
+        if form.longitude.data == None:
+            longbin='011111111111110000011111'
+        else:
+            longbin=form.eastwest.data+encodeLongitude(float(form.longitude.data))
+        hoursbin=dec2bin(int(form.hours.data),6)
+        if form.minutes.data == None:
+            minbin=dec2bin(2047,11)
+        else:
+            minbin=dec2bin(int(form.minutes.data),11)
+
+
+
+
+        if form.altitude.data==None:
+            altbin='1'*10
+        else:
+            alt = round(float((form.altitude.data+ 400)/16),0)
+            altbin = dec2bin(alt,10)
+        return (str(altbin),latbin)

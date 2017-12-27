@@ -131,7 +131,7 @@ def longSGB():
         hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
         print(form.encodelong(hexcodeUIN))
-        #return redirect(url_for('decoded', hexcode=hexcodelong))
+        return redirect(url_for('decoded', hexcode=hexcodeUIN))
 
     return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error)
 
