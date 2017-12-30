@@ -58,6 +58,8 @@ class SGB_g008(SGB):
 
     altitude = IntegerField(label='Altitude (-400 to 15,952 meters)',
                            validators=[validators.optional(),validators.NumberRange(min=-400, max=15952, message='range error')])
+    hdop = SelectField(label='HDOP:', choices=dops,default='1111')
+    vdop = SelectField(label='VDOP:', choices=dops, default='1111')
 
     def encodelong(form,h):
         if form.latitude.data == None:
@@ -82,4 +84,4 @@ class SGB_g008(SGB):
         else:
             alt = round(float((form.altitude.data+ 400)/16),0)
             altbin = dec2bin(alt,10)
-        return (str(altbin),latbin)
+        return (str(altbin),latbin,form.hdop.data,form.vdop.data)
