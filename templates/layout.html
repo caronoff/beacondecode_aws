@@ -44,43 +44,17 @@
 	<div class="container navbar-more visible-xs">
 			<ul class="nav navbar-nav">
 				<li>
-					<a href="/encode">
+					<a href="{{url_for('decode')}}">
+						<span class="menu-icon fa fa-picture-o"></span>
+						Decode
+					</a>
+				</li>
+				<li>
+					<a href="{{url_for('encodehex')}}">
 						<span class="menu-icon fa fa-picture-o"></span>
 						Encode
 					</a>
 				</li>
-
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Encode
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Photos
-					</a>
-				</li>
-
 			</ul>
 		</div>
 
@@ -106,19 +80,9 @@
 						<span class="visible-xs">Decode</span>
 					</a>
 				</li>
-				<li class="hidden-xs">
-					<a href="{{url_for('encodehex')}}">
-						<span class="menu-icon fa fa-picture-o"></span>
-						Encode
-					</a>
-				</li>
 
-				<li class="hidden-xs">
-					<a href="#">
-						<span class="menu-icon fa fa-bell-o"></span>
-						Reservations
-					</a>
-				</li>
+
+
 				<li>
 					<a href="{{url_for('encodehex')}}">
 						<span class="menu-icon fa fa-magic"></span>
