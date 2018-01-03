@@ -49,6 +49,18 @@ class SGB_g008(SGB):
           ('1101','DOP > 30 and <= 50'),
           ('1110','DOP > 50 '),
           ('1111','DOP not available')]
+
+    activation = [('00','Manual Activation by user'),
+                  ('01','Automatic Activation by the beacon'),
+                  ('10','Automatic Activation by external means')]
+    battery = [('111','Battery Capacity Not Available'),
+               ('000','<= 5% remaining'),
+               ('001','> 5% and <= 10% remaining'),
+               ('010','> 10% and <= 25% remaining'),
+               ('011','> 25% and <= 50% remaining'),
+               ('100','> 50% and <= 75% remaining'),
+               ('101','> 75% and <= 100% remaining')]
+
     hours= IntegerField(label='0 - 63 hours since activation',
                         validators=[validators.NumberRange(min=0, max=63,
                                                            message='Needs to be 0-63')],default=0)
@@ -60,7 +72,11 @@ class SGB_g008(SGB):
                            validators=[validators.optional(),validators.NumberRange(min=-400, max=15952, message='range error')])
     hdop = SelectField(label='HDOP:', choices=dops,default='1111')
     vdop = SelectField(label='VDOP:', choices=dops, default='1111')
-
+    act = SelectField(label='Activation method:', choices=activation, default='00')
+    bat = SelectField(label='Baterry capacity:', choices=battery, default='111')
+    fix = SelectField(label='GNSS location:', choices=[('00','No fix'),
+                                                       ('01','2D location only'),
+                                                       ('10','3D location')], default='00')
     def encodelong(form,h):
         if form.latitude.data == None:
             latbin='01111111000001111100000'
@@ -84,4 +100,4 @@ class SGB_g008(SGB):
         else:
             alt = round(float((form.altitude.data+ 400)/16),0)
             altbin = dec2bin(alt,10)
-        return (str(altbin),latbin,form.hdop.data,form.vdop.data)
+        return (str(altbin),latbin,form.hdop.data,form.vdop.data,form.act.data,form.bat.data, form.fix.data)

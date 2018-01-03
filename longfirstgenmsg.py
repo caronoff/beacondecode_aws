@@ -60,10 +60,9 @@ def eltdt_rls(lat,long):
 
 def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
 
-    latitude=int(float(latitude) * 1000)
-    longitude = int(float(longitude) * 1000)
-    print(type(latitude))
-    print(latitude)
+    latitude=round(float(latitude) * 1000,0)
+    longitude = round(float(longitude) * 1000,0)
+
     c = decodehex2.BeaconFGB()
     try:
         c.processHex(str(hex_code.strip()))
