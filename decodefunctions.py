@@ -78,21 +78,21 @@ def bin2hex(binval):
     return str(hex(int(binval, 2)))[2:].upper().strip('L')
 
 def hextobin(hexval):
-        '''
-        Takes a string representation of hex data with
-        arbitrary length and converts to string representation
-        of binary.  Includes padding 0s
-        '''
-        thelen = len(hexval)*4
-        hexval=str(hexval)
-        
-        try:
-            binval = bin(int(hexval, 16))[2:]
-        except ValueError:
-            return False
-        while ((len(binval)) < thelen):
-            binval = '0' + binval
-        return binval
+    '''
+    Takes a string representation of hex data with
+    arbitrary length and converts to string representation
+    of binary.  Includes padding 0s
+    '''
+    thelen = len(hexval)*4
+    hexval=str(hexval)
+
+    try:
+        binval = bin(int(hexval, 16))[2:]
+    except ValueError:
+        return False
+    while ((len(binval)) < thelen):
+        binval = '0' + binval
+    return binval
 
 
 

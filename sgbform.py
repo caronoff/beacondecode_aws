@@ -1,6 +1,7 @@
 from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField, validators, DecimalField, SelectField,RadioField
 from decodefunctions import is_number, dec2bin
-from Gen2functions import encodeLatitude,encodeLongitude
+from Gen2functions import encodeLatitude,encodeLongitude, bin2hex, hex2bin
+from writebch import calcBCH
 
 class SGB(Form):
 
@@ -29,7 +30,9 @@ class SGB(Form):
     beacontype = SelectField(label='Beacon type:',
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
-                                        ('10', 'PLB')], default='00')
+                                        ('10', 'PLB'),('11','Test')], default='00')
+    def base(form):
+        return 'base bin'
 
 
 class SGB_g008(SGB):
@@ -78,6 +81,12 @@ class SGB_g008(SGB):
                                                        ('01','2D location only'),
                                                        ('10','3D location')], default='00')
     def encodelong(form,h):
+        print(form.base())
+        binid=hex2bin(h)
+        ctrybin=binid[1:11]
+        tanobin=binid[14:34]
+        snbin=binid[34:44]
+        idbin=binid[44:91]
         if form.latitude.data == None:
             latbin='01111111000001111100000'
         else:
@@ -92,12 +101,20 @@ class SGB_g008(SGB):
         else:
             minbin=dec2bin(int(form.minutes.data),11)
 
-
-
-
         if form.altitude.data==None:
             altbin='1'*10
         else:
-            alt = round(float((form.altitude.data+ 400)/16),0)
-            altbin = dec2bin(alt,10)
-        return (str(altbin),latbin,form.hdop.data,form.vdop.data,form.act.data,form.bat.data, form.fix.data)
+            a= round((float(form.altitude.data+ 400)/16),0)
+            altbin = dec2bin(a,10)
+
+
+        completebin= tanobin+snbin+ctrybin + form.homingdevice.data + \
+                     form.selftest.data + form.testprotocol.data + \
+                     latbin + longbin + idbin + form.beacontype.data + 15*'1'
+
+
+        completebin = completebin + '0000' + hoursbin + minbin + altbin + form.hdop.data + form.vdop.data + form.act.data + form.bat.data + form.fix.data + '00'
+        bch=calcBCH(completebin,0,202,250)
+        print(completebin)
+        return bin2hex(completebin+bch+'00')
+
