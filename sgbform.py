@@ -2,6 +2,7 @@ from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField
 from decodefunctions import is_number, dec2bin
 from Gen2functions import encodeLatitude,encodeLongitude, bin2hex, hex2bin
 from writebch import calcBCH
+
 class SGB(Form):
 
     northsouth = RadioField(label='', choices=[('0', 'North'), ('1', 'South')], validators=[validators.DataRequired()],default='0')
@@ -30,6 +31,8 @@ class SGB(Form):
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
                                         ('10', 'PLB'),('11','Test')], default='00')
+    def base(form):
+        return 'base bin'
 
 
 class SGB_g008(SGB):
@@ -78,6 +81,7 @@ class SGB_g008(SGB):
                                                        ('01','2D location only'),
                                                        ('10','3D location')], default='00')
     def encodelong(form,h):
+        print(form.base())
         binid=hex2bin(h)
         ctrybin=binid[1:11]
         tanobin=binid[14:34]
@@ -96,9 +100,6 @@ class SGB_g008(SGB):
             minbin=dec2bin(2047,11)
         else:
             minbin=dec2bin(int(form.minutes.data),11)
-
-
-
 
         if form.altitude.data==None:
             altbin='1'*10
