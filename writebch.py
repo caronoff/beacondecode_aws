@@ -19,8 +19,8 @@ def calcBCH(binary, b1start, b1end, b2end):
     newrow = []
     c = 0
     first = ''.join(bchlist)
-    print first
-    print len(first)
+    #print(first)
+    #print(len(first))
     oldgxspace = newgxspace = 0
 
     gxfirst = first.index('1') * ' ' + gx
