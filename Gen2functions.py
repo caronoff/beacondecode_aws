@@ -131,21 +131,21 @@ def selfTest(selftest_bit):
 def getBeaconType(typebinary):
     return definitions.beacon_type[typebinary]
 
-def cancellation(cancel_bit):
-    """Decodes user cancellation bit (Bit 43)
+def testProtocol(prot_bit):
+    """Decodes user test protocol bit (Bit 43)
 
     Args:
-        cancel_bit (str): 1 bit binary
+        test_bit (str): 1 bit binary
     Returns:
-        cancel_status (str): Decoded user cancellation status
+        test_status (str): Decoded user test protocol status
     """
 
-    if cancel_bit == '1':
-        cancel_status = 'User cancellation message'
+    if prot_bit == '1':
+        status = 'Test protocol message'
     else:
-        cancel_status = 'Normal beacon operation (transmitting a distress or self-test message)'
+        status = 'Normal beacon operation'
 
-    return cancel_status
+    return status
 
 
 
