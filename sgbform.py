@@ -1,5 +1,5 @@
 from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField, validators, DecimalField, SelectField,RadioField
-from decodefunctions import is_number, dec2bin
+from decodefunctions import is_number, dec2bin, hextobin
 from Gen2functions import encodeLatitude,encodeLongitude
 
 class SGB(Form):
@@ -78,6 +78,11 @@ class SGB_g008(SGB):
                                                        ('01','2D location only'),
                                                        ('10','3D location')], default='00')
     def encodelong(form,h):
+        binid=hextobin(h)
+        ctrybin=binid[1:11]
+        tanobin=binid[14:34]
+        snbin=binid[34:44]
+        idbin=binid[44:91]
         if form.latitude.data == None:
             latbin='01111111000001111100000'
         else:
@@ -100,4 +105,14 @@ class SGB_g008(SGB):
         else:
             alt = round(float((form.altitude.data+ 400)/16),0)
             altbin = dec2bin(alt,10)
+
+
+        completebin= tanobin+snbin+ctrybin + form.homingdevice.data + \
+                     form.selftest.data + form.testprotocol.data + \
+                     latbin + longbin + idbin + form.beacontype.data + 15*'1'
+
+
+        completebin = completebin + '0000' + hoursbin + minbin + altbin + form.hdop.data + form.vdop.data + form.act.data + form.bat.data + form.fix.data + '00'
+
+        print(completebin)
         return (str(altbin),latbin,form.hdop.data,form.vdop.data,form.act.data,form.bat.data, form.fix.data)
