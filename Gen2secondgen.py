@@ -78,11 +78,11 @@ class SecondGen(Gen2Error):
                                   self.selfTestStatus])
 
             ##BIT 43 User cancellation
-            self.cancel = Func.cancellation(self.bits[43])
+            self.testprotocol = Func.testProtocol(self.bits[43])
             self.tablebin.append(['43',
                                   self.bits[43],
-                                  'User cancellation:',
-                                  self.cancel])
+                                  'Test protocol:',
+                                  self.testprotocol])
 
             ##BIT 44-90 Encoded GNSS location
             self.latitude = Func.getlatitude(self.bits[44:67])
