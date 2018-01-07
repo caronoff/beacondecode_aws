@@ -31,8 +31,26 @@ class SGB(Form):
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
                                         ('10', 'PLB'),('11','Test')], default='00')
-    def base(form):
-        return 'base bin'
+    def longSGB(form,h):
+        binid = hex2bin(h)
+        ctrybin = binid[1:11]
+        tanobin = binid[14:34]
+        snbin = binid[34:44]
+        idbin = binid[44:91]
+        if form.latitude.data == None:
+            latbin = '01111111000001111100000'
+        else:
+            latbin = form.northsouth.data + encodeLatitude(float(form.latitude.data))
+        if form.longitude.data == None:
+            longbin = '011111111111110000011111'
+        else:
+            longbin = form.eastwest.data + encodeLongitude(float(form.longitude.data))
+
+
+        completebin = tanobin + snbin + ctrybin + form.homingdevice.data + \
+                      form.selftest.data + form.testprotocol.data + \
+                      latbin + longbin + idbin + form.beacontype.data + 15 * '1'
+        return completebin
 
 
 class SGB_g008(SGB):
@@ -67,9 +85,9 @@ class SGB_g008(SGB):
     hours= IntegerField(label='0 - 63 hours since activation',
                         validators=[validators.NumberRange(min=0, max=63,
                                                            message='Needs to be 0-63')],default=0)
-    minutes = IntegerField(label='0 - 2047 min since last encoded location',
+    minutes = IntegerField(label='0 - 2046 min since last encoded location or blank',
                         validators=[validators.optional(),validators.NumberRange(min=0, max=2046,
-                                                           message='Needs to be 0-2047')])
+                                                           message='Needs to be 0-2046')])
 
     altitude = IntegerField(label='Altitude (-400 to 15,952 meters)',
                            validators=[validators.optional(),validators.NumberRange(min=-400, max=15952, message='range error')])
@@ -81,20 +99,8 @@ class SGB_g008(SGB):
                                                        ('01','2D location only'),
                                                        ('10','3D location')], default='00')
     def encodelong(form,h):
-        print(form.base())
-        binid=hex2bin(h)
-        ctrybin=binid[1:11]
-        tanobin=binid[14:34]
-        snbin=binid[34:44]
-        idbin=binid[44:91]
-        if form.latitude.data == None:
-            latbin='01111111000001111100000'
-        else:
-            latbin=form.northsouth.data+encodeLatitude(float(form.latitude.data))
-        if form.longitude.data == None:
-            longbin='011111111111110000011111'
-        else:
-            longbin=form.eastwest.data+encodeLongitude(float(form.longitude.data))
+
+
         hoursbin=dec2bin(int(form.hours.data),6)
         if form.minutes.data == None:
             minbin=dec2bin(2047,11)
@@ -108,12 +114,7 @@ class SGB_g008(SGB):
             altbin = dec2bin(a,10)
 
 
-        completebin= tanobin+snbin+ctrybin + form.homingdevice.data + \
-                     form.selftest.data + form.testprotocol.data + \
-                     latbin + longbin + idbin + form.beacontype.data + 15*'1'
-
-
-        completebin = completebin + '0000' + hoursbin + minbin + altbin + form.hdop.data + form.vdop.data + form.act.data + form.bat.data + form.fix.data + '00'
+        completebin = form.longSGB(h) + '0000' + hoursbin + minbin + altbin + form.hdop.data + form.vdop.data + form.act.data + form.bat.data + form.fix.data + '00'
         bch=calcBCH(completebin,0,202,250)
         print(completebin)
         return bin2hex(completebin+bch+'00')
