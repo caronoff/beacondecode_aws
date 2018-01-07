@@ -28,13 +28,13 @@ def rotating0(bits):
                         str(t_act) + ' hours'])
 
     ##BIT 11-21 (165-175) Time from last encoded location (0 to 2046 minutes in 1 minute steps)
-    t_encoded = min(Func.bin2dec(bits[11:22]),2046)
-    if int(t_encoded)==0:
-        t_encoded = 2047
+    t_encoded = Func.bin2dec(bits[11:22])
+    if int(t_encoded)==2047 :
+        t_encoded = 'n/a'
     rotatingbin.append(['165-175 (Rotating field 11-21)',
                         bits[11:22],
-                        'Time from last encoded location:',
-                        str(t_encoded)+' minutes'])
+                        'Minutes since last encoded location:',
+                        str(t_encoded)])
 
     ##BIT 22-31 (176-185) Altitude of encoded location
     altitude = Func.getaltitude(bits[22:32])
