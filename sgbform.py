@@ -1,7 +1,7 @@
 from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField, validators, DecimalField, SelectField,RadioField
 from decodefunctions import is_number, dec2bin
 from Gen2functions import encodeLatitude,encodeLongitude, bin2hex, hex2bin, calcBCH
-#from writebch import calcBCH
+#from writebch import calcBCH r
 
 class SGB(Form):
 
