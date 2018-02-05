@@ -15,25 +15,19 @@
     <div class="row" >
         <div class="col-lg-4" style="min-width: 500px;">
             <form class="form-horizontal" action="." method="GET" role="form" id="genform">
-                <label class="col-lg-2 control-label" for="id_gen" data-placement="left" data-toggle="tooltip" title="title">Beacon Generation</label>
                 <div class="form-group">
+                    <label class="col-lg-2 control-label" for="id_gen" data-placement="top" data-toggle="tooltip" title="title">Beacon Generation and protocol</label>
 
                     <div class="col-lg-10">
                         <div class="content row">
-                            <div class="col-lg-12" style="padding-right: 5px;">
-
-
+                            <div class="col-xs-3" style="padding-right: 5px;">
                                 <select class="form-control" id="id_gen" name="optgen">
-
                                 <option value="0"  >---select---</option>
                                 <option value="1"  >First (T.001)</option>
                                 <option value="2">Second (T.018)</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="content row">
-                            <label class="col-lg-2 control-label" for="id_beacontype" data-placement="left" >Beacon</label>
-                            <div class="col-lg-12"  style="padding-right: 5px;">
+                            <div class="col-xs-3"  style="padding-right: 5px;">
                                 <select class="form-control" id="id_beacontype" name="beacontype">
                                 <option value="0">---beacon type---</option>
                                 <option value="ELT" >ELT</option>
@@ -42,21 +36,14 @@
                                 <option value="TEST">Test/Spare</option>
                                 </select>
                             </div>
-                        </div>
-
-                        <div class="content row">
-                            <label class="col-lg-2 control-label" for="id_protocol" data-placement="left" >Protocol</label>
-                            <div class="col-lg-12">
+                            <div class="col-xs-6">
                                 <select class="form-control" id="id_protocol" name="protocol" disabled>
                                     <option value="0">---select---</option>
                                 </select>
                             </div>
-
-                        </div>
-
                         </div>
                     </div>
-
+                </div>
             </form>
         </div>
     </div>
@@ -67,7 +54,7 @@
             <form id="genformpanel" class="form-inline" role="form">
                 <div id="id_ctry" style="display: none;" class="form-group ui-widget panel panel-body panel-default tohide">
 
-                   <label for="tags">Country MID where beacon will be used: </label>
+                   <label for="tags">Country where beacon will be used (name of country): </label>
                    <input id="tags" class="form-control" style="width:250px;">
                     <span id="id_miderror" class="help-block"></span>
                    <input type="text" style="visibility: hidden" name="country" id="ctry">
