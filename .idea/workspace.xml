@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="efafads">
+    <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodehexunique.html" afterPath="$PROJECT_DIR$/templates/encodehexunique.html" />
     </list>
@@ -66,8 +66,8 @@
       <file leaf-file-name="encodehexunique.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+            <state relative-caret-position="527">
+              <caret line="79" column="66" lean-forward="false" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#1;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -545,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1518126713724</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="efafads">
+      <created>1518127544736</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1518127544736</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -596,9 +603,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="efafads" />
     <MESSAGE value="new page for unique hex" />
-    <option name="LAST_COMMIT_MESSAGE" value="new page for unique hex" />
+    <MESSAGE value="efafads" />
+    <option name="LAST_COMMIT_MESSAGE" value="efafads" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -951,8 +958,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="84" column="25" lean-forward="true" selection-start-line="84" selection-start-column="25" selection-end-line="84" selection-end-column="25" />
+        <state relative-caret-position="527">
+          <caret line="79" column="66" lean-forward="false" selection-start-line="79" selection-start-column="66" selection-end-line="79" selection-end-column="66" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
