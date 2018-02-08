@@ -63,10 +63,10 @@
             <form id="genformpanel" class="form-horizontal" role="form">
                 <div id="id_ctry" style="display: none;" class="form-group ui-widget panel panel-body panel-default tohide">
 
-                   <label for="tags" class="col-lg-6 control-label"  >Country where beacon will be used (name of country): </label>
+                   <label for="tags" class="col-lg-2 control-label"  >Country where beacon will be used (name of country): </label>
                     <div class="col-lg-10">
 
-                   <input id="tags" class="form-control" style="width:250px;">
+                   <input id="tags" class="form-control" >
                     <span id="id_miderror" class="help-block"></span>
                    <input type="text" style="visibility: hidden" name="country" id="ctry">
                     </div>
@@ -78,7 +78,7 @@
 
 
                 <div id="id_tano" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_tanoinput" class="col-lg-6 control-label">Type Approval certificate number:</label>
+                    <label for="id_tanoinput" class="col-lg-2 control-label">Type Approval certificate number:</label>
                      <div class="col-lg-10">
                     <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
@@ -90,21 +90,21 @@
 
                 <div id="id_aircraftmarking" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
-                      <label for="id_aircraftmarking_input">Aircraft registration marking (7 character):</label>
+                      <label for="id_aircraftmarking_input" class="col-lg-2 control-label" >Aircraft registration marking (7 character):</label>
                       <input type="text" class="form-control" name="aircraftmarking_input" id="id_aircraftmarking_input">
                       <span id="id_aircraftmarkingerror" class="help-block"></span>
 
                 </div>
                 <div id="id_nationaluser" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
-                        <label for="id_nationaluser_input">National use or test use 46 bit binary:</label>
+                        <label for="id_nationaluser_input" class="col-lg-2 control-label" >National use or test use 46 bit binary:</label>
                         <input type="text" class="form-control" name="nationaluser_input" id="id_nationaluser_input" style="width:300px;">
                     <span id="id_nationalerror" class="help-block"></span>
 
                 </div>
                 <div id="id_nationallocation" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
-                        <label for="id_nationallocation_input">National use (decmax 262,143) :</label>
+                        <label for="id_nationallocation_input" class="col-lg-2 control-label">National use (decmax 262,143) :</label>
                         <input type="text" class="form-control" name="nationallocation_input" id="id_nationallocation_input" style="width:300px;">
                     <span id="id_nationallocationerror" class="help-block"></span>
 
@@ -113,7 +113,7 @@
 
                 <div id="id_aircraftoperator" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
-                        <label for="id_aircraftoperator_input">Aircraft operator designator:</label>
+                        <label for="id_aircraftoperator_input" class="col-lg-2 control-label" >Aircraft operator designator:</label>
                         <input type="text" class="form-control" name="aircraftoperator_input" id="id_aircraftoperator_input">
                         <span id="id_aircraftoperatorerror" class="help-block"></span>
                 </div>
@@ -121,7 +121,7 @@
 
                 <div id="id_aircraftserial_secgen" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
-                        <label for="id_aircraftserial_input">Aircraft serial number designator (1-4095):</label>
+                        <label for="id_aircraftserial_input" class="col-lg-2 control-label" >Aircraft serial number designator (1-4095):</label>
                         <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="0" max="4095" step="1" data-bind="value:id_aircraftserial_input">
                         <span id="id_aircraftserialerror" class="help-block"></span>
                 </div>
@@ -132,7 +132,7 @@
 
 
                 <div id="id_serialnumber" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_serialnumber_input">Serial Number:</label>
+                    <label for="id_serialnumber_input" class="col-lg-2 control-label" >Serial Number:</label>
                     <input type="number"  class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1" data-bind="value:id_serialnumber_input">
                     <span id="id_serialnumbererror" class="help-block"></span>
                 </div>
@@ -140,19 +140,19 @@
 
 
                 <div id="id_radio" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                        <label for="id_radio_input">Radio callsign:</label>
+                        <label for="id_radio_input" class="col-lg-2 control-label" >Radio callsign:</label>
                         <input type="text" class="form-control" name="radio_input" id="id_radio_input">
                         <span id="id_radioerror" class="help-block"></span>
                 </div>
 
                 <div id="id_radio_or_mmsi" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                        <label for="id_radio_or_mmsi_input">Radio call sign or trailing 6 digits of MMSI:</label>
+                        <label for="id_radio_or_mmsi_input" class="col-lg-2 control-label" >Radio call sign or trailing 6 digits of MMSI:</label>
                         <input type="text" class="form-control" name="radio_or_mmsi_input" id="id_radio_or_mmsi_input">
                         <span id="id_radio_or_mmsierror" class="help-block"></span>
                 </div>
 
                 <div id="id_mmsi" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                        <label for="id_mmsi_input">MMSI format 6 digit max (exclude MID) :</label>
+                        <label for="id_mmsi_input" class="col-lg-2 control-label" >MMSI format 6 digit max (exclude MID) :</label>
                         <input type="number" class="form-control" name="mmsi_input" min="0" max="999999" step="1" id="id_mmsi_input" data-bind="value:id_mmsi_input">
                         <span id="id_mmsierror" class="help-block"></span>
                         <label for="id_epirbais_input">EPIRB-AIS device (4 digit maximum) :</label>
@@ -163,17 +163,17 @@
 
 
                 <div id="id_elt24bit" style="display: none;" class="form-group panel-body panel panel-default tohide">
-                        <label for="id_elt24bitaddress_serialuser">ELT 24-bit Address:</label>
+                        <label for="id_elt24bitaddress_serialuser" class="col-lg-2 control-label" >ELT 24-bit Address:</label>
                         <input type="number" class="form-control" name="elt24bitaddress_serialuser" id="id_elt24bitaddress_serialuser">
                         <span id="id_elt24biterror" class="help-block"></span>
                 </div>
                 <div id="id_beaconno" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_beaconno_input">Specific beacon number:</label>
+                    <label for="id_beaconno_input" class="col-lg-2 control-label" >Specific beacon number:</label>
                     <input type="number" class="form-control" name="beaconno_input" value="0" step="1" min="0" max="10" id="id_beaconno_input" data-bind="value:id_beaconnoinput">
                     <span id="id_beaconnoerror" class="help-block"></span>
                 </div>
                 <div id="id_auxdevice" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_auxdeviceinput">Auxiliary radio-locating device type:</label>
+                    <label for="id_auxdeviceinput" class="col-lg-2 control-label" >Auxiliary radio-locating device type:</label>
                             <select class="form-control" id="id_auxdeviceinput" name="auxdeviceinput">
                                 <option value="00" selected >No auxiliary radio-locating device</option>
                                 <option value="01"  >121.5 MHz device</option>
