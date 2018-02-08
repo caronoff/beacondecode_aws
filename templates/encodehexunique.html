@@ -63,17 +63,30 @@
             <form id="genformpanel" class="form-inline" role="form">
                 <div id="id_ctry" style="display: none;" class="form-group ui-widget panel panel-body panel-default tohide">
 
-                   <label for="tags">Country where beacon will be used (name of country): </label>
+                   <label for="tags" class="col-lg-2 control-label"  >Country where beacon will be used (name of country): </label>
+                    <div class="col-lg-10">
+
                    <input id="tags" class="form-control" style="width:250px;">
                     <span id="id_miderror" class="help-block"></span>
                    <input type="text" style="visibility: hidden" name="country" id="ctry">
-                </div>
+                    </div>
+                    </div>
+
+
+
+
+
 
                 <div id="id_tano" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_tanoinput">Type Approval certificate number:</label>
+                    <label for="id_tanoinput" class="col-lg-2 control-label">Type Approval certificate number:</label>
+                     <div class="col-lg-10">
                     <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
+                     </div>
                 </div>
+
+
+
 
                 <div id="id_aircraftmarking" style="display: none;" class="form-group panel panel-body panel-default tohide">
 
