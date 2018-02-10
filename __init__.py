@@ -239,7 +239,7 @@ def encodehex():
     for key in definitions.countrydic:
         countries.append('{} ({})'.format(definitions.countrydic[key], key))
     countries.sort()
-    return render_template("encodehex.html", countries=countries)
+    return render_template("encodehexunique.html", countries=countries)
 
 @app.route("/about")
 def about():

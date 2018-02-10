@@ -164,14 +164,14 @@ body {
 }
 
 #panelcontainer {
-max-width:800px;
+
 margin: auto;
 position: relative;
 }
 
 .panel-body {
 background:#a19fa1;
-max-width:700px;
+
 position: relative;
 padding: 5px;
   margin: auto;}
