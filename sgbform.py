@@ -117,5 +117,5 @@ class SGB_g008(SGB):
         completebin = form.longSGB(h) + '0000' + hoursbin + minbin + altbin + form.hdop.data + form.vdop.data + form.act.data + form.bat.data + form.fix.data + '00'
         bch=calcBCH(completebin,0,202,250)
         print(completebin)
-        return bin2hex(completebin+bch+'00')
+        return bin2hex('00'+completebin+bch)
 
