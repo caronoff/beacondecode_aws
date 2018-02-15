@@ -35,11 +35,15 @@ class SecondGen(Gen2Error):
         self.location=(0,0)
 
 
-        if len(self.bits) == 252 or len(self.bits) == 202 or len(self.bits) == 204 or len(self.bits) == 250 :
+        if len(self.bits) == 252 or len(self.bits) == 202 or len(self.bits) == 204  :
 
             self.type="Complete message"
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
-            self.bits = "0" + self.bits
+            self.bits = "0" + self.bits[2:]
+            self.tablebin.append(['padding 00',
+                                  '',
+                                  '',
+                                  '63 hex code of 252 bits'])
 
             ##BIT 1-20  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[1:21])
@@ -284,17 +288,14 @@ class SecondGen(Gen2Error):
                                       'Number of BCH errors:',
                                       str(self.BCHerrors)])
 
-                self.tablebin.append(['251-252 (padding)',
-                                      self.bits[251:],
-                                      '00',
-                                      '63 hex code of 252 bits'])
+
 
 
 
 
 
         elif len(self.bits) == 92:
-            self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon UIN'.format(str(len(strhex)),str(len(self.bits))))
+            self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon hexidecimal identification'.format(str(len(strhex)),str(len(self.bits))))
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
