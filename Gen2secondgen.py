@@ -81,7 +81,7 @@ class SecondGen(Gen2Error):
                                   'Self-test function:',
                                   self.selfTestStatus])
 
-            ##BIT 43 User cancellation
+            ##BIT 43 Test protocol
             self.testprotocol = Func.testProtocol(self.bits[43])
             self.tablebin.append(['43',
                                   self.bits[43],
@@ -116,20 +116,31 @@ class SecondGen(Gen2Error):
                                   self.bits[138:140],
                                   'Beacon Type:',
                                   Func.getBeaconType(self.bits[138:140])])
-
+            ## BIT 140  RLS capability
+            self.tablebin.append(['140',
+                                  self.bits[140],
+                                  'RLS capability:',
+                                  Func.rls(self.bits[140])])
 
 
             ##BIT 140-154 Spare bits
-            if Func.checkones(self.bits[140:155]):
-                self.tablebin.append(['140-154',
-                                      self.bits[140:155],
+            if Func.checkones(self.bits[141:155]):
+                self.tablebin.append(['141-154',
+                                      self.bits[141:155],
                                       'Spare:',
-                                      'OK'])
+                                      'OK - not a cancellation message'])
+
+            elif Func.checkzeros(self.bits[141:155]):
+                self.tablebin.append(['141-154',
+                                      self.bits[141:155],
+                                      'Spare:',
+                                      'OK - Cancellation message'])
+
             else:
-                self.tablebin.append(['140-154',
-                                      self.bits[140:155],
+                self.tablebin.append(['141-154',
+                                      self.bits[141:155],
                                       'Spare:',
-                                      'ERROR: Bits 138-154 should be 1s'])
+                                      'ERROR: Bits 141-154 should be 1 (normal) or all 0 (cancellation)'])
 
 
 

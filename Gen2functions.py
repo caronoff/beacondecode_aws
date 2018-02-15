@@ -121,7 +121,7 @@ def selfTest(selftest_bit):
         selftest_status (str): Decoded self-test status
     """
 
-    if selftest_bit == '1':
+    if selftest_bit == '0':
         selftest_status = 'Normal beacon operation (transmitting a distress)'
     else:
         selftest_status = 'Self-test transmission'
@@ -147,6 +147,21 @@ def testProtocol(prot_bit):
 
     return status
 
+def rls(b):
+    """Decodes if rls function enabled (Bit 140)
+
+        Args:
+            test_bit (str): 1 bit binary
+        Returns:
+            test_status (str): Decoded rls function enabled
+        """
+
+    if b == '1':
+        status = 'RLS capability enabled'
+    else:
+        status = 'RLS capability disabled'
+
+    return status
 
 
 def getlatitude(lat):
