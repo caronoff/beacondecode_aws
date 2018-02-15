@@ -267,7 +267,7 @@ class SecondGen(Gen2Error):
             ####################################
             # 48-BIT BCH ERROR CORRECTING CODE #
             ####################################
-            if len(self.bits) == 253:
+            if len(self.bits) == 251:
                 self.tablebin.append(['203-250',
                                       self.bits[203:],
                                       'Encoded BCH',
