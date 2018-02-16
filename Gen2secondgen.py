@@ -462,7 +462,7 @@ class SecondGen(Gen2Error):
                                   bits[3:45],
                                   'Aircraft Registration Marking:',
                                   self.tailnum])
-            if Func.checkzeros(bits[45:47]):
+            if bits[45:47]=='00':
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
