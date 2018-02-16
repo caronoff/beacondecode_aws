@@ -39,11 +39,16 @@ class SecondGen(Gen2Error):
 
             self.type="Complete message"
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
+
             self.bits = "0" + self.bits[2:]
-            self.tablebin.append(['padding 00',
-                                  '',
-                                  '',
-                                  '63 hex code of 252 bits'])
+            if self.bits[1:3]=='00':
+                padding='OK'
+            else:
+                padding = 'Error - not 00'
+            self.tablebin.append(['padding',
+                                  self.bits[1:3],
+                                  'should be 00',
+                                  padding])
 
             ##BIT 1-20  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[1:21])
