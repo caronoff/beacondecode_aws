@@ -467,7 +467,7 @@ class SecondGen(Gen2Error):
             else:
                 status_check = 'ERROR'
             self.tablebin.append([self.bitlabel(136,137,deduct_offset),
-                                  self.bits[45:47],
+                                  bits[45:47],
                                   'Spare should be 0',
                                   status_check])
         ##############################################
