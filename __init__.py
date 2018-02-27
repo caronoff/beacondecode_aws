@@ -259,7 +259,7 @@ def decoded(hexcode):
             tmp = 'encodelongsecond.html'
     else:
         print('default output.html')
-        print(beacon.bchstring)
+        # print(beacon.bchstring)
         tmp='output.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
@@ -274,7 +274,7 @@ def download_bch(hexcode):
     beacon = decodehex2.Beacon(hexcode)
     bchout=beacon.bchstring
     response = make_response(bchout)
-    cd = 'attachment; filename=mybch.bch'
+    cd = 'attachment; filename=mybch.txt'
     response.headers['Content-Disposition'] = cd
     response.mimetype = 'text/csv'
     return response
