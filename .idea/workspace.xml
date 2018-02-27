@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writebch.py" afterPath="$PROJECT_DIR$/writebch.py" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +16,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="372">
@@ -119,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/writebch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="62" column="73" lean-forward="false" selection-start-line="62" selection-start-column="73" selection-end-line="62" selection-end-column="73" />
+            <state relative-caret-position="176">
+              <caret line="58" column="21" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -143,9 +143,9 @@
       <find>ves</find>
       <find>vesselid</find>
       <find>print</find>
-      <find>\n</find>
       <find>\\n</find>
       <find>write</find>
+      <find>\n</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,8 +186,8 @@
         <option value="$PROJECT_DIR$/decodehex2.py" />
         <option value="$PROJECT_DIR$/Gen2secondgen.py" />
         <option value="$PROJECT_DIR$/templates/output.html" />
-        <option value="$PROJECT_DIR$/writebch.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
+        <option value="$PROJECT_DIR$/writebch.py" />
       </list>
     </option>
   </component>
@@ -429,13 +429,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00004" summary="efafads">
-      <created>1513888684977</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1513888684977</updated>
     </task>
     <task id="LOCAL-00005" summary="efafads">
       <created>1513888707161</created>
@@ -773,7 +766,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519764761311</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="write bch file">
+      <created>1519766000920</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1519766000920</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1187,14 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writebch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="73" lean-forward="false" selection-start-line="62" selection-start-column="73" selection-end-line="62" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
@@ -1203,6 +1195,14 @@
             <element signature="e#0#104#0" expanded="true" />
             <marker date="1519765997795" expanded="true" signature="8190:8192" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/writebch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="58" column="21" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

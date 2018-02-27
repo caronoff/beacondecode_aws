@@ -25,8 +25,8 @@ def calcBCH(binary, b1start, b1end, b2end):
     oldgxspace = newgxspace = 0
 
     gxfirst = first.index('1') * ' ' + gx
-    f.write("\nm(x):{}\ng(x):{}".format(first, gxfirst))
-    sout="\nm(x):{}\ng(x):{}".format(first, gxfirst)
+    f.write("\r\nm(x):{}\r\ng(x):{}".format(first, gxfirst))
+    sout="\r\nm(x):{}\r\ng(x):{}".format(first, gxfirst)
     firstone = first.index('1')
     for i in range(b1end - b1start):
         c = c + 1
@@ -37,12 +37,12 @@ def calcBCH(binary, b1start, b1end, b2end):
                 if len(mx) > 0:
                     newgxspace =  mx.index('1')
                     #mx = mx + newgxspace * '0'
-                    bchnew = "\nm(x):{}{}\ng(x):{}{}".format((oldgxspace + firstone) * ' ', mx + mx.index('1')*'0',
+                    bchnew = "\r\nm(x):{}{}\r\ng(x):{}{}".format((oldgxspace + firstone) * ' ', mx + mx.index('1')*'0',
                                                          (firstone + mx.index('1') + oldgxspace) * ' ', gx)
                     newgx = (newgxspace + oldgxspace) * ' ' + gx
                     oldgxspace = newgx.index('1')
-                    f.write("\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-'))
-                    sout=sout+"\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-')
+                    f.write("\r\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-'))
+                    sout=sout+"\r\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-')
                     f.write(bchnew)
                     sout=sout+bchnew
             newrow = []
@@ -56,11 +56,11 @@ def calcBCH(binary, b1start, b1end, b2end):
 
 
     bchfinal = ''.join(bchlist)[b1end - b2end:]
-    bchfinalw = "\n\nm(x):{}{}\n".format('', ''.join(bchlist))
+    bchfinalw = "\r\nm(x):{}{}\r\n".format('', ''.join(bchlist))
     f.write(bchfinalw)
     sout=sout+bchfinalw
-    f.write("\nBCH code (last 48 bits.)\n{}\n{}\n{}".format(48*'-',bchfinal,48*'-'))
-    sout=sout+'\nBCH code (last 48 bits.)\n{}\n{}\n{}'.format(48*'-',"'"+bchfinal,48*'-')
+    f.write("\r\nBCH code (last 48 bits.)\r\n{}\r\n{}\r\n{}".format(48*'-',bchfinal,48*'-'))
+    sout=sout+'\r\nBCH code (last 48 bits.)\r\n{}\r\n{}\r\n{}'.format(48*'-',"'"+bchfinal,48*'-')
     f.close()
 
     return (bchfinal,sout)
