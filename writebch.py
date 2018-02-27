@@ -14,6 +14,7 @@ def calcBCH(binary, b1start, b1end, b2end):
         bchlist: calculated BCH code
     """
     f = open('bchfile2.txt', 'w')
+    sout=""
     gx = '1110001111110101110000101110111110011110010010111'
     bchlist = list(binary[b1start:b1end] + '0' * (b2end - b1end))
     newrow = []
@@ -25,7 +26,7 @@ def calcBCH(binary, b1start, b1end, b2end):
 
     gxfirst = first.index('1') * ' ' + gx
     f.write("\nm(x):{}\ng(x):{}".format(first, gxfirst))
-
+    sout="\nm(x):{}\ng(x):{}".format(first, gxfirst)
     firstone = first.index('1')
     for i in range(b1end - b1start):
         c = c + 1
@@ -41,7 +42,9 @@ def calcBCH(binary, b1start, b1end, b2end):
                     newgx = (newgxspace + oldgxspace) * ' ' + gx
                     oldgxspace = newgx.index('1')
                     f.write("\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-'))
+                    sout=sout+"\n{} {} {}".format(str(i), str(mx.index('1')),(b2end-2) * '-')
                     f.write(bchnew)
+                    sout=sout+bchnew
             newrow = []
             for k in range(len(gx)):
                 if bchlist[i + k] == gx[k]:
@@ -55,8 +58,11 @@ def calcBCH(binary, b1start, b1end, b2end):
     bchfinal = ''.join(bchlist)[b1end - b2end:]
     bchfinalw = "\n\nm(x):{}{}\n".format('', ''.join(bchlist))
     f.write(bchfinalw)
+    sout=sout+bchfinalw
     f.write("\nBCH code (last 48 bits.)\n{}\n{}\n{}".format(48*'-',bchfinal,48*'-'))
+    sout=sout+"\nBCH code (last 48 bits.)\n{}\n{}\n{}".format(48*'-',bchfinal,48*'-')
     f.close()
+    print(sout)
     return bchfinal
 
 
