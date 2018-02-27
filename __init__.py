@@ -274,7 +274,7 @@ def download_bch(hexcode):
     beacon = decodehex2.Beacon(hexcode)
     bchout=beacon.bchstring
     response = make_response(bchout)
-    cd = 'attachment; filename=mybch.csv'
+    cd = 'attachment; filename=mybch.txt'
     response.headers['Content-Disposition'] = cd
     response.mimetype = 'text/csv'
     return response
