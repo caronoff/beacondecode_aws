@@ -22,6 +22,7 @@ class SecondGen(Gen2Error):
 
     def __init__(self, hexCode=None):
         self.bits = '0' * 250
+
         if hexCode:
             self.processHex(hexCode)
     def processHex(self, strhex):
@@ -29,6 +30,7 @@ class SecondGen(Gen2Error):
         ##All second generation beacon messages must be EXACTLY 250 bits
         ##in length for the program to function properly.
         self.bits = Func.hex2bin(strhex)
+        self.bchstring = ''
         self.tablebin = []
         self.rotatingbin = []
         self.longitude=self.latitude='na'
@@ -290,7 +292,7 @@ class SecondGen(Gen2Error):
                                       'Encoded BCH'])
                 ##Calculate the BCH
                 self.calculatedBCH = Func.calcBCH(self.bits[1:], 0, 202, 250)
-                writebch.calcBCH(self.bits[1:], 0, 202, 250)
+                self.bchstring=writebch.calcBCH(self.bits[1:], 0, 202, 250)[1]
                 self.tablebin.append(['Calculated',
                                       self.calculatedBCH,
                                       'Computed',
