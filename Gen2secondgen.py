@@ -7,7 +7,7 @@
 
 import Gen2functions as Func
 import Gen2rotating as rotating
-
+import writebch
 
 class Gen2Error(Exception):
     def __init__(self, value, message):
@@ -290,7 +290,7 @@ class SecondGen(Gen2Error):
                                       'Encoded BCH'])
                 ##Calculate the BCH
                 self.calculatedBCH = Func.calcBCH(self.bits[1:], 0, 202, 250)
-
+                writebch.calcBCH(self.bits[1:], 0, 202, 250)
                 self.tablebin.append(['Calculated',
                                       self.calculatedBCH,
                                       'Computed',
