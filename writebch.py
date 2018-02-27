@@ -58,7 +58,7 @@ def calcBCH(binary, b1start, b1end, b2end):
     bchfinal = ''.join(bchlist)[b1end - b2end:]
     bchfinalw = "\n\nm(x):{}{}\n".format('', ''.join(bchlist))
     f.write(bchfinalw)
-    sout=sout+bchfinalw
+    sout=sout+'"'+bchfinalw
     f.write("\nBCH code (last 48 bits.)\n{}\n{}\n{}".format(48*'-',bchfinal,48*'-'))
     sout=sout+"\nBCH code (last 48 bits.)\n{}\n{}\n{}".format(48*'-',bchfinal,48*'-')
     f.close()
