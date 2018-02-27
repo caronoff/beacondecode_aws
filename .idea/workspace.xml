@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gen2secondgen.py" afterPath="$PROJECT_DIR$/Gen2secondgen.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/__init__.py" afterPath="$PROJECT_DIR$/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/decodehex2.py" afterPath="$PROJECT_DIR$/decodehex2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writebch.py" afterPath="$PROJECT_DIR$/writebch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/output.html" afterPath="$PROJECT_DIR$/templates/output.html" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,14 +17,28 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="263" column="0" lean-forward="true" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
+            <state relative-caret-position="389">
+              <caret line="278" column="34" lean-forward="false" selection-start-line="278" selection-start-column="34" selection-end-line="278" selection-end-column="34" />
               <folding>
-                <element signature="e#0#90#0" expanded="true" />
-                <marker date="1519762284223" expanded="true" signature="8176:8178" ph="..." />
+                <element signature="e#0#104#0" expanded="true" />
+                <marker date="1519763616788" expanded="true" signature="8190:8192" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="output.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/output.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="466">
+              <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+              <folding>
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,16 +108,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gen2rotating.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gen2rotating.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Gen2functions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gen2functions.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -118,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/writebch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-896">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1105">
+              <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,7 +169,6 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/decodehex.html" />
         <option value="$PROJECT_DIR$/templates/encodelong.html" />
-        <option value="$PROJECT_DIR$/templates/output.html" />
         <option value="$PROJECT_DIR$/templates/layout.html" />
         <option value="$PROJECT_DIR$/templates/encodelongfirst.html" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -186,13 +187,14 @@
         <option value="$PROJECT_DIR$/writebch.py" />
         <option value="$PROJECT_DIR$/decodehex2.py" />
         <option value="$PROJECT_DIR$/Gen2secondgen.py" />
+        <option value="$PROJECT_DIR$/templates/output.html" />
         <option value="$PROJECT_DIR$/__init__.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="510" />
-    <option name="y" value="15" />
+    <option name="x" value="893" />
+    <option name="y" value="31" />
     <option name="width" value="1616" />
     <option name="height" value="1100" />
   </component>
@@ -737,11 +739,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519761749886</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="write bch file">
+      <created>1519762288429</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1519762288429</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="510" y="15" width="1616" height="1100" extended-state="0" />
+    <frame x="893" y="31" width="1616" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -818,8 +827,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#90#0" expanded="true" />
-            <marker date="1519762284223" expanded="true" signature="8176:8178" ph="..." />
+            <element signature="e#0#104#0" expanded="true" />
+            <marker date="1519763616788" expanded="true" signature="8190:8192" ph="..." />
           </folding>
         </state>
       </provider>
@@ -909,13 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/output.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="954">
-          <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1146,22 +1148,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
+    <entry file="file://$PROJECT_DIR$/writebch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="263" column="0" lean-forward="true" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
+        <state relative-caret-position="1105">
+          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/output.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
           <folding>
-            <element signature="e#0#90#0" expanded="true" />
-            <marker date="1519762284223" expanded="true" signature="8176:8178" ph="..." />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writebch.py">
+    <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-896">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="389">
+          <caret line="278" column="34" lean-forward="false" selection-start-line="278" selection-start-column="34" selection-end-line="278" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#104#0" expanded="true" />
+            <marker date="1519763616788" expanded="true" signature="8190:8192" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

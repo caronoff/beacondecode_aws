@@ -1,4 +1,4 @@
-from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for
+from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
 from sgbform import SGB, SGB_g008
 from longfirstgenmsg import encodelongFGB
@@ -268,6 +268,16 @@ def decoded(hexcode):
         locationcheck=True
 
     return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
+
+@app.route("/bch/<hexcode>")
+def download_bch(hexcode):
+    beacon = decodehex2.Beacon(hexcode)
+    bchout=beacon.bchstring
+    response = make_response(bchout)
+    cd = 'attachment; filename=mybch.bch'
+    response.headers['Content-Disposition'] = cd
+    response.mimetype = 'text/csv'
+    return response
 
 
 if __name__ == "__main__":
