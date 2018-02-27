@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writebch.py" afterPath="$PROJECT_DIR$/writebch.py" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gen2secondgen.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gen2secondgen.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gen2secondgen.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="134">
@@ -120,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="writebch.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/writebch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="413">
+              <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -143,6 +144,7 @@
       <find>vesselIDfill</find>
       <find>ves</find>
       <find>vesselid</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -184,6 +186,7 @@
         <option value="$PROJECT_DIR$/sgbform.py" />
         <option value="$PROJECT_DIR$/Gen2functions.py" />
         <option value="$PROJECT_DIR$/Gen2secondgen.py" />
+        <option value="$PROJECT_DIR$/writebch.py" />
       </list>
     </option>
   </component>
@@ -699,7 +702,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519759424434</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="write bch file">
+      <created>1519759443479</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1519759443479</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -759,7 +769,8 @@
     <MESSAGE value="check zeroes" />
     <MESSAGE value="efafads" />
     <MESSAGE value="padding at SGB front to make 252 bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="padding at SGB front to make 252 bit" />
+    <MESSAGE value="write bch file" />
+    <option name="LAST_COMMIT_MESSAGE" value="write bch file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1095,14 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writebch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Gen2functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7242">
@@ -1120,6 +1123,14 @@
           <folding>
             <element signature="e#196#224#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/writebch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
