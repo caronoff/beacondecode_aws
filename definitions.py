@@ -734,7 +734,7 @@ dop = {'0000':'DOP <=1', '0001':'DOP >1 and <=2', '0010':'DOP >2 and <=3',
        '0110':'DOP >6 and <=7', '0111':'DOP >7 and <=8', '1000':'DOP >8 and <=10',
        '1001':'DOP >10 and <=12', '1010':'DOP >12 and <=15', '1011':'DOP >15 and <=20',
        '1100':'DOP >20 and <=30', '1101':'DOP >30 and <=50', '1110':'DOP >50',
-       '1111':'DOP not available'}
+       '1111':'not available'}
 
 activation_note = {'00':'Manual activation by user',
                    '01':'Automatic activation by the beacon',
@@ -748,7 +748,7 @@ battery = {'000':'<=5% remaining',
            '100':'>50% and <=75% remaining',
            '101':'>75% and <=100% remaining',
            '110':'reserved for future use',
-           '111':'battery capacity not available'}
+           '111':'Not available'}
 
 gnss_status = {'00':'No fix',
                '01':'2D location only',

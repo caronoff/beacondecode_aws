@@ -8,7 +8,7 @@ import definitions
 import time
 
 
-
+UIN = 'unique hexidecimal ID'
 
 
 
@@ -204,7 +204,7 @@ class BeaconFGB(HexError):
 
     def userProtocol(self):
         self.hex15=Fcn.bin2hex(self.bin[26:86])
-        self.tablebin.append(['26-85',self.bin[26:86],'Beacon UIN',self.hex15])
+        self.tablebin.append(['26-85',self.bin[26:86],UIN,self.hex15])
         self._loctype="User"
         self.encpos='na'
         btype='Unknown Beacon'
@@ -497,7 +497,7 @@ class BeaconFGB(HexError):
             
             self.hex15=Fcn.bin2hex(self.bin[26:65]+default)
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol', definitions.locprottype[typelocprotbin]])
-            self.tablebin.append(['26-85',self.bin[26:65]+default,'Beacon UIN',self.hex15])
+            self.tablebin.append(['26-85',self.bin[26:65]+default,UIN,self.hex15])
             latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,133)
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[65],self.bin[66:73],self.bin[73:75])
             lng,declng, lngdir,lgminutes=Fcn.longitude(self.bin[75],self.bin[76:84],self.bin[84:86])          
@@ -588,7 +588,7 @@ class BeaconFGB(HexError):
             default='011111110000001111111100000'
             #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
-            self.tablebin.append(['26-85',self.bin[26:59]+default,'Beacon UIN',self.hex15])
+            self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
             ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
             self.tablebin.append(['41-58',str(self.bin[41:59]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[41:59])))])
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
@@ -672,7 +672,7 @@ class BeaconFGB(HexError):
         elif typelocprotbin =='1101':
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:67]+default)
-            self.tablebin.append(['26-85',self.bin[26:59]+default,'Beacon UIN',self.hex15])          
+            self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
             self._loctype='RLS Location'                
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             tano=str(Fcn.bin2dec(self.bin[43:53]))
@@ -722,7 +722,7 @@ class BeaconFGB(HexError):
         elif typelocprotbin == '1001':
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:67]+default)
-            self.tablebin.append(['26-85',self.bin[26:59]+default,'Beacon UIN',self.hex15])
+            self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
             self._loctype='ELT-DT Location'
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Type',definitions.eltdt[str(self.bin[41:43])]])
