@@ -19,7 +19,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-969">
+            <state relative-caret-position="32">
               <caret line="171" column="48" lean-forward="true" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
               <folding>
                 <element signature="e#0#104#0" expanded="true" />
@@ -75,8 +75,18 @@
       <file leaf-file-name="encodehexunique.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="280" column="66" lean-forward="false" selection-start-line="280" selection-start-column="66" selection-end-line="280" selection-end-column="66" />
+            <state relative-caret-position="207">
+              <caret line="280" column="79" lean-forward="false" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -110,18 +120,6 @@
             <state relative-caret-position="1264">
               <caret line="76" column="47" lean-forward="false" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gen2functions.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gen2functions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#117#130#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -446,13 +444,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00019" summary="efafads">
-      <created>1515193656935</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1515193656935</updated>
     </task>
     <task id="LOCAL-00020" summary="efafads">
       <created>1515604897852</created>
@@ -790,7 +781,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519852671278</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="write bch file">
+      <created>1519853004557</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1519853004557</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -969,13 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1476">
-          <caret line="82" column="0" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1206,9 +1197,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-969">
+        <state relative-caret-position="32">
           <caret line="171" column="48" lean-forward="true" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
           <folding>
             <element signature="e#0#104#0" expanded="true" />
@@ -1219,8 +1218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="280" column="66" lean-forward="false" selection-start-line="280" selection-start-column="66" selection-end-line="280" selection-end-column="66" />
+        <state relative-caret-position="207">
+          <caret line="280" column="79" lean-forward="false" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
           <folding />
         </state>
       </provider>
