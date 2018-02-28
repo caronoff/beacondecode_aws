@@ -179,9 +179,10 @@
                         <a href="/encodehex" class="btn btn-default" id="refresh" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-refresh" style="color:blue"></span>Refresh
                         </a>
+                        <div id="hexcalc">
                         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
-                        </a>
+                        </a></div>
 
 
 
@@ -238,7 +239,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
                 $("#id_hexcode_btn").text(data.hexcode);
-                $("#done").text(data.hexcode);
+                $("#hexcalc a").text(data.hexcode);
 
 
             } else {
