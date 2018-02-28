@@ -4,6 +4,7 @@
     <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodehex.html" afterPath="$PROJECT_DIR$/templates/encodehex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodehexunique.html" afterPath="$PROJECT_DIR$/templates/encodehexunique.html" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +20,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="-765">
               <caret line="171" column="48" lean-forward="true" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
               <folding>
                 <element signature="e#0#104#0" expanded="true" />
@@ -55,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="encodehex.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="encodehex.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="182" column="43" lean-forward="false" selection-start-line="182" selection-start-column="43" selection-end-line="182" selection-end-column="43" />
+            <state relative-caret-position="437">
+              <caret line="241" column="16" lean-forward="false" selection-start-line="241" selection-start-column="16" selection-end-line="241" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -72,14 +73,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sgbform.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sgbform.py">
+      <file leaf-file-name="encodehexunique.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1955">
-              <caret line="117" column="42" lean-forward="false" selection-start-line="117" selection-start-column="42" selection-end-line="117" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#130#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="394">
+              <caret line="279" column="16" lean-forward="false" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,7 +194,6 @@
         <option value="$PROJECT_DIR$/templates/encodelongsecond.html" />
         <option value="$PROJECT_DIR$/templates/encodelongSGBentryform.html" />
         <option value="$PROJECT_DIR$/static/css/custom.css" />
-        <option value="$PROJECT_DIR$/templates/encodehexunique.html" />
         <option value="$PROJECT_DIR$/longsecondgenmsg.py" />
         <option value="$PROJECT_DIR$/sgbform.py" />
         <option value="$PROJECT_DIR$/Gen2functions.py" />
@@ -207,6 +205,7 @@
         <option value="$PROJECT_DIR$/Gen2rotating.py" />
         <option value="$PROJECT_DIR$/decodehex2.py" />
         <option value="$PROJECT_DIR$/templates/encodehex.html" />
+        <option value="$PROJECT_DIR$/templates/encodehexunique.html" />
       </list>
     </option>
   </component>
@@ -448,13 +447,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00017" summary="efafads">
-      <created>1513890643318</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1513890643318</updated>
     </task>
     <task id="LOCAL-00018" summary="efafads">
       <created>1513890705347</created>
@@ -792,7 +784,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519833562262</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="write bch file">
+      <created>1519852429560</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1519852429560</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1101,13 +1100,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3349">
-          <caret line="197" column="111" lean-forward="false" selection-start-line="197" selection-start-column="111" selection-end-line="197" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/longsecondgenmsg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17000">
@@ -1202,7 +1194,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="-765">
           <caret line="171" column="48" lean-forward="true" selection-start-line="171" selection-start-column="48" selection-end-line="171" selection-end-column="48" />
           <folding>
             <element signature="e#0#104#0" expanded="true" />
@@ -1213,8 +1205,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="182" column="43" lean-forward="false" selection-start-line="182" selection-start-column="43" selection-end-line="182" selection-end-column="43" />
+        <state relative-caret-position="437">
+          <caret line="241" column="16" lean-forward="false" selection-start-line="241" selection-start-column="16" selection-end-line="241" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -1223,6 +1215,14 @@
             <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="279" column="16" lean-forward="false" selection-start-line="279" selection-start-column="16" selection-end-line="279" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
