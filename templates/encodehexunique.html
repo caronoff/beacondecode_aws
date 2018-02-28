@@ -278,7 +278,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
                 $("#id_hexcode_btn").text(data.hexcode);
-                $("a#done").text(hcode);
+                $("a#done").text(data.hexcode);
                 $("a#done").attr("href", {{url_for('long',hex_code='')}});
 
             } else {
