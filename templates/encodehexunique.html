@@ -224,12 +224,17 @@
                         <a href="#" class="btn btn-success" id="done" style="margin-top: auto ; display:block; text-align: center">
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
                         </a>
+                        <form  action="/long" method="GET" role="form" id="selectlongmsg">
+                            <button type="submit" class="btn btn-success" style="display: none;" id="id_hexcode_btn" class="btn-primary" value="Submit"></button>
+                            <input type="hidden"  name="hex_code" id="id_hex_code" style="min-width: 500px;" readonly>
+                        </form>
+
                     </div>
                 </div>
 
 
 
-
+<!--
                     <div class="form-group" id="msglong">
                         <form class="form-signin" action="/long" method="GET" role="form" id="selectlongmsg">
 
@@ -238,7 +243,7 @@
                         </form>
                     </div>
 
-
+-->
                          <div id="id_decoded_error" style="overflow:hidden;overflow-wrap:break-word;word-wrap: break-word;"></div>
 
 
