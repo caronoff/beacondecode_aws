@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="write bch file">
+    <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/encodehex.html" afterPath="$PROJECT_DIR$/templates/encodehex.html" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="decodehex2.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="decodehex2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/decodehex2.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
@@ -54,12 +55,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="encodelongSGBentryform.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/encodelongSGBentryform.html">
+      <file leaf-file-name="encodehex.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="420">
+              <caret line="232" column="23" lean-forward="false" selection-start-line="232" selection-start-column="23" selection-end-line="232" selection-end-column="23" />
+              <folding>
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -185,7 +189,6 @@
         <option value="$PROJECT_DIR$/templates/encodelongfirstentryform.html" />
         <option value="$PROJECT_DIR$/templates/encodelongsecond.html" />
         <option value="$PROJECT_DIR$/templates/encodelongSGBentryform.html" />
-        <option value="$PROJECT_DIR$/templates/encodehex.html" />
         <option value="$PROJECT_DIR$/static/css/custom.css" />
         <option value="$PROJECT_DIR$/templates/encodehexunique.html" />
         <option value="$PROJECT_DIR$/longsecondgenmsg.py" />
@@ -198,12 +201,13 @@
         <option value="$PROJECT_DIR$/definitions.py" />
         <option value="$PROJECT_DIR$/Gen2rotating.py" />
         <option value="$PROJECT_DIR$/decodehex2.py" />
+        <option value="$PROJECT_DIR$/templates/encodehex.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="488" />
-    <option name="y" value="177" />
+    <option name="x" value="601" />
+    <option name="y" value="166" />
     <option name="width" value="1616" />
     <option name="height" value="1100" />
   </component>
@@ -439,20 +443,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00007" summary="efafads">
-      <created>1513888849946</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1513888849946</updated>
-    </task>
-    <task id="LOCAL-00008" summary="efafads">
-      <created>1513889130373</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1513889130373</updated>
     </task>
     <task id="LOCAL-00009" summary="efafads">
       <created>1513889258653</created>
@@ -783,11 +773,25 @@
       <option name="project" value="LOCAL" />
       <updated>1519829680608</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="write bch file">
+      <created>1519829719611</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1519829719611</updated>
+    </task>
+    <task id="LOCAL-00057" summary="write bch file">
+      <created>1519830234686</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1519830234686</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="488" y="177" width="1616" height="1100" extended-state="0" />
+    <frame x="601" y="166" width="1616" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1085,13 +1089,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="54" column="115" lean-forward="false" selection-start-line="54" selection-start-column="84" selection-end-line="54" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/custom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1205,6 +1202,17 @@
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="e#63#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="232" column="23" lean-forward="false" selection-start-line="232" selection-start-column="23" selection-end-line="232" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -230,7 +230,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
                 $("#id_hexcode_btn").text(data.hexcode);
-                $('#selectlongmsg').submit();
+                $('form#selectlongmsg').submit();
 
             } else {
                     $('#id_decoded_error').text(data.echostatus);
