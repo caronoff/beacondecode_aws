@@ -225,7 +225,7 @@
                         <span class="glyphicon glyphicon-ok" style="color:blue"></span>Compute
                         </a>
                         <form  action="/long" method="GET" role="form" id="selectlongmsg">
-                            <button type="submit" class="btn btn-success" style="display: none;" id="id_hexcode_btn" class="btn-primary" value="Submit"></button>
+                            <button type="submit" class="btn btn-primary" style="display: none;" id="id_hexcode_btn" class="btn-primary" value="Submit"></button>
                             <input type="hidden"  name="hex_code" id="id_hex_code" style="min-width: 500px;" readonly>
                         </form>
 
@@ -283,7 +283,7 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
                 $("#id_hexcode_btn").text(data.hexcode);
-                $("a#done").text(hcode);
+
 
 
 

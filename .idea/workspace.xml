@@ -75,14 +75,14 @@
       <file leaf-file-name="encodehexunique.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="246" column="59" lean-forward="true" selection-start-line="246" selection-start-column="59" selection-end-line="246" selection-end-column="59" />
+            <state relative-caret-position="185">
+              <caret line="290" column="40" lean-forward="false" selection-start-line="290" selection-start-column="24" selection-end-line="290" selection-end-column="40" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-                <marker date="1519856341905" expanded="false" signature="12484:12498" ph="..." />
-                <marker date="1519856341905" expanded="false" signature="12661:12678" ph="..." />
+                <marker date="1519856521137" expanded="false" signature="12484:12498" ph="..." />
+                <marker date="1519856521137" expanded="false" signature="12661:12678" ph="..." />
               </folding>
             </state>
           </provider>
@@ -166,6 +166,7 @@
       <find>UIN</find>
       <find>unique</find>
       <find>com</find>
+      <find>id_decoded_error</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -450,13 +451,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00028" summary="efafads">
-      <created>1518194863776</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1518194863776</updated>
     </task>
     <task id="LOCAL-00029" summary="efafads">
       <created>1518195197135</created>
@@ -794,7 +788,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519856104833</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="write bch file">
+      <created>1519856345123</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1519856345123</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1224,14 +1225,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
-          <caret line="246" column="59" lean-forward="true" selection-start-line="246" selection-start-column="59" selection-end-line="246" selection-end-column="59" />
+        <state relative-caret-position="185">
+          <caret line="290" column="40" lean-forward="false" selection-start-line="290" selection-start-column="24" selection-end-line="290" selection-end-column="40" />
           <folding>
             <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-            <marker date="1519856341905" expanded="false" signature="12484:12498" ph="..." />
-            <marker date="1519856341905" expanded="false" signature="12661:12678" ph="..." />
+            <marker date="1519856521137" expanded="false" signature="12484:12498" ph="..." />
+            <marker date="1519856521137" expanded="false" signature="12661:12678" ph="..." />
           </folding>
         </state>
       </provider>
