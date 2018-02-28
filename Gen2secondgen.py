@@ -85,14 +85,14 @@ class SecondGen(Gen2Error):
             self.selfTestStatus = Func.selfTest(self.bits[42])
             self.tablebin.append(['42',
                                   self.bits[42],
-                                  'Self-test function:',
+                                  'Self-test flag:',
                                   self.selfTestStatus])
 
             ##BIT 43 Test protocol
             self.testprotocol = Func.testProtocol(self.bits[43])
             self.tablebin.append(['43',
                                   self.bits[43],
-                                  'Test protocol:',
+                                  'Test protocol flag:',
                                   self.testprotocol])
 
             ##BIT 44-90 Encoded GNSS location
@@ -134,19 +134,19 @@ class SecondGen(Gen2Error):
             if Func.checkones(self.bits[141:155]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
-                                      'Spare:',
-                                      'OK - not a cancellation message'])
+                                      'Cancellation message status:',
+                                      'OK - all bits 1. Not a cancellation message'])
 
             elif Func.checkzeros(self.bits[141:155]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
-                                      'Spare:',
-                                      'OK - Cancellation message'])
+                                      'Cancellation message status:',
+                                      'OK - all bits 0. Cancellation message'])
 
             else:
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
-                                      'Spare:',
+                                      'Cancellation message status:',
                                       'ERROR: Bits 141-154 should be 1 (normal) or all 0 (cancellation)'])
 
 
@@ -391,12 +391,12 @@ class SecondGen(Gen2Error):
 
                 self.tablebin.append([self.bitlabel(94,137,deduct_offset),
                                       bits[3:47],
-                                      'Spare:',
+                                      'Vessel ID type is none',
                                       'All 0 - OK'])
             else:
                 self.tablebin.append([self.bitlabel(94, 137,deduct_offset),
                                       bits[3:47],
-                                      'Spare:',
+                                      'Vessel ID type is none',
                                       'Error! Should be all 0'])
         ###########################
         # Vessel 1: Maritime MMSI #

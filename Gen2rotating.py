@@ -74,7 +74,7 @@ def rotating0(bits):
     gnss = definitions.gnss_status[bits[45:47]]
     rotatingbin.append(['199-200 (Rotating field 45-46)',
                         bits[45:47],
-                        'GNSS status',
+                        'GNSS location fix type:',
                         gnss])
 
     ##BIT 47-48 (201-202) Spare
