@@ -76,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
-              <caret line="281" column="88" lean-forward="true" selection-start-line="281" selection-start-column="88" selection-end-line="281" selection-end-column="88" />
+              <caret line="281" column="16" lean-forward="false" selection-start-line="281" selection-start-column="16" selection-end-line="281" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -207,8 +207,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="809" />
-    <option name="y" value="496" />
+    <option name="x" value="782" />
+    <option name="y" value="286" />
     <option name="width" value="1616" />
     <option name="height" value="1100" />
   </component>
@@ -444,13 +444,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00025" summary="efafads">
-      <created>1518127757812</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1518127757812</updated>
     </task>
     <task id="LOCAL-00026" summary="efafads">
       <created>1518127977399</created>
@@ -788,11 +781,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519853983232</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="write bch file">
+      <created>1519855597167</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1519855597167</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="809" y="496" width="1616" height="1100" extended-state="0" />
+    <frame x="782" y="286" width="1616" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1219,7 +1219,7 @@
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
-          <caret line="281" column="88" lean-forward="true" selection-start-line="281" selection-start-column="88" selection-end-line="281" selection-end-column="88" />
+          <caret line="281" column="16" lean-forward="false" selection-start-line="281" selection-start-column="16" selection-end-line="281" selection-end-column="16" />
           <folding />
         </state>
       </provider>
