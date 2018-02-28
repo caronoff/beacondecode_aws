@@ -75,8 +75,8 @@
       <file leaf-file-name="encodehexunique.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="280" column="79" lean-forward="false" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
+            <state relative-caret-position="224">
+              <caret line="281" column="69" lean-forward="false" selection-start-line="281" selection-start-column="69" selection-end-line="281" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -207,8 +207,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="616" />
-    <option name="y" value="191" />
+    <option name="x" value="779" />
+    <option name="y" value="340" />
     <option name="width" value="1616" />
     <option name="height" value="1100" />
   </component>
@@ -444,13 +444,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00020" summary="efafads">
-      <created>1515604897852</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1515604897852</updated>
     </task>
     <task id="LOCAL-00021" summary="efafads">
       <created>1515605955541</created>
@@ -788,11 +781,18 @@
       <option name="project" value="LOCAL" />
       <updated>1519853004557</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="write bch file">
+      <created>1519853476749</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1519853476749</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="616" y="191" width="1616" height="1100" extended-state="0" />
+    <frame x="779" y="340" width="1616" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1218,8 +1218,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="280" column="79" lean-forward="false" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
+        <state relative-caret-position="224">
+          <caret line="281" column="69" lean-forward="false" selection-start-line="281" selection-start-column="69" selection-end-line="281" selection-end-column="69" />
           <folding />
         </state>
       </provider>

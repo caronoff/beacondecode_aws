@@ -272,13 +272,14 @@ $('#id_genform').find('span').each(function() {$(this).text('');  $(this).parent
   {
             if(data.echostatus=='valid')
             {
+                var hcode=data.hexcode;
                 console.log(data.binary);
                 $('#id_decoded_error').text('');
                 $('#id_hex_code').val(data.hexcode);
                 $('#id_hexcode_btn').show();
                 $("#id_hexcode_btn").text(data.hexcode);
-                $("a#done").text(data.hexcode);
-                $("a#done").attr("href", {{url_for('long',hex_code=data.hexcode)}});
+                $("a#done").text(hcode);
+                $("a#done").attr("href", {{url_for('long',hex_code='')}});
 
             } else {
                     $('#id_decoded_error').text(data.echostatus);
