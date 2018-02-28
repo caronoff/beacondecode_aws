@@ -58,8 +58,8 @@
       <file leaf-file-name="encodehex.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="183" column="34" lean-forward="false" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+            <state relative-caret-position="437">
+              <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#!!top" expanded="true" />
@@ -447,13 +447,6 @@
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
     </task>
-    <task id="LOCAL-00015" summary="efafads">
-      <created>1513890337458</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1513890337458</updated>
-    </task>
     <task id="LOCAL-00016" summary="efafads">
       <created>1513890559336</created>
       <option name="number" value="00016" />
@@ -790,7 +783,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519833080673</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="write bch file">
+      <created>1519833338027</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1519833338027</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1211,8 +1211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/encodehex.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="183" column="34" lean-forward="false" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+        <state relative-caret-position="437">
+          <caret line="241" column="25" lean-forward="false" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#button#0;n#form#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#!!top" expanded="true" />
