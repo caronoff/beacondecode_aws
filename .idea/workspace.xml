@@ -76,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
-              <caret line="281" column="70" lean-forward="false" selection-start-line="281" selection-start-column="70" selection-end-line="281" selection-end-column="70" />
+              <caret line="281" column="16" lean-forward="false" selection-start-line="281" selection-start-column="16" selection-end-line="281" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -445,13 +445,6 @@
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
     </task>
-    <task id="LOCAL-00023" summary="new page for unique hex">
-      <created>1518126713724</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1518126713724</updated>
-    </task>
     <task id="LOCAL-00024" summary="efafads">
       <created>1518127544736</created>
       <option name="number" value="00024" />
@@ -788,7 +781,14 @@
       <option name="project" value="LOCAL" />
       <updated>1519853835853</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="write bch file">
+      <created>1519853895870</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1519853895870</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1219,7 +1219,7 @@
     <entry file="file://$PROJECT_DIR$/templates/encodehexunique.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
-          <caret line="281" column="70" lean-forward="false" selection-start-line="281" selection-start-column="70" selection-end-line="281" selection-end-column="70" />
+          <caret line="281" column="16" lean-forward="false" selection-start-line="281" selection-start-column="16" selection-end-line="281" selection-end-column="16" />
           <folding />
         </state>
       </provider>
