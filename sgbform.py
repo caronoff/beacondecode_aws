@@ -19,13 +19,13 @@ class SGB(Form):
                             choices=[('0', 'No auxiliary locating device included in beacon'),
                                      ('1', 'Auxiliary locating device included in beacon')], default='1')
 
-    selftest = SelectField(label='Self-Test:',
-                               choices=[('0', 'Normal beacon operation'),
-                                        ('1', 'Self-test transmition')], default='0')
+    selftest = SelectField(label='Self-Test flag:',
+                               choices=[('0', 'Flag not set (normal beacon operation)'),
+                                        ('1', 'Self-test flag set')], default='0')
 
     testprotocol = SelectField(label='Test protocol:',
                            choices=[('0', 'Normal beacon operation'),
-                                    ('1', 'Test protocol transmition')],default='0')
+                                    ('1', 'Test protocol transmition - not a distress alert')],default='0')
 
     beacontype = SelectField(label='Beacon type:',
                                choices=[('00', 'ELT'),
