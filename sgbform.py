@@ -31,6 +31,9 @@ class SGB(Form):
                                choices=[('00', 'ELT'),
                                         ('01', 'EPIRB'),
                                         ('10', 'PLB'),('11','Test')], default='00')
+
+    rlscapability = SelectField(label='RLS function:',
+                                choices=[('0','Beacon without RLS capability or capability disabled'),('1','Beacon with RLS capability enabled')],default='0')
     def longSGB(form,h):
         binid = hex2bin(h)
         ctrybin = binid[1:11]
@@ -49,7 +52,7 @@ class SGB(Form):
 
         completebin = tanobin + snbin + ctrybin + form.homingdevice.data + \
                       form.selftest.data + form.testprotocol.data + \
-                      latbin + longbin + idbin + form.beacontype.data + 15 * '1'
+                      latbin + longbin + idbin + form.beacontype.data  + form.rlscapability.data+ 14 * '1'
         return completebin
 
 
