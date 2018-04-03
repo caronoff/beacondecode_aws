@@ -120,6 +120,7 @@ class BeaconFGB(HexError):
                 pad = '0' * 24
             elif len(strhex) == 36:
                 pad = ''
+                strhex=strhex[6:]
                 self.type = 'Long Msg with Framesynch'
             else:
                 self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22 or 30'
@@ -803,7 +804,7 @@ class Beacon(HexError):
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
-        elif len(hexcode) == 30 or len(hexcode) == 15:
+        elif len(hexcode) == 30 or len(hexcode) == 36 or len(hexcode) == 15:
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
         elif len(strhex) == 36:
