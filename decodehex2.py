@@ -671,7 +671,7 @@ class BeaconFGB(HexError):
             
         # RLS Location Protocol 
         elif typelocprotbin =='1101':
-            default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex UIN)
+            default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex)
             self.hex15=Fcn.bin2hex(self.bin[26:67]+default)
             self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
             self._loctype='RLS Location'                
