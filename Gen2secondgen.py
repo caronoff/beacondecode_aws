@@ -37,8 +37,7 @@ class SecondGen(Gen2Error):
         self.location=(0,0)
 
 
-        if len(self.bits) == 252 or len(self.bits) == 202 or len(self.bits) == 204  :
-
+        if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
 
@@ -46,7 +45,7 @@ class SecondGen(Gen2Error):
             if self.bits[1:3]=='00':
                 padding='OK'
             else:
-                padding = 'Error - not 00'
+                padding = 'Binary should be 00'
             self.tablebin.append(['padding',
                                   self.bits[1:3],
                                   'should be 00',
