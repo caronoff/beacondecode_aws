@@ -120,7 +120,8 @@ class BeaconFGB(HexError):
                 pad = '0' * 24
             elif len(strhex) == 36:
                 pad = ''
-                strhex=strhex[6:]
+                #strhex=strhex[6:]
+                print(strhex)
                 self.type = 'Long Msg with Framesynch'
             else:
                 self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22 or 30'
