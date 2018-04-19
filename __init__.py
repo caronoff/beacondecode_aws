@@ -27,7 +27,6 @@ def processhex():
     return jsonify(beacon_gen=beacon_gen,binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
 
 
-
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
     protocol=str(request.args.get('a'))
@@ -45,18 +44,14 @@ def longSGB():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
 
-
     rotatefld=str(request.args.get('rotatingfield'))
     print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form)}
     form = forms[rotatefld]
-
     if request.method == 'POST' and form.validate():
-
 
         hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-
         print(form.encodelong(hexcodeUIN))
         return redirect(url_for('decoded', hexcode=form.encodelong(hexcodeUIN)))
 
@@ -173,6 +168,27 @@ def encodehex():
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/decodedjson/<hexcode>")
+def decodedjson(hexcode):
+    beacon = decodehex2.Beacon(hexcode)
+    if beacon.type=='uin':
+        if beacon.gentype=='first':
+            tmp = 'FGB unique identifier'
+        elif beacon.gentype=='second':
+            tmp = 'SGB unique identifier'
+    else:
+        tmp='long message'
+    if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
+        geocoord = (float(beacon.location[0]),float(beacon.location[1]))
+    else:
+        geocoord = (0,0)
+    beacondecode= {'type': tmp, 'loc': geocoord}
+    return jsonify(beacondecode)
+
+
+
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
