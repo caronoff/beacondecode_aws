@@ -46,7 +46,7 @@ class SecondGen(Gen2Error):
             if self.bits[1:3]=='00':
                 padding='OK'
             else:
-                padding = 'Binary should be 00'
+                padding = 'First 2 binary in SGB msg not 00'
                 self.errors.append(padding)
             self.tablebin.append(['padding',
                                   self.bits[1:3],
@@ -145,10 +145,12 @@ class SecondGen(Gen2Error):
                                       'OK - all bits 0. Cancellation message'])
 
             else:
+                e = 'ERROR: Bits 141-154 should be 1 (normal) or all 0 (cancellation)'
+                self.errors.append(e)
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
                                       'Cancellation message status:',
-                                      'ERROR: Bits 141-154 should be 1 (normal) or all 0 (cancellation)'])
+                                      e])
 
 
 
@@ -299,13 +301,14 @@ class SecondGen(Gen2Error):
                                       'Computed',
                                       ''])
                 ##Compare to the BCH in the beacon message
-                self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
-
+                bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
+                if bcherr > 0 :
+                    self.errors.append('BCH errors :'+ str(bcherr))
                 ##Write the number of errors to our table
                 self.tablebin.append(['',
                                       '',
                                       'Number of BCH errors:',
-                                      str(self.BCHerrors)])
+                                      str(bcherr)])
 
 
 
