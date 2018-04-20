@@ -198,7 +198,9 @@ def decodedjson(hexcode):
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
-    # send an external POST request with hexcode to jotforms for logging
+    # send an external GET request with hexcode to jotforms for logging
+
+    r = request.get("https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]=itsme")
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
