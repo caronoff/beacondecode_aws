@@ -7,7 +7,8 @@ from decodefunctions import is_number, dec2bin
 import re
 import decodehex2
 import definitions
-import sys
+
+
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
@@ -172,7 +173,12 @@ def about():
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
+    # perform independent basic validation of hex code for length and specifications. Basic check
+    # that hex code can be decoded.
+    # if pass test, then make the beacon object
     beacon = decodehex2.Beacon(hexcode)
+    # deocde the beacon weather , FGB , SGB and if there is any error, describe errors (eg : BCH errors)
+    # if message is valid, then complete the dictionary of all relevant keys.
     if beacon.type=='uin':
         if beacon.gentype=='first':
             tmp = 'FGB unique identifier'
@@ -192,6 +198,7 @@ def decodedjson(hexcode):
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
+    # send an external POST request with hexcode to jotforms for logging
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
