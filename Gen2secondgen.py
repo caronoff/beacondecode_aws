@@ -40,18 +40,19 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
-            ##Add an additional bit to ensure that bits in array line up with bits in documentation
 
-            self.bits = "0" + self.bits[2:]
-            if self.bits[1:3]=='00':
+            if self.bits[0:2]=='00':
                 padding='OK'
             else:
                 padding = 'First 2 binary in SGB msg not 00'
                 self.errors.append(padding)
             self.tablebin.append(['padding',
-                                  self.bits[1:3],
+                                  self.bits[0:2],
                                   'should be 00',
                                   padding])
+            ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
+            self.bits = "0" + self.bits[2:]
+
 
             ##BIT 1-20  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[1:21])
