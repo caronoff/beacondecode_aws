@@ -7,7 +7,7 @@ from decodefunctions import is_number, dec2bin
 import re
 import decodehex2
 import definitions
-# import requests
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
