@@ -201,11 +201,18 @@ def decoded(hexcode):
     # send POST request to jotforms for logging
     ipaddress=str(request.remote_addr)
     #print(request.remote_addr)
-    r = requests.post("https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
-                      +hexcode+"&submission[4]="+ipaddress)
+
     geocoord = (0, 0)
     locationcheck = False
     beacon = decodehex2.Beacon(hexcode)
+    error=''
+    if len(beacon.errors)>0 :
+        error = ', '.join(beacon.errors)
+
+
+    r = requests.post(
+        "https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
+        + hexcode + "&submission[4]=" + ipaddress+ "&submission[5]=" + error)
     print(beacon.type=='uin')
     if beacon.type=='uin':
         if beacon.gentype=='first':

@@ -35,6 +35,7 @@ class SecondGen(Gen2Error):
         self.rotatingbin = []
         self.longitude=self.latitude='na'
         self.location=(0,0)
+        self.errors=[]
 
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
@@ -46,6 +47,7 @@ class SecondGen(Gen2Error):
                 padding='OK'
             else:
                 padding = 'Binary should be 00'
+                self.errors.append(padding)
             self.tablebin.append(['padding',
                                   self.bits[1:3],
                                   'should be 00',

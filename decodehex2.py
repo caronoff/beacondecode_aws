@@ -97,6 +97,7 @@ class BeaconFGB(HexError):
         self.courseloc = ('na', 'na')
         self.location = ('na', 'na')
         self.latitude='na'
+        self.errors=[]
         self.longitude='na'
         self.fixedbits = ''
         self.hex = str(strhex)
@@ -823,6 +824,7 @@ class Beacon(HexError):
         self.tablebin=self.beacon.tablebin
         self.bchstring=self.beacon.bchstring
         self.type = self.beacon.type
+        self.errors = self.beacon.errors
     def has_loc(self):
         if self.beacon.type=='uin':
             return False
