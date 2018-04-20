@@ -215,7 +215,7 @@ def decoded(hexcode):
             tmp = 'encodelongsecond.html'
     else:
         print('default output.html')
-        print(beacon.bchstring)
+        #print(beacon.bchstring)
         tmp='output.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
