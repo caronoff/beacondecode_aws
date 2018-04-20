@@ -199,8 +199,8 @@ def decodedjson(hexcode):
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
     # send POST request to jotforms for logging
-    ipaddress="test"
-    print(request.remote_addr)
+    ipaddress=request.remote_addr
+    #print(request.remote_addr)
     r = requests.post("https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
                       +hexcode+"&submission[4]="+ipaddress)
     geocoord = (0, 0)
