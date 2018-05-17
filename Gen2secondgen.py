@@ -304,7 +304,7 @@ class SecondGen(Gen2Error):
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
-                    bcherror='BCH inconsistencies in the computed message'
+                    bcherror='COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
                     self.errors.append(bcherror)
                     self.tablebin.append(['','','',bcherror])
 

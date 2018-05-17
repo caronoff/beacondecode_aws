@@ -33,9 +33,9 @@ class Bch:
         for n, bit in enumerate(b1):
             e = e + abs(int(bit) - int(b2[n]))
         if e>0:
-            match='INCONSITENT'
+            match='NO MATCH WITH ENCODED BCH!!'
         else:
-            match=''
+            match='BCH matches encoded BCH'
         return match
 
     def bcherror(self, n):
