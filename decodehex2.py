@@ -32,21 +32,25 @@ class Bch:
         e = 0
         for n, bit in enumerate(b1):
             e = e + abs(int(bit) - int(b2[n]))
-        return e
+        if e>0:
+            match='INCONSITENT'
+        else:
+            match=''
+        return match
 
     def bcherror(self, n):
         return 'BCH-{} errors: {}'.format(str(n), self.bch[3+int(n)])
 
     def bch1calc(self):
-        return 'BCH-1 Calculated (86-106):  {bchcalc}  Errors: {e}'.format(bchcalc=self.bch[0], e=self.bch[4])
+        return 'BCH-1 Calculated (86-106):  {bchcalc}   {e}'.format(bchcalc=self.bch[0], e=self.bch[4])
 
     def bch2calc(self):
-        return 'BCH-2 Calculated (133-144):  {bchcalc}  Errors: {e}'.format(bchcalc=self.bch[1], e=self.bch[5])
+        return 'BCH-2 Calculated (133-144):  {bchcalc}  {e}'.format(bchcalc=self.bch[1], e=self.bch[5])
 
     def writebch1(self):
-        return 'BCH-1 Encoded: {bch1enc}   BCH-1 Calculated:  {bchcalc}  Errors: {e}'.format(bch1enc=self.bch[2], bchcalc=self.bch[0], e=self.bch[4])
+        return 'BCH-1 Encoded: {bch1enc}   BCH-1 Calculated:  {bchcalc}  {e}'.format(bch1enc=self.bch[2], bchcalc=self.bch[0], e=self.bch[4])
     def writebch2(self):
-        return 'BCH-2 Encoded: {bch2enc}   BCH-2 Calculated:  {bchcalc}  Errors: {e}'.format(bch2enc=self.bch[3], bchcalc=self.bch[1], e=self.bch[5])
+        return 'BCH-2 Encoded: {bch2enc}   BCH-2 Calculated:  {bchcalc}   {e}'.format(bch2enc=self.bch[3], bchcalc=self.bch[1], e=self.bch[5])
 
 
 

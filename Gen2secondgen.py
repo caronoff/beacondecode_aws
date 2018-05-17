@@ -304,12 +304,12 @@ class SecondGen(Gen2Error):
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
-                    self.errors.append('BCH errors :'+ str(bcherr))
+                    self.errors.append('BCH inconsistencies in the computed message')
                 ##Write the number of errors to our table
-                self.tablebin.append(['',
-                                      '',
-                                      'Number of BCH errors:',
-                                      str(bcherr)])
+                ##self.tablebin.append(['',
+                ##                      '',
+                ##                      'Number of BCH errors:',
+                ##                      str(bcherr)])
 
 
 
