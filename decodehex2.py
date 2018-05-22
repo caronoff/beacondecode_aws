@@ -310,11 +310,9 @@ class BeaconFGB(HexError):
                            definitions.protocol[self.bin[26]],
                            typeuserprotbin,definitions.userprottype[typeuserprotbin],
                            susertype,serialtype)
-                                     
                        
 
-            self.typeapproval=(tacert,'Type Approval ',str(tano))  
-            
+            self.typeapproval=(tacert,'Type Approval ',str(tano))
             
             
             self.tablebin.append(['74-83',str(self.bin[74:84]),'Type approval certificate No',tano])
@@ -443,8 +441,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['133-144',
                                   str(self.bin[133:145]),
                                       'BCH 2',
-                                      str(self.bch.bch2calc())])      
-        
+                                      str(self.bch.bch2calc())])
 
         
         self._btype=btype
@@ -527,11 +524,9 @@ class BeaconFGB(HexError):
             #   ELT - Aircraft Operator Designator Standard Location Protocol
             elif typelocprotbin=='0101':
                 
-                
                 self.tablebin.append(['41-64',str(self.bin[41:65]),
                                       'ELT Operator ID',
                                       '{} ELT No:{}'.format(str(Fcn.baudot(self.bin,41,55,True)),str(Fcn.bin2dec(self.bin[56:65])))])
-
             
             #   PLB, ELT and EBIRB Serial
             elif typelocprotbin in ['0100','0110','0111']:                
@@ -671,9 +666,7 @@ class BeaconFGB(HexError):
 
             elif self.type=='uin':
                 self.tablebin.append(['59-85',default,'Default bits',''])
-
                 self._loc=False
-            
             
         # RLS Location Protocol 
         elif typelocprotbin =='1101':
@@ -722,8 +715,6 @@ class BeaconFGB(HexError):
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
-
-
             
         # ELT-DT Location Protocol   
         elif typelocprotbin == '1001':

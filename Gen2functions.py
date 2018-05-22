@@ -539,7 +539,6 @@ def calcBCH(binary, b1start, b1end, b2end):
     Returns:
         bchlist: calculated BCH code
     """
-
     gx = '1110001111110101110000101110111110011110010010111'
     bchlist = list(binary[b1start:b1end] + '0'*(b2end-b1end))
     for i in range(b1end-b1start):
@@ -579,8 +578,7 @@ if __name__ == "__main__":
     bc=calcBCH(btwozeros,0,204,252)
     bfinal='000000000000111001101000111101001100100110000110000110010110000110001000101000000100011111000000000000000000000000000000000000000000000001111111111111111100000000010000000011000001101000000000100101100000101010110000011010101010101010010101111010111001'
     
-    #print bc
-    #print
+
     #print len(b4pad)
     #print bin2hex(bfinal)
     #print hex2bin('f0ac')

@@ -275,7 +275,6 @@ class SecondGen(Gen2Error):
             ##Hex ID BIT 92 = fixed binary 1
             self.hexID.append('1')
 
-
             ##Join list together and convert to Hexadecimal
             self.beaconHexID = Func.bin2hex(''.join(self.hexID))
 
