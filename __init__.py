@@ -15,7 +15,7 @@ app.secret_key = 'my secret'
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():
-    COUNTRIES.append('line')
+    COUNTRIES.append(line)
 ##for key in definitions.countrydic:
 ##    COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
