@@ -13,8 +13,11 @@ app = Flask(__name__)
 app.secret_key = 'my secret'
 
 COUNTRIES=[]
-for key in definitions.countrydic:
-    COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
+country=open('countries2.csv')
+for line in country.readlines():
+    COUNTRIES.append('line')
+##for key in definitions.countrydic:
+##    COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
 
 
