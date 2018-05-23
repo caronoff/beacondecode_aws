@@ -797,7 +797,10 @@ class BeaconFGB(HexError):
 
 class Beacon(HexError):
     def __init__(self,hexcode):
-        genmsgdic={'63':'Hex data entered is length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch'}
+        genmsgdic={'63':'Hex data entered is length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch',
+                   '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB',
+                   '15':'This is a 15 Hex ID based on FGB specifications'}
+        self.genmsg=''
         if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
@@ -808,11 +811,13 @@ class Beacon(HexError):
 
         elif len(hexcode) == 15:
             if Fcn.hextobin(hexcode)[0]=='1' and Fcn.hextobin(hexcode)[11:14]=='101':
-                self.gentype = 'second'
+                self.gentype = 'secondtruncated'
                 beacon = Gen2.SecondGen(hexcode+8*'0')
+                self.genmsg = genmsgdic['15sgb']
             else:
                 self.gentype = 'first'
                 beacon = BeaconFGB(hexcode)
+                self.genmsg = genmsgdic['15']
         elif len(hexcode) == 30 or len(hexcode) == 36 :
 
             beacon=BeaconFGB(hexcode)

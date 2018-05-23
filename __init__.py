@@ -180,7 +180,7 @@ def decodedjson(hexcode):
     # that hex code can be decoded.
     # if pass test, then make the beacon object
     beacon = decodehex2.Beacon(hexcode)
-    # deocde the beacon weather , FGB , SGB and if there is any error, describe errors (eg : BCH errors)
+    # decode , FGB , SGB and if there is any error, describe errors (eg : BCH errors)
     # if message is valid, then complete the dictionary of all relevant keys.
     if beacon.type=='uin':
         if beacon.gentype=='first':
@@ -223,6 +223,7 @@ def decoded(hexcode):
             # redirect with the hexcode, beacon type - different inputs depending on type of first gen
         elif beacon.gentype=='second':
             tmp = 'encodelongsecond.html'
+
     else:
         print('default output.html')
         #print(beacon.bchstring)
@@ -233,7 +234,7 @@ def decoded(hexcode):
         print(geocoord)
         locationcheck=True
 
-    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord)
+    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):

@@ -358,7 +358,7 @@ class SecondGen(Gen2Error):
             if self.bits[61:] == '0'*32:
                 print('truncated sgb 15 hex id')
                 self.tablebin.append(['45-47', self.bits[45:48], 'Vessel ID Type',Func.getVesselid(self.bits[45:48])])
-                self.tablebin.append(['48-60', self.bits[48:], 'Remaining bits', 'partial identification data not decoded'])
+                self.tablebin.append(['48-60', self.bits[48:], 'Remaining bits', 'Truncated SGB Hex ID does not allow vessel ID information to be decoded'])
             else:
             ##BIT 45-91 Aircraft / Vessel ID
                 self.vesselIDfill(46, self.bits[45:92])
