@@ -313,7 +313,7 @@ class SecondGen(Gen2Error):
 
 
 
-        elif len(self.bits) == 92:
+        elif len(self.bits) == 92 :
             self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon hexidecimal identification'.format(str(len(strhex)),str(len(self.bits))))
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
@@ -354,17 +354,26 @@ class SecondGen(Gen2Error):
                                   'Serial Number',
                                   str(self.serialNum)])
 
+
+            if self.bits[61:] == '0'*32:
+                print('truncated sgb 15 hex id')
+            else:
             ##BIT 45-91 Aircraft / Vessel ID
-            self.vesselIDfill(46, self.bits[45:92])
+                self.vesselIDfill(46, self.bits[45:92])
 
 
 
 
-            ##BIT 92 Fixed value 1
-            self.tablebin.append(['92',
-                                  self.bits[92],
-                                  'Fixed 1',
-                                  self.bits[92]=='1'])
+                ##BIT 92 Fixed value 1
+                if self.bits[92]=='1':
+                    status_check = 'OK'
+                else:
+                    status_check = 'ERROR'
+
+                self.tablebin.append(['92',
+                                      self.bits[92],
+                                      'Fixed 1',
+                                      status_check])
 
         else:
             self.type = ('Hex string length of ' + str(len(strhex)) + '.'
