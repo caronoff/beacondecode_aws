@@ -40,7 +40,7 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
-            self.beaconHexID = self.uinSgb()
+
 
             if self.bits[0:2]=='00':
                 padding='OK'
@@ -54,6 +54,7 @@ class SecondGen(Gen2Error):
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
             ##Add the 23 Hex ID to our table
+            self.beaconHexID = self.uinSgb()
             self.tablebin.append(['',
                                   '',
                                   'Beacon 23 Hex ID:',
