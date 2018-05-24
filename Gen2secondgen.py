@@ -40,7 +40,7 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
-            self.beaconHexIDhexID = self.uinSgb()
+            self.beaconHexID = self.uinSgb()
             ##Add the 23 Hex ID to our table
             self.tablebin.append(['',
                                   '',
