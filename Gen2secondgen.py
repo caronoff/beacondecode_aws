@@ -44,11 +44,11 @@ class SecondGen(Gen2Error):
             if self.bits[0:2]=='00':
                 padding='OK'
             else:
-                padding = 'First 2 binary in SGB msg not 00'
+                padding = 'ERROR! left padding should be 00'
                 self.errors.append(padding)
-            self.tablebin.append(['padding',
+            self.tablebin.append(['left padding',
                                   self.bits[0:2],
-                                  'should be 00',
+                                  '',
                                   padding])
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
@@ -133,20 +133,35 @@ class SecondGen(Gen2Error):
 
 
             ##BIT 140-154 Spare bits
-            if Func.checkones(self.bits[141:155]):
+            if Func.checkones(self.bits[141:155]) and not Func.checkones(self.bits[155:159]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
-                                      'Cancellation message status:',
-                                      'OK - all bits 1. Not a cancellation message'])
+                                      'Spare bits',
+                                      'OK - all bits 1 and rotatating field not a cancellation message'])
+            elif Func.checkones(self.bits[141:155]) and Func.checkones(self.bits[155:159]):
+                e='ERROR! - all bits 1 and rotatating field is a cancellation message (for a cancellation message these bits should be set to 0)'
+                self.errors.append(e)
+                self.tablebin.append(['141-154',
+                                      self.bits[141:155],
+                                      'Spare bits',
+                                      e])
 
-            elif Func.checkzeros(self.bits[141:155]):
+            elif Func.checkzeros(self.bits[141:155]) and Func.checkones(self.bits[155:159]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
-                                      'Cancellation message status:',
-                                      'OK - all bits 0. Cancellation message'])
+                                      'Spare bits',
+                                      'OK - all bits 0 and rotating field is cancellation message (unless this is a cancellation message, these bits should be set to 1'])
+
+            elif Func.checkzeros(self.bits[141:155]) and not Func.checkones(self.bits[155:159]):
+                e= 'ERROR!- all bits 0 and rotating field is not cancellation message'
+                self.errors.append(e)
+                self.tablebin.append(['141-154',
+                                      self.bits[141:155],
+                                      'Spare bits',
+                                      e])
 
             else:
-                e = 'ERROR: Bits 141-154 should be 1 (normal) or all 0 (cancellation)'
+                e = 'ERROR: Bits 141-154 should be set to all 1 or all 0 in the case that the rotating field is a cancellation message'
                 self.errors.append(e)
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
@@ -225,7 +240,7 @@ class SecondGen(Gen2Error):
 
 
             ##################################
-            # All other roating fields spare #
+            # All other rotating fields spare #
             ##################################
 
             else:
