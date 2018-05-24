@@ -40,7 +40,12 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
-
+            self.beaconHexIDhexID = self.uinSgb()
+            ##Add the 23 Hex ID to our table
+            self.tablebin.append(['',
+                                  '',
+                                  'Beacon 23 Hex ID:',
+                                  self.beaconHexID])
             if self.bits[0:2]=='00':
                 padding='OK'
             else:
@@ -329,7 +334,7 @@ class SecondGen(Gen2Error):
 
 
         elif len(self.bits) == 92 :
-            self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon hexidecimal identification'.format(str(len(strhex)),str(len(self.bits))))
+            self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon hexadecimal identification'.format(str(len(strhex)),str(len(self.bits))))
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
@@ -396,8 +401,52 @@ class SecondGen(Gen2Error):
             self.type = ('Hex string length of ' + str(len(strhex)) + '.'
                          + '\nBit string length of ' + str(len(self.bits)) + '.'
                          + '\nLength of First Gen Beacon Hex String must be 15, 22 or 30'
-                         + '\nLength of Second Gen Beacon Bit String must be 252 bits')
+                         + '\nLength of Second Gen Beacon Bit String must be 204 or 252 bits')
             raise Gen2Error('LengthError', self.type)
+
+
+
+
+    def uinSgb(self):
+        ####################
+        # BEACON 23 HEX ID #
+        ####################
+        hexID = []
+
+        ##Hex ID BIT 1 = fixed binary 1
+        hexID.append('1')
+
+        ##Hex ID BIT 2-11 = BITS 31-40 (C/S Country Code)
+        hexID.append(self.bits[31:41])
+
+        ##Hex ID BIT 12 = fixed binary 1
+        hexID.append('1')
+
+        ##Hex ID BIT 13 = fixed binary 0
+        hexID.append('0')
+
+        ##Hex ID BIT 14 = fixed binary 1
+        hexID.append('1')
+
+        ##Hex ID BIT 15-34 = BITS 1-20 (C/S TAC No)
+        hexID.append(self.bits[1:21])
+
+        ##Hex ID BIT 35-44 = BITS 21-30 (Beacon Serial Number)
+        hexID.append(self.bits[21:31])
+
+        ##Hex ID BIT 45-47 = BITS 91-93 (Aircraft/Vessel ID Type)
+        hexID.append(self.bits[91:94])
+
+        ##Hex ID BIT 48-91 = BITS 94-137 (Aircraft/Vessel ID)
+        hexID.append(self.bits[94:138])
+
+        ##Hex ID BIT 92 = fixed binary 1
+        hexID.append('1')
+
+        ##Join list together and convert to Hexadecimal
+        beaconHexID = Func.bin2hex(''.join(hexID))
+        return beaconHexID
+
     def bitlabel(self,a,b,c):
         return str(int(a)-int(c))+'-'+str(int(b)-int(c))
 
