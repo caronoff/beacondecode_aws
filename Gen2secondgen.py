@@ -41,11 +41,7 @@ class SecondGen(Gen2Error):
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
             self.beaconHexID = self.uinSgb()
-            ##Add the 23 Hex ID to our table
-            self.tablebin.append(['',
-                                  '',
-                                  'Beacon 23 Hex ID:',
-                                  self.beaconHexID])
+
             if self.bits[0:2]=='00':
                 padding='OK'
             else:
@@ -57,7 +53,11 @@ class SecondGen(Gen2Error):
                                   padding])
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
-
+            ##Add the 23 Hex ID to our table
+            self.tablebin.append(['',
+                                  '',
+                                  'Beacon 23 Hex ID:',
+                                  self.beaconHexID])
 
             ##BIT 1-20  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[1:21])
