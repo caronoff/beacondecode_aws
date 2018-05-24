@@ -41,16 +41,13 @@ class SecondGen(Gen2Error):
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
 
-
-            if self.bits[0:2]=='00':
+            pbit=self.bits[0:2]
+            if pbit=='00':
                 padding='OK'
             else:
                 padding = 'ERROR! left padding should be 00'
                 self.errors.append(padding)
-            self.tablebin.append(['left padding',
-                                  self.bits[0:2],
-                                  '',
-                                  padding])
+
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
             ##Add the 23 Hex ID to our table
@@ -59,6 +56,11 @@ class SecondGen(Gen2Error):
                                   '',
                                   'Beacon 23 Hex ID:',
                                   self.beaconHexID])
+
+            self.tablebin.append(['left padding',
+                                  pbit,
+                                  '',
+                                  padding])
 
             ##BIT 1-20  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[1:21])
@@ -261,49 +263,6 @@ class SecondGen(Gen2Error):
 
 
 
-            ####################
-            # BEACON 23 HEX ID #
-            ####################
-            self.hexID = []
-
-            ##Hex ID BIT 1 = fixed binary 1
-            self.hexID.append('1')
-
-            ##Hex ID BIT 2-11 = BITS 31-40 (C/S Country Code)
-            self.hexID.append(self.bits[31:41])
-
-            ##Hex ID BIT 12 = fixed binary 1
-            self.hexID.append('1')
-
-            ##Hex ID BIT 13 = fixed binary 0
-            self.hexID.append('0')
-
-            ##Hex ID BIT 14 = fixed binary 1
-            self.hexID.append('1')
-
-            ##Hex ID BIT 15-34 = BITS 1-20 (C/S TAC No)
-            self.hexID.append(self.bits[1:21])
-
-            ##Hex ID BIT 35-44 = BITS 21-30 (Beacon Serial Number)
-            self.hexID.append(self.bits[21:31])
-
-            ##Hex ID BIT 45-47 = BITS 91-93 (Aircraft/Vessel ID Type)
-            self.hexID.append(self.bits[91:94])
-
-            ##Hex ID BIT 48-91 = BITS 94-137 (Aircraft/Vessel ID)
-            self.hexID.append(self.bits[94:138])
-
-            ##Hex ID BIT 92 = fixed binary 1
-            self.hexID.append('1')
-
-            ##Join list together and convert to Hexadecimal
-            self.beaconHexID = Func.bin2hex(''.join(self.hexID))
-
-            ##Add the 23 Hex ID to our table
-            self.tablebin.append(['',
-                                  '',
-                                  'Beacon 23 Hex ID:',
-                                  self.beaconHexID])
 
 
             ####################################
