@@ -815,6 +815,7 @@ class Beacon(HexError):
                 self.genmsg = genmsgdic['51']
 
         elif len(hexcode) == 23:
+            beacon = Gen2.SecondGen(hexcode)
             self.gentype = 'second'
             self.genmsg = genmsgdic['23']
 
