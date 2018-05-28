@@ -799,18 +799,24 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch',
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB',
-                   '15':'This is a 15 Hex ID based on FGB specifications',
-                   '51': 'Hex data entered is a length of 51 characters representing a 2204 bit messgage from a second generation beacon, without the bch'}
+                   '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications',
+                   '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications',
+                   '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a second generation beacon, without the bch',
+                   '30':'Hex data entered is a complete 30 charachter hexidecimal consistent with FGB specifications',
+                   '36': 'Hex data entered is a complete 36 charachter hexidecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
         self.genmsg=''
-        if len(hexcode) == 63 or len(hexcode) == 51 or len(hexcode) == 75 or len(hexcode) == 23:
+        if len(hexcode) == 63 or len(hexcode) == 51 :
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
-
             if len(hexcode) == 63:
                 self.genmsg = genmsgdic['63']
             elif len(hexcode) == 51:
+                beacon = Gen2.SecondGen(hexcode)
                 self.genmsg = genmsgdic['51']
 
+        elif len(hexcode) == 23:
+            self.gentype = 'second'
+            self.genmsg = genmsgdic['23']
 
         elif len(hexcode) == 15:
             if Fcn.hextobin(hexcode)[0]=='1' and Fcn.hextobin(hexcode)[11:14]=='101':
@@ -821,14 +827,18 @@ class Beacon(HexError):
                 self.gentype = 'first'
                 beacon = BeaconFGB(hexcode)
                 self.genmsg = genmsgdic['15']
-        elif len(hexcode) == 30 or len(hexcode) == 36 :
+
+        elif len(hexcode) == 30 :
 
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
+            self.genmsg = genmsgdic['30']
 
         elif len(strhex) == 36:
             beacon=BeaconFGB(hexcode[6:])
             self.gentype = 'first'
+            self.genmsg = genmsgdic['36']
+
         else:
             self.type = 'Hex length of ' + str(
                 len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
@@ -842,6 +852,7 @@ class Beacon(HexError):
         self.bchstring=self.beacon.bchstring
         self.type = self.beacon.type
         self.errors = self.beacon.errors
+
     def has_loc(self):
         if self.beacon.type=='uin':
             return False
