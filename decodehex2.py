@@ -677,7 +677,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             tano=str(Fcn.bin2dec(self.bin[43:53]))
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
-            self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS Tac No','#{}'.format(tano)])                      
+            self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS truncated TA (last three digits)','#{}'.format(tano)])
             self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
@@ -725,6 +725,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Type',definitions.eltdt[str(self.bin[41:43])]])
             if str(self.bin[41:43])=='10':
+            # 10 bit TAC & Serial No
                 tano=str(Fcn.bin2dec(self.bin[43:53]))
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'Tac No','#{}'.format(tano)])                      
                 self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
@@ -736,6 +737,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator',Fcn.baudot(self.bin,43,58,True)])
                 self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[58:67]))])
             elif str(self.bin[41:43])=='11':
+            # ELT(DT) Location Test Protocol
                 self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','reserved'])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
