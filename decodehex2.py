@@ -837,7 +837,7 @@ class Beacon(HexError):
             self.gentype='first'
             self.genmsg = genmsgdic['30']
 
-        elif len(strhex) == 36:
+        elif len(hexcode) == 36:
             beacon=BeaconFGB(hexcode[6:])
             self.gentype = 'first'
             self.genmsg = genmsgdic['36']
