@@ -8,7 +8,7 @@ import definitions
 import time
 
 
-UIN = 'unique hexidecimal ID'
+UIN = 'unique hexadecimal ID'
 
 
 
@@ -804,8 +804,8 @@ class Beacon(HexError):
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications',
                    '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a second generation beacon, without the bch',
-                   '30':'Hex data entered is a complete 30 charachter hexidecimal consistent with FGB specifications',
-                   '36': 'Hex data entered is a complete 36 charachter hexidecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
+                   '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB specifications',
+                   '36': 'Hex data entered is a complete 36 charachter hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
         self.genmsg=''
         if len(hexcode) == 63 or len(hexcode) == 51 :
             beacon = Gen2.SecondGen(hexcode)
