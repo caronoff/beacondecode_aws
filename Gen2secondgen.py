@@ -327,10 +327,14 @@ class SecondGen(Gen2Error):
                                   status_check])
             ##BIT 15-34  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[15:35])
+            if self.tac<10000:
+                warn='  WARNING!: SGB requires TAC No >=10,000'
+            else:
+                warn=''
             self.tablebin.append(['15-34',
                                   self.bits[15:35],
                                   'Type Approval Certificate #',
-                                  str(self.tac)])
+                                  str(self.tac)]+warn)
             ##BIT 35-44 Beacon Serial Number
             self.serialNum = Func.bin2dec(self.bits[35:45])
             self.tablebin.append(['35-44',
