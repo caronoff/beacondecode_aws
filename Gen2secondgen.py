@@ -334,7 +334,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append(['15-34',
                                   self.bits[15:35],
                                   'Type Approval Certificate #',
-                                  str(self.tac)]+warn)
+                                  str(self.tac)+warn])
             ##BIT 35-44 Beacon Serial Number
             self.serialNum = Func.bin2dec(self.bits[35:45])
             self.tablebin.append(['35-44',
