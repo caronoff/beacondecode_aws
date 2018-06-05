@@ -70,7 +70,7 @@ class SecondGen(Gen2Error):
                 warn=''
             self.tablebin.append(['1-20',
                                   self.bits[1:21],
-                                  'Type Approval Cert No: '+self.tac,
+                                  'Type Approval Cert No: '+str(self.tac),
                                   warn])
 
             ##BIT 21-30 Serial Number
@@ -333,7 +333,7 @@ class SecondGen(Gen2Error):
                 warn=''
             self.tablebin.append(['15-34',
                                   self.bits[15:35],
-                                  'Type Approval Cert No '+self.tac,
+                                  'Type Approval Cert No: '+str(self.tac),
                                   warn])
             ##BIT 35-44 Beacon Serial Number
             self.serialNum = Func.bin2dec(self.bits[35:45])
