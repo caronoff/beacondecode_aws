@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="11435ad2-3948-4971-a443-1e3784de8b36" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gen2secondgen.py" afterPath="$PROJECT_DIR$/Gen2secondgen.py" />
     </list>
     <ignored path="C:\beacondecode\beacondecode_aws2\.idea\shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="Gen2secondgen.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gen2secondgen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+            <state relative-caret-position="17">
+              <caret line="312" column="18" lean-forward="false" selection-start-line="312" selection-start-column="18" selection-end-line="312" selection-end-column="18" />
               <folding>
                 <element signature="e#196#224#0" expanded="true" />
               </folding>
@@ -86,8 +85,8 @@
       <file leaf-file-name="decodehex2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/decodehex2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-12138">
-              <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+            <state relative-caret-position="1258">
+              <caret line="78" column="22" lean-forward="false" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
               <folding>
                 <element signature="e#63#92#0" expanded="true" />
                 <marker date="1527791412171" expanded="true" signature="26948:31811" ph="..." />
@@ -222,8 +221,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="49" />
-    <option name="y" value="88" />
+    <option name="x" value="285" />
+    <option name="y" value="129" />
     <option name="width" value="1834" />
     <option name="height" value="946" />
   </component>
@@ -242,6 +241,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -270,7 +270,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -473,20 +472,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1513887551517</updated>
-    </task>
-    <task id="LOCAL-00102" summary="requests for HTTP to jotforms">
-      <created>1524253177422</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1524253177422</updated>
-    </task>
-    <task id="LOCAL-00103" summary="requests for HTTP to jotforms">
-      <created>1524254118528</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1524254118528</updated>
     </task>
     <task id="LOCAL-00104" summary="requests for HTTP to jotforms">
       <created>1524254282088</created>
@@ -817,7 +802,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528207206690</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="tac number">
+      <created>1528207371766</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1528207371766</updated>
+    </task>
+    <task id="LOCAL-00152" summary="tac number">
+      <created>1528207433247</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1528207433247</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -835,19 +834,19 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="88" width="1834" height="946" extended-state="0" />
+    <frame x="285" y="129" width="1834" height="946" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17436744" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31709844" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46770334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39167556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22945571" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46770334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28240108" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1250,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/decodehex2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-12138">
-          <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+        <state relative-caret-position="1258">
+          <caret line="78" column="22" lean-forward="false" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding>
             <element signature="e#63#92#0" expanded="true" />
             <marker date="1527791412171" expanded="true" signature="26948:31811" ph="..." />
@@ -1261,8 +1260,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gen2secondgen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+        <state relative-caret-position="17">
+          <caret line="312" column="18" lean-forward="false" selection-start-line="312" selection-start-column="18" selection-end-line="312" selection-end-column="18" />
           <folding>
             <element signature="e#196#224#0" expanded="true" />
           </folding>
