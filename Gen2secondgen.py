@@ -216,7 +216,7 @@ class SecondGen(Gen2Error):
 
 
             #########################
-            # Rotating Field 2: RLS #
+            # Rotating Field 2: RLS  #
             #########################
 
             elif self.rotatingID == 2:
