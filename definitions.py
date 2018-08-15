@@ -38,7 +38,7 @@ def dec2bin(n, ln=None):
 
 
 countrydic = {}
-country = open('countries.csv')
+country = open('countries2.csv')
 
 for line in country.readlines():
     mid = int(line.split(',')[0].rstrip())
