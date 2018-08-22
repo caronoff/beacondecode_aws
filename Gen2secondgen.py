@@ -25,6 +25,8 @@ class SecondGen(Gen2Error):
 
         if hexCode:
             self.processHex(hexCode)
+
+
     def processHex(self, strhex):
 
         ##All second generation beacon messages must be EXACTLY 250 bits
@@ -35,7 +37,10 @@ class SecondGen(Gen2Error):
         self.rotatingbin = []
         self.longitude=self.latitude='na'
         self.location=(0,0)
+        self.courseloc=('na','na')
         self.errors=[]
+        self.fixedbits = ''
+        self.testprotocol=''
 
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
@@ -298,12 +303,12 @@ class SecondGen(Gen2Error):
 
 
         elif len(self.bits) == 92 :
-            self.type = ('Hex string length of {}. \nBit length of {}. \nThis is a second generation beacon hexadecimal identification'.format(str(len(strhex)),str(len(self.bits))))
+
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
 
-            self.latitude = self.longitude = 'No latitude data available'
+            self.latitude = self.longitude = 'No data available'
             self.tablebin.append(['Unique ID','Second Generation','',''])
             self.tablebin.append(['1',
                                   self.bits[1],
@@ -372,8 +377,16 @@ class SecondGen(Gen2Error):
                          + '\nLength of Second Gen Beacon Bit String must be 204 or 252 bits')
             raise Gen2Error('LengthError', self.type)
 
+    def testmsg(self):
+        return (Func.selfTest(self.bits[42]),Func.testProtocol(self.bits[43]))
 
+    def getencpos(self):
+        return 'Of course! This is an SGB'
 
+    def hexuin(self):
+        if self.type=='uin':
+            return 'message is 23 UIN'
+        return self.uinSgb()
 
     def uinSgb(self):
         ####################
@@ -417,6 +430,12 @@ class SecondGen(Gen2Error):
 
     def bitlabel(self,a,b,c):
         return str(int(a)-int(c))+'-'+str(int(b)-int(c))
+
+    def btype(self):
+        if self.type!='uin':
+            return Func.getBeaconType(self.bits[138:140])
+        else:
+            return 'UIN s/n: {}'.format(self.serialNum)
 
     def vesselIDfill(self,deduct_offset,bits):
 
@@ -567,14 +586,33 @@ class SecondGen(Gen2Error):
                                   'Spare all should be 1',
                                   status_check])
 
+    def gettac(self):
+        return self.tac
 
 
+
+    def loctype(self):
+        return 'na - SGB'
+
+    def get_country(self):
+        return str(self.countryCode) + ' ' + str(self.countryName)
+
+    def bchmatch(self):
+        if len(self.bits)>=249:
+            if Func.errors(Func.calcBCH(self.bits[1:], 0, 202, 250), self.bits[203:])>0:
+                return 'COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
+            else:
+                return 'SGB BCH matches encoded'
+        return ''
+
+    def fbits(self):
+        return 'na for SGB'
 
     def country(self):
         return (('Country Code:', self.countryCode), ('Country Name:', self.countryName))
 
     def has_loc(self):
-        if self.latitude == 'No latitude data available' or self.latitude == 'Invalid Latitude' or self.longitude == 'No longitude data available' or self.longitude == 'Invalid Longitude':
+        if self.latitude == 'No data available' or self.latitude == 'Invalid Latitude' or self.longitude == 'No longitude data available' or self.longitude == 'Invalid Longitude' or self.latitude == 'No latitude data available' :
             return False
         else:
             return True
