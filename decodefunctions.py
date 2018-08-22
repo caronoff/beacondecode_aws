@@ -46,6 +46,7 @@ def is_number(s):
 
 
 
+
 def dec2bin(n,ln=None):
     '''convert denary integer n to binary string bStr'''
     n=int(n)
