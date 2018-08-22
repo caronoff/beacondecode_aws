@@ -75,7 +75,7 @@ class Country:
         #self.result = 'Country Code (bits 27-36) :({b})  Decimal: {d}   Name: {n}.'.format(b=midbin,d=mid,n=cname)
         self._result = (('Country Code:', mid), ('Country Name:', cname))
 
-        self.cname = "{} ({})".format(cname, mid)
+        self.cname = "{} {}".format(mid, cname)
         self.mid = mid
     def countrydata(self):
         s = ''
@@ -102,6 +102,7 @@ class BeaconFGB(HexError):
         self.location = ('na', 'na')
         self.latitude='na'
         self.errors=[]
+        self.typeapproval=('','','na')
         self.longitude='na'
         self.fixedbits = ''
         self.hex = str(strhex)
@@ -110,6 +111,7 @@ class BeaconFGB(HexError):
         self._loc = False
         self.tablebin = []
         self.type=''
+        self._loctype=''
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
                 #   15 Hex does not use bit 25 so an extra 0 needs to be padded
@@ -142,9 +144,9 @@ class BeaconFGB(HexError):
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
 
         if self.bin[17:25]== '11010000':
-            self.testmsg='1'
+            self.testm='1'
         else:
-            self.testmsg='0'
+            self.testm='0'
 
                 
         self.bch=Bch(self.bin,self.type)      
@@ -177,8 +179,16 @@ class BeaconFGB(HexError):
             self.userProtocol()
         
         #print self.bin
+
+    def hexuin(self):
+        return self.hex15
+
+    def testmsg(self):
+        return ('Normal beacon operation (transmitting a distress)','Self-test transmission')[int(self.testm)]
         
-                    
+    def get_country(self):
+        return Country(self.bin[27:37]).cname
+
     def has_loc(self):
 
         if self.type=='uin':
@@ -194,7 +204,9 @@ class BeaconFGB(HexError):
         
     def country(self):
         return self.countrydetail._result
-    
+
+    def getencpos(self):
+        return self.encpos
  
     def protocoldata(self):
         s=''
@@ -208,6 +220,18 @@ class BeaconFGB(HexError):
     
     def loctype(self):
         return self._loctype
+
+    def bchmatch(self):
+        if self.bch.complete=='1':
+            return 'FGB BCH2 calculated matches encoded message'
+        else:
+            return 'Error in BCH2 (no match)'
+
+    def fbits(self):
+        return self.fixedbits
+
+    def gettac(self):
+        return self.typeapproval[2]
 
     def userProtocol(self):
         self.hex15=Fcn.bin2hex(self.bin[26:86])
@@ -533,7 +557,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','Serial {}'.format(btype)])
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type approval certificate',str(Fcn.bin2dec(self.bin[41:51]))])
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
-
+                self.typeapproval=('','',str(Fcn.bin2dec(self.bin[41:51])))
             elif typelocprotbin == '1110':                
                 self.tablebin.append(['41-65',str(self.bin[41:66]),'No decode identification',definitions.locprottype[typelocprotbin]])
                 
@@ -807,6 +831,9 @@ class Beacon(HexError):
                    '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB specifications',
                    '36': 'Hex data entered is a complete 36 charachter hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
         self.genmsg=''
+        if not Fcn.hextobin(hexcode):
+            raise HexError('Hex format Error', 'This is not a valid hexadecimal value!')
+
         if len(hexcode) == 63 or len(hexcode) == 51 :
             beacon = Gen2.SecondGen(hexcode)
             self.gentype ='second'
@@ -844,13 +871,16 @@ class Beacon(HexError):
 
         else:
             self.type = 'Hex length of ' + str(
-                len(strhex)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
-            raise HexError('LengthError', self.type)
+                len(hexcode)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
+            print('length error')
+            raise HexError('Length Error', self.type)
+
             self.beacon=None
         self.beacon=beacon
         self.latitude=self.beacon.latitude
         self.longitude=self.beacon.longitude
         self.location=self.beacon.location
+        self.courseloc=self.beacon.courseloc
         self.tablebin=self.beacon.tablebin
         self.bchstring=self.beacon.bchstring
         self.type = self.beacon.type
@@ -864,6 +894,32 @@ class Beacon(HexError):
             return False
         else:
             return True
+
+    def btype(self):
+        return self.beacon.btype()
+
+    def hexuin(self):
+        return self.beacon.hexuin()
+
+    def bchmatch(self):
+        return self.beacon.bchmatch()
+
+    def gettac(self):
+        return self.beacon.gettac()
+    def loctype(self):
+        return self.beacon.loctype()
+
+    def fbits(self):
+        return self.beacon.fbits()
+
+    def testmsg(self):
+        return self.beacon.testmsg()
+
+    def getencpos(self):
+        return self.beacon.getencpos()
+
+    def get_country(self):
+        return self.beacon.get_country()
 
 
     
