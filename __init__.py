@@ -9,6 +9,7 @@ import decodehex2
 import definitions
 import requests
 
+#updates to windows version
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
