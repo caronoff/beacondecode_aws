@@ -75,7 +75,7 @@ class Country:
         #self.result = 'Country Code (bits 27-36) :({b})  Decimal: {d}   Name: {n}.'.format(b=midbin,d=mid,n=cname)
         self._result = (('Country Code:', mid), ('Country Name:', cname))
 
-        self.cname = "{} {}".format(mid, cname)
+        self.cname = "{} - {}".format(cname, mid)
         self.mid = mid
     def countrydata(self):
         s = ''
@@ -111,6 +111,7 @@ class BeaconFGB(HexError):
         self._loc = False
         self.tablebin = []
         self.type=''
+        self.tac=''
         self._loctype=''
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
@@ -120,7 +121,7 @@ class BeaconFGB(HexError):
 
 
             elif len(strhex) == 22:
-                self.type = 'Short Message'
+                self.type = 'Short Msg'
                 pad = '0' * 24
             elif len(strhex) == 30:
                 self.type = 'Long Msg no Framesynch'
@@ -128,7 +129,7 @@ class BeaconFGB(HexError):
             elif len(strhex) == 36:
                 pad = ''
                 #strhex=strhex[6:]
-                print(strhex)
+
                 self.type = 'Long Msg with Framesynch'
             else:
                 self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22 or 30'
@@ -143,10 +144,12 @@ class BeaconFGB(HexError):
      
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
 
-        if self.bin[17:25]== '11010000':
+        if self.bin[16:25]== '011010000':
             self.testm='1'
-        else:
+        elif self.bin[16:25]== '000101111':
             self.testm='0'
+        else:
+            self.testm=''
 
                 
         self.bch=Bch(self.bin,self.type)      
@@ -183,11 +186,22 @@ class BeaconFGB(HexError):
     def hexuin(self):
         return self.hex15
 
+
+
     def testmsg(self):
-        return ('Normal beacon operation (transmitting a distress)','Self-test transmission')[int(self.testm)]
+        if self.bin[16:25] == '011010000':
+            return 'Self-test b:16-25: 0 1101 0000'
+        elif self.bin[16:25] == '000101111':
+            return 'Normal b:16-25: 0 0010 1111'
+        return self.bin[16:25]
+
         
     def get_country(self):
         return Country(self.bin[27:37]).cname
+
+    def get_mid(self):
+        return Country(self.bin[27:37]).mid
+
 
     def has_loc(self):
 
@@ -231,7 +245,7 @@ class BeaconFGB(HexError):
         return self.fixedbits
 
     def gettac(self):
-        return self.typeapproval[2]
+        return self.tac
 
     def userProtocol(self):
         self.hex15=Fcn.bin2hex(self.bin[26:86])
@@ -268,7 +282,7 @@ class BeaconFGB(HexError):
             self._protocold['serial']=serialtype
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Serial user'])
             self.tablebin.append(['40-42',str(self.bin[40:43]),'Serial type',serialtype])
-            
+            self._loctype = 'User: {}'.format(serialtype)
             #   Bit 43 value 1 - Yes for type approval certificate
             if self.bin[43]=='1':  
                 tacert='Bit 43 assisgned. Type Approval at bits 74-84.'
@@ -353,7 +367,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
             self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])            
             self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
-
+            self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
         #############################################################################        
@@ -365,6 +379,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['82-83',str(self.bin[82:84]),'ELT No',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
             btype='ELT'
+            self._loctype = 'User: ELT Aviation User'
               
             
         #############################################################################
@@ -375,6 +390,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'National use',''])
             btype='Test'
+            self._loctype = 'User: Test User'
             
         #############################################################################
         #   Bit 37-39: 110 : Radio Call Sign xxx                                    #
@@ -402,7 +418,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare No',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
-
+            self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #   Bit 37-39: 010 Maritime User Protocol                                   #
         #############################################################################               
@@ -415,7 +431,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare No',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
-
+            self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
         ##############################################################################
         #   Bit 37-39: 100  National User Protocol                                   #
@@ -433,6 +449,7 @@ class BeaconFGB(HexError):
                                   str(self.bin[133:145]),
                                       'BCH 2',
                                       str(self.bch.bch2calc())])
+            self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
 
         if typeuserprotbin not in ['100','000'] and self.has_loc(): # and self.bch.complete=='1':
@@ -469,6 +486,7 @@ class BeaconFGB(HexError):
 
         
         self._btype=btype
+        self.tac=str(tano)
 
         
     def update_locd(self,_dec,_dir):        
@@ -519,6 +537,7 @@ class BeaconFGB(HexError):
         
         #Standard Location protocols
         if typelocprotbin in definitions.stdloctypes : #['0010','0011','0100','0101','0110','0111','1100','1110']
+
             default='011111111101111111111'
             self._loctype='Standard Location'
             self._loc = False
@@ -608,7 +627,7 @@ class BeaconFGB(HexError):
         #   National Location protocols - PLB, ELT and EPIRB
         elif typelocprotbin in definitions.natloctypes: #['1000','1010','1011','1111']:            
             
-           
+
             self._loctype='National Location'                         
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])                
             default='011111110000001111111100000'
@@ -815,7 +834,8 @@ class BeaconFGB(HexError):
 
 
         self._btype=btype
-        self.tac=tano
+        self.tac=str(tano)
+
 
         
 

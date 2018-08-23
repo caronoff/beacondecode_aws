@@ -8,6 +8,8 @@ import ui.ui_progress
 import os
 import html
 import decodehex2
+from Gen2secondgen import SecondGen
+
 import definitions
 import sys
 
@@ -33,8 +35,7 @@ class MapDlg(QDialog, ui.ui_map.Ui_Dialog):
 
 
     def get_marker_coordinates(self):
-        self.currentframe.evaluateJavaScript('Marker({},{})'.format(self._lat, self._long))
-        self.setWindowTitle("Latitude:  {}   Longitude:  {}".format(self._lat, self._long))
+        self.setWindowTitle("Latitude: {}   Longitude: {}".format(self._lat, self._long))
 
 
 
@@ -77,9 +78,12 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
         self.dialog = MapDlg(self)
         self.dialog.show()
         if self._beacon.has_loc():
-            h = html.google_map
+
             self.dialog._lat = unicode(self._beacon.location[0])
             self.dialog._long = unicode(self._beacon.location[1])
+            h = html.google_map.format(self.dialog._lat,self.dialog._long)
+
+            #h.format(lat=self.dialog._lat,long=self.dialog._long)
         else:
             h = html.blank
         self.dialog.set_code(h)
@@ -264,7 +268,6 @@ class ThreadClassSaveGen1(QThread):
 
 
     def run(self):
-
         count = 0
         thefile = open(self.filename, 'rb')
         while 1:
@@ -272,14 +275,13 @@ class ThreadClassSaveGen1(QThread):
             if not buffer: break
             count += buffer.count('\n')
         thefile.close()
-        print count
         hexcodes = open(self.filename)
         decoded = open(self.filesave, 'w')
 
 
 
         i = 0
-        decoded.write("""Input Message,Self Test,15 Hex ID,Complete,Test Coded,Beacon Type,TAC,Country Code,Location Type,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
+        decoded.write("""Input Message,Self Test,15 Hex ID,BCH-2,Protocol Type,Beacon Type,TAC,Country Code,Country Name,Type,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
 
         for line in hexcodes.readlines():
             i += 1
@@ -290,6 +292,7 @@ class ThreadClassSaveGen1(QThread):
             try:
                 c = decodehex2.Beacon(str(line))
                 if c.gentype=='first':
+                    c = decodehex2.BeaconFGB(str(line))
                     if str(c.location[0]).find('Error') != -1:
                         finallat = courselat = 'error'
                     elif str(c.location[0]).find('Default') != -1:
@@ -306,16 +309,15 @@ class ThreadClassSaveGen1(QThread):
                         finallong = c.location[1]
                         courselong = c.courseloc[1]
 
-                    if c.btype().find('Test') :
-                        testcode = '1'
-                    else:
-                        testcode = '0'
+
                     decoded.write('{},'.format(str(c.testmsg())))
                     decoded.write('{},'.format(c.hexuin()))
                     decoded.write('{},'.format(c.bchmatch()))
-                    decoded.write('{},'.format(testcode))
+                    decoded.write('{},'.format(c.protocolflag()))
                     decoded.write('{},'.format(c.btype()))
+
                     decoded.write('{},'.format(c.gettac()))
+                    decoded.write('{},'.format(c.get_mid()))
                     decoded.write('{},'.format(c.get_country()))
                     decoded.write('{},'.format(c.loctype()))
                     decoded.write('{},'.format(c.getencpos()))
@@ -356,7 +358,6 @@ class ThreadClassSaveGen2(QThread):
 
 
     def run(self):
-
         count = 0
         thefile = open(self.filename, 'rb')
         while 1:
@@ -364,12 +365,8 @@ class ThreadClassSaveGen2(QThread):
             if not buffer: break
             count += buffer.count('\n')
         thefile.close()
-        print count
         hexcodes = open(self.filename)
         decoded = open(self.filesave, 'w')
-
-
-
         i = 0
         decoded.write("""Input Message,23 Hex ID,BCH match,self-test, message protocol,Type Approval, Country code,latitude,longitude\n""")
 
@@ -381,8 +378,8 @@ class ThreadClassSaveGen2(QThread):
             decoded.write('{h},'.format(h=str(line)))
             try:
                 c = decodehex2.Beacon(str(line))
-                if c.gentype=='second':
-
+                if c.gentype!='first':
+                    c = SecondGen(str(line))
                     decoded.write('{},'.format(c.hexuin()))
                     decoded.write('{},'.format(c.bchmatch()))
                     decoded.write('{},'.format(c.testmsg()[0]))
@@ -395,19 +392,12 @@ class ThreadClassSaveGen2(QThread):
                 else:
                     decoded.write('Not an SGB')
 
-
             except decodehex2.HexError as e:
                 decoded.write(e.value)
 
-
-
-
             decoded.write('\n')
-
         decoded.close()
         self.emit(SIGNAL('EXPORT'), 100)
-
-
 
     def updateProgress(self, val):
         self.dialog.updateProgress(val)

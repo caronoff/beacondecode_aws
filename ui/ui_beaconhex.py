@@ -127,5 +127,5 @@ class Ui_BeaconDecoder(object):
 
     def retranslateUi(self, BeaconDecoder):
         BeaconDecoder.setWindowTitle(_translate("BeaconDecoder", "Beacon Decoder", None))
-        self.pushButton.setText(_translate("BeaconDecoder", "PushButton", None))
+        self.pushButton.setText(_translate("BeaconDecoder", "Map Location", None))
 
