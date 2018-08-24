@@ -205,7 +205,7 @@ class BeaconFGB(HexError):
 
     def has_loc(self):
 
-        if self.type=='uin':
+        if self.type in ['uin','Short Msg']:
             self._loc=False
         else:
             self._loc=True
@@ -365,8 +365,9 @@ class BeaconFGB(HexError):
             btype='Orbitography'
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
-            self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])            
-            self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
+            if self.type not in ['uin','Short Msg']:
+                self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
+                self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
@@ -444,11 +445,12 @@ class BeaconFGB(HexError):
             self.tablebin.append(['40-85',str(self.bin[84:86]),'Reserved','Reserved for national use'])
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
             self.tablebin.append(['107-112',str(self.bin[107:113]),'Reserved','Reserved for national use'])
-            self.tablebin.append(['113-132',str(self.bin[113:133]),'Reserved','Reserved for national use'])
-            self.tablebin.append(['133-144',
-                                  str(self.bin[133:145]),
-                                      'BCH 2',
-                                      str(self.bch.bch2calc())])
+            if self.type!='Short Msg':
+                self.tablebin.append(['113-132',str(self.bin[113:133]),'Reserved','Reserved for national use'])
+                self.tablebin.append(['133-144',
+                                      str(self.bin[133:145]),
+                                          'BCH 2',
+                                          str(self.bch.bch2calc())])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
 
@@ -460,29 +462,30 @@ class BeaconFGB(HexError):
             lg,declng, lngdir,lgminutes=Fcn.longitude(self.bin[120],self.bin[121:129],self.bin[129:133])
             
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
-            self.tablebin.append(['107',str(self.bin[107]),'Encoded location source',definitions.enc_delta_posflag[self.encpos]])
-            
-            if Fcn.is_number(declat) and Fcn.is_number(declng):
-                self._loc=True
-                a = self.update_locd(declat,latdir)
-                b = self.update_locd(declng,lngdir)                
-                
-            else:
-                self._loc=False
-                a = declat
-                b = declng
-            self.location=(a,b)
-            self.latitude=a
-            self.longitude=b
-            self.tablebin.append(['108-119',str(self.bin[108:120]),'Latitude','{} (decimal: {})'.format(lat,a)])                               
-            self.tablebin.append(['120-132',str(self.bin[120:133]),'Longitude','{} (decimal: {})'.format(lg,b)])
-            self.tablebin.append(['','','Resolved location','{} {}'.format(a,b)])
-                
-                
-            self.tablebin.append(['133-144',
-                                  str(self.bin[133:145]),
-                                      'BCH 2',
-                                      str(self.bch.bch2calc())])
+            if self.type != 'Short Msg':
+                self.tablebin.append(['107',str(self.bin[107]),'Encoded location source',definitions.enc_delta_posflag[self.encpos]])
+
+                if Fcn.is_number(declat) and Fcn.is_number(declng):
+                    self._loc=True
+                    a = self.update_locd(declat,latdir)
+                    b = self.update_locd(declng,lngdir)
+
+                else:
+                    self._loc=False
+                    a = declat
+                    b = declng
+                self.location=(a,b)
+                self.latitude=a
+                self.longitude=b
+                self.tablebin.append(['108-119',str(self.bin[108:120]),'Latitude','{} (decimal: {})'.format(lat,a)])
+                self.tablebin.append(['120-132',str(self.bin[120:133]),'Longitude','{} (decimal: {})'.format(lg,b)])
+                self.tablebin.append(['','','Resolved location','{} {}'.format(a,b)])
+
+
+                self.tablebin.append(['133-144',
+                                      str(self.bin[133:145]),
+                                          'BCH 2',
+                                          str(self.bch.bch2calc())])
 
         
         self._btype=btype
@@ -581,7 +584,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['41-65',str(self.bin[41:66]),'No decode identification',definitions.locprottype[typelocprotbin]])
                 
 
-            if self.type!='uin':
+            if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['65-74',str(self.bin[65:75]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['75-85',str(self.bin[75:86]),'Longitude','{} ({})'.format(lng,declng)])
 
@@ -640,7 +643,7 @@ class BeaconFGB(HexError):
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])           
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
             self.courseloc=(declat,declng)
-            if self.type!='uin':
+            if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['59-71',str(self.bin[59:72]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['72-85',str(self.bin[72:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])                
