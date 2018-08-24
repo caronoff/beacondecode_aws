@@ -23,7 +23,7 @@ class Bch:
         if mtype in ['Long Msg no Framesynch', 'Long Msg with Framesynch']:
             bch2 = Fcn.calcbch(testbin, '1010100111001', 107, 133, 145)
             bch2error = self.errors(testbin[133:145], bch2)
-            if bch2error == 0:
+            if bch2error == 'BCH matches encoded BCH':
                 self.complete = '1'
 
         self.bch = (bch1, bch2, testbin[86:107], testbin[133:145], bch1error, bch2error)
