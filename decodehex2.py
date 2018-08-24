@@ -845,10 +845,11 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch',
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB',
-                   '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications',
+                   '22':'Hex data entered is a length of 22 characters based on FGB short message format specifications.',
+                   '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications.',
                    '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a second generation beacon, without the bch',
-                   '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB specifications',
+                   '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB long message format specifications',
                    '36': 'Hex data entered is a complete 36 charachter hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
@@ -884,6 +885,11 @@ class Beacon(HexError):
             self.gentype='first'
             self.genmsg = genmsgdic['30']
 
+        elif len(hexcode) == 22 :
+            beacon=BeaconFGB(hexcode)
+            self.gentype='first'
+            self.genmsg = genmsgdic['22']
+
         elif len(hexcode) == 36:
             beacon=BeaconFGB(hexcode[6:])
             self.gentype = 'first'
@@ -891,10 +897,8 @@ class Beacon(HexError):
 
         else:
             self.type = 'Hex length of ' + str(
-                len(hexcode)) + '.' + '\nLength must be 15, 23, 30,36 or 63'
-            print('length error')
+                len(hexcode)) + '.' + '\nLength must be 15,22, 23, 30,36 or 63'
             raise HexError('Length Error', self.type)
-
             self.beacon=None
         self.beacon=beacon
         self.latitude=self.beacon.latitude
@@ -909,8 +913,8 @@ class Beacon(HexError):
     def has_loc(self):
         if self.beacon.type=='uin':
             return False
-        elif self.beacon.latitude in ['No latitude data available','Invalid Latitude'] or\
-                        self.beacon.longitude in ['No longitude data available', 'Invalid Longitude']:
+        elif self.beacon.latitude in ['No latitude data available','Invalid Latitude','na'] or\
+                        self.beacon.longitude in ['No longitude data available', 'Invalid Longitude','na']:
             return False
         else:
             return True
