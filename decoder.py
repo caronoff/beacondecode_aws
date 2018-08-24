@@ -7,13 +7,14 @@ import ui.ui_progress
 
 import os
 from webmap import google_map,blank
+
 import decodehex2
 from Gen2secondgen import SecondGen
 
 import definitions
 import sys
 
-
+VERSION='Beacon Decoder Windows Version 5.2'
 
 class MapDlg(QDialog, ui.ui_map.Ui_Dialog):
     def __init__(self, parent=None):
@@ -150,6 +151,7 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
         mainMenu = self.menuBar()
         mainMenu.setNativeMenuBar(False)
         fileMenu = mainMenu.addMenu('&File')
+        helpMenu = mainMenu.addMenu('&Help')
         # Add open file
         openButton = QAction('&Open', self)
         openButton.setShortcut('Ctrl+O')
@@ -175,25 +177,32 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
         exitButton.setStatusTip('Exit application')
         exitButton.triggered.connect(self.close)
 
+        # Add about button
+        aboutButton = QAction('&About',self)
+        aboutButton.setShortcut('Ctrl+A')
+        aboutButton.setStatusTip('Version information')
+        aboutButton.triggered.connect(self.aboutVersion)
+
+
+
         fileMenu.addAction(openButton)
         fileMenu.addAction(saveButton1)
         fileMenu.addAction(saveButton2)
         fileMenu.addAction(exitButton)
-
+        helpMenu.addAction(aboutButton)
 
 
         hexRe = QRegExp(r"[0-9a-fA-F_]{"+'30'+"}")
         self.hexLineEdit.setText('')
         self.hexLineEdit.setValidator(
             QRegExpValidator(hexRe, self))
-
-
-
-
-
-
         self.hexlist.itemClicked.connect(self.pickHex)
         self.hexlist.currentItemChanged.connect(self.pickHex)
+
+
+    def aboutVersion(self):
+        qb = QMessageBox.about(self, 'Beacon Decoder', VERSION)
+
 
     def filesave_dialogGen1(self):
         fd = QFileDialog(self)
