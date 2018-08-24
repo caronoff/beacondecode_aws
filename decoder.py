@@ -52,6 +52,7 @@ class Progress(QDialog, ui.ui_progress.Ui_Dialog):
     def updateProgress(self, val):
         self.progressBar.setValue(val)
         if val > 99:
+
             self.close()
 
 
