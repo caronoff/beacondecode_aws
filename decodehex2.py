@@ -539,7 +539,7 @@ class BeaconFGB(HexError):
         if typelocprotbin in definitions.stdloctypes : #['0010','0011','0100','0101','0110','0111','1100','1110']
 
             default='011111111101111111111'
-            self._loctype='Standard Location'
+            self._loctype=definitions.locprottype[typelocprotbin]
             self._loc = False
             
             self.hex15=Fcn.bin2hex(self.bin[26:65]+default)

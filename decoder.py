@@ -291,7 +291,7 @@ class ThreadClassSaveGen1(QThread):
 
 
         i = 0
-        decoded.write("""Input Message,Self Test,15 Hex ID,BCH-2,Protocol Type,Beacon Type,TAC,Country Code,Country Name,Type,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
+        decoded.write("""Input Message,Self Test,Self Test,15 Hex ID,BCH-2,Protocol Type,Test Beacon,Beacon Type,TAC,Country Code,Country Name,Message protocol,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
 
         for line in hexcodes.readlines():
             i += 1
@@ -301,7 +301,7 @@ class ThreadClassSaveGen1(QThread):
             decoded.write('{h},'.format(h=str(line)))
             try:
                 c = decodehex2.Beacon(str(line))
-                if c.gentype=='first':
+                if c.gentype=='first' and  not str(line).endswith('00000'):
                     c = decodehex2.BeaconFGB(str(line))
                     if str(c.location[0]).find('Error') != -1:
                         finallat = courselat = 'error'
@@ -310,7 +310,6 @@ class ThreadClassSaveGen1(QThread):
                     else:
                         finallat = c.location[0]
                         courselat = c.courseloc[0]
-
                     if str(c.location[1]).find('Error') != -1:
                         finallong = courselong = 'error'
                     elif str(c.location[1]).find('Default') != -1:
@@ -319,12 +318,23 @@ class ThreadClassSaveGen1(QThread):
                         finallong = c.location[1]
                         courselong = c.courseloc[1]
 
-
-                    decoded.write('{},'.format(str(c.testmsg())))
+                    selftest=c.testmsg()
+                    if 'Self-test' in selftest:
+                        s='True'
+                    else:
+                        s='False'
+                    decoded.write('{},'.format(s))
+                    decoded.write('{},'.format(selftest))
                     decoded.write('{},'.format(c.hexuin()))
                     decoded.write('{},'.format(c.bchmatch()))
                     decoded.write('{},'.format(c.protocolflag()))
-                    decoded.write('{},'.format(c.btype()))
+                    btype=c.btype()
+                    if 'Test' in btype:
+                        t='True'
+                    else:
+                        t='False'
+                    decoded.write('{},'.format(t))
+                    decoded.write('{},'.format(btype))
 
                     decoded.write('{},'.format(c.gettac()))
                     decoded.write('{},'.format(c.get_mid()))
@@ -337,7 +347,7 @@ class ThreadClassSaveGen1(QThread):
                     decoded.write('{},'.format(finallong))
                     decoded.write('{},'.format(c.fbits()))
                 else:
-                    decoded.write('Not an FGB')
+                    decoded.write('Not an FGB long message')
 
 
             except decodehex2.HexError as e:
