@@ -82,7 +82,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata):
             binstr = binstr + bch2
 
 
-        elif c.protocolflag() == 'Location' and c.loctype() == 'Standard Location':
+        elif c.protocolflag() == 'Location' and c.loctype()  in ['Standard Location','Standard Location Protocol - Test']:
             bincoord = stdloc(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
