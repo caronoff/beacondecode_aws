@@ -143,8 +143,6 @@ class BeaconFGB(HexError):
      
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
 
-        if self.type!='uin' and self.bin[25]=='0':
-            self.type = 'Short Msg'
 
 
         if self.bin[16:25]== '011010000':
@@ -159,12 +157,16 @@ class BeaconFGB(HexError):
         
         self.id=()
         
-        if  self.type !='uin':
+        if self.type !='uin':
             formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
-        
-        protocolflag=self.bin[26] 
+
+        if self.type!='uin' and self.bin[25]=='0':
+            self.type = 'Short Msg'
+
+        protocolflag=self.bin[26]
+
         self.formatflag=formatflag    
         self.countrydetail=Country(self.bin[27:37])   #self.country()
 
@@ -175,15 +177,17 @@ class BeaconFGB(HexError):
         self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country',self.countrydetail.cname])
 
-        
-        if protocolflag == '0'  :            
-            self.locationProtocol()
 
+
+        if protocolflag == '0' and self.type != 'Short Msg':
+            self.locationProtocol()
         #   protocol == '1' 'User Protocol'
         #   type of user protocol located at bits 37-39    
         elif protocolflag == '1'  :            
             self.userProtocol()
-        
+        else:
+            self.tablebin.append(['Inclomplete Hex', 'Error', 'Incomplete', 'Location protocol does not allow short message'])
+            self.locationProtocol()
         #print self.bin
 
     def hexuin(self):
@@ -261,7 +265,6 @@ class BeaconFGB(HexError):
         btype='Unknown Beacon'
         tano='na'
 
-        
         #############################################################################                                                                            #
         #       Bit 37-39: 011: Serial User Protocol                                #
         #       011:    Serial User Protocol                                        #
@@ -269,17 +272,13 @@ class BeaconFGB(HexError):
 
         typeuserprotbin=self.bin[37:40]
         self._loctype=definitions.userprottype[typeuserprotbin]
-        
         self._protocol=('Protocol Flag (Bit 26) :'+ self.bin[26],
                        definitions.protocol[self.bin[26]],
                        'User Protocol Type (bits 37-39) : '+typeuserprotbin,
                        definitions.userprottype[typeuserprotbin])
-
         self._protocold={'pflag':definitions.protocol[self.bin[26]],
                        'ptype' :definitions.userprottype[typeuserprotbin],'serial':''                     
                        }
-    
-        
                 
         if typeuserprotbin=='011':
             #   Bit 37-39: 011: Serial User Protocol (see bits 40 to 42)
@@ -541,7 +540,7 @@ class BeaconFGB(HexError):
                        definitions.locprottype[typelocprotbin],typelocprotbin)
    
                 
-   
+
         ident=('')
         
         #Standard Location protocols
@@ -740,7 +739,7 @@ class BeaconFGB(HexError):
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             self.courseloc=(declat,declng)
-            if self.type!='uin':
+            if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
@@ -772,7 +771,10 @@ class BeaconFGB(HexError):
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
-            
+
+            elif self.type=='Short Msg':
+                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+
         # ELT-DT Location Protocol   
         elif typelocprotbin == '1001':
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex UIN)
