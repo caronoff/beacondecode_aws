@@ -395,6 +395,8 @@ class BeaconFGB(HexError):
         elif typeuserprotbin=='111':
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Test Beacon Data',''])
+            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+            self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
             btype='Test'
             self._loctype = 'User: Test User'
             
@@ -459,7 +461,7 @@ class BeaconFGB(HexError):
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
 
-        if typeuserprotbin not in ['100','000'] and self.has_loc(): # and self.bch.complete=='1':
+        if typeuserprotbin not in ['100','000','111'] and self.has_loc(): # and self.bch.complete=='1':
             location_data = 'Check for location'
 
             self.encpos=str(self.bin[107])
