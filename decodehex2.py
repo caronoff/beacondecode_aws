@@ -357,7 +357,7 @@ class BeaconFGB(HexError):
                        
 
             self.typeapproval=(tacert,'Type Approval ',str(tano))
-            
+            self.tac=str(tano)
             
             self.tablebin.append(['74-83',str(self.bin[74:84]),'Type approval certificate No',tano])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
@@ -586,6 +586,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type approval certificate',str(Fcn.bin2dec(self.bin[41:51]))])
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
                 self.typeapproval=('','',str(Fcn.bin2dec(self.bin[41:51])))
+                self.tac = str(tano)
             elif typelocprotbin == '1110':                
                 self.tablebin.append(['41-65',str(self.bin[41:66]),'No decode identification',definitions.locprottype[typelocprotbin]])
                 
