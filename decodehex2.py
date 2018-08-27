@@ -16,11 +16,11 @@ class Bch:
     def __init__(self, testbin, mtype):
         bch1 = bch2 = bch1error = bch2error = 'na'
         self.complete = '0'
-        if mtype in ['Short Msg', 'Long Msg no Framesynch', 'Long Msg with Framesynch']:
+        if mtype in ['Short Msg', 'Long Msg']:
             bch1 = Fcn.calcbch(testbin, "1001101101100111100011", 25, 86, 107)
             bch1error = self.errors(testbin[86:107], bch1)
 
-        if mtype in ['Long Msg no Framesynch', 'Long Msg with Framesynch']:
+        if mtype =='Long Msg':
             bch2 = Fcn.calcbch(testbin, '1010100111001', 107, 133, 145)
             bch2error = self.errors(testbin[133:145], bch2)
             if bch2error == 'BCH matches encoded BCH':
@@ -118,21 +118,20 @@ class BeaconFGB(HexError):
                 #   15 Hex does not use bit 25 so an extra 0 needs to be padded
                 self.type = 'uin'
                 pad = '0'* 25
-
-
             elif len(strhex) == 22:
                 self.type = 'Short Msg'
                 pad = '0' * 24
+            elif len(strhex) == 28:
+                self.type = 'Short Msg'
+                pad = ''
             elif len(strhex) == 30:
-                self.type = 'Long Msg no Framesynch'
+                self.type = 'Long Msg'
                 pad = '0' * 24
             elif len(strhex) == 36:
                 pad = ''
-                #strhex=strhex[6:]
-
-                self.type = 'Long Msg with Framesynch'
+                self.type = 'Long Msg'
             else:
-                self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22 or 30'
+                self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22,28 or 30'
                 raise HexError('LengthError', self.type)
             self.hexcode=str(strhex)            
             
@@ -143,6 +142,10 @@ class BeaconFGB(HexError):
             raise HexError('FormatError',self.type)         
      
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
+
+        if self.type!='uin' and self.bin[25]=='0':
+            self.type = 'Short Msg'
+
 
         if self.bin[16:25]== '011010000':
             self.testm='1'
@@ -186,7 +189,8 @@ class BeaconFGB(HexError):
     def hexuin(self):
         return self.hex15
 
-
+    def getmtype(self):
+        return self.type
 
     def testmsg(self):
         if self.bin[16:25] == '011010000':
@@ -235,9 +239,11 @@ class BeaconFGB(HexError):
     def loctype(self):
         return self._loctype
 
-    def bchmatch(self):
-        if self.bch.complete=='1':
+    def bch2match(self):
+        if self.type=='Long Msg' and self.bch.complete=='1':
             return 'FGB BCH2 calculated matches encoded message'
+        elif self.type=='Short Msg':
+            return 'BCH-2 na for Short Message Type'
         else:
             return 'Error in BCH2 (no match)'
 
@@ -853,6 +859,7 @@ class Beacon(HexError):
                    '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a second generation beacon, without the bch',
                    '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB long message format specifications',
+                   '28': 'Hex data entered is a 28 charachter hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix',
                    '36': 'Hex data entered is a complete 36 charachter hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
@@ -892,6 +899,14 @@ class Beacon(HexError):
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
             self.genmsg = genmsgdic['22']
+
+        elif len(hexcode) == 28:
+            beacon = BeaconFGB(hexcode)
+            self.gentype = 'first'
+            self.genmsg = genmsgdic['28']
+
+
+
 
         elif len(hexcode) == 36:
             beacon=BeaconFGB(hexcode[6:])

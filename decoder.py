@@ -291,7 +291,7 @@ class ThreadClassSaveGen1(QThread):
 
 
         i = 0
-        decoded.write("""Input Message,Self Test,Self Test,15 Hex ID,BCH-2,Protocol Type,Test Beacon,Beacon Type,TAC,Country Code,Country Name,Message protocol,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
+        decoded.write("""Input Message,Message Type,Self Test,Self Test,15 Hex ID,BCH-2 match,Protocol Type,Test Beacon,Beacon Type,TAC,Country Code,Country Name,Message protocol,Position Source,Course Lat,Course Long,Final Lat,Final Long,Fixed Bits\n""")
 
         for line in hexcodes.readlines():
             i += 1
@@ -301,7 +301,7 @@ class ThreadClassSaveGen1(QThread):
             decoded.write('{h},'.format(h=str(line)))
             try:
                 c = decodehex2.Beacon(str(line))
-                if c.gentype=='first' and  not str(line).endswith('00000'):
+                if c.gentype=='first' :
                     c = decodehex2.BeaconFGB(str(line))
                     if str(c.location[0]).find('Error') != -1:
                         finallat = courselat = 'error'
@@ -323,10 +323,11 @@ class ThreadClassSaveGen1(QThread):
                         s='True'
                     else:
                         s='False'
+                    decoded.write('{},'.format(c.getmtype()))
                     decoded.write('{},'.format(s))
                     decoded.write('{},'.format(selftest))
                     decoded.write('{},'.format(c.hexuin()))
-                    decoded.write('{},'.format(c.bchmatch()))
+                    decoded.write('{},'.format(c.bch2match()))
                     decoded.write('{},'.format(c.protocolflag()))
                     btype=c.btype()
                     if 'Test' in btype:
