@@ -581,11 +581,13 @@ class BeaconFGB(HexError):
                                       '{} ELT No:{}'.format(str(Fcn.baudot(self.bin,41,55,True)),str(Fcn.bin2dec(self.bin[56:65])))])
             
             #   PLB, ELT and EBIRB Serial
-            elif typelocprotbin in ['0100','0110','0111']:                
+            elif typelocprotbin in ['0100','0110','0111']:
+                tano = str(Fcn.bin2dec(self.bin[41:51]))
                 self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','Serial {}'.format(btype)])
-                self.tablebin.append(['41-50',str(self.bin[41:51]),'Type approval certificate',str(Fcn.bin2dec(self.bin[41:51]))])
+                self.tablebin.append(['41-50',str(self.bin[41:51]),'Type approval certificate',tano])
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
-                self.typeapproval=('','',str(Fcn.bin2dec(self.bin[41:51])))
+
+                self.typeapproval=('','',tano)
                 self.tac = str(tano)
             elif typelocprotbin == '1110':                
                 self.tablebin.append(['41-65',str(self.bin[41:66]),'No decode identification',definitions.locprottype[typelocprotbin]])
