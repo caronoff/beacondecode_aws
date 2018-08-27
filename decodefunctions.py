@@ -195,12 +195,12 @@ def latlongresolution(binary,startpos,endpos):
         # Bad length.  Length must be 14,18 or 20.
         return False
 
-    print(int(latseconds)==60)
+
     if int(latminutes) > 30:
-        longoffset = latoffset = 'default'
+        longoffset = latoffset = 'Default - no location'
 
     elif int(latseconds)==60 and latdir=='positive':
-        latoffset = longoffset='default'
+        latoffset = longoffset='Default - no location'
         
     else:
         latoffset =  '{} minutes {} seconds ({})'.format(latminutes,latseconds,latdir)
