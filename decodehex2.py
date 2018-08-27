@@ -645,12 +645,11 @@ class BeaconFGB(HexError):
             self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
             ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
             self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(str(Fcn.bin2dec(self.bin[41:59])))])
-
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
+            lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])
+            lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
+            self.courseloc=(declat,declng)
             if self.type not in ['uin', 'Short Msg']:
-                latdelta, longdelta, ltmin, ltsec, lgmin, lgsec, ltoffset, lgoffset = (0, 0, 0, 0, 0, 0, 0, 0)
-                lat, declat, latdir, ltminutes = Fcn.latitude(self.bin[59], self.bin[60:67], self.bin[67:72])
-                lng, declng, lngdir, lgminutes = Fcn.longitude(self.bin[72], self.bin[73:81], self.bin[81:86])
-                self.courseloc = (declat, declng)
                 self.tablebin.append(['59-71',str(self.bin[59:72]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['72-85',str(self.bin[72:86]),'Longitude','{} ({})'.format(lng,declng)])
                 self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])                
