@@ -198,9 +198,9 @@ class BeaconFGB(HexError):
 
     def testmsg(self):
         if self.bin[16:25] == '011010000':
-            return 'Self-test b:16-25: 0 1101 0000'
+            return 'Self-test b:16-24: 0 1101 0000'
         elif self.bin[16:25] == '000101111':
-            return 'Normal b:16-25: 0 0010 1111'
+            return 'Normal b:16-24: 0 0010 1111'
         return self.bin[16:25]
 
         
@@ -487,7 +487,8 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['108-119',str(self.bin[108:120]),'Latitude','{} (decimal: {})'.format(lat,a)])
                 self.tablebin.append(['120-132',str(self.bin[120:133]),'Longitude','{} (decimal: {})'.format(lg,b)])
                 self.tablebin.append(['','','Resolved location','{} {}'.format(a,b)])
-
+                if 'Error' in lat or 'Error' in lg:
+                    self.errors.append('Bad location information')
 
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
