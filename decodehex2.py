@@ -493,7 +493,6 @@ class BeaconFGB(HexError):
                                       str(self.bin[133:145]),
                                           'BCH 2',
                                           str(self.bch.bch2calc())])
-
         
         self._btype=btype
         self.tac=str(tano)
