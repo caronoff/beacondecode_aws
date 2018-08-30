@@ -470,7 +470,6 @@ class BeaconFGB(HexError):
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
             if self.type != 'Short Msg':
                 self.tablebin.append(['107',str(self.bin[107]),'Encoded location source',definitions.enc_delta_posflag[self.encpos]])
-
                 if Fcn.is_number(declat) and Fcn.is_number(declng):
                     self._loc=True
                     a = self.update_locd(declat,latdir)
