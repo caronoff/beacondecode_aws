@@ -19,9 +19,8 @@ class Gen2Error(Exception):
 
 
 class SecondGen(Gen2Error):
-
     def __init__(self, hexCode=None):
-        self.bits = '0' * 250
+        self.bits = '0' * 252
 
         if hexCode:
             self.processHex(hexCode)
