@@ -223,7 +223,6 @@ class BeaconFGB(HexError):
         return self._pflag
 
 
-        
     def country(self):
         return self.countrydetail._result
 
@@ -233,7 +232,7 @@ class BeaconFGB(HexError):
     def protocoldata(self):
         s=''
         for k in sorted(self._protocold):
-            s=s+self._protocold[k]+'        '
+            s=s+self._protocold[k]+'       '
             
         return s
 
