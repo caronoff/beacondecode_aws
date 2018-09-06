@@ -208,7 +208,10 @@ def decodedjson(hexcode):
     return jsonify(beacondecode)
 
 
-
+@app.route("/whereregister/<hexcode>")
+def where(hexcode):
+    beacon = decodehex2.Beacon(hexcode)
+    return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=False,geocoord=(0, 0), genmsg=beacon.genmsg)
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
