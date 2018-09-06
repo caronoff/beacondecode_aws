@@ -131,7 +131,7 @@ def long():
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
-    vlengths=request.args.get('lenval')
+    vlengths=request.args.getlist('lenval[]')
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
