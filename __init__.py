@@ -135,6 +135,7 @@ def validatehex():
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
+    print(message)
     print(vlengths)
     print(type(vlengths))
     if len(ret_data) > 0:
