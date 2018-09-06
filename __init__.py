@@ -32,6 +32,13 @@ def processhex():
     beacon_gen = t.getgen()
     return jsonify(beacon_gen=beacon_gen,binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
 
+@app.route('/ibrdallowed',methods=['GET','POST'])
+def ibrdallowed():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('/whereregister',hexcode=hexcode))
+    return render_template('ibrdallowed.html', title='Home', user='')
+
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
@@ -124,17 +131,17 @@ def long():
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
-
+    vlengths=request.args.get('lenval')
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
     if len(ret_data) > 0:
         if len(hexaPattern)==len(ret_data):
             message='Valid hexidecimal message.'
-            if len(ret_data) in [15,30,36,22,23,28,51,63]:
+            if len(ret_data) in vlengths:
                 statuscheck = 'valid'
             else:
-                message = 'Bad length '+str(len(ret_data)) +  '  Valid lengths: 15,22,23,28,30,36,51,63'
+                message = 'Bad length '+str(len(ret_data))
         else:
             statuscheck='not valid'
             message='Invalid Hexidecimal code  (A-F-0-9)'
@@ -145,7 +152,6 @@ def validatehex():
 @app.route("/index")
 def index():
     if request.method == 'POST':
-        print('post')
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('indx.html', title='Home', user='')

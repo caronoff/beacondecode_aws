@@ -15,7 +15,7 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(  name = 'decoder',
-        version = '5.2',
+        version = '5.3',
         description = "Beacon Hexidecimal Decode",
         options = {"build_exe": build_exe_options},
         executables = [Executable('decoder.py', base=base)])
