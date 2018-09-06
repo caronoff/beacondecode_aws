@@ -141,7 +141,7 @@ def validatehex():
     if len(ret_data) > 0:
         if len(hexaPattern)==len(ret_data):
             message='Valid hexidecimal message.'
-            if len(ret_data) in vlengths:
+            if str(len(ret_data)) in vlengths:
                 statuscheck = 'valid'
             else:
                 message = 'Bad length '+str(len(ret_data))
