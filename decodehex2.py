@@ -474,7 +474,6 @@ class BeaconFGB(HexError):
                     self._loc=True
                     a = self.update_locd(declat,latdir)
                     b = self.update_locd(declng,lngdir)
-
                 else:
                     self._loc=False
                     a = declat

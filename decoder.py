@@ -14,7 +14,7 @@ from Gen2secondgen import SecondGen
 import definitions
 import sys
 
-VERSION='Beacon Decoder Windows Version 5.2'
+VERSION='Beacon Decoder Windows Version 5.3'
 
 class MapDlg(QDialog, ui.ui_map.Ui_Dialog):
     def __init__(self, parent=None):
