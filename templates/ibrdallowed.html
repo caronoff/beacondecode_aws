@@ -57,7 +57,7 @@ $('#inputhexcode').on('keyup change',function()
 		$addon = $group.find('.input-group-addon'),
 		$icon = $addon.find('span');
         $.getJSON
-            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val(), lenval:(15,23)},function(data)
+            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val(), lenval:[15,23]},function(data)
                 {$("#statuscheck").text(data.echostatus);
                 if(data.echostatus=='valid'){
                         $form.find(':input[type="submit"]').prop('disabled', false);
