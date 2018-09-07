@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block title %}Beacon UIN Decoded{% endblock %}
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+<style media="screen" type="text/css">
+     table {
+     width:100%;
+     }
+     td {
+       max-width: 0;
+     }
+     td.columnA {
+     width:10%
+     }
+     td.columnB {
+     width:15%;
+       overflow:hidden;
+       overflow-wrap:break-word;
+       word-wrap: break-word;
+     }
+     td.columnC {
+     width:35%
+     }
+     td.columnD {
+     width:40%
+     }
++ </style>
+
+{% endblock %}
+
+ {% block content %}
+    <div id="decodetable">
+  <h2>Decoded UIN</h2>
+  <p>The hexadecimal code entered was: <strong style="word-wrap:break-word">{{hexcode}}  </strong></p>
+        <p>{{genmsg}}</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Bit Ranges</th>
+        <th>Binary value</th>
+        <th>Name</th>
+		<th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+	{% for item in decoded %}
+      <tr>
+        <td class="columnA"> {{ item[0] }} </td>
+		<td class="columnB">{{ item[1] }} </td>
+		<td class="columnC"> {{ item[2] }} </td>
+		<td class="columnD"> {{ item[3] }} </td>
+      </tr>
+	{% endfor %}
+    </tbody>
+  </table>
+        <div class="btn-toolbar">
+        <a href="/decode" class="btn btn-danger"  style="margin-top: auto ; display:block; text-align: center">
+          <span class="glyphicon glyphicon-home" style="color:gray"></span> Return
+        </a>
+            <a href="/bch/{{hexcode}}" class="btn btn--default"  style="margin-top: auto ; display:block; text-align: center">
+          <span class="glyphicon glyphicon-star" style="color:gray"></span> Save BCH
+        </a>
+</div>
+
+
+</div>
+
+
+{% endblock %}
+{% block scripts %}
+{{super()}}
+<script type=text/javascript src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+
+{% endblock %}
+
