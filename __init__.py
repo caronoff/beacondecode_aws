@@ -210,6 +210,7 @@ def decodedjson(hexcode):
 
 @app.route("/whereregister/<hexcode>")
 def where(hexcode):
+    print('whereregister')
     beacon = decodehex2.Beacon(hexcode)
     return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=False,geocoord=(0, 0), genmsg=beacon.genmsg)
 
@@ -242,13 +243,13 @@ def decoded(hexcode):
 
 
     else:
-        print('default output.html')
-        #print(beacon.bchstring)
+
+
         tmp='output.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
-        print(geocoord)
+
         locationcheck=True
 
     return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg)
