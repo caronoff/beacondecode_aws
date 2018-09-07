@@ -36,7 +36,7 @@ def processhex():
 def ibrdallowed():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
-        print('im here')
+        print(hexcode)
         return redirect(url_for('/whereregister',hexcode=hexcode))
     return render_template('ibrdallowed.html', title='Home', user='')
 
