@@ -36,6 +36,7 @@ def processhex():
 def ibrdallowed():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
+        print('im here')
         return redirect(url_for('/whereregister',hexcode=hexcode))
     return render_template('ibrdallowed.html', title='Home', user='')
 
@@ -209,7 +210,7 @@ def decodedjson(hexcode):
 
 
 @app.route("/whereregister/<hexcode>")
-def where(hexcode):
+def whereregister(hexcode):
     print('whereregister')
     beacon = decodehex2.Beacon(hexcode)
     return render_template('output.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=False,geocoord=(0, 0), genmsg=beacon.genmsg)
