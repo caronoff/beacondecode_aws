@@ -32,6 +32,14 @@ def processhex():
     beacon_gen = t.getgen()
     return jsonify(beacon_gen=beacon_gen,binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
 
+@app.route('/ibrdallowed',methods=['GET','POST'])
+def ibrdallowed():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+
+        return redirect(url_for('whereregister',hexcode=hexcode))
+    return render_template('ibrdallowed.html', title='Home', user='')
+
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
@@ -124,17 +132,18 @@ def long():
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
-
+    vlengths=request.args.getlist('lenval[]')
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
+
     if len(ret_data) > 0:
         if len(hexaPattern)==len(ret_data):
             message='Valid hexidecimal message.'
-            if len(ret_data) in [15,30,36,22,23,28,51,63]:
+            if str(len(ret_data)) in vlengths:
                 statuscheck = 'valid'
             else:
-                message = 'Bad length '+str(len(ret_data)) +  '  Valid lengths: 15,22,23,28,30,36,51,63'
+                message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
         else:
             statuscheck='not valid'
             message='Invalid Hexidecimal code  (A-F-0-9)'
@@ -145,7 +154,6 @@ def validatehex():
 @app.route("/index")
 def index():
     if request.method == 'POST':
-        print('post')
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('indx.html', title='Home', user='')
@@ -201,7 +209,10 @@ def decodedjson(hexcode):
     return jsonify(beacondecode)
 
 
-
+@app.route("/whereregister/<hexcode>")
+def whereregister(hexcode):
+    beacon = decodehex2.Beacon(hexcode)
+    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country())
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
@@ -232,13 +243,13 @@ def decoded(hexcode):
 
 
     else:
-        print('default output.html')
-        #print(beacon.bchstring)
+
+
         tmp='output.html'
 
     if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
-        print(geocoord)
+
         locationcheck=True
 
     return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg)

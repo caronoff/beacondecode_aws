@@ -474,7 +474,6 @@ class BeaconFGB(HexError):
                     self._loc=True
                     a = self.update_locd(declat,latdir)
                     b = self.update_locd(declng,lngdir)
-
                 else:
                     self._loc=False
                     a = declat
@@ -955,6 +954,7 @@ class Beacon(HexError):
 
     def gettac(self):
         return self.beacon.gettac()
+
     def loctype(self):
         return self.beacon.loctype()
 
@@ -970,5 +970,5 @@ class Beacon(HexError):
     def get_country(self):
         return self.beacon.get_country()
 
-
-    
+    def get_mid(self):
+        return self.beacon.get_mid()

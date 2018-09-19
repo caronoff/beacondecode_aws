@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-{% block title %}Index {{user}} {% endblock %}
+{% block title %}Where Do I Register {{user}} {% endblock %}
 
 {% block head %}
   {{ super() }}
@@ -10,14 +10,14 @@
 {% block content %}
 
 <div id="myform">
-      <form class="form-signin" id="decodeHex" action="/decode"  method="POST">
+      <form class="form-signin" id="decodeHex" action="/ibrdallowed"  method="POST">
         <h2 class="form-signin-heading">Beacon Message Decoder</h2>
         <label for="inputhexcode" class="sr-only">Enter hexadecimal code</label>
           <div class="input-group" data-validate="hex">
         <input type="text" name="hexcode" id="inputhexcode"  class="form-control" placeholder="Enter hexadecimal code" required autofocus >
           <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
           </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Enter valid hexidecimal (A-E 0-9)" id="hexbutton" disabled>Decode Message</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" title="Enter valid hexidecimal (A-E 0-9)" id="hexbutton" disabled>Where to Register</button>
         <div class="modal-body" style="strong">
           <span class="error-log"><br><div id="hexAlert" class="alert alert-danger collapse" role="alert" >
               <a id="linkClose" href="#" class="close" >&times;</a>
@@ -48,7 +48,6 @@ function submitcode(){
     $('[title]').tooltip();
 </script>
 
-
 <script type=text/javascript>
  
 $(document).ready(function(){
@@ -58,7 +57,7 @@ $('#inputhexcode').on('keyup change',function()
 		$addon = $group.find('.input-group-addon'),
 		$icon = $addon.find('span');
         $.getJSON
-            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val(),lenval:[15,30,36,22,23,28,51,63]},function(data)
+            ($SCRIPT_ROOT+'/validatehex', {hexcode: $('input[name="hexcode"]').val(), lenval:[15,23]},function(data)
                 {$("#statuscheck").text(data.echostatus);
                 if(data.echostatus=='valid'){
                         $form.find(':input[type="submit"]').prop('disabled', false);
