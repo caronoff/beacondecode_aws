@@ -595,7 +595,8 @@ class SecondGen(Gen2Error):
 
     def get_country(self):
         return str(self.countryCode) + ' ' + str(self.countryName)
-
+    def get_mid(self):
+        return str(self.countryCode)
     def bchmatch(self):
         if len(self.bits)>=249:
             if Func.errors(Func.calcBCH(self.bits[1:], 0, 202, 250), self.bits[203:])>0:
