@@ -956,6 +956,7 @@ class Beacon(HexError):
 
     def gettac(self):
         return self.beacon.gettac()
+
     def loctype(self):
         return self.beacon.loctype()
 
@@ -971,5 +972,5 @@ class Beacon(HexError):
     def get_country(self):
         return self.beacon.get_country()
 
-
-    
+    def get_mid(self):
+        return self.beacon.get_mid()
