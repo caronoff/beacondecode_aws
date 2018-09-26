@@ -21,15 +21,16 @@
 
 
 <div class="container">
-  {% for e in contact %}
-
+  {% for btype in types %}
+    {{btype}}
+    <br>
 
 
     <table>
 {% for f in flds %}
    <tr>
         <th> {{ f }} </th>
-        <td> {{ e[f] }} </td>
+        <td> {{ contact[btype][f] }} </td>
    </tr>
 {% endfor %}
 </table>

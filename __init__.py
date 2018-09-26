@@ -198,15 +198,24 @@ def contact(num):
 
 
     for cont in root.findall('row'):
-        con=[]
-        for id_no in [id_no_plb,id_no_elt,id_no_epirb]:
-            if cont.get('id') == id_no:
-                condic={}
-                for tag in flds :
-                    condic[tag]=cont.find(tag).text
-                con.append(condic)
-        print(con)
-    return render_template("contact.html",contact=con,flds=flds)
+
+        if cont.get('id') == id_no_plb:
+            plbdic={}
+            for tag in flds :
+                plbdic[tag]=cont.find(tag).text
+
+        if cont.get('id') == id_no_elt:
+            eltdic={}
+            for tag in flds :
+                eltdic[tag]=cont.find(tag).text
+
+        if cont.get('id') == id_no_epirb:
+            epirbdic={}
+            for tag in flds :
+                epirbdic[tag]=cont.find(tag).text
+         types=['PLB','ELT','EPIRB']
+
+    return render_template("contact.html",contact={'PLB':plbdic,'ELT':eltdic,'EPIRB':epirbdic},types=types,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
