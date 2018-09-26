@@ -2,16 +2,16 @@
 <csv_data>
 <row mid="201" >
     <name>ALBANIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>44</Country_id>
     <ndp></ndp>
 </row>
 <row mid="202" >
     <name>ANDORRA</name>
     <PLB>6098</PLB>
-    <ELT>?</ELT>
+    <ELT>4523</ELT>
     <EPIRB>6098</EPIRB>
     <Country_id>45</Country_id>
     <ndp>P:E:B</ndp>
@@ -26,25 +26,25 @@
 </row>
 <row mid="204" >
     <name>AZORES-POR</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>276</Country_id>
     <ndp></ndp>
 </row>
 <row mid="205" >
     <name>BELGIUM</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>47</Country_id>
     <ndp></ndp>
 </row>
 <row mid="206" >
     <name>BELARUS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>49</Country_id>
     <ndp></ndp>
 </row>
@@ -58,9 +58,9 @@
 </row>
 <row mid="208" >
     <name>VATICAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>50</Country_id>
     <ndp></ndp>
 </row>
@@ -98,33 +98,33 @@
 </row>
 <row mid="213" >
     <name>GEORGIA</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
-    <EPIRB>NDP</EPIRB>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
+    <EPIRB>4523</EPIRB>
     <Country_id>55</Country_id>
     <ndp>P:E:B</ndp>
 </row>
 <row mid="214" >
     <name>MOLDOVA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>6041</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>56</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="215" >
     <name>MALTA</name>
     <PLB>9946</PLB>
-    <ELT>?</ELT>
+    <ELT>4523</ELT>
     <EPIRB>9946</EPIRB>
     <Country_id>57</Country_id>
     <ndp></ndp>
 </row>
 <row mid="216" >
     <name>ARMENIA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>5738</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>58</Country_id>
     <ndp></ndp>
 </row>
@@ -138,7 +138,7 @@
 </row>
 <row mid="219" >
     <name>DENMARK</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>4472</ELT>
     <EPIRB>5881</EPIRB>
     <Country_id>60</Country_id>
@@ -146,7 +146,7 @@
 </row>
 <row mid="220" >
     <name>DENMARK</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>4472</ELT>
     <EPIRB>6026</EPIRB>
     <Country_id>61</Country_id>
@@ -154,7 +154,7 @@
 </row>
 <row mid="224" >
     <name>SPAIN</name>
-    <PLB>?</PLB>
+    <PLB>4523</PLB>
     <ELT>5641</ELT>
     <EPIRB>5335</EPIRB>
     <Country_id>10</Country_id>
@@ -162,7 +162,7 @@
 </row>
 <row mid="225" >
     <name>SPAIN</name>
-    <PLB>?</PLB>
+    <PLB>4523</PLB>
     <ELT>5641</ELT>
     <EPIRB>5335</EPIRB>
     <Country_id>11</Country_id>
@@ -250,8 +250,8 @@
 </row>
 <row mid="236" >
     <name>GIBRALTAR-UK</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
     <EPIRB>6096</EPIRB>
     <Country_id>64</Country_id>
     <ndp></ndp>
@@ -298,17 +298,17 @@
 </row>
 <row mid="242" >
     <name>MOROCCO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>67</Country_id>
     <ndp></ndp>
 </row>
 <row mid="243" >
     <name>HUNGARY</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>68</Country_id>
     <ndp></ndp>
 </row>
@@ -346,9 +346,9 @@
 </row>
 <row mid="248" >
     <name>MALTA</name>
-    <PLB>?</PLB>
+    <PLB>4523</PLB>
     <ELT>9983</ELT>
-    <EPIRB>?</EPIRB>
+    <EPIRB>4523</EPIRB>
     <Country_id>73</Country_id>
     <ndp></ndp>
 </row>
@@ -378,15 +378,15 @@
 </row>
 <row mid="252" >
     <name>LIECHTENSTEIN</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>6211</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>77</Country_id>
     <ndp></ndp>
 </row>
 <row mid="253" >
     <name>LUXEMBOURG</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>6124</ELT>
     <EPIRB>6124</EPIRB>
     <Country_id>78</Country_id>
@@ -402,9 +402,9 @@
 </row>
 <row mid="255" >
     <name>MADEIRA-POR</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>277</Country_id>
     <ndp></ndp>
 </row>
@@ -450,16 +450,16 @@
 </row>
 <row mid="262" >
     <name>MONTENEGRO</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>9984</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>278</Country_id>
     <ndp></ndp>
 </row>
 <row mid="263" >
     <name>PORTUGAL</name>
     <PLB>6631</PLB>
-    <ELT>?</ELT>
+    <ELT>4523</ELT>
     <EPIRB>6631</EPIRB>
     <Country_id>85</Country_id>
     <ndp></ndp>
@@ -474,7 +474,7 @@
 </row>
 <row mid="265" >
     <name>SWEDEN</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>4464</ELT>
     <EPIRB>4461</EPIRB>
     <Country_id>87</Country_id>
@@ -482,7 +482,7 @@
 </row>
 <row mid="266" >
     <name>SWEDEN</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10195</ELT>
     <EPIRB>10194</EPIRB>
     <Country_id>88</Country_id>
@@ -506,17 +506,17 @@
 </row>
 <row mid="269" >
     <name>SWITZERLAND</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>6211</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>91</Country_id>
     <ndp></ndp>
 </row>
 <row mid="270" >
     <name>CZECH REPUBLIC</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>92</Country_id>
     <ndp></ndp>
 </row>
@@ -546,15 +546,15 @@
 </row>
 <row mid="274" >
     <name>THE FYROM</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>95</Country_id>
     <ndp></ndp>
 </row>
 <row mid="275" >
     <name>LATVIA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>4349</ELT>
     <EPIRB>4349</EPIRB>
     <Country_id>96</Country_id>
@@ -578,9 +578,9 @@
 </row>
 <row mid="278" >
     <name>SLOVENIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>99</Country_id>
     <ndp></ndp>
 </row>
@@ -610,23 +610,23 @@
 </row>
 <row mid="304" >
     <name>ANTIGUA &amp; BARBUD</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>101</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="305" >
     <name>ANTIGUA &amp; BARBUD</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10079</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>102</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="306" >
     <name>NETH ANTILLES-NL</name>
-    <PLB>?</PLB>
+    <PLB>4523</PLB>
     <ELT>4362</ELT>
     <EPIRB>4361</EPIRB>
     <Country_id>103</Country_id>
@@ -642,16 +642,16 @@
 </row>
 <row mid="308" >
     <name>BAHAMAS</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
     <EPIRB>5967</EPIRB>
     <Country_id>105</Country_id>
     <ndp></ndp>
 </row>
 <row mid="309" >
     <name>BAHAMAS</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
     <EPIRB>10215</EPIRB>
     <Country_id>106</Country_id>
     <ndp></ndp>
@@ -666,25 +666,25 @@
 </row>
 <row mid="311" >
     <name>BAHAMAS</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
     <EPIRB>10216</EPIRB>
     <Country_id>108</Country_id>
     <ndp></ndp>
 </row>
 <row mid="312" >
     <name>BELIZE</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>109</Country_id>
     <ndp></ndp>
 </row>
 <row mid="314" >
     <name>BARBADOS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>110</Country_id>
     <ndp></ndp>
 </row>
@@ -706,33 +706,33 @@
 </row>
 <row mid="321" >
     <name>COSTA RICA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>112</Country_id>
     <ndp></ndp>
 </row>
 <row mid="323" >
     <name>CUBA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>113</Country_id>
     <ndp></ndp>
 </row>
 <row mid="325" >
     <name>DOMINICA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>114</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="327" >
     <name>DOMINICAN REP</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>115</Country_id>
     <ndp></ndp>
 </row>
@@ -746,9 +746,9 @@
 </row>
 <row mid="330" >
     <name>GRENADA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>117</Country_id>
     <ndp>E</ndp>
 </row>
@@ -762,9 +762,9 @@
 </row>
 <row mid="332" >
     <name>GUATEMALA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>119</Country_id>
     <ndp></ndp>
 </row>
@@ -778,9 +778,9 @@
 </row>
 <row mid="336" >
     <name>HAITI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>121</Country_id>
     <ndp></ndp>
 </row>
@@ -810,9 +810,9 @@
 </row>
 <row mid="343" >
     <name>ST LUCIA</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>124</Country_id>
     <ndp>E</ndp>
 </row>
@@ -834,73 +834,73 @@
 </row>
 <row mid="348" >
     <name>MONTSERRAT</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>127</Country_id>
     <ndp></ndp>
 </row>
 <row mid="350" >
     <name>NICARAGUA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>128</Country_id>
     <ndp></ndp>
 </row>
 <row mid="351" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>129</Country_id>
     <ndp></ndp>
 </row>
 <row mid="352" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>130</Country_id>
     <ndp></ndp>
 </row>
 <row mid="353" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>131</Country_id>
     <ndp></ndp>
 </row>
 <row mid="354" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>132</Country_id>
     <ndp></ndp>
 </row>
 <row mid="355" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>133</Country_id>
     <ndp></ndp>
 </row>
 <row mid="356" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>134</Country_id>
     <ndp></ndp>
 </row>
 <row mid="357" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>135</Country_id>
     <ndp></ndp>
 </row>
@@ -914,9 +914,9 @@
 </row>
 <row mid="359" >
     <name>EL SALVADOR</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>5693</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>137</Country_id>
     <ndp>E</ndp>
 </row>
@@ -930,17 +930,17 @@
 </row>
 <row mid="362" >
     <name>TRINIDAD TOBAGO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>139</Country_id>
     <ndp></ndp>
 </row>
 <row mid="364" >
     <name>TURKS CAICOS-UK</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>140</Country_id>
     <ndp></ndp>
 </row>
@@ -978,71 +978,71 @@
 </row>
 <row mid="370" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>141</Country_id>
     <ndp></ndp>
 </row>
 <row mid="371" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>142</Country_id>
     <ndp></ndp>
 </row>
 <row mid="372" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>143</Country_id>
     <ndp></ndp>
 </row>
 <row mid="373" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>295</Country_id>
     <ndp></ndp>
 </row>
 <row mid="374" >
     <name>PANAMA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>306</Country_id>
     <ndp></ndp>
 </row>
 <row mid="375" >
     <name>ST VINCENT &amp; GRE</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>144</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="376" >
     <name>ST VINCENT &amp; GRE</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>145</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="377" >
     <name>ST VINCENT &amp; GRE</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>10078</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>146</Country_id>
     <ndp>E</ndp>
 </row>
 <row mid="378" >
     <name>BRI VIRGIN IS-UK</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>4488</ELT>
     <EPIRB>4488</EPIRB>
     <Country_id>147</Country_id>
@@ -1058,9 +1058,9 @@
 </row>
 <row mid="401" >
     <name>AFGHANISTAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>7</Country_id>
     <ndp></ndp>
 </row>
@@ -1074,25 +1074,25 @@
 </row>
 <row mid="405" >
     <name>BANGLADESH</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>150</Country_id>
     <ndp></ndp>
 </row>
 <row mid="408" >
     <name>BAHRAIN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>151</Country_id>
     <ndp></ndp>
 </row>
 <row mid="410" >
     <name>BHUTAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>152</Country_id>
     <ndp></ndp>
 </row>
@@ -1146,9 +1146,9 @@
 </row>
 <row mid="422" >
     <name>IRAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>157</Country_id>
     <ndp></ndp>
 </row>
@@ -1162,17 +1162,17 @@
 </row>
 <row mid="425" >
     <name>IRAQ</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>159</Country_id>
     <ndp></ndp>
 </row>
 <row mid="428" >
     <name>ISRAEL</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>160</Country_id>
     <ndp></ndp>
 </row>
@@ -1194,33 +1194,33 @@
 </row>
 <row mid="434" >
     <name>TURKMENISTAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>162</Country_id>
     <ndp></ndp>
 </row>
 <row mid="436" >
     <name>KAZAKHSTAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>164</Country_id>
     <ndp></ndp>
 </row>
 <row mid="437" >
     <name>UZBEKISTAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>165</Country_id>
     <ndp></ndp>
 </row>
 <row mid="438" >
     <name>JORDAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>166</Country_id>
     <ndp></ndp>
 </row>
@@ -1242,33 +1242,33 @@
 </row>
 <row mid="443" >
     <name>PALESTINE AUTH</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>280</Country_id>
     <ndp></ndp>
 </row>
 <row mid="445" >
     <name>DEM PEO RP KOREA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>161</Country_id>
     <ndp></ndp>
 </row>
 <row mid="447" >
     <name>KUWAIT</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>163</Country_id>
     <ndp></ndp>
 </row>
 <row mid="450" >
     <name>LEBANON</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>168</Country_id>
     <ndp></ndp>
 </row>
@@ -1282,9 +1282,9 @@
 </row>
 <row mid="453" >
     <name>MACAO-CHN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>180</Country_id>
     <ndp></ndp>
 </row>
@@ -1298,25 +1298,25 @@
 </row>
 <row mid="457" >
     <name>MONGOLIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>183</Country_id>
     <ndp></ndp>
 </row>
 <row mid="459" >
     <name>NEPAL</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>185</Country_id>
     <ndp></ndp>
 </row>
 <row mid="461" >
     <name>OMAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>187</Country_id>
     <ndp></ndp>
 </row>
@@ -1338,9 +1338,9 @@
 </row>
 <row mid="468" >
     <name>SYRIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>194</Country_id>
     <ndp></ndp>
 </row>
@@ -1362,25 +1362,25 @@
 </row>
 <row mid="472" >
     <name>TAJIKISTAN</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
-    <EPIRB>?</EPIRB>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
+    <EPIRB>4523</EPIRB>
     <Country_id>298</Country_id>
     <ndp></ndp>
 </row>
 <row mid="473" >
     <name>YEMEN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>199</Country_id>
     <ndp></ndp>
 </row>
 <row mid="475" >
     <name>YEMEN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>200</Country_id>
     <ndp></ndp>
 </row>
@@ -1394,9 +1394,9 @@
 </row>
 <row mid="478" >
     <name>BOSNIA &amp; HERZEGO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>203</Country_id>
     <ndp></ndp>
 </row>
@@ -1418,33 +1418,33 @@
 </row>
 <row mid="506" >
     <name>MYANMAR</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>206</Country_id>
     <ndp></ndp>
 </row>
 <row mid="508" >
     <name>BRUNEI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>208</Country_id>
     <ndp></ndp>
 </row>
 <row mid="510" >
     <name>MICRONESIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>210</Country_id>
     <ndp></ndp>
 </row>
 <row mid="511" >
     <name>PALAU</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>212</Country_id>
     <ndp></ndp>
 </row>
@@ -1458,17 +1458,17 @@
 </row>
 <row mid="514" >
     <name>CAMBODIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>214</Country_id>
     <ndp></ndp>
 </row>
 <row mid="515" >
     <name>CAMBODIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>216</Country_id>
     <ndp></ndp>
 </row>
@@ -1490,9 +1490,9 @@
 </row>
 <row mid="520" >
     <name>FIJI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>167</Country_id>
     <ndp></ndp>
 </row>
@@ -1514,17 +1514,17 @@
 </row>
 <row mid="529" >
     <name>KIRIBATI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>170</Country_id>
     <ndp></ndp>
 </row>
 <row mid="531" >
     <name>LAOS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>171</Country_id>
     <ndp></ndp>
 </row>
@@ -1602,25 +1602,25 @@
 </row>
 <row mid="555" >
     <name>PITCAIRN ISL-UK</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>184</Country_id>
     <ndp></ndp>
 </row>
 <row mid="557" >
     <name>SOLOMON ISLANDS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>186</Country_id>
     <ndp></ndp>
 </row>
 <row mid="559" >
     <name>AMERIC SAMOA-USA</name>
-    <PLB>?</PLB>
-    <ELT>?</ELT>
-    <EPIRB>?</EPIRB>
+    <PLB>4523</PLB>
+    <ELT>4523</ELT>
+    <EPIRB>4523</EPIRB>
     <Country_id>188</Country_id>
     <ndp></ndp>
 </row>
@@ -1682,9 +1682,9 @@
 </row>
 <row mid="572" >
     <name>TUVALU</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>193</Country_id>
     <ndp></ndp>
 </row>
@@ -1754,73 +1754,73 @@
 </row>
 <row mid="608" >
     <name>ASCENSION ISL-UK</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>284</Country_id>
     <ndp></ndp>
 </row>
 <row mid="609" >
     <name>BURUNDI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>202</Country_id>
     <ndp></ndp>
 </row>
 <row mid="610" >
     <name>BENIN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>204</Country_id>
     <ndp></ndp>
 </row>
 <row mid="611" >
     <name>BOTSWANA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>205</Country_id>
     <ndp></ndp>
 </row>
 <row mid="612" >
     <name>CENTRAL AFRI REP</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>207</Country_id>
     <ndp></ndp>
 </row>
 <row mid="613" >
     <name>CAMEROON</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>209</Country_id>
     <ndp></ndp>
 </row>
 <row mid="615" >
     <name>CONGO (REP OF)</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>211</Country_id>
     <ndp></ndp>
 </row>
 <row mid="616" >
     <name>COMOROS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>213</Country_id>
     <ndp></ndp>
 </row>
 <row mid="617" >
     <name>CABO VERDE</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>215</Country_id>
     <ndp></ndp>
 </row>
@@ -1834,113 +1834,113 @@
 </row>
 <row mid="619" >
     <name>IVORY COAST</name>
-    <PLB>IBRD</PLB>
+    <PLB>10060</PLB>
     <ELT>7371</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <EPIRB>10060</EPIRB>
     <Country_id>286</Country_id>
     <ndp></ndp>
 </row>
 <row mid="620" >
     <name>COMOROS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>304</Country_id>
     <ndp></ndp>
 </row>
 <row mid="621" >
     <name>DJIBOUTI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>226</Country_id>
     <ndp></ndp>
 </row>
 <row mid="622" >
     <name>EGYPT</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>229</Country_id>
     <ndp></ndp>
 </row>
 <row mid="624" >
     <name>ETHIOPIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>230</Country_id>
     <ndp></ndp>
 </row>
 <row mid="625" >
     <name>ERITREA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>256</Country_id>
     <ndp></ndp>
 </row>
 <row mid="626" >
     <name>GABON</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>257</Country_id>
     <ndp></ndp>
 </row>
 <row mid="627" >
     <name>GHANA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>258</Country_id>
     <ndp></ndp>
 </row>
 <row mid="629" >
     <name>GAMBIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>259</Country_id>
     <ndp></ndp>
 </row>
 <row mid="630" >
     <name>GUINEA-BISSAU</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>260</Country_id>
     <ndp></ndp>
 </row>
 <row mid="631" >
     <name>EQUAT GUINEA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>261</Country_id>
     <ndp></ndp>
 </row>
 <row mid="632" >
     <name>GUINEA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>262</Country_id>
     <ndp></ndp>
 </row>
 <row mid="633" >
     <name>BURKINA FASO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>263</Country_id>
     <ndp></ndp>
 </row>
 <row mid="634" >
     <name>KENYA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>264</Country_id>
     <ndp></ndp>
 </row>
@@ -1970,33 +1970,33 @@
 </row>
 <row mid="638" >
     <name>SOUTH SUDAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>305</Country_id>
     <ndp></ndp>
 </row>
 <row mid="642" >
     <name>LIBYA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>267</Country_id>
     <ndp></ndp>
 </row>
 <row mid="644" >
     <name>LESOTHO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>268</Country_id>
     <ndp></ndp>
 </row>
 <row mid="645" >
     <name>MAURITIUS</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>269</Country_id>
     <ndp></ndp>
 </row>
@@ -2010,9 +2010,9 @@
 </row>
 <row mid="649" >
     <name>MALI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>271</Country_id>
     <ndp></ndp>
 </row>
@@ -2026,33 +2026,33 @@
 </row>
 <row mid="654" >
     <name>MAURITANIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>273</Country_id>
     <ndp></ndp>
 </row>
 <row mid="655" >
     <name>MALAWI</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>219</Country_id>
     <ndp></ndp>
 </row>
 <row mid="656" >
     <name>NIGER</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>220</Country_id>
     <ndp></ndp>
 </row>
 <row mid="657" >
     <name>NIGERIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>221</Country_id>
     <ndp></ndp>
 </row>
@@ -2082,81 +2082,81 @@
 </row>
 <row mid="662" >
     <name>SUDAN</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>225</Country_id>
     <ndp></ndp>
 </row>
 <row mid="663" >
     <name>SENEGAL</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>227</Country_id>
     <ndp></ndp>
 </row>
 <row mid="664" >
     <name>SEYCHELLES</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>228</Country_id>
     <ndp></ndp>
 </row>
 <row mid="665" >
     <name>ST HELENA-UK</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>231</Country_id>
     <ndp></ndp>
 </row>
 <row mid="666" >
     <name>SOMALIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>232</Country_id>
     <ndp></ndp>
 </row>
 <row mid="667" >
     <name>SIERRA LEONE</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>233</Country_id>
     <ndp></ndp>
 </row>
 <row mid="668" >
     <name>SAO TOME &amp; PRINC</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>234</Country_id>
     <ndp></ndp>
 </row>
 <row mid="669" >
     <name>SWAZILAND</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>235</Country_id>
     <ndp></ndp>
 </row>
 <row mid="670" >
     <name>CHAD</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>236</Country_id>
     <ndp></ndp>
 </row>
 <row mid="671" >
     <name>TOGO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>237</Country_id>
     <ndp></ndp>
 </row>
@@ -2170,49 +2170,49 @@
 </row>
 <row mid="674" >
     <name>TANZANIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>239</Country_id>
     <ndp></ndp>
 </row>
 <row mid="675" >
     <name>UGANDA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>240</Country_id>
     <ndp></ndp>
 </row>
 <row mid="676" >
     <name>DEM REP CONGO</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>241</Country_id>
     <ndp></ndp>
 </row>
 <row mid="677" >
     <name>TANZANIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>242</Country_id>
     <ndp></ndp>
 </row>
 <row mid="678" >
     <name>ZAMBIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>243</Country_id>
     <ndp></ndp>
 </row>
 <row mid="679" >
     <name>ZIMBABWE</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>244</Country_id>
     <ndp></ndp>
 </row>
@@ -2234,9 +2234,9 @@
 </row>
 <row mid="720" >
     <name>BOLIVIA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>245</Country_id>
     <ndp></ndp>
 </row>
@@ -2258,7 +2258,7 @@
 </row>
 <row mid="735" >
     <name>ECUADOR</name>
-    <PLB>?</PLB>
+    <PLB>4523</PLB>
     <ELT>5258</ELT>
     <EPIRB>9872</EPIRB>
     <Country_id>248</Country_id>
@@ -2266,9 +2266,9 @@
 </row>
 <row mid="740" >
     <name>FALKLAND ISL-UK</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>249</Country_id>
     <ndp></ndp>
 </row>
@@ -2282,9 +2282,9 @@
 </row>
 <row mid="750" >
     <name>GUYANA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>250</Country_id>
     <ndp></ndp>
 </row>
@@ -2306,25 +2306,25 @@
 </row>
 <row mid="765" >
     <name>SURINAME</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>253</Country_id>
     <ndp></ndp>
 </row>
 <row mid="770" >
     <name>URUGUAY</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>254</Country_id>
     <ndp></ndp>
 </row>
 <row mid="775" >
     <name>VENEZUELA</name>
-    <PLB>IBRD</PLB>
-    <ELT>IBRD</ELT>
-    <EPIRB>IBRD</EPIRB>
+    <PLB>10060</PLB>
+    <ELT>10060</ELT>
+    <EPIRB>10060</EPIRB>
     <Country_id>255</Country_id>
     <ndp></ndp>
 </row>
