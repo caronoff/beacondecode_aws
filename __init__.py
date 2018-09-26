@@ -206,7 +206,7 @@ def contact(num):
                     d[tag]=cont.find(tag).text
                 contact[element[0]]=d
 
-
+    print(contact)
 
     return render_template("contact.html",contact=contact,types=types,flds=flds)
 
