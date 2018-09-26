@@ -9,7 +9,8 @@ import decodehex2
 import definitions
 import requests
 import xml.etree.ElementTree as ET
-
+tree = ET.parse('contact_data.xml')
+root = tree.getroot()
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
@@ -185,6 +186,9 @@ def encodehex():
 def about():
     return render_template("about.html")
 
+@app.route("/contact/<num>")
+def contact(num):
+    return render_template("contact.html",name=num)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):

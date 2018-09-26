@@ -10,17 +10,18 @@
 # 76,def,99
 
 import csv
-
+#csvFile = 'test.csv'
 csvFile = 'joomla3_cospas_sarsat_contact_details.csv'
 xmlFile = 'myData.xml'
 
 csvData = csv.reader(open(csvFile))
 xmlData = open(xmlFile, 'w')
-xmlData.write('<?xml version="1.0"?>' + "\n")
+xmlData.write('<?xml version="1.0"  encoding="utf-8"?>' + "\n")
 # there must be only one top-level tag
 xmlData.write('<csv_data>' + "\n")
 
 rowNum = 0
+replacechar={'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;','&':'&amp;'}
 for row in csvData:
     if rowNum == 0:
         tags = row
@@ -28,11 +29,14 @@ for row in csvData:
         for i in range(1,len(tags)):
             tags[i] = tags[i].replace(' ', '_')
     else:
-        xmlData.write('<row {}={} >'.format(tags[0],row[0]) + "\n")
+        xmlData.write('<row {}="{}" >'.format(tags[0],row[0]) + "\n")
+
+
         for i in range(1,len(tags)):
             xmlData.write('    ' + '<' + tags[i] + '>' \
-                          + row[i] + '</' + tags[i] + '>' + "\n")
+                          + row[i].replace('&','&amp;').replace('<','&lt;').replace('>','&gt;').replace('"','&quot;').replace("'",'&apos;')+ '</' + tags[i] + '>' + "\n")
         xmlData.write('</row>' + "\n")
+
 
     rowNum += 1
 
