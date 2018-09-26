@@ -190,8 +190,10 @@ def about():
 def contact(num):
     for cont in root.findall('row'):
         if cont.get('id') == num:
+            condic={}
             for child in cont:
-                print(child)
+                condic[child.tag]=child.text
+            print(condic)
             contactname=cont.find('name').text
     return render_template("contact.html",name=contactname)
 
