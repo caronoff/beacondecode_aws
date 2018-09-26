@@ -205,7 +205,7 @@ def contact(num):
                 for tag in flds :
                     condic[tag]=cont.find(tag).text
             con.append(condic)
-
+        print(con)
     return render_template("contact.html",contact=con,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
