@@ -1,0 +1,2331 @@
+<?xml version="1.0"  encoding="utf-8"?>
+<csv_data>
+<row mid="201" >
+    <name>ALBANIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>44</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="202" >
+    <name>ANDORRA</name>
+    <PLB>6098</PLB>
+    <ELT>?</ELT>
+    <EPIRB>6098</EPIRB>
+    <Country_id>45</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="203" >
+    <name>AUSTRIA</name>
+    <PLB>10225</PLB>
+    <ELT>10225</ELT>
+    <EPIRB>10225</EPIRB>
+    <Country_id>46</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="204" >
+    <name>AZORES-POR</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>276</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="205" >
+    <name>BELGIUM</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>47</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="206" >
+    <name>BELARUS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>49</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="207" >
+    <name>BULGARIA</name>
+    <PLB>5623</PLB>
+    <ELT>5623</ELT>
+    <EPIRB>5623</EPIRB>
+    <Country_id>48</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="208" >
+    <name>VATICAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>50</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="209" >
+    <name>CYPRUS</name>
+    <PLB>4515</PLB>
+    <ELT>5990</ELT>
+    <EPIRB>10254</EPIRB>
+    <Country_id>51</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="210" >
+    <name>CYPRUS</name>
+    <PLB>4515</PLB>
+    <ELT>5990</ELT>
+    <EPIRB>10254</EPIRB>
+    <Country_id>52</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="211" >
+    <name>GERMANY</name>
+    <PLB>4403</PLB>
+    <ELT>5843</ELT>
+    <EPIRB>4403</EPIRB>
+    <Country_id>53</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="212" >
+    <name>CYPRUS</name>
+    <PLB>4515</PLB>
+    <ELT>5990</ELT>
+    <EPIRB>10254</EPIRB>
+    <Country_id>54</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="213" >
+    <name>GEORGIA</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>NDP</EPIRB>
+    <Country_id>55</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="214" >
+    <name>MOLDOVA</name>
+    <PLB>IBRD</PLB>
+    <ELT>6041</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>56</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="215" >
+    <name>MALTA</name>
+    <PLB>9946</PLB>
+    <ELT>?</ELT>
+    <EPIRB>9946</EPIRB>
+    <Country_id>57</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="216" >
+    <name>ARMENIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>5738</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>58</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="218" >
+    <name>GERMANY</name>
+    <PLB>9857</PLB>
+    <ELT>9858</ELT>
+    <EPIRB>9857</EPIRB>
+    <Country_id>59</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="219" >
+    <name>DENMARK</name>
+    <PLB>IBRD</PLB>
+    <ELT>4472</ELT>
+    <EPIRB>5881</EPIRB>
+    <Country_id>60</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="220" >
+    <name>DENMARK</name>
+    <PLB>IBRD</PLB>
+    <ELT>4472</ELT>
+    <EPIRB>6026</EPIRB>
+    <Country_id>61</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="224" >
+    <name>SPAIN</name>
+    <PLB>?</PLB>
+    <ELT>5641</ELT>
+    <EPIRB>5335</EPIRB>
+    <Country_id>10</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="225" >
+    <name>SPAIN</name>
+    <PLB>?</PLB>
+    <ELT>5641</ELT>
+    <EPIRB>5335</EPIRB>
+    <Country_id>11</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="226" >
+    <name>FRANCE</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>18</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="227" >
+    <name>FRANCE</name>
+    <PLB>5506</PLB>
+    <ELT>5506</ELT>
+    <EPIRB>9926</EPIRB>
+    <Country_id>17</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="228" >
+    <name>FRANCE</name>
+    <PLB>7981</PLB>
+    <ELT>7981</ELT>
+    <EPIRB>9927</EPIRB>
+    <Country_id>19</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="229" >
+    <name>MALTA</name>
+    <PLB>9946</PLB>
+    <ELT>9946</ELT>
+    <EPIRB>9946</EPIRB>
+    <Country_id>303</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="230" >
+    <name>FINLAND</name>
+    <PLB>5806</PLB>
+    <ELT>5806</ELT>
+    <EPIRB>5806</EPIRB>
+    <Country_id>62</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="231" >
+    <name>FAROE ISLANDS-DK</name>
+    <PLB>4531</PLB>
+    <ELT>4530</ELT>
+    <EPIRB>4529</EPIRB>
+    <Country_id>63</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="232" >
+    <name>UNITED KINGDOM</name>
+    <PLB>5542</PLB>
+    <ELT>5542</ELT>
+    <EPIRB>5542</EPIRB>
+    <Country_id>38</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="233" >
+    <name>UNITED KINGDOM</name>
+    <PLB>10119</PLB>
+    <ELT>10119</ELT>
+    <EPIRB>10119</EPIRB>
+    <Country_id>39</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="234" >
+    <name>UNITED KINGDOM</name>
+    <PLB>10120</PLB>
+    <ELT>10120</ELT>
+    <EPIRB>10120</EPIRB>
+    <Country_id>40</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="235" >
+    <name>UNITED KINGDOM</name>
+    <PLB>10121</PLB>
+    <ELT>10121</ELT>
+    <EPIRB>10121</EPIRB>
+    <Country_id>41</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="236" >
+    <name>GIBRALTAR-UK</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>6096</EPIRB>
+    <Country_id>64</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="237" >
+    <name>GREECE</name>
+    <PLB>5698</PLB>
+    <ELT>5702</ELT>
+    <EPIRB>5679</EPIRB>
+    <Country_id>65</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="238" >
+    <name>CROATIA</name>
+    <PLB>5414</PLB>
+    <ELT>5740</ELT>
+    <EPIRB>5414</EPIRB>
+    <Country_id>66</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="239" >
+    <name>GREECE</name>
+    <PLB>10230</PLB>
+    <ELT>10233</ELT>
+    <EPIRB>10227</EPIRB>
+    <Country_id>30</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="240" >
+    <name>GREECE</name>
+    <PLB>10231</PLB>
+    <ELT>10234</ELT>
+    <EPIRB>10228</EPIRB>
+    <Country_id>29</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="241" >
+    <name>GREECE</name>
+    <PLB>10232</PLB>
+    <ELT>10235</ELT>
+    <EPIRB>10229</EPIRB>
+    <Country_id>275</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="242" >
+    <name>MOROCCO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>67</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="243" >
+    <name>HUNGARY</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>68</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="244" >
+    <name>NETHERLANDS</name>
+    <PLB>4434</PLB>
+    <ELT>4434</ELT>
+    <EPIRB>4434</EPIRB>
+    <Country_id>69</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="245" >
+    <name>NETHERLANDS</name>
+    <PLB>5870</PLB>
+    <ELT>5870</ELT>
+    <EPIRB>5870</EPIRB>
+    <Country_id>70</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="246" >
+    <name>NETHERLANDS</name>
+    <PLB>5874</PLB>
+    <ELT>5874</ELT>
+    <EPIRB>5874</EPIRB>
+    <Country_id>71</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="247" >
+    <name>ITALY</name>
+    <PLB>4425</PLB>
+    <ELT>4425</ELT>
+    <EPIRB>4425</EPIRB>
+    <Country_id>72</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="248" >
+    <name>MALTA</name>
+    <PLB>?</PLB>
+    <ELT>9983</ELT>
+    <EPIRB>?</EPIRB>
+    <Country_id>73</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="249" >
+    <name>MALTA</name>
+    <PLB>9950</PLB>
+    <ELT>9950</ELT>
+    <EPIRB>9950</EPIRB>
+    <Country_id>74</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="250" >
+    <name>IRELAND</name>
+    <PLB>8731</PLB>
+    <ELT>5346</ELT>
+    <EPIRB>10036</EPIRB>
+    <Country_id>75</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="251" >
+    <name>ICELAND</name>
+    <PLB>4340</PLB>
+    <ELT>5790</ELT>
+    <EPIRB>4340</EPIRB>
+    <Country_id>76</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="252" >
+    <name>LIECHTENSTEIN</name>
+    <PLB>IBRD</PLB>
+    <ELT>6211</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>77</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="253" >
+    <name>LUXEMBOURG</name>
+    <PLB>IBRD</PLB>
+    <ELT>6124</ELT>
+    <EPIRB>6124</EPIRB>
+    <Country_id>78</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="254" >
+    <name>MONACO</name>
+    <PLB>5566</PLB>
+    <ELT>5566</ELT>
+    <EPIRB>5566</EPIRB>
+    <Country_id>79</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="255" >
+    <name>MADEIRA-POR</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>277</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="256" >
+    <name>MALTA</name>
+    <PLB>9952</PLB>
+    <ELT>9952</ELT>
+    <EPIRB>9952</EPIRB>
+    <Country_id>80</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="257" >
+    <name>NORWAY</name>
+    <PLB>6101</PLB>
+    <ELT>6101</ELT>
+    <EPIRB>6055</EPIRB>
+    <Country_id>81</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="258" >
+    <name>NORWAY</name>
+    <PLB>6105</PLB>
+    <ELT>6105</ELT>
+    <EPIRB>6104</EPIRB>
+    <Country_id>82</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="259" >
+    <name>NORWAY</name>
+    <PLB>6113</PLB>
+    <ELT>6113</ELT>
+    <EPIRB>6112</EPIRB>
+    <Country_id>83</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="261" >
+    <name>POLAND</name>
+    <PLB>5159</PLB>
+    <ELT>5159</ELT>
+    <EPIRB>5159</EPIRB>
+    <Country_id>84</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="262" >
+    <name>MONTENEGRO</name>
+    <PLB>IBRD</PLB>
+    <ELT>9984</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>278</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="263" >
+    <name>PORTUGAL</name>
+    <PLB>6631</PLB>
+    <ELT>?</ELT>
+    <EPIRB>6631</EPIRB>
+    <Country_id>85</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="264" >
+    <name>ROMANIA</name>
+    <PLB>5778</PLB>
+    <ELT>5778</ELT>
+    <EPIRB>4377</EPIRB>
+    <Country_id>86</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="265" >
+    <name>SWEDEN</name>
+    <PLB>IBRD</PLB>
+    <ELT>4464</ELT>
+    <EPIRB>4461</EPIRB>
+    <Country_id>87</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="266" >
+    <name>SWEDEN</name>
+    <PLB>IBRD</PLB>
+    <ELT>10195</ELT>
+    <EPIRB>10194</EPIRB>
+    <Country_id>88</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="267" >
+    <name>SLOVAKIA</name>
+    <PLB>10013</PLB>
+    <ELT>10013</ELT>
+    <EPIRB>10013</EPIRB>
+    <Country_id>89</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="268" >
+    <name>SAN MARINO</name>
+    <PLB>5615</PLB>
+    <ELT>5615</ELT>
+    <EPIRB>5615</EPIRB>
+    <Country_id>90</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="269" >
+    <name>SWITZERLAND</name>
+    <PLB>IBRD</PLB>
+    <ELT>6211</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>91</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="270" >
+    <name>CZECH REPUBLIC</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>92</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="271" >
+    <name>TURKEY</name>
+    <PLB>5759</PLB>
+    <ELT>6072</ELT>
+    <EPIRB>5759</EPIRB>
+    <Country_id>93</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="272" >
+    <name>UKRAINE</name>
+    <PLB>4384</PLB>
+    <ELT>4384</ELT>
+    <EPIRB>4384</EPIRB>
+    <Country_id>94</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="273" >
+    <name>RUSSIAN FEDERAT</name>
+    <PLB>5596</PLB>
+    <ELT>5596</ELT>
+    <EPIRB>5596</EPIRB>
+    <Country_id>21</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="274" >
+    <name>THE FYROM</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>95</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="275" >
+    <name>LATVIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>4349</ELT>
+    <EPIRB>4349</EPIRB>
+    <Country_id>96</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="276" >
+    <name>ESTONIA</name>
+    <PLB>5638</PLB>
+    <ELT>5638</ELT>
+    <EPIRB>5638</EPIRB>
+    <Country_id>97</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="277" >
+    <name>LITHUANIA</name>
+    <PLB>4352</PLB>
+    <ELT>4352</ELT>
+    <EPIRB>4352</EPIRB>
+    <Country_id>98</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="278" >
+    <name>SLOVENIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>99</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="279" >
+    <name>SERBIA</name>
+    <PLB>8571</PLB>
+    <ELT>8571</ELT>
+    <EPIRB>8571</EPIRB>
+    <Country_id>279</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="301" >
+    <name>ANGUILLA-UK</name>
+    <PLB>4491</PLB>
+    <ELT>4491</ELT>
+    <EPIRB>4491</EPIRB>
+    <Country_id>100</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="303" >
+    <name>ALASKA-USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>8</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="304" >
+    <name>ANTIGUA &amp; BARBUD</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>101</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="305" >
+    <name>ANTIGUA &amp; BARBUD</name>
+    <PLB>IBRD</PLB>
+    <ELT>10079</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>102</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="306" >
+    <name>NETH ANTILLES-NL</name>
+    <PLB>?</PLB>
+    <ELT>4362</ELT>
+    <EPIRB>4361</EPIRB>
+    <Country_id>103</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="307" >
+    <name>ARUBA-NL</name>
+    <PLB>4313</PLB>
+    <ELT>4314</ELT>
+    <EPIRB>4313</EPIRB>
+    <Country_id>104</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="308" >
+    <name>BAHAMAS</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>5967</EPIRB>
+    <Country_id>105</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="309" >
+    <name>BAHAMAS</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>10215</EPIRB>
+    <Country_id>106</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="310" >
+    <name>BERMUDA-UK</name>
+    <PLB>5605</PLB>
+    <ELT>5605</ELT>
+    <EPIRB>5605</EPIRB>
+    <Country_id>107</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="311" >
+    <name>BAHAMAS</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>10216</EPIRB>
+    <Country_id>108</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="312" >
+    <name>BELIZE</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>109</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="314" >
+    <name>BARBADOS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>110</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="316" >
+    <name>CANADA</name>
+    <PLB>10115</PLB>
+    <ELT>10115</ELT>
+    <EPIRB>10115</EPIRB>
+    <Country_id>3</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="319" >
+    <name>CAYMAN ISL-UK</name>
+    <PLB>5542</PLB>
+    <ELT>5542</ELT>
+    <EPIRB>5542</EPIRB>
+    <Country_id>111</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="321" >
+    <name>COSTA RICA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>112</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="323" >
+    <name>CUBA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>113</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="325" >
+    <name>DOMINICA</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>114</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="327" >
+    <name>DOMINICAN REP</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>115</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="329" >
+    <name>GUADELOUPE-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>116</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="330" >
+    <name>GRENADA</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>117</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="331" >
+    <name>GREENLAND-DK</name>
+    <PLB>4397</PLB>
+    <ELT>4472</ELT>
+    <EPIRB>4397</EPIRB>
+    <Country_id>118</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="332" >
+    <name>GUATEMALA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>119</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="334" >
+    <name>HONDURAS</name>
+    <PLB>5621</PLB>
+    <ELT>5800</ELT>
+    <EPIRB>5621</EPIRB>
+    <Country_id>120</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="336" >
+    <name>HAITI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>121</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="338" >
+    <name>USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>9</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="339" >
+    <name>JAMAICA</name>
+    <PLB>4346</PLB>
+    <ELT>4346</ELT>
+    <EPIRB>5358</EPIRB>
+    <Country_id>122</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="341" >
+    <name>ST KITTS &amp; NEVIS</name>
+    <PLB>5715</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>5715</EPIRB>
+    <Country_id>123</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="343" >
+    <name>ST LUCIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>124</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="345" >
+    <name>MEXICO</name>
+    <PLB>8671</PLB>
+    <ELT>8671</ELT>
+    <EPIRB>8671</EPIRB>
+    <Country_id>125</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="347" >
+    <name>MARTINIQUE-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>126</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="348" >
+    <name>MONTSERRAT</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>127</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="350" >
+    <name>NICARAGUA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>128</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="351" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>129</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="352" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>130</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="353" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>131</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="354" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>132</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="355" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>133</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="356" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>134</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="357" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>135</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="358" >
+    <name>PUERTO RICO-USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>136</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="359" >
+    <name>EL SALVADOR</name>
+    <PLB>IBRD</PLB>
+    <ELT>5693</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>137</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="361" >
+    <name>ST PIERRE MIQ-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>138</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="362" >
+    <name>TRINIDAD TOBAGO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>139</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="364" >
+    <name>TURKS CAICOS-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>140</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="366" >
+    <name>USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>20</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="367" >
+    <name>USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>35</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="368" >
+    <name>USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>36</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="369" >
+    <name>USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>37</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="370" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>141</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="371" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>142</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="372" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>143</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="373" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>295</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="374" >
+    <name>PANAMA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>306</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="375" >
+    <name>ST VINCENT &amp; GRE</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>144</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="376" >
+    <name>ST VINCENT &amp; GRE</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>145</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="377" >
+    <name>ST VINCENT &amp; GRE</name>
+    <PLB>IBRD</PLB>
+    <ELT>10078</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>146</Country_id>
+    <ndp>E</ndp>
+</row>
+<row mid="378" >
+    <name>BRI VIRGIN IS-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>4488</ELT>
+    <EPIRB>4488</EPIRB>
+    <Country_id>147</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="379" >
+    <name>US VIRGIN IS-USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>148</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="401" >
+    <name>AFGHANISTAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>7</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="403" >
+    <name>SAUDI ARABIA</name>
+    <PLB>5482</PLB>
+    <ELT>5482</ELT>
+    <EPIRB>5482</EPIRB>
+    <Country_id>149</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="405" >
+    <name>BANGLADESH</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>150</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="408" >
+    <name>BAHRAIN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>151</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="410" >
+    <name>BHUTAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>152</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="412" >
+    <name>CHINA</name>
+    <PLB>6321</PLB>
+    <ELT>6321</ELT>
+    <EPIRB>6321</EPIRB>
+    <Country_id>153</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="413" >
+    <name>CHINA</name>
+    <PLB>4393</PLB>
+    <ELT>4393</ELT>
+    <EPIRB>4393</EPIRB>
+    <Country_id>154</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="414" >
+    <name>CHINA</name>
+    <PLB>6361</PLB>
+    <ELT>6361</ELT>
+    <EPIRB>6361</EPIRB>
+    <Country_id>297</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="416" >
+    <name>ITDC (TAIWAN)</name>
+    <PLB>5913</PLB>
+    <ELT>5913</ELT>
+    <EPIRB>5913</EPIRB>
+    <Country_id>155</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="417" >
+    <name>SRI LANKA</name>
+    <PLB>5249</PLB>
+    <ELT>5249</ELT>
+    <EPIRB>5249</EPIRB>
+    <Country_id>156</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="419" >
+    <name>INDIA</name>
+    <PLB>4422</PLB>
+    <ELT>4422</ELT>
+    <EPIRB>4422</EPIRB>
+    <Country_id>33</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="422" >
+    <name>IRAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>157</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="423" >
+    <name>AZERBAIJAN</name>
+    <PLB>8201</PLB>
+    <ELT>8201</ELT>
+    <EPIRB>8201</EPIRB>
+    <Country_id>158</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="425" >
+    <name>IRAQ</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>159</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="428" >
+    <name>ISRAEL</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>160</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="431" >
+    <name>JAPAN</name>
+    <PLB>8821</PLB>
+    <ELT>8831</ELT>
+    <EPIRB>4427</EPIRB>
+    <Country_id>15</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="432" >
+    <name>JAPAN</name>
+    <PLB>8821</PLB>
+    <ELT>8831</ELT>
+    <EPIRB>4427</EPIRB>
+    <Country_id>16</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="434" >
+    <name>TURKMENISTAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>162</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="436" >
+    <name>KAZAKHSTAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>164</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="437" >
+    <name>UZBEKISTAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>165</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="438" >
+    <name>JORDAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>166</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="440" >
+    <name>KOREA (REP OF)</name>
+    <PLB>?</PLB>
+    <ELT>4433</ELT>
+    <EPIRB>4433</EPIRB>
+    <Country_id>31</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="441" >
+    <name>KOREA (REP OF)</name>
+    <PLB>?</PLB>
+    <ELT>4433</ELT>
+    <EPIRB>4433</EPIRB>
+    <Country_id>32</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="443" >
+    <name>PALESTINE AUTH</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>280</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="445" >
+    <name>DEM PEO RP KOREA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>161</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="447" >
+    <name>KUWAIT</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>163</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="450" >
+    <name>LEBANON</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>168</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="451" >
+    <name>KYRGYZ REPUBLIC</name>
+    <PLB>5528</PLB>
+    <ELT>5528</ELT>
+    <EPIRB>5528</EPIRB>
+    <Country_id>281</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="453" >
+    <name>MACAO-CHN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>180</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="455" >
+    <name>MALDIVES</name>
+    <PLB>9874</PLB>
+    <ELT>6004</ELT>
+    <EPIRB>9874</EPIRB>
+    <Country_id>181</Country_id>
+    <ndp>B</ndp>
+</row>
+<row mid="457" >
+    <name>MONGOLIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>183</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="459" >
+    <name>NEPAL</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>185</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="461" >
+    <name>OMAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>187</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="463" >
+    <name>PAKISTAN</name>
+    <PLB>4443</PLB>
+    <ELT>4443</ELT>
+    <EPIRB>4443</EPIRB>
+    <Country_id>189</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="466" >
+    <name>QATAR</name>
+    <PLB>9900</PLB>
+    <ELT>9900</ELT>
+    <EPIRB>9900</EPIRB>
+    <Country_id>191</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="468" >
+    <name>SYRIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>194</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="470" >
+    <name>UNITED ARAB EMIR</name>
+    <PLB>4517</PLB>
+    <ELT>4517</ELT>
+    <EPIRB>4517</EPIRB>
+    <Country_id>12</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="471" >
+    <name>UNITED ARAB EMIR</name>
+    <PLB>4517</PLB>
+    <ELT>4517</ELT>
+    <EPIRB>4517</EPIRB>
+    <Country_id>307</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="472" >
+    <name>TAJIKISTAN</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>?</EPIRB>
+    <Country_id>298</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="473" >
+    <name>YEMEN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>199</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="475" >
+    <name>YEMEN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>200</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="477" >
+    <name>HONG KONG-CHN</name>
+    <PLB>4418</PLB>
+    <ELT>4419</ELT>
+    <EPIRB>4418</EPIRB>
+    <Country_id>201</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="478" >
+    <name>BOSNIA &amp; HERZEGO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>203</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="501" >
+    <name>ADELIE LAND-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>282</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="503" >
+    <name>AUSTRALIA</name>
+    <PLB>6069</PLB>
+    <ELT>6069</ELT>
+    <EPIRB>6069</EPIRB>
+    <Country_id>6</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="506" >
+    <name>MYANMAR</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>206</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="508" >
+    <name>BRUNEI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>208</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="510" >
+    <name>MICRONESIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>210</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="511" >
+    <name>PALAU</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>212</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="512" >
+    <name>NEW ZEALAND</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>28</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="514" >
+    <name>CAMBODIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>214</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="515" >
+    <name>CAMBODIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>216</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="516" >
+    <name>CHRISTMAS IS-AUS</name>
+    <PLB>6069</PLB>
+    <ELT>6069</ELT>
+    <EPIRB>6069</EPIRB>
+    <Country_id>217</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="518" >
+    <name>COOK ISLANDS-NZ</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>218</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="520" >
+    <name>FIJI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>167</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="523" >
+    <name>COCOS ISL-AUS</name>
+    <PLB>6069</PLB>
+    <ELT>6069</ELT>
+    <EPIRB>6069</EPIRB>
+    <Country_id>169</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="525" >
+    <name>INDONESIA</name>
+    <PLB>6100</PLB>
+    <ELT>4424</ELT>
+    <EPIRB>6100</EPIRB>
+    <Country_id>23</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="529" >
+    <name>KIRIBATI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>170</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="531" >
+    <name>LAOS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>171</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="533" >
+    <name>MALAYSIA</name>
+    <PLB>9401</PLB>
+    <ELT>9401</ELT>
+    <EPIRB>9401</EPIRB>
+    <Country_id>172</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="536" >
+    <name>NO MARIAN IS-USA</name>
+    <PLB>5888</PLB>
+    <ELT>5888</ELT>
+    <EPIRB>5888</EPIRB>
+    <Country_id>173</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="538" >
+    <name>MARSHALL ISLANDS</name>
+    <PLB>5984</PLB>
+    <ELT>5984</ELT>
+    <EPIRB>5984</EPIRB>
+    <Country_id>174</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="540" >
+    <name>NEW CALEDONIA-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>175</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="542" >
+    <name>NIUE ISLAND-NZ</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>176</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="544" >
+    <name>NAURU</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>177</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="546" >
+    <name>FRENCH POLYNE-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>178</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="548" >
+    <name>PHILIPPINES</name>
+    <PLB>10067</PLB>
+    <ELT>10067</ELT>
+    <EPIRB>10067</EPIRB>
+    <Country_id>179</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="553" >
+    <name>PAPUA NEW GUINEA</name>
+    <PLB>5337</PLB>
+    <ELT>5337</ELT>
+    <EPIRB>5337</EPIRB>
+    <Country_id>182</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="555" >
+    <name>PITCAIRN ISL-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>184</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="557" >
+    <name>SOLOMON ISLANDS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>186</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="559" >
+    <name>AMERIC SAMOA-USA</name>
+    <PLB>?</PLB>
+    <ELT>?</ELT>
+    <EPIRB>?</EPIRB>
+    <Country_id>188</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="561" >
+    <name>SAMOA (IND.STAT)</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>190</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="563" >
+    <name>SINGAPORE</name>
+    <PLB>5282</PLB>
+    <ELT>5282</ELT>
+    <EPIRB>5938</EPIRB>
+    <Country_id>24</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="564" >
+    <name>SINGAPORE</name>
+    <PLB>5282</PLB>
+    <ELT>5282</ELT>
+    <EPIRB>5938</EPIRB>
+    <Country_id>25</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="565" >
+    <name>SINGAPORE</name>
+    <PLB>5282</PLB>
+    <ELT>5282</ELT>
+    <EPIRB>5938</EPIRB>
+    <Country_id>26</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="566" >
+    <name>SINGAPORE</name>
+    <PLB>5282</PLB>
+    <ELT>5282</ELT>
+    <EPIRB>5938</EPIRB>
+    <Country_id>296</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="567" >
+    <name>THAILAND</name>
+    <PLB>9701</PLB>
+    <ELT>9701</ELT>
+    <EPIRB>9701</EPIRB>
+    <Country_id>27</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="570" >
+    <name>TONGA</name>
+    <PLB>5404</PLB>
+    <ELT>5404</ELT>
+    <EPIRB>5404</EPIRB>
+    <Country_id>192</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="572" >
+    <name>TUVALU</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>193</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="574" >
+    <name>VIET NAM</name>
+    <PLB>5711</PLB>
+    <ELT>5711</ELT>
+    <EPIRB>5711</EPIRB>
+    <Country_id>195</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="576" >
+    <name>VANUATU</name>
+    <PLB>4385</PLB>
+    <ELT>4385</ELT>
+    <EPIRB>4385</EPIRB>
+    <Country_id>196</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="577" >
+    <name>VANUATU</name>
+    <PLB>4385</PLB>
+    <ELT>4385</ELT>
+    <EPIRB>4385</EPIRB>
+    <Country_id>291</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="578" >
+    <name>WALLIS FUTUNA-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>197</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="601" >
+    <name>SOUTH AFRICA</name>
+    <PLB>5570</PLB>
+    <ELT>5570</ELT>
+    <EPIRB>5570</EPIRB>
+    <Country_id>22</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="603" >
+    <name>ANGOLA</name>
+    <PLB>4310</PLB>
+    <ELT>4310</ELT>
+    <EPIRB>4310</EPIRB>
+    <Country_id>198</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="605" >
+    <name>ALGERIA</name>
+    <PLB>6020</PLB>
+    <ELT>6020</ELT>
+    <EPIRB>6020</EPIRB>
+    <Country_id>13</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="607" >
+    <name>ST PAUL AMSTE-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>283</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="608" >
+    <name>ASCENSION ISL-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>284</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="609" >
+    <name>BURUNDI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>202</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="610" >
+    <name>BENIN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>204</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="611" >
+    <name>BOTSWANA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>205</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="612" >
+    <name>CENTRAL AFRI REP</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>207</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="613" >
+    <name>CAMEROON</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>209</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="615" >
+    <name>CONGO (REP OF)</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>211</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="616" >
+    <name>COMOROS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>213</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="617" >
+    <name>CABO VERDE</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>215</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="618" >
+    <name>CROZET ARCHIP-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>285</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="619" >
+    <name>IVORY COAST</name>
+    <PLB>IBRD</PLB>
+    <ELT>7371</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>286</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="620" >
+    <name>COMOROS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>304</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="621" >
+    <name>DJIBOUTI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>226</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="622" >
+    <name>EGYPT</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>229</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="624" >
+    <name>ETHIOPIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>230</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="625" >
+    <name>ERITREA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>256</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="626" >
+    <name>GABON</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>257</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="627" >
+    <name>GHANA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>258</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="629" >
+    <name>GAMBIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>259</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="630" >
+    <name>GUINEA-BISSAU</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>260</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="631" >
+    <name>EQUAT GUINEA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>261</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="632" >
+    <name>GUINEA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>262</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="633" >
+    <name>BURKINA FASO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>263</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="634" >
+    <name>KENYA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>264</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="635" >
+    <name>KERGUELEN IS-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>287</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="636" >
+    <name>LIBERIA</name>
+    <PLB>5359</PLB>
+    <ELT>5359</ELT>
+    <EPIRB>5359</EPIRB>
+    <Country_id>265</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="637" >
+    <name>LIBERIA</name>
+    <PLB>5359</PLB>
+    <ELT>5359</ELT>
+    <EPIRB>5359</EPIRB>
+    <Country_id>266</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="638" >
+    <name>SOUTH SUDAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>305</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="642" >
+    <name>LIBYA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>267</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="644" >
+    <name>LESOTHO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>268</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="645" >
+    <name>MAURITIUS</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>269</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="647" >
+    <name>MADAGASCAR</name>
+    <PLB>?</PLB>
+    <ELT>9351</ELT>
+    <EPIRB>9351</EPIRB>
+    <Country_id>270</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="649" >
+    <name>MALI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>271</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="650" >
+    <name>MOZAMBIQUE</name>
+    <PLB>4359</PLB>
+    <ELT>4359</ELT>
+    <EPIRB>4359</EPIRB>
+    <Country_id>272</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="654" >
+    <name>MAURITANIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>273</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="655" >
+    <name>MALAWI</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>219</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="656" >
+    <name>NIGER</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>220</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="657" >
+    <name>NIGERIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>221</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="659" >
+    <name>NAMIBIA</name>
+    <PLB>4360</PLB>
+    <ELT>4360</ELT>
+    <EPIRB>4360</EPIRB>
+    <Country_id>222</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="660" >
+    <name>REUNION MAYOT-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>223</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="661" >
+    <name>RWANDA</name>
+    <PLB>9827</PLB>
+    <ELT>9827</ELT>
+    <EPIRB>9827</EPIRB>
+    <Country_id>224</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="662" >
+    <name>SUDAN</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>225</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="663" >
+    <name>SENEGAL</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>227</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="664" >
+    <name>SEYCHELLES</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>228</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="665" >
+    <name>ST HELENA-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>231</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="666" >
+    <name>SOMALIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>232</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="667" >
+    <name>SIERRA LEONE</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>233</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="668" >
+    <name>SAO TOME &amp; PRINC</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>234</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="669" >
+    <name>SWAZILAND</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>235</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="670" >
+    <name>CHAD</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>236</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="671" >
+    <name>TOGO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>237</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="672" >
+    <name>TUNISIA</name>
+    <PLB>4467</PLB>
+    <ELT>4467</ELT>
+    <EPIRB>4467</EPIRB>
+    <Country_id>238</Country_id>
+    <ndp>P:E:B</ndp>
+</row>
+<row mid="674" >
+    <name>TANZANIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>239</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="675" >
+    <name>UGANDA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>240</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="676" >
+    <name>DEM REP CONGO</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>241</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="677" >
+    <name>TANZANIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>242</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="678" >
+    <name>ZAMBIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>243</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="679" >
+    <name>ZIMBABWE</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>244</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="701" >
+    <name>ARGENTINA</name>
+    <PLB>9888</PLB>
+    <ELT>9849</ELT>
+    <EPIRB>4386</EPIRB>
+    <Country_id>14</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="710" >
+    <name>BRAZIL</name>
+    <PLB>9831</PLB>
+    <ELT>9831</ELT>
+    <EPIRB>9831</EPIRB>
+    <Country_id>34</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="720" >
+    <name>BOLIVIA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>245</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="725" >
+    <name>CHILE</name>
+    <PLB>9891</PLB>
+    <ELT>4391</ELT>
+    <EPIRB>4390</EPIRB>
+    <Country_id>246</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="730" >
+    <name>COLOMBIA</name>
+    <PLB>4325</PLB>
+    <ELT>4325</ELT>
+    <EPIRB>4325</EPIRB>
+    <Country_id>247</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="735" >
+    <name>ECUADOR</name>
+    <PLB>?</PLB>
+    <ELT>5258</ELT>
+    <EPIRB>9872</EPIRB>
+    <Country_id>248</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="740" >
+    <name>FALKLAND ISL-UK</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>249</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="745" >
+    <name>GUIANA FRENCH-FR</name>
+    <PLB>7941</PLB>
+    <ELT>7941</ELT>
+    <EPIRB>9925</EPIRB>
+    <Country_id>288</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="750" >
+    <name>GUYANA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>250</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="755" >
+    <name>PARAGUAY</name>
+    <PLB>5265</PLB>
+    <ELT>5265</ELT>
+    <EPIRB>5265</EPIRB>
+    <Country_id>251</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="760" >
+    <name>PERU</name>
+    <PLB>4444</PLB>
+    <ELT>4446</ELT>
+    <EPIRB>4445</EPIRB>
+    <Country_id>252</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="765" >
+    <name>SURINAME</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>253</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="770" >
+    <name>URUGUAY</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>254</Country_id>
+    <ndp></ndp>
+</row>
+<row mid="775" >
+    <name>VENEZUELA</name>
+    <PLB>IBRD</PLB>
+    <ELT>IBRD</ELT>
+    <EPIRB>IBRD</EPIRB>
+    <Country_id>255</Country_id>
+    <ndp></ndp>
+</row>
+</csv_data>

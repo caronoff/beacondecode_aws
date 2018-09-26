@@ -11,7 +11,8 @@ import requests
 import xml.etree.ElementTree as ET
 tree = ET.parse('contact_data.xml')
 root = tree.getroot()
-
+ibrdtree=ET.parse('ibrdcontact.xml')
+root2=ibrdtree.getroot()
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
@@ -189,13 +190,18 @@ def about():
 @app.route("/contact/<num>")
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
+    for mid in root2.findall('row'):
+        if mid.get('mid') == num:
+            id_no=mid.find('PLB').text
+
+
     for cont in root.findall('row'):
-        if cont.get('id') == num:
+        if cont.get('id') == id_no:
             condic={}
             for tag in flds :
                 condic[tag]=cont.find(tag).text
 
-            contactname=cont.find('name').text
+
     return render_template("contact.html",contact=condic,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
