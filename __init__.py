@@ -192,8 +192,7 @@ def contact(num):
         if cont.get('id') == num:
             condic={}
             for tag in ['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']:
-                if tag in cont:
-                    condic[tag]=cont.find(tag).text
+                condic[tag]=cont.find(tag).text
 
             contactname=cont.find('name').text
     return render_template("contact.html",contact=condic)
