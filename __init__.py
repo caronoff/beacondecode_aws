@@ -190,6 +190,8 @@ def about():
 def contact(num):
     for cont in root.findall('row'):
         if cont.get('id') == num:
+            for child in cont:
+                print(child)
             contactname=cont.find('name').text
     return render_template("contact.html",name=contactname)
 
