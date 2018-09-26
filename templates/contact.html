@@ -22,10 +22,10 @@
 
 <div class="container">
     <table>
-{% for key, value in contact %}
+{% for key in contact %}
    <tr>
         <th> {{ key }} </th>
-        <td> {{ value }} </td>
+        <td> {{ contact[key] }} </td>
    </tr>
 {% endfor %}
 </table>
