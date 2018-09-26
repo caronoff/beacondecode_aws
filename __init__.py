@@ -188,7 +188,7 @@ def about():
 
 @app.route("/contact/<num>")
 def contact(num):
-    flds=[['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']]
+    flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
     for cont in root.findall('row'):
         if cont.get('id') == num:
             condic={}
