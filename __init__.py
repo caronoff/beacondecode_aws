@@ -188,14 +188,15 @@ def about():
 
 @app.route("/contact/<num>")
 def contact(num):
+    flds=[['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']]
     for cont in root.findall('row'):
         if cont.get('id') == num:
             condic={}
-            for tag in ['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']:
+            for tag in flds :
                 condic[tag]=cont.find(tag).text
 
             contactname=cont.find('name').text
-    return render_template("contact.html",contact=condic)
+    return render_template("contact.html",contact=condic,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):

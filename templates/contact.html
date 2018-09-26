@@ -22,9 +22,9 @@
 
 <div class="container">
     <table>
-{% for key in contact %}
+{% for f in flds %}
    <tr>
-        <th> {{ key }} </th>
+        <th> {{ f }} </th>
         <td> {{ contact[key] }} </td>
    </tr>
 {% endfor %}
