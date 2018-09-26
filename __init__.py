@@ -192,17 +192,21 @@ def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
     for mid in root2.findall('row'):
         if mid.get('mid') == num:
-            id_no=mid.find('PLB').text
+            id_no_plb=mid.find('PLB').text
+            id_no_elt = mid.find('ELT').text
+            id_no_epirb = mid.find('EPIRB').text
 
 
     for cont in root.findall('row'):
-        if cont.get('id') == id_no:
-            condic={}
-            for tag in flds :
-                condic[tag]=cont.find(tag).text
+        con=[]
+        for id_no in [id_no_plb,id_no_elt,id_no_epirb]:
+            if cont.get('id') == id_no:
+                condic={}
+                for tag in flds :
+                    condic[tag]=cont.find(tag).text
+            con.append(condic)
 
-
-    return render_template("contact.html",contact=condic,flds=flds)
+    return render_template("contact.html",contact=con,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):

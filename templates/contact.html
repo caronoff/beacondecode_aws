@@ -21,15 +21,22 @@
 
 
 <div class="container">
+  {% for e in contact %}
+
+
+
     <table>
 {% for f in flds %}
    <tr>
         <th> {{ f }} </th>
-        <td> {{ contact[f] }} </td>
+        <td> {{ e[f] }} </td>
    </tr>
 {% endfor %}
 </table>
+    <br>
+    <br>
 
+{% endfor %}
 </div>
 {% endblock %}
 
