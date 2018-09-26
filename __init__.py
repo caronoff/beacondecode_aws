@@ -188,7 +188,10 @@ def about():
 
 @app.route("/contact/<num>")
 def contact(num):
-    return render_template("contact.html",name=num)
+    for cont in root.findall('row'):
+        if cont.get('id') == num:
+            contactname=cont.find('name').text
+    return render_template("contact.html",name=contactname)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
