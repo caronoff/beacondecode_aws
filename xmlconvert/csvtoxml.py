@@ -12,6 +12,7 @@
 import csv
 #csvFile = 'test.csv'
 csvFile = 'joomla3_cospas_sarsat_contact_details.csv'
+csvFile = 'registrationcontacts.csv'
 xmlFile = 'myData.xml'
 
 csvData = csv.reader(open(csvFile))
