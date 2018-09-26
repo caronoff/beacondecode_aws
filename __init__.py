@@ -193,9 +193,9 @@ def contact(num):
             condic={}
             for child in cont:
                 condic[child.tag]=child.text
-            print(condic)
+
             contactname=cont.find('name').text
-    return render_template("contact.html",name=contactname)
+    return render_template("contact.html",contact=condic)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):

@@ -21,7 +21,14 @@
 
 
 <div class="container">
-    <p>{{name}}</p>
+    <table>
+{% for key, value in contact.iteritems() %}
+   <tr>
+        <th> {{ key }} </th>
+        <td> {{ value }} </td>
+   </tr>
+{% endfor %}
+</table>
 
 </div>
 {% endblock %}
