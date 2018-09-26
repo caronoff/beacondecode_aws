@@ -190,7 +190,7 @@ def about():
 @app.route("/contact/<num>")
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
-    types = ['PLB', 'ELT', 'EPIRB']
+    types = ['PLB', 'ELT']
     for mid in root2.findall('row'):
         if mid.get('mid') == num:
             id_no_plb=mid.find('PLB').text
@@ -199,7 +199,7 @@ def contact(num):
 
     contact={}
     for cont in root.findall('row'):
-        for element in [('PLB',id_no_plb)]:
+        for element in [('PLB',id_no_plb),('ELT',id_no_elt)]:
             if cont.get('id') == element[1]:
                 d={}
                 for tag in flds :
