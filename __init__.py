@@ -259,7 +259,7 @@ def decoded(hexcode):
         geocoord = (float(beacon.location[0]),float(beacon.location[1]))
 
         locationcheck=True
-
+    print(beacon.get_mid())
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
