@@ -260,8 +260,7 @@ def decoded(hexcode):
 
         locationcheck=True
     mid=str(beacon.get_mid())
-    print(mid)
-    print(contacts.contact(mid,flds,types))
+
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
