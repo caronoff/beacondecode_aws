@@ -103,9 +103,18 @@
     <strong>Point of Contact for {{btype}}</strong>
     <br>
 
+<div style="overflow: auto">
+
+          <table  class="table table-hover">
+
 {% for f in flds %}
-         {{ contact[btype][f] }}
+   <tr>
+        <th> {{ f }} </th>
+        <td> {{ contact[btype][f] }} </td>
+   </tr>
 {% endfor %}
+              </table>
+    </div>
 
     <br>
     <br>
