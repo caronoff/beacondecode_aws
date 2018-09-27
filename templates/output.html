@@ -55,10 +55,14 @@
         <td class="columnA"> {{ item[0] }} </td>
 		<td class="columnB">{{ item[1] }} </td>
 		<td class="columnC"> {{ item[2] }} </td>
-		<td class="columnD"> {{ item[3] }} {% if item[2]== 'Country code:' %}<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Registration contacts
-</button> </td>{% endif %} </td>
+		<td class="columnD">
+                     {% if item[2]== 'Country code:' %}<!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                      {{ item[3] }}
+                    </button>
+            {% else %} {{ item[3] }}
+            {% endif %}
+        </td>
       </tr>
 	{% endfor %}
     </tbody>
