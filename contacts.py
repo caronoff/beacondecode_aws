@@ -5,9 +5,16 @@ ibrdtree=ET.parse('ibrdcontact.xml')
 root2=ibrdtree.getroot()
 
 
-def contact(num):
-    flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
-    types = ['PLB', 'ELT','EPIRB']
+def contacttype(num,type):
+    for mid in root2.findall('row'):
+        if mid.get('mid') == num:
+            cont_id=mid.find(type).text
+    return cont_id
+
+
+
+def contact(num,flds):
+
     for mid in root2.findall('row'):
         if mid.get('mid') == num:
             id_no_plb=mid.find('PLB').text
@@ -16,11 +23,11 @@ def contact(num):
 
     contact={}
     for cont in root.findall('row'):
-        for element in [('PLB',id_no_plb),('ELT',id_no_elt),('EPIRB',id_no_epirb)]:
-            if cont.get('id') == element[1]:
+        for element in ['PLB','ELT','EPIRB']:
+            if cont.get('id') == contacttype(num,element) :  #element[1]:
                 d={}
                 for tag in flds :
                     d[tag]=cont.find(tag).text
-                contact[element[0]]=d
+                contact[element]=d
 
     return contact
