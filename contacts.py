@@ -6,9 +6,12 @@ root2=ibrdtree.getroot()
 
 
 def contacttype(num,type):
+    cont_id='?'
     for mid in root2.findall('row'):
         if mid.get('mid') == num:
             cont_id=mid.find(type).text
+    if cont_id=='?':
+        cont_id='unknown'
     return cont_id
 
 
@@ -22,4 +25,6 @@ def contact(num,flds,types):
                 for tag in flds :
                     d[tag]=cont.find(tag).text
                 contact[element]=d
+            else:
+                contact[element]={}
     return contact
