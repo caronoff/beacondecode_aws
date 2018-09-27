@@ -275,7 +275,7 @@ def decoded(hexcode):
 
         locationcheck=True
 
-    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg)
+    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg,mid=beacon.get_mid())
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):
