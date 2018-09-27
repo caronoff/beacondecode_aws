@@ -13,21 +13,13 @@ def contacttype(num,type):
 
 
 
-def contact(num,flds):
-
-    for mid in root2.findall('row'):
-        if mid.get('mid') == num:
-            id_no_plb=mid.find('PLB').text
-            id_no_elt = mid.find('ELT').text
-            id_no_epirb = mid.find('EPIRB').text
-
+def contact(num,flds,types):
     contact={}
     for cont in root.findall('row'):
-        for element in ['PLB','ELT','EPIRB']:
-            if cont.get('id') == contacttype(num,element) :  #element[1]:
+        for element in types:
+            if cont.get('id') == contacttype(num,element) :
                 d={}
                 for tag in flds :
                     d[tag]=cont.find(tag).text
                 contact[element]=d
-
     return contact

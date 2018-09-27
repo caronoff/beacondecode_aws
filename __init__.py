@@ -188,8 +188,7 @@ def about():
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
     types = ['PLB', 'ELT','EPIRB']
-
-    return render_template("contact.html",contact=contacts.contact(num,flds),types=types,flds=flds)
+    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
