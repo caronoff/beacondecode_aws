@@ -102,14 +102,11 @@
         {% for btype in types %}
     <strong>Point of Contact for {{btype}}</strong>
     <br>
-    <table>
+
 {% for f in flds %}
-   <tr>
-        <th> {{ f }} </th>
-        <td> {{ contact[btype][f] }} </td>
-   </tr>
+         {{ contact[btype][f] }}
 {% endfor %}
-</table>
+
     <br>
     <br>
 
