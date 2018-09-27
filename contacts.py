@@ -20,11 +20,12 @@ def contact(num,flds,types):
     contact={}
     for cont in root.findall('row'):
         for element in types:
-            if cont.get('id') == contacttype(num,element) :
+            if contacttype(num,element) == 'unknown':
+                contact[element]={}
+            elif cont.get('id') == contacttype(num,element) :
                 d={}
                 for tag in flds :
                     d[tag]=cont.find(tag).text
                 contact[element]=d
-            else:
-                contact[element]={}
+
     return contact
