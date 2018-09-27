@@ -220,6 +220,10 @@ def whereregister(hexcode):
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
+    flds = ['name', 'address', 'city', 'zipcode', 'telephone1', 'telephone2', 'ci_webpage_1', 'website_url']
+    types = ['PLB', 'ELT', 'EPIRB']
+
+
     # send POST request to jotforms for logging
     ipaddress=str(request.remote_addr)
     #print(request.remote_addr)
@@ -256,7 +260,13 @@ def decoded(hexcode):
 
         locationcheck=True
 
-    return render_template(tmp, hexcode=hexcode.upper(), decoded=beacon.tablebin, locationcheck=locationcheck,geocoord=geocoord, genmsg=beacon.genmsg,mid=beacon.get_mid())
+    return render_template(tmp, hexcode=hexcode.upper(),
+                           decoded=beacon.tablebin,
+                           locationcheck=locationcheck,
+                           geocoord=geocoord,
+                           genmsg=beacon.genmsg,
+                           contact=contacts.contact(beacon.get_mid(),flds,types),
+                           types=types,flds=flds)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):

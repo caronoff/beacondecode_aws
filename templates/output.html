@@ -99,7 +99,21 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        {% for btype in types %}
+    <strong>Point of Contact for {{btype}}</strong>
+    <br>
+    <table>
+{% for f in flds %}
+   <tr>
+        <th> {{ f }} </th>
+        <td> {{ contact[btype][f] }} </td>
+   </tr>
+{% endfor %}
+</table>
+    <br>
+    <br>
+
+{% endfor %}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
