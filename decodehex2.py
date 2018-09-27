@@ -175,7 +175,7 @@ class BeaconFGB(HexError):
         self._pflag=['Location','User'][int(self.bin[26])]
         self.tablebin.append(['25',self.bin[25],'Message format',self.formatflag[1]])        
         self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
-        self.tablebin.append(['27-36',self.bin[27:37],'Country',self.countrydetail.cname])
+        self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname])
 
 
 
