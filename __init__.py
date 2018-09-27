@@ -267,7 +267,7 @@ def decoded(hexcode):
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
-                           contact=contacts.contact('316',flds,types),
+                           contact=contacts.contact(mid,flds,types),
                            types=types,flds=flds)
 
 @app.route("/bch/<hexcode>")
