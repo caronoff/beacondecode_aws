@@ -36,7 +36,9 @@
     <div id="decodetable">
   <h2>Decoded Beacon Message</h2>
   <p>The hexadecimal code entered was: <strong style="word-wrap:break-word">{{hexcode}}  </strong></p>
-        <p>{{genmsg}}{{mid}}</p>
+        <p>{{genmsg}}</p>
+
+</p>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -47,6 +49,15 @@
       </tr>
     </thead>
     <tbody>
+    <tr>
+        <td class="columnA"> Country Code </td>
+		<td class="columnB"> </td>
+		<td class="columnC"> {{ mid }} </td>
+		<td class="columnD">         <p><!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+  Launch demo modal
+</button> </td>
+      </tr>
 	{% for item in decoded %}
       <tr>
         <td class="columnA"> {{ item[0] }} </td>
@@ -77,10 +88,6 @@
     </div>
   {% endif %}
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-  Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
