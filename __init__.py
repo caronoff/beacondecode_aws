@@ -5,14 +5,11 @@ from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 import re
+import contacts
 import decodehex2
 import definitions
 import requests
-import xml.etree.ElementTree as ET
-tree = ET.parse('contact_data.xml')
-root = tree.getroot()
-ibrdtree=ET.parse('ibrdcontact.xml')
-root2=ibrdtree.getroot()
+
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
@@ -207,7 +204,7 @@ def contact(num):
                 contact[element[0]]=d
 
 
-    return render_template("contact.html",contact=contact,types=types,flds=flds)
+    return render_template("contact.html",contact=contacts.contact(num),types=types,flds=flds)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
