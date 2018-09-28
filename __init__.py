@@ -248,10 +248,7 @@ def decoded(hexcode):
             tmp = 'encodelongsecond.html'
         elif beacon.gentype=='secondtruncated':
             tmp = 'output.html'
-
-
     else:
-
 
         tmp='output.html'
 
@@ -267,7 +264,8 @@ def decoded(hexcode):
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
                            contact=contacts.contact(mid,flds,types),
-                           types=types,flds=flds)
+                           types=types,flds=flds,
+                           tac=beacon.gettac())
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):

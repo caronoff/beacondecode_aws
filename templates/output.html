@@ -57,9 +57,15 @@
 		<td class="columnC"> {{ item[2] }} </td>
 		<td class="columnD">
                      {% if item[2]== 'Country code:' %}{{ item[3] }}<!-- Button trigger modal -->
-                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ContactModalLong">
                       ?
                     </button>
+            {% elif 'Type Approval' in item[2] %}{{ item[3] }}<!-- Button trigger modal -->
+                    <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#TaModalLong">
+                      ?
+                    </button>
+
+
             {% else %} {{ item[3] }}
             {% endif %}
         </td>
@@ -88,8 +94,8 @@
   {% endif %}
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<!-- Modal contact-->
+<div class="modal fade" id="ContactModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -128,7 +134,46 @@
     </div>
   </div>
 </div>
+<!-- Modal tac -->
+<div class="modal fade" id="TaModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Beacon Type Approval Number {{tac}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for btype in types %}
+    <strong>Point of Contact for {{btype}}</strong>
+    <br>
 
+<div style="overflow: auto">
+
+          <table  class="table table-hover">
+
+{% for f in flds %}
+   <tr>
+        <td width="30%"> {{ f }} </td>
+        <td width="70%"> {{ contact[btype][f] }} </td>
+   </tr>
+{% endfor %}
+              </table>
+    </div>
+
+    <br>
+    <br>
+
+{% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block scripts %}
 {{super()}}
