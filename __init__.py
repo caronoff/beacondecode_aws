@@ -97,7 +97,7 @@ def longfirstgen():
         if ptype == 'User':
             suppdata = request.form['encodepos']
 
-        elif ptype in ['Standard Location', 'National Location','Standard Location Protocol - Test']:
+        elif ptype in ['Standard Location', 'National Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
         elif ptype == 'RLS Location' :
             suppdata = request.form['encodepos'] + \
