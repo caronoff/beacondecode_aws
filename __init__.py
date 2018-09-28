@@ -6,6 +6,7 @@ from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 import re
 import contacts
+import typeapproval
 import decodehex2
 import definitions
 import requests
@@ -257,7 +258,7 @@ def decoded(hexcode):
 
         locationcheck=True
     mid=str(beacon.get_mid())
-
+    tflds=['battery','protocols_tested']
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
@@ -265,7 +266,7 @@ def decoded(hexcode):
                            genmsg=beacon.genmsg,
                            contact=contacts.contact(mid,flds,types),
                            types=types,flds=flds,
-                           tac=beacon.gettac())
+                           tac=beacon.gettac(),tacdetail=typeapproval.tac(beacon.gettac(),tflds),tacflds=tflds)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):
