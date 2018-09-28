@@ -11,7 +11,7 @@
 
 import csv
 #csvFile = 'test.csv'
-csvFile = 'joomla3_cospas_sarsat_contact_details.csv'
+csvFile = 'joomla3_cospas_sarsat_tac_beacons.csv'
 #csvFile = 'registrationcontacts.csv'
 xmlFile = 'myData.xml'
 
