@@ -20,8 +20,8 @@ def tac(num,flds):
                                 if f==x.get('name'):
                                     d[f]=x.text
                         i.append(d)
-    print(c)
-    return i[0]
+
+    return d #i[0]
 if __name__ == "__main__" :
     models=tac(194,['id','name','battery','model_add_names','tested_life','ddd'])
 
