@@ -273,7 +273,7 @@ def decoded(hexcode):
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
-                           contact=contacts.contact(mid,flds,types),
+                           contact=contacts.contact(mid,flds,contacttypes),
                            types=contacttypes,flds=flds,
                            tac=beacon.gettac(),
                            tacdetail=typeapproval.tac(beacon.gettac(),tflds),
