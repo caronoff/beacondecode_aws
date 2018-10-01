@@ -222,8 +222,16 @@ def whereregister(hexcode):
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
-    flds = ['name', 'address', 'city', 'zipcode', 'telephone1', 'telephone2', 'ci_webpage_1', 'website_url']
-    types = ['PLB', 'ELT', 'EPIRB']
+    flds = [('Organization','name'),
+            ('Address','address'),
+            ('City','city'),
+            ('Zip code','zipcode'),
+            ('Phone','telephone1'),
+            ('Alternate Phone:','telephone2'),
+            ('Contact Website','ci_webpage_1'),
+            ('Other information':'website_url')]
+    contacttypes = ['PLB', 'ELT', 'EPIRB']
+    tflds = ['battery', 'protocols_tested']
 
 
     # send POST request to jotforms for logging
@@ -259,14 +267,14 @@ def decoded(hexcode):
 
         locationcheck=True
     mid=str(beacon.get_mid())
-    tflds=['battery','protocols_tested']
+
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
                            contact=contacts.contact(mid,flds,types),
-                           types=types,flds=flds,
+                           types=contacttypes,flds=flds,
                            tac=beacon.gettac(),
                            tacdetail=typeapproval.tac(beacon.gettac(),tflds),
                            tacflds=tflds,
