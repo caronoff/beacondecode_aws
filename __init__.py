@@ -229,7 +229,7 @@ def decoded(hexcode):
             ('Phone','telephone1'),
             ('Alternate Phone:','telephone2'),
             ('Contact Website','ci_webpage_1'),
-            ('Other information':'website_url')]
+            ('Other information','website_url')]
     contacttypes = ['PLB', 'ELT', 'EPIRB']
     tflds = ['battery', 'protocols_tested']
 
