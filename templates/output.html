@@ -108,14 +108,14 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                          {% for btype in types %}
-                        <li role="presentation" class="{{btype[1]}}"><a href="#{{btype[0]}}" aria-controls="{{btype[0]}}" role="tab" data-toggle="tab">{{btype[0]}}</a>
+                        <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{btype[0]}}" aria-controls="{{btype[0]}}" role="tab" data-toggle="tab">{{btype[0]}}</a>
                         </li>
                          {% endfor %}
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for btype in types %}
-                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}"><strong>Beacon Registration Contact - {{btype[0]}}</strong>
+                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{btype[0]}}"><strong>Beacon Registration Contact - {{btype[0]}}</strong>
 
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in flds %}
@@ -160,7 +160,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for tac in tacdetail %}
-                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %} active{% endif %}" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
+                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
 
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in tacflds %}
