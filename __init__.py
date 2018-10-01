@@ -14,6 +14,7 @@ import requests
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
+MENU = True
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():
@@ -38,7 +39,7 @@ def ibrdallowed():
         hexcode = str(request.form['hexcode']).strip()
 
         return redirect(url_for('whereregister',hexcode=hexcode))
-    return render_template('ibrdallowed.html', title='Home', user='')
+    return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
 
 
 @app.route('/filterlist', methods=['GET'])
@@ -69,7 +70,7 @@ def longSGB():
         print(form.encodelong(hexcodeUIN))
         return redirect(url_for('decoded', hexcode=form.encodelong(hexcodeUIN)))
 
-    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error)
+    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error,showmenu=MENU)
 
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
@@ -118,7 +119,7 @@ def longfirstgen():
         print('hex', hexcodelong)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error)
+    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error,showmenu=MENU)
 
 @app.route('/long',methods=['GET'])
 def long():
@@ -156,7 +157,7 @@ def index():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('indx.html', title='Home', user='')
+    return render_template('indx.html', title='Home', user='',showmenu=MENU)
 
 
 @app.route("/decode",methods=['GET','POST'])
@@ -164,7 +165,7 @@ def decode():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('decodehex.html', title='Home', user='')
+    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 
 @app.route("/autocomplete",methods=['GET'])
@@ -179,17 +180,17 @@ def encodehex():
     for key in definitions.countrydic:
         countries.append('{} ({})'.format(definitions.countrydic[key], key))
     countries.sort()
-    return render_template("encodehexunique.html", countries=countries)
+    return render_template("encodehexunique.html", countries=countries,showmenu=MENU)
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template("about.html",showmenu=MENU)
 
 @app.route("/contact/<num>")
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
     types = ['PLB', 'ELT','EPIRB']
-    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds)
+    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=MENU)
 
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
@@ -217,7 +218,7 @@ def decodedjson(hexcode):
 @app.route("/whereregister/<hexcode>")
 def whereregister(hexcode):
     beacon = decodehex2.Beacon(hexcode)
-    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country())
+    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country(),showmenu=MENU)
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
@@ -269,7 +270,7 @@ def decoded(hexcode):
                            tac=beacon.gettac(),
                            tacdetail=typeapproval.tac(beacon.gettac(),tflds),
                            tacflds=tflds,
-                           showmenu=False)
+                           showmenu=MENU)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):
