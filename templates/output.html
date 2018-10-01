@@ -159,14 +159,14 @@
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-
-                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
+                        {% for tac2 in tacdetail %}
+                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{tac2['name']}}"><strong>Beacon model - {{tac2['name']}}</strong>
 
                                 <div style="overflow: auto">
-                                         {{tac['name']}}
+                                         {{tac2['name']}}
                                 </div>
                         </div>
-
+                        {% endfor %}
                     </div>
           </div>
       {% endif %}
