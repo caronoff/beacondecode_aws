@@ -21,7 +21,7 @@ def tac(num,flds):
                                     d[f]=x.text
                         i.append(d)
 
-    return d #i[0]
+    return i
 if __name__ == "__main__" :
     models=tac(194,['id','name','battery','model_add_names','tested_life','ddd'])
 
