@@ -152,7 +152,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                          {% for tac in tacdetail %}
-                        <li role="presentation" class="{% if {{loop.index}}==1%}active{% endif %}"><a href="#{{tac['name']}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac['name']}}</a>
+                        <li role="presentation" class="{% if {{loop.index}}==1 %}active{% endif %}"><a href="#{{tac['name']}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac['name']}}</a>
                         </li>
                          {% endfor %}
                     </ul>
