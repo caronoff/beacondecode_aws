@@ -266,7 +266,10 @@ def decoded(hexcode):
                            genmsg=beacon.genmsg,
                            contact=contacts.contact(mid,flds,types),
                            types=types,flds=flds,
-                           tac=beacon.gettac(),tacdetail=typeapproval.tac(beacon.gettac(),tflds),tacflds=tflds)
+                           tac=beacon.gettac(),
+                           tacdetail=typeapproval.tac(beacon.gettac(),tflds),
+                           tacflds=tflds,
+                           showmenu=False)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):

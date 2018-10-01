@@ -38,7 +38,7 @@
 
 
 
-
+{% if showmenu %}
  <div class="navbar-more-overlay"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top animate">
 	<div class="container navbar-more visible-xs">
@@ -64,14 +64,7 @@
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="container">
-
-
 			<ul class="nav navbar-nav navbar-left mobile-bar">
 				<li>
 					<a href="/">
@@ -86,9 +79,6 @@
 						<span class="visible-xs">Decode</span>
 					</a>
 				</li>
-
-
-
 				<li>
 					<a href="{{url_for('encodehex')}}">
 						<span class="menu-icon fa fa-magic"></span>
@@ -116,7 +106,7 @@
 
 
 </nav>
-
+{% endif %}
 
 <div class="container">
 
@@ -136,7 +126,7 @@
 
 
 <div id="footer">
-							&copy; Copyright 2018 {{tac}} testing version <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
+							&copy; Copyright 2018 testing version <a href="https://cospas-sarsat.int/">International Cospas-Sarsat Programme</a>.
 	 </div>
 
 
