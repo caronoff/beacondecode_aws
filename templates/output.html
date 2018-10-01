@@ -115,8 +115,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for btype in types %}
-                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}"><strong>Point of Contact for {{btype[0]}}</strong>
-
+                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}"><strong>Beacon Registration Contact - {{btype[0]}}</strong>
 
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in flds %}
@@ -146,17 +145,35 @@
         </button>
       </div>
       <div class="modal-body">
-          {% if tacdetail|length > 0 %}
-        <div style="overflow: auto">
-          <table  class="table table-hover">
-                    {% for f in tacflds %}
-                       <tr>
-                            <td width="30%"> {{ f}} </td>
-                            <td width="70%"> {{ tacdetail[0][f] }} </td>
-                       </tr>
-                    {% endfor %} </table>
-        </div>
-          {% endif %}
+
+
+      {% if tacdetail|length > 0 %}
+           <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                         {% for tac in tacdetail %}
+                        <li role="presentation" class=""><a href="#{{tac['name']}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac['name']}}</a>
+                        </li>
+                         {% endfor %}
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        {% for tac in tacdetail %}
+                        <div role="tabpanel" class="tab-pane" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
+
+                                <div style="overflow: auto">
+                                          <table  class="table table-hover">{% for f in tacflds %}
+                                   <tr><td width="30%"> <u>{{ f }}</u> </td>
+                                        <td width="70%"> {{ tac[f] }} </td>
+                                   </tr>{% endfor %} </table>
+                                </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+      {% endif %}
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
