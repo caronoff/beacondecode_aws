@@ -98,34 +98,47 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Beacon Registration Contacts</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Points of Contact</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+          <!--
         {% for btype in types %}
     <strong>Point of Contact for {{btype}}</strong>
-    <br>
-
 <div style="overflow: auto">
-
-          <table  class="table table-hover">
-
-{% for f in flds %}
-   <tr>
-       <td width="30%"> <u>{{ f[0] }}</u> </td>
+          <table  class="table table-hover">{% for f in flds %}
+   <tr><td width="30%"> <u>{{ f[0] }}</u> </td>
         <td width="70%"> {{ contact[btype][f[1]] }} </td>
-   </tr>
-{% endfor %}
-              </table>
-    </div>
+   </tr>{% endfor %} </table>
+</div>
+{% endfor %}-->
+          <div role="tabpanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Upload</a>
 
-    <br>
-    <br>
+                        </li>
+                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Browse</a>
 
-{% endfor %}
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
+                        <div role="tabpanel" class="tab-pane" id="browseTab">browseTab</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
