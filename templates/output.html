@@ -118,7 +118,26 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for btype in types %}
-                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}">{{btype[0]}}</div>
+                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}">{{btype[0]}}
+
+                         <strong>Point of Contact for {{btype[0]}}</strong>
+                                <div style="overflow: auto">
+                                          <table  class="table table-hover">{% for f in flds %}
+                                   <tr><td width="30%"> <u>{{ f[0] }}</u> </td>
+                                        <td width="70%"> {{ contact[btype[0]][f[1]] }} </td>
+                                   </tr>{% endfor %} </table>
+                                </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+
                         {% endfor %}
 
 
