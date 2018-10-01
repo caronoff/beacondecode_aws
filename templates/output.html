@@ -117,17 +117,20 @@
           <div role="tabpanel">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#uploadTab" aria-controls="uploadTab" role="tab" data-toggle="tab">Upload</a>
-
+                         {% for btype in types %}
+                        <li role="presentation" class="{{btype[1]}}"><a href="#{{btype[0]}}" aria-controls="{{btype[0]}}" role="tab" data-toggle="tab">{{btype[0]}}</a>
                         </li>
-                        <li role="presentation"><a href="#browseTab" aria-controls="browseTab" role="tab" data-toggle="tab">Browse</a>
+                         {% endfor %}
 
-                        </li>
+
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="uploadTab">upload Tab</div>
-                        <div role="tabpanel" class="tab-pane" id="browseTab">browseTab</div>
+                        {% for btype in types %}
+                        <div role="tabpanel" class="tab-pane{{btype[1]}}" id="{{btype[0]}}">{{btype[0]}}</div>
+                        {% endfor %}
+
+
                     </div>
                 </div>
             </div>
