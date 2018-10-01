@@ -27,5 +27,5 @@ if __name__ == "__main__" :
 
     for d in models:
         for k in d:
-            print(k,d[k])
+            pass #print(k,d[k])
     print(models)
