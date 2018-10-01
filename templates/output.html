@@ -152,15 +152,15 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                          {% for tac in tacdetail %}
-                        <!--<li role="presentation" class="{% if {{loop.index}}==1 %} active {% endif %}"><a href="#{{tac['name']}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac['name']}}</a>
+                        <li role="presentation" class="active"><a href="#{{tac['name']}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac['name']}}</a>
                         </li>
-                        -->
+
                          {% endfor %}
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for tac in tacdetail %}
-                        <!--<div role="tabpanel" class="tab-pane {% if {{loop.index}} == 1 %} active {% endif %}" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
+                        <div role="tabpanel" class="tab-pane" id="{{tac['name']}}"><strong>Beacon model - {{tac['name']}}</strong>
 
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in tacflds %}
@@ -168,7 +168,7 @@
                                         <td width="70%"> {{ tac[f] }} </td>
                                    </tr>{% endfor %} </table>
                                 </div>
-                        </div>-->
+                        </div>
                         {% endfor %}
                     </div>
 
