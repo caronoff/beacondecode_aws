@@ -81,7 +81,6 @@
           <span class="glyphicon glyphicon-star" style="color:gray"></span> Save BCH
         </a>
 </div>
-
   {% if locationcheck %}
         <p>Encoded location</p>
                 <div id="geocoord"  data-geocode="{{ geocoord|tojson }}"></div>
@@ -115,8 +114,8 @@
 
 {% for f in flds %}
    <tr>
-        <td width="30%"> {{ f }} </td>
-        <td width="70%"> {{ contact[btype][f] }} </td>
+        <td width="30%"> {{ f[0] }} </td>
+        <td width="70%"> {{ contact[btype][f[1]] }} </td>
    </tr>
 {% endfor %}
               </table>
@@ -148,9 +147,7 @@
 
 
 <div style="overflow: auto">
-
           <table  class="table table-hover">
-
 {% for f in tacflds %}
    <tr>
         <td width="30%"> {{ f[0] }} </td>
@@ -159,14 +156,9 @@
 {% endfor %}
               </table>
     </div>
-
-
-
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
       </div>
     </div>
   </div>
