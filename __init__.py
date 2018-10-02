@@ -234,7 +234,7 @@ def decoded(hexcode):
     contacttypes = ['PLB','ELT','EPIRB']
     tflds = [('Model','name'),
              ('ID','id'),
-             ('SubTAC','database_id'),
+             ('Sub TAC','database_id'),
              ('Other name','model_add_names'),
              ('Battery','battery'),
              ('Protocols Tested','protocols_tested')]
