@@ -228,6 +228,7 @@ def decoded(hexcode):
             ('Zip code','zipcode'),
             ('Phone','telephone1'),
             ('Alternate Phone:','telephone2'),
+            ('Email:', 'email'),
             ('Contact Website','ci_webpage_1'),
             ('Other information','website_url')]
     contacttypes = ['PLB','ELT','EPIRB']
