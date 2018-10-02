@@ -282,6 +282,7 @@ def decoded(hexcode):
             k=l['database_id']
             tacdic[k]=l
     print(tacdic)
+    print(tflds)
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
