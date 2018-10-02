@@ -152,7 +152,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                          {% for tac in tacdetail %}
-                        <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{tacdetail[tac]}}" aria-controls="{{tacdetail[tac]}}" role="tab" data-toggle="tab">{{tacdetail[tac]}} </a>
+                        <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{tacdetail[tac]['id']}}" aria-controls="{{tacdetail[tac]['id']}}" role="tab" data-toggle="tab">{{tacdetail[tac]['id']}} </a>
                         </li>
 
                          {% endfor %}
@@ -160,10 +160,10 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for tac in tacdetail %}
-                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %} active{% endif %}" id="{{tacdetail[tac]}}"><strong>Beacon model - {{tacdetail['name']}}</strong>
+                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %} active{% endif %}" id="{{tacdetail[tac]['id']}}"><strong>Beacon model - {{tacdetail[tac]['name']}}</strong>
 
                                 <div style="overflow: auto">
-                                         {{tacdetail['name']}}
+                                         {{tacdetail[tac]['name']}}
                                 </div>
                         </div>
                         {% endfor %}
