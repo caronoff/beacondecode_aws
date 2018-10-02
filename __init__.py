@@ -231,7 +231,7 @@ def decoded(hexcode):
             ('Contact Website','ci_webpage_1'),
             ('Other information','website_url')]
     contacttypes = [('PLB',' active'), ('ELT',''),('EPIRB','')]
-    tflds = ['name','id','model_add_names','battery','protocols_tested']
+    tflds = ['name','id','database_id','model_add_names','battery','protocols_tested']
 
 
     # send POST request to jotforms for logging
@@ -273,7 +273,7 @@ def decoded(hexcode):
     tacdic={}
     if len(taclist)>0:
         for l in taclist:
-            k=l['id']
+            k=l['database_id']
             tacdic[k]=l
 
     return render_template(tmp, hexcode=hexcode.upper(),
