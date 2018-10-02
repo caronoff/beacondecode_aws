@@ -281,7 +281,7 @@ def decoded(hexcode):
         for l in taclist:
             k=l['database_id']
             tacdic[k]=l
-
+    print(tacdic)
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
