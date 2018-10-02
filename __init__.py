@@ -269,7 +269,12 @@ def decoded(hexcode):
     mid=str(beacon.get_mid())
     #print([c[0] for c in contacttypes])
     #print(contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]))
-    print(typeapproval.tac(beacon.gettac(),tflds))
+    taclist=typeapproval.tac(beacon.gettac(),tflds)
+    tacdic={}
+    if len(taclist)>0:
+        for l in taclist:
+            k=l['id']
+            tacdic[k]=l
 
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
@@ -279,7 +284,7 @@ def decoded(hexcode):
                            contact=contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]),
                            types=contacttypes,flds=flds,
                            tac=beacon.gettac(),
-                           tacdetail=typeapproval.tac(beacon.gettac(),tflds),
+                           tacdetail=tacdic,
                            tacflds=tflds,
                            showmenu=MENU)
 
