@@ -189,7 +189,7 @@ def about():
 @app.route("/contact/<num>")
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
-    types = [('PLB',' active'), ('ELT',''),('EPIRB','')]
+    types = ['PLB','ELT','EPIRB']
     return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=MENU)
 
 @app.route("/decodedjson/<hexcode>")

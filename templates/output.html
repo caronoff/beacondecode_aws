@@ -108,19 +108,19 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                          {% for btype in types %}
-                        <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{btype[0]}}" aria-controls="{{btype[0]}}" role="tab" data-toggle="tab">{{btype[0]}}</a>
+                        <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{btype}}" aria-controls="{{btype}}" role="tab" data-toggle="tab">{{btype}}</a>
                         </li>
                          {% endfor %}
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content">
                         {% for btype in types %}
-                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{btype[0]}}"><strong>Beacon Registration Contact - {{btype[0]}}</strong>
+                        <div role="tabpanel" class="tab-pane {% if loop.index==1 %}active{% endif %}" id="{{btype}}"><strong>Beacon Registration Contact - {{btype}}</strong>
 
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in flds %}
                                    <tr><td width="30%"> <u>{{ f[0] }}</u> </td>
-                                        <td width="70%"> {{ contact[btype[0]][f[1]] }} </td>
+                                        <td width="70%"> {{ contact[btype][f[1]] }} </td>
                                    </tr>{% endfor %} </table>
                                 </div>
                         </div>
@@ -154,7 +154,6 @@
                          {% for tac in tacdetail %}
                         <li role="presentation" class="{% if loop.index==1 %}active{% endif %}"><a href="#{{tac}}" aria-controls="{{tac}}" role="tab" data-toggle="tab">{{tac}} </a>
                         </li>
-
                          {% endfor %}
                     </ul>
                     <!-- Tab panes -->
