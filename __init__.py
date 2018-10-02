@@ -232,7 +232,12 @@ def decoded(hexcode):
             ('Contact Website','ci_webpage_1'),
             ('Other information','website_url')]
     contacttypes = ['PLB','ELT','EPIRB']
-    tflds = ['name','id','database_id','model_add_names','battery','protocols_tested']
+    tflds = [('Model','name'),
+             ('ID','id'),
+             ('SubTAC','database_id'),
+             ('Other name','model_add_names'),
+             ('Battery','battery'),
+             ('Protocols Tested','protocols_tested')]
 
 
     # send POST request to jotforms for logging
@@ -270,7 +275,7 @@ def decoded(hexcode):
     mid=str(beacon.get_mid())
     #print([c[0] for c in contacttypes])
     #print(contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]))
-    taclist=typeapproval.tac(beacon.gettac(),tflds)
+    taclist=typeapproval.tac(beacon.gettac(),[f[1] for f in tflds])
     tacdic={}
     if len(taclist)>0:
         for l in taclist:
@@ -283,7 +288,8 @@ def decoded(hexcode):
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
                            contact=contacts.contact(mid,[f[1] for f in flds],contacttypes),
-                           types=contacttypes,flds=flds,
+                           types=contacttypes,
+                           flds=flds,
                            tac=beacon.gettac(),
                            tacdetail=tacdic,
                            tacflds=tflds,
