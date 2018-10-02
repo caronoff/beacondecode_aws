@@ -230,7 +230,7 @@ def decoded(hexcode):
             ('Alternate Phone:','telephone2'),
             ('Contact Website','ci_webpage_1'),
             ('Other information','website_url')]
-    contacttypes = [('PLB',' active'), ('ELT',''),('EPIRB','')]
+    contacttypes = ['PLB','ELT','EPIRB']
     tflds = ['name','id','database_id','model_add_names','battery','protocols_tested']
 
 
@@ -281,7 +281,7 @@ def decoded(hexcode):
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
-                           contact=contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]),
+                           contact=contacts.contact(mid,[f[1] for f in flds],contacttypes),
                            types=contacttypes,flds=flds,
                            tac=beacon.gettac(),
                            tacdetail=tacdic,
