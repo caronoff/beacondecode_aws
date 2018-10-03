@@ -44,7 +44,7 @@ def tac(num,flds):
                                     man = manufacturer(manufacturer_id,f[next(iter(f))] )
                                     strman=''
                                     for k in man:
-                                        strman=strman+man[k]+'<br>'
+                                        strman=strman+man[k]+', '
 
                                     d[next(iter(f))] = strman
                                 elif x.get('name')=='manufacturer_id':
@@ -55,7 +55,7 @@ def tac(num,flds):
                         i.append(d)
     return i
 if __name__ == "__main__" :
-    models=tac(194,['id','name','battery','model_add_names','tested_life',{'manufacturer_id':['name','short_name']}])
+    models=tac(176,['id','name','battery','model_add_names','tested_life',{'manufacturer_id':['name','short_name']}])
 
     for d in models:
         for k in d:
