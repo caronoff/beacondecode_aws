@@ -160,12 +160,10 @@
                     <div class="tab-content">
                         {% for tac in tacdetail %}
                         <div role="tabpanel" class="tab-pane {% if loop.index==1 %} active{% endif %}" id="{{tac}}"><strong>Beacon model - {{tacdetail[tac]['name']}}</strong>
-
                                 <div style="overflow: auto">
                                           <table  class="table table-hover">{% for f in tacflds %}
                                    <tr><td width="30%"> <u>{{ f[0] }}</u> </td>
                                        <td width="70%"> {{ tacdetail[tac][f[1]]}} </td>
-
                                    </tr>{% endfor %} </table>
                                 </div>
                         </div>

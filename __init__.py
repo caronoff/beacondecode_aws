@@ -233,6 +233,7 @@ def decoded(hexcode):
             ('Other information','website_url')]
     contacttypes = ['PLB','ELT','EPIRB']
     tflds = [('Model','name'),
+             ('Manufacturer',{'manufacturer_id':['name','short_name']}),
              ('ID','id'),
              ('Sub TAC','database_id'),
              ('Other name','model_add_names'),
@@ -281,8 +282,7 @@ def decoded(hexcode):
         for l in taclist:
             k=l['database_id']
             tacdic[k]=l
-    print(tacdic)
-    print(tflds)
+
     return render_template(tmp, hexcode=hexcode.upper(),
                            decoded=beacon.tablebin,
                            locationcheck=locationcheck,
