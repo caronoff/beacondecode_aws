@@ -233,7 +233,8 @@ def decoded(hexcode):
             ('Other information','website_url')]
     contacttypes = ['PLB','ELT','EPIRB']
     tflds = [('Model','name'),
-             ('Manufacturer',{'manufacturer_id':['name','short_name']}),
+             ('',{'manufacturer_id':['name','short_name']}),
+             ('Manufacturer', 'manufacturer_id'),
              ('ID','id'),
              ('Sub TAC','database_id'),
              ('Other name','model_add_names'),
