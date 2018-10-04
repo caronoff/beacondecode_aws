@@ -281,7 +281,7 @@ def decoded(hexcode):
     tacdic={}
     if len(taclist)>0:
         for l in taclist:
-            k=l['database_id']
+            k=l['id']
             tacdic[k]=l
 
     return render_template(tmp, hexcode=hexcode.upper(),

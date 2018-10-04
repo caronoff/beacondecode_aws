@@ -40,7 +40,6 @@ def tac(num,flds):
                         for x in row:
                             for f in flds:
                                 if isinstance(f, (dict,)):
-
                                     man = manufacturer(manufacturer_id,f[next(iter(f))] )
                                     strman=''
                                     for k in man:
@@ -55,12 +54,13 @@ def tac(num,flds):
                         i.append(d)
     return i
 if __name__ == "__main__" :
-    models=tac(176,['id','name','battery','model_add_names','tested_life',{'manufacturer_id':['name','short_name']}])
+    models=tac(176,['id','database_id','name','battery','model_add_names','tested_life',{'manufacturer_id':['name','short_name']}])
 
     for d in models:
+        print('next')
         for k in d:
             print(k,d[k])
     print(models)
 
     man=manufacturer(109,['id','name','short_name'])
-    #print(man)
+    print(man)
