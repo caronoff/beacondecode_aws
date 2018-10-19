@@ -475,7 +475,7 @@ class SecondGen(Gen2Error):
 
                 self.tablebin.append([self.bitlabel(94,123,deduct_offset),
                                       bits[3:33],
-                                      'Unique ship station identity MIDxxYYYY:',
+                                      'Unique ship station identity where the first 3 digits are MID (MIDxxxxxx):',
                                       self.mmsi_string])
                 self.mmsi_country = Func.countryname(int(self.mmsi_string[0:3]))
                 self.tablebin.append(['',
