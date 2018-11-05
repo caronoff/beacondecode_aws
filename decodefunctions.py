@@ -44,7 +44,31 @@ def is_number(s):
     except ValueError:
         return False
 
-
+def getFiveCharChecksum(bcnId15):
+    returnLimit=1048576 #used to limit the return value to a 20 bit result
+    runningSumLimit = 538471 # large prime which will not cause an overflow
+    constPrimVal = 3911 #small prime value that stays constant throughout
+    modifierLimit = 3847 #small prime which will not cause an overflow
+    modifier = 3803 #modifier, simply initialized to a prime value
+    runningSum = 0 #variable to hold the running value of the checksum
+    tmpLongValue =0 #holds temporary data
+    decimalValue =0 #holds decimal value for character
+    ## Note: int data type is 4 bytes, largest positive value is 2,147,483,647 and
+	##	 all computations are designed to remain within this value (no overflows)
+    i=0
+    for char in bcnId15:
+        decimalValue=int(ord(char))
+        tmpLongValue =  (runningSum * modifier) + decimalValue
+        # on last character here use the higher resolution result as input to final truncation
+        if i==14:
+            runningSum = tmpLongValue % returnLimit
+            #print(runningSum)
+        else:
+            runningSum = tmpLongValue % runningSumLimit
+            #print(tmpLongValue,runningSumLimit,runningSum)
+            modifier = (constPrimVal * modifier) % modifierLimit
+        i += 1
+    return 'Checksum: {} ({})'.format(hex(runningSum)[2:].upper().zfill(5),runningSum)
 
 
 def dec2bin(n,ln=None):

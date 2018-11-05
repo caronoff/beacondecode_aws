@@ -7,7 +7,7 @@ import ui.ui_progress
 
 import os
 from webmap import google_map,blank
-
+from writebch import getFiveCharChecksum
 import decodehex2
 from Gen2secondgen import SecondGen
 
@@ -113,12 +113,17 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
             ctry = self._beacon.get_country()
 
             self.tableWidget.clear()
+            if len(hexcode)==15:
+                checksum=(getFiveCharChecksum(hexcode.upper()))
+                self._beacon.tablebin.append(('','','',str(checksum)))
 
             for n, lrow in enumerate(self._beacon.tablebin):
                 for m, item in enumerate(lrow):
                     newitem = QTableWidgetItem(item)
                     newitem.setFlags(Qt.ItemIsEnabled)
                     self.tableWidget.setItem(n, m, newitem)
+
+
             self.tableWidget.setHorizontalHeaderLabels(['Bit range',
                                                         'Bit value',
                                                         'Name',

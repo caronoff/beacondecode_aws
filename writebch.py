@@ -1,5 +1,6 @@
 import csv
-
+import math
+from random import randint
 
 def calcBCH(binary, b1start, b1end, b2end):
     """ Calculates the expected BCH error-correcting code for a given binary string.
@@ -66,6 +67,49 @@ def calcBCH(binary, b1start, b1end, b2end):
     return (bchfinal,sout)
 
 
+def calc_checksum_two(a):
+    return hex(((sum(int(a[i:i+2],16) for i in range(0, len(a), 2))%0x100)^0xFF)+1)[2:]
+
+
+
+
+
+def getFiveCharChecksum2(bcnId15):
+    returnLimit = 1048576L  # used to limit the return value to a 20 bit result
+    runningSumLimit = 538471  # large prime which will not cause an overflow
+    constPrimVal = 3911L  # small prime value that stays constant throughout
+    modifierLimit = 3847L  # small prime which will not cause an overflow
+    modifier = 3803L  # modifier, simply initialized to a prime value
+    runningSum = 0  # variable to hold the running value of the checksum
+    tmpLongValue = 0
+    tmpLongValue2 = 0
+
+    ## Note: int data type is 4 bytes, largest positive value is 2,147,483,647 and
+    ##  all computations are designed to remain within this value (no overflows)
+
+    for char in bcnId15[0:-1]:
+        decimalValue = int(ord(char))
+        tmpLongValue = int(runningSum * modifier) + (decimalValue)
+        print(tmpLongValue,tmpLongValue / runningSumLimit)
+        tmpLongValue2 = int((tmpLongValue / float(runningSumLimit)))        #print(tmpLongValue>2147483647,tmpLongValue2>2147483647)
+        runningSum = tmpLongValue - long(tmpLongValue2 * runningSumLimit)
+        tmpLongValue = constPrimVal * modifier
+        tmpLongValue2 = int(tmpLongValue / modifierLimit)
+        modifier = tmpLongValue - long(tmpLongValue2 * modifierLimit)
+        #print(tmpLongValue > 2147483647, tmpLongValue2 > 2147483647)
+        print(char, decimalValue, tmpLongValue2, tmpLongValue, modifier, runningSum)
+
+    # on last character here use the higher resolution result as input to final truncation
+
+    decimalValue = int(ord(bcnId15[-1]))
+    tmpLongValue = int(runningSum * modifier) +(decimalValue)
+    tmpLongValue2 = int(tmpLongValue / returnLimit)
+    runningSum = tmpLongValue - long(tmpLongValue2 * returnLimit)
+    print(bcnId15[-1], decimalValue, tmpLongValue2, tmpLongValue, modifier, runningSum)
+
+    return hex(runningSum)[2:].upper().zfill(5)
+
+
 if __name__ == "__main__":
     b4 = '0000000000001110011010001111010011001001100001100001100101100001100010001010000001000111110000000000000000000000000000000000000000000000011111111111111111000000000100000000110000011010000000001001011000'
     b2DecT018 = '000001001100100110100000000000011100110100011110111000000000000000000000000000000000000000000000111000110000011001110100011001000101000000010010010111111111111000000000100000000110000011001100000001001011011'
@@ -73,5 +117,19 @@ if __name__ == "__main__":
     b5 = '000000000000000001111101000011011110101100100010001011010000000000000000001010000000000000000000010000100001111100111011010100111000000110111111111111111111111000000001000000011001000001101111111111000101100'
     b6 = '0000000000001111101000011011110101100100010001011010000000000000000001010000000000000000000010000100001111100111011010100111000000110111111111111111111111000000001000000011001000001101111111111000101100'
 
-    print(calcBCH(b6, 0, 202, 250))
+    #print(calcBCH(b6, 0, 202, 250))
+    #print(calc_checksum_two('00300005000'))
+    print(getFiveCharChecksum('2DCC3FB834FFBFF'))
+    hexchars='ABCDEF0123456789'
+
+    randhexdic={}
+    checksumdic={}
+    for i in range(100):
+        randomhex = ''
+        for d in range(15):
+            randomhex=randomhex+hexchars[(randint(0,15))]
+
+        checksumdic[str(getFiveCharChecksum(randomhex))]=randomhex
+    print(len(checksumdic))
+
 
