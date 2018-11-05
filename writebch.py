@@ -75,11 +75,11 @@ def calc_checksum_two(a):
 
 
 def getFiveCharChecksum2(bcnId15):
-    returnLimit = 1048576L  # used to limit the return value to a 20 bit result
+    returnLimit = 1048576  # used to limit the return value to a 20 bit result
     runningSumLimit = 538471  # large prime which will not cause an overflow
-    constPrimVal = 3911L  # small prime value that stays constant throughout
-    modifierLimit = 3847L  # small prime which will not cause an overflow
-    modifier = 3803L  # modifier, simply initialized to a prime value
+    constPrimVal = 3911  # small prime value that stays constant throughout
+    modifierLimit = 3847  # small prime which will not cause an overflow
+    modifier = 3803  # modifier, simply initialized to a prime value
     runningSum = 0  # variable to hold the running value of the checksum
     tmpLongValue = 0
     tmpLongValue2 = 0
@@ -92,10 +92,10 @@ def getFiveCharChecksum2(bcnId15):
         tmpLongValue = int(runningSum * modifier) + (decimalValue)
         print(tmpLongValue,tmpLongValue / runningSumLimit)
         tmpLongValue2 = int((tmpLongValue / float(runningSumLimit)))        #print(tmpLongValue>2147483647,tmpLongValue2>2147483647)
-        runningSum = tmpLongValue - long(tmpLongValue2 * runningSumLimit)
+        runningSum = tmpLongValue - (tmpLongValue2 * runningSumLimit)
         tmpLongValue = constPrimVal * modifier
         tmpLongValue2 = int(tmpLongValue / modifierLimit)
-        modifier = tmpLongValue - long(tmpLongValue2 * modifierLimit)
+        modifier = tmpLongValue - (tmpLongValue2 * modifierLimit)
         #print(tmpLongValue > 2147483647, tmpLongValue2 > 2147483647)
         print(char, decimalValue, tmpLongValue2, tmpLongValue, modifier, runningSum)
 
@@ -104,7 +104,7 @@ def getFiveCharChecksum2(bcnId15):
     decimalValue = int(ord(bcnId15[-1]))
     tmpLongValue = int(runningSum * modifier) +(decimalValue)
     tmpLongValue2 = int(tmpLongValue / returnLimit)
-    runningSum = tmpLongValue - long(tmpLongValue2 * returnLimit)
+    runningSum = tmpLongValue - (tmpLongValue2 * returnLimit)
     print(bcnId15[-1], decimalValue, tmpLongValue2, tmpLongValue, modifier, runningSum)
 
     return hex(runningSum)[2:].upper().zfill(5)
@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     #print(calcBCH(b6, 0, 202, 250))
     #print(calc_checksum_two('00300005000'))
-    print(getFiveCharChecksum('2DCC3FB834FFBFF'))
+    print(getFiveCharChecksum2('2DCC3FB834FFBFF'))
     hexchars='ABCDEF0123456789'
 
     randhexdic={}
