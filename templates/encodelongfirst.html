@@ -9,6 +9,8 @@
 
 {% block content %}
 
+{{super()}}
+
 <div class="form-group" >
       <form class="form-horizontal"  action="/longfirstgen" >
         <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
@@ -17,6 +19,6 @@
       </form>
 </div>
 
-{{super()}}
+
 
 {% endblock %}

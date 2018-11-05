@@ -893,7 +893,7 @@ class Beacon(HexError):
             else:
                 self.gentype = 'first'
                 beacon = BeaconFGB(hexcode)
-                self.genmsg = genmsgdic['15']+'\n'+Fcn.getFiveCharChecksum(hexcode)
+                self.genmsg = genmsgdic['15']+'/n'+Fcn.getFiveCharChecksum(hexcode)
 
         elif len(hexcode) == 30 :
 
