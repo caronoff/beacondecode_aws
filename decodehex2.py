@@ -813,6 +813,7 @@ class BeaconFGB(HexError):
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
                     else:
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Calcellation message bit pattern wrong'])
+                    self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc())])
 
                 else: #proceed to decode location
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
