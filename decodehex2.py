@@ -804,26 +804,34 @@ class BeaconFGB(HexError):
             self.courseloc=(declat,declng)
 
             if self.type!='uin':
-                self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
-                self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
-                means = {'01':'automatic','11':'manual','00':'spare','10':'spare'}
-                meansbin = str(self.bin[107:109])
-                self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])                                            
-                enc_altbin=str(self.bin[109:113])
-                enc_altstr='altitude is between {} and {}'.format(definitions.enc_alt[enc_altbin][0],definitions.enc_alt[enc_altbin][1])
-                self.tablebin.append(['109-112',enc_altbin,'encoded altitude',enc_altstr])                
-                finallat=finallng='Not Used'
-                enc_loc_fresh = {'01':'old','11':'current','00':'old','10':'old'}
-                enc_freshbin=str(self.bin[113:115])
-                self.tablebin.append(['113-114',enc_freshbin,'encoded location freshness',enc_loc_fresh[enc_freshbin]])                
-                latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)            
-                self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                self.tablebin.append(['133-144',
-                                  str(self.bin[133:145]),
-                                      'BCH 2',
-                                      str(self.bch.bch2calc())])
+                if str(self.bin[67:86]) == '1111110101111111010': #type is ELT-DT cancellation message
+                    pass
+                    self.tablebin.append(['67-75', str(self.bin[67:76]), 'ELT-DT Cancellation message pattern: {}'.format('1 11111010')])
+                    self.tablebin.append(['76-85', str(self.bin[76:86]),  'ELT-DT Cancellation message pattern: {}'.format('1 111111010')])
+                    self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+                    if str(self.bin[107:133]) == '00111100011110000011110000': #make sure pattern is correct
+                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
+                    else:
+                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Calcellation message bit pattern wrong'])
+
+                else: #proceed to decode location
+                    self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
+                    self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
+                    self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+                    means = {'01':'automatic','11':'manual','00':'spare','10':'spare'}
+                    meansbin = str(self.bin[107:109])
+                    self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
+                    enc_altbin=str(self.bin[109:113])
+                    enc_altstr='altitude is between {} and {}'.format(definitions.enc_alt[enc_altbin][0],definitions.enc_alt[enc_altbin][1])
+                    self.tablebin.append(['109-112',enc_altbin,'encoded altitude',enc_altstr])
+                    finallat=finallng='Not Used'
+                    enc_loc_fresh = {'01':'old','11':'current','00':'old','10':'old'}
+                    enc_freshbin=str(self.bin[113:115])
+                    self.tablebin.append(['113-114',enc_freshbin,'encoded location freshness',enc_loc_fresh[enc_freshbin]])
+                    latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                    self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                    self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
