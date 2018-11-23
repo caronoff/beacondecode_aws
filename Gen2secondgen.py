@@ -580,7 +580,7 @@ class SecondGen(Gen2Error):
                                   self.operator])
             self.tablebin.append([self.bitlabel(112,123,deduct_offset),
                                   bits[21:33],
-                                  'Serial number:',
+                                  'Aircraft Serial number:',
                                   str(self.serialnum)])
 
 

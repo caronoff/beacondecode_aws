@@ -181,7 +181,7 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                          ],
                 'ELT' : [('ELT - Aircraft marking - tail','2-011'),
                          ('ELT - Aircraft 24 bit address','2-100'),
-                         ('ELT - Aircraft operator','2-101')],
+                         ('ELT - Aircraft operator and Serial Number','2-101')],
                 'PLB':  [('PLB -  No aircraft or maritime identity','2-000')]
                 }}
 

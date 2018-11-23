@@ -63,7 +63,7 @@
             <form id="genformpanel" class="form-horizontal" role="form">
                 <div id="id_ctry" style="display: none;" class="form-group ui-widget tohide">
 
-                   <label for="tags" class="control-label"  >Country of use: </label>
+                   <label for="tags" class="control-label"  >Country Code: </label>
                     <div>
 
                    <input id="tags" class="form-control" >
@@ -75,7 +75,7 @@
 
 
                 <div id="id_tano" style="display: none;" class="form-group  panel panel-body panel-default tohide">
-                    <label for="id_tanoinput" class="col-lg-2 control-label">Type Approval certificate number:</label>
+                    <label for="id_tanoinput" class="col-lg-2 control-label">Beacon Type Approval Certificate No:</label>
                      <div class="col-lg-10">
                     <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" max="65535" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
@@ -144,7 +144,7 @@
 
 
                 <div id="id_serialnumber" style="display: none;" class="form-group panel panel-body panel-default tohide">
-                    <label for="id_serialnumber_input" class="col-lg-2 control-label" >Serial Number:</label>
+                    <label for="id_serialnumber_input" class="col-lg-2 control-label" >Beacon Serial Number:</label>
                     <div class="col-lg-10">
                     <input type="number"  class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="16383" step="1" data-bind="value:id_serialnumber_input">
                     <span id="id_serialnumbererror" class="help-block"></span>
@@ -391,8 +391,8 @@ $('#id_protocol').on('change', function() {
    //Serial user - Aircraft Operator Designator and Serial Number
    case '1-1-011-001':
         $('#id_tano').show();
-        $('#id_aircraftoperator').show();
         $('#id_serialnumber').show();
+        $('#id_aircraftoperator').show();
         $('#id_auxdevice').show();
         break;
 
