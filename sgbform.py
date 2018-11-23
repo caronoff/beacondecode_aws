@@ -19,27 +19,29 @@ class SGB(Form):
                             choices=[('0', 'No auxiliary locating device included in beacon'),
                                      ('1', 'Auxiliary locating device included in beacon')], default='1')
 
-    selftest = SelectField(label='Self-Test flag:',
-                               choices=[('0', 'Flag not set (normal beacon operation)'),
-                                        ('1', 'Self-test flag set')], default='0')
+    rlsfunction = SelectField(label='RLS function:',
+                               choices=[('0', 'No RLS capability or disabled'),
+                                        ('1', 'RLS capability enabled')], default='0')
 
     testprotocol = SelectField(label='Test protocol:',
                            choices=[('0', 'Normal beacon operation'),
                                     ('1', 'Test protocol transmition - not a distress alert')],default='0')
 
     beacontype = SelectField(label='Beacon type:',
-                               choices=[('00', 'ELT'),
-                                        ('01', 'EPIRB'),
-                                        ('10', 'PLB'),('11','Test')], default='00')
+                               choices=[('000', 'ELT (excludes ELT(DT))'),
+                                        ('001', 'EPIRB'),
+                                        ('010', 'PLB'),('011', 'ELT(DT)'),('100','Spare'),
+                                        ('101', 'Spare'),
+                                        ('110', 'Spare'),
+                                        ('111', 'Spare')], default='000')
 
-    rlscapability = SelectField(label='RLS function:',
-                                choices=[('0','Beacon without RLS capability or capability disabled'),('1','Beacon with RLS capability enabled')],default='0')
     def longSGB(form,h):
         binid = hex2bin(h)
         ctrybin = binid[1:11]
-        tanobin = binid[14:34]
-        snbin = binid[34:44]
-        idbin = binid[44:91]
+        tanobin = binid[14:30]
+        snbin = binid[30:44]
+        tprotocol= binid[44]
+        idbin = binid[45:92]
         if form.latitude.data == None:
             latbin = '01111111000001111100000'
         else:
@@ -51,8 +53,8 @@ class SGB(Form):
 
 
         completebin = tanobin + snbin + ctrybin + form.homingdevice.data + \
-                      form.selftest.data + form.testprotocol.data + \
-                      latbin + longbin + idbin + form.beacontype.data  + form.rlscapability.data+ 14 * '1'
+                      form.rlsfunction.data + form.testprotocol.data + \
+                      latbin + longbin + idbin + form.beacontype.data  +  14 * '1'
         return completebin
 
 

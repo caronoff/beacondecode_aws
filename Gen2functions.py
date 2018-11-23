@@ -141,7 +141,7 @@ def testProtocol(prot_bit):
     """
 
     if prot_bit == '1':
-        status = 'Test protocol message'
+        status = 'Test protocol message for non-operational use'
     else:
         status = 'Normal beacon operation'
 

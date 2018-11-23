@@ -74,15 +74,18 @@
                 </div>
 
 
-
-
-
-
                 <div id="id_tano" style="display: none;" class="form-group  panel panel-body panel-default tohide">
                     <label for="id_tanoinput" class="col-lg-2 control-label">Type Approval certificate number:</label>
                      <div class="col-lg-10">
-                    <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" step="1" data-bind="value:id_tanoinput" >
+                    <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" max="65535" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
+                     </div>
+                </div>
+                <div id="id_testprotocol" style="display: none;" class="form-group  panel panel-body panel-default tohide">
+                    <label for="id_testprotocolinput" class="col-lg-2 control-label">Test protocol (1- Test/nonoperational: 0- Normal operation):</label>
+                     <div class="col-lg-10">
+                    <input type="number" class="form-control" name="testprotocol_input" value="0" id="id_testprotocolinput" min="0" max="1" step="1" data-bind="value:id_testprotocolinput" >
+                    <span id="id_testprotocolerror" class="help-block"></span>
                      </div>
                 </div>
 
@@ -143,7 +146,7 @@
                 <div id="id_serialnumber" style="display: none;" class="form-group panel panel-body panel-default tohide">
                     <label for="id_serialnumber_input" class="col-lg-2 control-label" >Serial Number:</label>
                     <div class="col-lg-10">
-                    <input type="number"  class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="1048575" step="1" data-bind="value:id_serialnumber_input">
+                    <input type="number"  class="form-control" name="serialnumber_input" id="id_serialnumber_input" min="0" max="16383" step="1" data-bind="value:id_serialnumber_input">
                     <span id="id_serialnumbererror" class="help-block"></span>
                     </div>
                 </div>
@@ -457,6 +460,7 @@ $('#id_protocol').on('change', function() {
     case '2-000':
         $('#id_tano').show();
         $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
         break;
 
 
@@ -465,6 +469,7 @@ $('#id_protocol').on('change', function() {
         $('#id_tano').show();
         $('#id_mmsi').show();
         $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
         break;
 
  // Radio call sign 2nd Gen
@@ -472,6 +477,7 @@ $('#id_protocol').on('change', function() {
         $('#id_tano').show();
         $('#id_radio').show();
         $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
         break;
 
 // Aircraft marking - 2nd Gen
@@ -479,6 +485,7 @@ $('#id_protocol').on('change', function() {
         $('#id_tano').show();
         $('#id_serialnumber').show();
         $('#id_aircraftmarking').show();
+        $('#id_testprotocol').show();
         break;
 
 // Aircraft 24-bit Address 2nd Gen
@@ -486,6 +493,7 @@ $('#id_protocol').on('change', function() {
         $('#id_tano').show();
         $('#id_elt24bit').show();
         $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
         break;
 
 // Aircraft operator 2nd Gen
@@ -494,6 +502,7 @@ $('#id_protocol').on('change', function() {
         $('#id_aircraftoperator').show();
         $('#id_aircraftserial_secgen').show();
         $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
         break;
 
    default:

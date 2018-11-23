@@ -285,7 +285,7 @@ class Hexgen:
         d='-'
         for a in args:
             binstr+=str(a)+d
-        binstr=binstr[:-1]
+        binstr=binstr[:-1] #remove last -
         self.results['binary']=binstr
         self.results['hexcode']=self.binhex(''.join(binstr.split(d)))
 
@@ -366,12 +366,13 @@ class Secondgen(Hexgen):
         Hexgen.__init__(self, formfields,protocol)
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
         tano = str(formfields.get('tano_input'))
+        self.testprotocol=str(formfields.get('testprotocol_input'))
         self.ptype = protocol.split('-')[1]
-        self.sn= self.getserial(serialnumber_input, 0, 1023, 'Serial number range (0 - 1,023)', 10, 'id_serialnumbererror')
-        self.ta= self.getserial(tano, 0, 1048575, 'Type approval number range (0 - 1,048,575)', 20, 'id_tanoerror')
+        self.sn= self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14, 'id_serialnumbererror')
+        self.ta= self.getserial(tano, 0, 65535, 'Type approval number range (0 - 65,535)', 16, 'id_tanoerror')
         self.beacon_gen='second'
     def getresult(self):
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, '0'*44 , '1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, '0'*44 )
         return self.results
 
 
@@ -395,7 +396,7 @@ class Mmsi_secgen(Secondgen):
         else:
             epirbais= self.getserial(epirbais_input, 0, 9999, 'EPIRB AIS range error (0 - 9999)', 14, 'id_epirbaiserror')
 
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,mmsi, epirbais, '1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype,mmsi, epirbais)
         return self.results
 
 
@@ -407,7 +408,7 @@ class Radio_secgen(Secondgen):
     def getresult(self):
         radio_input = str(self.formfields.get('radio_input'))
         radio = self.getbaudot(radio_input, 1, 7, 'Radio callsign maximum 7 characters', 'id_radioerror') +  (7 - len(radio_input)) * '100100' + '00'
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,radio,'1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype,radio)
         return self.results
 
 
@@ -419,7 +420,7 @@ class Aircraftmarking_secgen(Secondgen):
     def getresult(self):
         aircraftmarking_input = str(self.formfields.get('aircraftmarking_input'))
         aircraftmarking = (7 - len(aircraftmarking_input)) * '100100'+ self.getbaudot(aircraftmarking_input, 1, 7, 'Aircraft marking maximum 7 characters', 'id_aircraftmarkingerror') + '00'
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype,aircraftmarking,'1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype,aircraftmarking)
         return self.results
 
 
@@ -432,7 +433,7 @@ class Air24bit_secgen(Secondgen):
     def getresult(self):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.ptype, sn,'0'*20, '1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, sn,'0'*20)
         return self.results
 
 
@@ -449,7 +450,7 @@ class Aircraftoperator_secgen(Secondgen):
         acftop = self.getbaudot(aircraftoperator_input, 3, 3, 'Aircraft operator must be 3 digits','id_aircraftoperatorerror')
         sn_input= str(self.formfields.get('aircraftserial_input'))
         sn= self.getserial(sn_input, 0, 4095, 'Serial number range (0 - 4,095)', 12,'id_aircraftserialerror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn,self.ptype, acftop, sn  ,'1'*14,'1')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn,self.testprotocol,self.ptype, acftop, sn  ,'1'*14)
         return self.results
 
 
@@ -770,10 +771,14 @@ beacon_distress_type = {'00':'Distress',
                '11':'RLS Test Protocol'}
 
 
-beacon_type = {'00':'ELT',
-               '01':'EPIRB',
-               '10':'PLB',
-               '11':'RLS Test Protocol or spare'}
+beacon_type = {'000':'ELT (excludes ELT(DT))',
+               '001':'EPIRB',
+               '010':'PLB',
+               '011':'ELT(DT)',
+               '100':'Spare',
+               '101':'Spare',
+               '110':'Spare',
+               '111':'Spare'}
 
 beacon_rls = {'00':'No automatic RLM Type-1 received - No manual RLM Type 2 received',
               '01':'No automatic RLM Type 1 received -  Manual RLM Type 2 received ',
@@ -793,14 +798,14 @@ deactivation = {'00':'Spare',
                 '10':'Manual de-activation by user',
                 '01':'Automatic de-activation by external means',
                 '11':'Spare'}
-vessel_id = {'000':'No aircraft or maritime identity',
+vessel_id = {'000':'No aircraft or maritime identity (may be for national use; default bits 94-137 all 0)',
              '001':'Maritime MMSI',
              '010':'Radio call sign',
              '011':'Aircraft Registration Marking (Tail Number)',
              '100':'Aircraft aviation 24 Bit Address',
              '101':'Aircraft operator and serial number',
              '110':'Spare',
-             '111':'Spare'}
+             '111':'Reserved for System Testing (may contain information; default  bits 94-137 - 0s).Invalid if T-Prot bit-43 - 0'}
 baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '011101', '0': '001101',
            '3': '010000', '2': '011001', '5': '000001', '4': '001010', '7': '011100', '6': '010101',
            '9': '000011', '8': '001100', '?': '000000', 'A': '111000', 'C': '101110', 'B': '110011',

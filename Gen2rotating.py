@@ -167,12 +167,16 @@ def rotating2(bits):
     #Add a single bit offset so bits array index # matches documentation for readbility
     bits = '0'+ bits
 
-    ##BIT 5-6 (159-160) Beacon Type
-    beacon = definitions.beacon_distress_type[bits[5:7]]
-    rotatingbin.append(['159-160 (Rotating field 5-6)',
+    ##T018 Iss.1 Rev.4 Unassigned ( previously Bit 5-6 (159-160) Beacon Type)
+    if Func.checkzeros(bits[5:7]):
+        zero='Valid'
+    else:
+        zero='Error: Should be 00'
+    ## beacon = definitions.beacon_distress_type[bits[5:7]]
+    rotatingbin.append(['159-160 (Unassigned)',
                         bits[5:7],
-                        'Beacon distress type',
-                        beacon])
+                        'Should be 00',
+                        zero])
 
     ##BIT 7-12 (161-166) Beacon RLS Capability
     if bits[7] == '1':

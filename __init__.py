@@ -64,8 +64,8 @@ def longSGB():
     forms={'0000': SGB_g008(request.form)}
     form = forms[rotatefld]
     if request.method == 'POST' and form.validate():
-
-        hexcodelong = request.form['homingdevice'] + request.form['selftest'] + request.form['beacontype'] + request.form['testprotocol']
+        print('valid')
+        hexcodelong = request.form['homingdevice'] + request.form['rlsfunction'] + request.form['beacontype'] + request.form['testprotocol']
         #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
         print(form.encodelong(hexcodeUIN))
         return redirect(url_for('decoded', hexcode=form.encodelong(hexcodeUIN)))

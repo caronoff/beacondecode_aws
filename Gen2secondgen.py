@@ -66,21 +66,22 @@ class SecondGen(Gen2Error):
                                   '',
                                   padding])
 
-            ##BIT 1-20  Type Approval Certificate #
-            self.tac = Func.bin2dec(self.bits[1:21])
+            ##T018 Issue 1 - Rev 4:  Bit 1-16 Type Approval Certificate #   (previously BIT 1-20  Type Approval Certificate #)
+
+            self.tac = Func.bin2dec(self.bits[1:17])
             if self.tac<10000:
                 warn='WARNING!: SGB requires TAC No >=10,000'
             else:
                 warn=''
-            self.tablebin.append(['1-20',
-                                  self.bits[1:21],
+            self.tablebin.append(['1-16',
+                                  self.bits[1:17],
                                   'Type Approval Cert No: '+str(self.tac),
                                   warn])
 
-            ##BIT 21-30 Serial Number
-            self.serialNum = Func.bin2dec(self.bits[21:31])
-            self.tablebin.append(['21-30',
-                                  self.bits[21:31],
+            ##T018 Issue 1 - Rev 4:  Bit 17-30 Serial Number (previously  bit 21-30 Serial Number)
+            self.serialNum = Func.bin2dec(self.bits[17:31])
+            self.tablebin.append(['17-30',
+                                  self.bits[17:31],
                                   'Serial Number:',
                                   str(self.serialNum)])
 
@@ -99,12 +100,12 @@ class SecondGen(Gen2Error):
                                   'Status of homing device:',
                                   self.status])
 
-            ##BIT 42 Self-test function
-            self.selfTestStatus = Func.selfTest(self.bits[42])
+            ####T018 Issue 1 - Rev 4: Bit 42: RLS Function ( previously Bit 42 Self-test function )
+
             self.tablebin.append(['42',
                                   self.bits[42],
-                                  'Self-test flag:',
-                                  self.selfTestStatus])
+                                  'RLS function capability:',
+                                  Func.rls(self.bits[42])])
 
             ##BIT 43 Test protocol
             self.testprotocol = Func.testProtocol(self.bits[43])
@@ -136,19 +137,20 @@ class SecondGen(Gen2Error):
             ################################
             self.vesselIDfill(0,self.bits[91:138])
 
-            ## BIT 138-139  Beacon Type
-            self.tablebin.append(['138-139',
-                                  self.bits[138:140],
+            ## T018 Iss.1 Rev.4 Bit 138-140 Beacon Type (previous (Bit 138-139  Beacon Type)
+            self.tablebin.append(['138-140',
+                                  self.bits[138:141],
                                   'Beacon Type:',
-                                  Func.getBeaconType(self.bits[138:140])])
-            ## BIT 140  RLS capability
+                                  Func.getBeaconType(self.bits[138:141])])
+            ## T018 Iss.1 Rev.4 removed
+            '''
             self.tablebin.append(['140',
                                   self.bits[140],
                                   'RLS capability:',
                                   Func.rls(self.bits[140])])
 
-
-            ##BIT 140-154 Spare bits
+            '''
+            ##BIT 141-154 Spare bits
             if Func.checkones(self.bits[141:155]) and not Func.checkones(self.bits[155:159]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
@@ -329,34 +331,41 @@ class SecondGen(Gen2Error):
                                   self.bits[12:15],
                                   'Should be 101',
                                   status_check])
-            ##BIT 15-34  Type Approval Certificate #
-            self.tac = Func.bin2dec(self.bits[15:35])
+            ##BIT 15-30  Type Approval Certificate #
+            self.tac = Func.bin2dec(self.bits[15:31])
             if self.tac<10000:
                 warn='WARNING! SGB specifications requires TAC No >=10,000'
             else:
                 warn=''
-            self.tablebin.append(['15-34',
-                                  self.bits[15:35],
+            self.tablebin.append(['15-30',
+                                  self.bits[15:31],
                                   'Type Approval Cert No: '+str(self.tac),
                                   warn])
-            ##BIT 35-44 Beacon Serial Number
-            self.serialNum = Func.bin2dec(self.bits[35:45])
-            self.tablebin.append(['35-44',
+            ##BIT 31-44 Beacon Serial Number
+            self.serialNum = Func.bin2dec(self.bits[31:45])
+            self.tablebin.append(['31-44',
                                   self.bits[35:45],
                                   'Serial Number',
                                   str(self.serialNum)])
 
+            self.testprotocol = Func.testProtocol(self.bits[45])
+            self.tablebin.append(['45',
+                                  self.bits[45],
+                                  'Test protocol flag:',
+                                  str(self.testprotocol)])
+
 
             if self.bits[61:] == '0'*32:
 
-                self.tablebin.append(['45-47', self.bits[45:48], 'Vessel ID Type',Func.getVesselid(self.bits[45:48])])
-                self.tablebin.append(['48-60', self.bits[48:], 'Remaining bits', 'WARNING!! = Truncated SGB Hex ID only partial vessel ID information to be decoded'])
-                self.vesselIDfill(46, self.bits[45:92])
+                self.tablebin.append(['46-48', self.bits[46:49], 'Vessel ID Type',Func.getVesselid(self.bits[45:48])])
+                self.tablebin.append(['49-60', self.bits[49:], 'Remaining bits', 'WARNING!! = No Identification information or Truncated SGB Hex ID only partial vessel ID information'])
+                self.vesselIDfill(46, self.bits[46:93])
             else:
             ##BIT 45-91 Aircraft / Vessel ID
-                self.vesselIDfill(46, self.bits[45:92])
+                self.vesselIDfill(45, self.bits[46:93])
 
-                ##BIT 92 Fixed value 1
+                ##T018 Iss.1 Rev 4 removed :  (was BIT 92 Fixed value 1)
+            '''
                 if self.bits[92]=='1':
                     status_check = 'OK'
                 else:
@@ -366,7 +375,7 @@ class SecondGen(Gen2Error):
                                       self.bits[92],
                                       'Fixed 1',
                                       status_check])
-
+            '''
         else:
             self.type = ('Hex string length of ' + str(len(strhex)) + '.'
                          + '\nBit string length of ' + str(len(self.bits)) + '.'
@@ -406,20 +415,21 @@ class SecondGen(Gen2Error):
         ##Hex ID BIT 14 = fixed binary 1
         hexID.append('1')
 
-        ##Hex ID BIT 15-34 = BITS 1-20 (C/S TAC No)
-        hexID.append(self.bits[1:21])
+        ##Hex ID BIT 15-30 = BITS 1-16 (C/S TAC No)
+        hexID.append(self.bits[1:17])
 
-        ##Hex ID BIT 35-44 = BITS 21-30 (Beacon Serial Number)
-        hexID.append(self.bits[21:31])
+        ##Hex ID BIT 31-44 = BITS 17-30 (Beacon Serial Number)
+        hexID.append(self.bits[17:31])
+        ##Test protocol flag = Bit 43
+        hexID.append(self.bits[43])
 
-        ##Hex ID BIT 45-47 = BITS 91-93 (Aircraft/Vessel ID Type)
+        ##Hex ID BIT 46-48 = BITS 91-93 (Aircraft/Vessel ID Type)
         hexID.append(self.bits[91:94])
 
         ##Hex ID BIT 48-91 = BITS 94-137 (Aircraft/Vessel ID)
         hexID.append(self.bits[94:138])
 
-        ##Hex ID BIT 92 = fixed binary 1
-        hexID.append('1')
+
 
         ##Join list together and convert to Hexadecimal
         beaconHexID = Func.bin2hex(''.join(hexID))
