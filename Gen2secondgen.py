@@ -82,7 +82,7 @@ class SecondGen(Gen2Error):
             self.serialNum = Func.bin2dec(self.bits[17:31])
             self.tablebin.append(['17-30',
                                   self.bits[17:31],
-                                  'Serial Number:',
+                                  'Beacon Serial Number:',
                                   str(self.serialNum)])
 
             ##BIT 31-40 Country code
@@ -576,7 +576,7 @@ class SecondGen(Gen2Error):
             self.serialnum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,111,deduct_offset),
                                   bits[3:21],
-                                  'Aircraft operator:',
+                                  'Aircraft operator designator:',
                                   self.operator])
             self.tablebin.append([self.bitlabel(112,123,deduct_offset),
                                   bits[21:33],
