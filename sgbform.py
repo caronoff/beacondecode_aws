@@ -37,7 +37,7 @@ class SGB(Form):
 
     def longSGB(form,h):
         binid = hex2bin(h)
-        ctrybin = binid[1:10]
+        ctrybin = binid[1:11]
         tanobin = binid[14:30]
         snbin = binid[30:44]
         tprotocol= binid[44]
@@ -53,7 +53,7 @@ class SGB(Form):
 
 
         completebin = tanobin + snbin + ctrybin + form.homingdevice.data + \
-                      form.rlsfunction.data + form.testprotocol.data + \
+                      form.rlsfunction.data + tprotocol + \
                       latbin + longbin + idbin + form.beacontype.data  +  14 * '1'
         return completebin
 
