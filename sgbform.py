@@ -127,10 +127,15 @@ class SGB_emergency(SGB):
                   ('1000', 'Automatic Activation from Avionics or Triggering System')]
     timesecond = IntegerField('Time rounded to nearest second ', validators=[validators.NumberRange(min=0, max=86399,
                                                            message='Needs to be 0-86399')],default=0)
+
+
+    altitude = IntegerField('Altitude of encoded location ', validators=[validators.NumberRange(min=-400, max=15952,
+                                                           message='Needs to be within range -400 to 15952')],default=15968)
     act = SelectField(label='Activation method:', choices=activation, default='0001')
 
     def encodelong(form, h):
         secbin=dec2bin(int(form.timesecond.data),17)
-        completebin = form.longSGB(h) + '0001' + secbin+'1'*10 + form.act.data + '1'*4 + '0'*9
+        alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
+        completebin = form.longSGB(h) + '0001' + secbin+alt + form.act.data + '1'*4 + '0'*9
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)
