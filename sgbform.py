@@ -121,7 +121,7 @@ class SGB_g008(SGB):
         print(completebin)
         return bin2hex('00'+completebin+bch)
 
-class SGB_emergency:
+class SGB_emergency(Form):
     dops=[('0000','DOP <= 1'),
           ('0001','DOP > 1 and <= 2'),
           ('0010','DOP > 2 and <= 3'),
