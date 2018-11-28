@@ -23,9 +23,7 @@ class SGB(Form):
                                choices=[('0', 'No RLS capability or disabled'),
                                         ('1', 'RLS capability enabled')], default='0')
 
-    testprotocol = SelectField(label='Test protocol:',
-                           choices=[('0', 'Normal beacon operation'),
-                                    ('1', 'Test protocol transmition - not a distress alert')],default='0')
+
 
     beacontype = SelectField(label='Beacon type:',
                                choices=[('000', 'ELT (excludes ELT(DT))'),
@@ -53,7 +51,7 @@ class SGB(Form):
 
 
         completebin = tanobin + snbin + ctrybin + form.homingdevice.data + \
-                      form.rlsfunction.data + form.testprotocol.data + \
+                      form.rlsfunction.data + tprotocol + \
                       latbin + longbin + idbin + form.beacontype.data  +  14 * '1'
         return completebin
 
@@ -124,3 +122,20 @@ class SGB_g008(SGB):
         print(completebin)
         return bin2hex('00'+completebin+bch)
 
+class SGB_g008(SGB):
+    dops = [('0000', 'DOP <= 1'),
+            ('0001', 'DOP > 1 and <= 2'),
+            ('0010', 'DOP > 2 and <= 3'),
+            ('0011', 'DOP > 3 and <= 4'),
+            ('0100', 'DOP > 4 and <= 5'),
+            ('0101', 'DOP > 5 and <= 6'),
+            ('0110', 'DOP > 6 and <= 7'),
+            ('0111', 'DOP > 7 and <= 8'),
+            ('1000', 'DOP > 8 and <= 10'),
+            ('1001', 'DOP > 10 and <= 12'),
+            ('1010', 'DOP > 12 and <= 15'),
+            ('1011', 'DOP > 15 and <= 20'),
+            ('1100', 'DOP > 20 and <= 30'),
+            ('1101', 'DOP > 30 and <= 50'),
+            ('1110', 'DOP > 50 '),
+            ('1111', 'DOP not available')]

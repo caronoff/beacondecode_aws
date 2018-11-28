@@ -1,6 +1,6 @@
 from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
-from sgbform import SGB, SGB_g008
+from sgbform import SGB, SGB_g008, SGB_emergency
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
@@ -61,7 +61,7 @@ def longSGB():
 
     rotatefld=str(request.args.get('rotatingfield'))
     print(rotatefld,hexcodeUIN)
-    forms={'0000': SGB_g008(request.form)}
+    forms={'0000': SGB_g008(request.form),'0001':SGB_emergency}
     form = forms[rotatefld]
     if request.method == 'POST' and form.validate():
         print('valid')
