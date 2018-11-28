@@ -128,6 +128,6 @@ class SGB_emergency(SGB):
     act = SelectField(label='Activation method:', choices=activation, default='0001')
 
     def encodelong(form, h):
-        completebin = form.longSGB(h) + '0001' + '1'*27 + act + '1'*4 + '0'*9
+        completebin = form.longSGB(h) + '0001' + '1'*27 + form.act.data + '1'*4 + '0'*9
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)
