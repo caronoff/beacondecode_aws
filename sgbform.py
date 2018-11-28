@@ -129,13 +129,13 @@ class SGB_emergency(SGB):
                                                            message='Needs to be 0-86399')],default=0)
 
 
-    altitude = IntegerField('Altitude of encoded location ', validators=[validators.NumberRange(min=-400, max=15952,
-                                                           message='Needs to be within range -400 to 15952')],default='')
+    altitude = IntegerField('Altitude of encoded location(-400 to 15952 (enter 16000 if altitude not available)', validators=[validators.NumberRange(min=-400, max=16000,
+                                                           message='Needs to be within range -400 to 15968')],default=16000)
     act = SelectField(label='Activation method:', choices=activation, default='0001')
 
     def encodelong(form, h):
         secbin=dec2bin(int(form.timesecond.data),17)
-        if form.altitude.data =='':
+        if int(form.altitude.data) >15952:
             alt='1'*10
         else:
             alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
