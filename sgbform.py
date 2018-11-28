@@ -23,10 +23,10 @@ class SGB(Form):
                                choices=[('0', 'No RLS capability or disabled'),
                                         ('1', 'RLS capability enabled')], default='0')
 
-    '''testprotocol = SelectField(label='Test protocol:',
+    testprotocol = SelectField(label='Test protocol:',
                            choices=[('0', 'Normal beacon operation'),
                                     ('1', 'Test protocol transmition - not a distress alert')],default='0')
-                                    '''
+
 
     beacontype = SelectField(label='Beacon type:',
                                choices=[('000', 'ELT (excludes ELT(DT))'),
