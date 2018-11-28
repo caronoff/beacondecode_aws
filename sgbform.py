@@ -122,25 +122,12 @@ class SGB_g008(SGB):
         return bin2hex('00'+completebin+bch)
 
 class SGB_emergency(SGB):
-    dops=[('0000','DOP <= 1'),
-          ('0001','DOP > 1 and <= 2'),
-          ('0010','DOP > 2 and <= 3'),
-          ('0011','DOP > 3 and <= 4'),
-          ('0100','DOP > 4 and <= 5'),
-          ('0101','DOP > 5 and <= 6'),
-          ('0110','DOP > 6 and <= 7'),
-          ('0111','DOP > 7 and <= 8'),
-          ('1000','DOP > 8 and <= 10'),
-          ('1001','DOP > 10 and <= 12'),
-          ('1010','DOP > 12 and <= 15'),
-          ('1011','DOP > 15 and <= 20'),
-          ('1100','DOP > 20 and <= 30'),
-          ('1101','DOP > 30 and <= 50'),
-          ('1110','DOP > 50 '),
-          ('1111','DOP not available')]
-    hdop = SelectField(label='HDOP:', choices=dops, default='1111')
+    activation = [('0001', 'Manual Activation by the crewr'),
+                  ('0100', 'G-switch/Deformation Activation'),
+                  ('1000', 'Automatic Activation from Avionics or Triggering System')]
+    act = SelectField(label='Activation method:', choices=activation, default='0001')
 
     def encodelong(form, h):
-        completebin = form.longSGB(h) + '0001' + '1'*35 + '0'*9
+        completebin = form.longSGB(h) + '0001' + '1'*27 + act + '1'*4 + '0'*9
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)
