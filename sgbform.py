@@ -37,7 +37,7 @@ class SGB(Form):
 
     def longSGB(form,h):
         binid = hex2bin(h)
-        ctrybin = binid[1:11]
+        ctrybin = binid[1:10]
         tanobin = binid[14:30]
         snbin = binid[30:44]
         tprotocol= binid[44]
