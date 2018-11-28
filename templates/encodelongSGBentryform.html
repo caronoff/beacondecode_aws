@@ -24,10 +24,6 @@
         <h2 class="form-signin-heading">Second Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
 <dl>
-
-
-
-{% if ptype == '0000' %}
      {{ render_field(form.latitude) }}
     {{ render_field(form.northsouth) }}
     <br>
@@ -38,6 +34,10 @@
     {{ render_field(form.homingdevice) }}
     {{ render_field(form.rlsfunction) }}
     {{ render_field(form.beacontype) }}
+
+
+{% if ptype == '0000' %}
+
     {{ render_field(form.hours) }}
     {{ render_field(form.minutes) }}
     {{ render_field(form.altitude) }}
