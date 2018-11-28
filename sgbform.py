@@ -130,12 +130,15 @@ class SGB_emergency(SGB):
 
 
     altitude = IntegerField('Altitude of encoded location ', validators=[validators.NumberRange(min=-400, max=15952,
-                                                           message='Needs to be within range -400 to 15952')],default=15968)
+                                                           message='Needs to be within range -400 to 15952')],default='')
     act = SelectField(label='Activation method:', choices=activation, default='0001')
 
     def encodelong(form, h):
         secbin=dec2bin(int(form.timesecond.data),17)
-        alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
+        if form.altitude.data =='':
+            alt='1'*10
+        else:
+            alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
         completebin = form.longSGB(h) + '0001' + secbin+alt + form.act.data + '1'*4 + '0'*9
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)
