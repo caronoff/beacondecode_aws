@@ -131,7 +131,14 @@ class SGB_emergency(SGB):
 
     altitude = IntegerField('Altitude of encoded location(-400 to 15952 (enter 16000 if altitude not available)', validators=[validators.NumberRange(min=-400, max=16000,
                                                            message='Needs to be within range -400 to 15968')],default=16000)
-    act = SelectField(label='Activation method:', choices=activation, default='0001')
+    act = SelectField(label='Activation Method:', choices=activation, default='0001')
+    gnss = SelectField(label='GNSS Status:', choices=[('00', 'Not Fix'),
+                                        ('01', '2D location only'),
+                                        ('10', '3D location'),('11', 'Spare')], default='00')
+
+    battery = SelectField(label='Remaining Battery Capacity:', choices=[('00', '9 hours or less'),
+                                                      ('01', 'Between 9 hours and 18 hours remaining'),
+                                                      ('10', 'More than 18 hours remaining'), ('11', 'Battery capacity not available')], default='11')
 
     def encodelong(form, h):
         secbin=dec2bin(int(form.timesecond.data),17)
@@ -139,6 +146,6 @@ class SGB_emergency(SGB):
             alt='1'*10
         else:
             alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
-        completebin = form.longSGB(h) + '0001' + secbin+alt + form.act.data + '1'*4 + '0'*9
+        completebin = form.longSGB(h) + '0001' + secbin+alt + form.act.data + form.gnss.data+form.battery.data + '0'*9
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)
