@@ -70,7 +70,7 @@ body {
 
   padding-top: 10px;
   padding-bottom: 40px;
-  background-color: #B8BFBF;
+  background-color: #FFFFFF;/* #B8BFBF; */
 }
 
 
@@ -170,7 +170,7 @@ position: relative;
 }
 
 .panel-body {
-background: #FFFFFF ;/* #a19fa1; */
+background: #a19fa1 ;/* #a19fa1; */
 
 position: relative;
 padding: 5px;
