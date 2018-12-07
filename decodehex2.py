@@ -904,7 +904,7 @@ class Beacon(HexError):
             else:
                 self.gentype = 'first'
                 beacon = BeaconFGB(hexcode)
-                self.genmsg = genmsgdic['15']+' Computed Checksum: '+Fcn.getFiveCharChecksum(hexcode)
+                self.genmsg = genmsgdic['15']+' Computed Checksum : '+Fcn.getFiveCharChecksum(hexcode)
 
         elif len(hexcode) == 30 :
 
