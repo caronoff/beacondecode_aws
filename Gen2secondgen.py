@@ -391,7 +391,7 @@ class SecondGen(Gen2Error):
 
     def hexuin(self):
         if self.type=='uin':
-            return 'message is 23 UIN'
+            return 'Message is a UIN'
         return self.uinSgb()
 
     def uinSgb(self):

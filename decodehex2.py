@@ -191,6 +191,8 @@ class BeaconFGB(HexError):
         #print self.bin
 
     def hexuin(self):
+        if self.type =='uin':
+            return 'Message is a UIN'
         return self.hex15
 
     def getmtype(self):
@@ -933,6 +935,9 @@ class Beacon(HexError):
                 len(hexcode)) + '.' + '\nLength must be 15,22, 23, 30,36 or 63'
             raise HexError('Length Error', self.type)
             self.beacon=None
+
+
+        self.genmsg = self.genmsg + '\nUIN:'
         self.beacon=beacon
         self.latitude=self.beacon.latitude
         self.longitude=self.beacon.longitude
