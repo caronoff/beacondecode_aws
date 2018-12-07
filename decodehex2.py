@@ -937,7 +937,7 @@ class Beacon(HexError):
             self.beacon=None
 
 
-        self.genmsg = self.genmsg + '\nUIN:'
+        self.genmsg = self.genmsg + '<br>UIN:'
         self.beacon=beacon
         self.latitude=self.beacon.latitude
         self.longitude=self.beacon.longitude
