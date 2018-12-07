@@ -77,9 +77,11 @@
         <a href="/decode" class="btn btn-danger"  style="margin-top: auto ; display:block; text-align: center">
           <span class="glyphicon glyphicon-home" style="color:gray"></span> Return
         </a>
+            {% if showmenu %}
             <a href="/bch/{{hexcode}}" class="btn btn--default"  style="margin-top: auto ; display:block; text-align: center">
           <span class="glyphicon glyphicon-star" style="color:gray"></span> Save BCH
         </a>
+            {% endif %}
 </div>
   {% if locationcheck %}
         <p>Encoded location</p>
