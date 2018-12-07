@@ -56,10 +56,7 @@ class SecondGen(Gen2Error):
             self.bits = "0" + self.bits[2:]
             ##Add the 23 Hex ID to our table
             self.beaconHexID = self.uinSgb()
-            self.tablebin.append(['',
-                                  '',
-                                  'Beacon 23 Hex ID:',
-                                  self.beaconHexID])
+            #self.tablebin.append(['','','Beacon 23 Hex ID:',self.beaconHexID])
 
             self.tablebin.append(['left padding',
                                   pbit,
