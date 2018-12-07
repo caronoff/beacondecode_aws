@@ -289,6 +289,7 @@ def decoded(hexcode):
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
+                           uin = beacon.hexuin(),
                            contact=contacts.contact(mid,[f[1] for f in flds],contacttypes),
                            types=contacttypes,
                            flds=flds,
