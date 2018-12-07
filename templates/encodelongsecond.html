@@ -14,6 +14,7 @@
 
 
 {{ super() }}
+{%if showmenu %}
 <div class="form-group" id="id_g008input">
       <form class="form-horizontal"  action="{{url_for('longSGB')}}"  >
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
@@ -39,6 +40,7 @@
       </form>
 
 </div>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}

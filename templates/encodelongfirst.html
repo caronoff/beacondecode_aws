@@ -10,7 +10,7 @@
 {% block content %}
 
 {{super()}}
-
+{% if showmenu %}
 <div class="form-group" >
       <form class="form-horizontal"  action="/longfirstgen" >
 
@@ -19,6 +19,6 @@
       </form>
 </div>
 
-
+{% endif %}
 
 {% endblock %}
