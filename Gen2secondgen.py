@@ -51,6 +51,7 @@ class SecondGen(Gen2Error):
             else:
                 padding = 'ERROR! left padding should be 00'
                 self.errors.append(padding)
+                self.tablebin.append(['left padding', pbit, '', padding])
 
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
@@ -58,10 +59,7 @@ class SecondGen(Gen2Error):
             self.beaconHexID = self.uinSgb()
             #self.tablebin.append(['','','Beacon 23 Hex ID:',self.beaconHexID])
 
-            self.tablebin.append(['left padding',
-                                  pbit,
-                                  '',
-                                  padding])
+            #self.tablebin.append(['left padding',pbit,'',padding])
 
             ##T018 Issue 1 - Rev 4:  Bit 1-16 Type Approval Certificate #   (previously BIT 1-20  Type Approval Certificate #)
 
