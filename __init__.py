@@ -279,6 +279,7 @@ def decoded(hexcode):
     #print([c[0] for c in contacttypes])
     #print(contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]))
     taclist=typeapproval.tac(beacon.gettac(),[f[1] for f in tflds])
+    taclist=[]
     tacdic={}
     if len(taclist)>0:
         for l in taclist:
