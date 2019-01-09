@@ -232,7 +232,7 @@ def decoded(hexcode):
             ('Contact Website','ci_webpage_1'),
             ('Other information','website_url')]
     contacttypes = ['PLB','ELT','EPIRB']
-    tflds = [('Model','name'),
+    tflds2 = [('Model','name'),
              ('',{'manufacturer_id':['name','short_name']}),
              ('Manufacturer', 'manufacturer_id'),
              ('ID','id'),
@@ -240,6 +240,7 @@ def decoded(hexcode):
              ('Other name','model_add_names'),
              ('Battery','battery'),
              ('Protocols Tested','protocols_tested')]
+    tflds = [('Model', 'name')]
 
 
     # send POST request to jotforms for logging
