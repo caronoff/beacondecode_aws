@@ -967,6 +967,8 @@ class Beacon(HexError):
         return self.beacon.bchmatch()
 
     def gettac(self):
+        print(self.beacon.gettac())
+        print('Tac No')
         return self.beacon.gettac()
 
     def loctype(self):
