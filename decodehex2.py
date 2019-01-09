@@ -875,9 +875,9 @@ class Beacon(HexError):
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.4).',
                    '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a SGB, without the bch (as per T.018 Issue 1 - Rev.4).',
-                   '30':'Hex data entered is a complete 30 charachter hexadecimal consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.4).',
-                   '28': 'Hex data entered is a 28 charachter hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
-                   '36': 'Hex data entered is a complete 36 charachter hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).'}
+                   '30':'Hex data entered is a complete 30 character hexadecimal consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.4).',
+                   '28': 'Hex data entered is a 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
+                   '36': 'Hex data entered is a complete 36 character hexadecimal consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
             raise HexError('Hex format Error', 'This is not a valid hexadecimal value!')
