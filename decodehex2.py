@@ -162,8 +162,8 @@ class BeaconFGB(HexError):
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
 
-        if self.type!='uin' and self.bin[25]=='0':
-            self.type = 'Short Msg'
+        #if self.type!='uin' and self.bin[25]=='0':
+        #    self.type = 'Short Msg'
 
         protocolflag=self.bin[26]
 
@@ -177,18 +177,26 @@ class BeaconFGB(HexError):
         self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname])
 
+        if self.type == 'Short Msg' and self.bin[25] == '1':
+            self.tablebin.append(['Bad message', 'Error', '', 'Long message format should be 30 Hex'])
 
-
-        if protocolflag == '0' and self.type != 'Short Msg':
+        elif protocolflag == '0' and self.type != 'Short Msg':
             self.locationProtocol()
         #   protocol == '1' 'User Protocol'
         #   type of user protocol located at bits 37-39    
-        elif protocolflag == '1'  :            
+        elif protocolflag == '1' and self.type != 'Short Msg'  :
             self.userProtocol()
-        else:
+
+        elif protocolflag == '0' and self.type == 'Short Msg':
             self.tablebin.append(['Inclomplete Hex', 'Error', 'Incomplete', 'Location protocol does not allow short message'])
-            self.locationProtocol()
-        #print self.bin
+            #self.locationProtocol()
+
+        elif protocolflag == '1' and self.type == 'Short Msg':
+            self.tablebin.append(['Short Message type', '', '', ''])
+            self.userProtocol()
+
+
+    #print self.bin
 
     def hexuin(self):
         if self.type =='uin':
@@ -496,6 +504,8 @@ class BeaconFGB(HexError):
         
         self._btype=btype
         self.tac=str(tano)
+        if self.type == 'Short Msg':
+            self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'Not yet decoded'])
 
         
     def update_locd(self,_dec,_dir):        
