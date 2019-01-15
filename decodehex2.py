@@ -97,6 +97,7 @@ class BeaconFGB(HexError):
 
     def processHex(self, strhex):
         self.bchstring = ''
+        self.hex15 =''
         self.bch1 = self.bch2 = self.tac = 'na'
         self.courseloc = ('na', 'na')
         self.location = ('na', 'na')
