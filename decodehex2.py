@@ -506,6 +506,7 @@ class BeaconFGB(HexError):
         self._btype=btype
         self.tac=str(tano)
         if self.type == 'Short Msg':
+            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'Not yet decoded'])
 
         
