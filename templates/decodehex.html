@@ -11,7 +11,7 @@
 
 <div id="myform">
       <form class="form-signin" id="decodeHex" action="/decode"  method="POST">
-        <h2 class="form-signin-heading">Beacon Message Decoder</h2>
+        <h2 class="form-signin-heading">Beacon Message Decoder</h2> <a href="#instructions" > What is hexadecimal code?</a>
         <label for="inputhexcode" class="sr-only">Enter hexadecimal code</label>
           <div class="input-group" data-validate="hex">
         <input type="text" name="hexcode" id="inputhexcode"  class="form-control" placeholder="Enter hexadecimal code" required autofocus >
@@ -66,15 +66,15 @@ The length of the hexadecimal code must be either 15 or 23 characters for unique
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Instructions</strong></h5>
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Locating Your Beacon HEX ID</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
 
-          <h3>Locating Your Beacon HEX ID</h3>
-<p>The Hex ID is a hexadecimal character string of a length of either 15, in the case of first generation beacons or 23 in the case of second generation beacons (valid range: numbers 0 through 9 and letters A through F),
+
+<p>The Hex ID, beacon UIN, is a hexadecimal character string of a length of either 15, in the case of first generation beacons or 23 in the case of second generation beacons (valid range: numbers 0 through 9 and letters A through F),
     referred to as the beacon 15 Hex Identification, or 15 Hex ID. Your beacon’s 15 character Hex ID uniquely identifies your 406-MHz beacon and is encoded in the message your beacon transmits to search and rescue services if your beacon is activated.
     The Hex ID contains a country code that should match the flag of the aircraft or vessel (or residence country in the case of a PLB owner), and may include other identification information for the aircraft or vessel (depending on the protocol that was used when the beacon was electronically programmed). The aircraft or vessel identification included in the Hex ID may also contain the aircraft or vessel registration markings, the aircraft or vessel radio callsign, or other information.</p>
 <p>You should find your beacon’s Hex ID on a label affixed to the beacon or in the beacon documentation provided by your beacon manufacturer. If you have difficulty locating your beacon Hex ID, contact your beacon manufacturer.</p>
