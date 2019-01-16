@@ -11,9 +11,7 @@
 
 <div id="myform">
       <form class="form-signin" id="decodeHex" action="/decode"  method="POST">
-        <h2 class="form-signin-heading">Beacon Hex Decoder</h2> <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#instructions">
-                      What is a beacon hex ?
-                    </button>
+        <h2 class="form-signin-heading">Beacon Hex Decoder</h2>
         <label for="inputhexcode" class="sr-only">Enter hexadecimal code</label>
           <div class="input-group" data-validate="hex">
         <input type="text" name="hexcode" id="inputhexcode"  class="form-control" placeholder="Enter hexadecimal code" required autofocus >
@@ -36,7 +34,9 @@
 <h3>Instructions for use:</h3>
 
             <p>Enter the beacon hexadecimal information in the field above, ensuring that there are no blank spaces before, after or between the hexadecimal characters.
-The length of the hexadecimal code must be either 15 or 23 characters for unique beacon identification numbers.
+The length of the hexadecimal code must be either 15 or 23 characters for unique beacon identification numbers. Click '?' for tips on locating your beacon hex<button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#instructions">
+                      ?
+                    </button>
     The decoder also accepts complete messages with encoded locations for first (FGB) and second generation beacons SGB  of 30 or 36 Hex for FGB  and  51 or 63 characters for SGB.
 </p>
 <p>Click "Process"</p>
