@@ -15,6 +15,7 @@ app = Flask(__name__)
 app.secret_key = 'my secret'
 
 MENU = False
+
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():

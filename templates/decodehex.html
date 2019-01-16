@@ -26,7 +26,11 @@
       </form>
         <div id="intro">
         <p class="lead" >  <h3>Disclaimer</h3>
-            <strong>This decoder is provided by the Secretariat of the International Cospas-Sarsat Programme on an as-is basis without warranty about accuracy or suitability</strong><br>  </p>
+            <strong>This decoder is provided by the Secretariat of the International Cospas-Sarsat Programme on an as-is basis without warranty about accuracy or suitability</strong>
+            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#instructions">
+                      Show Instructions
+                    </button>
+            </p>
 
 
 <h3>Instructions for use:</h3>
@@ -59,6 +63,42 @@ The length of the hexadecimal code must be either 15 or 23 characters for unique
         </div>
 
 </div>
+
+<!-- modal instructions -->
+<div class="modal fade" id="instructions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><strong>Instructions</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<p>Enter the beacon hexadecimal information in the field above, ensuring that there are no blank spaces before, after or between the hexadecimal characters.
+The length of the hexadecimal code must be either 15 or 23 characters for unique beacon identification numbers.
+    The decoder also accepts complete messages with encoded locations for first (FGB) and second generation beacons SGB  of 30 or 36 Hex for FGB  and  51 or 63 characters for SGB.
+</p>
+
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
 
 
 {% endblock %}
