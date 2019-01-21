@@ -806,6 +806,7 @@ vessel_id = {'000':'No aircraft or maritime identity (may be for national use; d
              '101':'Aircraft operator and serial number',
              '110':'Spare',
              '111':'Reserved for System Testing (may contain information; default  bits 94-137 - 0s).Invalid if T-Prot bit-43 - 0'}
+
 baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '011101', '0': '001101',
            '3': '010000', '2': '011001', '5': '000001', '4': '001010', '7': '011100', '6': '010101',
            '9': '000011', '8': '001100', '?': '000000', 'A': '111000', 'C': '101110', 'B': '110011',
@@ -814,4 +815,6 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
            'Q': '111101', 'P': '101101', 'S': '110100', 'R': '101010', 'U': '111100', 'T': '100001',
            'W': '111001', 'V': '101111', 'Y': '110101', 'X': '110111', 'Z': '110001'}
 
+
+moreinfo= {'sgb_radio_callsign':' more instructions '}
 

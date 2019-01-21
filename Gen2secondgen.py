@@ -8,6 +8,7 @@
 import Gen2functions as Func
 import Gen2rotating as rotating
 import writebch
+import definitions
 
 class Gen2Error(Exception):
     def __init__(self, value, message):
@@ -294,12 +295,7 @@ class SecondGen(Gen2Error):
 
 
 
-
-
-
-
         elif len(self.bits) == 92 :
-
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
@@ -317,7 +313,7 @@ class SecondGen(Gen2Error):
                                   self.bits[2:12],
                                   'Country code:',
                                   str(self.countryCode) + ' ' + str(self.countryName)])
-            ##BIT 12-14 Should be 101
+            ##BIT 12-14 Should be 101 status check for SGB
             if self.bits[12:15] == '101':
                 status_check = 'OK'
             else:
@@ -415,13 +411,14 @@ class SecondGen(Gen2Error):
 
         ##Hex ID BIT 31-44 = BITS 17-30 (Beacon Serial Number)
         hexID.append(self.bits[17:31])
-        ##Test protocol flag = Bit 43
+
+        ##Test protocol flag = Bit 45  = Bit 43
         hexID.append(self.bits[43])
 
         ##Hex ID BIT 46-48 = BITS 91-93 (Aircraft/Vessel ID Type)
         hexID.append(self.bits[91:94])
 
-        ##Hex ID BIT 48-91 = BITS 94-137 (Aircraft/Vessel ID)
+        ##Hex ID BIT 49-92 = BITS 94-137 (Aircraft/Vessel ID)
         hexID.append(self.bits[94:138])
 
 
@@ -515,7 +512,8 @@ class SecondGen(Gen2Error):
             self.tablebin.append([self.bitlabel(94,135,deduct_offset),
                                   bits[3:45],
                                   'Radio Callsign',
-                                  self.callsign])
+                                  self.callsign,
+                                  definitions.moreinfo['sgb_radio_callsign']])
             if Func.checkzeros(bits[45:47]):
                 status_check='OK'
             else:
@@ -540,7 +538,7 @@ class SecondGen(Gen2Error):
                 status_check = 'ERROR'
             self.tablebin.append([self.bitlabel(136,137,deduct_offset),
                                   bits[45:47],
-                                  'Spare should be 0',
+                                  'Spare should be 00',
                                   status_check])
         ##############################################
         # Vessel 4: Aircraft Aviation 24 Bit Address #
