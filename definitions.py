@@ -840,9 +840,12 @@ These are represented in the RLS messages as bits 16-17 indicating the beacon ty
 The last 30 numbers (i.e., National RLS Numbers 970 to 999) are set aside for National Use by Competent Authorities. That is full National RLS Numbers 1970 to 1999 for EPIRBs, 2970 to 2999 for ELTs and 3970 to 3999 for PLBs.
           
            
-           '''
+           ''',
 
+        'elt_dt_aircraftoperator':('elt_dt_aircraftoperator','''
+       Aircraft operator designator (3 letters) can be encoded in 15 bits using a shortened form of the
+       modified-Baudot code (i.e.: all letters in the modified-Baudot code are coded in 6 bits, with the first bit = "1".
+       This first bit can, therefore, be deleted to form a 5-bit. 3 x 5 = 15 bits''')
 
-
-                        )}
+                        }
 
