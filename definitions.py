@@ -817,12 +817,16 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
 
 
 moreinfo= {'sgb_radio_callsign':('sgb_radio_callsign',
-                                 '''Is encoded using the modified-Baudot code shown in Table 3.1a. This code enables 7 characters to be encoded using 42 bits (6x7=42).
+                                 '''The Radio call sign binary data is decoded using the modified-Baudot code shown in Table 3.1a of document T.018. This enables 7 characters to be encoded with 6 bits per character using only 42 bits (6x7=42).
                                      The two highest bits are spare and shall be coded as 00. This data will be left justified
                                     with a modified-Baudot space (100100) being used where no character exists. 
                                     If no Radio call sign is available then insert a series of 7 spaces (100100) '''),
 
-           'country_code':('country_code','The country code is a 3 digit number assigned by...')
+           'country_code':('country_code','''
+           The country code is a three-digit decimal country code number (0 to 999). Country codes are based on the International Telecommunication Union (ITU) 
+           Maritime Identification Digit (MID) country code and corresponding country names are available on the ITU website 
+            (www.itu.int/cgi-bin/htsh/glad/cga_mids.sh).           
+           ''')
 
 
 

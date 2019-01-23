@@ -87,7 +87,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append(['31-40',
                                   self.bits[31:41],
                                   'Country code:',
-                                  str(self.countryCode)+' '+str(self.countryName)])
+                                  str(self.countryCode)+' '+str(self.countryName),definitions.moreinfo['country_code']])
 
             ##BIT 41 Status of homing device
             self.status = Func.homing(self.bits[41])
