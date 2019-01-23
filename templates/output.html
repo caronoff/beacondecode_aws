@@ -58,7 +58,10 @@
 		<td class="columnC"> {{ item[2] }}
 
 
-            {% if item[4] %} {{item[4][0]}}
+            {% if item[4] %}
+            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#{{item[4][0]}}">
+                      ?</button>
+
 
             <!-- modal instructions -->
 <div class="modal fade" id="{{item[4][0]}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
