@@ -816,7 +816,11 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
            'W': '111001', 'V': '101111', 'Y': '110101', 'X': '110111', 'Z': '110001'}
 
 
-moreinfo= {'sgb_radio_callsign':('sgb_radio_callsign',' more instructions '),
+moreinfo= {'sgb_radio_callsign':('sgb_radio_callsign',
+                                 '''Is encoded using the modified-Baudot code shown in Table 3.1a. This code enables 7 characters to be encoded using 42 bits (6x7=42).
+                                     The two highest bits are spare and shall be coded as 00. This data will be left justified
+                                    with a modified-Baudot space (100100) being used where no character exists. 
+                                    If no Radio call sign is available then insert a series of 7 spaces (100100) '''),
 
            'country_code':('country_code','The country code is a 3 digit number assigned by...')
 
