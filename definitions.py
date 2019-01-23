@@ -816,5 +816,5 @@ baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '0111
            'W': '111001', 'V': '101111', 'Y': '110101', 'X': '110111', 'Z': '110001'}
 
 
-moreinfo= {'sgb_radio_callsign':' more instructions '}
+moreinfo= {'sgb_radio_callsign':('sgb_radio_callsign',' more instructions ')}
 

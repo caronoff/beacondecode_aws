@@ -55,7 +55,7 @@
       <tr>
         <td class="columnA"> {{ item[0] }} </td>
 		<td class="columnB">{{ item[1] }} </td>
-		<td class="columnC"> {{ item[2] }} {% if item[4] %} {{item[4]}} {% endif %}</td>
+		<td class="columnC"> {{ item[2] }} {% if item[4] %} {{item[4][0]}} {% endif %}</td>
 		<td class="columnD">
                      {% if item[2]== 'Country code:' %}{{ item[3] }}<!-- Button trigger modal -->
                    {% if showmenu %}
