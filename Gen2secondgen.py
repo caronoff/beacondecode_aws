@@ -312,7 +312,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append(['2-11',
                                   self.bits[2:12],
                                   'Country code:',
-                                  str(self.countryCode) + ' ' + str(self.countryName)])
+                                  str(self.countryCode) + ' ' + str(self.countryName)],definitions.moreinfo['country_code'])
             ##BIT 12-14 Should be 101 status check for SGB
             if self.bits[12:15] == '101':
                 status_check = 'OK'
