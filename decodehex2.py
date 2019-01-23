@@ -746,7 +746,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             tano=str(Fcn.bin2dec(self.bin[43:53]))
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
-            self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS truncated TA (last three digits)','#{}'.format(tano)])
+            self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS truncated TA (last three digits)','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
             self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           

@@ -823,12 +823,26 @@ moreinfo= {'sgb_radio_callsign':('sgb_radio_callsign',
                                     If no Radio call sign is available then insert a series of 7 spaces (100100) '''),
 
            'country_code':('country_code','''
-           The country code is a three-digit decimal country code number (0 to 999). Country codes are based on the International Telecommunication Union (ITU) 
-           Maritime Identification Digit (MID) country code and corresponding country names are available on the ITU website 
-            (www.itu.int/cgi-bin/htsh/glad/cga_mids.sh).           
-           ''')
+           The country code is a three-digit decimal Maritime Identification Digit (MID) country code assigned by the International Telecommunication Union (ITU). 
+           The MID country code and corresponding country names are available on the ITU website (www.itu.int).           
+           '''),
+
+           'rls_trunc':('rls_trunc',
+            '''
+           Truncated RLS TAC or National RLS Number
+The 10-bit RLS truncated TAC or National RLS number is the last 3 decimal numbers in the TAC number data field, which allows a range of 1 to 999. The RLS beacon TAC number or National RLS number series are assigned as follows:	
+1000 series is reserved for EPIRBs (i.e. 1001 to 1999),
+2000 series is reserved for ELTs (i.e. 2001 to 2999), and
+3000 series is reserved for PLBs (i.e. 3001 to 3999).
+
+These are represented in the RLS messages as bits 16-17 indicating the beacon type series (EPIRB, ELT, or PLB) and a 10 bit (1-1024) TAC number which is added to the series to encode the full TAC number. (e.g., TAC 1042 would be encoded as “01” for EPIRB in bits 41 to 42 representing 1nnn, where “nnn” is “042” determined by “0000101010” in bits 18 to 27, and form a binary representation “00 0010 1010” of the decimal number “42”.  
+
+The last 30 numbers (i.e., National RLS Numbers 970 to 999) are set aside for National Use by Competent Authorities. That is full National RLS Numbers 1970 to 1999 for EPIRBs, 2970 to 2999 for ELTs and 3970 to 3999 for PLBs.
+          
+           
+           '''
 
 
 
-           }
+                        )}
 
