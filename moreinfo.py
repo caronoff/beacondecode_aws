@@ -42,7 +42,7 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
             '''),
 
             'natloc': ('natloc', '''National location protocol identification data is provided in a nationally-defined format in 18 bits of PDF-1. 
-             <br>Position data, to 2-minute resolution, is given in PDF-1, with position offsets to 4-second resolution in PDF-2.<b>
+             <br>Position data, to 2-minute resolution, is given in PDF-1, with position offsets to 4-second resolution in PDF-2.<br>
              18-bit identification data consisting of a serial number assigned by the appropriate national authority (bits 41-58).          
            '''),
 
