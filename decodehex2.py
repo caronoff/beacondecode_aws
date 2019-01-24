@@ -379,7 +379,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             btype='Orbitography'
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
                 self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
@@ -405,7 +405,7 @@ class BeaconFGB(HexError):
         elif typeuserprotbin=='111':
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Test Beacon Data',''])
-            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
             btype='Test'
             self._loctype = 'User: Test User'
@@ -460,7 +460,7 @@ class BeaconFGB(HexError):
             
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-85',str(self.bin[84:86]),'Reserved','Reserved for national use'])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112',str(self.bin[107:113]),'Reserved','Reserved for national use'])
             if self.type!='Short Msg':
                 self.tablebin.append(['113-132',str(self.bin[113:133]),'Reserved','Reserved for national use'])
@@ -478,7 +478,7 @@ class BeaconFGB(HexError):
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[108],self.bin[109:116],self.bin[116:120])
             lg,declng, lngdir,lgminutes=Fcn.longitude(self.bin[120],self.bin[121:129],self.bin[129:133])
             
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type != 'Short Msg':
                 self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',definitions.enc_delta_posflag[self.encpos]])
                 if Fcn.is_number(declat) and Fcn.is_number(declng):
@@ -506,7 +506,7 @@ class BeaconFGB(HexError):
         self._btype=btype
         self.tac=str(tano)
         if self.type == 'Short Msg':
-            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'Not yet decoded'])
 
         
@@ -615,7 +615,7 @@ class BeaconFGB(HexError):
                     computed= '107-110 :'  + self.bin[107:111] + '. Not  1101. Failed'
 
                 self.fixedbits=computed
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 self.tablebin.append(['107-110',str(self.bin[107:111]),'Validity',computed])
                 self.tablebin.append(['111',
                                       str(self.bin[111]),
@@ -666,7 +666,7 @@ class BeaconFGB(HexError):
             if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['59-71',str(self.bin[59:72]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['72-85',str(self.bin[72:86]),'Longitude','{} ({})'.format(lng,declng)])
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])                
+                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 if self.bin[107:110]=='110':
                     computed='107-109 should be 110.  Passed.'
                 else:
@@ -731,7 +731,7 @@ class BeaconFGB(HexError):
                                       str(self.bch.bch2calc())])
 
             elif self.type=='Short Msg':
-                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
 
             elif self.type=='uin':
                 self.tablebin.append(['59-85',default,'Default bits',''])
@@ -755,7 +755,7 @@ class BeaconFGB(HexError):
             if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 #self.tablebin.append(['107-108',str(self.bin[107:109]),'supplementary','supplementary'])
                 self._locd['encpos']=definitions.enc_delta_posflag[self.bin[107]]
                 self.encpos=str(self.bin[107])
@@ -786,7 +786,7 @@ class BeaconFGB(HexError):
                 self._loc = False
 
             elif self.type=='Short Msg':
-                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
 
         # ELT-DT Location Protocol   
         elif typelocprotbin == '1001':
@@ -822,7 +822,7 @@ class BeaconFGB(HexError):
                     pass
                     self.tablebin.append(['67-75', str(self.bin[67:76]), 'ELT-DT Cancellation message pattern: {}'.format('1 11111010'),'Cancellation message'])
                     self.tablebin.append(['76-85', str(self.bin[76:86]),  'ELT-DT Cancellation message pattern: {}'.format('1 111111010'),'Cancellation message'])
-                    self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc())])
+                    self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                     if str(self.bin[107:133]) == '00111100011110000011110000': #make sure pattern is correct
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
                     else:
@@ -832,7 +832,7 @@ class BeaconFGB(HexError):
                 else: #proceed to decode location
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                     self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
-                    self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
+                    self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                     means = {'01':'automatic','11':'manual','00':'spare','10':'spare'}
                     meansbin = str(self.bin[107:109])
                     self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
