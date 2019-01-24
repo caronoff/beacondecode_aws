@@ -382,7 +382,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
-                self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
+                self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
@@ -467,7 +467,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
                                           'BCH 2',
-                                          str(self.bch.bch2calc())])
+                                          str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
 
@@ -501,7 +501,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
                                           'BCH 2',
-                                          str(self.bch.bch2calc())])
+                                          str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
         
         self._btype=btype
         self.tac=str(tano)
@@ -640,7 +640,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
                                           'BCH 2',
-                                          str(self.bch.bch2calc())])                             
+                                          str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             
             elif self.type=='uin':
                 self.tablebin.append(['65-85',default,'Default bits',''])
@@ -728,7 +728,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['133-144',
                                   str(self.bin[133:145]),
                                       'BCH 2',
-                                      str(self.bch.bch2calc())])
+                                      str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
             elif self.type=='Short Msg':
                 self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
@@ -761,8 +761,8 @@ class BeaconFGB(HexError):
                 self.encpos=str(self.bin[107])
                 self._locd['homer']=definitions.homer[self.bin[108]]
                 self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',self._locd['encpos']])
-                self.tablebin.append(['108',str(self.bin[108]),'homer',self._locd['homer']])
-                self.tablebin.append(['109-114',str(self.bin[109:115]),'reserved','reserved for RLS data'])
+                self.tablebin.append(['108',str(self.bin[108]),'Homer',self._locd['homer']])
+                self.tablebin.append(['109-114',str(self.bin[109:115]),'Reserved','Reserved for RLS data'])
                 self.tablebin.append(['109', str(self.bin[109]), 'Process automatically RLM (Type-1)', ['Acknowledgement Type-1 not requested and not accepted by this beacon','Acknowledgement Type-1 accepted by this beacon'][int(self.bin[109])]])
                 self.tablebin.append(['110', str(self.bin[110]), 'Process manually RLM (Type-2)',['Manually generated RLM not accepted by this beacon','Manually generated RLM accepted by this beacon'][int(self.bin[110])]])
                 self.tablebin.append(['111', str(self.bin[111]), 'Feedback on RLM Type-1',
@@ -780,7 +780,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['133-144',
                                   str(self.bin[133:145]),
                                       'BCH 2',
-                                      str(self.bch.bch2calc())])
+                                      str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
@@ -827,7 +827,7 @@ class BeaconFGB(HexError):
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
                     else:
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Calcellation message bit pattern wrong'])
-                    self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc())])
+                    self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
                 else: #proceed to decode location
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
@@ -842,11 +842,11 @@ class BeaconFGB(HexError):
                     finallat=finallng='Not Used'
                     enc_loc_fresh = {'01':'old','11':'current','00':'old','10':'old'}
                     enc_freshbin=str(self.bin[113:115])
-                    self.tablebin.append(['113-114',enc_freshbin,'encoded location freshness',enc_loc_fresh[enc_freshbin]])
+                    self.tablebin.append(['113-114',enc_freshbin,'Encoded location freshness',enc_loc_fresh[enc_freshbin]])
                     latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
                     self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                     self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc())])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
