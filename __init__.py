@@ -288,7 +288,7 @@ def decoded(hexcode):
             tacdic[k]=l
 
     return render_template(tmp, hexcode=hexcode.upper(),
-                           decoded=Markup(beacon.tablebin),
+                           decoded=beacon.tablebin,
                            locationcheck=locationcheck,
                            geocoord=geocoord,
                            genmsg=beacon.genmsg,
