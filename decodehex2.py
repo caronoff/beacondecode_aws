@@ -174,7 +174,9 @@ class BeaconFGB(HexError):
         #   protocol == '0' :Standard Location Protocol.
         #   type of location protocol is found at bits 37-40
         self._pflag=['Location','User'][int(self.bin[26])]
-        self.tablebin.append(['25',self.bin[25],'Message format',self.formatflag[1]])        
+        if self.type != 'uin':
+            self.tablebin.append(['25',self.bin[25],'Message format',self.formatflag[1]])
+
         self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
 
