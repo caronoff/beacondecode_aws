@@ -50,16 +50,12 @@
       </tr>
     </thead>
     <tbody>
-
-	{% for item in decoded %}
+{% for item in decoded %}
       <tr>
         <td class="columnA"> {{ item[0] }} </td>
 		<td class="columnB">{{ item[1] }} </td>
 		<td class="columnC"> {{ item[2] }}
-
-
-            {% if item[4] %}
-            <a href="#" data-toggle="modal" data-target="#{{item[4][0]}}"> more...</a>
+            {% if item[4] %}<a href="#" data-toggle="modal" data-target="#{{item[4][0]}}"> more...</a>
 
 
             <!-- modal instructions -->
@@ -72,49 +68,32 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-
-          {{item[4][1]}}
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <div class="modal-body">{{item[4][1]}}
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
       </div>
-    </div>
   </div>
 </div>
 </div>
-
-
-
-
-
-
-
-            {% endif %}</td>
-		<td class="columnD">
-                     {% if item[2]== 'Country code:' %}{{ item[3] }}<!-- Button trigger modal -->
-                   {% if showmenu %}
-            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ContactModalLong">
-                      ?
-                    </button>
-               {% endif %}
-
-            {% elif 'Type Approval' in item[2] %}{{ item[3] }}<!-- Button trigger modal -->
+{% endif %}</td>
+<td class="columnD">
+{% if item[2]== 'Country code:' and showmenu %}{{ item[3] }}<!-- Button trigger modal -->
+                   <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ContactModalLong">?</button>
+{% elif 'Type Approval' in item[2] %}{{ item[3] }}
+    <!-- Button trigger modal -->
                 {% if showmenu %}
                     <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#TaModalLong">
                       ?
                     </button>
                 {% endif %}
 
+{% else %}
+    {{ item[3] }}
+{% endif %}
 
-            {% else %} {{ item[3] }}
-            {% endif %}
 
-
-        </td>
-      </tr>
-	{% endfor %}
+</td>
+</tr>
+{% endfor %}
     </tbody>
   </table>
         <div class="btn-toolbar">
