@@ -41,7 +41,7 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
              <br><br>If the 12 bit computed BCH on bits 107-132 does not match the encoded BCH in bits 133-144, then there are errors in bits 107-144.            
             '''),
 
-            'natloc': ('natloc', '''This location protocol is for use with the long message format.  The beacon identification data is provided in a nationally-defined format in 18 bits of PDF-1. 
+            'natloc': ('natloc', '''National location protocol identification data is provided in a nationally-defined format in 18 bits of PDF-1. 
              <br>Position data, to 2-minute resolution, is given in PDF-1, with position offsets to 4-second resolution in PDF-2.<b>
              18-bit identification data consisting of a serial number assigned by the appropriate national authority (bits 41-58).          
            '''),

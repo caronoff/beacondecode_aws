@@ -652,7 +652,7 @@ class BeaconFGB(HexError):
             
 
             self._loctype='National Location'                         
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])                
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype),definitions.moreinfo['natloc']])
             default='011111110000001111111100000'
             #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
