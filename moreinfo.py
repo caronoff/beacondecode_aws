@@ -27,9 +27,9 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
             'elt_dt_aircraftoperator': ('elt_dt_aircraftoperator', '''
        Aircraft operator designator (3 letters) can be encoded in 15 bits using a shortened form of the
        modified-Baudot code (i.e.: all letters in the modified-Baudot code are coded in 6 bits, with the first bit = "1".
-       This first bit can, therefore, be deleted to form a 5-bit. 3 x 5 = 15 bits''')
+       This first bit can, therefore, be deleted to form a 5-bit. 3 x 5 = 15 bits'''),
 
-            'bch1': ('bch1','''The error-correcting code used in the first protected field of all 406 MHz messages is a shortened form of a (127,106) Bose-Chaudhuri-Hocquenghem (BCH) code.  
+            'bch1': ('bch1','''<strong>21-BIT BCH CODE CALCULATION</strong><br>The error-correcting code used in the first protected field of all 406 MHz messages is a shortened form of a (127,106) Bose-Chaudhuri-Hocquenghem (BCH) code.  
             The shortened form (82,61) consists of 61 bits of data followed by a 21-bit triple error-correcting code.  
             The code is used to detect and correct up to three errors in the entire 82-bit pattern (bits 25 through 106 of the 406 MHz message).           
             
