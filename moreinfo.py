@@ -31,7 +31,7 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
 
             'bch1': ('bch1','''<strong>21-BIT BCH CODE CALCULATION</strong><br>The error-correcting code used in the first protected field of all 406 MHz messages is a shortened form of a (127,106) Bose-Chaudhuri-Hocquenghem (BCH) code.  
             The shortened form (82,61) consists of 61 bits of data followed by a 21-bit triple error-correcting code.  
-            The code is used to detect and correct up to three errors in the entire 82-bit pattern (bits 25 through 106 of the 406 MHz message).           
+            The code is used to detect and correct up to three errors in the entire 82-bit pattern (bits 25 through 106 of the 406 MHz message).   <br><br>If the 21 bit computed BCH on bits 25 through 85 does not match the encoded BCH in bits 86-106, then there are errors in the message.        
             
             
             
