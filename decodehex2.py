@@ -658,7 +658,7 @@ class BeaconFGB(HexError):
             self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
             #self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
             ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
-            self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(str(Fcn.bin2dec(self.bin[41:59])))])
+            self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(str(Fcn.bin2dec(self.bin[41:59]))),definitions.moreinfo['natloc']])
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
