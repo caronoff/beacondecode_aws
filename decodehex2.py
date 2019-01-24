@@ -480,7 +480,7 @@ class BeaconFGB(HexError):
             
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc())])
             if self.type != 'Short Msg':
-                self.tablebin.append(['107',str(self.bin[107]),'Encoded location source',definitions.enc_delta_posflag[self.encpos]])
+                self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',definitions.enc_delta_posflag[self.encpos]])
                 if Fcn.is_number(declat) and Fcn.is_number(declng):
                     self._loc=True
                     a = self.update_locd(declat,latdir)
@@ -760,7 +760,7 @@ class BeaconFGB(HexError):
                 self._locd['encpos']=definitions.enc_delta_posflag[self.bin[107]]
                 self.encpos=str(self.bin[107])
                 self._locd['homer']=definitions.homer[self.bin[108]]
-                self.tablebin.append(['107',str(self.bin[107]),'encoded position source',self._locd['encpos']])
+                self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',self._locd['encpos']])
                 self.tablebin.append(['108',str(self.bin[108]),'homer',self._locd['homer']])
                 self.tablebin.append(['109-114',str(self.bin[109:115]),'reserved','reserved for RLS data'])
                 self.tablebin.append(['109', str(self.bin[109]), 'Process automatically RLM (Type-1)', ['Acknowledgement Type-1 not requested and not accepted by this beacon','Acknowledgement Type-1 accepted by this beacon'][int(self.bin[109])]])

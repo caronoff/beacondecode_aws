@@ -13,7 +13,7 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
                           '''
                        Truncated RLS TAC or National RLS Number
             The 10-bit RLS truncated TAC or National RLS number is the last 3 decimal numbers in the TAC number data field, which allows a range of 1 to 999. The RLS beacon TAC number or National RLS number series are assigned as follows:	
-            1000 series is reserved for EPIRBs (i.e. 1001 to 1999),
+            1000 series is <strong>reserved</strong> for EPIRBs (i.e. 1001 to 1999),
             2000 series is reserved for ELTs (i.e. 2001 to 2999), and
             3000 series is reserved for PLBs (i.e. 3001 to 3999).
             
