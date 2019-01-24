@@ -35,7 +35,7 @@
  {% block content %}
     <div id="decodetable">
   <h2>Decoded Beacon Message</h2>
-  <p>The hexadecimal code entered was: <strong style="word-wrap:break-word">{{hexcode}}  </strong></p>
+  <p>The hexadecimal code entered was: <strong style="word-wrap:break-word"> {{hexcode}} </strong></p>
         <p>{{genmsg}}</p>
         <p> Beacon Unique Identifier :{{uin}}</p>
 
@@ -59,8 +59,7 @@
 
 
             {% if item[4] %}
-            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#{{item[4][0]}}">
-                      ?</button>
+            <a href="#" data-toggle="modal" data-target="#{{item[4][0]}}"> more...</a>
 
 
             <!-- modal instructions -->
