@@ -5,7 +5,7 @@ import ui.ui_beaconhex
 import ui.ui_map
 import ui.ui_progress
 
-import constants
+from constants import *
 from webmap import google_map,blank
 from writebch import getFiveCharChecksum
 import decodehex2
