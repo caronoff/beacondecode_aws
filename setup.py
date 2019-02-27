@@ -1,5 +1,5 @@
 import sys
-
+from decoder import VERSION
 
 
 from cx_Freeze import setup, Executable
@@ -15,7 +15,7 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(  name = 'decoder',
-        version = '5.3',
+        version = VERSION,
         description = "Beacon Hexidecimal Decode",
         options = {"build_exe": build_exe_options},
         executables = [Executable('decoder.py', base=base)])
