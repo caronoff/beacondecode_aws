@@ -5,7 +5,7 @@ import ui.ui_beaconhex
 import ui.ui_map
 import ui.ui_progress
 
-import os
+import constants
 from webmap import google_map,blank
 from writebch import getFiveCharChecksum
 import decodehex2
@@ -14,7 +14,7 @@ from Gen2secondgen import SecondGen
 import definitions
 import sys
 
-VERSION='Beacon Decoder Windows Version 5.4'
+VERSION='Beacon Decoder Windows Version ' + WINDOWSVERSION
 
 class MapDlg(QDialog, ui.ui_map.Ui_Dialog):
     def __init__(self, parent=None):
