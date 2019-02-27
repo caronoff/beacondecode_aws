@@ -119,9 +119,10 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
 
             for n, lrow in enumerate(self._beacon.tablebin):
                 for m, item in enumerate(lrow):
-                    newitem = QTableWidgetItem(item)
-                    newitem.setFlags(Qt.ItemIsEnabled)
-                    self.tableWidget.setItem(n, m, newitem)
+                    if type(item) is  str:
+                        newitem = QTableWidgetItem(item)
+                        newitem.setFlags(Qt.ItemIsEnabled)
+                        self.tableWidget.setItem(n, m, newitem)
 
 
             self.tableWidget.setHorizontalHeaderLabels(['Bit range',

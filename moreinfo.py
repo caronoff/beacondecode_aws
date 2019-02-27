@@ -17,8 +17,7 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
             2000 series is reserved for ELTs (i.e. 2001 to 2999), and
             3000 series is reserved for PLBs (i.e. 3001 to 3999).
             
-            These are represented in the RLS messages as bits 41-42 indicating the beacon type series (EPIRB, ELT, or PLB) and a 10 bit (1-1024) TAC number which is added to the series to encode the full TAC number. (e.g., TAC 1042 would be encoded as “01” for EPIRB in bits 41 to 42 representing 1nnn, where “nnn” is “042” determined by “0000101010” in bits 43 to 52, and form a binary representation “00 0010 1010” of the decimal number “42”.  
-            
+            These are represented in the RLS messages as bits 41-42 indicating the beacon type series (EPIRB, ELT, or PLB) and a 10 bit (1-1024) TAC number which is added to the series to encode the full TAC number. (e.g., TAC 1042 would be encoded as 01 for EPIRB in bits 41 to 42 representing 1nnn, where nnn is 042 determined by 0000101010 in bits 43 to 52, and form a binary representation 00 0010 1010 of the decimal number 42.            
             The last 30 numbers (i.e., National RLS Numbers 970 to 999) are set aside for National Use by Competent Authorities. That is full National RLS Numbers 1970 to 1999 for EPIRBs, 2970 to 2999 for ELTs and 3970 to 3999 for PLBs.
             
             
