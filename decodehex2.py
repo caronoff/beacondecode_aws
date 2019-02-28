@@ -885,7 +885,7 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch (as per T.018 Issue 1 - Rev.4).',
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB (as per T.018 Issue 1 - Rev.4).',
-                   '22':'Hex data entered is a length of 22 characters based on FGB short message format specifications (as per T.001 Issue 4 - Rev.4).',
+                   '22':'Hex data entered is a length of 22 characters. Did you mean to enter 23 characters for SGB UIN?  Assumed FGB short message format specifications (as per T.001 Issue 4 - Rev.4).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.4).',
                    '23': 'Hex data entered is a 23 Hex ID unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a SGB, without the bch (as per T.018 Issue 1 - Rev.4).',
