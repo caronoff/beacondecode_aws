@@ -182,7 +182,7 @@ class BeaconFGB(HexError):
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
             self.tablebin.append(['Bad message', 'Error', '', 'Long message format should be 30 Hex'])
-            self.type == 'Long Msg'
+            self.type = 'Long Msg'
 
         if protocolflag == '0' and self.type != 'Short Msg':
             self.locationProtocol()
