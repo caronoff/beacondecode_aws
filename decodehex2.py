@@ -181,7 +181,7 @@ class BeaconFGB(HexError):
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
-            self.tablebin.append(['Bad message', 'Error', '', 'Long message format should be 30 Hex'])
+            #Long message format should be 30 Hex or 36 Hex but the format flag is long.  Therefore, set type to Long Msg
             self.type = 'Long Msg'
 
         if protocolflag == '0' and self.type != 'Short Msg':
@@ -598,7 +598,7 @@ class BeaconFGB(HexError):
             #   PLB, ELT and EBIRB Serial
             elif typelocprotbin in ['0100','0110','0111']:
                 tano = str(Fcn.bin2dec(self.bin[41:51]))
-                self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','Serial {}'.format(btype)])
+                self.tablebin.append(['37-40',str(self.bin[37:41]),'Beacon type','Serial {}'.format(btype)])
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type Approval Cert. No:',tano])
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
                 self.typeapproval=('','',tano)
