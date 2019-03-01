@@ -154,7 +154,7 @@ class BeaconFGB(HexError):
             self.testm=''
 
                 
-        self.bch=Bch(self.bin,self.type)      
+
         
         self.id=()
         
@@ -183,6 +183,8 @@ class BeaconFGB(HexError):
         if self.type == 'Short Msg' and self.bin[25] == '1':
             #Long message format should be 30 Hex or 36 Hex but the format flag is long.  Therefore, set type to Long Msg
             self.type = 'Long Msg'
+
+        self.bch = Bch(self.bin, self.type)
 
         if protocolflag == '0' and self.type != 'Short Msg':
             self.locationProtocol()
