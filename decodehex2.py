@@ -191,7 +191,7 @@ class BeaconFGB(HexError):
         elif protocolflag == '1' and self.type != 'Short Msg'  :
             self.userProtocol()
 
-        elif protocolflag == '0' and self.type == 'Short Msg':
+        if protocolflag == '0' and self.type == 'Short Msg':
             self.tablebin.append(['Inclomplete Hex', 'Error', 'Incomplete', 'Location protocol does not allow short message'])
             #self.locationProtocol()
 
