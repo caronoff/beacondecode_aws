@@ -182,8 +182,9 @@ class BeaconFGB(HexError):
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
             self.tablebin.append(['Bad message', 'Error', '', 'Long message format should be 30 Hex'])
+            self.type == 'Long Msg'
 
-        elif protocolflag == '0' and self.type != 'Short Msg':
+        if protocolflag == '0' and self.type != 'Short Msg':
             self.locationProtocol()
         #   protocol == '1' 'User Protocol'
         #   type of user protocol located at bits 37-39    
@@ -927,6 +928,7 @@ class Beacon(HexError):
             self.genmsg = genmsgdic['30']
 
         elif len(hexcode) == 22 :
+            # check if this is a short message or a long message without the BCH2
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
             self.genmsg = genmsgdic['22']
