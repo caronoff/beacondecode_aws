@@ -186,6 +186,24 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                 'PLB':  [('PLB -  No aircraft or maritime identity','2-000')]
                 }}
 
+naturedistressmaritime ={'0001':'Fire/explosion',
+                         '0010':'Flooding',
+                         '0011':'Collision',
+                         '0100':'Grounding',
+                         '0101':'Listing, in danger of capsizing',
+                         '0110':'Sinking',
+                         '0111':'Disabled and adrift',
+                         '0000':'Unspecified distress',
+                         '1000':'Abandoning ship',
+                         '1001':'Spare',
+                         '1010':'Spare',
+                         '1011':'Spare',
+                         '1100':'Spare',
+                         '1101':'Spare',
+                         '1110':'Spare',
+                         '1111':'Spare'
+}
+
 
 class Country:
     def __init__(self,ctrytext,results):

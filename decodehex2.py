@@ -384,7 +384,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             btype='Orbitography'
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            #self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
                 self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
@@ -447,12 +447,12 @@ class BeaconFGB(HexError):
         #############################################################################               
         elif typeuserprotbin=='010' :
             mmsi='MMSI: '+ Fcn.baudot(self.bin,40,76)
-            btype='EPIRB'          
+            btype='EPIRB'
             
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
-            self.tablebin.append(['40-75',str(self.bin[40:76]),'MMSI',Fcn.baudot(self.bin,40,76)])
-            self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
-            self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare No',str(Fcn.bin2dec(self.bin[82:84]))])
+            self.tablebin.append(['40-75',str(self.bin[40:76]),'MMSI or radio call sign',Fcn.baudot(self.bin,40,76)])
+            self.tablebin.append(['76-81',str(self.bin[76:82]),'Specific beacon', Fcn.baudot(self.bin,76,82)])
+            self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare bits',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
@@ -512,7 +512,26 @@ class BeaconFGB(HexError):
         self.tac=str(tano)
         if self.type == 'Short Msg':
             self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
-            self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'Not yet decoded'])
+            self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'See below'])
+            emergencycodeflag=str(self.bin[107])
+            if emergencycodeflag=='1' :
+                if btype=='EPIRB':
+                    self.tablebin.append(['107', str(self.bin[107]), 'Emergency code', 'Maritime emergency code flag set'])
+                    self.tablebin.append(['108', str(self.bin[108]), 'Activation type',{'0': 'Manual activation only', '1': 'Automatic and manual activation'}[str(self.bin[108])]])
+                    self.tablebin.append(['109-112', str(self.bin[109:113]), 'Nature of distress',definitions.naturedistressmaritime[str(self.bin[109:113])]])
+                else:
+                    self.tablebin.append(['107', str(self.bin[107]), 'Emergency code', 'Non Maritime emergency code flag set'])
+                    self.tablebin.append(['108', str(self.bin[108]), 'Activation type',{'0': 'Manual activation only', '1': 'Automatic and manual activation'}[str(self.bin[108])]])
+                    self.tablebin.append(['109', str(self.bin[109]), 'Fire', {'0': 'No fire', '1': 'Fire'}[str(self.bin[109])]])
+                    self.tablebin.append(['110', str(self.bin[110]), 'Medical help',{'0': 'No medical help required', '1': 'Medical help required'}[str(self.bin[110])]])
+                    self.tablebin.append(['111', str(self.bin[111]), 'Disabled',{'0': 'Not disabled', '1': 'Disabled'}[str(self.bin[111])]])
+                    self.tablebin.append(['112', str(self.bin[112]), 'Spare', 'Spare'])
+            else:
+                self.tablebin.append(['107', str(self.bin[107]), 'Emergency code','National use/undefined: 109 to 112 not decoded'])
+                self.tablebin.append(['108', str(self.bin[108]), 'Activation type',{'0': 'Manual activation only', '1': 'Automatic and manual activation'}[str(self.bin[108])]])
+                self.tablebin.append(['109-112', str(self.bin[109:113]), 'National use','Normally should be 0000'])
+
+
 
         
     def update_locd(self,_dec,_dir):        
