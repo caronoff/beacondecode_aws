@@ -134,7 +134,7 @@ class BeaconFGB(HexError):
                 pad = ''
                 self.type = 'Long Msg'
             else:
-                self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22,28 or 30'
+                self.type = 'Hex length of ' + str(len(strhex)) + '.' + '\nLength of First Generation Beacon Hex Code must be 15, 22,28, 30 or 36'
                 raise HexError('LengthError', self.type)
             self.hexcode=str(strhex)            
             
@@ -146,7 +146,7 @@ class BeaconFGB(HexError):
      
         # make a standard 144 bit (36 Hex) binary string.  '_' in front is to make string operations march the numbering and not start at position 0
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
-        print('Length '+str(len(self.bin)))
+
 
 
         if self.bin[16:25]== '011010000':
@@ -163,6 +163,7 @@ class BeaconFGB(HexError):
         
         if self.type !='uin':
             formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])
+            self.tablebin.append(['25', self.bin[25], 'Message format', formatflag[1]])
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
 
@@ -176,9 +177,10 @@ class BeaconFGB(HexError):
 
         #   protocol == '0' :Standard Location Protocol.
         #   type of location protocol is found at bits 37-40
-        self._pflag=['Location','User'][int(self.bin[26])]
-        if self.type != 'uin':
-            self.tablebin.append(['25',self.bin[25],'Message format',self.formatflag[1]])
+        self._pflag=['Location','User'][int(protocolflag)]
+
+
+
 
         self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])

@@ -250,56 +250,59 @@ def decoded(hexcode):
 
     geocoord = (0, 0)
     locationcheck = False
-    beacon = decodehex2.Beacon(hexcode)
-    error=''
-    if len(beacon.errors)>0 :
-        error = ', '.join(beacon.errors)
+    try:
+        beacon = decodehex2.Beacon(hexcode)
+        error=''
+        if len(beacon.errors)>0 :
+            error = ', '.join(beacon.errors)
 
 
-    r = requests.post(
-        "https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
-        + hexcode + "&submission[4]=" + ipaddress+ "&submission[5]=" + error)
-    print(beacon.type=='uin')
-    if beacon.type=='uin':
-        if beacon.gentype=='first':
-            tmp = 'encodelongfirst.html'
-            # redirect with the hexcode, beacon type - different inputs depending on type of first gen
-        elif beacon.gentype=='second':
-            tmp = 'encodelongsecond.html'
-        elif beacon.gentype=='secondtruncated':
-            tmp = 'output.html'
-    else:
+        r = requests.post(
+            "https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
+            + hexcode + "&submission[4]=" + ipaddress+ "&submission[5]=" + error)
+        print(beacon.type=='uin')
+        if beacon.type=='uin':
+            if beacon.gentype=='first':
+                tmp = 'encodelongfirst.html'
+                # redirect with the hexcode, beacon type - different inputs depending on type of first gen
+            elif beacon.gentype=='second':
+                tmp = 'encodelongsecond.html'
+            elif beacon.gentype=='secondtruncated':
+                tmp = 'output.html'
+        else:
 
-        tmp='output.html'
+            tmp='output.html'
 
-    if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
-        geocoord = (float(beacon.location[0]),float(beacon.location[1]))
+        if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
+            geocoord = (float(beacon.location[0]),float(beacon.location[1]))
 
-        locationcheck=True
-    mid=str(beacon.get_mid())
-    #print([c[0] for c in contacttypes])
-    #print(contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]))
-    taclist=typeapproval.tac(beacon.gettac(),[f[1] for f in tflds])
-    taclist=[]
-    tacdic={}
-    if len(taclist)>0:
-        for l in taclist:
-            k=l['id']
-            tacdic[k]=l
+            locationcheck=True
+        mid=str(beacon.get_mid())
+        #print([c[0] for c in contacttypes])
+        #print(contacts.contact(mid,[f[1] for f in flds],[c[0] for c in contacttypes]))
+        taclist=typeapproval.tac(beacon.gettac(),[f[1] for f in tflds])
+        taclist=[]
+        tacdic={}
+        if len(taclist)>0:
+            for l in taclist:
+                k=l['id']
+                tacdic[k]=l
 
-    return render_template(tmp, hexcode=hexcode.upper(),
-                           decoded=beacon.tablebin,
-                           locationcheck=locationcheck,
-                           geocoord=geocoord,
-                           genmsg=beacon.genmsg,
-                           uin = beacon.hexuin(),
-                           contact=contacts.contact(mid,[f[1] for f in flds],contacttypes),
-                           types=contacttypes,
-                           flds=flds,
-                           tac=beacon.gettac(),
-                           tacdetail=tacdic,
-                           tacflds=tflds,
-                           showmenu=MENU)
+        return render_template(tmp, hexcode=hexcode.upper(),
+                               decoded=beacon.tablebin,
+                               locationcheck=locationcheck,
+                               geocoord=geocoord,
+                               genmsg=beacon.genmsg,
+                               uin = beacon.hexuin(),
+                               contact=contacts.contact(mid,[f[1] for f in flds],contacttypes),
+                               types=contacttypes,
+                               flds=flds,
+                               tac=beacon.gettac(),
+                               tacdetail=tacdic,
+                               tacflds=tflds,
+                               showmenu=MENU)
+    except decodehex2.HexError as e:
+        print(e)
 
 @app.route("/bch/<hexcode>")
 def download_bch(hexcode):
