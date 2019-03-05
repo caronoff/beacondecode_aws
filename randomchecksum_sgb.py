@@ -1,19 +1,17 @@
 from decodefunctions import getFiveCharChecksum
-import zlib
 from random import randint
 
 if __name__ == "__main__":
 
     hexchars='ABCDEF0123456789'
-    #print(zlib.crc32('ADCE02A8FC4106D'))
-    #print(hex(zlib.crc32('A7947889C7B80000E000001')))
+
     randhexdic={}
     checksumdic={}
-    randchar=2
+    randchar=3
     testpersample=1000
     limittest=10000
-    writefile= open('fgbhexcollisions.txt',"w")
-    infile=open('fgbuser.txt',"r")
+    writefile= open('sgbhexcollision.txt',"w")
+    infile=open('test23uin.csv',"r")
 
 
     c='ACCE09A52C41C0D'
@@ -23,14 +21,12 @@ if __name__ == "__main__":
     for rh in infile:
         realhex=rh.strip()
 
-        if len(realhex)==15 and j<limittest:
+        if len(realhex)==23 and j<limittest:
             j+=1
 
             if j%1000==0:
                 print(j)
             realchecksum = getFiveCharChecksum(realhex)
-
-
             randomhex = []
             collision = []
             i=0
@@ -38,8 +34,8 @@ if __name__ == "__main__":
 
                 randposlist=[]
 
-                while len(randposlist) < randchar :
-                    randpos = randint(0, 14)
+                while len(randposlist) <= randchar :
+                    randpos = randint(0, 22)
                     if randpos not in randposlist:
                         randposlist.append(randpos)
 
@@ -53,7 +49,7 @@ if __name__ == "__main__":
 
                     if randpos2 == 0:
                         newhex = hexrandom + newhex[1:]
-                    elif randpos2 == 14:
+                    elif randpos2 == 22:
                         newhex = newhex[:-1] + hexrandom
                     else:
                         newhex = newhex[0:randpos2] + hexrandom + newhex[randpos2+1:]
@@ -78,7 +74,7 @@ if __name__ == "__main__":
     #print(i)
     #print(len(checksumdic),i,(i-len(checksumdic))/float(i))
     print(j)
-    writefile.write('\n\nUnique FGB tested: '+str(j)+ '  Collisions: '+ str(collisions)+'    Randomize Char : '+str(randchar)+'     Test per sample: ' + str(testpersample))
+    writefile.write('\n\nUnique SGB tested: '+str(j)+ '  Collisions: '+ str(collisions)+'    Randomize Char : '+str(randchar)+'     Test per sample: ' + str(testpersample))
     infile.close()
     writefile.close()
     '''

@@ -42,10 +42,15 @@ for h in range(100):
         IdBits = ''
         for key in definitions.baudot:
             baudotlist.append(key)
+        c=''
         for i in range(7):
-            r = random.randint(0, len(baudotlist) - 1)
-            IdBits = IdBits + baudotlist[r]
-        binary=binary+'010'+IdBits+'0000'
+            while not c.isalnum():
+                r = random.randint(0, len(baudotlist) - 1)
+                c= baudotlist[r]
+            IdBits = IdBits + c
+            c=''
+
+        binary=binary+'001'+IdBits+'0000'
         bintemp=binary+83*'0'
         bch = Bch(bintemp, 'Short Msg')
         bch1 = bch.bch[0]

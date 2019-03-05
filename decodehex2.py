@@ -116,13 +116,15 @@ class BeaconFGB(HexError):
         self._loctype=''
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
-                #   15 Hex does not use bit 25 so an extra 0 needs to be padded
+                #   15 Hex does not use bit 25 - framesynch 24 bits 0 prefix plus bit 25 0 needs to be padded for bit range to match T.001
                 self.type = 'uin'
                 pad = '0'* 25
             elif len(strhex) == 22:
+                # if user does not enter framesynch 6 hex prefix, then need to prefix 24 bits 0
                 self.type = 'Short Msg'
                 pad = '0' * 24
             elif len(strhex) == 28:
+                # if user enters 28 hex including the 6 hex framesynch then likely a short message
                 self.type = 'Short Msg'
                 pad = ''
             elif len(strhex) == 30:
@@ -142,6 +144,7 @@ class BeaconFGB(HexError):
             self.type = 'Not a valid Hex ID'
             raise HexError('FormatError',self.type)         
      
+        # make a standard 144 bit (36 Hex) binary string.  '_' in front is to make string operations march the numbering and not start at position 0
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
 
 

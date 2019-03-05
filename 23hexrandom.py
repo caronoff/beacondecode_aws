@@ -8,7 +8,7 @@ for line in country.readlines():
     midlist.append(mid)
 
 
-for h in range(1000):
+for h in range(10000):
 
     mid=midlist[random.randint(0,len(midlist)-1)]
     midbin=definitions.dec2bin(mid,10)
