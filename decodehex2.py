@@ -984,7 +984,7 @@ class Beacon(HexError):
 
         else:
             self.type = 'Hex length of ' + str(
-                len(hexcode)) + '.' + '\nLength must be 15,22, 23, 30,36 or 63'
+                len(hexcode)) + '.' + '\nValid Lengths: FGB: 15,22,28 30 or 36.  SGB: 15, 23 or 63'
             raise HexError('Length Error', self.type)
             self.beacon=None
 
