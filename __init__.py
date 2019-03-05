@@ -301,7 +301,7 @@ def decoded(hexcode):
                                tacdetail=tacdic,
                                tacflds=tflds,
                                showmenu=MENU)
-    except decodehex2.HexError,err:
+    except decodehex2.HexError as err:
         print(str(err))
 
 @app.route("/bch/<hexcode>")
