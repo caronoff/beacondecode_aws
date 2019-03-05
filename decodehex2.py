@@ -146,7 +146,7 @@ class BeaconFGB(HexError):
      
         # make a standard 144 bit (36 Hex) binary string.  '_' in front is to make string operations march the numbering and not start at position 0
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
-
+        print('Length '+len(self.bin))
 
 
         if self.bin[16:25]== '011010000':
