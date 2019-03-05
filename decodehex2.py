@@ -392,7 +392,8 @@ class BeaconFGB(HexError):
             #self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
-                self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                if int(self.bin[113:])!=0 :
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
@@ -472,7 +473,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['40-85',str(self.bin[84:86]),'Reserved','Reserved for national use'])
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112',str(self.bin[107:113]),'Reserved','Reserved for national use'])
-            if self.type!='Short Msg':
+            if self.type!='Short Msg' and int(self.bin[113:])!=0:
                 self.tablebin.append(['113-132',str(self.bin[113:133]),'Reserved','Reserved for national use'])
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
@@ -489,7 +490,7 @@ class BeaconFGB(HexError):
             lg,declng, lngdir,lgminutes=Fcn.longitude(self.bin[120],self.bin[121:129],self.bin[129:133])
             
             self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
-            if self.type != 'Short Msg':
+            if self.type != 'Short Msg' and int(self.bin[113:])!=0 :
                 self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',definitions.enc_delta_posflag[self.encpos]])
                 if Fcn.is_number(declat) and Fcn.is_number(declng):
                     self._loc=True
@@ -656,20 +657,10 @@ class BeaconFGB(HexError):
                                           'Aux device',
                                           definitions.homer[self.bin[112]]])
                 self.encpos=str(self.bin[111])
-                self.tablebin.append(['113-122',
-                                      str(self.bin[113:123]),
-                                          'Latitude offset', ltoffset])
-                                          
-
-                self.tablebin.append(['123-132',
-                                      str(self.bin[123:133]),
-                                          'Longitude offset', lgoffset])
-                                          
-
-                self.tablebin.append(['133-144',
-                                      str(self.bin[133:145]),
-                                          'BCH 2',
-                                          str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                if int(self.bin[113:]) != 0:
+                    self.tablebin.append(['113-122',str(self.bin[113:123]),'Latitude offset', ltoffset])
+                    self.tablebin.append(['123-132', str(self.bin[123:133]),'Longitude offset', lgoffset])
+                    self.tablebin.append(['133-144', str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             
             elif self.type=='uin':
                 self.tablebin.append(['65-85',default,'Default bits',''])
@@ -720,14 +711,13 @@ class BeaconFGB(HexError):
                                           str(self.bin[112]),
                                           'Aux device',
                                           definitions.homer[self.bin[112]]])
-                    self.tablebin.append(['113-132',
-                                      str(self.bin[113:133]),
-                                          'National use',''])
+                    if int(self.bin[113:]) != 0:
+                        self.tablebin.append(['113-132',str(self.bin[113:133]),'National use',''])
 
 
                     
-                else:
-                    
+                else :
+
                     latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,127)
 
 
@@ -746,18 +736,13 @@ class BeaconFGB(HexError):
                                           definitions.homer[self.bin[112]]])
 
                 
-                    self.tablebin.append(['113-119',str(self.bin[113:120]),'Latitude offset',ltoffset])                                        
+                    if int(self.bin[113:]) != 0:
+                        self.tablebin.append(['113-119',str(self.bin[113:120]),'Latitude offset',ltoffset])
+                        self.tablebin.append(['120-126',str(self.bin[120:127]),'Longitude offset',lgoffset])
+                        self.tablebin.append(['127-132',str(self.bin[127:133]), 'National use',''])
 
-                    self.tablebin.append(['120-126',str(self.bin[120:127]),'Longitude offset',lgoffset])
-                    self.tablebin.append(['127-132',
-                                      str(self.bin[127:133]),
-                                          'National use',''])
-
-
-                self.tablebin.append(['133-144',
-                                  str(self.bin[133:145]),
-                                      'BCH 2',
-                                      str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                if int(self.bin[113:]) != 0:
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
             elif self.type=='Short Msg':
                 self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
@@ -800,16 +785,14 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['112', str(self.bin[112]), 'Feedback on RLM Type-2',
                                       ['Acknowledgement Type-2 not (yet) received by this beacon',
                                        'Acknowledgement Type-2 received by this beacon'][int(self.bin[112])]])
-                self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider',
-                                      {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
-                finallat=finallng='Not Used'                    
-                latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)            
-                self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                self.tablebin.append(['133-144',
-                                  str(self.bin[133:145]),
-                                      'BCH 2',
-                                      str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                finallat = finallng = 'Not Used'
+                if int(self.bin[113:]) != 0:
+                    self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
+
+                    latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                    self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                    self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
@@ -856,7 +839,8 @@ class BeaconFGB(HexError):
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
                     else:
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Calcellation message bit pattern wrong'])
-                    self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    if int(self.bin[113:])!=0:
+                        self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
                 else: #proceed to decode location
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
@@ -871,11 +855,12 @@ class BeaconFGB(HexError):
                     finallat=finallng='Not Used'
                     enc_loc_fresh = {'01':'old','11':'current','00':'old','10':'old'}
                     enc_freshbin=str(self.bin[113:115])
-                    self.tablebin.append(['113-114',enc_freshbin,'Encoded location freshness',enc_loc_fresh[enc_freshbin]])
-                    latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
-                    self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                    self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    if int(self.bin[113:]) != 0:
+                        self.tablebin.append(['113-114',enc_freshbin,'Encoded location freshness',enc_loc_fresh[enc_freshbin]])
+                        latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                        self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                        self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+                        self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 self.tablebin.append(['67-85',default,'Default bits',''])
                 self._loc = False
