@@ -986,7 +986,7 @@ class Beacon(HexError):
         self.errors = self.beacon.errors
 
     def has_loc(self):
-        if self.beacon.type=='uin':
+        if self.beacon.type=='uin' or self.beacon.location==(0,0):
             return False
         elif self.beacon.latitude in ['No latitude data available','Invalid Latitude','na','Default - no location (Default - no location)'] or\
                         self.beacon.longitude in ['No longitude data available', 'Invalid Longitude','Default - no location (Default - no location)','na']:
