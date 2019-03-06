@@ -8,66 +8,77 @@ if __name__ == "__main__":
     randhexdic={}
     checksumdic={}
     randchar=3
-    testpersample=1000
-    limittest=10000
+    testpersample=0
+    limittest=1000000
     writefile= open('sgbhexcollision.txt',"w")
     infile=open('test23uin.csv',"r")
 
 
-    c='ACCE09A52C41C0D'
-    print(getFiveCharChecksum(c))
+
     j=0
     collisions=0
-    for rh in infile:
-        realhex=rh.strip()
+    while(1):
+        for lines in range(100000): #infile:
 
-        if len(realhex)==23 and j<limittest:
-            j+=1
+            realhex=infile.readline().strip()
 
-            if j%1000==0:
-                print(j)
-            realchecksum = getFiveCharChecksum(realhex)
-            randomhex = []
-            collision = []
-            i=0
-            while i < testpersample:
-
-                randposlist=[]
-
-                while len(randposlist) <= randchar :
-                    randpos = randint(0, 22)
-                    if randpos not in randposlist:
-                        randposlist.append(randpos)
-
-                newhex=realhex
-                for randpos2 in randposlist:
-                    hexchar = hexrandom = realhex[randpos2]
-
-                    while hexchar==hexrandom:
-                        hexrandom = hexchars[(randint(0,15))]
+            if len(realhex)==23 and j<limittest:
+                j+=1
 
 
-                    if randpos2 == 0:
-                        newhex = hexrandom + newhex[1:]
-                    elif randpos2 == 22:
-                        newhex = newhex[:-1] + hexrandom
-                    else:
-                        newhex = newhex[0:randpos2] + hexrandom + newhex[randpos2+1:]
-                    #print(randpos)
+                realchecksum = getFiveCharChecksum(realhex)
+                randomhex = []
+                collision = []
+                i=0
+                while i < testpersample:
 
-                randomhex.append(newhex)
+                    randposlist=[]
 
-                if realchecksum ==getFiveCharChecksum(newhex):
-                    collision.append((newhex,realhex))
-                    writefile.write(':'.join(( '\n\nActual    ',    realhex, realchecksum,   '\nCollision ', newhex , getFiveCharChecksum(newhex)        )))
-                    collisions+=1
-                    print( newhex,getFiveCharChecksum(newhex),realhex,realchecksum)
-                i += 1
-                #print(getFiveCharChecksum(newhex))
+                    while len(randposlist) < randchar :
+                        randpos = randint(0, 22)
+                        if randpos not in randposlist:
+                            randposlist.append(randpos)
 
-                #print(realhex,len(realhex))
-                #checksumdic[checksum] = hex
+                    newhex=realhex
+                    for randpos2 in randposlist:
+                        hexchar = hexrandom = realhex[randpos2]
 
+                        while hexchar==hexrandom:
+                            hexrandom = hexchars[(randint(0,15))]
+
+
+                        if randpos2 == 0:
+                            newhex = hexrandom + newhex[1:]
+                        elif randpos2 == 22:
+                            newhex = newhex[:-1] + hexrandom
+                        else:
+                            newhex = newhex[0:randpos2] + hexrandom + newhex[randpos2+1:]
+                        #print(randpos)
+
+                    randomhex.append(newhex)
+
+                    if realchecksum ==getFiveCharChecksum(newhex) and realhex!=newhex:
+                        collision.append((newhex,realhex))
+                        writefile.write(':'.join(( '\n\nActual    ',    realhex, realchecksum,   '\nCollision ', newhex , getFiveCharChecksum(newhex)        )))
+                        collisions+=1
+                        print( newhex,getFiveCharChecksum(newhex),realhex,realchecksum)
+                    i += 1
+                    #print(getFiveCharChecksum(newhex))
+
+                    #print(realhex,len(realhex))
+                    #checksumdic[checksum] = hex
+                for posno,char in enumerate(realhex[:-1]):
+                    newhex = realhex[0:posno] + realhex[posno:posno+2][::-1] + realhex[posno+2:]
+
+                    if realchecksum == getFiveCharChecksum(newhex) and realhex!=newhex:
+                        collision.append((newhex,realhex))
+                        writefile.write(':'.join(( '\n\nActual    ',    realhex, realchecksum,   '\nCollision ', newhex , getFiveCharChecksum(newhex)        )))
+                        collisions+=1
+                        print( newhex,getFiveCharChecksum(newhex),realhex,realchecksum)
+
+        user_input = raw_input('Tested {} unique ids. Type STOP to quit, otherwise press the Enter/Return key '.format(j) )
+        if user_input == 'STOP' or j==limittest:
+            break
 
 
 

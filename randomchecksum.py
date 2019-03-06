@@ -9,9 +9,9 @@ if __name__ == "__main__":
     #print(hex(zlib.crc32('A7947889C7B80000E000001')))
     randhexdic={}
     checksumdic={}
-    randchar=2
+    randchar=3
     testpersample=1000
-    limittest=10000
+    limittest=1000
     writefile= open('fgbhexcollisions.txt',"w")
     infile=open('fgbuser.txt',"r")
 
