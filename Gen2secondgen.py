@@ -447,6 +447,8 @@ class SecondGen(Gen2Error):
 
         self.vesselID = bits[0:3]
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
+        if self.vesselID == '111' and self.bits[43]=='0':
+            self.tablebin.append(['','','Reserved for system testing','ERROR!. Test protocol bit 43 is zero'])
 
         ##############################################
         # Vessel 0: No aircraft or maritime identity #
@@ -598,11 +600,11 @@ class SecondGen(Gen2Error):
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Reserved for system testing','OK. Test protocol bit 43 is set to 1 therefore can be non-zero. Default is zero'])
-        elif self.vesselID == '111' and self.bits[43]=='0':
+        elif self.vesselID == '111' :
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Reserved for system testing',
-                                  'ERROR!. Test protocol bit 43 is zero'])
+                                  ''])
         elif self.vesselID == '110':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
