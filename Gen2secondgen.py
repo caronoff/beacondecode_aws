@@ -592,6 +592,24 @@ class SecondGen(Gen2Error):
                                   'Spare all should be 1',
                                   status_check])
 
+        elif self.vesselID == '111' and self.bits[43]=='1':
+
+
+            self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
+                                  bits[3:47],
+                                  'Reserved for system testing','OK. Test protocol bit 43 is set to 1 therefore can be non-zero. Default is zero'])
+        elif self.vesselID == '111' and self.bits[43]=='0':
+            self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
+                                  bits[3:47],
+                                  'Reserved for system testing',
+                                  'ERROR!. Test protocol bit 43 is zero'])
+        elif self.vesselID == '110':
+            self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
+                                  bits[3:47],
+                                  'Spare',
+                                  'ERROR!. Not defined by T.018.  Should not be used'])
+
+
     def gettac(self):
         return self.tac
 
