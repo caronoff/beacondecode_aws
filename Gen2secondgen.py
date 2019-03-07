@@ -50,9 +50,14 @@ class SecondGen(Gen2Error):
             if pbit=='00':
                 padding='OK'
             else:
-                padding = 'ERROR! left padding should be 00'
+                padding = 'Left padding should be 00 unless this message self-test beacon transmission '
                 self.errors.append(padding)
                 self.tablebin.append(['left padding', pbit, '', padding])
+                if pbit=='10':
+                    self.tablebin.append(['', '', '', 'This is a self-test beacon transmission or bad message'])
+                else:
+                    self.tablebin.append(['', '', '', 'ERROR! Value is not self-test beacon transmission.'])
+
 
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
@@ -460,7 +465,7 @@ class SecondGen(Gen2Error):
                 self.tablebin.append([self.bitlabel(94, 137,deduct_offset),
                                       bits[3:47],
                                       'Vessel ID type is none',
-                                      'Error! Should be all 0'])
+                                      'Unless national assigned, should be all 0'])
         ###########################
         # Vessel 1: Maritime MMSI #
         ###########################
