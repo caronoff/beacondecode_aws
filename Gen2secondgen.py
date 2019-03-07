@@ -598,7 +598,7 @@ class SecondGen(Gen2Error):
 
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
-                                  'Reserved for system testing','OK. Test protocol bit 43. May contain information; default  bits 94-137 - 0s'])
+                                  'Reserved for system testing','OK. Test protocol bit 43 set to 1. May contain information; default  bits 94-137 - 0s'])
         elif self.vesselID == '111' and self.bits[43]=='0':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
@@ -608,7 +608,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Spare',
-                                  'ERROR!. Not defined by T.018.  Should not be used'])
+                                  'ERROR! Not defined by T.018.  Should not be used'])
 
 
     def gettac(self):
