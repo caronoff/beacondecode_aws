@@ -603,7 +603,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Reserved for system testing',
-                                  'ERROR! Test protocol not 1'])
+                                  ''])
         elif self.vesselID == '110':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
