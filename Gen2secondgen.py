@@ -596,15 +596,14 @@ class SecondGen(Gen2Error):
 
         elif self.vesselID == '111' and self.bits[43]=='1':
 
-
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
-                                  'Reserved for system testing','OK. Test protocol bit 43 is set to 1 therefore can be non-zero. Default is zero'])
-        elif self.vesselID == '111' :
+                                  'Reserved for system testing','OK. Test protocol bit 43. May contain information; default  bits 94-137 - 0s'])
+        elif self.vesselID == '111' and self.bits[43]=='0':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Reserved for system testing',
-                                  'May contain information; default  bits 94-137 - 0s'])
+                                  'ERROR! Test protocol not 1'])
         elif self.vesselID == '110':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
