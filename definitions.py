@@ -824,7 +824,7 @@ vessel_id = {'000':'No aircraft or maritime identity (may be for national use; d
              '100':'Aircraft aviation 24 Bit Address',
              '101':'Aircraft operator and serial number',
              '110':'Spare',
-             '111':'Reserved for System Testing (may contain information; default  bits 94-137 - 0s).Invalid if T-Prot bit-43 - 0'}
+             '111':'Reserved for System Testing'}
 
 baudot2 = {'': '100000', ' ': '100100', '-': '011000', '/': '010111', '1': '011101', '0': '001101',
            '3': '010000', '2': '011001', '5': '000001', '4': '001010', '7': '011100', '6': '010101',

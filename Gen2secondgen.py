@@ -604,7 +604,7 @@ class SecondGen(Gen2Error):
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Reserved for system testing',
-                                  ''])
+                                  'May contain information; default  bits 94-137 - 0s'])
         elif self.vesselID == '110':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
