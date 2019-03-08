@@ -184,7 +184,7 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                          ('ELT - Aircraft 24 bit address','2-100'),
                          ('ELT - Aircraft operator and Serial Number','2-101')],
                 'PLB':  [('PLB -  No aircraft or maritime identity','2-000')],
-                'TEST' :['Reserved for system testing - Vehicle ID 111','2-111']
+                'TEST' :[('Reserved for system testing - Vehicle ID 111','2-111')]
                 }}
 
 naturedistressmaritime ={'0001':'Fire/explosion',
