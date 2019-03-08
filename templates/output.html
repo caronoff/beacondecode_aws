@@ -77,7 +77,7 @@
             {% endif %}
 
         </td>
-<td class="columnD">{{ item[3] }}
+<td class="columnD">{% autoescape False %}{{ item[3] }}{% endautoescape %}
 {% if item[2]== 'Country code:' and showmenu %}<!-- Button trigger modal -->
     <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ContactModalLong">?</button>
 {% elif 'Type Approval' in item[2] and showmenu %}{{ item[3] }}<!-- Button trigger modal -->

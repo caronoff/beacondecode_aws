@@ -72,7 +72,7 @@ class SecondGen(Gen2Error):
 
             self.tac = Func.bin2dec(self.bits[1:17])
             if self.tac<10000:
-                warn='{}  \nWARNING!: SGB specifications stipulate TAC No >=10,000'.format(self.tac)
+                warn='<strong>{}</strong>  <br>WARNING!: SGB specifications stipulate TAC No >=10,000'.format(self.tac)
             else:
                 warn=self.tac
             self.tablebin.append(['1-16',
@@ -346,7 +346,7 @@ class SecondGen(Gen2Error):
             ##BIT 15-30  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[15:31])
             if self.tac<10000:
-                warn='{} WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
+                warn='<strong>{}</strong><br> WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
             else:
                 warn=str(self.tac)
             self.tablebin.append(['15-30',
