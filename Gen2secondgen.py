@@ -294,13 +294,15 @@ class SecondGen(Gen2Error):
                                       self.calculatedBCH,
                                       'Computed',
                                       ''])
-                self.tablebin.append(['','','',str(self.calculatedBCH==self.bchstring)])
+                self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {}'.format(self.calculatedBCH,self.bchstring)])
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
-                    bcherror='COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
-                    self.errors.append(bcherror)
-                    self.tablebin.append(['','','',bcherror])
+                    bcherror='ERROR! COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
+                else:
+                    bcherror = 'VALID MESSAGE: COMPUTED BCH MATECHED ENCODED BCH'
+                self.errors.append(bcherror)
+                self.tablebin.append(['','','',bcherror])
             elif len(self.bits)==203:
                 # if user enters a hex 51 excluding bch, then this ,means 202 information bits plus stub 0 minues the 2 digits of front padding
                 self.tablebin.append(['203-250','NA','Encoded BCH','Not provided in a 51 Hex.  Computed below'])
