@@ -294,7 +294,7 @@ class SecondGen(Gen2Error):
                                       self.calculatedBCH,
                                       'Computed',
                                       ''])
-                self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {} {}'.format(self.calculatedBCH,self.bchstring,self.calculatedBCH==self.bchstring)])
+                #self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {} {}'.format(self.calculatedBCH,self.bchstring,self.calculatedBCH==self.bchstring)])
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
@@ -309,7 +309,7 @@ class SecondGen(Gen2Error):
                 self.calculatedBCH =Func.calcBCH(self.bits[1:], 0, 202, 250)
                 hexBCH= Func.bin2hex(self.calculatedBCH)
                 self.tablebin.append(['203-250', self.calculatedBCH, 'Calculated BCH', 'Hex Value: {}'.format(hexBCH)])
-                self.tablebin.append(['', '', 'Complete 63 hex message', 'Hex Value: {}{}'.format(self.inputhex,hexBCH)])
+                self.tablebin.append(['', '', 'Hex Value: {}{}'.format(self.inputhex,hexBCH),''])
 
 
 
