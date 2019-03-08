@@ -72,7 +72,7 @@ class SecondGen(Gen2Error):
 
             self.tac = Func.bin2dec(self.bits[1:17])
             if self.tac<10000:
-                warn='{} \nWARNING!: SGB requires TAC No >=10,000'.format(self.tac)
+                warn='{}  \nWARNING!: SGB requires TAC No >=10,000'.format(self.tac)
             else:
                 warn=self.tac
             self.tablebin.append(['1-16',
