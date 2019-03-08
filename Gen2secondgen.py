@@ -309,7 +309,7 @@ class SecondGen(Gen2Error):
                 self.calculatedBCH =Func.calcBCH(self.bits[1:], 0, 202, 250)
                 hexBCH= Func.bin2hex(self.calculatedBCH)
                 self.tablebin.append(['203-250', self.calculatedBCH, 'Calculated BCH', 'Hex Value: {}'.format(hexBCH)])
-                self.tablebin.append(['', '', 'Hex Value: {}{}'.format(self.inputhex,hexBCH),''])
+                self.tablebin.append(['Complete Message', '', 'Hex Value: {}{}'.format(self.inputhex,hexBCH),''])
 
 
 
