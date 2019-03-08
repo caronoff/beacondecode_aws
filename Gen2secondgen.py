@@ -294,7 +294,7 @@ class SecondGen(Gen2Error):
                                       self.calculatedBCH,
                                       'Computed',
                                       ''])
-                self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {}'.format(self.calculatedBCH,self.bchstring)])
+                self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {} {}'.format(self.calculatedBCH,self.bchstring,self.calculatedBCH==self.bchstring)])
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
