@@ -32,6 +32,7 @@ class SecondGen(Gen2Error):
         ##All second generation beacon messages must be EXACTLY 250 bits
         ##in length for the program to function properly.
         self.bits = Func.hex2bin(strhex)
+        self.inputhex=strhex
         self.bchstring = ''
         self.tablebin = []
         self.rotatingbin = []
@@ -280,6 +281,7 @@ class SecondGen(Gen2Error):
             # 48-BIT BCH ERROR CORRECTING CODE #
             ####################################
             if len(self.bits) == 251:
+                # 251 length means 250 plus the stub 0, minus the extra 2 digits of front padding in self.bits
                 self.tablebin.append(['203-250',
                                       self.bits[203:],
                                       'Encoded BCH',
@@ -287,16 +289,28 @@ class SecondGen(Gen2Error):
                 ##Calculate the BCH
                 self.calculatedBCH = Func.calcBCH(self.bits[1:], 0, 202, 250)
                 self.bchstring=writebch.calcBCH(self.bits[1:], 0, 202, 250)[1]
+
                 self.tablebin.append(['Calculated',
                                       self.calculatedBCH,
                                       'Computed',
                                       ''])
+                self.tablebin.append(['','','',str(self.calculatedBCH==self.bchstring)])
                 ##Compare to the BCH in the beacon message
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
                     bcherror='COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
                     self.errors.append(bcherror)
                     self.tablebin.append(['','','',bcherror])
+            elif len(self.bits)==203:
+                # if user enters a hex 51 excluding bch, then this ,means 202 information bits plus stub 0 minues the 2 digits of front padding
+                self.tablebin.append(['203-250','NA','Encoded BCH','Not provided in a 51 Hex.  Computed below'])
+                self.calculatedBCH =Func.calcBCH(self.bits[1:], 0, 202, 250)
+                hexBCH= Func.bin2hex(self.calculatedBCH)
+                self.tablebin.append(['203-250', self.calculatedBCH, 'Calculated BCH', 'Hex Value: {}'.format(hexBCH)])
+                self.tablebin.append(['', '', 'Complete 63 hex message', 'Hex Value: {}{}'.format(self.inputhex,hexBCH)])
+
+
+
 
 
 

@@ -901,7 +901,7 @@ class Beacon(HexError):
                    '22long': 'Hex data length of 22 characters but format flag is long.  Assumed FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.4).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.4).',
                    '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
-                   '51': 'Hex data entered is a length of 51 characters representing a 204 bit messgage from a SGB, without the bch (as per T.018 Issue 1 - Rev.4).',
+                   '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) messgage from a SGB, without the BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
                    '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.4).',
                    '28': 'Hex data length of 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
                    '28long': 'Hex data length of 28 character hexadecimal but format flag is long.  Assumed FGB long message with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
