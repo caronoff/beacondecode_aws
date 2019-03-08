@@ -300,7 +300,7 @@ class SecondGen(Gen2Error):
                 if bcherr > 0 :
                     bcherror='ERROR! COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
                 else:
-                    bcherror = 'VALID MESSAGE: COMPUTED BCH MATECHED ENCODED BCH'
+                    bcherror = 'VALID BCH: COMPUTED BCH MATCHES'
                 self.errors.append(bcherror)
                 self.tablebin.append(['','','',bcherror])
             elif len(self.bits)==203:
