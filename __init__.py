@@ -14,7 +14,7 @@ import requests
 app = Flask(__name__)
 app.secret_key = 'my secret'
 
-MENU = False
+MENU = True
 
 COUNTRIES=[]
 country=open('countries2.csv')
