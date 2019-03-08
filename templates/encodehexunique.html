@@ -38,7 +38,7 @@
                                 <option value="ELT" >ELT</option>
                                 <option value="EPIRB">EPIRB</option>
                                 <option value="PLB">PLB</option>
-                                <option value="TEST">Test/Spare</option>
+                                <option value="TEST">TEST</option>
                                 </select>
                             </div>
                 </div>
@@ -135,6 +135,15 @@
                     <div class="col-lg-10">
                         <input type="number" class="form-control" name="aircraftserial_input" id="id_aircraftserial_input" min="0" max="4095" step="1" data-bind="value:id_aircraftserial_input">
                         <span id="id_aircraftserialerror" class="help-block"></span>
+                    </div>
+                </div>
+
+                <div id="id_systemtest_secgen" style="display: none;" class="form-group panel panel-body panel-default tohide">
+
+                        <label for="id_systemtest_input" class="col-lg-2 control-label" >44 Bits (default 0):</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="systemtest_input" id="id_systemtest_input" value="0" data-bind="value:id_systemtest_input">
+                        <span id="id_systemtesterror" class="help-block"></span>
                     </div>
                 </div>
 
@@ -410,7 +419,7 @@ $('#id_protocol').on('change', function() {
         $('#id_serialnumber').show();
         break;
 
-   //Std location - Aircraft 24-bit Address
+   //Std location - ELT Aircraft 24-bit Address
    case '1-0-0011':
          $('#id_elt24bit').show();
         break;
@@ -496,11 +505,19 @@ $('#id_protocol').on('change', function() {
         $('#id_testprotocol').show();
         break;
 
-// Aircraft operator 2nd Gen
+// Aircraft operator and serial number 2nd Gen
      case '2-101':
         $('#id_tano').show();
         $('#id_aircraftoperator').show();
         $('#id_aircraftserial_secgen').show();
+        $('#id_serialnumber').show();
+        $('#id_testprotocol').show();
+        break;
+
+// Reserved for system testing 2nd Gen
+    case '2-111':
+        $('#id_tano').show();
+        $('#id_systemtest_secgen').show();
         $('#id_serialnumber').show();
         $('#id_testprotocol').show();
         break;

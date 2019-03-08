@@ -183,7 +183,8 @@ pselect = {'1':{'ELT':[(userprottype['001'],'1-1-001'),(userprottype['100'],'1-1
                 'ELT' : [('ELT - Aircraft marking - tail','2-011'),
                          ('ELT - Aircraft 24 bit address','2-100'),
                          ('ELT - Aircraft operator and Serial Number','2-101')],
-                'PLB':  [('PLB -  No aircraft or maritime identity','2-000')]
+                'PLB':  [('PLB -  No aircraft or maritime identity','2-000')],
+                'TEST' :['Reserved for system testing - Vehicle ID 111','2-111']
                 }}
 
 naturedistressmaritime ={'0001':'Fire/explosion',
@@ -298,6 +299,22 @@ class Hexgen:
             bin=dec2bin(ser,n)
         print(ser,n,bin)
         return bin
+
+    def is_binary(self,string):
+        isbin=True
+        for e in string:
+            if e not in ['0','1']:
+                isbin=False
+        return isbin
+
+    def getbinaryinput(self,testdata,errormsg,n,flderror):
+        bin=''
+        if not self.is_binary(testdata) or len(testdata)>n:
+            self.seterror(errormsg, flderror)
+        else:
+            bin='0'*(n-len(testdata))+testdata
+        return bin
+
 
     def sethexcode(self, *args):
         binstr=''
@@ -455,7 +472,16 @@ class Air24bit_secgen(Secondgen):
         self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, sn,'0'*20)
         return self.results
 
+class Systemtest_secgen(Secondgen):
+    #System test.  Default value of bits 94-137 (49-92) are 0
+    def __init__(self, formfields, protocol):
+        Secondgen.__init__(self, formfields,protocol)
 
+    def getresult(self):
+        systemtest = str(self.formfields.get('systemtest_input'))
+        testdata = self.getbinaryinput(systemtest,  'Binary input only - 44 bit max', 44,'id_systemtesterror')
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, testdata)
+        return self.results
 
 
 class Aircraftoperator_secgen(Secondgen):
@@ -685,6 +711,7 @@ protocolspecific={
                   '2-100' : Air24bit_secgen,
                   '2-101': Aircraftoperator_secgen,
                   '1-1-001' :     Aircraftmarking,
+                   '2-111' : Systemtest_secgen,
                   '1-1-011-000': Serial,
                   '1-1-011-010': Serial,
                   '1-1-011-100': Serial,
