@@ -39,7 +39,6 @@ for h in range(10000000):
         add24=random.randint(0,16777215)
         IdBits=vesselID+definitions.dec2bin(add24,24)+20*'0'
 
-
     elif vesselID=='101':
         # aircraft operator and serial number
         baudotlist = []
@@ -50,8 +49,6 @@ for h in range(10000000):
             r = random.randint(0, len(baudotlist)-1)
             IdBits = IdBits + baudotlist[r]
         IdBits=IdBits + definitions.dec2bin(random.randint(0,4095),12) + 14* '1'
-
-
 
     uin='1'+midbin+'101'+tac+sn+'0'+IdBits
     hex23=definitions.bin2hex(uin)

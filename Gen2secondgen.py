@@ -10,6 +10,7 @@ import Gen2rotating as rotating
 import writebch
 import definitions
 
+
 class Gen2Error(Exception):
     def __init__(self, value, message):
         self.value = value
@@ -22,7 +23,7 @@ class Gen2Error(Exception):
 class SecondGen(Gen2Error):
     def __init__(self, hexCode=None):
         self.bits = '0' * 252
-
+        self.validhex=True
         if hexCode:
             self.processHex(hexCode)
 
@@ -327,9 +328,14 @@ class SecondGen(Gen2Error):
                                   self.bits[1],
                                   'should be 1',
                                   ['ERROR', 'OK'][int(self.bits[1])]])
+            if self.bits[1]=='0':
+                self.validhex = False
+
             ##BIT 2-11 Country code
             self.countryCode = Func.bin2dec(self.bits[2:12])
             self.countryName = Func.countryname(self.countryCode)
+            if self.countryName=='Unknown MID':
+                self.validhex=False
             self.tablebin.append(['2-11',
                                   self.bits[2:12],
                                   'Country code:',
@@ -339,6 +345,7 @@ class SecondGen(Gen2Error):
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
+                self.validhex = False
             self.tablebin.append(['12-14',
                                   self.bits[12:15],
                                   'Should be 101',
@@ -347,6 +354,7 @@ class SecondGen(Gen2Error):
             self.tac = Func.bin2dec(self.bits[15:31])
             if self.tac<10000:
                 warn='<strong>{}</strong><br> WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
+                self.validhex = False
             else:
                 warn=str(self.tac)
             self.tablebin.append(['15-30',
@@ -366,7 +374,8 @@ class SecondGen(Gen2Error):
                                   'Test protocol flag:',
                                   str(self.testprotocol)])
 
-
+            if self.bits[45]=='1':
+                self.validhex = False
             if self.bits[61:] == '0'*32:
 
                 self.tablebin.append(['46-48', self.bits[46:49], 'Vessel ID Type',Func.getVesselid(self.bits[46:49])])
@@ -465,6 +474,7 @@ class SecondGen(Gen2Error):
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
         if self.vesselID == '111' and self.bits[43]=='0':
             self.tablebin.append(['','','Reserved for system testing','ERROR! Test protocol bit 43 is zero'])
+            self.validhex=False
 
         ##############################################
         # Vessel 0: No aircraft or maritime identity #
@@ -484,6 +494,7 @@ class SecondGen(Gen2Error):
                                       bits[3:47],
                                       'Vessel ID type is none',
                                       'Unless national assigned, should be all 0'])
+                self.validhex = False
         ###########################
         # Vessel 1: Maritime MMSI #
         ###########################
@@ -542,6 +553,7 @@ class SecondGen(Gen2Error):
                 status_check='OK'
             else:
                 status_check = 'ERROR'
+                self.validhex = False
             self.tablebin.append([self.bitlabel(136,137,deduct_offset),
                                   bits[45:47],
                                   'Spare should be 0',
@@ -560,6 +572,7 @@ class SecondGen(Gen2Error):
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
+                self.validhex = False
             self.tablebin.append([self.bitlabel(136,137,deduct_offset),
                                   bits[45:47],
                                   'Spare should be 00',
@@ -578,6 +591,7 @@ class SecondGen(Gen2Error):
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
+                self.validhex = False
             self.tablebin.append([self.bitlabel(118,137,deduct_offset),
                                   bits[27:47],
                                   'Spare should be 0',
@@ -605,6 +619,7 @@ class SecondGen(Gen2Error):
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
+                self.validhex = False
             self.tablebin.append([self.bitlabel(124,137,deduct_offset),
                                   bits[33:47],
                                   'Spare all should be 1',
@@ -625,6 +640,7 @@ class SecondGen(Gen2Error):
                                   bits[3:47],
                                   'Spare',
                                   'ERROR! Not defined by T.018.  Should not be used'])
+            self.validhex = False
 
 
     def gettac(self):
