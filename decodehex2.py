@@ -653,9 +653,9 @@ class BeaconFGB(HexError):
                 if default==str(self.bin[65:86]):
                     valid='Valid'
                 else:
-                    valid='ERROR: Unique identifier bits not default'
-                self.tablebin.append(['65-85',default,'Default bits','Required by T.001 for Unique identifier'])
-                self.tablebin.append(['65-85', str(self.bin[65:86]), 'Default bits', valid])
+                    valid='ERROR:  bits not default'
+                self.tablebin.append(['65-85',default,'Default bits required','Defined by T.001 for Unique identifier'])
+                self.tablebin.append(['65-85', str(self.bin[65:86]), 'Default bits in hex', valid])
                 self._loc=False
 
         #   National Location protocols - PLB, ELT and EPIRB
@@ -742,9 +742,9 @@ class BeaconFGB(HexError):
                 if default==str(self.bin[59:86]):
                     valid='Valid'
                 else:
-                    valid='ERROR: Unique identifier bits not default'
-                self.tablebin.append(['59-85',default,'Default bits','Required by T.001 for Unique identifier'])
-                self.tablebin.append(['59-85', str(self.bin[59:86]), 'Default bits', valid])
+                    valid='ERROR: bits not default'
+                self.tablebin.append(['59-85',default,'Default bits required','Defined by T.001 for Unique identifier'])
+                self.tablebin.append(['59-85', str(self.bin[59:86]), 'Default bits in hex', valid])
                 self._loc=False
             
         # RLS Location Protocol 
@@ -793,9 +793,9 @@ class BeaconFGB(HexError):
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
                 else:
-                    valid = 'ERROR: Unique identifier bits not default'
-                self.tablebin.append(['67-85', default, 'Default bits', 'Required by T.001 for Unique identifier'])
-                self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits', valid])
+                    valid = 'ERROR: bits not default'
+                self.tablebin.append(['67-85', default, 'Default bits required', 'Defined by T.001 for Unique identifier'])
+                self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits in hex', valid])
 
 
                 self._loc = False
@@ -864,14 +864,14 @@ class BeaconFGB(HexError):
                         self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                         self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
                         self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
-            elif self.type=='uin':
 
+            elif self.type=='uin':
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
                 else:
-                    valid = 'ERROR: Unique identifier bits not default'
-                self.tablebin.append(['67-85', default, 'Default bits', 'Required by T.001 for Unique identifier'])
-                self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits', valid])
+                    valid = 'ERROR:  bits not default'
+                self.tablebin.append(['67-85', default, 'Default bits required', 'Defined by T.001 for Unique identifier'])
+                self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits in hex', valid])
 
                 self._loc = False
         if Fcn.is_number(declat) and Fcn.is_number(latdelta) and Fcn.is_number(declng) and Fcn.is_number(longdelta):
