@@ -192,14 +192,6 @@
             console.log(country);
              $('input[name="country"]').val(country);
 
-  function() {
-      $.getJSON("{{url_for('getmid')}}", {
-        a: country
-      }, function(data) {
-        $("#id_mid").val(response(data.mid));
-      });
-
-
 
   },
 		change: function (event, ui) {
@@ -211,14 +203,11 @@
                     $("#tags").focus();
                     alert('Valid selection required');
                 }
-
             }
 
 
-
-
 	  });
-  })};
+  });
 
 
 
