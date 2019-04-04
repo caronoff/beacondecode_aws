@@ -45,7 +45,7 @@
       $.getJSON("{{url_for('getmid')}}", {
         a: country
       }, function(data) {
-        $('input[name="mid"]').val(response(data.mid));
+        $("#id_mid").val(response(data.mid));
       });
       return false;
     }

@@ -60,7 +60,7 @@
         <td class="columnA"> 2-11 </td>
 		<td class="columnB">? </td>
 		<td class="columnC">
-        <input type="text" class="form-control" name="mid"    value="Enter Mid" id="id_mid">
+        <span id="id_mid">?</span>
             3 digit country code
         </td>
         <td class="columnD">
@@ -185,16 +185,21 @@
                 response(data.matching_results); // matching_results from jsonify
             });
 
-
-
-
 		},
         minLength: 2,
         select: function(event, ui) {
             var country = ui.item.value
             console.log(country);
-
              $('input[name="country"]').val(country);
+
+  function() {
+      $.getJSON("{{url_for('getmid')}}", {
+        a: country
+      }, function(data) {
+        $("#id_mid").val(response(data.mid));
+      });
+      return false;
+    }
 
   },
 		change: function (event, ui) {
