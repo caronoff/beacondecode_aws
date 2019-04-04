@@ -26,6 +26,51 @@ COUNTRIES.sort()
 
 
 
+@app.route('/validatehex', methods=['GET'])
+def validatehex():
+    ret_data =  str(request.args.get('hexcode')).strip()
+    vlengths=request.args.getlist('lenval[]')
+    hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
+    statuscheck='not valid'
+    message = 'Enter a valid beacon hex message'
+
+    if len(ret_data) > 0:
+        if len(hexaPattern)==len(ret_data):
+            message='Valid hexidecimal message.'
+            if str(len(ret_data)) in vlengths:
+                statuscheck = 'valid'
+            else:
+                message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
+        else:
+            statuscheck='not valid'
+            message='Invalid Hexidecimal code  (A-F-0-9)'
+    return jsonify(echostatus=statuscheck, message=message)
+
+
+@app.route("/autocomplete",methods=['GET'])
+def autocomplete():
+    search = request.args.get('q')
+    results= [k for k in COUNTRIES if k.upper().startswith(search.upper())]
+    return jsonify(matching_results=results)
+
+
+@app.route("/getmid",methods=['GET'])
+def getmid():
+    search = request.args.get('q')
+    print(search)
+    result= search+'hsdd'
+    print(result)
+    return jsonify(mid=result)
+
+## Encoder
+@app.route("/encodehex")
+def encodehex():
+    countries=[]
+    for key in definitions.countrydic:
+        countries.append('{} ({})'.format(definitions.countrydic[key], key))
+    countries.sort()
+    return render_template("encodehexunique2.html", countries=countries,showmenu=MENU)
+
 @app.route('/processhex', methods=['GET'])
 def processhex():
     protocol=str(request.args.get('protocol'))
@@ -33,15 +78,6 @@ def processhex():
     retdata = t.getresult()
     beacon_gen = t.getgen()
     return jsonify(beacon_gen=beacon_gen,binary=retdata['binary'],hexcode=retdata['hexcode'],echostatus=retdata['status'], messages=retdata['message'], flderrors=retdata['flderrors'])
-
-@app.route('/ibrdallowed',methods=['GET','POST'])
-def ibrdallowed():
-    if request.method == 'POST':
-        hexcode = str(request.form['hexcode']).strip()
-
-        return redirect(url_for('whereregister',hexcode=hexcode))
-    return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
-
 
 @app.route('/filterlist', methods=['GET'])
 def filterlist():
@@ -54,7 +90,6 @@ def filterlist():
     statuscheck='valid'
     return jsonify(returndata=selectdic,echostatus=statuscheck)
 
-
 @app.route('/longSGB', methods=['GET','POST'])
 def longSGB():
     hexcodeUIN = str(request.args.get('hex_code'))
@@ -65,10 +100,10 @@ def longSGB():
     forms={'0000': SGB_g008(request.form), '0001': SGB_emergency(request.form)}
     form = forms[rotatefld]
     if request.method == 'POST' and form.validate():
-        #print('valid')
-        #hexcodelong = request.form['homingdevice'] + request.form['rlsfunction'] + request.form['beacontype']
-        #hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
-        #print(form.encodelong(hexcodeUIN))
+        ## print('valid')
+        # hexcodelong = request.form['homingdevice'] + request.form['rlsfunction'] + request.form['beacontype']
+        # hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+        # print(form.encodelong(hexcodeUIN))
         return redirect(url_for('decoded', hexcode=form.encodelong(hexcodeUIN)))
 
     return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error,showmenu=MENU)
@@ -130,69 +165,7 @@ def long():
 
 
 
-
-@app.route('/validatehex', methods=['GET'])
-def validatehex():
-    ret_data =  str(request.args.get('hexcode')).strip()
-    vlengths=request.args.getlist('lenval[]')
-    hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
-    statuscheck='not valid'
-    message = 'Enter a valid beacon hex message'
-
-    if len(ret_data) > 0:
-        if len(hexaPattern)==len(ret_data):
-            message='Valid hexidecimal message.'
-            if str(len(ret_data)) in vlengths:
-                statuscheck = 'valid'
-            else:
-                message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
-        else:
-            statuscheck='not valid'
-            message='Invalid Hexidecimal code  (A-F-0-9)'
-    return jsonify(echostatus=statuscheck, message=message)
-
-
-@app.route("/",methods=['GET','POST'])
-@app.route("/index")
-def index():
-    if request.method == 'POST':
-        hexcode = str(request.form['hexcode']).strip()
-        return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('indx.html', title='Home', user='',showmenu=MENU)
-
-
-@app.route("/decode",methods=['GET','POST'])
-def decode():
-    if request.method == 'POST':
-        hexcode = str(request.form['hexcode']).strip()
-        return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
-
-
-@app.route("/autocomplete",methods=['GET'])
-def autocomplete():
-    search = request.args.get('q')
-    results= [k for k in COUNTRIES if k.upper().startswith(search.upper())]
-    return jsonify(matching_results=results)
-
-@app.route("/encodehex")
-def encodehex():
-    countries=[]
-    for key in definitions.countrydic:
-        countries.append('{} ({})'.format(definitions.countrydic[key], key))
-    countries.sort()
-    return render_template("encodehexunique.html", countries=countries,showmenu=MENU)
-
-@app.route("/about")
-def about():
-    return render_template("about.html",showmenu=MENU)
-
-@app.route("/contact/<num>")
-def contact(num):
-    flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
-    types = ['PLB','ELT','EPIRB']
-    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=MENU)
-
+## Decoder
 @app.route("/decodedjson/<hexcode>")
 def decodedjson(hexcode):
     # perform independent basic validation of hex code for length and specifications. Basic check
@@ -215,11 +188,12 @@ def decodedjson(hexcode):
     beacondecode= {'type': tmp, 'loc': geocoord}
     return jsonify(beacondecode)
 
-
-@app.route("/whereregister/<hexcode>")
-def whereregister(hexcode):
-    beacon = decodehex2.Beacon(hexcode)
-    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country(),showmenu=MENU)
+@app.route("/decode",methods=['GET','POST'])
+def decode():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
@@ -314,7 +288,39 @@ def download_bch(hexcode):
     response.mimetype = 'text/csv'
     return response
 
+@app.route("/about")
+def about():
+    return render_template("about.html",showmenu=MENU)
+
+@app.route("/contact/<num>")
+def contact(num):
+    flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
+    types = ['PLB','ELT','EPIRB']
+    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=MENU)
+
+
+@app.route("/whereregister/<hexcode>")
+def whereregister(hexcode):
+    beacon = decodehex2.Beacon(hexcode)
+    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country(),showmenu=MENU)
+
+
+@app.route('/ibrdallowed',methods=['GET','POST'])
+def ibrdallowed():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+
+        return redirect(url_for('whereregister',hexcode=hexcode))
+    return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
+
+@app.route("/",methods=['GET','POST'])
+@app.route("/index")
+def index():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('indx.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
-    app.run(debug=True,host='0.0.0.0', port=5555)
+    app.run(debug=True,host='0.0.0.0', port=5555, threaded=True)
