@@ -220,6 +220,9 @@ class Country:
             self.results['message'].append('Country code is required')
             return '0000000000'
 
+    def retmid(self):
+        return int(self.midpat.search(self.ctxt).groups()[0])
+
 
 
 
