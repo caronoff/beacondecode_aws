@@ -193,6 +193,12 @@
              $('input[name="country"]').val(country);
             $("#id_mid").text("dsdsfd");
 
+  $.getJSON("{{url_for('getmid')}}", {
+        a: country
+      }, function(data) {
+        $("#id_mid").val(response(data.mid));
+      });
+
   },
 		change: function (event, ui) {
                 if(!ui.item){
