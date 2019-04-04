@@ -62,6 +62,7 @@ def getmid():
     result=definitions.Country(search,{})
     resultdec=result.retmid()
     resultbin=result.getmid()
+    print(resultbin)
     return jsonify(mid=resultdec, midbin=resultbin)
 
 ## Encoder
