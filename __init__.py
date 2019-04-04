@@ -55,7 +55,7 @@ def autocomplete():
 
 
 @app.route("/getta",methods=['GET'])
-def getmid():
+def getta():
     s = request.args.get('a')
     return jsonify(tacbin=definitions.dec2bin(int(s),16))
 
