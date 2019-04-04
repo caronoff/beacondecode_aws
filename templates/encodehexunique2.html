@@ -58,7 +58,7 @@
 
 <tr>
         <td class="columnA"> 2-11 </td>
-		<td class="columnB">? </td>
+		<td class="columnB"><span id="id_midbin">?</span> </td>
 		<td class="columnC">
         Country code : <span id="id_mid">?</span>
 
@@ -138,6 +138,7 @@
         a: country
       }, function(data) {
         $("#id_mid").text(data.mid);
+        $("#id_midbin").text(data.midbin);
       });
   },
 		change: function (event, ui) {

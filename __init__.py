@@ -59,9 +59,10 @@ def getmid():
     search = request.args.get('a')
 
 
-    result=definitions.Country(search,{}).retmid()
-
-    return jsonify(mid=result)
+    result=definitions.Country(search,{})
+    resultdec=result.retmid()
+    resultbin=result.getmid()
+    return jsonify(mid=resultdec, midbin=resultbin)
 
 ## Encoder
 @app.route("/encodehex")
