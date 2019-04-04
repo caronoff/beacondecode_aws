@@ -197,7 +197,7 @@
              $('input[name="country"]').val(country);
   function() {
       $.getJSON("{{url_for('getmid')}}", {
-        a: country
+        a: country,
       }, function(data) {
         $('input[name="mid"]').val(response(data.mid));
       });
