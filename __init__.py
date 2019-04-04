@@ -57,9 +57,9 @@ def autocomplete():
 @app.route("/getmid",methods=['GET'])
 def getmid():
     search = request.args.get('a')
-    print(search)
-    result= search+'hsdd'
-    print(result)
+
+
+    result=definitions.Country(search,{}).midpat
     return jsonify(mid=result)
 
 ## Encoder
