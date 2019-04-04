@@ -59,7 +59,7 @@ def getmid():
     search = request.args.get('a')
 
 
-    result=definitions.Country(str(search),{}).midpat
+    result=definitions.Country('sdsdfds (123)',{}).midpat
     return jsonify(mid=result)
 
 ## Encoder
