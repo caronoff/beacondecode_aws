@@ -173,7 +173,17 @@ $( "#id_tanoinput" ).change(function() {
 
  var ta = $("#id_tanoinput").val() ;
 
+
+
   alert( ta );
+
+
+$.getJSON("{{url_for('getta')}}", {
+        a: ta
+      }, function(data) {
+        $("#id_tabin").text(data.tacbin);
+
+      });
 
 
 

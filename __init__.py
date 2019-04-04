@@ -54,16 +54,24 @@ def autocomplete():
     return jsonify(matching_results=results)
 
 
+@app.route("/getta",methods=['GET'])
+def getmid():
+    s = request.args.get('a')
+    return jsonify(tacbin=definitions.dec2bin(int(s),16))
+
+
+
 @app.route("/getmid",methods=['GET'])
 def getmid():
     search = request.args.get('a')
-
-
     result=definitions.Country(search,{})
     resultdec=result.retmid()
     resultbin=result.getmid()
 
     return jsonify(mid=resultdec, midbin=resultbin)
+
+
+
 
 ## Encoder
 @app.route("/encodehex")
