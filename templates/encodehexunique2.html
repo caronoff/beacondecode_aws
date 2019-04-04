@@ -68,29 +68,31 @@
                 <form id="genformpanel" class="form-horizontal" role="form">
                     <div id="id_ctry"  class="form-group ui-widget">
 
-                       <label for="tags" class="control-label"  >Enter Country name </label>
+
                         <div>
                        <input id="tags" class="form-control" >
+                            <label for="tags" class="control-label"  >Enter Country name </label>
                         <span id="id_miderror" class="help-block"></span>
-                       <input type="text" style="visibility: hidden" name="country" id="ctry">
+
                         </div>
 
                     </div>
-
                   </form>
-
             </div>
-
-
-
-
-
-
-
         </td>
     </tr>
 
+<tr>
+        <td class="columnA"> 13-14 </td>
+		<td class="columnB">101 </td>
+		<td class="columnC">
+        Fixed Bits
 
+        </td>
+        <td class="columnD">
+
+        </td>
+    </tr>
 
     </tbody>
   </table>
@@ -131,8 +133,8 @@
         select: function(event, ui) {
             var country = ui.item.value
             console.log(country);
-             $('input[name="country"]').val(country);
-            $("#id_mid").text("dsdsfd");
+             
+
 
   $.getJSON("{{url_for('getmid')}}", {
         a: country
