@@ -33,3 +33,26 @@
 
 
   </script>
+
+
+
+  <script type=text/javascript>
+  $(function() {
+    $('a#calculate').bind('click',
+
+
+    function() {
+      $.getJSON("{{url_for('getmid')}}", {
+        a: country
+      }, function(data) {
+        $('input[name="mid"]').val(response(data.mid));
+      });
+      return false;
+    }
+
+
+
+
+    );
+  });
+</script>
