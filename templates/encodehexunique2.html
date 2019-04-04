@@ -60,8 +60,8 @@
         <td class="columnA"> 2-11 </td>
 		<td class="columnB">? </td>
 		<td class="columnC">
-        <span id="id_mid">?</span>
-            3 digit country code
+        Country code : <span id="id_mid">?</span>
+
         </td>
         <td class="columnD">
             <div id="id_genform">
@@ -113,64 +113,7 @@
 <!--<script src="{{ url_for('static', filename='js/selectcountry.js') }}"></script>-->
 
 
-<!-- <script type="text/javascript">
 
-  $( function() {
-    $( "#tags" ).autocomplete({
-      source: function(request, response) {
-            $.getJSON("{{url_for('autocomplete')}}",{
-                q: request.term, // in flask, "q" will be the argument to look for using request.args
-
-            }, function(data) {
-                response(data.matching_results); // matching_results from jsonify
-
-            });
-
-
-
-
-		},
-        minLength: 2,
-        select: function(event, ui) {
-        //if selection is made
-            var country = ui.item.value;
-            console.log(country);
-             $('input[name="country"]').val(country);
-            $('input[name="mid"]').val('his');
-            $.getJSON("{{url_for('getmid')}}", {
-                q: country, // in flask, "q" will be the argument to look for using request.args
-            }, function(data) {
-                response(data.mid);
-                 response(data.mid);// mid only
-                  $('input[name="mid"]').val(response(data.mid));
-            });
-
-
-
-
-            },
-		change: function (event, ui) {
-                if(!ui.item){
-                    //http://api.jqueryui.com/autocomplete/#event-change -
-                    // The item selected from the menu, if any. Otherwise the property is null
-                    //so clear the item for force selection
-                    $("#tags").val("");
-                    $("#tags").focus();
-                    alert('Valid selection required');
-                }
-
-            }
-
-
-
-
-	  });
-  });
-
-
-
-  </script>
-  -->
 
 
 <script type="text/javascript">
