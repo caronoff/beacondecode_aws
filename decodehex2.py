@@ -411,9 +411,12 @@ class BeaconFGB(HexError):
         elif typeuserprotbin=='111':
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Test Beacon Data',''])
-            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
-            self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
-            btype='Test'
+            btype = 'Test'
+
+            if self.type!='uin':
+                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
+
 
 
 
