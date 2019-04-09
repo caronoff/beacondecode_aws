@@ -52,8 +52,8 @@
       <tr>
         <td class="columnA"> 1 </td>
 		<td class="columnB">1 </td>
-		<td class="columnC">Set to 1 for SGB </td>
-        <td class="columnD">OK</td>
+		<td class="columnC">Fixed bit for SGB </td>
+        <td class="columnD"></td>
     </tr>
 
 <tr>
@@ -68,7 +68,6 @@
                     <div id="id_ctry"  class="form-group ui-widget">
                         <div>
                        <input id="tags" class="form-control" >
-                            <label for="tags" class="control-label"  >Enter Country name </label>
                         <span id="id_miderror" class="help-block"></span>
                         </div>
                     </div>
@@ -79,23 +78,29 @@
 <tr>
         <td class="columnA"> 13-14 </td>
 		<td class="columnB">101 </td>
-		<td class="columnC">Fixed Bits</td>
+		<td class="columnC">Fixed Bits for SGB</td>
         <td class="columnD"> </td>
     </tr>
 
     <tr>
         <td class="columnA"> 15-30 </td>
 		<td class="columnB"><span id="id_tabin">?</span> </td>
-		<td class="columnC">C/S TAC# :</td>
+		<td class="columnC">C/S TAC# (max 65,535): <span id="id_tadec">?</span></td>
         <td class="columnD">
-
                     <input type="number" class="form-control" name="tano_input" value="0" id="id_tanoinput" min="0" max="65535" step="1" data-bind="value:id_tanoinput" >
                     <span id="id_tanoerror" class="help-block"></span>
-
-
-
         </td>
     </tr>
+
+     <tr>
+     <td class="columnA"> 31-44 </td>
+		<td class="columnB"><span id="id_snbin">?</span> </td>
+		<td class="columnC">Beacon S/N (max:16,383) :<span id="id_sndec">?</span> </td></td>
+        <td class="columnD">
+                    <input type="number" class="form-control" name="sn_input" value="0" id="id_sninput" min="0" max="16383" step="1" data-bind="value:id_sninput" >
+                    <span id="id_snerror" class="help-block"></span>
+        </td>
+     </tr>
 
 
     </tbody>
@@ -170,21 +175,30 @@
 
 <script type="text/javascript">
 $( "#id_tanoinput" ).change(function() {
-
  var ta = $("#id_tanoinput").val() ;
-
-
 $.getJSON("{{url_for('getta')}}", {
         a: ta
       }, function(data) {
         $("#id_tabin").text(data.tacbin);
+        $("#id_tadec").text(data.tadec);
 
       });
-
-
-
-
 }  //change function
 );
 </script>
+
+<script type="text/javascript">
+$( "#id_sninput" ).change(function() {
+ var sn = $("#id_sninput").val() ;
+$.getJSON("{{url_for('getsn')}}", {
+        a: sn
+      }, function(data) {
+        $("#id_snbin").text(data.snbin);
+        $("#id_sndec").text(data.sndec);
+      });
+}  //change function
+);
+</script>
+
+
 {% endblock %}

@@ -57,8 +57,20 @@ def autocomplete():
 @app.route("/getta",methods=['GET'])
 def getta():
     s = request.args.get('a')
-    return jsonify(tacbin=definitions.dec2bin(int(s),16))
+    sn= definitions.dec2bin(int(s),16)
+    if len(sn) > 16:
+        sn = '1' * 16
 
+    return jsonify(tacbin=sn,tadec=int(sn,2))
+
+@app.route("/getsn",methods=['GET'])
+def getsn():
+    s = request.args.get('a')
+    sn= definitions.dec2bin(int(s),14)
+    if len(sn)>14:
+        sn='1'*14
+    print(int(sn, 2))
+    return jsonify(snbin=sn,sndec=int(sn, 2))
 
 
 @app.route("/getmid",methods=['GET'])

@@ -414,7 +414,39 @@ class BeaconFGB(HexError):
             self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
             btype='Test'
+
+
+
+            if self.type!='Short Msg' and int(self.bin[113:])!=0:
+                self.tablebin.append(['113-132',str(self.bin[113:133]),'Test','Reserved for test use'])
+                self.tablebin.append(['133-144',
+                                      str(self.bin[133:145]),
+                                          'BCH 2',
+                                          str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+
+
+
+
+
+
+
+
+
+
+
+
             self._loctype = 'User: Test User'
+
+
+
+
+
+
+
+
+
+
+
         #############################################################################
         #   Bit 37-39: 110 : Radio Call Sign xxx                                    #
         #############################################################################       
