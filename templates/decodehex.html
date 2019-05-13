@@ -129,6 +129,7 @@ $('#inputhexcode').on('keyup change',function()
 
                 else{
                         $form.find(':input[type="submit"]').prop('disabled', true);
+                        $('#inputhexcode').value(data.newdata);
                         $("#echoResult").text(data.message);
                         $addon.removeClass('success');
 				        $addon.addClass('danger');
