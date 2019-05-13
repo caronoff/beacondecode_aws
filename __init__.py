@@ -43,9 +43,9 @@ def validatehex():
                 message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
         else:
             statuscheck='not valid'
-            new_data=re.sub(r'(^[.a-fA-F0-9])', "", ret_data)
+            new_data=re.sub(r'[^.a-fA-F0-9]', "", ret_data)
             message='Invalid Hexidecimal code  (A-F-0-9)'
-    print(new_data)
+            print(new_data)
     return jsonify(echostatus=statuscheck, message=message,newdata=new_data)
 
 
