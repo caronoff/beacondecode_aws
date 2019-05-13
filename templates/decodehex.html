@@ -130,14 +130,15 @@ $('#inputhexcode').on('keyup change',function()
                 else{
                         $form.find(':input[type="submit"]').prop('disabled', true);
                         $('#inputhexcode').val(data.newdata);
-                        $("#echoResult").text(data.message);
                         $addon.removeClass('success');
 				        $addon.addClass('danger');
 				        $icon.attr('class', 'glyphicon glyphicon-remove');
+                        if(data.echostatus=='not valid'){
+                        $("#echoResult").text(data.message);
 				        $('#hexAlert').show('fade');
 				        setTimeout(function(){
                             $('#hexAlert').hide('fade');
-                            },10);
+                            },5000);}
 
 
                     }
