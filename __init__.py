@@ -33,7 +33,7 @@ def validatehex():
     hexaPattern = re.findall(r'([A-F0-9])', ret_data,re.M|re.I)
     statuscheck='not valid'
     message = 'Enter a valid beacon hex message'
-
+    new_data=ret_data.upper()
     if len(ret_data) > 0:
         if len(hexaPattern)==len(ret_data):
             message='Valid hexidecimal message.'
@@ -43,8 +43,10 @@ def validatehex():
                 message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
         else:
             statuscheck='not valid'
+            new_data=re.sub(r'(^[.a-fA-F0-9])', "", ret_data)
             message='Invalid Hexidecimal code  (A-F-0-9)'
-    return jsonify(echostatus=statuscheck, message=message)
+    print(new_data)
+    return jsonify(echostatus=statuscheck, message=message,newdata=new_data)
 
 
 @app.route("/autocomplete",methods=['GET'])
