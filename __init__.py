@@ -43,7 +43,7 @@ def home():
             print("Failed to add book")
             print(e)
     books = Book.query.all()
-    return render_template("home.html", books=books)
+    return render_template("books.html", books=books)
 
 
 @app.route('/validatehex', methods=['GET'])
