@@ -4,6 +4,7 @@ from sgbform import SGB, SGB_g008, SGB_emergency
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
+from flask_sqlalchemy import SQLAlchemy
 import re
 import contacts
 import typeapproval
