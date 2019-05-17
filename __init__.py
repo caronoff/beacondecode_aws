@@ -25,29 +25,29 @@ country=open('countries2.csv')
 for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
-
-class Book(db.Model):
-    title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-    def __repr__(self):
-        return "<Title: {}>".format(self.title)
+#
+# class Book(db.Model):
+#     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+#     def __repr__(self):
+#         return "<Title: {}>".format(self.title)
 
 @app.route("/add", methods=["GET", "POST"])
 def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        books = None
-        if request.form:
-            try:
-                book = Book(title=request.form.get("title"))
-                db.session.add(book)
-                db.session.commit()
-            except Exception as e:
-                print("Failed to add book")
-                print(e)
-        books = Book.query.all()
-        return render_template("books.html", books=books)
-
+        # books = None
+        # if request.form:
+        #     try:
+        #         book = Book(title=request.form.get("title"))
+        #         db.session.add(book)
+        #         db.session.commit()
+        #     except Exception as e:
+        #         print("Failed to add book")
+        #         print(e)
+        # books = Book.query.all()
+        #return render_template("books.html", books=books)
+        return redirect(url_for('decode'))
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
