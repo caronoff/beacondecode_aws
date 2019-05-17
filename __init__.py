@@ -1,4 +1,4 @@
-from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response
+from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
 from sgbform import SGB, SGB_g008, SGB_emergency
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
@@ -33,17 +33,30 @@ class Book(db.Model):
 
 @app.route("/add", methods=["GET", "POST"])
 def home():
-    books = None
-    if request.form:
-        try:
-            book = Book(title=request.form.get("title"))
-            db.session.add(book)
-            db.session.commit()
-        except Exception as e:
-            print("Failed to add book")
-            print(e)
-    books = Book.query.all()
-    return render_template("books.html", books=books)
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        books = None
+        if request.form:
+            try:
+                book = Book(title=request.form.get("title"))
+                db.session.add(book)
+                db.session.commit()
+            except Exception as e:
+                print("Failed to add book")
+                print(e)
+        books = Book.query.all()
+        return render_template("books.html", books=books)
+
+
+@app.route('/login', methods=['POST'])
+def do_admin_login():
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password!')
+    return home()
+
 
 
 @app.route('/validatehex', methods=['GET'])
