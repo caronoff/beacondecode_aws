@@ -9,6 +9,17 @@
 
 
 {% endblock %}
+
+
+
+ {% block content %}
+
+
+
+<div class="container">
+    
+
+
  {% if session['logged_in'] %}
 
 You're logged in already!
@@ -23,14 +34,6 @@ You're logged in already!
 
 
 {% endif %}
-
-
- {% block content %}
-
-
-
-<div class="container">
-    
 
 
 
