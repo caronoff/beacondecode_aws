@@ -34,6 +34,7 @@ COUNTRIES.sort()
 @app.route("/add", methods=["GET", "POST"])
 def home():
     if not session.get('logged_in'):
+        print('hey')
         return render_template('login.html')
     else:
         # books = None
