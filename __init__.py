@@ -40,7 +40,7 @@ class User(UserMixin):
     def get(cls,id):
         return cls.user_database.get(id)
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     """User Login Form."""
     username = TextField('Username', [validators.Required()])
     password = PasswordField('Password', [validators.Required()])
