@@ -20,9 +20,7 @@
 
  <div class="formwrapper">
     <form method=post>
-      <div class="logo">
-        <img src="{{ url_for('static', filename='dist/img/logo.png') }}">
-      </div>
+
       {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -32,7 +30,7 @@
       <h1>Log In</h1>
       <div class="username">
          {{ form.username.label }}
-
+         {{ form.username }}
          {% if form.username.errors %}
            <ul class="errors">
              {% for error in form.username.errors %}<li>{{ error }}</li>{% endfor %}
