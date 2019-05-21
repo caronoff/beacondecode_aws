@@ -41,10 +41,28 @@ class User(UserMixin):
 
 class LoginForm(Form):
     """User Login Form."""
-    email = StringField('Email', validators=[DataRequired('Please enter a valid email address.'),
-                                             Email('Please enter a valid email address.')])
-    password = PasswordField('Password', validators=[DataRequired('Uhh, your password tho?')])
-    submit = SubmitField('Log In')
+    username = TextField('Username', [validators.Required()])
+    password = PasswordField('Password', [validators.Required()])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+        self.user = None
+
+    def validate(self):
+        rv = Form.validate(self)
+        if not rv:
+            return False
+        user = User.query.filter_by(username=self.username.data).first()
+        if user is None:
+            self.username.errors.append('Unknown username')
+            return False
+
+        if not user.check_password(self.password.data):
+            self.password.errors.append('Invalid password')
+            return False
+
+        self.user = user
+        return True
 
 @login_manager.request_loader
 def load_user(request):
@@ -419,13 +437,13 @@ def ibrdallowed():
         return redirect(url_for('whereregister',hexcode=hexcode))
     return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
 
-# @app.route("/",methods=['GET','POST'])
-# @app.route("/index")
-# def index():
-#     if request.method == 'POST':
-#         hexcode = str(request.form['hexcode']).strip()
-#         return redirect(url_for('decoded',hexcode=hexcode))
-#     return render_template('indx.html', title='Home', user='',showmenu=MENU)
+@app.route("/",methods=['GET','POST'])
+@app.route("/index")
+def index():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('indx.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
