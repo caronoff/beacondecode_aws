@@ -129,7 +129,6 @@ def login():
 #
 
 
-
 @app.route('/validatehex', methods=['GET'])
 def validatehex():
     ret_data =  str(request.args.get('hexcode')).strip()
