@@ -54,8 +54,8 @@ class LoginForm(Form):
         #    return False
         #user = User.query.filter_by(username=self.username.data).first()
         user = User(self.username.data,self.password.data)
-        print(user)
-        if user is None:
+        print(user(self.username.data))
+        if user(self.username.data) is None:
             self.username.errors.append('Unknown username')
             return False
 
@@ -63,7 +63,7 @@ class LoginForm(Form):
         #    self.password.errors.append('Invalid password')
         #    return False
 
-        self.user = user
+        self.user = user(self.username.data)
         return True
 
 @login_manager.request_loader
@@ -92,7 +92,7 @@ def login():
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
     form = LoginForm()
-    if form.validate():
+    if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `User` class
         login_user(form.user)
