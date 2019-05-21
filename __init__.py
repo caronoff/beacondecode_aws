@@ -413,7 +413,7 @@ def ibrdallowed():
     return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
 
 @app.route("/",methods=['GET','POST'])
-@app.route("/index")
+@app.route("/indx")
 def index():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
