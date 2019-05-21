@@ -412,13 +412,13 @@ def ibrdallowed():
         return redirect(url_for('whereregister',hexcode=hexcode))
     return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
 
-@app.route("/",methods=['GET','POST'])
-@app.route("/indx")
-def index():
-    if request.method == 'POST':
-        hexcode = str(request.form['hexcode']).strip()
-        return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('indx.html', title='Home', user='',showmenu=MENU)
+# @app.route("/",methods=['GET','POST'])
+# @app.route("/index")
+# def index():
+#     if request.method == 'POST':
+#         hexcode = str(request.form['hexcode']).strip()
+#         return redirect(url_for('decoded',hexcode=hexcode))
+#     return render_template('indx.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
