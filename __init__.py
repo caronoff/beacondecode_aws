@@ -1,10 +1,11 @@
-from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
+from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
 from sgbform import SGB, SGB_g008, SGB_emergency
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
+from flask.ext.login import LoginManager, UserMixin, login_required
 import re
 import os
 import contacts
@@ -17,7 +18,8 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 #db = SQLAlchemy(app)
 app.secret_key = 'my secret'
-
+login_manager = LoginManager()
+login_manager.init_app(app)
 MENU = False
 
 COUNTRIES=[]
@@ -25,38 +27,74 @@ country=open('countries2.csv')
 for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
+
+class User(UserMixin):
+    # proxy for a database of users
+    user_database = {"JohnDoe": ("JohnDoe", "John"), "JaneDoe": ("JaneDoe", "Jane")}
+    def __init__(self, username, password):
+        self.id = username
+        self.password = password
+    @classmethod
+    def get(cls,id):
+        return cls.user_database.get(id)
+
+@login_manager.request_loader
+def load_user(request):
+    token = request.headers.get('Authorization')
+    if token is None:
+        token = request.args.get('token')
+    if token is not None:
+        username,password = token.split(":") # naive token
+        user_entry = User.get(username)
+        if (user_entry is not None):
+            user = User(user_entry[0],user_entry[1])
+            if (user.password == password):
+                return user
+    return None
+
+
+@app.route("/add",methods=["GET"])
+def index():
+    return Response(response="Hello World!",status=200)
+
+
+@app.route("/protected/",methods=["GET"])
+@login_required
+def protected():
+    return Response(response="Hello Protected World!", status=200)
+
+
 #
 # class Book(db.Model):
 #     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
 #     def __repr__(self):
 #         return "<Title: {}>".format(self.title)
 
-@app.route("/add", methods=["GET", "POST"])
-def home():
-    if not session.get('logged_in'):
-        print('hey')
-        return render_template('login.html')
-    else:
-        # books = None
-        # if request.form:
-        #     try:
-        #         book = Book(title=request.form.get("title"))
-        #         db.session.add(book)
-        #         db.session.commit()
-        #     except Exception as e:
-        #         print("Failed to add book")
-        #         print(e)
-        # books = Book.query.all()
-        #return render_template("books.html", books=books)
-        return redirect(url_for('decode'))
-
-@app.route('/login', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-    return home()
+# @app.route("/add", methods=["GET", "POST"])
+# def home():
+#     if not session.get('logged_in'):
+#         return render_template('login.html')
+#     else:
+#         # books = None
+#         # if request.form:
+#         #     try:
+#         #         book = Book(title=request.form.get("title"))
+#         #         db.session.add(book)
+#         #         db.session.commit()
+#         #     except Exception as e:
+#         #         print("Failed to add book")
+#         #         print(e)
+#         # books = Book.query.all()
+#         #return render_template("books.html", books=books)
+#         return redirect(url_for('decode'))
+#
+# @app.route('/login', methods=['POST'])
+# def do_admin_login():
+#     if request.form['password'] == 'password' and request.form['username'] == 'admin':
+#         session['logged_in'] = True
+#     else:
+#         flash('wrong password!')
+#     return home()
 
 
 
