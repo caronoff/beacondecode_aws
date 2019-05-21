@@ -53,7 +53,7 @@ class LoginForm(Form):
         #if not rv:
         #    return False
         #user = User.query.filter_by(username=self.username.data).first()
-        user = User(self.username.data)
+        user = User(self.username.data,self.password.data)
         print(user)
         if user is None:
             self.username.errors.append('Unknown username')
