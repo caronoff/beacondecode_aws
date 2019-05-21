@@ -100,8 +100,7 @@ def login():
         next = request.args.get('next')
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
-        if not is_safe_url(next):
-            return flask.abort(400)
+
         return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
