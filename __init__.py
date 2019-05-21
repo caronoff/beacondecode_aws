@@ -38,6 +38,13 @@ class User(UserMixin):
     def get(cls,id):
         return cls.user_database.get(id)
 
+class LoginForm(Form):
+    """User Login Form."""
+    email = StringField('Email', validators=[DataRequired('Please enter a valid email address.'),
+                                             Email('Please enter a valid email address.')])
+    password = PasswordField('Password', validators=[DataRequired('Uhh, your password tho?')])
+    submit = SubmitField('Log In')
+
 @login_manager.request_loader
 def load_user(request):
     token = request.headers.get('Authorization')
@@ -53,16 +60,29 @@ def load_user(request):
     return None
 
 
-@app.route("/add",methods=["GET"])
-def index():
-    return Response(response="Hello World!",status=200)
-
-
 @app.route("/protected/",methods=["GET"])
 @login_required
 def protected():
     return Response(response="Hello Protected World!", status=200)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+    form = LoginForm()
+    if form.validate_on_submit():
+        # Login and validate the user.
+        # user should be an instance of your `User` class
+        login_user(user)
+        flask.flash('Logged in successfully.')
+        next = flask.request.args.get('next')
+        # is_safe_url should check if the url is safe for redirects.
+        # See http://flask.pocoo.org/snippets/62/ for an example.
+        if not is_safe_url(next):
+            return flask.abort(400)
+        return flask.redirect(next or flask.url_for('index'))
+    return flask.render_template('login.html', form=form)
 
 #
 # class Book(db.Model):
@@ -88,13 +108,6 @@ def protected():
 #         #return render_template("books.html", books=books)
 #         return redirect(url_for('decode'))
 #
-# @app.route('/login', methods=['POST'])
-# def do_admin_login():
-#     if request.form['password'] == 'password' and request.form['username'] == 'admin':
-#         session['logged_in'] = True
-#     else:
-#         flash('wrong password!')
-#     return home()
 
 
 
@@ -258,11 +271,8 @@ def longfirstgen():
 
 @app.route('/long',methods=['GET'])
 def long():
-
     hexcode=str(request.args.get('hex_code'))
     return redirect(url_for('decoded', hexcode=hexcode))
-
-
 
 ## Decoder
 @app.route("/decodedjson/<hexcode>")
@@ -316,11 +326,9 @@ def decoded(hexcode):
              ('Protocols Tested','protocols_tested')]
     tflds = [('Model', 'name')]
 
-
     # send POST request to jotforms for logging
     ipaddress=str(request.remote_addr)
     #print(request.remote_addr)
-
     geocoord = (0, 0)
     locationcheck = False
     try:
@@ -328,8 +336,6 @@ def decoded(hexcode):
         error=''
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
-
-
         # r = requests.post(
         #     "https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
         #     + hexcode + "&submission[4]=" + ipaddress+ "&submission[5]=" + error)
