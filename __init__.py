@@ -52,7 +52,8 @@ class LoginForm(Form):
         rv = Form.validate(self)
         if not rv:
             return False
-        user = User.query.filter_by(username=self.username.data).first()
+        #user = User.query.filter_by(username=self.username.data).first()
+        user = User.user_database[self.username.data]
         if user is None:
             self.username.errors.append('Unknown username')
             return False
