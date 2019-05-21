@@ -101,7 +101,7 @@ def login():
         if not is_safe_url(next):
             return flask.abort(400)
         return flask.redirect(next or flask.url_for('index'))
-    return flask.render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
 #
 # class Book(db.Model):
