@@ -53,14 +53,14 @@ class LoginForm(Form):
         if not rv:
             return False
         #user = User.query.filter_by(username=self.username.data).first()
-        user = User.user_database[self.username.data]
+        user = User(self.username.data)
         if user is None:
             self.username.errors.append('Unknown username')
             return False
 
-        if not user.check_password(self.password.data):
-            self.password.errors.append('Invalid password')
-            return False
+        #if not user.check_password(self.password.data):
+        #    self.password.errors.append('Invalid password')
+        #    return False
 
         self.user = user
         return True
