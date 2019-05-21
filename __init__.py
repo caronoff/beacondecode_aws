@@ -55,7 +55,7 @@ class LoginForm(FlaskForm):
         #    return False
         #user = User.query.filter_by(username=self.username.data).first()
         user = User(self.username.data,self.password.data)
-        print(user.self.username.data)
+        print(user.get(self.username.data))
         if user(self.username.data) is None:
             self.username.errors.append('Unknown username')
             return False
