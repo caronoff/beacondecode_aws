@@ -96,13 +96,13 @@ def login():
         # Login and validate the user.
         # user should be an instance of your `User` class
         login_user(form.user)
-        flask.flash('Logged in successfully.')
-        next = flask.request.args.get('next')
+        flash('Logged in successfully.')
+        next = request.args.get('next')
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
         if not is_safe_url(next):
             return flask.abort(400)
-        return flask.redirect(next or flask.url_for('index'))
+        return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
 #
