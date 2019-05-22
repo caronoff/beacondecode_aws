@@ -99,21 +99,33 @@ class User(UserMixin):
 
 class Userlogin(db.Model):
     __tablename__ = 'userlogin'
-    uname = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+    u_id = db.Column(db.Integer,primary_key=True)
+    uname = db.Column(db.String(80), unique=True, nullable=False)
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
 
     def get_id(self):
         """Return the username to satisfy Flask-Login's requirements."""
-        return self.uname
+        return str(self.u_id)
 
-    def __repr__(self):
-        return "<Uname: {}>".format(self.uname)
+
 
 @app.route("/adduser", methods=["GET", "POST"])
 def home():
     users = None
     if request.form:
         try:
-            user = Userlogin(uname=request.form.get("uname"))
+            user = Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
             db.session.add(user)
             db.session.commit()
         except Exception as e:
