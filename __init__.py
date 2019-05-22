@@ -122,8 +122,8 @@ def home():
         except Exception as e:
             print("Failed to add book")
             print(e)
-        books = Book.query.all()
-        return render_template("books.html", books=books)
+    books = Book.query.all()
+    return render_template("books.html", books=books)
 
 
 
