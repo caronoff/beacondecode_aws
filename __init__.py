@@ -1,5 +1,5 @@
 from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
-
+from functools import wraps
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
 from sgbform import SGB, SGB_g008, SGB_emergency
