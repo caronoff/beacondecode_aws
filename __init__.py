@@ -49,6 +49,7 @@ def load_user(user_id):
 @login_required
 def logout():
     logout_user()
+    session['logged_in']=False
     flash('Logged out')
     return redirect(url_for('index'))
 
@@ -62,7 +63,7 @@ def protected():
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
-        if 'logged_in' in session:
+        if session['logged_in']==True:
             return f(*args, **kwargs)
         else:
             flash("You need to login first")
@@ -85,6 +86,7 @@ def login():
         user = Userlogin.query.filter_by(uname=form.username.data).first()
         if user is not None:
             login_user(user)
+            session['logged_in']=True
             flash('Logged in successfully.')
             return redirect(url_for('index'))
         else:
