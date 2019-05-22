@@ -87,14 +87,17 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         # Login and validate the user.
-        # user should be an instance of your `User` class
-        login_user(form.user)
-        flash('Logged in successfully.')
-        next = request.args.get('next')
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
+        # user should be an instance of your `Userlogin` class
 
-        return redirect(next or url_for('index'))
+        user = Userlogin.query.get(form.username.data)
+        if user:
+            #login_user(form.user)
+            flash('Logged in successfully.')
+            next = request.args.get('next')
+            # is_safe_url should check if the url is safe for redirects.
+            # See http://flask.pocoo.org/snippets/62/ for an example.
+
+            return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
 
@@ -110,7 +113,13 @@ class User(UserMixin):
 
 
 class Userlogin(db.Model):
+    __tablename__ = 'userlogin'
     uname = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+
+    def get_id(self):
+        """Return the username to satisfy Flask-Login's requirements."""
+        return self.uname
+
     def __repr__(self):
         return "<Uname: {}>".format(self.uname)
 
