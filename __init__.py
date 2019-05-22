@@ -89,15 +89,14 @@ def login():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
 
-        user = Userlogin.query.get(form.username.data)
+        user = Userlogin.query.filter_by(uname=form.username.data)
         if user:
             #login_user(form.user)
             flash('Logged in successfully.')
-            next = request.args.get('next')
-            # is_safe_url should check if the url is safe for redirects.
-            # See http://flask.pocoo.org/snippets/62/ for an example.
+            return redirect(url_for('index'))
+        else:
+            flash('ERROR! Invalid login credentials')
 
-            return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
 
