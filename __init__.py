@@ -84,15 +84,15 @@ def login():
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
-    form = LoginForm()
+    form = LoginForm(request.form)
     user=None
 
     if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
-        print(form.username.data)
-        #user = Userlogin.query.filter_by(uname=form.username.data)
-        if user:
+
+        user = Userlogin.query.filter_by(uname=form.username.data).first()
+        if user is not None:
             #login_user(form.user)
             flash('Logged in successfully.')
             return redirect(url_for('index'))
