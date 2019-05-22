@@ -1,50 +1,41 @@
 {% extends "layout.html" %}
-{% block title %}About us {% endblock %}
+{% block title %}Users{% endblock %}
 {% block head %}
   {{ super() }}
 <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
-
     <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
-
 
 {% endblock %}
 
 
-
-
-
-
  {% block content %}
 
-
-
 <div class="container">
-    
     <div class="centered">
-        <h1>Add book</h1>
+        <h1>Add user</h1>
     <form method="POST" action="/add">
-      <input type="text" name="title">
+      <input type="text" name="uname">
       <input type="submit" value="Add">
     </form>
 
-    <h1>Books</h1>
+    <h1>Users</h1>
     <table>
-      {% for book in books %}
+      {% for user in users %}
         <tr>
           <td>
-            {{book.title}}
+            {{user.uname}}
           </td>
           <td>
             <form method="POST" action="./update" style="display: inline">
-              <input type="hidden" value="{{book.title}}" name="oldtitle">
-              <input type="text" value="{{book.title}}" name="newtitle">
+              <input type="hidden" value="{{user.uname}}" name="oldname">
+              <input type="text" value="{{user.uname}}" name="newname">
               <input type="submit" value="Update">
             </form>
           </td>
           <td>
             <form method="POST" action="./delete" style="display: inline">
-              <input type="hidden" value="{{book.title}}" name="title">
+              <input type="hidden" value="{{user.uname}" name="uname">
               <input type="submit" value="Delete">
             </form>
           </td>
@@ -60,7 +51,6 @@
 {{super()}}
 <script type=text/javascript>
     $('#about').addClass("active");
-
 </script>
 {% endblock %}
 

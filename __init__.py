@@ -106,24 +106,24 @@ def login():
     return render_template('login.html', form=form)
 
 
-class Book(db.Model):
-    title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+class User(db.Model):
+    uname = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     def __repr__(self):
-        return "<Title: {}>".format(self.title)
+        return "<Uname: {}>".format(self.uname)
 
-@app.route("/add", methods=["GET", "POST"])
+@app.route("/adduser", methods=["GET", "POST"])
 def home():
-    books = None
+    users = None
     if request.form:
         try:
-            book = Book(title=request.form.get("title"))
-            db.session.add(book)
+            user = User(uname=request.form.get("uname"))
+            db.session.add(user)
             db.session.commit()
         except Exception as e:
-            print("Failed to add book")
+            print("Failed to add user")
             print(e)
-    books = Book.query.all()
-    return render_template("books.html", books=books)
+    users = User.query.all()
+    return render_template("users.html", users=users)
 
 
 
