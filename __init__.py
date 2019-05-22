@@ -1,5 +1,5 @@
 from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
-from flask_wtf import FlaskForm
+
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
 from sgbform import SGB, SGB_g008, SGB_emergency
@@ -71,7 +71,7 @@ def login():
     form = LoginForm(request.form)
     user=None
 
-    if form.validate_on_submit():
+    if request.method== 'POST' and form.validate():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
 
