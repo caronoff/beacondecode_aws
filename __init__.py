@@ -32,7 +32,7 @@ COUNTRIES.sort()
 
 
 
-class LoginForm(FlaskForm):
+class LoginForm(Form):
     """User Login Form."""
     username = TextField('Username', [validators.Required()])
     password = PasswordField('Password', [validators.Required()])
@@ -41,23 +41,7 @@ class LoginForm(FlaskForm):
         Form.__init__(self, *args, **kwargs)
         self.user = None
 
-    def validate(self):
-        #rv = Form.validate(self)
-        #if not rv:
-        #    return False
-        #user = User.query.filter_by(username=self.username.data).first()
-        user = User(self.username.data,self.password.data)
-        #print(user.get(self.username.data))
-        if user(self.username.data) is None:
-            self.username.errors.append('Unknown username')
-            return False
 
-        #if not user.check_password(self.password.data):
-        #    self.password.errors.append('Invalid password')
-        #    return False
-
-        self.user = user(self.username.data)
-        return True
 
 @login_manager.request_loader
 def load_user(request):
