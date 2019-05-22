@@ -25,6 +25,8 @@
         <div class="aboutus">
     <h1>{% if current_user.is_authenticated %}
   Hi {{ current_user.uname }}!
+
+        <a href="{{url_for('logout')}}"> Logout </a>
 {% endif %}
 
     </h1>

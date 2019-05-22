@@ -45,7 +45,12 @@ class LoginForm(Form):
 def load_user(user_id):
     return Userlogin.query.filter_by(u_id =int(user_id)).first()
 
-
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash('Logged out')
+    return redirect(url_for('index'))
 
 @app.route("/protected/",methods=["GET"])
 @login_required
