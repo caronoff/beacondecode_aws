@@ -7,7 +7,7 @@ from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_required, login_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 import re
 import os
 import contacts
