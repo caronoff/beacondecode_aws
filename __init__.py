@@ -77,7 +77,7 @@ def login():
 
         user = Userlogin.query.filter_by(uname=form.username.data).first()
         if user is not None:
-            #login_user(form.user)
+            login_user(user)
             flash('Logged in successfully.')
             return redirect(url_for('index'))
         else:
