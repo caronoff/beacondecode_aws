@@ -30,15 +30,7 @@ for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
 
-class User(UserMixin):
-    # proxy for a database of users
-    user_database = {"JohnDoe": ("JohnDoe", "John"), "JaneDoe": ("JaneDoe", "Jane")}
-    def __init__(self, username, password):
-        self.id = username
-        self.password = password
-    @classmethod
-    def get(cls,id):
-        return cls.user_database.get(id)
+
 
 class LoginForm(FlaskForm):
     """User Login Form."""
@@ -106,7 +98,18 @@ def login():
     return render_template('login.html', form=form)
 
 
-class User(db.Model):
+class User(UserMixin):
+    # proxy for a database of users
+    user_database = {"JohnDoe": ("JohnDoe", "John"), "JaneDoe": ("JaneDoe", "Jane")}
+    def __init__(self, username, password):
+        self.id = username
+        self.password = password
+    @classmethod
+    def get(cls,id):
+        return cls.user_database.get(id)
+
+
+class Userlogin(db.Model):
     uname = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
     def __repr__(self):
         return "<Uname: {}>".format(self.uname)
@@ -116,13 +119,13 @@ def home():
     users = None
     if request.form:
         try:
-            user = User(uname=request.form.get("uname"))
+            user = Userlogin(uname=request.form.get("uname"))
             db.session.add(user)
             db.session.commit()
         except Exception as e:
             print("Failed to add user")
             print(e)
-    users = User.query.all()
+    users = Userlogin.query.all()
     return render_template("users.html", users=users)
 
 
