@@ -17,8 +17,8 @@ import definitions
 import requests
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-#db = SQLAlchemy(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+db = SQLAlchemy(app)
 app.secret_key = 'my secret'
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -105,30 +105,26 @@ def login():
         return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
-#
-# class Book(db.Model):
-#     title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
-#     def __repr__(self):
-#         return "<Title: {}>".format(self.title)
 
-# @app.route("/add", methods=["GET", "POST"])
-# def home():
-#     if not session.get('logged_in'):
-#         return render_template('login.html')
-#     else:
-#         # books = None
-#         # if request.form:
-#         #     try:
-#         #         book = Book(title=request.form.get("title"))
-#         #         db.session.add(book)
-#         #         db.session.commit()
-#         #     except Exception as e:
-#         #         print("Failed to add book")
-#         #         print(e)
-#         # books = Book.query.all()
-#         #return render_template("books.html", books=books)
-#         return redirect(url_for('decode'))
-#
+class Book(db.Model):
+    title = db.Column(db.String(80), unique=True, nullable=False, primary_key=True)
+    def __repr__(self):
+        return "<Title: {}>".format(self.title)
+
+@app.route("/add", methods=["GET", "POST"])
+def home():
+    books = None
+    if request.form:
+        try:
+            book = Book(title=request.form.get("title"))
+            db.session.add(book)
+            db.session.commit()
+        except Exception as e:
+            print("Failed to add book")
+            print(e)
+        books = Book.query.all()
+        return render_template("books.html", books=books)
+
 
 
 @app.route('/validatehex', methods=['GET'])
@@ -226,7 +222,6 @@ def filterlist():
 def longSGB():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
-
     rotatefld=str(request.args.get('rotatingfield'))
     print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form), '0001': SGB_emergency(request.form)}
