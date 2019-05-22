@@ -58,6 +58,18 @@ def protected():
     #return Response(response="Hello Protected World!", status=200)
     return render_template('protected.html')
 
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash("You need to login first")
+            return redirect(url_for('login_page'))
+    return wrap
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Here we use a class of some kind to represent and validate our
