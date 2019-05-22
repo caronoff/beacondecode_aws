@@ -50,7 +50,8 @@ def load_user(user_id):
 @app.route("/protected/",methods=["GET"])
 @login_required
 def protected():
-    return Response(response="Hello Protected World!", status=200)
+    #return Response(response="Hello Protected World!", status=200)
+    return render_template('protected.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
