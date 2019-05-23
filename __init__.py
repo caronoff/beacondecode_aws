@@ -24,7 +24,7 @@ app.secret_key = 'my secret'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
-session['logged_in']=False
+#session['logged_in']=False
 MENU = False
 
 COUNTRIES=[]
@@ -201,7 +201,7 @@ def encodehex():
     for key in definitions.countrydic:
         countries.append('{} ({})'.format(definitions.countrydic[key], key))
     countries.sort()
-    return render_template("encodehexunique.html", countries=countries,showmenu=session['logged_in'])
+    return render_template("encodehexunique.html", countries=countries,showmenu=MENU)
 
 @app.route('/processhex', methods=['GET'])
 def processhex():
@@ -237,7 +237,7 @@ def longSGB():
         # print(form.encodelong(hexcodeUIN))
         return redirect(url_for('decoded', hexcode=form.encodelong(hexcodeUIN)))
 
-    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error,showmenu=session['logged_in'])
+    return render_template('encodelongSGBentryform.html', hexcode=hexcodeUIN, ptype=rotatefld, form=form, error=error,showmenu=MENU)
 
 @app.route('/longfirstgen', methods=['GET','POST'])
 def longfirstgen():
@@ -286,7 +286,7 @@ def longfirstgen():
         print('hex', hexcodelong)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error,showmenu=session['logged_in'])
+    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error,showmenu=MENU)
 
 @app.route('/long',methods=['GET'])
 def long():
@@ -321,7 +321,7 @@ def decode():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('decodehex.html', title='Home', user='',showmenu=session['logged_in'])
+    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
@@ -397,7 +397,7 @@ def decoded(hexcode):
                                tac=beacon.gettac(),
                                tacdetail=tacdic,
                                tacflds=tflds,
-                               showmenu=session['logged_in'])
+                               showmenu=MENU)
     except decodehex2.HexError as err:
         print(err.value,err.message)
         return render_template('badhex.html',errortype=err.value,errormsg=err.message)
@@ -414,19 +414,19 @@ def download_bch(hexcode):
 
 @app.route("/about")
 def about():
-    return render_template("about.html",showmenu=session['logged_in'])
+    return render_template("about.html",showmenu=MENU)
 
 @app.route("/contact/<num>")
 def contact(num):
     flds=['name','address','city','zipcode','telephone1','telephone2','ci_webpage_1','website_url']
     types = ['PLB','ELT','EPIRB']
-    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=session['logged_in'])
+    return render_template("contact.html",contact=contacts.contact(num,flds,types),types=types,flds=flds,showmenu=MENU)
 
 
 @app.route("/whereregister/<hexcode>")
 def whereregister(hexcode):
     beacon = decodehex2.Beacon(hexcode)
-    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country(),showmenu=session['logged_in'])
+    return render_template('whereregister.html', hexcode=hexcode.upper(), decoded=beacon.tablebin, genmsg=beacon.genmsg+beacon.get_country(),showmenu=MENU)
 
 
 @app.route('/ibrdallowed',methods=['GET','POST'])
@@ -435,7 +435,7 @@ def ibrdallowed():
         hexcode = str(request.form['hexcode']).strip()
 
         return redirect(url_for('whereregister',hexcode=hexcode))
-    return render_template('ibrdallowed.html', title='Home', user='',showmenu=session['logged_in'])
+    return render_template('ibrdallowed.html', title='Home', user='',showmenu=MENU)
 
 @app.route("/",methods=['GET','POST'])
 @app.route("/index")
@@ -443,7 +443,7 @@ def index():
     if request.method == 'POST':
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('indx.html', title='Home', user='',showmenu=session['logged_in'])
+    return render_template('indx.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
