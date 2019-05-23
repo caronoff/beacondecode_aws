@@ -16,7 +16,7 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
-from manage import Userlogin
+
 import requests
 
 app = Flask(__name__)
@@ -37,6 +37,33 @@ for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
 
+
+
+class Userlogin(db.Model):
+    __tablename__ = 'userlogin'
+    u_id = db.Column(db.Integer,primary_key=True)
+    uname = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
+
+    def __repr__(self):
+        return '<User {}>'.format(self.uname)
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        """Return the username to satisfy Flask-Login's requirements."""
+        return str(self.u_id)
 
 
 class LoginForm(Form):
