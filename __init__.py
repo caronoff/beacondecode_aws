@@ -160,8 +160,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if request.method == 'POST' and form.validate():
-        user = Userlogin(u_id=form.u_id.data,username=form.uname.data, email=form.email.data)
-        user.set_password(form.password.data)
+        user = Userlogin(u_id=request.form.get("u_id"),username=request.form.get("uname"), email=request.form.get("email"))
+        user.set_password(request.form.get("password"))
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
