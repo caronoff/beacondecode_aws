@@ -8,6 +8,7 @@ from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 import re
 import os
@@ -21,6 +22,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 app.secret_key = 'my secret'
+migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -90,6 +92,11 @@ class Userlogin(db.Model):
     __tablename__ = 'userlogin'
     u_id = db.Column(db.Integer,primary_key=True)
     uname = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), index=True, unique=True)
+    password_hash = db.Column(db.String(128))
+
+    def __repr__(self):
+        return '<User {}>'.format(self.uname)
 
     @property
     def is_active(self):
