@@ -19,9 +19,10 @@ import decodehex2
 import definitions
 
 import requests
-app.secret_key = 'my secret'
+
 
 app = Flask(__name__)
+app.secret_key = 'my secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
