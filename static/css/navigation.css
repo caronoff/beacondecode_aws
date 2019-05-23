@@ -27,7 +27,7 @@ body.navbar-more-show  {
     padding: 0px;
 }
 .navbar-more-overlay {
-	background-color: rgba(102, 102, 102, 0.55);
+	background-color: rgba(255, 0, 0, 0.55);
 	display: none;
 	height: 100%;
 	left: 0px;
@@ -70,7 +70,7 @@ body.navbar-more-show  {
 	font-size: 1.8em;
 }
 .navbar-more {
-	background-color: rgb(255, 0, 0);
+	background-color: rgb(255, 255, 255);
 	height: calc(100% - 69px);
 	overflow: auto;
 }
