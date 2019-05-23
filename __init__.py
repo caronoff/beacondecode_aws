@@ -19,11 +19,12 @@ import decodehex2
 import definitions
 
 import requests
+app.secret_key = 'my secret'
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
-app.secret_key = 'my secret'
+
 migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
