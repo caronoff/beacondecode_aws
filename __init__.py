@@ -80,7 +80,7 @@ def login():
             login_user(user)
             session['logged_in']=True
             flash('Logged in successfully.')
-            next_page = request.args.get('next')
+            next_page = request.args.get('next').strip('/')
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('index')
             return redirect(url_for( next_page))
