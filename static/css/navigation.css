@@ -70,7 +70,7 @@ body.navbar-more-show  {
 	font-size: 1.8em;
 }
 .navbar-more {
-	background-color: rgb(255, 255, 255);
+	background-color: rgb(255, 0, 0);
 	height: calc(100% - 69px);
 	overflow: auto;
 }
