@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block title %}Login {% endblock %}
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+
+{% endblock %}
+
+
+
+ {% block content %}
+
+
+
+<div class="container">
+
+ <div class="formwrapper">
+
+<h1>Register</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.u_id.label }}<br>
+            {{ form.u_id(size=32) }}<br>
+            {% for error in form.u_id.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+
+
+
+        <p>
+            {{ form.uname.label }}<br>
+            {{ form.uname(size=32) }}<br>
+            {% for error in form.uname.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=64) }}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password2.label }}<br>
+            {{ form.password2(size=32) }}<br>
+            {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+<script type=text/javascript>
+    $('#about').addClass("active");
+
+</script>
+{% endblock %}
+

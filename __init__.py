@@ -1,6 +1,7 @@
 from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
 from functools import wraps
 from werkzeug.urls import url_parse
+from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
 from sgbform import SGB, SGB_g008, SGB_emergency
@@ -9,7 +10,7 @@ from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import re
 import os
 import contacts
@@ -49,6 +50,12 @@ class Userlogin(db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.uname)
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     @property
     def is_active(self):
         return True
@@ -74,6 +81,34 @@ class LoginForm(Form):
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.user = None
+
+
+
+class RegistrationForm(Form):
+    u_id = StringField('User identity number', validators=[DataRequired()])
+    uname = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Register')
+
+    def validate_u_id(self, u_id):
+        user = Userlogin.query.filter_by(u_id=u_id.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different number.')
+
+
+    def validate_uname(self, uname):
+        user = Userlogin.query.filter_by(uname=uname.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        user = Userlogin.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different email address.')
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -114,6 +149,24 @@ def login():
             flash('ERROR! Invalid login credentials')
 
     return render_template('login.html', form=form)
+
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if request.method == 'POST' and form.validate():
+        user = Userlogin(u_id=form.u_id.date,username=form.uname.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+
 
 
 
