@@ -24,6 +24,7 @@ app.secret_key = 'my secret'
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+session['logged_in']=False
 MENU = False
 
 COUNTRIES=[]
