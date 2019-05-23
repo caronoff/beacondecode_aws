@@ -50,7 +50,7 @@ class LoginForm(Form):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return Userlogin.query.filter_by(u_id =int(user_id)).first()
+    return manage.Userlogin.query.filter_by(u_id =int(user_id)).first()
 
 
 @app.route("/logout")
@@ -74,7 +74,7 @@ def login():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
 
-        user = Userlogin.query.filter_by(uname=form.username.data).first()
+        user = manage.Userlogin.query.filter_by(uname=form.username.data).first()
         if user is not None:
             login_user(user)
             session['logged_in']=True
@@ -95,13 +95,13 @@ def home():
     users = None
     if request.form:
         try:
-            user = Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
+            user = manage.Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
             db.session.add(user)
             db.session.commit()
         except Exception as e:
             print("Failed to add user")
             print(e)
-    users = Userlogin.query.all()
+    users = manage.Userlogin.query.all()
     return render_template("users.html", users=users)
 
 
