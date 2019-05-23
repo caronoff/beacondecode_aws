@@ -56,13 +56,6 @@ def logout():
     flash('Logged out')
     return redirect(url_for('index'))
 
-@app.route("/protected/",methods=["GET"])
-@login_required
-def protected():
-    
-    return render_template('protected.html')
-
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -191,6 +184,7 @@ def getmid():
 
 ## Encoder
 @app.route("/encodehex")
+@login_required
 def encodehex():
     countries=[]
     for key in definitions.countrydic:
