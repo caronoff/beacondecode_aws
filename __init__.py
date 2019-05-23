@@ -22,6 +22,7 @@ db = SQLAlchemy(app)
 app.secret_key = 'my secret'
 login_manager = LoginManager()
 login_manager.init_app(app)
+#login_manager.login_view = 'login'
 MENU = False
 
 COUNTRIES=[]
@@ -67,7 +68,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash("You need to login first")
-            return redirect(url_for('login_page'))
+            return redirect(url_for('login'))
     return wrap
 
 
@@ -94,16 +95,6 @@ def login():
 
     return render_template('login.html', form=form)
 
-
-class User(UserMixin):
-    # proxy for a database of users
-    user_database = {"JohnDoe": ("JohnDoe", "John"), "JaneDoe": ("JaneDoe", "Jane")}
-    def __init__(self, username, password):
-        self.id = username
-        self.password = password
-    @classmethod
-    def get(cls,id):
-        return cls.user_database.get(id)
 
 
 class Userlogin(db.Model):
