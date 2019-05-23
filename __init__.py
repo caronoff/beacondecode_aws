@@ -59,7 +59,7 @@ def logout():
 @app.route("/protected/",methods=["GET"])
 @login_required
 def protected():
-    #return Response(response="Hello Protected World!", status=200)
+    
     return render_template('protected.html')
 
 
@@ -145,14 +145,12 @@ def validatehex():
             if str(len(ret_data)) in vlengths:
                 statuscheck = 'valid'
             else:
-
                 message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
         else:
             statuscheck='not valid'
             new_data=re.sub(r'[^.a-fA-F0-9]', "", ret_data)
             message='Invalid hexadecimal character (A-F-0-9)'
             new_data=new_data.upper()
-
     return jsonify(echostatus=statuscheck, message=message,newdata=new_data)
 
 
@@ -188,10 +186,7 @@ def getmid():
     result=definitions.Country(search,{})
     resultdec=result.retmid()
     resultbin=result.getmid()
-
     return jsonify(mid=resultdec, midbin=resultbin)
-
-
 
 
 ## Encoder

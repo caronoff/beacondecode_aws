@@ -38,7 +38,7 @@
 
 
 
-{% if showmenu %}
+ {% if current_user.is_authenticated %}
  <div class="navbar-more-overlay"></div>
 <nav class="navbar navbar-inverse navbar-fixed-top animate">
 	<div class="container navbar-more visible-xs">
