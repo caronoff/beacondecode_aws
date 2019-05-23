@@ -34,7 +34,7 @@ for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
 
-import routes
+
 
 class LoginForm(Form):
     """User Login Form."""
@@ -428,6 +428,14 @@ def index():
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('indx.html', title='Home', user='',showmenu=MENU)
+
+
+@app.route("/decode",methods=['GET','POST'])
+def decode():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
