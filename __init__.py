@@ -149,6 +149,7 @@ def login():
         session['logged_in']=True
         flash('Logged in successfully.')
         login_user(user, remember=True)
+        next_page = request.args.get('next')
         if next_page:
             next_page = request.args.get('next').strip('/')
         if not next_page or url_parse(next_page).netloc != '':
