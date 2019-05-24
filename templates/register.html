@@ -23,13 +23,7 @@
 <h1>Register</h1>
     <form method="post">
         {{ form.hidden_tag }}
-        <p>
-            {{ form.u_id.label }}<br>
-            {{ form.u_id(size=32) }}<br>
-            {% for error in form.u_id.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
+
 
 
 

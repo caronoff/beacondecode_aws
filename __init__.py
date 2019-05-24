@@ -92,18 +92,13 @@ class LoginForm(Form):
 
 
 class RegistrationForm(Form):
-    u_id = StringField('User identity number', validators=[DataRequired()])
+
     uname = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
-
-    def validate_u_id(self, u_id):
-        user = Userlogin.query.filter_by(u_id=u_id.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different number.')
 
 
     def validate_uname(self, uname):
