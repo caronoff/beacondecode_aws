@@ -143,20 +143,21 @@ def login():
         next_page = request.args.get('next')
         if next_page:
             next_page = request.args.get('next').strip('/')
-        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('encodehex')
+        elif not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('login')
         else:
             next_page = url_for('login')
         user = Userlogin.query.filter_by(uname=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('ERROR! Invalid login credentials')
+
+        else:
+            session['logged_in']=True
+            flash('Logged in successfully.')
+            login_user(user, remember=True)
+
             return redirect(url_for(next_page))
-
-        session['logged_in']=True
-        flash('Logged in successfully.')
-        login_user(user, remember=True)
-
-        return redirect(url_for(next_page))
 
 
     return render_template('login.html', form=form)
