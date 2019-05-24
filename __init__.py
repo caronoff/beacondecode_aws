@@ -192,10 +192,9 @@ def home():
             print("Failed to add user")
             print(e)
     users = Userlogin.query.all()
-    uids=[user.u_id for user in users]
-    print(uids)
-    print(uids[:-1])
-    next_uid = int(uids[:-1])+1
+    uids=[int(user.u_id) for user in users]
+
+    next_uid = uids(max)+1
     return render_template("users.html", users=users,next_uid=next_uid)
 
 
