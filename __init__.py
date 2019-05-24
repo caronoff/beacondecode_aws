@@ -142,17 +142,20 @@ def login():
         # user should be an instance of your `Userlogin` class
 
         user = Userlogin.query.filter_by(uname=form.username.data).first()
-        if user is not None:
-            login_user(user)
-            session['logged_in']=True
-            flash('Logged in successfully.')
-            next_page = request.args.get('next').strip('/')
-            if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('index')
-
-            return redirect(url_for(next_page))
-        else:
+        if user is None or not user.check_password(form.password.data):
             flash('ERROR! Invalid login credentials')
+            return redirect(url_for('login'))
+            login_user(user)
+        session['logged_in']=True
+        flash('Logged in successfully.')
+        login_user(user, remember=form.remember_me.data)
+
+        next_page = request.args.get('next').strip('/')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+
+        return redirect(url_for(next_page))
+
 
     return render_template('login.html', form=form)
 
