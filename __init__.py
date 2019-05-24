@@ -17,13 +17,14 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
+import psycopg2
 
 import requests
 
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://craig@Elephant$2017@localhost/craig' #os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://craig:Elephant$2017@localhost/beacon' #os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
