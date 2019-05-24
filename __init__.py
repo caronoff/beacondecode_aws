@@ -143,9 +143,11 @@ def login():
             login_user(user)
             session['logged_in']=True
             flash('Logged in successfully.')
-            next_page = request.args.get('next').strip('/')
+            next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
                 next_page = url_for('index')
+            elif next_page and url_parse(next_page).netloc == '':
+                next_page = next_page.strip('/')
             return redirect(url_for( next_page))
         else:
             flash('ERROR! Invalid login credentials')
