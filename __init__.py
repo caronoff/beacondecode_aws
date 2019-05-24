@@ -160,7 +160,7 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = Userlogin(u_id=form.u_id.data,username=form.uname.data, email=form.email.data)
+        user = Userlogin(u_id=form.u_id.data,uname=form.uname.data, email=form.email.data)
         user.set_password(request.form.get("password"))
         db.session.add(user)
         db.session.commit()
