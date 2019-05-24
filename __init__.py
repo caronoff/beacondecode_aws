@@ -24,7 +24,7 @@ import requests
 app = Flask(__name__)
 app.secret_key = 'my secret'
 app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://craig:Elephant$2017@localhost/beacon'
+#app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://username:Password2017@localhost/beacon'
 
 db = SQLAlchemy(app)
 
