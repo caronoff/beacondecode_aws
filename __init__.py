@@ -1,5 +1,4 @@
 from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
-from functools import wraps
 from werkzeug.urls import url_parse
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
@@ -17,7 +16,7 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
-import psycopg2
+
 
 import requests
 
@@ -159,9 +158,9 @@ def login():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = RegistrationForm()
+    form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = Userlogin(u_id=request.form.get("u_id"),username=request.form.get("uname"), email=request.form.get("email"))
+        user = Userlogin(u_id=form.u_id.data,username=form.uname.data, email=form.email.data)
         user.set_password(request.form.get("password"))
         db.session.add(user)
         db.session.commit()

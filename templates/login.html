@@ -40,7 +40,7 @@
       <div class="password">
         {{ form.password.label }}
         {{ form.password }}
-        {% if form.username.errors %}
+        {% if form.password.errors %}
           <ul class="errors">
             {% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}
           </ul>
