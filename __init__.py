@@ -193,8 +193,9 @@ def home():
             print(e)
     users = Userlogin.query.all()
     uids=[int(user.u_id) for user in users]
-
-    next_uid = uids.sort()[-1]+1
+    print(uids)
+    print(uids[-1])
+    next_uid = 2
     return render_template("users.html", users=users,next_uid=next_uid)
 
 
