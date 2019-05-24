@@ -23,7 +23,9 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']   # 'postgresql://craig:Elephant$2017@localhost/beacon'
+#app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://craig:Elephant$2017@localhost/beacon'
+
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
@@ -136,7 +138,10 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm(request.form)
     #user=None
-
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('index')
+    print(next_page)
     if request.method== 'POST' and form.validate():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
