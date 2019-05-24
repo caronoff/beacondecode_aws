@@ -150,7 +150,7 @@ def login():
         flash('Logged in successfully.')
         login_user(user, remember=True)
 
-        next_page = request.args.get('next').strip('/')
+        next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
 
