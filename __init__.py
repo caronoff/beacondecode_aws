@@ -23,7 +23,7 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/craig' #os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
