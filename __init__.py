@@ -155,7 +155,7 @@ def login():
             flash('Logged in successfully.')
             login_user(user, remember=True)
 
-            return redirect(url_for(next_page))
+            return redirect(url_for(next_page.strip('/')))
 
 
     return render_template('login.html', form=form)
