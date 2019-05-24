@@ -195,7 +195,7 @@ def home():
     uids=[int(user.u_id) for user in users]
     print(uids)
     print(max(uids))
-    next_uid = 2
+    next_uid = max(uids)+1
     return render_template("users.html", users=users,next_uid=next_uid)
 
 
