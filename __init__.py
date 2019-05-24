@@ -57,6 +57,9 @@ class Userlogin(db.Model):
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
+    def set_uid(self,uid):
+        self.u_id = uid
+
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -168,8 +171,9 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = Userlogin(u_id=form.u_id.data,uname=form.uname.data, email=form.email.data)
+        user = Userlogin(uname=form.uname.data, email=form.email.data)
         user.set_password(request.form.get("password"))
+        user.set_uid(max([int(user.u_id) for user in Userlogin.query.all()])+1)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
