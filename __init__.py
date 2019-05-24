@@ -140,14 +140,7 @@ def login():
     if request.method== 'POST' and form.validate():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
-        next_page = request.args.get('next')
-        if next_page:
-            next_page = request.args.get('next').strip('/')
-            next_page = url_for('encodehex')
-        elif not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('login')
-        else:
-            next_page = url_for('login')
+
         user = Userlogin.query.filter_by(uname=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('ERROR! Invalid login credentials')
@@ -157,7 +150,7 @@ def login():
             flash('Logged in successfully.')
             login_user(user, remember=True)
 
-            return redirect(url_for(next_page))
+            return redirect(url_for('encodehex'))
 
 
     return render_template('login.html', form=form)
