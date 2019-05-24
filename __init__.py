@@ -131,8 +131,11 @@ def login():
     # Here we use a class of some kind to represent and validate our
     # client-side form data. For example, WTForms is a library that will
     # handle this for us, and we use a custom LoginForm to validate.
+
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm(request.form)
-    user=None
+    #user=None
 
     if request.method== 'POST' and form.validate():
         # Login and validate the user.
