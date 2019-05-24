@@ -148,7 +148,7 @@ def login():
             login_user(user)
         session['logged_in']=True
         flash('Logged in successfully.')
-        login_user(user, remember=form.remember_me.data)
+        login_user(user, remember=True)
 
         next_page = request.args.get('next').strip('/')
         if not next_page or url_parse(next_page).netloc != '':
