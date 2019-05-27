@@ -52,7 +52,7 @@ class Userlogin(db.Model):
     u_id = db.Column(db.Integer,primary_key=True)
     uname = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True)
-
+    lastname = db.Column(db.String(120), index=True, unique=False)
     firstname = db.Column(db.String(120), index=True, unique=False)
     password_hash = db.Column(db.String(128))
 
