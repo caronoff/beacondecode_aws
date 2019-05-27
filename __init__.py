@@ -23,8 +23,11 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
-#app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://username:Password2017@localhost/beacon'
+try:
+    app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
+except KeyError:
+    #app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://username:Password2017@localhost/beacon'
+    app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://postgres:Elephant$2017@localhost/beacon'
 
 db = SQLAlchemy(app)
 
@@ -49,6 +52,8 @@ class Userlogin(db.Model):
     u_id = db.Column(db.Integer,primary_key=True)
     uname = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True)
+    lastname = db.Column(db.String(120), index=True,unique=False)
+    firstname = db.Column(db.String(120), index=True, unique=False)
     password_hash = db.Column(db.String(128))
 
     def __repr__(self):
@@ -152,7 +157,7 @@ def login():
             session['logged_in']=True
             flash('Logged in successfully.')
             login_user(user, remember=True)
-
+            print(next_page)
             return redirect(url_for(next_page.strip('/')))
 
 
@@ -168,7 +173,12 @@ def register():
     if request.method == 'POST' and form.validate():
         user = Userlogin(uname=form.uname.data, email=form.email.data)
         user.set_password(request.form.get("password"))
-        user.set_uid(max([int(user.u_id) for user in Userlogin.query.all()])+1)
+        s=[int(user.u_id) for user in Userlogin.query.all()]
+        if len(s)>0:
+            nextid=max(s)+1
+        else:
+            nextid=1
+        user.set_uid(nextid)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
