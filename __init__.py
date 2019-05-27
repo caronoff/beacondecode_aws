@@ -24,8 +24,7 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 app = Flask(__name__)
-app.secret_key = 'my secret'
-
+app.secret_key = os.getenv('SECRET_KEY', 'Optional default value')
 app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
 
 db = SQLAlchemy(app)
