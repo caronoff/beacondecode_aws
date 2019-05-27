@@ -16,19 +16,14 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
-
-
 import requests
-
 from dotenv import load_dotenv
 load_dotenv('.env')
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'Optional default value')
 app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
-
 db = SQLAlchemy(app)
-
 migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -36,14 +31,11 @@ login_manager.login_view = 'login'
 
 
 MENU = False
-
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
-
-
 
 class Userlogin(db.Model):
     __tablename__ = 'userlogin'
@@ -53,10 +45,8 @@ class Userlogin(db.Model):
     lastname = db.Column(db.String(120), index=True, unique=False)
     firstname = db.Column(db.String(120), index=True, unique=False)
     password_hash = db.Column(db.String(128))
-
     def __repr__(self):
         return '<User {}>'.format(self.uname)
-
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
