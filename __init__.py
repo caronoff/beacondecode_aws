@@ -20,6 +20,8 @@ import definitions
 
 import requests
 
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 app = Flask(__name__)
 app.secret_key = 'my secret'
@@ -27,8 +29,8 @@ try:
     app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
 except KeyError:
     #app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://username:Password2017@localhost/beacon'
-    app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://postgres:Elephant$2017@localhost/beacon'
-
+    app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://postgres:password@localhost/beacon'
+    pass
 db = SQLAlchemy(app)
 
 migrate = Migrate(app, db)
