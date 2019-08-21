@@ -163,7 +163,7 @@ class BeaconFGB(HexError):
         
         if self.type !='uin':
             formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])
-            self.tablebin.append(['25', self.bin[25], 'Message format', formatflag[1]])
+            self.tablebin.append(['25', self.bin[25], 'Message Flag', formatflag[1]])
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
 
@@ -182,7 +182,7 @@ class BeaconFGB(HexError):
 
 
 
-        self.tablebin.append(['26',self.bin[26],'User or Location Protocol',self._pflag])
+        self.tablebin.append(['26',self.bin[26],'Protocol Flag',self._pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
