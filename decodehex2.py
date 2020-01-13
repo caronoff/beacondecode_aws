@@ -584,14 +584,24 @@ class BeaconFGB(HexError):
         elif typelocprotbin=='1111':
             btype='Nat Loc Test'
         elif typelocprotbin=='1101' :  #RLS beacon
-            if self.bin[41:43] == '00' :
-                btype='ELT'
-            elif self.bin[41:43] == '01' :
-                btype='EPIRB'
-            elif self.bin[41:43] == '10' :
-                btype='PLB'
-            elif self.bin[41:43] == '11':
-                btype='RLS Loc Test'
+            if self.bin[43:47]!='1111':
+                if self.bin[41:43] == '00' :
+                    btype='ELT'
+                elif self.bin[41:43] == '01' :
+                    btype='EPIRB'
+                elif self.bin[41:43] == '10' :
+                    btype='PLB'
+                elif self.bin[41:43] == '11':
+                    btype='RLS Loc Test'
+            else:
+                if self.bin[41:43] == '00':
+                    btype='First EPIRB'
+                elif self.bin[41:43] == '01':
+                    btype = 'Second EPIRB'
+                elif self.bin[41:43] == '10' :
+                    btype='PLB'
+                elif self.bin[41:43]=='11':
+                    btype = 'Std Loc Test'
                 
         else:
             btype='Unknown'
@@ -891,7 +901,7 @@ class BeaconFGB(HexError):
                     enc_altstr='altitude is between {} and {}'.format(definitions.enc_alt[enc_altbin][0],definitions.enc_alt[enc_altbin][1])
                     self.tablebin.append(['109-112',enc_altbin,'encoded altitude',enc_altstr])
                     finallat=finallng='Not Used'
-                    enc_loc_fresh = {'01':'old','11':'current','00':'old','10':'old'}
+                    enc_loc_fresh = {'01':'message between 1 and 5 min old','11':'message current','00':'message >5 min old','10':'message >2 sec. and <60 sec. old'}
                     enc_freshbin=str(self.bin[113:115])
                     if int(self.bin[113:]) != 0:
                         self.tablebin.append(['113-114',enc_freshbin,'Encoded location freshness',enc_loc_fresh[enc_freshbin]])
