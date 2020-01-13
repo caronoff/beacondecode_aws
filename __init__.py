@@ -259,10 +259,7 @@ def decoded(hexcode):
             error = ', '.join(beacon.errors)
 
 
-        # r = requests.post(
-        #     "https://api.jotform.com/form/81094797858275/submissions?apiKey=b552ce4b21da2fe219a06fea0a9088c5&submission[3]="
-        #     + hexcode + "&submission[4]=" + ipaddress+ "&submission[5]=" + error)
-        #print(beacon.type=='uin')
+       
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
