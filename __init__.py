@@ -408,7 +408,7 @@ def decoded(hexcode):
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
         
-        #print(beacon.type=='uin')
+        print(beacon.type=='uin')
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
@@ -417,6 +417,7 @@ def decoded(hexcode):
                 tmp = 'encodelongsecond.html'
             elif beacon.gentype=='secondtruncated':
                 tmp = 'output.html'
+            print(beacon.gentype)
         else:
 
             tmp='output.html'
