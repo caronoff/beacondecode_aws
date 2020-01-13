@@ -804,7 +804,7 @@ class BeaconFGB(HexError):
             if self.bin[43:47]=='1111':
                 idtype='RLS protocol coded with MMSI last 6 digits'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
-                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
             else:
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
