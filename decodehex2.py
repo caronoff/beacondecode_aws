@@ -801,8 +801,16 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
             tano=str(Fcn.bin2dec(self.bin[43:53]))
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
-            self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS truncated TA (last three digits)','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
-            self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+            if self.bin[43:47]=='1111':
+                idtype='RLS protocol coded with MMSI last 6 digits'
+                self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
+                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+            else:
+                idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
+                self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
+                self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
+                self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
@@ -952,15 +960,15 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch (as per T.018 Issue 1 - Rev.4).',
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB (as per T.018 Issue 1 - Rev.4).',
-                   '22':'Hex data length of 22 characters.   Assumed FGB short message format specifications (as per T.001 Issue 4 - Rev.4).',
-                   '22long': 'Hex data length of 22 characters but format flag is long.  Assumed FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.4).',
-                   '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.4).',
+                   '22':'Hex data length of 22 characters.   Assumed FGB short message format specifications (as per T.001 Issue 4 - Rev.5).',
+                   '22long': 'Hex data length of 22 characters but format flag is long.  Assumed FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.5).',
+                   '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.5).',
                    '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
-                   '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.4).',
-                   '28': 'Hex data length of 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
-                   '28long': 'Hex data length of 28 character hexadecimal but format flag is long.  Assumed FGB long message with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).',
-                   '36': 'Hex data length of 36 is a complete 36 character message consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.4).'}
+                   '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.5).',
+                   '28': 'Hex data length of 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).',
+                   '28long': 'Hex data length of 28 character hexadecimal but format flag is long.  Assumed FGB long message with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).',
+                   '36': 'Hex data length of 36 is a complete 36 character message consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
             raise HexError('Hex format Error', 'This is not a valid hexadecimal value!')
