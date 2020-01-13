@@ -884,7 +884,7 @@ class BeaconFGB(HexError):
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                     self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
                     self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
-                    means = {'01':'automatic','11':'manual','00':'spare','10':'spare'}
+                    means = {'01':'automatic activation by the beacon','11':'spare','00':'manual activation by user','10':'automatic activation by external means'}
                     meansbin = str(self.bin[107:109])
                     self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
                     enc_altbin=str(self.bin[109:113])
