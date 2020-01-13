@@ -7,4 +7,4 @@ Jinja2==2.10
 MarkupSafe==1.0
 Werkzeug==0.12.2
 WTForms==2.1
-requests==2.18.4
+requests==2.20.0
