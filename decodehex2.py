@@ -799,7 +799,7 @@ class BeaconFGB(HexError):
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
             self._loctype='RLS Location'                
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
-            tano=str(Fcn.bin2dec(self.bin[43:53]))
+            tano=str(Fcn.bin2dec(self.bin[43:53])).zfill(3)
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
             if self.bin[43:47]=='1111':
             # RLS for MMSI
@@ -811,7 +811,7 @@ class BeaconFGB(HexError):
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
-                self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(3))])
+                self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(5))])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
