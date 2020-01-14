@@ -802,10 +802,12 @@ class BeaconFGB(HexError):
             tano=str(Fcn.bin2dec(self.bin[43:53]))
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
             if self.bin[43:47]=='1111':
+            # RLS for MMSI
                 idtype='RLS protocol coded with MMSI last 6 digits'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
-                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','#{}'.format(str(Fcn.bin2dec(self.bin[47:67])))])
             else:
+            # RLS for TAC number or National RLS with serial number
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
