@@ -443,7 +443,7 @@ def decoded(hexcode):
             for l in taclist:
                 k=l['id']
                 tacdic[k]=l
-        hexsave=Hexdecodes(hex='text')
+        hexsave=Hexdecodes(hex=hexcode)
         db.session.add(hexsave)
         db.session.commit()
         return render_template(tmp, hexcode=hexcode.upper(),
