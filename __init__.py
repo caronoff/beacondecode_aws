@@ -443,9 +443,9 @@ def decoded(hexcode):
             for l in taclist:
                 k=l['id']
                 tacdic[k]=l
-
-        #db.session.add(Hexdecodes(hexcode))
-        #db.session.commit()
+        hexsave=Hexdecodes('text')
+        db.session.add(hexsave)
+        db.session.commit()
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
                                locationcheck=locationcheck,
