@@ -16,6 +16,7 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
+import datetime
 import requests
 from dotenv import load_dotenv
 load_dotenv('.env')
@@ -72,6 +73,13 @@ class Userlogin(db.Model):
         """Return the username to satisfy Flask-Login's requirements."""
         return str(self.u_id)
 
+class Hexdecodes(db.Model):
+    __tablename__ = 'hexdecodes'
+    h_entryid = db.Column(db.Integer,primary_key=True)
+    hex = db.Column(db.String(80), unique=False, nullable=True)
+    #created_date = db.Column(DateTime, default=datetime.datetime.utcnow)
+    def __repr__(self):
+        return '<Hex {}>'.format(self.hex)
 
 class LoginForm(Form):
     """User Login Form."""
