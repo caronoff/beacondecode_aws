@@ -811,7 +811,7 @@ class BeaconFGB(HexError):
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
-                self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+                self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(3))])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
