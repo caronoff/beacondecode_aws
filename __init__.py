@@ -444,7 +444,7 @@ def decoded(hexcode):
                 k=l['id']
                 tacdic[k]=l
         hexsave=Hexdecodes(hex='text')
-        db.session.add(hexsave)
+        db.session.add(hex)
         db.session.commit()
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
