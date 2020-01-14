@@ -16,7 +16,7 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
-import datetime
+from datetime import datetime
 import requests
 from dotenv import load_dotenv
 load_dotenv('.env')
@@ -77,7 +77,8 @@ class Hexdecodes(db.Model):
     __tablename__ = 'hexdecodes'
     h_entryid = db.Column(db.Integer,primary_key=True)
     hex = db.Column(db.String(80), unique=False, nullable=True)
-    #created_date = db.Column(DateTime, default=datetime.datetime.utcnow)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
     def __repr__(self):
         return '<Hex {}>'.format(self.hex)
 
