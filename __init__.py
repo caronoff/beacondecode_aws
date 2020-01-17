@@ -78,7 +78,7 @@ class Hexdecodes(db.Model):
     h_entryid = db.Column(db.Integer,primary_key=True)
     hex = db.Column(db.String(80), unique=False, nullable=True)
     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
+    ipaddress=db.Column(db.String(30), nullable=True)
     def __repr__(self):
         return '<Hex {}>'.format(self.hex)
 
@@ -445,7 +445,7 @@ def decoded(hexcode):
             for l in taclist:
                 k=l['id']
                 tacdic[k]=l
-        hexsave=Hexdecodes(hex=hexcode)
+        hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
         db.session.add(hexsave)
         db.session.commit()
         return render_template(tmp, hexcode=hexcode.upper(),
