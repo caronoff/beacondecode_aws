@@ -407,8 +407,9 @@ def decoded(hexcode):
     tflds = [('Model', 'name')]
 
     # send POST request to jotforms for logging
-    ipaddress=str(request.remote_addr)
-    ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    #ipaddress=str(request.remote_addr)
+    #ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    ipaddress = str(request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr))
     print(ipaddress)
     geocoord = (0, 0)
     locationcheck = False
