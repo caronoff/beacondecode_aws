@@ -798,7 +798,7 @@ battery = {'000':'<=5% remaining',
            '100':'>50% and <=75% remaining',
            '101':'>75% and <=100% remaining',
            '110':'reserved for future use',
-           '111':'Not available'}
+           '111':'Not available or not provided'}
 
 gnss_status = {'00':'No fix',
                '01':'2D location only',

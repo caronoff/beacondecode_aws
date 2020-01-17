@@ -58,7 +58,7 @@ def rotating0(bits):
 
     ##BIT 40-41 (194-195) Automated/manual activation notification
     activation = definitions.activation_note[bits[40:42]]
-    rotatingbin.append(['194-194 (Rotating field 40-41)',
+    rotatingbin.append(['194-195 (Rotating field 40-41)',
                         bits[40:42],
                         'Automated/manual activation notification',
                         activation])
