@@ -6,7 +6,7 @@ import ui.ui_map
 import ui.ui_progress
 
 from constants import *
-from webmap import google_map,blank
+from webmap import google_map,blank,google_mapbak
 from writebch import getFiveCharChecksum
 import decodehex2
 from Gen2secondgen import SecondGen
@@ -84,6 +84,8 @@ class MainWindow(QMainWindow, ui.ui_beaconhex.Ui_BeaconDecoder):
             self.dialog._lat = unicode(self._beacon.location[0])
             self.dialog._long = unicode(self._beacon.location[1])
             h = google_map.format(self.dialog._lat,self.dialog._long)
+            #h = google_map
+            print(h)
 
             #h.format(lat=self.dialog._lat,long=self.dialog._long)
         else:

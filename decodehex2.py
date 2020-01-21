@@ -74,7 +74,6 @@ class Country:
 
         #self.result = 'Country Code (bits 27-36) :({b})  Decimal: {d}   Name: {n}.'.format(b=midbin,d=mid,n=cname)
         self._result = (('Country Code:', mid), ('Country Name:', cname))
-
         self.cname = "{} - {}".format(cname, mid)
         self.mid = mid
     def countrydata(self):
