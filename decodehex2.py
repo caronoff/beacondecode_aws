@@ -1004,6 +1004,7 @@ class Beacon(HexError):
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
             self.genmsg = genmsgdic['30']
+            print(self.gentype)
 
         elif len(hexcode) == 22 :
             # check if this is a short message or a long message without the BCH2
@@ -1090,3 +1091,12 @@ class Beacon(HexError):
 
     def get_mid(self):
         return self.beacon.get_mid()
+
+def beaconcountry(hexcode):
+    try:
+        beacon = Beacon(hexcode)
+        ctry = beacon.get_country()
+    except Beacon.HexError as e:
+        ctry = e.message
+
+    return ctry
