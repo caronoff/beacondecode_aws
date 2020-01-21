@@ -1096,7 +1096,7 @@ def beaconcountry(hexcode):
     try:
         beacon = Beacon(hexcode)
         ctry = beacon.get_country()
-    except Beacon.HexError as e:
+    except beacon.HexError as e:
         ctry = e.message
 
     return ctry
