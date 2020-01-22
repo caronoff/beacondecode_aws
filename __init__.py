@@ -23,7 +23,7 @@ load_dotenv('.env')
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'Optional default value')
-#gmap_key = os.getenv('GMAP_KEY', 'Optional default value')
+gmap_key = os.getenv('GMAP_KEY', 'Optional default value')
 app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -31,7 +31,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-
+print(gmap_key)
 MENU = False
 COUNTRIES=[]
 country=open('countries2.csv')
