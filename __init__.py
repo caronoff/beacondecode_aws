@@ -31,7 +31,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-print('hi'+gmap_key+'hi')
+
 MENU = False
 COUNTRIES=[]
 country=open('countries2.csv')
@@ -462,7 +462,8 @@ def decoded(hexcode):
                                tac=beacon.gettac(),
                                tacdetail=tacdic,
                                tacflds=tflds,
-                               showmenu=MENU)
+                               showmenu=MENU,
+                               gmap_key=gmap_key)
     except decodehex2.HexError as err:
         print(err.value,err.message)
         return render_template('badhex.html',errortype=err.value,errormsg=err.message)
