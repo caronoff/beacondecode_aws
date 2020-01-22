@@ -14,7 +14,7 @@ google_map = '''<!DOCTYPE html>
               }}
             </style>
             
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw4IpZdm6D7ob00fF9F9TjuZ2Eeif9QtE&callback=initMap" async defer></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
       
             <script>
 
