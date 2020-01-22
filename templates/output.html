@@ -34,7 +34,7 @@
 
  {% block content %}
     <div id="decodetable">
-  <h2>Decoded Beacon Message {{gmap_key}}</h2>
+  <h2>Decoded Beacon Message</h2>
   <p>The hexadecimal code entered was: <strong style="word-wrap:break-word"> {{hexcode}} </strong></p>
         <p>{{genmsg}}</p>
         <p> Beacon Unique Identifier :{{uin}}</p>
@@ -204,7 +204,7 @@
 <script type=text/javascript src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script src="{{ url_for('static', filename='js/gmap.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key={{gmap_key}}&callback=initMap" async defer></script>
-##AIzaSyBw4IpZdm6D7ob00fF9F9TjuZ2Eeif9QtE
+
 
 
 {% endblock %}
