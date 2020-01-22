@@ -31,7 +31,7 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-print(gmap_key)
+print('hi'+gmap_key+'hi')
 MENU = False
 COUNTRIES=[]
 country=open('countries2.csv')
