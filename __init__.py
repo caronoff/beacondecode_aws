@@ -419,7 +419,6 @@ def decoded(hexcode):
         error=''
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
-        
             print(beacon.type=='uin')
         if beacon.type=='uin':
             if beacon.gentype=='first':
