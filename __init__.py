@@ -422,7 +422,7 @@ def decoded(hexcode):
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
-                # redirect with the hexcode, beacon type - different inputs depending on type of first gen change 2
+                # redirect with the hexcode, beacon type - different inputs depending on type of first gen change 3
             elif beacon.gentype=='second':
                 tmp = 'encodelongsecond.html'
             elif beacon.gentype=='secondtruncated':
