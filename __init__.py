@@ -420,7 +420,7 @@ def decoded(hexcode):
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
         
-        print(beacon.type=='uin')
+            print(beacon.type=='uin')
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
