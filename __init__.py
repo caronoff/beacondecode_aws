@@ -419,7 +419,6 @@ def decoded(hexcode):
         error=''
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
-            print(beacon.type=='uin')
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
@@ -428,11 +427,8 @@ def decoded(hexcode):
                 tmp = 'encodelongsecond.html'
             elif beacon.gentype=='secondtruncated':
                 tmp = 'output.html'
-            print(beacon.gentype)
         else:
-
             tmp='output.html'
-
         if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
             geocoord = (float(beacon.location[0]),float(beacon.location[1]))
             locationcheck=True
