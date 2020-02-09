@@ -32,7 +32,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-MENU = False
+MENU = True
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():
