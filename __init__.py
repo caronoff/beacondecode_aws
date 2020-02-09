@@ -419,12 +419,7 @@ def decoded(hexcode):
         error=''
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
-<<<<<<< HEAD
 
-
-       
-=======
->>>>>>> newfeature
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
