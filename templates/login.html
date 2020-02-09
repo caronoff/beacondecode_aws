@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block title %}Login {% endblock %}
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+
+{% endblock %}
+
+
+
+ {% block content %}
+
+
+
+<div class="container">
+
+ <div class="formwrapper">
+    <form method=post>
+
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ message }}
+        </div>
+      {% endfor %}
+      <h1>Log In</h1>
+      <div class="username">
+         {{ form.username.label }}
+         {{ form.username }}
+         {% if form.username.errors %}
+           <ul class="errors">
+             {% for error in form.username.errors %}<li>{{ error }}</li>{% endfor %}
+           </ul>
+         {% endif %}
+      </div>
+      <div class="password">
+        {{ form.password.label }}
+        {{ form.password }}
+        {% if form.password.errors %}
+          <ul class="errors">
+            {% for error in form.password.errors %}<li>{{ error }}</li>{% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="submitbutton">
+        <input id="submit" type="submit" value="Submit">
+      </div>
+      <div class="loginsignup">
+
+        </div>
+    </form>
+
+
+      <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+  </div>
+
+
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+<script type=text/javascript>
+    $('#about').addClass("active");
+
+</script>
+{% endblock %}
+

@@ -1,29 +1,205 @@
-from flask import Flask, flash,jsonify,request, render_template, Markup, redirect, url_for,make_response
-from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField
+from flask import Flask, Response,flash,jsonify,request, render_template, Markup, redirect, url_for,make_response, session, abort
+from werkzeug.urls import url_parse
+from werkzeug.security import generate_password_hash, check_password_hash
+from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
 from sgbform import SGB, SGB_g008, SGB_emergency
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import re
+import os
 import contacts
 import typeapproval
 import decodehex2
 import definitions
+from datetime import datetime
 import requests
+from dotenv import load_dotenv
+load_dotenv('.env')
 
 app = Flask(__name__)
-app.secret_key = 'my secret'
+app.secret_key = os.getenv('SECRET_KEY', 'Optional default value')
+gmap_key = os.getenv('GMAP_KEY', 'Optional default value')
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
 
 MENU = False
-
 COUNTRIES=[]
 country=open('countries2.csv')
 for line in country.readlines():
     COUNTRIES.append(line)
-##for key in definitions.countrydic:
-##    COUNTRIES.append('{} ({})'.format(definitions.countrydic[key], key))
 COUNTRIES.sort()
+
+class Userlogin(db.Model):
+    __tablename__ = 'userlogin'
+    u_id = db.Column(db.Integer,primary_key=True)
+    uname = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), index=True, unique=True)
+    lastname = db.Column(db.String(120), index=True, unique=False)
+    firstname = db.Column(db.String(120), index=True, unique=False)
+    password_hash = db.Column(db.String(128))
+    def __repr__(self):
+        return '<User {}>'.format(self.uname)
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def set_uid(self,uid):
+        self.u_id = uid
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        """Return the username to satisfy Flask-Login's requirements."""
+        return str(self.u_id)
+
+class Hexdecodes(db.Model):
+    __tablename__ = 'hexdecodes'
+    h_entryid = db.Column(db.Integer,primary_key=True)
+    hex = db.Column(db.String(80), unique=False, nullable=True)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    ipaddress=db.Column(db.String(30), nullable=True)
+    def __repr__(self):
+        return '<Hex {}>'.format(self.hex)
+
+class LoginForm(Form):
+    """User Login Form."""
+    username = TextField('Username', [validators.Required()])
+    password = PasswordField('Password', [validators.Required()])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+        self.user = None
+
+
+
+class RegistrationForm(Form):
+
+    uname = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Register')
+
+
+    def validate_uname(self, uname):
+        user = Userlogin.query.filter_by(uname=uname.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        user = Userlogin.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different email address.')
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Userlogin.query.filter_by(u_id =int(user_id)).first()
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    session['logged_in']=False
+    flash('Logged out')
+    return redirect(url_for('index'))
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # Here we use a class of some kind to represent and validate our
+    # client-side form data. For example, WTForms is a library that will
+    # handle this for us, and we use a custom LoginForm to validate.
+
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = LoginForm(request.form)
+    #user=None
+    next_page = request.args.get('next')
+    if not next_page or url_parse(next_page).netloc != '':
+        next_page = url_for('index')
+    print(next_page)
+    if request.method== 'POST' and form.validate():
+        # Login and validate the user.
+        # user should be an instance of your `Userlogin` class
+
+        user = Userlogin.query.filter_by(uname=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('ERROR! Invalid login credentials')
+
+        else:
+            session['logged_in']=True
+            flash('Logged in successfully.')
+            login_user(user, remember=True)
+            print(next_page)
+            return redirect(url_for(next_page.strip('/')))
+
+
+    return render_template('login.html', form=form)
+
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = Userlogin(uname=form.uname.data, email=form.email.data)
+        user.set_password(request.form.get("password"))
+        s=[int(user.u_id) for user in Userlogin.query.all()]
+        if len(s)>0:
+            nextid=max(s)+1
+        else:
+            nextid=1
+        user.set_uid(nextid)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register', form=form)
+
+
+
+
+
+@app.route("/adduser", methods=["GET", "POST"])
+def home():
+    users = None
+    if request.form:
+        try:
+            user = Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
+            db.session.add(user)
+            db.session.commit()
+        except Exception as e:
+            print("Failed to add user")
+            print(e)
+    users = Userlogin.query.all()
+    return render_template("users.html", users=users)
 
 
 
@@ -41,14 +217,12 @@ def validatehex():
             if str(len(ret_data)) in vlengths:
                 statuscheck = 'valid'
             else:
-
                 message = 'Bad length '+str(len(ret_data)) + ' Valid lengths: {}'.format(','.join(vlengths))
         else:
             statuscheck='not valid'
             new_data=re.sub(r'[^.a-fA-F0-9]', "", ret_data)
             message='Invalid hexadecimal character (A-F-0-9)'
             new_data=new_data.upper()
-
     return jsonify(echostatus=statuscheck, message=message,newdata=new_data)
 
 
@@ -84,14 +258,12 @@ def getmid():
     result=definitions.Country(search,{})
     resultdec=result.retmid()
     resultbin=result.getmid()
-
     return jsonify(mid=resultdec, midbin=resultbin)
-
-
 
 
 ## Encoder
 @app.route("/encodehex")
+@login_required
 def encodehex():
     countries=[]
     for key in definitions.countrydic:
@@ -122,7 +294,6 @@ def filterlist():
 def longSGB():
     hexcodeUIN = str(request.args.get('hex_code'))
     error = None
-
     rotatefld=str(request.args.get('rotatingfield'))
     print(rotatefld,hexcodeUIN)
     forms={'0000': SGB_g008(request.form), '0001': SGB_emergency(request.form)}
@@ -187,11 +358,8 @@ def longfirstgen():
 
 @app.route('/long',methods=['GET'])
 def long():
-
     hexcode=str(request.args.get('hex_code'))
     return redirect(url_for('decoded', hexcode=hexcode))
-
-
 
 ## Decoder
 @app.route("/decodedjson/<hexcode>")
@@ -216,12 +384,6 @@ def decodedjson(hexcode):
     beacondecode= {'type': tmp, 'loc': geocoord}
     return jsonify(beacondecode)
 
-@app.route("/decode",methods=['GET','POST'])
-def decode():
-    if request.method == 'POST':
-        hexcode = str(request.form['hexcode']).strip()
-        return redirect(url_for('decoded',hexcode=hexcode))
-    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
@@ -245,11 +407,11 @@ def decoded(hexcode):
              ('Protocols Tested','protocols_tested')]
     tflds = [('Model', 'name')]
 
-
     # send POST request to jotforms for logging
-    ipaddress=str(request.remote_addr)
-    #print(request.remote_addr)
-
+    #ipaddress=str(request.remote_addr)
+    #ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
+    ipaddress = str(request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr))
+    print(ipaddress)
     geocoord = (0, 0)
     locationcheck = False
     try:
@@ -257,21 +419,22 @@ def decoded(hexcode):
         error=''
         if len(beacon.errors)>0 :
             error = ', '.join(beacon.errors)
+<<<<<<< HEAD
 
 
        
+=======
+>>>>>>> newfeature
         if beacon.type=='uin':
             if beacon.gentype=='first':
                 tmp = 'encodelongfirst.html'
-                # redirect with the hexcode, beacon type - different inputs depending on type of first gen
+                # redirect with the hexcode, beacon type - different inputs depending on type of first gen change 3
             elif beacon.gentype=='second':
                 tmp = 'encodelongsecond.html'
             elif beacon.gentype=='secondtruncated':
                 tmp = 'output.html'
         else:
-
             tmp='output.html'
-
         if beacon.has_loc() and is_number(beacon.location[0]) and is_number(beacon.location[1]):
             geocoord = (float(beacon.location[0]),float(beacon.location[1]))
             locationcheck=True
@@ -285,7 +448,9 @@ def decoded(hexcode):
             for l in taclist:
                 k=l['id']
                 tacdic[k]=l
-
+        hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
+        db.session.add(hexsave)
+        db.session.commit()
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
                                locationcheck=locationcheck,
@@ -298,7 +463,8 @@ def decoded(hexcode):
                                tac=beacon.gettac(),
                                tacdetail=tacdic,
                                tacflds=tflds,
-                               showmenu=MENU)
+                               showmenu=MENU,
+                               gmap_key=gmap_key)
     except decodehex2.HexError as err:
         print(err.value,err.message)
         return render_template('badhex.html',errortype=err.value,errormsg=err.message)
@@ -345,6 +511,14 @@ def index():
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('indx.html', title='Home', user='',showmenu=MENU)
+
+
+@app.route("/decode",methods=['GET','POST'])
+def decode():
+    if request.method == 'POST':
+        hexcode = str(request.form['hexcode']).strip()
+        return redirect(url_for('decoded',hexcode=hexcode))
+    return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'

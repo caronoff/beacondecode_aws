@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block title %} Users {% endblock %}
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+
+ {% block content %}
+
+<div class="container">
+    <div class="centered">
+        <h1>Add user</h1>
+    <form method="POST" action="/adduser">
+      <input type="text" name="uname">
+        <input type="text" name="u_id">
+      <input type="submit" value="Add">
+    </form>
+
+    <h1>Users </h1>
+    <table>
+      {% for user in users %}
+        <tr>
+            <td>
+            {{user.u_id}}
+          </td>
+          <td>
+            {{user.uname}}
+          </td>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{user.uname}}" name="oldname">
+              <input type="text" value="{{user.uname}}" name="newname">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{user.uname}}" name="uname">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+<script type=text/javascript>
+    $('#about').addClass("active");
+</script>
+{% endblock %}
+

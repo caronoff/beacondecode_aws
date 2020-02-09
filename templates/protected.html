@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Protected Area {% endblock %}
+{% block head %}
+  {{ super() }}
+<!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/signin.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+
+{% endblock %}
+
+
+
+
+
+
+ {% block content %}
+
+
+
+<div class="container">
+    
+    <div class="centered">
+        <div class="aboutus">
+    <h1>{% if current_user.is_authenticated %}
+  Hi {{ current_user.uname }}!
+
+        <a href="{{url_for('logout')}}"> Logout </a>
+{% endif %}
+
+    </h1>
+    <p>The International Cospas-Sarsat Programme provides accurate, timely, and reliable distress alert and location data to help search and rescue authorities assist persons in distress.</p>
+
+
+<h1>Our Objective</h1>
+
+
+<p>The objective of the Cospas-Sarsat system is to reduce, as far as possible, delays in the provision of distress alerts to SAR services, and the time required to locate a
+    distress and provide assistance, which have a direct impact on the probability of survival of the person in distress at sea or on land.</p>
+
+    <h1>Our Strategy</h1>
+    <p>To achieve this objective, Cospas-Sarsat Participants implement, maintain, co-ordinate and operate a satellite system capable of detecting distress
+        alert transmissions from radiobeacons that comply with Cospas-Sarsat specifications and performance standards, and of determining their position anywhere on the globe.
+        The distress alert and location data is provided by Cospas-Sarsat Participants to the responsible SAR services.
+Cospas-Sarsat co-operates with the International Civil Aviation Organization, the International Maritime Organization, the
+        International Telecommunication Union and other international organisations to ensure the compatibility of the Cospas-Sarsat
+        distress alerting services with the needs, the standards and the applicable recommendations of the international community.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+{{super()}}
+<script type=text/javascript>
+    $('#about').addClass("active");
+
+</script>
+{% endblock %}
+
