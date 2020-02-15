@@ -85,7 +85,7 @@ class Hexdecodes(db.Model):
 
 class LoginForm(Form):
     """User Login Form."""
-    username = TextField('Username', [validators.Required()])
+    username = StringField('Username', [validators.Required()])
     password = PasswordField('Password', [validators.Required()])
 
     def __init__(self, *args, **kwargs):
