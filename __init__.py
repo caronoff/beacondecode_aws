@@ -140,13 +140,17 @@ def login():
     form = LoginForm(request.form)
     #user=None
     next_page = request.args.get('next')
+    print(next_page is None)
+
     if not next_page or url_parse(next_page).netloc != '':
-        next_page = url_for('index')
-    print(next_page)
+        next_page = 'index'
+        print(next_page + ' line147 no next page specified so default index')
+
     if request.method== 'POST' and form.validate():
         # Login and validate the user.
         # user should be an instance of your `Userlogin` class
-
+        if next_page is None:
+            next_page = 'index'
         user = Userlogin.query.filter_by(uname=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('ERROR! Invalid login credentials')
@@ -155,10 +159,16 @@ def login():
             session['logged_in']=True
             flash('Logged in successfully.')
             login_user(user, remember=True)
-            print(next_page)
-            #return redirect(url_for(next_page.strip('/')))
-            return redirect('encodehex')
 
+            try:
+                print(next_page)
+                return redirect(next_page)
+            except:
+                print('error in redirect')
+                return redirect(url_for('index'))
+
+
+    print(next_page + ' line 146 - rendering template')
     return render_template('login.html', form=form)
 
 
