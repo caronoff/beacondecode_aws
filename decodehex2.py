@@ -964,15 +964,15 @@ class Beacon(HexError):
     def __init__(self,hexcode):
         genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch (as per T.018 Issue 1 - Rev.4).',
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB (as per T.018 Issue 1 - Rev.4).',
-                   '22':'Hex data length of 22 characters.   Assumed FGB short message format specifications (as per T.001 Issue 4 - Rev.5).',
-                   '22long': 'Hex data length of 22 characters but format flag is long.  Assumed FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.5).',
-                   '30short': 'Hex data length of 30 characters but format flag is short.  Assumed FGB long message format specifications for 22 hex and truncate last digits (as per T.001 Issue 4 - Rev.5).',
+                   '22':'Hex data length of 22 characters.    FGB short message format specifications (as per T.001 Issue 4 - Rev.5).',
+                   '22long': 'Hex data length of 22 characters but format flag is long.   FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.5).',
+                   '30short': 'Hex data length of 30 characters but format flag is short.   FGB short message format specifications 22 hex and truncate last 8 hex digits (as per T.001 Issue 4 - Rev.5).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.5).',
                    '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
                    '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.5).',
                    '28': 'Hex data length of 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).',
-                   '28long': 'Hex data length of 28 character hexadecimal but format flag is long.  Assumed FGB long message with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).',
+                   '28long': 'Hex data length of 28 character hexadecimal but format flag is long.   FGB long message with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).',
                    '36': 'Hex data length of 36 is a complete 36 character message consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.5).'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
