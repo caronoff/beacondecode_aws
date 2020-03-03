@@ -1,5 +1,5 @@
 click==6.7
-Flask==0.12.2
+Flask==1.1.1
 gunicorn==19.7.1
 Flask-WTF==0.14.2
 Flask-Login==0.4.1
@@ -8,7 +8,7 @@ itsdangerous==0.24
 Jinja2==2.10.1
 python-dotenv==0.10.2
 MarkupSafe==1.0
-Werkzeug==0.15.3
+Werkzeug==1.0.0
 WTForms==2.1
 requests==2.20.0
 alembic==1.0.10

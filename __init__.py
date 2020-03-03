@@ -160,12 +160,9 @@ def login():
             flash('Logged in successfully.')
             login_user(user, remember=True)
 
-            try:
-                print(next_page)
-                return redirect(next_page)
-            except:
-                print('error in redirect')
-                return redirect(url_for('index'))
+
+
+            return redirect(url_for(next_page.strip('/')))
 
 
     print(next_page + ' line 146 - rendering template')
