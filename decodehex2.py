@@ -187,6 +187,9 @@ class BeaconFGB(HexError):
         if self.type == 'Short Msg' and self.bin[25] == '1':
             #Long message format should be 30 Hex or 36 Hex but the format flag is long.  Therefore, set type to Long Msg
             self.type = 'Long Msg'
+        elif self.type == 'Long Msg' and self.bin[25]=='0':
+            # Long message format should be 30 Hex or 36 Hex but the format flag is short.  Therefore, Short Msg
+            self.type = 'Short Msg'
 
         self.bch = Bch(self.bin, self.type)
 
