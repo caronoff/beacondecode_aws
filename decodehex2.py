@@ -966,6 +966,7 @@ class Beacon(HexError):
                    '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB (as per T.018 Issue 1 - Rev.4).',
                    '22':'Hex data length of 22 characters.   Assumed FGB short message format specifications (as per T.001 Issue 4 - Rev.5).',
                    '22long': 'Hex data length of 22 characters but format flag is long.  Assumed FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.5).',
+                   '30short': 'Hex data length of 30 characters but format flag is short.  Assumed FGB long message format specifications for 22 hex and truncate last digits (as per T.001 Issue 4 - Rev.5).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.5).',
                    '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
@@ -1005,8 +1006,12 @@ class Beacon(HexError):
 
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
-            self.genmsg = genmsgdic['30']
+
             print(self.gentype)
+            if beacon.type == 'Short Msg':
+                self.genmsg = genmsgdic['30short']
+            else:
+                self.genmsg = genmsgdic['30']
 
         elif len(hexcode) == 22 :
             # check if this is a short message or a long message without the BCH2
