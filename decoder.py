@@ -21,7 +21,6 @@ class MapDlg(QDialog, ui.ui_map.Ui_Dialog):
         super(MapDlg, self).__init__(parent)
         msize = '15 digit beacon UIN'
         self.setupUi(self)
-
         self._lat = 0
         self._long = 0
         self.currentframe = self.mapWebView.page().currentFrame()
