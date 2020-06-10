@@ -586,15 +586,20 @@ class BeaconFGB(HexError):
         elif typelocprotbin=='1111':
             btype='Nat Loc Test'
         elif typelocprotbin=='1101' :  #RLS beacon
+            trunc='Unknown'
             if self.bin[43:47]!='1111':
                 if self.bin[41:43] == '00' :
                     btype='ELT'
+                    trunc='2'
                 elif self.bin[41:43] == '01' :
                     btype='EPIRB'
+                    trunc='1'
                 elif self.bin[41:43] == '10' :
                     btype='PLB'
+                    trunc='3'
                 elif self.bin[41:43] == '11':
                     btype='RLS Loc Test'
+                    trunc='?'  # beacon type unknown so therefor indeterminable leading digit
             else:
                 if self.bin[41:43] == '00':
                     btype='First EPIRB'
@@ -603,7 +608,7 @@ class BeaconFGB(HexError):
                 elif self.bin[41:43] == '10' :
                     btype='PLB'
                 elif self.bin[41:43]=='11':
-                    btype = 'Std Loc Test'
+                    btype = 'RLS Test Location'
                 
         else:
             btype='Unknown'
@@ -812,8 +817,9 @@ class BeaconFGB(HexError):
             # RLS for TAC number or National RLS with serial number
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
-                self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','#{}'.format(tano),definitions.moreinfo['rls_trunc']])
-                self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(5))])
+                self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','{}'.format(tano),definitions.moreinfo['rls_trunc']])
+                self.tablebin.append(['', '', 'RLS TAC included missing leading digit prefix', '{}{}'.format(trunc,tano)])
+                self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(5))])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
