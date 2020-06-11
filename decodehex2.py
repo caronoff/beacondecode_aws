@@ -155,7 +155,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['1-15', bitsynch, 'A bit-synchronization pattern consisting of "1"s shall occupy the first 15-bit positions', str(bitsynch=='111111111111111')])
             if self.bin[16:25]== '011010000':
                 self.testm='1'
-                self.tablebin.append(['16-25', framesynch,'9 bits framesynch to identify self-test mode set','Self-Test Mode'])
+                self.tablebin.append(['16-24', framesynch,'9 bits framesynch to identify self-test mode set','Self-Test Mode'])
             elif self.bin[16:25]== '000101111':
                 self.testm='0'
                 self.tablebin.append(['16-24', framesynch, '9 bits framesynch to identify normal mode', 'Normal Mode'])
