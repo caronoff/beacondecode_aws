@@ -463,7 +463,7 @@ class SecondGen(Gen2Error):
 
     def btype(self):
         if self.type!='uin':
-            return Func.getBeaconType(self.bits[138:140])
+            return Func.getBeaconType(self.bits[138:141])
         else:
             return 'UIN s/n: {}'.format(self.serialNum)
 

@@ -827,7 +827,7 @@ beacon_type = {'000':'ELT (excludes ELT(DT))',
                '100':'Spare',
                '101':'Spare',
                '110':'Spare',
-               '111':'Spare'}
+               '111':'System beacon'}
 
 beacon_rls = {'00':'No automatic RLM Type-1 received - No manual RLM Type 2 received',
               '01':'No automatic RLM Type 1 received -  Manual RLM Type 2 received ',
