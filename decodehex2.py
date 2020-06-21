@@ -9,7 +9,8 @@ import time
 
 
 UIN = 'unique hexadecimal ID'
-
+BCH1='BCH-1 error correcting code'
+BCH2='BCH-2 error correcting code'
 
 
 class Bch:
@@ -42,7 +43,7 @@ class Bch:
         return 'BCH-{} errors: {}'.format(str(n), self.bch[3+int(n)])
 
     def bch1calc(self):
-        return 'BCH-1 Calculated (86-106):  {bchcalc}   {e}'.format(bchcalc=self.bch[0], e=self.bch[4])
+        return 'Calculated :  {bchcalc}   {e}'.format(bchcalc=self.bch[0], e=self.bch[4])
 
     def bch2calc(self):
         return 'BCH-2 Calculated (133-144):  {bchcalc}  {e}'.format(bchcalc=self.bch[1], e=self.bch[5])
@@ -152,16 +153,16 @@ class BeaconFGB(HexError):
         if pad=='':
             bitsynch = self.bin[1:16]
             framesynch = self.bin[16:25]
-            self.tablebin.append(['1-15', bitsynch, 'A bit-synchronization pattern consisting of "1"s shall occupy the first 15-bit positions', str(bitsynch=='111111111111111')])
+            self.tablebin.append(['1-15', bitsynch, 'Bit-synchronization pattern consisting of "1"s shall occupy the first 15-bit positions', str(bitsynch=='111111111111111')])
             if self.bin[16:25]== '011010000':
                 self.testm='1'
-                self.tablebin.append(['16-24', framesynch,'9 bits framesynch to identify self-test mode set','Self-Test Mode'])
+                self.tablebin.append(['16-24', framesynch,'Frame Synchronization Pattern','Correct. Self-Test Message'])
             elif self.bin[16:25]== '000101111':
                 self.testm='0'
-                self.tablebin.append(['16-24', framesynch, '9 bits framesynch to identify normal mode', 'Normal Mode'])
+                self.tablebin.append(['16-24', framesynch, 'Frame Synchronization Pattern', 'Correct. Operational Message'])
             else:
                 self.testm=''
-                self.tablebin.append(['16-24', framesynch, 'Framesynch Error', 'Normal Mode: 000101111'])
+                self.tablebin.append(['16-24', framesynch, 'Frame Synchronization Pattern', 'Error. Normal Mode: 000101111'])
                 self.tablebin.append(['', '', '', 'Self-Test: 011010000'])
 
                 
@@ -173,7 +174,7 @@ class BeaconFGB(HexError):
         
         if self.type !='uin':
             formatflag=(self.bin[25],definitions.messagetype[self.bin[25]])
-            self.tablebin.append(['25', self.bin[25], 'Message Flag', formatflag[1]])
+            self.tablebin.append(['25', self.bin[25], 'Format Flag', formatflag[1]])
         else:
             formatflag=('n/a','bit 25 not relevant in 15 Hex')
 
@@ -190,9 +191,12 @@ class BeaconFGB(HexError):
         self._pflag=['Location','User'][int(protocolflag)]
 
 
+        if self._pflag=='Location':
+            pflag='Standard location, National Location, RLS Location or ELT-DT Location protocol '
+        else:
+            pflag='User protocol'
 
-
-        self.tablebin.append(['26',self.bin[26],'Protocol Flag',self._pflag])
+        self.tablebin.append(['26',self.bin[26],'Protocol Flag',pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
@@ -401,11 +405,11 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             btype='Orbitography'
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
-            #self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
                 if int(self.bin[113:])!=0 :
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2,str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
         #############################################################################
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
@@ -427,7 +431,7 @@ class BeaconFGB(HexError):
             btype = 'Test'
 
             if self.type!='uin':
-                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 self.tablebin.append(['107-112', str(self.bin[107:113]), 'Reserved', 'Reserved for test use'])
 
 
@@ -437,7 +441,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['113-132',str(self.bin[113:133]),'Test','Reserved for test use'])
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
-                                          'BCH 2',
+                                          BCH2,
                                           str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
@@ -511,13 +515,13 @@ class BeaconFGB(HexError):
             
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-85',str(self.bin[84:86]),'Reserved','Reserved for national use'])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112',str(self.bin[107:113]),'Reserved','Reserved for national use'])
             if self.type!='Short Msg' and int(self.bin[113:])!=0:
                 self.tablebin.append(['113-132',str(self.bin[113:133]),'Reserved','Reserved for national use'])
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
-                                          'BCH 2',
+                                          BCH2,
                                           str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
@@ -529,9 +533,9 @@ class BeaconFGB(HexError):
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[108],self.bin[109:116],self.bin[116:120])
             lg,declng, lngdir,lgminutes=Fcn.longitude(self.bin[120],self.bin[121:129],self.bin[129:133])
             
-            self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type != 'Short Msg' and int(self.bin[113:])!=0 :
-                self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',definitions.enc_delta_posflag[self.encpos]])
+                self.tablebin.append(['107',str(self.bin[107]),'Encoded position data source',definitions.enc_delta_posflag[self.encpos]])
                 if Fcn.is_number(declat) and Fcn.is_number(declng):
                     self._loc=True
                     a = self.update_locd(declat,latdir)
@@ -551,13 +555,13 @@ class BeaconFGB(HexError):
 
                 self.tablebin.append(['133-144',
                                       str(self.bin[133:145]),
-                                          'BCH 2',
+                                          BCH2,
                                           str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
         
         self._btype=btype
         self.tac=str(tano)
         if self.type == 'Short Msg':
-            self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'See below'])
             emergencycodeflag=str(self.bin[107])
             if emergencycodeflag=='1' :
@@ -644,7 +648,7 @@ class BeaconFGB(HexError):
             self._loc = False
             
             self.hex15=Fcn.bin2hex(self.bin[26:65]+default)
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol', definitions.locprottype[typelocprotbin]])
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code', definitions.locprottype[typelocprotbin]])
             #self.tablebin.append(['26-85',self.bin[26:65]+default,UIN,self.hex15])
             latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,133)
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[65],self.bin[66:73],self.bin[73:75])
@@ -695,7 +699,7 @@ class BeaconFGB(HexError):
                     computed= '107-110 :'  + self.bin[107:111] + '. Not  1101. Failed'
 
                 self.fixedbits=computed
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 self.tablebin.append(['107-110',str(self.bin[107:111]),'Validity',computed])
                 self.tablebin.append(['111',
                                       str(self.bin[111]),
@@ -710,7 +714,7 @@ class BeaconFGB(HexError):
                 if int(self.bin[113:]) != 0:
                     self.tablebin.append(['113-122',str(self.bin[113:123]),'Latitude offset', ltoffset])
                     self.tablebin.append(['123-132', str(self.bin[123:133]),'Longitude offset', lgoffset])
-                    self.tablebin.append(['133-144', str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    self.tablebin.append(['133-144', str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             
             elif self.type=='uin':
                 if default==str(self.bin[65:86]):
@@ -740,7 +744,7 @@ class BeaconFGB(HexError):
             if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['59-71',str(self.bin[59:72]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['72-85',str(self.bin[72:86]),'Longitude','{} ({})'.format(lng,declng)])
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 if self.bin[107:110]=='110':
                     computed='107-109 should be 110.  Passed.'
                 else:
@@ -796,10 +800,10 @@ class BeaconFGB(HexError):
                         self.tablebin.append(['127-132',str(self.bin[127:133]), 'National use',''])
 
                 if int(self.bin[113:]) != 0:
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
             elif self.type=='Short Msg':
-                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
 
             elif self.type=='uin':
                 if default==str(self.bin[59:86]):
@@ -815,15 +819,15 @@ class BeaconFGB(HexError):
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex)
             self.hex15=Fcn.bin2hex(self.bin[26:67]+default)
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
-            self._loctype='RLS Location'                
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
+            self._loctype=definitions.locprottype[typelocprotbin]
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{}'.format(self._loctype)])
             tano=str(Fcn.bin2dec(self.bin[43:53])).zfill(3)
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
             if self.bin[43:47]=='1111':
             # RLS for MMSI
                 idtype='RLS protocol coded with MMSI last 6 digits'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
-                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','#{}'.format(str(Fcn.bin2dec(self.bin[47:67])).zfill(6))])
+                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','{}'.format(str(Fcn.bin2dec(self.bin[47:67])).zfill(6))])
             else:
             # RLS for TAC number or National RLS with serial number
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
@@ -839,30 +843,30 @@ class BeaconFGB(HexError):
             if self.type not in ['uin', 'Short Msg']:
                 self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                 self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
-                self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 #self.tablebin.append(['107-108',str(self.bin[107:109]),'supplementary','supplementary'])
                 self._locd['encpos']=definitions.enc_delta_posflag[self.bin[107]]
                 self.encpos=str(self.bin[107])
                 self._locd['homer']=definitions.homer[self.bin[108]]
                 self.tablebin.append(['107',str(self.bin[107]),'Encoded position source',self._locd['encpos']])
-                self.tablebin.append(['108',str(self.bin[108]),'Homer',self._locd['homer']])
-                self.tablebin.append(['109-114',str(self.bin[109:115]),'Reserved','Reserved for RLS data'])
-                self.tablebin.append(['109', str(self.bin[109]), 'Process automatically RLM (Type-1)', ['Acknowledgement Type-1 not requested and not accepted by this beacon','Acknowledgement Type-1 accepted by this beacon'][int(self.bin[109])]])
-                self.tablebin.append(['110', str(self.bin[110]), 'Process manually RLM (Type-2)',['Manually generated RLM not accepted by this beacon','Manually generated RLM accepted by this beacon'][int(self.bin[110])]])
-                self.tablebin.append(['111', str(self.bin[111]), 'Feedback on RLM Type-1',
-                                      ['Acknowledgement Type-1 not (yet) received by this beacon',
-                                       'Acknowledgement Type-1 (automatic acknowledgement) received by this beacon'][int(self.bin[111])]])
-                self.tablebin.append(['112', str(self.bin[112]), 'Feedback on RLM Type-2',
-                                      ['Acknowledgement Type-2 not (yet) received by this beacon',
-                                       'Acknowledgement Type-2 received by this beacon'][int(self.bin[112])]])
+                self.tablebin.append(['108',str(self.bin[108]),'121.5 Mhz Homing Device',self._locd['homer']])
+                #self.tablebin.append(['109-114',str(self.bin[109:115]),'RLS specific bits','See below'])
+                self.tablebin.append(['109', str(self.bin[109]), 'Beacon capability to process and automatically generated RLM Type-1', ['Not capable to process an automatically generated RLM Type-1','Capable to process an automatically generated RLM Type-1'][int(self.bin[109])]])
+                self.tablebin.append(['110', str(self.bin[110]), 'Beacon capability to process a manually generated RLM Type-1 RLM Type-2',['Not capable to process a manually generated RLM Type-2','Beacon able to process a manually generated RLM Type-2'][int(self.bin[110])]])
+                self.tablebin.append(['111', str(self.bin[111]), 'Beacon Feedback on receipt of RLM Type-1',
+                                      ['RLM Type-1 (automatic) not received by this beacon',
+                                       'RLM Type-1 (automatic) received by this beacon'][int(self.bin[111])]])
+                self.tablebin.append(['112', str(self.bin[112]), 'Beacon Feedback on receipt of RLM Type-2',
+                                      ['RLM Type-2 (manual) not received by this beacon',
+                                       'RLM Type-2 (manual) received by this beacon'][int(self.bin[112])]])
                 finallat = finallng = 'Not Used'
                 if int(self.bin[113:]) != 0:
-                    self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
+                    self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider Identification', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
 
                     latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
                     self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                     self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
@@ -875,7 +879,7 @@ class BeaconFGB(HexError):
                 self._loc = False
 
             elif self.type=='Short Msg':
-                self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
 
         # ELT-DT Location Protocol   
         elif typelocprotbin == '1001':
@@ -911,18 +915,18 @@ class BeaconFGB(HexError):
                     pass
                     self.tablebin.append(['67-75', str(self.bin[67:76]), 'ELT-DT Cancellation message pattern: {}'.format('1 11111010'),'Cancellation message'])
                     self.tablebin.append(['76-85', str(self.bin[76:86]),  'ELT-DT Cancellation message pattern: {}'.format('1 111111010'),'Cancellation message'])
-                    self.tablebin.append(['86-106', str(self.bin[86:107]), 'BCH 1', str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                    self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                     if str(self.bin[107:133]) == '00111100011110000011110000': #make sure pattern is correct
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Calcellation message'])
                     else:
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Calcellation message bit pattern wrong'])
                     if int(self.bin[113:])!=0:
-                        self.tablebin.append(['133-144', str(self.bin[133:145]), 'BCH 2', str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                        self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
                 else: #proceed to decode location
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                     self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
-                    self.tablebin.append(['86-106',str(self.bin[86:107]),'BCH 1',str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                    self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                     means = {'01':'automatic activation by the beacon','11':'spare','00':'manual activation by user','10':'automatic activation by external means'}
                     meansbin = str(self.bin[107:109])
                     self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
@@ -937,7 +941,7 @@ class BeaconFGB(HexError):
                         latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
                         self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                         self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                        self.tablebin.append(['133-144',str(self.bin[133:145]),'BCH 2',str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                        self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2,str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
             elif self.type=='uin':
                 if default == str(self.bin[67:86]):
@@ -979,18 +983,18 @@ class BeaconFGB(HexError):
 
 class Beacon(HexError):
     def __init__(self,hexcode):
-        genmsgdic={'63':'Hex data entered is a length of 63 characters representing a 252 bit messgage from a second generation beacon, including 48 bit bch (as per T.018 Issue 1 - Rev.4).',
-                   '15sgb':'This is a 15 Hex ID based on a truncated 23 Hex ID for an SGB (as per T.018 Issue 1 - Rev.4).',
-                   '22':'Hex data length of 22 characters.    FGB short message format specifications (as per T.001 Issue 4 - Rev.6).',
-                   '22long': 'Hex data length of 22 characters but format flag is long.   FGB long message format specifications for 30 hex (as per T.001 Issue 4 - Rev.5).',
-                   '30short': 'Hex data length of 30 characters but format flag is short.   FGB short message format specifications 22 hex and truncate last 8 hex digits (as per T.001 Issue 4 - Rev.6).',
+        genmsgdic={'63':'The code consists of 63 hexadecimal characters representing a 252 bit messgage format from a second generation beacon, including 48 bits of BCH error correcting bit as defined by T.018 Issue 1 - Rev.4.',
+                   '15sgb':'The code consists of 15 hexadecimal characters representing a truncated 23 Hex ID for an SGB as defined by T.018 Issue 1 - Rev.4.',
+                   '22':'The code consists of 22 hexadecimal characters representing a first gerneration beacon short message as defined by T.001 Issue 4 - Rev.6).',
+                   '22long': 'The code consists of 22 hexadecimal characters representing a first generation beacon message with a Long format flag(30 hex trunctated to 22 excluding BCH-2).  Forrmat specifications are defined by T.001 Issue 4 - Rev.6).',
+                   '30short': 'The code consists of 30 hexadecimal characters representing a first generation beacon message with format flag set to Short.   FGB short message format specifications 22 hex and truncate last 8 hex digits (as per T.001 Issue 4 - Rev.6).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.5).',
                    '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
                    '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
                    '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.6).',
-                   '28': 'Hex data length of 28 character hexadecimal consistent with FGB short message format specifications including 24 bit(6hex) framesynch prefix (as per T.001 Issue 4 - Rev.6).',
-                   '28long': 'Hex data length of 28 character hexadecimal but format flag is long.   FGB long message padded with extra zeros to make with 36 characters including 24 bit(6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.6).',
-                   '36': 'Hex data length of 36 is a complete 36 character message consistent with FGB specifications including 24 bits (6 hex) framesynch prefix (as per T.001 Issue 4 - Rev.6).'}
+                   '28': 'Hex data length of 28 character hexadecimal consistent with first generation beacon short message format specifications including 24 bit(6hex) framesynch prefix as defined by T.001 Issue 4 - Rev.6 Section 2.2.2.4.',
+                   '28long': 'The code consists of 28 hexadecimal characters representing a first generation beacon message with the format flag set to Long including bit and frame synchronization pattern as defined by T.001 Issue 4 - Rev.6.',
+                   '36': 'The code consists of 36 hexadecimal characters representing a first generation beacon message with the format flag set to Long including bit and frame synchronization pattern prefix (24 bits) as defined by T.001 Issue 4 - Rev.6.'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
             raise HexError('Hex format Error', 'This is not a valid hexadecimal value!')
@@ -1024,7 +1028,7 @@ class Beacon(HexError):
             beacon=BeaconFGB(hexcode)
             self.gentype='first'
 
-            print(self.gentype)
+
             if beacon.type == 'Short Msg':
                 self.genmsg = genmsgdic['30short']
             else:

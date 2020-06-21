@@ -772,7 +772,7 @@ enc_alt = {'0000':['0', '400 m (1312 ft)'],
           }
 
 
-homer = {'0':'121.5 MHz Homing device not present', '1':'121.5 MHz Homing device present'}
+homer = {'0':'Not included in beacon', '1':'Included in beacon'}
 
 
 ####################
