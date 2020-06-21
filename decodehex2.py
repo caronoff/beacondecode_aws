@@ -713,7 +713,7 @@ class BeaconFGB(HexError):
 
                 self.tablebin.append(['112',
                                       str(self.bin[112]),
-                                          'Aux device',
+                                          '121.5 Mhz Homing Device',
                                           definitions.homer[self.bin[112]]])
                 self.encpos=str(self.bin[111])
                 if int(self.bin[113:]) != 0:
