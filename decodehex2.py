@@ -21,7 +21,7 @@ class Bch:
             bch1 = Fcn.calcbch(testbin, "1001101101100111100011", 25, 86, 107)
             bch1error = self.errors(testbin[86:107], bch1)
 
-        if mtype =='Long Msg':
+        if mtype in ['Long Msg','Short Msg/Long Msg']:
             bch2 = Fcn.calcbch(testbin, '1010100111001', 107, 133, 145)
             bch2error = self.errors(testbin[133:145], bch2)
             if bch2error == 'BCH matches encoded BCH':
@@ -206,21 +206,26 @@ class BeaconFGB(HexError):
             # Long message format should be 30 Hex or 36 Hex but the format flag is short.  Therefore, Short Msg
             self.type = 'Short Msg'
 
-        self.bch = Bch(self.bin, self.type)
+
 
         if protocolflag == '0' and self.type != 'Short Msg':
+            self.bch = Bch(self.bin, self.type)
             self.locationProtocol()
         #   protocol == '1' 'User Protocol'
         #   type of user protocol located at bits 37-39    
         elif protocolflag == '1' and self.type != 'Short Msg'  :
+            self.bch = Bch(self.bin, self.type)
             self.userProtocol()
 
         if protocolflag == '0' and self.type == 'Short Msg':
-            self.tablebin.append(['Inconsistent message protocol', 'Error', 'Incomplete', 'Location protocol bit pattern with short message not allowed'])
+            self.tablebin.append(['Inconsistent', 'Error', 'Incomplete', 'Location protocol bit pattern with short message not allowed'])
+            self.type='Short Msg/Long Msg'
+            self.bch = Bch(self.bin, self.type)
             self.locationProtocol()
 
         elif protocolflag == '1' and self.type == 'Short Msg':
             self.tablebin.append(['Short Message type', '', '', ''])
+            self.bch = Bch(self.bin, self.type)
             self.userProtocol()
 
 
@@ -679,7 +684,7 @@ class BeaconFGB(HexError):
             #   PLB, ELT and EBIRB Serial
             elif typelocprotbin in ['0100','0110','0111']:
                 tano = str(Fcn.bin2dec(self.bin[41:51]))
-                self.tablebin.append(['37-40',str(self.bin[37:41]),'Beacon type','Serial {}'.format(btype)])
+                self.tablebin.append(['37-40',str(self.bin[37:41]),'Beacon type','{}'.format(btype)])
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type Approval Cert. No:',tano])
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
                 self.typeapproval=('','',tano)
