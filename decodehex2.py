@@ -1061,7 +1061,7 @@ class Beacon(HexError):
         elif len(hexcode) == 36:
             beacon=BeaconFGB(hexcode)
             self.gentype = 'first'
-            if beacon.type == 'Short Msg':
+            if beacon.type in ['Short Msg','Short Msg/Long Msg']:
                 self.genmsg = genmsgdic['36short']
             else:
                 self.genmsg = genmsgdic['36']
