@@ -216,8 +216,8 @@ class BeaconFGB(HexError):
             self.userProtocol()
 
         if protocolflag == '0' and self.type == 'Short Msg':
-            self.tablebin.append(['Inclomplete Hex', 'Error', 'Incomplete', 'Location protocol does not allow short message'])
-            #self.locationProtocol()
+            self.tablebin.append(['Inconsistent message protocol', 'Error', 'Incomplete', 'Location protocol bit pattern with short message not allowed'])
+            self.locationProtocol()
 
         elif protocolflag == '1' and self.type == 'Short Msg':
             self.tablebin.append(['Short Message type', '', '', ''])
@@ -994,6 +994,7 @@ class Beacon(HexError):
                    '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.6).',
                    '28': 'Hex data length of 28 character hexadecimal consistent with first generation beacon short message format specifications including 24 bit(6hex) framesynch prefix as defined by T.001 Issue 4 - Rev.6 Section 2.2.2.4.',
                    '28long': 'The code consists of 28 hexadecimal characters representing a first generation beacon message with the format flag set to Long including bit and frame synchronization pattern as defined by T.001 Issue 4 - Rev.6.',
+                   '36short': 'The code consists of 36 hexadecimal characters representing a first generation beacon message with the format flag set to Short including bit and frame synchronization pattern prefix (24 bits) as defined by T.001 Issue 4 - Rev.6.',
                    '36': 'The code consists of 36 hexadecimal characters representing a first generation beacon message with the format flag set to Long including bit and frame synchronization pattern prefix (24 bits) as defined by T.001 Issue 4 - Rev.6.'}
         self.genmsg=''
         if not Fcn.hextobin(hexcode):
@@ -1055,7 +1056,12 @@ class Beacon(HexError):
         elif len(hexcode) == 36:
             beacon=BeaconFGB(hexcode)
             self.gentype = 'first'
-            self.genmsg = genmsgdic['36']
+            if beacon.type == 'Short Msg':
+                self.genmsg = genmsgdic['36short']
+            else:
+                self.genmsg = genmsgdic['36']
+
+
 
         else:
             self.type = 'Hex length of ' + str(
