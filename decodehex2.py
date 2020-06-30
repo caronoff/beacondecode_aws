@@ -518,7 +518,7 @@ class BeaconFGB(HexError):
             self._protocol=(self.bin[26],definitions.protocol[self.bin[26]],typeuserprotbin,definitions.userprottype[typeuserprotbin])
             
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
-            self.tablebin.append(['40-85',str(self.bin[84:86]),'Reserved','Reserved for national use'])
+            self.tablebin.append(['40-85',str(self.bin[40:86]),'Reserved','Reserved for national use'])
             if self.type!='uin':
                 self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                 self.tablebin.append(['107-112',str(self.bin[107:113]),'Reserved','Reserved for national use'])
