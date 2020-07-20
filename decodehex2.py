@@ -17,6 +17,8 @@ class Bch:
     def __init__(self, testbin, mtype):
         bch1 = bch2 = bch1error = bch2error = 'na'
         self.complete = '0'
+        bch1errors=bch2errors=0
+
         if mtype in ['Short Msg', 'Long Msg','Short Msg/Long Msg']:
             bch1 = Fcn.calcbch(testbin, "1001101101100111100011", 25, 86, 107)
             bch1errors = self.errors(testbin[86:107], bch1)
