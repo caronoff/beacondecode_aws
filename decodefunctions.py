@@ -99,8 +99,14 @@ def is_neg(s):
 def  bin2dec(s):
     return int(s, 2)
 
-def bin2hex2(binval):
-    return str(hex(int(binval, 2)))[2:].upper().strip('L')
+def bin2hex2(binval,lpad=0):
+    hexstr=str(hex(int(binval, 2)))[2:].upper().strip('L')
+    ln=len(hexstr)
+    if lpad==0:
+        z = ln
+    else:
+        z = int(lpad)
+    return hexstr.zfill(z)
 
 def hextobin(hexval):
     '''
