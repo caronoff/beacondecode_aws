@@ -53,12 +53,14 @@ class SecondGen(Gen2Error):
                 padding='OK'
             else:
                 padding = 'Left padding should be 00 unless this message self-test beacon transmission '
-                self.errors.append(padding)
+
                 self.tablebin.append(['left padding', pbit, '', padding])
                 if pbit=='10':
                     self.tablebin.append(['', '', '', 'This is a self-test beacon transmission or bad message'])
                 else:
-                    self.tablebin.append(['', '', '', 'ERROR! Value is not self-test beacon transmission.'])
+                    padding='ERROR! first two bits not 00 nor 10.'
+                    self.tablebin.append(['', '', '', padding])
+                    self.errors.append(padding)
 
 
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
@@ -73,7 +75,8 @@ class SecondGen(Gen2Error):
 
             self.tac = Func.bin2dec(self.bits[1:17])
             if self.tac<10000:
-                warn='<strong>{}</strong>  <br>WARNING!: SGB specifications stipulate TAC No >=10,000'.format(self.tac)
+                warn='WARNING!: Type Approval # {}   SGB specifications stipulate TAC No >=10,000'.format(self.tac)
+                self.errors.append(warn)
             else:
                 warn=self.tac
             self.tablebin.append(['1-16',
@@ -300,9 +303,10 @@ class SecondGen(Gen2Error):
                 bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
                 if bcherr > 0 :
                     bcherror='ERROR! COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
+                    self.errors.append(bcherror)
                 else:
                     bcherror = 'VALID BCH: COMPUTED BCH MATCHES'
-                self.errors.append(bcherror)
+
                 self.tablebin.append(['','','',bcherror])
             elif len(self.bits)==203:
                 # if user enters a hex 51 excluding bch, then this ,means 202 information bits plus stub 0 minues the 2 digits of front padding
@@ -326,16 +330,18 @@ class SecondGen(Gen2Error):
             self.tablebin.append(['Unique ID','Second Generation','',''])
             self.tablebin.append(['1',
                                   self.bits[1],
-                                  'should be 1',
+                                  'SGB requires this bit value be 1',
                                   ['ERROR', 'OK'][int(self.bits[1])]])
             if self.bits[1]=='0':
                 self.validhex = False
+                self.errors.append('Error: SGB beacon UIN fixed first bit not set to 1')
 
             ##BIT 2-11 Country code
             self.countryCode = Func.bin2dec(self.bits[2:12])
             self.countryName = Func.countryname(self.countryCode)
             if self.countryName=='Unknown MID':
                 self.validhex=False
+                self.errors.append('Error: Bad country code: ' + self.countryName)
             self.tablebin.append(['2-11',
                                   self.bits[2:12],
                                   'Country code:',
@@ -346,6 +352,7 @@ class SecondGen(Gen2Error):
             else:
                 status_check = 'ERROR'
                 self.validhex = False
+                self.errors.append('Error: Bits 12-14 should be 101')
             self.tablebin.append(['12-14',
                                   self.bits[12:15],
                                   'Should be 101',
@@ -353,8 +360,9 @@ class SecondGen(Gen2Error):
             ##BIT 15-30  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[15:31])
             if self.tac<10000:
-                warn='<strong>{}</strong><br> WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
+                warn='Type Approval # {} :: WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
                 self.validhex = False
+                self.errors.append(warn)
             else:
                 warn=str(self.tac)
             self.tablebin.append(['15-30',

@@ -38,7 +38,15 @@
   <p>Hexadecimal code: <strong style="word-wrap:break-word"> {{hexcode}} </strong></p>
         <p>{{genmsg}}</p>
         <p> Beacon Unique Identifier :{{uin}}</p>
+        {% if errors %}
+          <div class="alert alert-danger">
+        {% for e in errors %}
 
+          <p> <strong> {{e}} </strong> </p>
+
+        {% endfor %}
+          </div>
+        {% endif %}
 </p>
   <table class="table table-striped">
     <thead>

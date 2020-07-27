@@ -418,7 +418,7 @@ def decoded(hexcode):
     #ipaddress=str(request.remote_addr)
     #ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
     ipaddress = str(request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr))
-    print(ipaddress)
+
     geocoord = (0, 0)
     locationcheck = False
     try:
@@ -453,8 +453,10 @@ def decoded(hexcode):
         hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
         db.session.add(hexsave)
         db.session.commit()
+        print(beacon.errors)
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
+                               errors=beacon.errors,
                                locationcheck=locationcheck,
                                geocoord=geocoord,
                                genmsg=beacon.genmsg,
