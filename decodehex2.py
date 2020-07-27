@@ -294,7 +294,7 @@ class BeaconFGB(HexError):
         self.encpos='na'
         btype='Unknown Beacon'
         tano='na'
-        if self.bch.bch1errors > 0 or (self.bch.bch2errors ):
+        if self.bch.bch1errors > 0 or (self.bch.bch2errors>0):
             self.errors.append(BCH_ERRORS_PRESENT)
         #############################################################################
         #       Bit 37-39: 011: Serial User Protocol                                #
