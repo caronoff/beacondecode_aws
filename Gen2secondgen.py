@@ -47,22 +47,16 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete message"
-
             pbit=self.bits[0:2]
             if pbit=='00':
-                padding='OK'
+                padding='Normal mode transmission (i.e., operational mode)'
+            elif pbit=='10':
+                padding='Self-test mode transmission'
             else:
-                padding = 'Left padding should be 00 unless this message self-test beacon transmission '
+                padding='ERROR! first two bits not 00 nor 10'
+                self.errors.append(padding)
 
-                self.tablebin.append(['left padding', pbit, '', padding])
-                if pbit=='10':
-                    self.tablebin.append(['', '', '', 'This is a self-test beacon transmission or bad message'])
-                else:
-                    padding='ERROR! first two bits not 00 nor 10.'
-                    self.tablebin.append(['', '', '', padding])
-                    self.errors.append(padding)
-
-
+            self.tablebin.append(['Left pad', pbit, '', padding])
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
             self.bits = "0" + self.bits[2:]
             ##Add the 23 Hex ID to our table
@@ -122,12 +116,16 @@ class SecondGen(Gen2Error):
 
             ##BIT 44-90 Encoded GNSS location
             self.latitude = Func.getlatitude(self.bits[44:67])
+            if 'Invalid' in self.latitude[0]:
+                self.errors.append(self.latitude[0])
             self.tablebin.append(['44-66',
                                   self.bits[44:67],
                                   'Latitude:',
                                   self.latitude[0]])
 
             self.longitude = Func.getlongitude(self.bits[67:91])
+            if 'Invalid' in self.longitude[0]:
+                self.errors.append(self.longitude[0])
             self.tablebin.append(['67-90',
                                   self.bits[67:91],
                                   'Longitude:',
