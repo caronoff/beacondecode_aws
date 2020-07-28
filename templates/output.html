@@ -37,15 +37,19 @@
   <h2>Decoded Beacon Message</h2>
   <p>Hexadecimal code: <strong style="word-wrap:break-word"> {{hexcode}} </strong></p>
         <p>{{genmsg}}</p>
-        <p> Beacon Unique Identifier :{{uin}}</p>
-        {% if errors %}
-          <div class="alert alert-danger">
-        {% for e in errors %}
 
-          <p> <strong> {{e}} </strong> </p>
+        {% if errors %}
+          <div class="alert alert-danger" >
+              <p> Unique identifier: <br>{{uin}} </p>
+              <ul>
+        {% for e in errors %}
+            <li> <strong>{{e}} </strong>
 
         {% endfor %}
+                  </ul>
           </div>
+        {% else %}
+         <p> Unique identifier:  <br> {{uin}}</p>
         {% endif %}
 </p>
   <table class="table table-striped">

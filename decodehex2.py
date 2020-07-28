@@ -12,6 +12,8 @@ UIN = 'unique hexadecimal ID'
 BCH1='BCH-1 error correcting code'
 BCH2='BCH-2 error correcting code'
 BCH_ERRORS_PRESENT ='BCH errors present in message'
+INVALID_UIN =' (INVALID UIN) Per DDP section 4.2.1.1.4, no default values are set in bits 26 - 85 - see errors below'
+
 
 class Bch:
     def __init__(self, testbin, mtype):
@@ -190,7 +192,7 @@ class BeaconFGB(HexError):
         self.tablebin.append(['26',self.bin[26],'Protocol Flag',pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
         if 'Unknown MID' in self.countrydetail.cname:
-            self.errors.append('Error: Unknown Country Code')
+            self.errors.append('Unknown Country Code')
 
         if self.type == 'Short Msg' and self.bin[25] == '1':
             #Long message format should be 30 Hex or 36 Hex but the format flag is long.  Therefore, set type to Long Msg
@@ -704,13 +706,13 @@ class BeaconFGB(HexError):
                 if default==str(self.bin[65:86]):
                     valid='Valid'
                 else:
-                    valid='ERROR:  bits not default'
+                    valid='Bits not default'
                     self.errors.append(valid)
                 self.tablebin.append(['65-85',default,'Default bits required','Defined by T.001 for Unique identifier'])
                 self.tablebin.append(['65-85', str(self.bin[65:86]), 'Default bits in hex', valid])
                 self._loc=False
             if self.errors:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) +' (not a valid uin due to errors in message)'
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:65] + default )
 
@@ -721,7 +723,7 @@ class BeaconFGB(HexError):
             self._loctype='National Location'
             default = '011111110000001111111100000'
             if self.bch.bch1errors > 0 or self.bch.bch2errors > 0:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86])
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
                 self.errors.append(BCH_ERRORS_PRESENT)
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:59] + default)
@@ -800,7 +802,7 @@ class BeaconFGB(HexError):
                 if default==str(self.bin[59:86]):
                     valid='Valid'
                 else:
-                    valid='ERROR: Not a valid uin (bits 59-85 not defaulted)'
+                    valid='Not a valid uin (bits 59-85 not defaulted)'
                     self.errors.append(valid)
                 self.tablebin.append(['59-85',default,'Default bits required','Defined by T.001 for Unique identifier'])
                 self.tablebin.append(['59-85', str(self.bin[59:86]), 'Default bits in hex', valid])
@@ -810,7 +812,7 @@ class BeaconFGB(HexError):
         elif typelocprotbin =='1101':
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex)
             if self.bch.bch1errors > 0 or self.bch.bch2errors > 0:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86])
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
                 self.errors.append(BCH_ERRORS_PRESENT)
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default)
@@ -869,7 +871,7 @@ class BeaconFGB(HexError):
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
                 else:
-                    valid = 'ERROR: bits not default'
+                    valid = 'Bits not default'
                     self.errors.append(valid)
                 self.tablebin.append(['67-85', default, 'Default bits required', 'Defined by T.001 for Unique identifier'])
                 self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits in hex', valid])
@@ -959,14 +961,14 @@ class BeaconFGB(HexError):
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
                 else:
-                    valid = 'ERROR:  Not a valid uin (bits 67-85 not defaulted)'
+                    valid = 'Not a valid uin (bits 67-85 not defaulted)'
                     self.errors.append(valid)
                 self.tablebin.append(['67-85', default, 'Default bits required', 'Defined by T.001 for Unique identifier'])
                 self.tablebin.append(['67-85', str(self.bin[67:86]), 'Default bits in hex', valid])
 
                 self._loc = False
             if self.errors:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + ' (not a valid uin due to errors in message)'
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default )
 
