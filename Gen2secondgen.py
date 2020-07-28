@@ -69,10 +69,12 @@ class SecondGen(Gen2Error):
 
             self.tac = Func.bin2dec(self.bits[1:17])
             if self.tac<10000:
-                warn='WARNING!: Type Approval # {}   SGB specifications stipulate TAC No >=10,000'.format(self.tac)
-                self.errors.append(warn)
+                warn='# {} Warning:  SGB specifications stipulate TAC No should be greater than 10,000'.format(self.tac)
+                self.errors.append('TAC ' + warn)
+            elif self.tac> 65520:
+                warn='# {} (range from 65,521 to 65,335 are reserved for System beacons)'.format(self.tac)
             else:
-                warn=self.tac
+                warn='# {}'.format(self.tac)
             self.tablebin.append(['1-16',
                                   self.bits[1:17],
                                   'Type Approval Cert No: ',
