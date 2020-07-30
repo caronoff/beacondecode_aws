@@ -418,8 +418,8 @@ def decoded(hexcode):
     #ipaddress=str(request.remote_addr)
     #ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
     ipaddress = str(request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr))
-    if ipaddress in ['194.199.172.43','176.162.159.113']:
-        return 'Automated script detected - blocked'
+    #if ipaddress in ['199.199.172.43','199.162.159.113']:
+    #    return 'Automated script detected - blocked'
     geocoord = (0, 0)
     locationcheck = False
     try:
