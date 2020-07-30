@@ -418,7 +418,8 @@ def decoded(hexcode):
     #ipaddress=str(request.remote_addr)
     #ipaddress = str(request.environ.get('HTTP_X_REAL_IP', request.remote_addr))
     ipaddress = str(request.environ.get('HTTP_X_FORWARDED_FOR', request.remote_addr))
-
+    if ipaddress='166.62.249.9'
+        return 'Automated script detected - blocked'
     geocoord = (0, 0)
     locationcheck = False
     try:
@@ -451,6 +452,7 @@ def decoded(hexcode):
                 k=l['id']
                 tacdic[k]=l
         hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
+
         db.session.add(hexsave)
         db.session.commit()
         print(beacon.errors)
