@@ -456,19 +456,36 @@ class BeaconFGB(HexError):
             btype='EPIRB'
             mmsi=bcd=emergencycode=''            
             m=self.bin[40:76]
-            pad=''
-            a= Fcn.bin2dec(self.bin[64:68])
-            b= Fcn.bin2dec(self.bin[68:72])
-            c= Fcn.bin2dec(self.bin[72:76])
-            if a<9 and b>9 and c>9:
-                pad=str(a)
-            elif a<9 and b<9 and c>9:
-                pad = str(a) + str(b)
-            elif a<9 and b<9 and c<9:
-                pad = str(a) + str(b)+ str(c)
-            else:
-                pad=''
-            radiocallsign=Fcn.baudot(self.bin,40,64)+pad
+
+            first4chars = ''
+            last3char=''
+
+            for s in range(40,64,6) :
+                char=Fcn.baudot(self.bin,s,s+6)
+                first4chars = first4chars + char
+                if char == '?':
+                    e="Invalid radio call-sign value of '{}' for bit range {}-{} (baudot not decodable)".format(self.bin[s:s+6],str(s),str(s+6))
+                    self.errors.append(e)
+
+
+            for s in range(64,76,4) :
+                char=Fcn.bin2dec(self.bin[s:s+4])
+                if char<10:
+                    last3char = last3char + str(char)
+                elif char == 10:
+                    last3char = last3char + '_'
+                elif char > 10:
+                    e="Invalid radio call-sign value of '{}' for bit range {}-{}".format(self.bin[s:s+4],str(s),str(s+4))
+                    self.errors.append(e)
+                    last3char = last3char + '?'
+
+            radiocallsign=first4chars+last3char
+            if '_' in radiocallsign:
+                radiocallsign = radiocallsign + "   (padding spaces '_') "
+            if '?' in radiocallsign:
+                radiocallsign = ' Errors present: ' + radiocallsign
+
+
             self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-75',str(self.bin[40:76]),'Radio call sign',radiocallsign])
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
@@ -750,7 +767,7 @@ class BeaconFGB(HexError):
                 if self.bin[107:110]=='110':
                     computed='Bits 107-109 should be 110.  Passed.'
                 else:
-                    computed= 'Bits 107-109 :'  + self.bin[107:110] + '. Should be 110. Message not valid'
+                    computed= 'Bits 107-109 :'  + self.bin[107:110] + '.Bits should be 110 for this beacon protocol. Message not valid'
                     self.errors.append(computed)
                 self.tablebin.append(['107-109',str(self.bin[107:110]),'Validity',computed])
                 self.fixedbits=computed

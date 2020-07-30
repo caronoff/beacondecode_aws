@@ -68,11 +68,13 @@ class SecondGen(Gen2Error):
             ##T018 Issue 1 - Rev 4:  Bit 1-16 Type Approval Certificate #   (previously BIT 1-20  Type Approval Certificate #)
 
             self.tac = Func.bin2dec(self.bits[1:17])
+
             if self.tac<10000:
                 warn='# {} Warning:  SGB specifications stipulate TAC No should be greater than 10,000'.format(self.tac)
                 self.errors.append('TAC ' + warn)
             elif self.tac> 65520:
-                warn='# {} (range from 65,521 to 65,335 are reserved for System beacons)'.format(self.tac)
+                warn='# {} - System beacon'.format(self.tac)
+
             else:
                 warn='# {}'.format(self.tac)
             self.tablebin.append(['1-16',
@@ -481,7 +483,9 @@ class SecondGen(Gen2Error):
         self.vesselID = bits[0:3]
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
         if self.vesselID == '111' and self.bits[43]=='0':
-            self.tablebin.append(['','','Reserved for system testing','ERROR! Test protocol bit 43 is zero'])
+            e='ERROR! Bit 43 is 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for syestem testing and the test bit 43 must be 1 for non-operational use.'
+            self.tablebin.append(['','Vessel ID','Reserved for system testing',e])
+            self.errors.append(e)
             self.validhex=False
 
         ##############################################
@@ -495,13 +499,15 @@ class SecondGen(Gen2Error):
 
                 self.tablebin.append([self.bitlabel(94,137,deduct_offset),
                                       bits[3:47],
-                                      'Vessel ID type is none',
-                                      'All 0 - OK'])
+                                      'Vessel ID',
+                                      'With vessel id type set to none (000), bits 94-137 all 0. Valid'])
             else:
+                e='Warning: With Vessel ID type set to none (000), bits 94-137 should be all 0 (unless national assigned)'
                 self.tablebin.append([self.bitlabel(94, 137,deduct_offset),
                                       bits[3:47],
-                                      'Vessel ID type is none',
-                                      'Unless national assigned, should be all 0'])
+                                      'Vessel ID',
+                                      e])
+                self.errors.append(e)
                 self.validhex = False
         ###########################
         # Vessel 1: Maritime MMSI #
@@ -637,17 +643,19 @@ class SecondGen(Gen2Error):
 
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
-                                  'Reserved for system testing','OK. Test protocol bit 43 set to 1. May contain information; default  bits 94-137 - 0s'])
+                                  'Vessel ID','Reserved for system testing and test protocol bit 43 set to 1. Bits may contain information whereas default  bits 94-137 normally 0s'])
         elif self.vesselID == '111' and self.bits[43]=='0':
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
-                                  'Reserved for system testing',
-                                  ''])
+                                  'Vessel ID',
+                                  'Reserved for system testing'])
         elif self.vesselID == '110':
+            e='ERROR! Vessel ID type 110 not defined by T.018.  Should not be used'
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),
                                   bits[3:47],
                                   'Spare',
-                                  'ERROR! Not defined by T.018.  Should not be used'])
+                                  e])
+            self.errors.append(e)
             self.validhex = False
 
 
