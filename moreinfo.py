@@ -43,6 +43,9 @@ moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
              <br>If the message is a long message, position data to 2-minute resolution is given in PDF-1, with position offsets to 4-second resolution in PDF-2.<br>
              18-bit identification data consisting of a serial number assigned by the appropriate national authority (bits 41-58).          
            '''),
+            'protocol_flag':('protocol_flag',''' The protocol flag (bit 26) indicates which type of protocol is used to define the structure of encoded data, according to the following code:
+Bit 26 set to 0 is Location protocols which includes  Standard location,  National location, RLS location or ELT-DT location.
+When bit 26 is set to 1,  User protocols or User-location protocols is used. ''')
 
             }
 

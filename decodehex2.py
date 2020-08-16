@@ -185,11 +185,11 @@ class BeaconFGB(HexError):
         self._pflag=['Location','User'][int(protocolflag)]
 
         if self._pflag=='Location':
-            pflag='Standard location, National Location, RLS Location or ELT-DT Location protocol '
+            pflag='Location'
         else:
-            pflag='User protocol'
+            pflag='User'
 
-        self.tablebin.append(['26',self.bin[26],'Protocol Flag',pflag])
+        self.tablebin.append(['26',self.bin[26],'Protocol Flag',pflag,definitions.moreinfo['protocol_flag']])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
         if 'Unknown MID' in self.countrydetail.cname:
             self.errors.append('Unknown Country Code')
