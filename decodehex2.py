@@ -185,9 +185,9 @@ class BeaconFGB(HexError):
         self._pflag=['Location','User'][int(protocolflag)]
 
         if self._pflag=='Location':
-            pflag='Location, further information provided in "Location Protocol" '
+            pflag='Location, further information provided in "Protocol Code" '
         else:
-            pflag='User, further information provided in "User Protocol" '
+            pflag='User, further information provided in "Protocol Code" '
 
         self.tablebin.append(['26',self.bin[26],'Protocol Flag',pflag])
         self.tablebin.append(['27-36',self.bin[27:37],'Country code:',self.countrydetail.cname,definitions.moreinfo['country_code']])
@@ -319,7 +319,7 @@ class BeaconFGB(HexError):
             susertype=self.bin[40:43]
             serialtype=definitions.serialusertype[susertype]
             self._protocold['serial']=serialtype
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Serial user'])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code','Serial user'])
             self.tablebin.append(['40-42',str(self.bin[40:43]),'Serial type',serialtype])
             self._loctype = 'User: {}'.format(serialtype)
             #   Bit 43 value 1 - Yes for type approval certificate
@@ -403,7 +403,7 @@ class BeaconFGB(HexError):
         #       Bit 37-39: 000 Orbitography User Protocol                           #
         #############################################################################
         elif typeuserprotbin=='000' :
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
             btype='Orbitography'
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
             self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
@@ -417,7 +417,7 @@ class BeaconFGB(HexError):
         #       Bit 37-39: 001 ELT Aviation User Protocol                           #
         #############################################################################
         elif typeuserprotbin=='001' :
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','ELT Aviation User'])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code','ELT Aviation User'])
             aircraftid=Fcn.baudot(self.bin,40,82)
             self.tablebin.append(['40-81',str(self.bin[40:82]),'Aircraft ID',aircraftid])
             self.tablebin.append(['82-83',str(self.bin[82:84]),'ELT No',str(Fcn.bin2dec(self.bin[82:84]))])
@@ -429,7 +429,7 @@ class BeaconFGB(HexError):
         #       Bit 37-39: 111 : Test User protocol                                 #
         #############################################################################
         elif typeuserprotbin=='111':
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type','Test user'])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Test Beacon Data',''])
             btype = 'Test'
 
@@ -486,7 +486,7 @@ class BeaconFGB(HexError):
                 radiocallsign = ' Errors present: ' + radiocallsign
 
 
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-75',str(self.bin[40:76]),'Radio call sign',radiocallsign])
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Beacon No',self.bin[76:82]+': ' + Fcn.baudot(self.bin,76,82)])
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare No',str(Fcn.bin2dec(self.bin[82:84]))])
@@ -498,7 +498,7 @@ class BeaconFGB(HexError):
         elif typeuserprotbin=='010' :
             mmsi='MMSI: '+ Fcn.baudot(self.bin,40,76)
             btype='EPIRB'
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-75',str(self.bin[40:76]),'MMSI or radio call sign',Fcn.baudot(self.bin,40,76)])
             self.tablebin.append(['76-81',str(self.bin[76:82]),'Specific beacon', Fcn.baudot(self.bin,76,82)])
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare bits',str(Fcn.bin2dec(self.bin[82:84]))])
@@ -512,7 +512,7 @@ class BeaconFGB(HexError):
             self._loctype = 'National User'
             self._protocol=(self.bin[26],definitions.protocol[self.bin[26]],typeuserprotbin,definitions.userprottype[typeuserprotbin])
             
-            self.tablebin.append(['37-39',str(self.bin[37:40]),'User protocol type',definitions.userprottype[typeuserprotbin]])
+            self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Reserved','Reserved for national use'])
             if self.type!='uin':
                 self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
