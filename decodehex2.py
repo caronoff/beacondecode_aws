@@ -745,7 +745,7 @@ class BeaconFGB(HexError):
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:59] + default)
 
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype),definitions.moreinfo['natloc']])
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} {}'.format(btype,self._loctype),definitions.moreinfo['natloc']])
 
             #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             #self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
@@ -837,7 +837,7 @@ class BeaconFGB(HexError):
 
 
             self._loctype=definitions.locprottype[typelocprotbin]
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{}'.format(self._loctype)])
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{}'.format(self._loctype)])
             tano=str(Fcn.bin2dec(self.bin[43:53])).zfill(3)
             self.tablebin.append(['41-42',str(self.bin[41:43]),'Beacon type',btype])
             if self.bin[43:47]=='1111':
@@ -907,7 +907,7 @@ class BeaconFGB(HexError):
 
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
             self._loctype='ELT-DT Location'
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Location protocol','{} {}'.format(btype,self._loctype)])            
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} {}'.format(btype,self._loctype)])
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Type',definitions.eltdt[str(self.bin[41:43])]])
             if str(self.bin[41:43])=='10':
             # 10 bit TAC & Serial No
