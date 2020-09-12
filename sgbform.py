@@ -122,7 +122,7 @@ class SGB_g008(SGB):
         return bin2hex('00'+completebin+bch)
 
 class SGB_emergency(SGB):
-    activation = [('0001', 'Manual Activation by the crewr'),
+    activation = [('0001', 'Manual Activation by the crew'),
                   ('0100', 'G-switch/Deformation Activation'),
                   ('1000', 'Automatic Activation from Avionics or Triggering System')]
     timesecond = IntegerField('Time rounded to nearest second ', validators=[validators.NumberRange(min=0, max=86399,
@@ -136,9 +136,9 @@ class SGB_emergency(SGB):
                                         ('01', '2D location only'),
                                         ('10', '3D location'),('11', 'Spare')], default='00')
 
-    battery = SelectField(label='Remaining Battery Capacity:', choices=[('00', '9 hours or less'),
-                                                      ('01', 'Between 9 hours and 18 hours remaining'),
-                                                      ('10', 'More than 18 hours remaining'), ('11', 'Battery capacity not available')], default='11')
+    battery = SelectField(label='Remaining Battery Capacity:', choices=[('00', '0-33% remaining'),
+                                                      ('01', '>33%v<= 66% remaining'),
+                                                      ('10', 'More than 66% remaining'), ('11', 'Battery capacity not available or not provided')], default='11')
 
     def encodelong(form, h):
         secbin=dec2bin(int(form.timesecond.data),17)
@@ -147,5 +147,63 @@ class SGB_emergency(SGB):
         else:
             alt= dec2bin(round((int(form.altitude.data)+400)/float(16)),10)
         completebin = form.longSGB(h) + '0001' + secbin+alt + form.act.data + form.gnss.data+form.battery.data + '0'*9
+        bch = calcBCH(completebin, 0, 202, 250)
+        return bin2hex('00' + completebin + bch)
+
+
+class SGB_national(SGB):
+
+    national_use = IntegerField('Enter in integer format 44 bit national use value (default 0)', validators=[validators.NumberRange(min=0, max=17592186044415,
+                                                           message='Needs to be within range 0 to 17592186044415')],default=0)
+
+    def encodelong(form, h):
+
+        nat= str(dec2bin(int(form.national_use.data))).zfill(44)
+        completebin = form.longSGB(h) + '0011' + nat
+        bch = calcBCH(completebin, 0, 202, 250)
+        return bin2hex('00' + completebin + bch)
+
+
+class SGB_rls(SGB):
+
+    rls_capability_auto= SelectField(label='Beacon automatic RLS Capability:', choices=
+    [('1','Automatic acknowledgement Type-1  accepted by this beacon'),
+     ('0','Automatic Acknowledgement Type-1 not requested and not accepted by this beacon.')]
+                                                      , default='0')
+
+    rls_capability_manual = SelectField(label='Beacon manual RLS Capability:', choices=
+    [('1', 'Manually generated RLM Type-2  accepted by this beacon'),
+     ('0', 'Manually generated RLM Type-2 not requested and not accepted by this beacon.')]
+                                      , default='0')
+
+    rls_provider = SelectField(label='RLS Provideer Identification',choices=[('001','Galileo return link'),('010','Glonass Return link')],default='001')
+
+
+    beacon_feedback_t1= SelectField(label='RLM Type 1 feedback',choices=[('0','Not received'),('1','Received')],default='0')
+    beacon_feedback_t2 = SelectField(label='RLM Type 2 feedback', choices=[('0', 'Not received'), ('1', 'Received')],
+                                     default='0')
+    rlm_short_signal=StringField(label='Copy bits 61-80 of short rlm', default='0'*20 )
+
+    def encodelong(form, h):
+        rlm_short_sig = str(form.rlm_short_signal.data.zfill(20))
+        completebin = form.longSGB(h) + '0010' + '00' +\
+                      form.rls_capability_auto.data+\
+                      form.rls_capability_manual.data+ '0000'+\
+                      form.rls_provider.data+\
+                      form.beacon_feedback_t1.data+\
+                      form.beacon_feedback_t2.data+\
+                      rlm_short_sig+'0'*11
+
+        bch = calcBCH(completebin, 0, 202, 250)
+        return bin2hex('00' + completebin + bch)
+
+class SGB_cancel(SGB):
+
+    cancel_message = SelectField('Method of deactivation', choices=[('00','Spare'),('10','Manual'),('01','Automatic'),('11','Spare')],default='00')
+
+    def encodelong(form, h):
+
+
+        completebin = form.longSGB(h)[:-14] + '0' *14 + '1111' + '1'*42 + form.cancel_message.data
         bch = calcBCH(completebin, 0, 202, 250)
         return bin2hex('00' + completebin + bch)

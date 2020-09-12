@@ -24,7 +24,11 @@
         <h2 class="form-signin-heading">Second Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
 <dl>
-     {{ render_field(form.latitude) }}
+
+
+
+{% if ptype == '0000' %}
+    {{ render_field(form.latitude) }}
     {{ render_field(form.northsouth) }}
     <br>
     {{ render_field(form.longitude) }}
@@ -34,10 +38,6 @@
     {{ render_field(form.homingdevice) }}
     {{ render_field(form.rlsfunction) }}
     {{ render_field(form.beacontype) }}
-
-
-{% if ptype == '0000' %}
-
     {{ render_field(form.hours) }}
     {{ render_field(form.minutes) }}
     {{ render_field(form.altitude) }}
@@ -49,13 +49,58 @@
 {% endif %}
 
 {% if ptype == '0001' %}
+    {{ render_field(form.latitude) }}
+    {{ render_field(form.northsouth) }}
+    <br>
+    {{ render_field(form.longitude) }}
+    {{ render_field(form.eastwest) }}
+    <br>
+
+    {{ render_field(form.homingdevice) }}
+    {{ render_field(form.rlsfunction) }}
+    {{ render_field(form.beacontype) }}
     {{ render_field(form.timesecond) }}
     {{ render_field(form.altitude) }}
     {{ render_field(form.act) }}
     {{ render_field(form.gnss) }}
     {{ render_field(form.battery) }}
+ {% endif %}
+
+
+    {% if ptype == '0011' %}
+    {{ render_field(form.national_use) }}
+
     {% endif %}
 
+
+    {% if ptype == '0010' %}
+    {{ render_field(form.rls_capability_auto) }}
+    {{ render_field(form.rls_capability_manual) }}
+    {{ render_field(form.beacon_feedback_t1) }}
+    {{ render_field(form.beacon_feedback_t2) }}
+    {{ render_field(form.rlm_short_signal) }}
+
+    {% endif %}
+
+      {% if ptype == '1111' %}
+
+    {{ render_field(form.latitude) }}
+    {{ render_field(form.northsouth) }}
+    <br>
+    {{ render_field(form.longitude) }}
+    {{ render_field(form.eastwest) }}
+    <br>
+
+    {{ render_field(form.homingdevice) }}
+    {{ render_field(form.rlsfunction) }}
+    {{ render_field(form.beacontype) }}
+
+
+
+
+    {{ render_field(form.cancel_message) }}
+
+    {% endif %}
   </dl>
 
 

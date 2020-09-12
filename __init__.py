@@ -3,7 +3,7 @@ from werkzeug.urls import url_parse
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
-from sgbform import SGB, SGB_g008, SGB_emergency
+from sgbform import SGB, SGB_g008, SGB_emergency, SGB_national, SGB_rls, SGB_cancel
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
@@ -303,7 +303,11 @@ def longSGB():
     error = None
     rotatefld=str(request.args.get('rotatingfield'))
     print(rotatefld,hexcodeUIN)
-    forms={'0000': SGB_g008(request.form), '0001': SGB_emergency(request.form)}
+    forms={'0000': SGB_g008(request.form),
+           '0001': SGB_emergency(request.form),
+           '0010': SGB_rls(request.form),
+           '0011': SGB_national(request.form),
+           '1111' : SGB_cancel(request.form)}
     form = forms[rotatefld]
     if request.method == 'POST' and form.validate():
         ## print('valid')
@@ -434,6 +438,7 @@ def decoded(hexcode):
                 # redirect with the hexcode, beacon type - different inputs depending on type of first gen change 3
             elif beacon.gentype=='second':
                 tmp = 'encodelongsecond.html'
+                print('sgb uin')
             elif beacon.gentype=='secondtruncated':
                 tmp = 'output.html'
         else:

@@ -7,7 +7,8 @@
 {% endblock %}
 {% block content %}
 {{super()}}
-{% if showmenu %}
+
+ {% if current_user.is_authenticated %}
 <div class="form-group" >
       <form class="form-horizontal"  action="/longfirstgen" >
 
