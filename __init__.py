@@ -336,7 +336,7 @@ def longfirstgen():
     form = forms[ptype]
 
     if request.method == 'POST' and form.validate():
-
+        aircraft3letter ='ACC'
         lat = request.form['latitude']
         latdir=request.form['northsouth']
         long = request.form['longitude']
@@ -355,13 +355,10 @@ def longfirstgen():
                        request.form['feedbacktype2'] + \
                        request.form['rlsprovider']
         elif ptype == 'ELT-DT Location':
-            suppdata = request.form['meansactivation'] + request.form['encodedaltitude']
-            if form.data.get('freshness')==True:
-                suppdata = suppdata + '11'
-            else:
-                suppdata = suppdata + '00'
+            suppdata = request.form['meansactivation'] + request.form['encodedaltitude'] + request.form['freshness']
+            aircraft3letter = request.form['aircraft_3ld']
 
-        hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata)
+        hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata, aircraft3letter)
         print('hex', hexcodelong)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 

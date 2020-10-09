@@ -71,5 +71,10 @@ class FirstGenELTDT(FirstGenForm):
                                                                     ('1101','altitude is between 8800 m (28871 ft) and 10000 m (32808 ft)'),
                                                                     ('1110','altitude is greater than 10000 m (32808 ft)'),
                                                                     ('1111','default value if altitude information is not available')])
-    freshness = BooleanField(label='encoded location is fresh')
+    #freshness = BooleanField(label='encoded location is fresh')
+    freshness = SelectField(label='Encoded location status', choices=[('00','PDF-2 rotating field indicator'),
+                                                                       ('01','Encoded location in message is greater than 60 seconds old or the default encoded location was transmitted'),
+                                                                       ('10','Encoded location in message is greater than 2 seconds and equal to or less than 60 seconds old'),
+                                                                       ('11','Encoded location in message is current')])
 
+    aircraft_3ld = StringField(u'Aircraft operator 3 letter designator',[ validators.optional(), validators.length(max=3)])

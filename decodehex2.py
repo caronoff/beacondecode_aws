@@ -12,7 +12,7 @@ UIN = 'unique hexadecimal ID'
 BCH1='BCH-1 error correcting code'
 BCH2='BCH-2 error correcting code'
 BCH_ERRORS_PRESENT ='BCH errors present in message'
-INVALID_UIN =' (INVALID UIN) Per DDP section 4.2.1.1.4, no default values are set in bits 26 - 85 - see errors below'
+INVALID_UIN =' (INVALID UIN) Per DDP section 4.2.1.1.4, due to errors in message, cannot construct valid UIN therefore bits 26-85 not defaulted'
 
 
 class Bch:
@@ -835,7 +835,6 @@ class BeaconFGB(HexError):
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default)
 
 
-
             self._loctype=definitions.locprottype[typelocprotbin]
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{}'.format(self._loctype)])
             tano=str(Fcn.bin2dec(self.bin[43:53])).zfill(3)
@@ -965,15 +964,34 @@ class BeaconFGB(HexError):
                     enc_loc_fresh = {'00':'PDF-2 rotating field indicator',
                                      '01':'Encoded location in message more than 60 seconds old or the default encoded position is transmitted',
                                      '10': 'Encoded location in message is greater than two seconds and equal or less than 60 seconds old',
-                                     '11':'Encoded location in message is current'
+                                     '11':'Encoded location in message is current (i.e., the encoded location freshness is less or equal to 2 seconds)'
                                      }
                     enc_freshbin=str(self.bin[113:115])
-                    if int(self.bin[113:]) != 0:
-                        self.tablebin.append(['113-114',enc_freshbin,'Encoded location freshness',enc_loc_fresh[enc_freshbin]])
-                        latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
-                        self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                        self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                        self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2,str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    if int(self.bin[113:]) != 0 :
+                        self.tablebin.append(['113-114', enc_freshbin, 'Encoded location freshness', enc_loc_fresh[enc_freshbin]])
+
+                        if enc_freshbin!='00':
+
+                            latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                            self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                            self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+
+                        elif enc_freshbin=='00':
+                            op3ld = ''
+                            for e in [(118,123),(123,128),(128,133)]:
+                                try:
+                                    l = definitions.baudot['1'+ str(self.bin[e[0]:e[1]])]
+                                except KeyError:
+                                    l = '*'
+                                op3ld=op3ld+l
+                                if '*' in op3ld:
+                                    self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
+
+                            self.tablebin.append(['115-132', str(self.bin[115:133]), 'Aircraft operator 3LD', op3ld])
+                            self.errors.append('WARNING: This is a rotating first generation ELT-DT.  Do not rely on location information')
+                        self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+
+
             elif self.type=='uin':
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
