@@ -106,6 +106,7 @@ class BeaconFGB(HexError):
         self.location = ('na', 'na')
         self.latitude='na'
         self.errors=[]
+        self.warnings=[]
         self.typeapproval=('','','na')
         self.longitude='na'
         self.fixedbits = ''
@@ -988,7 +989,7 @@ class BeaconFGB(HexError):
                                     self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
 
                             self.tablebin.append(['115-132', str(self.bin[115:133]), 'Aircraft operator 3LD', op3ld])
-                            self.errors.append('WARNING: This is a rotating first generation ELT-DT.  Do not rely on location information')
+                            self.warnings.append('WARNING: This is a rotating first generation ELT-DT.  Do not rely on location information')
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
@@ -1125,6 +1126,7 @@ class Beacon(HexError):
         self.bchstring=self.beacon.bchstring
         self.type = self.beacon.type
         self.errors = self.beacon.errors
+        self.warnings = self.beacon.warnings
 
     def has_loc(self):
         if self.beacon.type=='uin' or self.beacon.location==(0,0):

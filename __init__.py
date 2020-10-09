@@ -457,10 +457,11 @@ def decoded(hexcode):
 
         db.session.add(hexsave)
         db.session.commit()
-        print(beacon.errors)
+
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
                                errors=beacon.errors,
+                               warnings=beacon.warnings,
                                locationcheck=locationcheck,
                                geocoord=geocoord,
                                genmsg=beacon.genmsg,

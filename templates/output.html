@@ -51,6 +51,19 @@
         {% else %}
          <p> Unique identifier:  <br> {{uin}}</p>
         {% endif %}
+
+        {% if warnings %}
+          <div class="alert alert-warning" >
+              <p> Unique identifier: <br>{{uin}} </p>
+              <ul>
+        {% for e in warnings %}
+            <li> <strong>{{e}} </strong>
+
+        {% endfor %}
+
+                  </ul>
+              {% endif %}
+          </div>
 </p>
   <table class="table table-striped">
     <thead>

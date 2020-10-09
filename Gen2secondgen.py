@@ -41,6 +41,7 @@ class SecondGen(Gen2Error):
         self.location=(0,0)
         self.courseloc=('na','na')
         self.errors=[]
+        self.warnings=[]
         self.fixedbits = ''
         self.testprotocol=''
 
