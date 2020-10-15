@@ -99,8 +99,10 @@ class BeaconFGB(HexError):
             self.processHex(str(strhex))
 
     def processHex(self, strhex):
+        self.strhex=strhex
         self.bchstring = ''
         self.hex15 =''
+        self.bad='bad call'
         self.bch1 = self.bch2 = self.tac = 'na'
         self.courseloc = ('na', 'na')
         self.location = ('na', 'na')
@@ -1166,6 +1168,9 @@ class Beacon(HexError):
 
     def get_mid(self):
         return self.beacon.get_mid()
+
+    def __getattr__(self, name):
+        return 'Beacon does not have {} attribute.'.format(str(name))
 
 def beaconcountry(hexcode):
     try:
