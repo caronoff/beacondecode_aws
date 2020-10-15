@@ -47,7 +47,7 @@ class SecondGen(Gen2Error):
 
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
-            self.type="Complete message"
+            self.type="Complete SGB message"
             pbit=self.bits[0:2]
             if pbit=='00':
                 padding='Normal mode transmission (i.e., operational mode)'
@@ -666,7 +666,7 @@ class SecondGen(Gen2Error):
 
 
     def loctype(self):
-        return 'na - SGB'
+        return 'SGB'
 
     def get_country(self):
         return str(self.countryCode) + ' ' + str(self.countryName)
