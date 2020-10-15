@@ -72,7 +72,7 @@ class SecondGen(Gen2Error):
 
             if self.tac<10000:
                 warn='# {} Warning:  SGB specifications stipulate TAC No should be greater than 10,000'.format(self.tac)
-                self.errors.append('TAC ' + warn)
+                self.warnings.append('TAC ' + warn)
             elif self.tac> 65520:
                 warn='# {} - System beacon'.format(self.tac)
 

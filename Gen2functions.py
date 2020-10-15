@@ -89,7 +89,7 @@ def countryname(mid):
     """
 
     try:
-        cname = definitions.countrydic[mid]
+        cname = definitions.countrydic[str(mid)]
     except KeyError:
         cname = 'Unknown MID'
     return cname

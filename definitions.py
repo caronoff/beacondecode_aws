@@ -44,7 +44,7 @@ country = open('countries.csv')
 for line in country.readlines():
     mid = int(line.split(',')[0].rstrip())
     cname = line.split(',')[1].rstrip()
-    countrydic[mid] = cname
+    countrydic[str(mid)] = cname
 
 baudot = {'111000':'A', '110011':'B', '101110':'C', '110010':'D',
           '110000':'E', '110110':'F', '101011':'G', '100101':'H',

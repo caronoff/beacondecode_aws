@@ -72,7 +72,7 @@ class Country:
     def __init__(self, midbin):
         mid = Fcn.bin2dec(midbin)
         try:
-            cname = definitions.countrydic[mid]
+            cname = definitions.countrydic[str(mid)]
         except KeyError:
             cname = 'Unknown MID'
 
