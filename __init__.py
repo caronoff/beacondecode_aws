@@ -332,7 +332,7 @@ def longfirstgen():
 
     forms={'User': FirstGenForm(request.form),'Standard Location':FirstGenStd(request.form),
            'Standard Location Protocol - Test':FirstGenStd(request.form),'Standard Location Protocol - PLB (Serial)':FirstGenStd(request.form),
-           'National Location':FirstGenStd(request.form),'RLS Location':FirstGenRLS(request.form),'ELT-DT Location':FirstGenELTDT(request.form)}
+           'National Location':FirstGenStd(request.form),'RLS Location Protocol':FirstGenRLS(request.form),'ELT-DT Location':FirstGenELTDT(request.form)}
     form = forms[ptype]
 
     if request.method == 'POST' and form.validate():
@@ -346,7 +346,7 @@ def longfirstgen():
 
         elif ptype in ['Standard Location', 'National Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)']:
             suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-        elif ptype == 'RLS Location' :
+        elif ptype == 'RLS Location Protocol' :
             suppdata = request.form['encodepos'] + \
                        request.form['auxdevice'] + \
                        request.form['rlmtypeone'] + \

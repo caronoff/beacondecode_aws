@@ -64,6 +64,7 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, air
     longitude = round(float(longitude) * 1000,0)
 
     c = decodehex2.BeaconFGB()
+    print(suppdata[-2:])
     try:
         c.processHex(str(hex_code.strip()))
 
@@ -92,8 +93,20 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, air
 
 
 
-        elif c.protocolflag() == 'Location' and c.loctype() in ['RLS Location','ELT-DT Location'] and suppdata[-2:] != '00':
+        elif c.protocolflag() == 'Location' and c.loctype() == 'RLS Location Protocol':
             # bit 115=132 are 18 bit location offset
+
+            bincoord = eltdt_rls(latitude, longitude)
+            binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+            bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
+            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
+            bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
+            binstr = binstr + bch2
+
+
+        elif c.protocolflag() == 'Location' and c.loctype()== 'ELT-DT Location' and suppdata[-2:] != '00':
+            # bit 115=132 are 18 bit location offset
+
             bincoord= eltdt_rls(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
