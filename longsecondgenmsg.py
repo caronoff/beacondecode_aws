@@ -19,7 +19,7 @@ fhex = open('hexout.csv','a')
 # abc
 #xlm
 def printtxt(txt):
-    print txt
+    print(txt)
     f.write(txt)
 
 
