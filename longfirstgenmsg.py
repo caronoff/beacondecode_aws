@@ -58,18 +58,23 @@ def eltdt_rls(lat,long):
     return (binlat,binlong,offsets[0],offsets[1])
 
 
-def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, aircraft3letter):
+def encodelongFGB(hex_code, formdata):
+    for e in formdata:
+        print('form control' , e, formdata[e])
 
-    latitude=round(float(latitude) * 1000,0)
-    longitude = round(float(longitude) * 1000,0)
 
     c = decodehex2.BeaconFGB()
-    print(suppdata[-2:])
+
     try:
         c.processHex(str(hex_code.strip()))
+        if c.loctype()!='National User':
+            latitude = round(float(formdata['latitude']) * 1000, 0)
+            longitude = round(float(formdata['longitude']) * 1000, 0)
+            southnorth = formdata['northsouth']
+            eastwest = formdata['eastwest']
 
-
-        if c.protocolflag() == 'User':
+        if c.protocolflag() == 'User' and c.loctype()!='National User':
+            suppdata= formdata['encodepos']
             binstr = c.bin[0:25] + '1' + c.bin[26:86]
 
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
@@ -82,9 +87,17 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, air
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
+        elif c.loctype() == 'National User':
+            binstr = '_'+ '1'*15 + '000101111' + '1'  + c.bin[26:86]
+            bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
+            binstr = binstr + bch1 +'0' *26
+            bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
+            binstr = binstr + bch2
+
 
         elif c.protocolflag() == 'Location' and c.loctype()  in ['Standard Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)']:
             bincoord = stdloc(latitude, longitude)
+            suppdata = '1101' + formdata['encodepos'] + formdata['auxdevice']
             binstr = c.bin[0:25] + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
@@ -96,6 +109,16 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, air
         elif c.protocolflag() == 'Location' and c.loctype() == 'RLS Location Protocol':
             # bit 115=132 are 18 bit location offset
 
+            suppdata = formdata['encodepos'] + \
+                        formdata['auxdevice'] + \
+                        formdata['rlmtypeone'] + \
+                        formdata['rlmtypetwo'] + \
+                        formdata['feedbacktype1'] + \
+                        formdata['feedbacktype2'] + \
+                        formdata['rlsprovider']
+
+
+
             bincoord = eltdt_rls(latitude, longitude)
             binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
@@ -103,39 +126,47 @@ def encodelongFGB(hex_code,latitude,southnorth,longitude,eastwest, suppdata, air
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 
+        elif c.protocolflag() == 'Location' and c.loctype() == definitions.ELT_DT_LOC:
+            suppdata = formdata['meansactivation'] + formdata['encodedaltitude'] + formdata['freshness']
+            aircraft3letter = formdata['aircraft_3ld']
+            if suppdata[-2:] != '00':
+                # bit 115=132 are 18 bit location offset
 
-        elif c.protocolflag() == 'Location' and c.loctype()== 'ELT-DT Location' and suppdata[-2:] != '00':
-            # bit 115=132 are 18 bit location offset
+                bincoord= eltdt_rls(latitude, longitude)
+                binstr ='_'+ '1'*15 + '000101111' + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+                bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
+                binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
+                bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
+                binstr = binstr + bch2
 
-            bincoord= eltdt_rls(latitude, longitude)
-            binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
-            bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
-            bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
-            binstr = binstr + bch2
-
-        elif c.protocolflag() == 'Location' and c.loctype() == 'ELT-DT Location' and suppdata[-2:] == '00':
-            # bits 115-132 are aircraft 3 letter designators 000 and 3 segments of 5 bit modified baudot for each letter designator
-            bincoord = eltdt_rls(latitude, longitude)
-            binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) +   bincoord[1]
-            bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            aircraft3letterbin=''
-            for letter in aircraft3letter:
-                try:
-                    key = next(key for key, value in definitions.baudot.items() if value == letter.upper())
-                except StopIteration:
-                    key = '111111'
-                key = key[1:]
-                aircraft3letterbin = aircraft3letterbin + key
-            binstr = binstr + bch1 + suppdata + '000' +  aircraft3letterbin
-            bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
-            binstr = binstr + bch2
+            else:
+                # bits 115-132 are aircraft 3 letter designators 000 and 3 segments of 5 bit modified baudot for each letter designator
+                bincoord = eltdt_rls(latitude, longitude)
+                binstr = '_' + '1'*15 + '000101111' + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) +   bincoord[1]
+                bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
+                aircraft3letterbin=''
+                for letter in aircraft3letter.strip():
+                    try:
+                        key = next(key for key, value in definitions.baudot.items() if value == letter.upper())
+                    except StopIteration:
+                        key = '111111'
+                    key = key[1:]
+                    aircraft3letterbin = aircraft3letterbin + key
+                aircraft3letterbin = aircraft3letterbin + '11111' * (3 - len(aircraft3letter.strip()))
+                binstr = binstr + bch1 + suppdata + '000' +  aircraft3letterbin
+                bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
+                binstr = binstr + bch2
 
         elif c.protocolflag() == 'Location' and c.loctype() == 'National Location':
             bincoord= natloc(latitude, longitude)
+            suppdata = '110' + formdata['nationalassign']+ formdata['encodepos'] + formdata['auxdevice']
             binstr = c.bin[0:25] + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
-            binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3] + '000000'
+            if formdata['nationalassign'] == '0':
+                refine = '0'*14
+            else:
+                refine =  bincoord[2] + bincoord[3]
+            binstr = binstr + bch1 + suppdata + refine + '000000'
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
             binstr = binstr + bch2
 

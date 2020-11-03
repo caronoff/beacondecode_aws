@@ -35,13 +35,20 @@
     {{ render_field(form.encodepos) }}
     <br>
 
-{% if ptype not in ['User'] %}
+
   {{ render_field(form.auxdevice) }}
     <br>
- {% endif %}
 
 
 
+    {{ render_field(form.rlmtypeone) }}
+    {{ render_field(form.rlmtypetwo) }}
+    {{ render_field(form.feedbacktype1) }}
+    {{ render_field(form.feedbacktype2) }}
+    {{ render_field(form.rlsprovider) }}
+    <br>
+
+    
   </dl>
 
 

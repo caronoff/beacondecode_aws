@@ -5,10 +5,16 @@
 # Shared Gen 1 & Gen 2 definitions #
 ####################################
 # Includes 1st and 2nd Gen 
+# Constants
+
+
 
 import re
 from moreinfo import moreinfo
 
+ELT_DT_LOC = 'ELT-DT Location Protocol'
+NATIONAL_USER = ' DUMMY '
+RLS_LOC = 'RLS Location Protocol'
 def is_number(s):
     try:
         float(s)
@@ -101,10 +107,10 @@ locprottype = {'0000':'Unknown location type',
                '0100':'Standard Location Protocol - ELT (Serial)',
                '0101':'Std Loc. Serial ELT - Aircraft Operator Designator Protocol',
                '1000':'National location protocol - ELT',
-               '1001':'ELT - DT Location Protocol - ELT',
+               '1001': ELT_DT_LOC,
                '0111':'Standard Location Protocol - PLB (Serial)',
                '1011':'National location protocol - PLB',
-               '1101':'RLS Location Protocol',
+               '1101':RLS_LOC,
                '1110':'Standard Location Protocol - Test',
                '1111':'National location protocol - Test'
               }

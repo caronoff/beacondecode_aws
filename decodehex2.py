@@ -526,7 +526,7 @@ class BeaconFGB(HexError):
                                       str(self.bin[133:145]),
                                           BCH2,
                                           str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
-            self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
+            #self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
 
         if typeuserprotbin not in ['100','000','111'] and self.has_loc(): # and self.bch.complete=='1':
@@ -908,8 +908,8 @@ class BeaconFGB(HexError):
 
 
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
-            self._loctype='ELT-DT Location'
-            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} {}'.format(btype,self._loctype)])
+            self._loctype=definitions.locprottype[typelocprotbin] #'ELT-DT Location'
+            self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} - {}'.format(btype,self._loctype)])
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Type',definitions.eltdt[str(self.bin[41:43])]])
             if str(self.bin[41:43])=='10':
             # 10 bit TAC & Serial No

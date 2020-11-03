@@ -19,7 +19,7 @@
       <li>{{ error }}</li>
 
     </ul>
-{% endif %}
+    {% endif %}
       <form class="form-horizontal"  method="post" >
         <h2 class="form-signin-heading">First Generation Beacon {{hexcode}} </h2>
           <input type="hidden"  name="hex_code" value="{{hexcode}}" style="min-width: 500px;">
@@ -30,17 +30,11 @@
     {{ render_field(form.longitude) }}
     {{ render_field(form.eastwest) }}
     <br>
-    <br>
 
-    {{ render_field(form.encodepos) }}
-    <br>
-
-{% if ptype not in ['User'] %}
-  {{ render_field(form.auxdevice) }}
-    <br>
- {% endif %}
-
-
+    {{ render_field(form.meansactivation) }}
+    {{ render_field(form.encodedaltitude) }}
+    {{ render_field(form.freshness) }}
+    {{ render_field(form.aircraft_3ld) }}
 
   </dl>
 

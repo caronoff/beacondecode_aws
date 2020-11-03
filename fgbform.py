@@ -18,6 +18,10 @@ class FirstGenStd(FirstGenForm):
     auxdevice = SelectField(label='Auxiliary device:',
                             choices=[('0', 'No auxiliary radio locating device included in beacon'),
                                      ('1', '121.5 MHz auxiliary radio locating device included in beacon')], default='0')
+class FirstGenNatLoc(FirstGenStd):
+    nationalassign = SelectField(label='Bits 113-126:',
+                            choices=[('0', 'National assignment'),
+                                     ('1', 'Location refinement')], default='0')
 
 
 class FirstGenRLS(FirstGenForm):
@@ -77,4 +81,4 @@ class FirstGenELTDT(FirstGenForm):
                                                                        ('10','Encoded location in message is greater than 2 seconds and equal to or less than 60 seconds old'),
                                                                        ('11','Encoded location in message is current')])
 
-    aircraft_3ld = StringField(u'Aircraft operator 3 letter designator',[ validators.optional(), validators.length(max=3)])
+    aircraft_3ld = StringField(u'Aircraft operator 3 letter designator',[ validators.optional(), validators.length(max=3)], default='ZLR')

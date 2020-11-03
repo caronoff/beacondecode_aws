@@ -35,10 +35,9 @@
     {{ render_field(form.encodepos) }}
     <br>
 
-{% if ptype not in ['User'] %}
+
   {{ render_field(form.auxdevice) }}
-    <br>
- {% endif %}
+  {{ render_field(form.nationalassign) }}
 
 
 

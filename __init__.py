@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, DecimalField, SelectField,RadioField,SubmitField, TextField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, Optional
 from sgbform import SGB, SGB_g008, SGB_emergency, SGB_national, SGB_rls, SGB_cancel
-from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT
+from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT,FirstGenNatLoc
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
@@ -324,45 +324,32 @@ def longfirstgen():
     error = None
     beacon = decodehex2.BeaconFGB(hexcodeUIN)
     ptype = beacon.loctype()
+    print(ptype)
+
     if ptype == 'National User':
-        return redirect(url_for('decoded', hexcode=hexcodeUIN + '0' * 15))
+        hexcodelong = encodelongFGB(hexcodeUIN,  '')
+        return redirect(url_for('decoded', hexcode=hexcodelong))
 
     if beacon.protocolflag()=='User':
         ptype = 'User'
 
-    forms={'User': FirstGenForm(request.form),'Standard Location':FirstGenStd(request.form),
-           'Standard Location Protocol - Test':FirstGenStd(request.form),'Standard Location Protocol - PLB (Serial)':FirstGenStd(request.form),
-           'National Location':FirstGenStd(request.form),'RLS Location Protocol':FirstGenRLS(request.form),'ELT-DT Location':FirstGenELTDT(request.form)}
-    form = forms[ptype]
+    forms={'User': (FirstGenForm(request.form),'encodelongfirstentryform.html'),
+           'Standard Location':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
+           'Standard Location Protocol - Test':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
+           'Standard Location Protocol - PLB (Serial)':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
+           'National Location':(FirstGenNatLoc(request.form),'encodelongNATLOC.html'),
+           definitions.RLS_LOC :(FirstGenRLS(request.form),'encodelongfirstRLS.html'),
+           definitions.ELT_DT_LOC:(FirstGenELTDT(request.form),'encodelongELTDT.html')}
+    form = forms[ptype][0]
+    renderform = forms[ptype][1]
 
     if request.method == 'POST' and form.validate():
-        aircraft3letter ='ACC'
-        lat = request.form['latitude']
-        latdir=request.form['northsouth']
-        long = request.form['longitude']
-        longdir =request.form['eastwest']
-        if ptype == 'User':
-            suppdata = request.form['encodepos']
 
-        elif ptype in ['Standard Location', 'National Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)']:
-            suppdata='1101'+request.form['encodepos'] + request.form['auxdevice']
-        elif ptype == 'RLS Location Protocol' :
-            suppdata = request.form['encodepos'] + \
-                       request.form['auxdevice'] + \
-                       request.form['rlmtypeone'] + \
-                       request.form['rlmtypetwo'] + \
-                       request.form['feedbacktype1'] + \
-                       request.form['feedbacktype2'] + \
-                       request.form['rlsprovider']
-        elif ptype == 'ELT-DT Location':
-            suppdata = request.form['meansactivation'] + request.form['encodedaltitude'] + request.form['freshness']
-            aircraft3letter = request.form['aircraft_3ld']
+        hexcodelong = encodelongFGB(hexcodeUIN, request.form)
 
-        hexcodelong = encodelongFGB(hexcodeUIN, lat, latdir, long, longdir, suppdata, aircraft3letter)
-        print('hex', hexcodelong)
         return redirect(url_for('decoded', hexcode=hexcodelong))
 
-    return render_template('encodelongfirstentryform.html', hexcode=hexcodeUIN, ptype=ptype, form=form, error=error,showmenu=MENU)
+    return render_template(renderform, hexcode=hexcodeUIN, ptype=ptype, form=form, error=error,showmenu=MENU)
 
 @app.route('/long',methods=['GET'])
 def long():
