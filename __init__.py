@@ -16,6 +16,8 @@ import contacts
 import typeapproval
 import decodehex2
 import definitions
+import bchlib
+
 from datetime import datetime
 import requests
 from dotenv import load_dotenv
