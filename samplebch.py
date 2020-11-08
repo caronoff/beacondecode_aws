@@ -38,16 +38,16 @@ def bitstring_to_bytes(s):
 
 def pdf1_to_bch(pdf1,bch1):
     #valid pdf1
-    binary_data_pdf1 = pdf1
+    binary_data_pdf1 = newdata= pdf1
 
-    bch1=bch1
+    bch1=correctedbch1=bch1
     bch1=bch1+'000'
     #print('valid pdf1',len(binary_data_pdf1),binary_data_pdf1)
 
 
     BCH_POLYNOMIAL = 137   #137
     BCH_BITS = 3
-
+    bitflips=0
     bch = bchlib.BCH(BCH_POLYNOMIAL, BCH_BITS)
     data = bytearray(bitstring_to_bytes(binary_data_pdf1))
     print('m:',bch.m)
@@ -76,34 +76,64 @@ def pdf1_to_bch(pdf1,bch1):
     print('ecc included:',ecc_provided,len(ecc_provided),type(ecc_provided))
     print('ecc calc:', ecc,len(ecc),type(ecc))
     print('match',ecc==ecc_provided)
-    #data, ecc_provided = packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]
 
-    #bitflips = bch.decode_inplace(data, ecc_provided)
-    #print('bitflips: %d' % (bitflips))
+
+
     if ecc!=ecc_provided:
         #packet = data + ecc
         data, ecc = packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]
         #correct
         bitflips = bch.decode_inplace(data,ecc)
         print('bitflips: %d' % (bitflips))
-        newdata=''
-        for e in data:
+        newdata=decodefunctions.dec2bin(data[0])
+        for e in data[1:]:
             binchar = decodefunctions.dec2bin(e).zfill(8)
-            print(e, binchar)
+            #print(e, binchar)
             newdata = newdata + binchar
-        print('corrected',newdata)
-    return (bch,packet,data,ecc_provided, bchstring,bchstring==bch1)
+
+        correctedbch1 = ''
+        for e in ecc:
+            binchar = decodefunctions.dec2bin(e).zfill(8)
+            #print(e, binchar)
+            correctedbch1 = correctedbch1 + binchar
+
+
+    return (bitflips,newdata,correctedbch1[:-3])
 
 pdf1= input("pdf1: ")
 bch1= input("bch1: ")
 if not pdf1:
-    pdf1='1001001111001001110000000000000000000000001001011100000101111'
+    pdf1='1001001111001001110000000000000000000000001001011100000101100'
     bch1='110001100011101100000'
 
-bch, packet, retdata_array ,ecc_provided2,bchsrting, valid = pdf1_to_bch(pdf1,bch1)
+bitflips,newpdf,newbch = pdf1_to_bch(pdf1,bch1)
+print(newpdf)
+print(newbch)
+print(bitflips)
+if bitflips==-1:
+    print('fail')
+
+pdf1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[:61]
+bch1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[61:82]
+print('93CB0242508F3BC928BCB407180EC6',pdf1,len(pdf1))
+print('bch1',bch1,len(bch1))
 
 
-bchstring = ''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # if not valid:
 #     #errors detected so correct in place
