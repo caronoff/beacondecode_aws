@@ -6,7 +6,8 @@ import decodefunctions as Fcn
 import Gen2secondgen as Gen2
 import definitions
 import time
-
+import bch1correct as bch1
+import bch2correct as bch2
 
 UIN = 'unique hexadecimal ID'
 BCH1='BCH-1 error correcting code'
@@ -121,6 +122,7 @@ class BeaconFGB(HexError):
         self._loctype=''
         bitsynch=''
         framesynch=''
+        correct_bch_errors=strhex
         if Fcn.hextobin(strhex):
             if len(strhex) == 15:
                 #   15 Hex does not use bit 25 - framesynch 24 bits 0 prefix plus bit 25 0 needs to be padded for bit range to match T.001
@@ -137,6 +139,23 @@ class BeaconFGB(HexError):
 
             elif len(strhex) == 30:
                 self.type = 'Long Msg'
+                print(strhex)
+                _pdf1 = (Fcn.hextobin(strhex))[:61]
+                _bch1 = (Fcn.hextobin(strhex))[61:82]
+                bitflips1,newpdf1,newbch1 = bch1.pdf1_to_bch1(_pdf1,_bch1)
+                _pdf2=(Fcn.hextobin(strhex))[82:108]
+                _bch2=(Fcn.hextobin(strhex))[108:]
+                bitflips2,newpdf2,newbch2 = bch2.pdf2_to_bch2(_pdf2,_bch2)
+                if bitflips1 ==-1 or bitflips2 ==-1:
+                    self.errors.append('Too many bit errors to correct')
+                elif bitflips1>0 or bitflips2 > 1:
+                    _newbin=newpdf1 + newbch1 + newpdf2 + newbch2
+                    correct_bch_errors = Fcn.bin2hex(_newbin)
+                    self.errors.append(correct_bch_errors)
+                    print(_newbin,len(_newbin))
+                else:
+                    pass
+
                 pad = '0' * 24
             elif len(strhex) == 36:
                 pad = ''

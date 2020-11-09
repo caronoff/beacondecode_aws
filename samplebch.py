@@ -40,7 +40,7 @@ def pdf1_to_bch(pdf1,bch1):
     #valid pdf1
     binary_data_pdf1 = newdata= pdf1
 
-    bch1=correctedbch1=bch1
+    correctedbch1=bch1
     bch1=bch1+'000'
     #print('valid pdf1',len(binary_data_pdf1),binary_data_pdf1)
 
@@ -55,10 +55,10 @@ def pdf1_to_bch(pdf1,bch1):
     for e in range(len(data)):
         segment=decodefunctions.dec2bin(data[e]).zfill(8)
         rebuildpdf=rebuildpdf+segment
-        #print(e, data[e],segment)
+        print(e, data[e],segment)
 
     #print(binary_data_pdf1)
-    #print(rebuildpdf,len(rebuildpdf),binary_data_pdf1==rebuildpdf)
+    print(rebuildpdf,len(rebuildpdf),binary_data_pdf1==rebuildpdf)
     ecc = bch.encode(data)
     print(len(ecc))
     bchstring = ''
@@ -100,23 +100,24 @@ def pdf1_to_bch(pdf1,bch1):
 
     return (bitflips,newdata,correctedbch1[:-3])
 
-pdf1= input("pdf1: ")
-bch1= input("bch1: ")
-if not pdf1:
-    pdf1='1001001111001001110000000000000000000000001001011100000101100'
-    bch1='110001100011101100000'
+if __name__ == "__main__":
+    pdf1= input("pdf1: ")
+    bch1= input("bch1: ")
+    if not pdf1:
+        pdf1='1001001111001011000000100100001001010000100011110011101111001'
+        bch1='001001010001011110010'
 
-bitflips,newpdf,newbch = pdf1_to_bch(pdf1,bch1)
-print(newpdf)
-print(newbch)
-print(bitflips)
-if bitflips==-1:
-    print('fail')
+    bitflips,newpdf,newbch = pdf1_to_bch(pdf1,bch1)
+    print(newpdf)
+    print(newbch)
+    print(bitflips)
+    if bitflips==-1:
+        print('fail')
 
-pdf1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[:61]
-bch1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[61:82]
-print('93CB0242508F3BC928BCB407180EC6',pdf1,len(pdf1))
-print('bch1',bch1,len(bch1))
+    pdf1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[:61]
+    bch1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[61:82]
+    #print('93CB0242508F3BC928BCB407180EC6',pdf1,len(pdf1))
+    #print('bch1',bch1,len(bch1))
 
 
 
