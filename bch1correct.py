@@ -92,8 +92,8 @@ if __name__ == "__main__":
     pdf1= input("pdf1: ")
     bch1= input("bch1: ")
     if not pdf1:
-        pdf1='1001001111001011000000100100001001010000100011110011101111001'
-        bch1='001001010001011110010'
+        pdf1='1101001111000100111010110010100000010100000010101010011010000'
+        bch1='001000100000000101001'
 
     bitflips,newpdf,newbch = pdf1_to_bch1(pdf1,bch1)
     print(pdf1)
@@ -105,8 +105,8 @@ if __name__ == "__main__":
     if bitflips==-1:
         print('fail')
 
-    pdf1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[:61]
-    bch1=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[61:82]
+    pdf1=(decodefunctions.hextobin('D3C4EB28140AA681100A444154C224'))[:61]
+    bch1=(decodefunctions.hextobin('D3C4EB28140AA681100A444154C224'))[61:82]
     #print('93CB0242508F3BC928BCB407180EC6',pdf1,len(pdf1))
     #print('bch1',bch1,len(bch1))
 

@@ -150,8 +150,8 @@ class BeaconFGB(HexError):
                     self.errors.append('Too many bit errors to correct')
                 elif bitflips1>0 or bitflips2 > 0:
                     _newbin=newpdf1 + newbch1 + newpdf2 + newbch2
-                    self.errors.append('Corrected {} pdf1 bit and {} pdf2 bit'.format(bitflips1, bitflips2))
-                    self.errors.append('Correct Messaged: {} '.format(Fcn.bin2hex(_newbin)))
+                    self.errors.append(' {} bad pdf1 bit and {} bad pdf2 bit'.format(bitflips1, bitflips2))
+                    self.errors.append('Corrected Message: {} '.format(Fcn.bin2hex(_newbin)))
                     print(_newbin,len(_newbin),len(newpdf1),len(newbch1),len(newpdf2),len(newbch2))
                 else:
                     pass

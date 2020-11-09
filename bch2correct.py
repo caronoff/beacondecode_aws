@@ -68,29 +68,29 @@ def pdf2_to_bch2(pdf2,bch2):
              correctedbch2 = correctedbch2 + binchar
          if (len(correctedbch2))>12:
              correctedbch2=correctedbch2[:12]
-    return (bitflips,newdata,correctedbch2)
+    return (bitflips,newdata.zfill(26),correctedbch2)
 
 if __name__ == "__main__":
     pdf2= input("pdf2: ")
     bch2= input("bch2: ")
     if not pdf2:
 
-        pdf2='11010000000111000110000000'
-        bch2='111011000110'
+        pdf2='00010001000001010101001100'
+        bch2='001000100100'
 
     bitflips,newpdf,newbch = pdf2_to_bch2(pdf2,bch2)
     print(pdf2)
-    print(newpdf)
+    print(newpdf,len(newpdf))
     print(bch2)
     print(newbch)
     print(bitflips)
     if bitflips==-1:
         print('fail')
 
-    pdf2=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[82:108]
-    bch2=(decodefunctions.hextobin('93CB0242508F3BC928BCB407180EC6'))[108:]
-    #print('93CB0242508F3BC928BCB407180EC6',pdf2,len(pdf2))
-    #print('bch2',bch2,len(bch2))
+    pdf2=(decodefunctions.hextobin('D3C4EB28140AA681100A444154C224'))[82:108]
+    bch2=(decodefunctions.hextobin('D3C4EB28140AA681100A444154C224'))[108:]
+    print('D3C4EB28140AA681100A444154C224',pdf2,len(pdf2))
+    print('bch2',bch2,len(bch2))
 
 
 
