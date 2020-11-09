@@ -61,11 +61,13 @@ def pdf2_to_bch2(pdf2,bch2):
     #         #print(e, binchar)
              newdata = newdata + binchar
     #
-         correctedbch2 = ''
+         correctedbch2 = '' #decodefunctions.dec2bin(ecc[0])
          for e in ecc:
              binchar = decodefunctions.dec2bin(e).zfill(8)
     #         #print(e, binchar)
              correctedbch2 = correctedbch2 + binchar
+         if (len(correctedbch2))>12:
+             correctedbch2=correctedbch2[:12]
     return (bitflips,newdata,correctedbch2)
 
 if __name__ == "__main__":
@@ -77,7 +79,9 @@ if __name__ == "__main__":
         bch2='111011000110'
 
     bitflips,newpdf,newbch = pdf2_to_bch2(pdf2,bch2)
+    print(pdf2)
     print(newpdf)
+    print(bch2)
     print(newbch)
     print(bitflips)
     if bitflips==-1:

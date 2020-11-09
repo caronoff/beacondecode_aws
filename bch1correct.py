@@ -82,9 +82,11 @@ def pdf1_to_bch1(pdf1,bch1):
             binchar = decodefunctions.dec2bin(e).zfill(8)
             #print(e, binchar)
             correctedbch1 = correctedbch1 + binchar
+        if (len(correctedbch1)) > 21:
+            correctedbch1 = correctedbch1[:21]
 
 
-    return (bitflips,newdata,correctedbch1[:-3])
+    return (bitflips,newdata,correctedbch1)
 
 if __name__ == "__main__":
     pdf1= input("pdf1: ")
@@ -94,8 +96,11 @@ if __name__ == "__main__":
         bch1='001001010001011110010'
 
     bitflips,newpdf,newbch = pdf1_to_bch1(pdf1,bch1)
-    print(newpdf)
-    print(newbch)
+    print(pdf1)
+    print(newpdf,len(newpdf))
+    print
+    print(bch1)
+    print(newbch,len(newbch))
     print(bitflips)
     if bitflips==-1:
         print('fail')
