@@ -97,7 +97,11 @@ def is_neg(s):
         return 1
 
 def  bin2dec(s):
-    return int(s, 2)
+    try:
+        a=int(s,2)
+    except ValueError:
+        a=0
+    return a
 
 def bin2hex2(binval,lpad=0):
     hexstr=str(hex(int(binval, 2)))[2:].upper().strip('L')
