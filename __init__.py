@@ -17,6 +17,7 @@ import typeapproval
 import decodehex2
 import definitions
 import bchlib
+import testbchSGB
 
 from datetime import datetime
 import requests
@@ -381,6 +382,9 @@ def decodedjson(hexcode):
     beacondecode= {'type': tmp, 'loc': geocoord}
     return jsonify(beacondecode)
 
+@app.route("/binary/<msg>")
+def binary(msg):
+    return jsonify(testbchSGB.scramble_msg(msg))
 
 @app.route("/decoded/<hexcode>")
 def decoded(hexcode):
