@@ -955,9 +955,11 @@ class BeaconFGB(HexError):
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             if 'Error' in lat:
-                self.errors.append(lat)
+                pass
+                #self.errors.append(lat)
             if 'Error' in lng:
-                self.errors.append(lng)
+                pass
+                #self.errors.append(lng)
             self.courseloc=(declat,declng)
 
             if self.type!='uin':
@@ -973,6 +975,14 @@ class BeaconFGB(HexError):
                     if int(self.bin[113:])!=0:
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
                 else: #proceed to decode location
+                    if 'Error' in lat:
+                        pass
+                        self.errors.append(lat)
+                    if 'Error' in lng:
+                        pass
+                        self.errors.append(lng)
+
+
                     self.tablebin.append(['67-75',str(self.bin[67:76]),'Latitude','{} ({})'.format(lat,declat)])
                     self.tablebin.append(['76-85',str(self.bin[76:86]),'Longitude','{} ({})'.format(lng,declng)])
                     self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])

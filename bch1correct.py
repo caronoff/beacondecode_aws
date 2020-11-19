@@ -109,10 +109,14 @@ if __name__ == "__main__":
     bch1=(decodefunctions.hextobin('D3C4EB28140AA681100A444154C224'))[61:82]
     #print('93CB0242508F3BC928BCB407180EC6',pdf1,len(pdf1))
     #print('bch1',bch1,len(bch1))
-
-
-
-
+    pdf1=  (decodefunctions.hextobin('9D6940000045DF533687000452A622'))[:61]
+    bch1 = (decodefunctions.hextobin('9D6940000045DF533687000452A622'))[61:82]
+    bch1corrected = decodefunctions.calcbch(pdf1,"1001101101100111100011", 0, 61, 82)
+    pdf2bch2=(decodefunctions.hextobin('9D6940000045DF533687000452A622'))[82:]
+    print(pdf1+bch1,len(pdf1+bch1))
+    print(bch1corrected)
+    print(pdf1 + bch1 + pdf2bch2, len(pdf1 + bch1+pdf2bch2))
+    print(decodefunctions.bin2hex((pdf1 + bch1corrected+pdf2bch2)))
 
 
 
