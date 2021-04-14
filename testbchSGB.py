@@ -97,6 +97,16 @@ def bitstring_to_bytes2(s):
         v >>= 8
     return bytes(b[::-1])
 
+def bitstring_to_bytes3(bits):
+    s=bits.zfill(202)
+
+    b = bytearray()
+    for i in range(0,202,8):
+        b.append(int(s[i:i+8],2) & 0xff)
+
+
+    return bytes(b[::-1])
+
 def bitstring_to_bytes(s):
     return int(s, 2).to_bytes((len(s) +7) // 8, byteorder='big')
 
@@ -121,32 +131,48 @@ def is_prime(num):
 def bitflip(packet,byte_num):
     #byte_num = random.randint(0, len(packet) - 1)
     bit_num = random.randint(0, 7)
+    bit_num = 0
     packet[byte_num] ^= (1 << bit_num)
 
 
-def scramble_msg(main_msg):
+def scramble_msg(main_msg,p=487):
     success=False
     BCH_POLYNOMIAL = 487
     BCH_BITS = 6
-    bch = bchlib.BCH(BCH_POLYNOMIAL, BCH_BITS, False)
-    b=main_msg
-    data_only = bytearray(bitstring_to_bytes2(b))
+    bch = bchlib.BCH(p, 6 , False)
+    b= main_msg
+    print(len(b),b,'msg input')
+    data_only = bytearray(bitstring_to_bytes2(b))   #2
     ecc = bch.encode(data_only)
     recompose=''
+    #print(ecc)
+    bin_check=''
+    for bc in data_only:
+        c = dec2bin(bc).zfill(8)
+        bin_check = bin_check + c
+    print(len(bin_check),len(main_msg) , bin_check.zfill(202)==main_msg)
+    print(bin_check)
+    print(main_msg)
+    recalcbch = calcBCH(bin_check.zfill(202),0,202,250)
+
+
     for e in ecc:
         c = dec2bin(e).zfill(8)
+        #print(repr(e),e)
+        #d=format(ord(e), '08b')
         recompose = recompose +  c
+
     packet = data_only + ecc
     # print hash of packet
     sha1_initial = hashlib.sha1(packet)
-    print('sha1: %s' % (sha1_initial.hexdigest(),))
+    #print('sha1: %s' % (sha1_initial.hexdigest(),))
     # make BCH_BITS errors
     for i in range(BCH_BITS ):
-        bitflip(packet, i + 2)
+        bitflip(packet, i + 3 )
 
     sha1_corrupt = hashlib.sha1(packet)
 
-    print('sha1: %s' % (sha1_corrupt.hexdigest(),))
+    #print('sha1: %s' % (sha1_corrupt.hexdigest(),))
     corrupted=''
     for e in packet:
         c = dec2bin(e).zfill(8)
@@ -159,7 +185,7 @@ def scramble_msg(main_msg):
     sha1_corrected = 0
     try:
         bitflips = bch.decode_inplace(data_only, ecc)
-        print('\nbitflips: %d' % (bitflips))
+        #print('\nbitflips: %d' % (bitflips))
 
         # packetize
         packet = data_only + ecc
@@ -170,7 +196,7 @@ def scramble_msg(main_msg):
 
         # print hash of packet
         sha1_corrected = hashlib.sha1(packet)
-        print('sha1: %s' % (sha1_corrected.hexdigest(),))
+        #print('sha1: %s' % (sha1_corrected.hexdigest(),))
 
         if sha1_initial.digest() == sha1_corrected.digest():
 
@@ -180,19 +206,51 @@ def scramble_msg(main_msg):
     except:
         success = False
         return(success,'Done')
-    hashes = (sha1_corrupt.hexdigest(),sha1_corrected.hexdigest(),sha1_initial.hexdigest())
+    hashes = (sha1_corrected.hexdigest(), sha1_corrupt.hexdigest(),sha1_initial.hexdigest())
     return {'original' : ('00'+ b+recompose, len('00'+ b), len(recompose),len('00'+ b+recompose)),
+            'msg_input' : main_msg,
             'corrupted': (corrupted.zfill(252),len(corrupted.zfill(252))),
             'success': success,
             'hashes' : hashes,
             'flips' : bitflips,
-            'ECC':{'New method' : recompose,'Old method' : calcBCH(b,0,202,250)},
+            'ECC':{'New method' : recompose,'T.018 method' : calcBCH(b,0,202,250), 'recompECC' : recalcbch},
             'Len': len(recompose),
             'Done' : 'Done',
             'correct_final': correct_final.zfill(252),
             'hex': bin2hex(correct_final.zfill(252))}
 
-if __name__ == "__main__":
+def hex_bch(hex):
+    b = hextobin(hex).zfill(255)
+    packet = bytearray(bitstring_to_bytes2(b))
+    bch = bchlib.BCH(487, 6 , False)
+    data_only, ecc = packet[:-6], packet[-6:]  # data, ecc = packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]
+
+    # correct
+    corrected_hex =''
+    bitflips = 0
+
+    try:
+        bitflips = bch.decode_inplace(data_only, ecc)
+        print('\nbitflips: %d' % (bitflips))
+        # packetize
+        packet = data_only + ecc
+        correct_final=''
+        for e in packet:
+            c = dec2bin(e).zfill(8)
+            correct_final = correct_final + c
+        corrected_hex = bin2hex(correct_final)
+        if bitflips:
+            success = True
+        else:
+            success = False
+    except:
+        success = False
+    return (hex,corrected_hex)
+
+
+
+def create_test():
+    #if __name__ == "__main__":
     # create a bch object
     BCH_POLYNOMIAL = 8219
     BCH_BITS = 6
@@ -288,3 +346,137 @@ if __name__ == "__main__":
             f.write('Parameter Failed')
 
     f.close()
+
+def create_test2():
+    #if __name__ == "__main__":
+    # create a bch object
+
+    BCH_BITS = 48
+
+    primes=[]
+    for i in range(18500):
+        if is_prime(i):
+            primes.append(i)
+
+
+
+    f=open('bchtext2.txt','w')
+    for p in primes:
+        try:
+            bch = bchlib.BCH(p, BCH_BITS)
+            f.write('\n===='+str(p)+'====='+str(bch.n)+'====='+str(bch.m))
+
+            randombin = '000000'+ ''.join(map(lambda x: str(random.randint(0, 1)), [i for i in range(202)]))
+
+            data = bytearray(map(lambda x: int(x), randombin))
+
+            f.write('\nData provided  {} '.format(str(data)))
+            # encode and make a "packet"
+            ecc = bch.encode(data)
+            renew = '-'.join(map(lambda x: str(int(x)), [e for e in ecc]))
+            f.write('\necc int {} '.format(str(renew)))
+            print(ecc, len(ecc))
+            f.write('\npacket data before corrupt: %s' % (data))
+
+
+
+            calcbch = calcBCH(randombin, 0, 202, 250)
+
+
+
+            f.write('\nBCH provided calcbch {} '.format(str(calcbch)))
+            f.write('\nECC computed{} '.format(str(byte_to_binary(ecc))))
+                #packet = newdata
+
+            f.write('\nECC computed{} '.format(ecc))
+
+
+            f.write('\nECC bits count: {}\n'.format(bch.ecc_bits))
+
+
+            packet = data + ecc
+            # print hash of packet
+            sha1_initial = hashlib.sha1(packet)
+            print('sha1: %s' % (sha1_initial.hexdigest(),))
+            f.write('\nsha1: %s' % (sha1_initial.hexdigest(),))
+
+            # make BCH_BITS errors
+            for i in range(6):
+                r=random.randint(1,202)
+                flip = packet[r]
+                n = not flip
+                f.write('\n==============position flipped ==={} == {}  === {}  '.format (r,flip,n))
+                packet[r] = n
+
+
+
+            # print hash of packet
+            sha1_corrupt = hashlib.sha1(packet)
+            f.write('\npacket corrupt: %s' % (packet))
+            print('sha1: %s' % (sha1_corrupt.hexdigest(),))
+            f.write('\nsha1 corrupt: %s' % (sha1_corrupt.hexdigest(),))
+            # de-packetize
+            f.write('\nECC bits: {}'.format(bch.ecc_bits))
+
+            data, ecc =  packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]#data, ecc = packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]
+
+            # correct
+            try:
+                bitflips = bch.decode_inplace(data, ecc)
+                print('\nbitflips: %d' % (bitflips))
+                f.write('\nbitflips: %d' % (bitflips))
+                # packetize
+                packet = data + ecc
+
+                # print hash of packet
+                sha1_corrected = hashlib.sha1(packet)
+                print('sha1: %s' % (sha1_corrected.hexdigest(),))
+                f.write('\nsha1: %s' % (sha1_corrected.hexdigest(),))
+                if sha1_initial.digest() == sha1_corrected.digest():
+                    print('Corrected!')
+                    f.write('\nCorrected!')
+                else:
+                    print('Failed')
+                    f.write('\nFailed')
+            except:
+                pass
+        except RuntimeError : #or ValueError:
+            f.write('Parameter Failed')
+
+    f.close()
+
+
+if __name__ == "__main__":
+    b='0011000001110011000001010111101001100100110011100101100101110001100010001010000001000111110000000000000000000000000000000000000000000000000011111111111111000000000100000000110000011010000000001001011000'
+    #create_test2()
+    a=scramble_msg('000000'+''.join(map(lambda x: str(random.randint(0, 1)), [i for i in range(202)])))
+    print(a)
+    print(a['ECC'])
+
+    # print(len(b))
+    # print(bitstring_to_bytes3(b),len(bitstring_to_bytes3(b)),type(bitstring_to_bytes3(b)))
+    # print(bitstring_to_bytes2(b), len(bitstring_to_bytes2(b)), type(bitstring_to_bytes2(b)))
+    # print(bitstring_to_bytes(b), len(bitstring_to_bytes(b)), type(bitstring_to_bytes(b)))
+    # print('----')
+    # a = scramble_msg(b)
+    # print(a['hashes'])
+    # print(a['ECC']['New method'])
+    # print(a['ECC']['T.018 method'])
+    # print(a['ECC']['recompECC'])
+    # print(a['hex'])
+    # print(a['flips'])
+    # #print(a)
+    # #print('\nHex Check:')
+    # h = hex_bch(a['hex'])
+    # #print(h)
+    #
+    # hexcheck='19CC15E9933965C622811F0000000200003FFF004030680258E0C546519300'
+    # h = hex_bch(hexcheck)
+    # #print(h)
+    #
+    # hexcheck ='001CC15E9933965C622811F0000000000003FFF0040306802585FC13960FA99'
+    # h = hex_bch(hexcheck)
+    # #print(h)
+    #
+    # print(bitstring_to_bytes3('000011'))
+    # print(bitstring_to_bytes3('011'))

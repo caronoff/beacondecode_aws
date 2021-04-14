@@ -112,13 +112,19 @@ def rotating1(bits):
     bits = '0'+ bits
 
     ##BIT 5-21 (159-175) Time of last encoded location
-    time = Func.sec2utc(bits[5:22])
+    ## update Ver 2.0
+    if bits[5:22]=='1'*17:
+        time = 'UTC time is not available or the time is more than 24 hours old'
+    else:
+        time = Func.sec2utc(bits[5:22])
+    ## endupdate
     rotatingbin.append(['159-175 (Rotating field 5-21)',
                         bits[5:22],
                         'Time of last encoded location',
                         time])
 
     ##BIT 22-31 (176-185) Altitude of encoded location
+
     altitude = Func.getaltitude(bits[22:32])
     rotatingbin.append(['176-185 (Rotating field 22-31)',
                         bits[22:32],

@@ -18,7 +18,7 @@ import decodehex2
 import definitions
 import bchlib
 import testbchSGB
-
+# version 2.0 April 14, 2021
 from datetime import datetime
 import requests
 from dotenv import load_dotenv
