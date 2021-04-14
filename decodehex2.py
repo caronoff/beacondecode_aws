@@ -55,7 +55,12 @@ class Bch:
         return result
 
     def bch2calc(self):
-        return 'BCH-2 Calculated (133-144):  {bchcalc} BCH 2 errors: {e}'.format(bchcalc=self.bch[1], e=self.bch[5])
+        result = ''
+        if self.bch[5] == 0:
+            result = 'BCH-2 code in message matches the recalculated BCH-2 from the PDF-2 field'
+        else:
+            result = 'ERROR! BCH-2 code in message does not match the recalculated BCH-2 from the PDF-2 field. (recalculated value:{bchcalc})'.format(bchcalc=self.bch[1])
+        return result
 
     def writebch1(self):
         return 'BCH-1 Encoded: {bch1enc}   BCH-1 Calculated:  {bchcalc} BCH 1 errors: {e}'.format(bch1enc=self.bch[2], bchcalc=self.bch[0], e=self.bch[4])
