@@ -431,11 +431,6 @@ class ThreadClassSaveGen2(QThread):
         self.dialog.updateProgress(val)
 
 
-
-
-
-
-
 if __name__ == "__main__":
     import sys
 
