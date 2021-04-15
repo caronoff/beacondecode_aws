@@ -120,7 +120,7 @@ locprottype = {'0000':'Unknown location type',
 eltdt = {'00':'Aircraft 24 bit address',
          '01': 'Aircraft operators designator and serial number',
          '10': 'TAC with serial number',
-         '11': 'Location Test Protocol'
+         '11': 'Spare (reserved for future use)'
         }
 
 stdloctypes = ['0010', '0011', '0100', '0101', '0110', '0111', '1110', '0000', '1100', '0001']
