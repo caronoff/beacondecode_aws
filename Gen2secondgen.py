@@ -387,10 +387,10 @@ class SecondGen(Gen2Error):
 
             if self.bits[45]=='1':
                 self.validhex = False
-            if self.bits[61:] == '0'*32:
+            if self.bits[61:] == '0'*32 and self.bits[46:49]!='111':
 
                 self.tablebin.append(['46-48', self.bits[46:49], 'Vessel ID Type',Func.getVesselid(self.bits[46:49])])
-                self.tablebin.append(['49-60', self.bits[49:61], 'Partial vessel ID', 'WARNING!! = No Identification information or Truncated SGB 15Hex UIN (incomplete partial vessel ID. '])
+                self.tablebin.append(['49-60', self.bits[49:61], 'Partial vessel ID', 'WARNING!! = No Identification information or truncated SGB 15 Hex  (incomplete partial vessel ID. '])
                 self.tablebin.append(['61-92', self.bits[61:], 'Remaining bits', ''])
                 #self.vesselIDfill(46, self.bits[46:93])
             else:
@@ -488,6 +488,13 @@ class SecondGen(Gen2Error):
             self.tablebin.append(['','Vessel ID','Reserved for system testing',e])
             self.errors.append(e)
             self.validhex=False
+
+        elif self.vesselID == '111' and self.bits[45] == '0' and deduct_offset == 45:
+            e = 'ERROR! Test flag bit 45 in SGB 23 Hex ID (bit 43 in full message)  set to 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 45 must be 1 for non-operational use.'
+            self.tablebin.append(['', 'Vessel ID', 'Reserved for system testing', e])
+            self.errors.append(e)
+            self.validhex = False
+
 
         ##############################################
         # Vessel 0: No aircraft or maritime identity #
