@@ -483,8 +483,8 @@ class SecondGen(Gen2Error):
 
         self.vesselID = bits[0:3]
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
-        if self.vesselID == '111' and self.bits[43]=='0':
-            e='ERROR! Bit 43 is 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for syestem testing and the test bit 43 must be 1 for non-operational use.'
+        if self.vesselID == '111' and self.bits[43]=='0' and deduct_offset!=45:
+            e='ERROR! Bit 43 is 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 43 must be 1 for non-operational use.'
             self.tablebin.append(['','Vessel ID','Reserved for system testing',e])
             self.errors.append(e)
             self.validhex=False
