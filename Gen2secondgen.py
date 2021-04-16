@@ -605,10 +605,10 @@ class SecondGen(Gen2Error):
         elif self.vesselID == '100':
 
             self.aviationBitAddress = Func.bin2dec(bits[3:27])
+            h=Func.bin2hex(bits[3:27])
             self.tablebin.append([self.bitlabel(94,117,deduct_offset),
                                   bits[3:27],
-                                  'Aviation 24 bit address',
-                                  str(self.aviationBitAddress)])
+                                  'Aviation 24 bit address', ' Decimal: {} Hex: {}'.format(self.aviationBitAddress,h)])
             if Func.checkzeros(bits[27:47]):
                 status_check = 'OK'
                 self.tablebin.append([self.bitlabel(118, 137, deduct_offset),
