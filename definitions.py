@@ -477,8 +477,17 @@ class Air24bit_secgen(Secondgen):
 
     def getresult(self):
         elt24bitaddress_serial = str(self.formfields.get('elt24bitaddress_serialuser'))
+
+        aircraftoperator_input = str(self.formfields.get('aircraftoperator_input'))
+        if len(aircraftoperator_input) == 0:
+            acftop='0'*15
+        else:
+            acftop = self.getbaudot(aircraftoperator_input, 3, 3, 'Aircraft operator must be 3 digits', 'id_aircraftoperatorerror', short=True)
+
+
         sn = self.getserial(elt24bitaddress_serial, 0, 16777215, 'Serial number range (0 - 16,777,215)', 24,'id_elt24biterror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, sn,'0'*20)
+        #self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol,self.ptype, sn,'0'*20)
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn, self.testprotocol, self.ptype, sn, acftop,'0' * 5)
         return self.results
 
 class Systemtest_secgen(Secondgen):

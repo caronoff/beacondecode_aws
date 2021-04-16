@@ -599,9 +599,9 @@ class SecondGen(Gen2Error):
                                   bits[45:47],
                                   'Spare should be 00',
                                   status_check])
-        ##############################################
-        # Vessel 4: Aircraft Aviation 24 Bit Address #
-        ##############################################
+        ############################################################
+        # Vessel 4: Aircraft Aviation 24 Bit Address (and ICAO 3LD)#
+        ############################################################
         elif self.vesselID == '100':
 
             self.aviationBitAddress = Func.bin2dec(bits[3:27])
@@ -611,13 +611,31 @@ class SecondGen(Gen2Error):
                                   str(self.aviationBitAddress)])
             if Func.checkzeros(bits[27:47]):
                 status_check = 'OK'
-            else:
-                status_check = 'ERROR'
-                self.validhex = False
-            self.tablebin.append([self.bitlabel(118,137,deduct_offset),
-                                  bits[27:47],
-                                  'Spare should be 0',
-                                  status_check])
+                self.tablebin.append([self.bitlabel(118, 137, deduct_offset),
+                                      bits[27:47],
+                                      'Spare should be 0 ',
+                                      status_check])
+
+            elif not Func.checkzeros(bits[27:47]):
+                self.operator = Func.baudotshort2str(bits[27:42], 3)
+                self.tablebin.append([self.bitlabel(138, 152, deduct_offset+20),
+                                      bits[27:42],
+                                      'Aircraft operator designator:',
+                                      self.operator])
+
+                if not Func.checkzeros(bits[42:47]):
+                    status_check = 'ERROR'
+                    self.validhex = False
+                else:
+                    status_check = 'OK'
+                self.tablebin.append([self.bitlabel(152, 157, deduct_offset+20),
+                                      bits[42:47],
+                                      'Spare should be 0 ',
+                                      status_check])
+
+
+
+
         #################################################
         # Vessel 5: Aircraft Operator and Serial Number #
         #################################################
