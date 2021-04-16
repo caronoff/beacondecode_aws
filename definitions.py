@@ -501,10 +501,10 @@ class Aircraftoperator_secgen(Secondgen):
     def getresult(self):
 
         aircraftoperator_input = str(self.formfields.get('aircraftoperator_input'))
-        acftop = self.getbaudot(aircraftoperator_input, 3, 3, 'Aircraft operator must be 3 digits','id_aircraftoperatorerror')
+        acftop = self.getbaudot(aircraftoperator_input, 3, 3, 'Aircraft operator must be 3 digits','id_aircraftoperatorerror',short=True)
         sn_input= str(self.formfields.get('aircraftserial_input'))
         sn= self.getserial(sn_input, 0, 4095, 'Serial number range (0 - 4,095)', 12,'id_aircraftserialerror')
-        self.sethexcode('1', self.mid, '101', self.ta, self.sn,self.testprotocol,self.ptype, acftop, sn  ,'1'*14)
+        self.sethexcode('1', self.mid, '101', self.ta, self.sn,self.testprotocol,self.ptype, acftop, sn  ,'1'*17)
         return self.results
 
 

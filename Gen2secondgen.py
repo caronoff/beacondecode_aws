@@ -625,26 +625,26 @@ class SecondGen(Gen2Error):
         elif self.vesselID == '101':
 
 
-            self.operator = Func.baudot2str(bits[3:21], 3)
+            self.operator = Func.baudotshort2str(bits[3:18], 3)
             self.serialnum = Func.bin2dec(bits[21:33])
-            self.tablebin.append([self.bitlabel(94,111,deduct_offset),
-                                  bits[3:21],
+            self.tablebin.append([self.bitlabel(94,108,deduct_offset),
+                                  bits[3:18],
                                   'Aircraft operator designator:',
                                   self.operator])
-            self.tablebin.append([self.bitlabel(112,123,deduct_offset),
+            self.tablebin.append([self.bitlabel(109,120,deduct_offset),
                                   bits[21:33],
                                   'Aircraft Serial number:',
                                   str(self.serialnum)])
 
 
-            if Func.checkones(bits[33:47]):
+            if Func.checkones(bits[33:50]):
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
                 self.validhex = False
             self.tablebin.append([self.bitlabel(124,137,deduct_offset),
                                   bits[33:47],
-                                  'Spare all should be 1',
+                                  'Spare 17 bits all should be 1',
                                   status_check])
 
         elif self.vesselID == '111' and self.bits[43]=='1':

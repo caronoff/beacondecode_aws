@@ -351,7 +351,30 @@ def baudot2str(binary, chars):
         stop += increment
     return message
 
+def baudotshort2str(binary, chars):
+    """Input binary string + expected # of characters.
+    Each group of 5 bits is then decoded to a character
 
+    Args:
+        binary (str): binary string to be decoded
+        chars (int): number of expected characters
+    Returns:
+        message (str): decoded Baudot message - truncated 5 bit
+    """
+
+    message = ""
+    start = 0
+    stop = 5
+    increment = 5
+    for i in range(0, chars):
+        bits = str('1'+binary[start:stop])
+        try:
+            message = message + definitions.baudot[bits]
+        except KeyError:
+            message = message + 'error'
+        start += increment
+        stop += increment
+    return message
 
 def str2baudot(my_string):
     """Convert a string of characters to binary Baudot code
