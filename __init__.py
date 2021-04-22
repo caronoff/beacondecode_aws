@@ -335,15 +335,18 @@ def longfirstgen():
 
     if beacon.protocolflag()=='User':
         ptype = 'User'
-
+    print(ptype)
     forms={'User': (FirstGenForm(request.form),'encodelongfirstentryform.html'),
            'Standard Location':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - Test':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - PLB (Serial)':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
+           'Standard Location Protocol - EPIRB (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
+           'Standard Location Protocol - ELT (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
            'National Location':(FirstGenNatLoc(request.form),'encodelongNATLOC.html'),
            definitions.RLS_LOC :(FirstGenRLS(request.form),'encodelongfirstRLS.html'),
            definitions.ELT_DT_LOC:(FirstGenELTDT(request.form),'encodelongELTDT.html')}
     form = forms[ptype][0]
+
     renderform = forms[ptype][1]
 
     if request.method == 'POST' and form.validate():

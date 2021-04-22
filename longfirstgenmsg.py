@@ -64,7 +64,7 @@ def encodelongFGB(hex_code, formdata):
 
 
     c = decodehex2.BeaconFGB()
-
+    pad24='1'*16 +'000101111'
     try:
         c.processHex(str(hex_code.strip()))
         if c.loctype()!='National User':
@@ -75,7 +75,7 @@ def encodelongFGB(hex_code, formdata):
 
         if c.protocolflag() == 'User' and c.loctype()!='National User':
             suppdata= formdata['encodepos']
-            binstr = c.bin[0:25] + '1' + c.bin[26:86]
+            binstr = pad24 + '1' + c.bin[26:86]
 
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr  + bch1 + suppdata
@@ -95,10 +95,10 @@ def encodelongFGB(hex_code, formdata):
             binstr = binstr + bch2
 
 
-        elif c.protocolflag() == 'Location' and c.loctype()  in ['Standard Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)']:
+        elif c.protocolflag() == 'Location' and c.loctype()  in ['Standard Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)','Standard Location Protocol - EPIRB (Serial)','Standard Location Protocol - ELT (Serial)']:
             bincoord = stdloc(latitude, longitude)
             suppdata = '1101' + formdata['encodepos'] + formdata['auxdevice']
-            binstr = c.bin[0:25] + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+            binstr = pad24 + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
@@ -120,7 +120,7 @@ def encodelongFGB(hex_code, formdata):
 
 
             bincoord = eltdt_rls(latitude, longitude)
-            binstr = c.bin[0:25] + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+            binstr = pad24 + '1' + c.bin[26:67] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             binstr = binstr + bch1 + suppdata + bincoord[2] + bincoord[3]
             bch2 = calcbch(binstr, '1010100111001', 107, 133, 145)
@@ -160,7 +160,7 @@ def encodelongFGB(hex_code, formdata):
         elif c.protocolflag() == 'Location' and c.loctype() == 'National Location':
             bincoord= natloc(latitude, longitude)
             suppdata = '110' + formdata['nationalassign']+ formdata['encodepos'] + formdata['auxdevice']
-            binstr = c.bin[0:25] + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
+            binstr = pad24 + '1' + c.bin[26:59] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
             bch1 = calcbch(binstr, "1001101101100111100011", 25, 86, 107)
             if formdata['nationalassign'] == '0':
                 refine = '0'*14

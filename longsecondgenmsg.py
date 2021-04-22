@@ -166,14 +166,14 @@ elif vesselID == 1:
         try:
             mmsi_ais = int(userInput)
         except ValueError:
-            print 'Error: value must be an integer'
+            print('Error: value must be an integer')
             mmsi_ais = 0
         else:
             bits_mmsi_ais = Func1.dec2bin(mmsi_ais).zfill(14)
             if len(bits_mmsi_ais) != 14:
-                print 'Error: input too long.'
+                print('Error: input too long.')
             elif not Func2.isBinary(bits_mmsi_ais):
-                print 'Error: invalid input'
+                print('Error: invalid input')
             else:
                 break
     printtxt('\nEPIRB-AIS :{}\nbinary: {}\n'.format(str(mmsi_ais), bits_mmsi_ais))
