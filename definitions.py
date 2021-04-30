@@ -97,8 +97,8 @@ auxlocdevice = {'00':'No Auxiliary Radio-locating Device',
                }
 
 #Bits 37 to 40
-locprottype = {'0000':'Unknown location type',
-               '0001':'Unknown location type',
+locprottype = {'0000':'Undefined location type (spare)',
+               '0001':'Undefined location type (spare)',
                '0010':'Standard Location Protocol EPIRB-MMSI',
                '0110':'Standard Location Protocol - EPIRB (Serial)',
                '1010':'National location protocol - EPIRB',
