@@ -950,32 +950,34 @@ class BeaconFGB(HexError):
             self._loctype=definitions.locprottype[typelocprotbin] #'ELT-DT Location'
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} - {}'.format(btype,self._loctype)])
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Identity Type',definitions.eltdt[str(self.bin[41:43])]])
-            if str(self.bin[41:43])=='10':
-            # 10 bit TAC & Serial No
-                tano=str(Fcn.bin2dec(self.bin[43:53]))
-                self.tablebin.append(['43-52',str(self.bin[43:53]),'Tac No','#{}'.format(tano)])                      
-                self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
-            elif str(self.bin[41:43])=='00':
-            #24 bit aircraft address
-                self.tablebin.append(['43-66',str(self.bin[43:67]),
-                                      'Aircraft 24 bit address',
-                                      '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[43:67],6)),str(Fcn.bin2dec(self.bin[43:67])))
-                                      ]
-                                     )
 
-            elif str(self.bin[41:43])=='01':
-            # Aircraft operator designator
-                self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator (15 bit)',Fcn.baudot(self.bin,43,58,True),definitions.moreinfo['elt_dt_aircraftoperator']])
-                self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[58:67]))])
+            if (str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24) and str(self.bin[41:43]) != '11':
+                self.tablebin.append(['43-66', str(self.bin[43:67]), 'ELT(DT) Location Test Protocol','Test beacon type.  When all 0 or All 1, Designates Test Protocol'])
+            else:
+                if str(self.bin[41:43])=='10':
+                # 10 bit TAC & Serial No
+                    tano=str(Fcn.bin2dec(self.bin[43:53]))
+                    self.tablebin.append(['43-52',str(self.bin[43:53]),'Tac No','#{}'.format(tano)])
+                    self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+                elif str(self.bin[41:43])=='00':
+                #24 bit aircraft address
+                    self.tablebin.append(['43-66',str(self.bin[43:67]),
+                                          'Aircraft 24 bit address',
+                                          '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[43:67],6)),str(Fcn.bin2dec(self.bin[43:67])))
+                                          ]
+                                         )
 
-            elif str(self.bin[41:43]) == '11':
+                elif str(self.bin[41:43])=='01':
+                # Aircraft operator designator
+                    self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator (15 bit)',Fcn.baudot(self.bin,43,58,True),definitions.moreinfo['elt_dt_aircraftoperator']])
+                    self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[58:67]))])
+
+            if str(self.bin[41:43]) == '11':
                 self.tablebin.append(['43-66', str(self.bin[43:67]), 'Identification data','Undefined for ELT Identity type - Spare'])
-                if str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '0' * 1:
-                    self.tablebin.append(['-', '-', 'ELT(DT) Location Test Protocol','When all 0 or All 1, Designates Test Protocol'])
+                if str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24:
+                    self.tablebin.append(['-', '-', 'ELT(DT) Location - Spare type','When all 0 or All 1, Designates Test Protocol'])
             #elif str(self.bin[41:43])=='11' prior to CSC-62:
             # ELT(DT) Location Test Protocol
-            elif str(self.bin[43:67])=='0'*24 or str(self.bin[43:67])=='0'*1:
-                self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','When all 0 or All 1, Designates Test Protocol'])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
