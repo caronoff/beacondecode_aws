@@ -952,7 +952,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Identity Type',definitions.eltdt[str(self.bin[41:43])]])
 
             if (str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24) and str(self.bin[41:43]) != '11':
-                self.tablebin.append(['43-66', str(self.bin[43:67]), 'ELT(DT) Location Test Protocol','Test beacon type.  When all 0 or All 1, Designates Test Protocol'])
+                self.tablebin.append(['43-66', str(self.bin[43:67]), 'ELT(DT) test beacon','Test beacon type since bits 43-66 are all 0 or All 1, designates Test Protocol'])
             else:
                 if str(self.bin[41:43])=='10':
                 # 10 bit TAC & Serial No
@@ -975,7 +975,7 @@ class BeaconFGB(HexError):
             if str(self.bin[41:43]) == '11':
                 self.tablebin.append(['43-66', str(self.bin[43:67]), 'Identification data','Undefined for ELT Identity type - Spare'])
                 if str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24:
-                    self.tablebin.append(['-', '-', 'ELT(DT) Location - Spare type','When all 0 or All 1, Designates Test Protocol'])
+                    self.tablebin.append(['-', '-', 'ELT(DT) test beacon','Test beacon type since bits 43-66 are all 0 or All 1, designates Test Protocol'])
             #elif str(self.bin[41:43])=='11' prior to CSC-62:
             # ELT(DT) Location Test Protocol
 
