@@ -949,7 +949,7 @@ class BeaconFGB(HexError):
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
             self._loctype=definitions.locprottype[typelocprotbin] #'ELT-DT Location'
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} - {}'.format(btype,self._loctype)])
-            self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Type',definitions.eltdt[str(self.bin[41:43])]])
+            self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Identity Type',definitions.eltdt[str(self.bin[41:43])]])
             if str(self.bin[41:43])=='10':
             # 10 bit TAC & Serial No
                 tano=str(Fcn.bin2dec(self.bin[43:53]))
@@ -1021,7 +1021,7 @@ class BeaconFGB(HexError):
                                      }
                     enc_freshbin=str(self.bin[113:115])
                     if int(self.bin[113:]) != 0 :
-                        self.tablebin.append(['113-114', enc_freshbin, 'Encoded location freshness', enc_loc_fresh[enc_freshbin]])
+                        self.tablebin.append(['113-114', enc_freshbin, 'Encoded location freshness or PDF-2 rotating field indicator', enc_loc_fresh[enc_freshbin]])
 
                         if enc_freshbin!='00':
 
