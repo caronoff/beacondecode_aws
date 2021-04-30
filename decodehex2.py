@@ -738,7 +738,7 @@ class BeaconFGB(HexError):
                     computed='107-110 should be 1101'
                 else:
                     if typelocprotbin in ['0000','0001']:
-                        computed= '107-110 : derived ('  + self.bin[107:111] + ')  Normally 1101 for operational beacon but this is an undefined spare protocol'
+                        computed= '107-110 : derived ('  + self.bin[107:111] + ')  Normally 1101 for operational beacon but valid for undefined location type (spare)'
                     else:
                         computed = '107-110 : derived (' + self.bin[107:111] + ') Error - Should be 1101 for operational location protocol beacon'
                         self.errors.append(computed)
@@ -1041,7 +1041,7 @@ class BeaconFGB(HexError):
                                     self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
 
                             self.tablebin.append(['115-132', str(self.bin[115:133]), 'Aircraft operator 3LD', op3ld])
-                            self.warnings.append('WARNING: This is a rotating first generation ELT-DT.  Location information is course only bcause PDF-2 is used for rotating field.')
+                            self.warnings.append('WARNING: This is a rotating first generation ELT-DT.  Location information is a coarse position only because PDF-2 has information in rotating field. Hence location has with less resolution/accuracy than a message without the rotating field.')
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
