@@ -970,7 +970,7 @@ class BeaconFGB(HexError):
             #elif str(self.bin[41:43])=='11' prior to CSC-62:
             # ELT(DT) Location Test Protocol
             elif str(self.bin[43:67])=='0'*24 or str(self.bin[43:67])=='0'*1:
-                self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','When all Zero or All 1, Designates Test Protocol'])
+                self.tablebin.append(['43-66',str(self.bin[43:67]),'ELT(DT) Location Test Protocol','When all 0 or All 1, Designates Test Protocol'])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
