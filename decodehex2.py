@@ -1046,9 +1046,13 @@ class BeaconFGB(HexError):
                                 op3ld=op3ld+l
                                 if '*' in op3ld:
                                     self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
-
-                            self.tablebin.append(['115-132', str(self.bin[115:133]), 'Aircraft operator 3LD', op3ld])
-                            self.warnings.append('WARNING: This is a rotating first generation ELT-DT.  Location information is a coarse position only because PDF-2 has information in rotating field. Hence location has with less resolution/accuracy than a message without the rotating field.')
+                            if str(self.bin[115:118])=='000':
+                                ldtype='Aircraft operator 3LD designation'
+                            else:
+                                ldtype = 'Spare'
+                            self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare', ldtype])
+                            self.tablebin.append(['118-132', str(self.bin[118:133]), 'Aircraft operator 3LD', op3ld])
+                            self.warnings.append('WARNING: Location is a coarse position only, and hence has less resolution/accuracy than a message without the rotating field')
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
