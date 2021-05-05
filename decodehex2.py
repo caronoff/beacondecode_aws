@@ -1037,22 +1037,26 @@ class BeaconFGB(HexError):
                             self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
 
                         elif enc_freshbin=='00':
-                            op3ld = ''
-                            for e in [(118,123),(123,128),(128,133)]:
-                                try:
-                                    l = definitions.baudot['1'+ str(self.bin[e[0]:e[1]])]
-                                except KeyError:
-                                    l = '*'
-                                op3ld=op3ld+l
-                                if '*' in op3ld:
-                                    self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
+                            # for rotating field designator
                             if str(self.bin[115:118])=='000':
+                                op3ld = ''
+                                for e in [(118, 123), (123, 128), (128, 133)]:
+                                    try:
+                                        l = definitions.baudot['1' + str(self.bin[e[0]:e[1]])]
+                                    except KeyError:
+                                        l = '*'
+                                    op3ld = op3ld + l
+                                    if '*' in op3ld:
+                                        self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
                                 ldtype='Aircraft operator 3LD designation'
+                                self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare', ldtype])
+                                self.tablebin.append(['118-132', str(self.bin[118:133]), 'Aircraft operator 3LD', op3ld])
+                                self.warnings.append('WARNING: Location is a coarse position only, and hence has less resolution/accuracy than a message without the rotating field')
                             else:
                                 ldtype = 'Spare'
-                            self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare', ldtype])
-                            self.tablebin.append(['118-132', str(self.bin[118:133]), 'Aircraft operator 3LD', op3ld])
-                            self.warnings.append('WARNING: Location is a coarse position only, and hence has less resolution/accuracy than a message without the rotating field')
+                                self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare',ldtype])
+                                self.tablebin.append(['118-132', str(self.bin[118:133]), 'Spare','Reserved for future development'])
+
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
