@@ -299,13 +299,13 @@ class Hexgen:
                 self.seterror('Input must be alphanumeric',flderror)
         return bin
 
-    def getserial(self,ser,min,max,errormsg,n,flderror):
+    def getserial(self,ser,min,max,errormsg,n,flderror,floor=0):
         bin=''
 
         if not is_number(ser) or int(ser)<min or int(ser)>max:
             self.seterror(errormsg,flderror)
         else:
-            bin=dec2bin(ser,n)
+            bin=dec2bin(int(ser)-floor,n)
         print(ser,n,bin)
         return bin
 
@@ -710,7 +710,20 @@ class Rls_location(Hexgen):
     def getresult(self):
         serialnumber_input = str(self.formfields.get('serialnumber_input'))
         sn = self.getserial(serialnumber_input, 0, 16383, 'Serial number range (0 - 16,383)', 14, 'id_serialnumbererror')
-        ta = self.getserial(self.tano, 0, 1023, 'Type approval number range (0 - 1,023)', 10, 'id_tanoerror')
+        if self.beacontype == 'ELT':
+
+            ta = self.getserial(self.tano, 2001, 2949, 'Type approval number range (2001 - 2949)', 10, 'id_tanoerror',floor=2000)
+
+        elif self.beacontype == 'EPIRB':
+            ta = self.getserial(self.tano, 1001, 1949, 'Type approval number range (1001 - 1949)', 10, 'id_tanoerror',floor=1000)
+
+        elif self.beacontype == 'PLB':
+            ta = self.getserial(self.tano, 3001, 3949, 'Type approval number range (3001 - 3949)', 10, 'id_tanoerror',floor=3000)
+
+
+        else:
+            ta = self.getserial(self.tano, 0, 1023, 'Type approval number range (0 - 1023)', 10, 'id_tanoerror')
+
         b=self.beacontype
         beacondic={'ELT':'00','EPIRB':'01','PLB':'10','TEST':'11'}
         self.sethexcode('0', self.mid, self.protocol.split('-')[2],beacondic[b], ta, sn, '011111111', '0111111111')

@@ -81,6 +81,14 @@
                     <span id="id_tanoerror" class="help-block"></span>
                      </div>
                 </div>
+
+                <div id="id_tano_rls_elt" style="display: none;" class="form-group  panel panel-body panel-default tohide">
+                    <label for="id_tanoinput" class="col-lg-2 control-label">Valid range: 2001 to 2949</label>
+
+                </div>
+
+
+
                 <div id="id_testprotocol" style="display: none;" class="form-group  panel panel-body panel-default tohide">
                     <label for="id_testprotocolinput" class="col-lg-2 control-label">Test protocol (1- Test/nonoperational: 0- Normal operation):</label>
                      <div class="col-lg-10">
@@ -319,7 +327,8 @@ function checkprotocol(){
   $('.tohide').hide();
   $("#id_protocol").append($("<option></option>").attr("value",'0').text('---select---'));
   if(pval!='0' && beacon!='0'){newopt(pval,beacon);} else {$("#id_protocol").prop('disabled', true);}
- };
+console.log(beacon)
+};
 
 
 function newopt(a,b){
@@ -338,6 +347,7 @@ function newopt(a,b){
 <script type="text/javascript">
 $('#id_protocol').on('change', function() {
    var pselect = this.value;
+   var btype = $('#id_beacontype').val();
    console.log(pselect);
    $('.tohide').hide();
    $('#id_ctry').show();
@@ -361,7 +371,30 @@ $('#id_protocol').on('change', function() {
 
     // RLS Location
     case '1-0-1101':
+        console.log(btype)
         $('#id_tano').show();
+        /*
+        switch(btype){
+            case 'ELT':
+                alert('I am an ELT');
+                //$('#id_tano_rls_elt').show();
+                break;
+            case 'EPIRB':
+                alert('I am an EPRIB');
+
+                break;
+            case 'PLB':
+                alert('I am an PLB');
+
+                break;
+            case 'TEST':
+                alert('I am a test');
+
+                break;
+        }
+        */
+
+
         $('#id_serialnumber').show();
         break;
 

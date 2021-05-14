@@ -655,7 +655,7 @@ class BeaconFGB(HexError):
                     btype='PLB'
                     trunc='3'
                 elif self.bin[41:43] == '11':
-                    btype='RLS Loc Test'
+                    btype='RLS Location unknown beacon type (Spare or Test)'
                     trunc='[Unkown beacon type]'  # beacon type unknown so therefor indeterminable leading digit
             else:
                 if self.bin[41:43] == '00':
