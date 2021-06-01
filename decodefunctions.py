@@ -158,8 +158,8 @@ def baudot(binstr,startpos,endpos,short=False):
 
 def latlongresolution(binary,startpos,endpos):
     #   PDF-2 from 20 or 14 bits starting from bit 113
-    #   Standard Location Procols are 20 bit length ( bits 113 to 132) with from 0-30 minutes resolution adjustment
-    #   and 0 to 60 secondsresolution in 4 second increments.
+    #   Standard Location Protocols are 20 bit length ( bits 113 to 132) with from 0-30 minutes resolution adjustment
+    #   and 0 to 60 seconds resolution in 4 second increments.
     #   National Location Protocol are 14 bit length - Bits 113 to 126 express 0-3 minute resultions and 0-60 second,(4 sec) increments resolution.
     #
 
@@ -230,11 +230,12 @@ def latlongresolution(binary,startpos,endpos):
         return False
 
 
-    if int(latminutes) > 30:
-        longoffset = latoffset = 'Default - no location'
+    if int(latminutes) > 99999  :   #30:
+        #longoffset = latoffset = 'Default - no location'
+        latoffset ='Error'
 
-    elif int(latseconds)==60 and latdir=='positive':
-        latoffset = longoffset='Default - no location'
+    #elif int(latseconds)==60 and latdir=='positive':
+    #    latoffset = longoffset='Default - no location'
         
     else:
         latoffset =  '{} minutes {} seconds ({})'.format(latminutes,latseconds,latdir)
