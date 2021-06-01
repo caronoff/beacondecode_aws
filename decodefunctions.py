@@ -268,16 +268,6 @@ def latlongresolution(binary,startpos,endpos):
         return False
 
 
-    #if int(latminutes) > 30:
-        #longoffset = latoffset = 'Default - no location'
-    #    latoffset ='Error'
-
-    #elif int(latseconds)==60 and latdir=='positive':
-    #    latoffset = longoffset='Default - no location'
-        
-    #else:
-    #   latoffset =  '{} minutes {} seconds ({})'.format(latminutes,latseconds,latdir)
-    #    longoffset = '{} minutes {} seconds ({})'.format(longminutes,longseconds,lndir)
 
 
 
