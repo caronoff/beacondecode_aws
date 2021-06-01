@@ -161,10 +161,10 @@ def latlongresolution(binary,startpos,endpos):
     #   Standard Location Protocols are 20 bit length ( bits 113 to 132) with from 0-30 minutes resolution adjustment
     #   and 0 to 60 seconds resolution in 4 second increments.
     #   National Location Protocol are 14 bit length - Bits 113 to 126 express 0-3 minute resultions and 0-60 second,(4 sec) increments resolution.
-    #
+    #   RLS or ELT-DT Location Protocol is 18 bits of data for location offset
 
     l=endpos-startpos
-
+    DEFAULT = 'Default value'
     if binary[startpos]=='0':                                           #   1 bit (113)
         signlat=-1
         latdir='negative'
@@ -175,8 +175,10 @@ def latlongresolution(binary,startpos,endpos):
 
 
     if l==20:
-        # Standard Location Protocol is 20 bits of data.
-        # Five bits for minutes of max 30 minute adjustment
+        # Standard Location Protocol location offset provides 20 data bits from 113 - 132.
+        # Five bits resolution for minutes of max 30 minute adjustment
+        # 4 bits for seconds resolution from 0 to 60 seconds resolution in 4 second increments
+        # See page A-27 of T001
 
        
         latminutes  =   float(bin2dec(binary[startpos+1:startpos+6]))         #   5 bits 
@@ -190,17 +192,56 @@ def latlongresolution(binary,startpos,endpos):
         else:
             signlong=1
             lndir='positive'
-        
+
+        if binary[startpos : startpos + 10] == '1000001111':
+            latoffset = DEFAULT
+        else:
+            latoffset = '{} minutes {} seconds ({})'.format(latminutes, latseconds, latdir)
+
+        if binary[startpos + 10 : startpos + 20] == '1000001111':
+            longoffset = DEFAULT
+        else:
+            longoffset = '{} minutes {} seconds ({})'.format(longminutes, longseconds, lndir)
 
 
+
+    elif l == 18:
+
+        # RLS or ELT-DT Location Protocol is 18 bits of data from 115 - 132.
+        # 4 bits for minutes of max 15 minute adjustment
+        # 4 bits for seconds resolution from 0 to 60 seconds resolution in 4 second increments
+        # See page A-40 of T.001
+        latminutes = float(bin2dec(binary[startpos + 1:startpos + 5]))  # 4 bits
+        latseconds = float(bin2dec(binary[startpos + 5:startpos + 9]) * 4)  # 4 bits
+        longminutes = float(bin2dec(binary[startpos + 10:startpos + 14]))  # 4 bits
+        longseconds = float(bin2dec(binary[startpos + 14:startpos + 18]) * 4)  # 4 bits
+        if binary[startpos + 9] == '0':  # 1 bit
+            signlong = -1
+            lndir = 'negative'
+        else:
+            signlong = 1
+            lndir = 'positive'
+
+        if binary[startpos:startpos + 9] == '100001111':
+            latoffset = DEFAULT
+        else:
+            latoffset = '{} minutes {} seconds ({})'.format(latminutes, latseconds, latdir)
+
+        if binary[startpos + 9:startpos + 18] == '100001111':
+            longoffset = DEFAULT
+        else:
+            longoffset = '{} minutes {} seconds ({})'.format(longminutes, longseconds, lndir)
 
 
     elif l==14:
-        # National Location Protocol is 14 bits of data.
-        # Only 2 bits for minutes of max 3 minute adjustment        
+        # National Location Protocol is 14 bits of data from bits 113 - 126.
+        # bits 127 - 132 are reserved for national use
+        # 2 bits for minutes of max 3 minute adjustment
+        # 4 bits for seconds resolution from 0 to 60 seconds resolution in 4 second increments
+        # see page A-30 of T.001
         latminutes  =   float(bin2dec(binary[startpos+1:startpos+3]))         #   2 bits   
         latseconds  =   float(bin2dec(binary[startpos+3:startpos+7])*4)       #   4 bits
-        longminutes =   float(bin2dec( binary[startpos+8:startpos+10]))       #   2 bits
+        longminutes =   float(bin2dec(binary[startpos+8:startpos+10]))       #   2 bits
         longseconds =   float(bin2dec(binary[startpos+10:startpos+14])*4)     #   4 bits
         if binary[startpos+7]=='0':                                         #   1 bit
             signlong=-1
@@ -208,38 +249,38 @@ def latlongresolution(binary,startpos,endpos):
         else:
             signlong=1
             lndir='positive'
+
+        if binary[startpos : startpos + 7] == '1001111':
+            latoffset = DEFAULT
+        else:
+            latoffset = '{} minutes {} seconds ({})'.format(latminutes, latseconds, latdir)
+
+        if binary[startpos + 7 : startpos + 14] == '1001111':
+            longoffset = DEFAULT
+        else:
+            longoffset = '{} minutes {} seconds ({})'.format(longminutes, longseconds, lndir)
         
 
-    elif l==18:
-        # print 'rls',binary[startpos+14:startpos+20]
-        # RLS or ELT-DT Location Protocol is 18 bits of data.
-        # Only 4 bits for minutes of max 15 minute adjustment
-        latminutes  =   float(bin2dec(binary[startpos+1:startpos+5]))         #   4 bits   
-        latseconds  =   float(bin2dec(binary[startpos+5:startpos+9])*4)       #   4 bits
-        longminutes =   float(bin2dec(binary[startpos+10:startpos+14]))       #   4 bits
-        longseconds =   float(bin2dec(binary[startpos+14:startpos+18])* 4 )   #   4 bits       
-        if binary[startpos+9]=='0':                                        #   1 bit
-            signlong=-1
-            lndir='negative'
-        else:
-            signlong=1
-            lndir='positive'
+
 
     else:
         # Bad length.  Length must be 14,18 or 20.
         return False
 
 
-    if int(latminutes) > 99999  :   #30:
+    #if int(latminutes) > 30:
         #longoffset = latoffset = 'Default - no location'
-        latoffset ='Error'
+    #    latoffset ='Error'
 
     #elif int(latseconds)==60 and latdir=='positive':
     #    latoffset = longoffset='Default - no location'
         
-    else:
-        latoffset =  '{} minutes {} seconds ({})'.format(latminutes,latseconds,latdir)
-        longoffset = '{} minutes {} seconds ({})'.format(longminutes,longseconds,lndir)
+    #else:
+    #   latoffset =  '{} minutes {} seconds ({})'.format(latminutes,latseconds,latdir)
+    #    longoffset = '{} minutes {} seconds ({})'.format(longminutes,longseconds,lndir)
+
+
+
     return  (signlat*(float(latminutes/60)+float(latseconds/3600)),
              signlong*(float(longminutes/60)+float(longseconds/3600)),             
              latoffset,
