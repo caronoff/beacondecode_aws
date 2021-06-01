@@ -226,7 +226,7 @@ class SecondGen(Gen2Error):
                 self.tablebin.append(['155-158 (Rotating field 1-4)',
                                       self.bits[155:159],
                                       'Rotating Field Type:',
-                                      '(#1) Inflight Emergency'])
+                                      '(#1) ELT(DT) In-flight Emergency'])
                 self.rotatingbin = rotating.rotating1(self.bits[155:203])
 
 
