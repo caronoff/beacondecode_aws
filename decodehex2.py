@@ -682,7 +682,23 @@ class BeaconFGB(HexError):
                 
 
         ident=('')
-        
+        # undefined location protocol types
+        if typelocprotbin in ['0000','0001']:
+            default = '011111111101111111111'
+            if self.bch.bch1errors > 0 or (self.bch.bch2errors > 0 and int(self.bin[113:]) != 0):
+                self.errors.append(BCH_ERRORS_PRESENT)
+            self._loctype = definitions.locprottype[typelocprotbin]
+            self._loc = False
+            self.tablebin.append(['37-40', str(self.bin[37:41]), 'Protocol Code', definitions.locprottype[typelocprotbin]])
+            self.tablebin.append(['41-85', str(self.bin[41:86]), 'Undefined - Spare ', 'Undefined for undefined location type'])
+            latdelta, longdelta, ltoffset, lgoffset = Fcn.latlongresolution(self.bin, 113, 133)
+            lat, declat, latdir, ltminutes = Fcn.latitude(self.bin[65], self.bin[66:73], self.bin[73:75])
+            lng, declng, lngdir, lgminutes = Fcn.longitude(self.bin[75], self.bin[76:84], self.bin[84:86])
+            self.courseloc = (declat, declng)
+            self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()), definitions.moreinfo['bch1']])
+            self.tablebin.append(['107-132', str(self.bin[107:133]), 'Undefined - Spare ', 'Undefined for undefined location type'])
+            self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()), definitions.moreinfo['bch2']])
+            declat='na'
         #Standard Location protocols
         if typelocprotbin in definitions.stdloctypes : #['0010','0011','0100','0101','0110','0111','1100','1110']
             default = '011111111101111111111'
@@ -692,6 +708,8 @@ class BeaconFGB(HexError):
             self._loctype=definitions.locprottype[typelocprotbin]
             self._loc = False
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code', definitions.locprottype[typelocprotbin]])
+
+
             #self.tablebin.append(['26-85',self.bin[26:65]+default,UIN,self.hex15])
             latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,133)
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[65],self.bin[66:73],self.bin[73:75])
