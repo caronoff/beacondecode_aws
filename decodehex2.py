@@ -371,15 +371,15 @@ class BeaconFGB(HexError):
                 
             else:
                 #   Bits 64-83 is national use or as defined by other protocl
-                tacert='Bit 43 not assisgned - no type approval number in Hex'
-                tano='na'
+                tacert='Bit 43 not assisgned - no type approval number assigned in message.  Bits 64-83 are reserved for national use and control'
+                tano='na - bit 43 not assigned'
 
             self.tablebin.append(['43',str(self.bin[43]),'TAC',tacert])
 
 
             #   Bits 40-42 : 000 : ELT with Serial Identification
-            #   Bits 40-42 : 010 : Float free EPIRB with Serial Identification
-            #   Bits 40-42 : 100 : Nonfloat free EPIRB with Serial Identification
+            #   Bits 40-42 : 010 : Float-free EPIRB with Serial Identification
+            #   Bits 40-42 : 100 : Non float-free EPIRB with Serial Identification
             #   Bits 40-42 : 110 : PLB with Serial Identification                
             #   Serial ID is from bit 44-63
             
@@ -395,12 +395,16 @@ class BeaconFGB(HexError):
                     btype='ELT'
                 elif susertype=='110':
                     btype='PLB'
+
                 self.tablebin.append(['44-63',str(self.bin[44:64]),'Serial Number',str(Fcn.bin2dec(self.bin[44:64]))])
-                self.tablebin.append(['64-73',str(self.bin[64:74]),'National use',str(Fcn.bin2dec(self.bin[64:74]))])
-                
+                if self.bin[43] == '1':
+                    self.tablebin.append(['64-73',str(self.bin[64:74]),'All Zero or National use',str(Fcn.bin2dec(self.bin[64:74]))])
+                    self.tablebin.append(['74-83', str(self.bin[74:84]), 'Type Approval Cert. No:', tano])
+                else:
+                    self.tablebin.append(['64-83', str(self.bin[64:84]), ' National use', 'National use'])
              
-            #   For Serial User Protocol
-            #   Bit 40-42 : 011:   ELT with Aircraft 24-bit Address     
+            #   For Serial User Protocol - Bit 37-39 : =011
+            #   Bit 40-42 : =011:   ELT with Aircraft 24-bit Address
             if susertype == '011' : 
                 btype,s1,s2=('ELT','Aircraft 24 bit Address (bits 44-67) :Dec value: '+ str(Fcn.bin2dec(self.bin[44:68]))+ '  Hex Value  : '+ Fcn.bin2hex(self.bin[44:68]),
                             'Number of Additional ELTs (bits 68-73):'+str(Fcn.bin2dec(self.bin[68:74])))
@@ -412,6 +416,10 @@ class BeaconFGB(HexError):
                                       ]
                                      )
                 self.tablebin.append(['68-73', str(self.bin[68:74]), 'Specific beacon number',  str(Fcn.bin2dec(self.bin[68:74]))])
+
+                self.tablebin.append(['74-83', str(self.bin[74:84]), 'Type Approval Cert. No:', tano])
+
+
 
                 #   Bit 40-42 : 001 : Aircraft operator designator and serial number
             #   Aircraft Operator is in bits 44-61
