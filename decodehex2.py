@@ -437,8 +437,12 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['44-61',str(self.bin[44:62]),'Aircraft Operator Designator',Fcn.baudot(self.bin,44,62)])
                 self.tablebin.append(['62-73',str(self.bin[62:74]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[62:74]))])
             if susertype in ['111','101']:
-                self.tablebin.append(['44-73',str(self.bin[44:74]),'Unknown Serial type',''])
-                
+                if self.bin[43]=='1':
+                    self.tablebin.append(['44-73',str(self.bin[44:74]),'Unknown Serial type','No information in T.001 to decode'])
+                    self.tablebin.append(['74-83', str(self.bin[74:84]), 'Type Approval Cert. No:', tano])
+                else:
+                    self.tablebin.append(['44-83', str(self.bin[44:84]), 'Unknown Serial type', 'No information in T.001 to decode'])
+
             
             self._protocol=('Protocol Flag (Bit 26) :'+ self.bin[26],
                            definitions.protocol[self.bin[26]],
