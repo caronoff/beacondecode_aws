@@ -188,6 +188,11 @@ class BeaconFGB(HexError):
      
         # make a standard 144 bit (36 Hex) binary string.  '_' in front is to make string operations march the numbering and not start at position 0
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
+        if self.bin[37:40] =='101' :
+        # illegal protocol for FGB
+            self.type = 'Bits 37-39 are 101 which is reserved for SGB but the valid hex length should be 51 or 63'
+            raise HexError('Beacon Generation conflict', self.type)
+
         if pad=='':
             bitsynch = self.bin[1:16]
             framesynch = self.bin[16:25]
@@ -245,7 +250,7 @@ class BeaconFGB(HexError):
             self.locationProtocol()
         #   protocol == '1' 'User Protocol'
         #   type of user protocol located at bits 37-39    
-        elif protocolflag == '1' and self.type != SHORT_MSG  :
+        elif protocolflag == '1' and self.type != SHORT_MSG :
             self.bch = Bch(self.bin, self.type)
             self.userProtocol()
 
@@ -372,7 +377,7 @@ class BeaconFGB(HexError):
             else:
                 #   Bits 64-83 is national use or as defined by other protocl
                 tacert='Bit 43 not assisgned - no type approval number assigned in message.  Bits 64-83 are reserved for national use and control'
-                tano='na - bit 43 not assigned'
+                tano='na  Nationally Assigned - bit 43 is Zero'
 
             self.tablebin.append(['43',str(self.bin[43]),'TAC',tacert])
 
@@ -444,7 +449,7 @@ class BeaconFGB(HexError):
             self.typeapproval=(tacert,'Type Approval ',str(tano))
             self.tac=str(tano)
             
-            self.tablebin.append(['74-83',str(self.bin[74:84]),'Type Approval Cert. No:',tano])
+            #self.tablebin.append(['74-83',str(self.bin[74:84]),'Type Approval Cert. No:',tano])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
                  
         #############################################################################
