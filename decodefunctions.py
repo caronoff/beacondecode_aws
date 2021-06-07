@@ -20,7 +20,6 @@ BAUDOT={
             ,'110001':'Z','100100':' ','011000':'-','010111':'/','001101':'0'
             ,'011101':'1','011001':'2','010000':'3','001010':'4','000001':'5'
             ,'010101':'6','011100':'7','001100':'8','000011':'9','010110':'?'
-            ,'000000':'?','100000':''
             }
 
 
@@ -148,10 +147,11 @@ def baudot(binstr,startpos,endpos,short=False):
             b=baudot[one+binstr[startpos:startpos+jump]]
             
         except KeyError:
-            b='?'
+            b='__['+ binstr[startpos:startpos+jump] +']__'
         
         startpos+=jump
         baudstr=baudstr+b
+
     return baudstr
         
 

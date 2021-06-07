@@ -751,9 +751,11 @@ class BeaconFGB(HexError):
             #   ELT - Aircraft Operator Designator Standard Location Protocol
             elif typelocprotbin=='0101':
                 
-                self.tablebin.append(['41-64',str(self.bin[41:65]),
-                                      'ELT Operator ID',
-                                      '{} ELT No:{}'.format(str(Fcn.baudot(self.bin,41,55,True)),str(Fcn.bin2dec(self.bin[56:65])))])
+                self.tablebin.append(['41-55',str(self.bin[41:56]),'15 bit Operator designator',str(Fcn.baudot(self.bin,41,56,True))])
+
+                self.tablebin.append(['56-64', str(self.bin[56:65]),
+                                      '9 bits for number range 1-511',
+                                       str(Fcn.bin2dec(self.bin[56:65]))])
             
             #   PLB, ELT and EBIRB Serial
             elif typelocprotbin in ['0100','0110','0111']:
