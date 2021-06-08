@@ -752,7 +752,8 @@ class BeaconFGB(HexError):
             elif typelocprotbin=='0101':
                 
                 self.tablebin.append(['41-55',str(self.bin[41:56]),'15 bit Operator designator',str(Fcn.baudot(self.bin,41,56,True))])
-
+                if '?' in str(Fcn.baudot(self.bin,41,56,True)):
+                    self.errors.append('"?" in 15 bit Operator Designator means invalid bits in field.' )
                 self.tablebin.append(['56-64', str(self.bin[56:65]),
                                       '9 bit Serial Number Assigned (1-511)',
                                        str(Fcn.bin2dec(self.bin[56:65]))])
