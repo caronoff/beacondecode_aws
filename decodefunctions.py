@@ -147,7 +147,7 @@ def baudot(binstr,startpos,endpos,short=False):
             b=baudot[one+binstr[startpos:startpos+jump]]
             
         except KeyError:
-            b='__['+ binstr[startpos:startpos+jump] +']__'
+            b='?' #__['+ binstr[startpos:startpos+jump] +']__'
         
         startpos+=jump
         baudstr=baudstr+b
