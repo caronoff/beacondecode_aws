@@ -44,7 +44,9 @@ class SecondGen(Gen2Error):
         self.warnings=[]
         self.fixedbits = ''
         self.testprotocol=''
-
+        self._id='na'
+        self.SerialNum=0
+        self.tac=0
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
@@ -85,10 +87,8 @@ class SecondGen(Gen2Error):
 
             ##T018 Issue 1 - Rev 4:  Bit 17-30 Serial Number (previously  bit 21-30 Serial Number)
             self.serialNum = Func.bin2dec(self.bits[17:31])
-            self.tablebin.append(['17-30',
-                                  self.bits[17:31],
-                                  'Beacon Serial Number:',
-                                  str(self.serialNum)])
+
+            self.tablebin.append(['17-30', self.bits[17:31],'Beacon Serial Number:',str(self.serialNum)])
 
             ##BIT 31-40 Country code
             self.countryCode = Func.bin2dec(self.bits[31:41])
@@ -525,10 +525,10 @@ class SecondGen(Gen2Error):
             self.mmsi = Func.bin2dec(bits[3:33])
 
             if self.mmsi == 111111:
+                self.mmsi_string ='No MMSI available'
                 self.tablebin.append([self.bitlabel(94,123,deduct_offset),
                                       bits[3:33],
-                                      'MMSI:',
-                                      'No MMSI available'])
+                                      'MMSI:',self.mmsi_string])
             else:
                 self.mmsi_string = str(self.mmsi).zfill(9)
 
@@ -549,10 +549,12 @@ class SecondGen(Gen2Error):
             self.epirb_ais = Func.bin2dec(bits[33:47])
 
             if self.epirb_ais == 10922:
+                self.epirb_ais_str = 'No EPIRB-AIS System'
                 self.tablebin.append([self.bitlabel(124,137,deduct_offset),
                                       bits[33:47],
                                       'EPIRB-AIS System Identity:',
-                                      'No EPIRB-AIS System'])
+                                      self.epirb_ais_str])
+
             else:
                 self.epirb_ais_str = str(self.epirb_ais).zfill(4)
 
@@ -561,11 +563,13 @@ class SecondGen(Gen2Error):
                                       bits[33:47],
                                       'EPIRB-AIS System Identity',
                                       self.epirb_ais_str])
+            self._id = '{}-{}'.format(self.mmsi_string, self.epirb_ais_str)
         #############################
         # Vessel 2: Radio Call Sign #
         #############################
         elif self.vesselID == '010':
             self.callsign = Func.getCallsign(bits[3:45])
+            self._id=self.callsign
             self.tablebin.append([self.bitlabel(94,135,deduct_offset),
                                   bits[3:45],
                                   'Radio Callsign',
@@ -586,6 +590,7 @@ class SecondGen(Gen2Error):
         #########################################################
         elif self.vesselID == '011':
             self.tailnum = Func.getTailNum(bits[3:45])
+            self._id = self.tailnum
             self.tablebin.append([self.bitlabel(94,135,deduct_offset),
                                   bits[3:45],
                                   'Aircraft Registration Marking:',
@@ -606,9 +611,10 @@ class SecondGen(Gen2Error):
 
             self.aviationBitAddress = Func.bin2dec(bits[3:27])
             h=Func.bin2hex(bits[3:27])
+            self._id=' Decimal: {} Hex: {}'.format(self.aviationBitAddress,h)
             self.tablebin.append([self.bitlabel(94,117,deduct_offset),
                                   bits[3:27],
-                                  'Aviation 24 bit address', ' Decimal: {} Hex: {}'.format(self.aviationBitAddress,h)])
+                                  'Aviation 24 bit address', self._id])
             if Func.checkzeros(bits[27:47]):
                 status_check = 'OK'
                 self.tablebin.append([self.bitlabel(118, 137, deduct_offset),
@@ -644,6 +650,7 @@ class SecondGen(Gen2Error):
 
 
             self.operator = Func.baudotshort2str(bits[3:18], 3)
+            self._id=self.operator
             self.serialnum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,108,deduct_offset),
                                   bits[3:18],
@@ -688,7 +695,11 @@ class SecondGen(Gen2Error):
     def gettac(self):
         return self.tac
 
+    def get_sn(self):
+        return self.SerialNum
 
+    def get_id(self):
+        return self._id
 
     def loctype(self):
         return 'SGB'

@@ -341,7 +341,7 @@ def longfirstgen():
            'Standard Location Protocol - Test':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - PLB (Serial)':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - EPIRB (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
-           'Standard Location Protocol - ELT (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
+           'Std Loc. Serial ELT - Aircraft Operator Designator Protocol': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
            'National Location':(FirstGenNatLoc(request.form),'encodelongNATLOC.html'),
            definitions.RLS_LOC :(FirstGenRLS(request.form),'encodelongfirstRLS.html'),
            definitions.ELT_DT_LOC:(FirstGenELTDT(request.form),'encodelongELTDT.html')}

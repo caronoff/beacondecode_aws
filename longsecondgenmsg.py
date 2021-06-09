@@ -34,7 +34,7 @@ while next_step == False:
         tac = int(userInput)
     # Catch the exception if the input was not a number
     except ValueError:
-        print 'Error: value must be an integer'
+        print('Error: value must be an integer')
         tac = 0
     else:
         bits_tac = Func1.dec2bin(tac).zfill(20)

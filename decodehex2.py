@@ -136,6 +136,8 @@ class BeaconFGB(HexError):
         self.type=''
         self.tac=''
         self._loctype=''
+        self._sn='na'
+        self._id='na'
         bitsynch=''
         framesynch=''
         correct_bch_errors=strhex
@@ -188,8 +190,8 @@ class BeaconFGB(HexError):
      
         # make a standard 144 bit (36 Hex) binary string.  '_' in front is to make string operations march the numbering and not start at position 0
         self.bin = '_' + pad + Fcn.hextobin(strhex) + (144 - len(pad + Fcn.hextobin(strhex)))*'0'
-        if self.bin[37:40] =='101' :
-        # illegal protocol for FGB
+        if self.bin[37:40] =='101' and self.bin[26]=='1':
+        # illegal protocol for FGB user protocol
             self.type = 'Bits 37-39 are 101 which is reserved for SGB but the valid hex length should be 51 or 63'
             raise HexError('Beacon Generation conflict', self.type)
 
@@ -287,6 +289,11 @@ class BeaconFGB(HexError):
     def get_mid(self):
         return Country(self.bin[27:37]).mid
 
+    def get_id(self):
+        return self._id
+
+    def get_sn(self):
+        return self._sn
 
     def has_loc(self):
 
@@ -335,7 +342,6 @@ class BeaconFGB(HexError):
 
     def userProtocol(self):
         self.hex15=Fcn.bin2hex(self.bin[26:86])
-        #self.tablebin.append(['26-85',self.bin[26:86],UIN,self.hex15])
         self._loctype="User"
         self.encpos='na'
         btype='Unknown Beacon'
@@ -385,8 +391,9 @@ class BeaconFGB(HexError):
             #   Bits 40-42 : 000 : ELT with Serial Identification
             #   Bits 40-42 : 010 : Float-free EPIRB with Serial Identification
             #   Bits 40-42 : 100 : Non float-free EPIRB with Serial Identification
-            #   Bits 40-42 : 110 : PLB with Serial Identification                
-            #   Serial ID is from bit 44-63
+            #   Bits 40-42 : 110 : PLB with Serial Identification
+            #   Bit 43 : value 1 -> Yes for type approval certificate : value 0 -> national use
+            #   bit 44-63 : Serial ID
             
             if susertype in ['000','010','100','110']:
                 s1,s2=('Bits 64-73 : '+(self.bin[64:74]),
@@ -400,8 +407,8 @@ class BeaconFGB(HexError):
                     btype='ELT'
                 elif susertype=='110':
                     btype='PLB'
-
-                self.tablebin.append(['44-63',str(self.bin[44:64]),'Serial Number',str(Fcn.bin2dec(self.bin[44:64]))])
+                self._sn =str(Fcn.bin2dec(self.bin[44:64]))
+                self.tablebin.append(['44-63',str(self.bin[44:64]),'Serial Number',self._sn])
                 if self.bin[43] == '1':
                     self.tablebin.append(['64-73',str(self.bin[64:74]),'All Zero or National use',str(Fcn.bin2dec(self.bin[64:74]))])
                     self.tablebin.append(['74-83', str(self.bin[74:84]), 'Type Approval Cert. No:', tano])
@@ -420,7 +427,8 @@ class BeaconFGB(HexError):
                                       '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[44:68],6)),Fcn.bin2dec(self.bin[44:68]))
                                       ]
                                      )
-                self.tablebin.append(['68-73', str(self.bin[68:74]), 'Specific beacon number',  str(Fcn.bin2dec(self.bin[68:74]))])
+                self._sn=str(Fcn.bin2dec(self.bin[68:74]))
+                self.tablebin.append(['68-73', str(self.bin[68:74]), 'Specific beacon serial number',self._sn  ])
 
                 self.tablebin.append(['74-83', str(self.bin[74:84]), 'Type Approval Cert. No:', tano])
 
@@ -431,11 +439,13 @@ class BeaconFGB(HexError):
             #   Serial ID is from bit 62-73
             
             if susertype == '001' :
-                btype,s1,s2=('ELT','AirCraft Operator Designator : '+ Fcn.baudot(self.bin,44,62),
-                          'Serial # Assigned by Operator: ' + str(Fcn.bin2dec(self.bin[62:74])))
+                self._id = Fcn.baudot(self.bin, 44, 62)
+                self._sn=str(Fcn.bin2dec(self.bin[62:74]))
+                btype,s1,s2=('ELT','AirCraft Operator Designator : '+ self._id,
+                          'Serial # Assigned by Operator: ' + self._sn)
                 auxradiodevice='Aux Radio Device: '+self.bin[84:86]+' '+definitions.auxlocdevice[self.bin[84:86]]
-                self.tablebin.append(['44-61',str(self.bin[44:62]),'Aircraft Operator Designator',Fcn.baudot(self.bin,44,62)])
-                self.tablebin.append(['62-73',str(self.bin[62:74]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[62:74]))])
+                self.tablebin.append(['44-61',str(self.bin[44:62]),'Aircraft Operator Designator',self._id])
+                self.tablebin.append(['62-73',str(self.bin[62:74]),'Serial No Assigned by Operator',self._sn])
             if susertype in ['111','101']:
                 if self.bin[43]=='1':
                     self.tablebin.append(['44-73',str(self.bin[44:74]),'Unknown Serial type','No information in T.001 to decode'])
@@ -448,12 +458,9 @@ class BeaconFGB(HexError):
                            definitions.protocol[self.bin[26]],
                            typeuserprotbin,definitions.userprottype[typeuserprotbin],
                            susertype,serialtype)
-                       
 
             self.typeapproval=(tacert,'Type Approval ',str(tano))
             self.tac=str(tano)
-            
-            #self.tablebin.append(['74-83',str(self.bin[74:84]),'Type Approval Cert. No:',tano])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
                  
         #############################################################################
@@ -461,8 +468,9 @@ class BeaconFGB(HexError):
         #############################################################################
         elif typeuserprotbin=='000' :
             self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
-            btype='Orbitography'
-            self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',str(Fcn.bin2hex(self.bin[40:88]))])
+            btype='Orbitography beacon'
+            self._id=str(Fcn.bin2hex(self.bin[40:88]))
+            self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',self._id])
             self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
@@ -481,7 +489,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
             btype='ELT'
             self._loctype = 'User: ELT Aviation User'
-
+            self._id=aircraftid
         #############################################################################
         #       Bit 37-39: 111 : Test User protocol                                 #
         #############################################################################
@@ -549,6 +557,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare No',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
+            self._id=radiocallsign
         #############################################################################
         #   Bit 37-39: 010 Maritime User Protocol                                   #
         #############################################################################               
@@ -561,7 +570,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['82-83',str(self.bin[82:84]),'Spare bits',str(Fcn.bin2dec(self.bin[82:84]))])
             self.tablebin.append(['84-85',str(self.bin[84:86]),'Auxiliary radio device',definitions.auxlocdevice[self.bin[84:86]]])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
-
+            self._id='{}-{}'.format(Fcn.baudot(self.bin,40,76),Fcn.baudot(self.bin,76,82))
         ##############################################################################
         #   Bit 37-39: 100  National User Protocol                                   #
         ##############################################################################        
@@ -738,25 +747,22 @@ class BeaconFGB(HexError):
                 ident=('MMSI ID Number: ',str(Fcn.bin2dec(self.bin[41:61])),'Specific Beacon :',str(Fcn.bin2dec(self.bin[61:65])))
                 self.tablebin.append(['41-60',str(self.bin[41:61]),'MMSI ID No',str(Fcn.bin2dec(self.bin[41:61]))])
                 self.tablebin.append(['61-64',str(self.bin[61:65]),'Specific beacon No',str(Fcn.bin2dec(self.bin[61:65]))])
-
+                self._id='{}-{}'.format(str(Fcn.bin2dec(self.bin[41:61])),str(Fcn.bin2dec(self.bin[61:65])))
             #   ELT 24 bit address
             elif typelocprotbin=='0011':
-                
-                
+                self._id='{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[41:65],6)),str(Fcn.bin2dec(self.bin[41:65])))
                 self.tablebin.append(['41-64',str(self.bin[41:65]),
-                                      'Aircraft 24 bit address',
-                                      '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[41:65],6)),str(Fcn.bin2dec(self.bin[41:65])))
-                                      ]
-                                     )
+                                      'Aircraft 24 bit address', self._id])
             #   ELT - Aircraft Operator Designator Standard Location Protocol
             elif typelocprotbin=='0101':
-                
-                self.tablebin.append(['41-55',str(self.bin[41:56]),'15 bit Operator designator',str(Fcn.baudot(self.bin,41,56,True))])
-                if '?' in str(Fcn.baudot(self.bin,41,56,True)):
+                self._id = str(Fcn.baudot(self.bin, 41, 56, True))
+                self._sn = str(Fcn.bin2dec(self.bin[56:65]))
+                self.tablebin.append(['41-55',str(self.bin[41:56]),'15 bit Operator designator',self._id])
+                if '?' in self._id:
                     self.errors.append('"?" in 15 bit Operator Designator means invalid bits in field.' )
+
                 self.tablebin.append(['56-64', str(self.bin[56:65]),
-                                      '9 bit Serial Number Assigned (1-511)',
-                                       str(Fcn.bin2dec(self.bin[56:65]))])
+                                      '9 bit Serial Number Assigned (1-511)', self._sn])
             
             #   PLB, ELT and EBIRB Serial
             elif typelocprotbin in ['0100','0110','0111']:
@@ -831,8 +837,9 @@ class BeaconFGB(HexError):
             #59-85 default data 27 bit binary (to construct 15 Hex UIN when no location present)
             #self.hex15=Fcn.bin2hex(self.bin[26:59]+default)
             #self.tablebin.append(['26-85',self.bin[26:59]+default,UIN,self.hex15])
-            ident= ('Serial Number :',str(Fcn.bin2dec(self.bin[41:59])))            
-            self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(str(Fcn.bin2dec(self.bin[41:59]))),definitions.moreinfo['natloc']])
+            self._sn=str(Fcn.bin2dec(self.bin[41:59]))
+
+            self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(self._sn),definitions.moreinfo['natloc']])
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
@@ -924,14 +931,16 @@ class BeaconFGB(HexError):
             # RLS for MMSI
                 idtype='RLS protocol coded with MMSI last 6 digits'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
-                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','{}'.format(str(Fcn.bin2dec(self.bin[47:67])).zfill(6))])
+                self._id=str(Fcn.bin2dec(self.bin[47:67])).zfill(6)
+                self.tablebin.append(['47-66', str(self.bin[47:67]), 'Last 6 digits MMSI','{}'.format(self._id)])
             else:
             # RLS for TAC number or National RLS with serial number
                 idtype = 'RLS protocol coded with TAC or National RLS and Serial Number'
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','{}'.format(tano),definitions.moreinfo['rls_trunc']])
                 self.tablebin.append(['', '', 'RLS TAC included missing leading digit prefix', '{}{}'.format(trunc,tano)])
-                self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(str(Fcn.bin2dec(self.bin[53:67])).zfill(5))])
+                self._sn=str(Fcn.bin2dec(self.bin[53:67])).zfill(5)
+                self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(self._sn)])
 
             latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
@@ -996,20 +1005,20 @@ class BeaconFGB(HexError):
                 if str(self.bin[41:43])=='10':
                 # 10 bit TAC & Serial No
                     tano=str(Fcn.bin2dec(self.bin[43:53]))
+                    self._sn=str(Fcn.bin2dec(self.bin[53:67]))
                     self.tablebin.append(['43-52',str(self.bin[43:53]),'Tac No','#{}'.format(tano)])
-                    self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(str(Fcn.bin2dec(self.bin[53:67])))])
+                    self.tablebin.append(['53-66',str(self.bin[53:67]),'Serial No','#{}'.format(self._sn)])
                 elif str(self.bin[41:43])=='00':
                 #24 bit aircraft address
-                    self.tablebin.append(['43-66',str(self.bin[43:67]),
-                                          'Aircraft 24 bit address',
-                                          '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[43:67],6)),str(Fcn.bin2dec(self.bin[43:67])))
-                                          ]
-                                         )
+                    self._id= '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[43:67],6)),str(Fcn.bin2dec(self.bin[43:67])))
+                    self.tablebin.append(['43-66',str(self.bin[43:67]),'Aircraft 24 bit address', self._id])
 
                 elif str(self.bin[41:43])=='01':
                 # Aircraft operator designator
-                    self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator (15 bit)',Fcn.baudot(self.bin,43,58,True),definitions.moreinfo['elt_dt_aircraftoperator']])
-                    self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',str(Fcn.bin2dec(self.bin[58:67]))])
+                    self._id=Fcn.baudot(self.bin,43,58,True)
+                    self._sn=str(Fcn.bin2dec(self.bin[58:67]))
+                    self.tablebin.append(['43-57',str(self.bin[43:58]),'Aircraft Operator Designator (15 bit)',self._id,definitions.moreinfo['elt_dt_aircraftoperator']])
+                    self.tablebin.append(['58-66',str(self.bin[58:67]),'Serial No Assigned by Operator',self._sn])
 
             if str(self.bin[41:43]) == '11':
                 self.tablebin.append(['43-66', str(self.bin[43:67]), 'Identification data','Undefined for ELT Identity type - Spare'])
@@ -1272,6 +1281,12 @@ class Beacon(HexError):
 
     def get_mid(self):
         return self.beacon.get_mid()
+
+    def get_id(self):
+        return self.beacon.get_id()
+
+    def get_sn(self):
+        return self.beacon.get_sn()
 
     def __getattr__(self, name):
         return 'Beacon does not have {} attribute.'.format(str(name))
