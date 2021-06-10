@@ -769,6 +769,7 @@ class BeaconFGB(HexError):
                 tano = str(Fcn.bin2dec(self.bin[41:51]))
                 self.tablebin.append(['37-40',str(self.bin[37:41]),'Beacon type','{}'.format(btype)])
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type Approval Cert. No:',tano])
+                self._sn=str(Fcn.bin2dec(self.bin[51:65]))
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
                 self.typeapproval=('','',tano)
                 self.tac = str(tano)
