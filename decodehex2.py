@@ -422,11 +422,9 @@ class BeaconFGB(HexError):
                             'Number of Additional ELTs (bits 68-73):'+str(Fcn.bin2dec(self.bin[68:74])))
                 auxradiodevice='Aux Radio Device: '+self.bin[84:86]+' '+definitions.auxlocdevice[self.bin[84:86]]
                 emergencycode='Emergency Code (109-112): '
+                self._id='{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[44:68],6)),Fcn.bin2dec(self.bin[44:68]))
                 self.tablebin.append(['44-67',str(self.bin[44:68]),
-                                      'AirCraft 24 bit identification',
-                                      '{} hex ({} decimal)'.format(str(Fcn.bin2hex2(self.bin[44:68],6)),Fcn.bin2dec(self.bin[44:68]))
-                                      ]
-                                     )
+                                      'AirCraft 24 bit identification',self._id ])
                 self._sn=str(Fcn.bin2dec(self.bin[68:74]))
                 self.tablebin.append(['68-73', str(self.bin[68:74]), 'Specific beacon serial number',self._sn  ])
 
@@ -769,7 +767,7 @@ class BeaconFGB(HexError):
                 tano = str(Fcn.bin2dec(self.bin[41:51]))
                 self.tablebin.append(['37-40',str(self.bin[37:41]),'Beacon type','{}'.format(btype)])
                 self.tablebin.append(['41-50',str(self.bin[41:51]),'Type Approval Cert. No:',tano])
-                self._sn=str(Fcn.bin2dec(self.bin[51:65]))
+                self._sn = str(Fcn.bin2dec(self.bin[51:65]))
                 self.tablebin.append(['51-64',str(self.bin[51:65]),'Serial No',str(Fcn.bin2dec(self.bin[51:65]))])
                 self.typeapproval=('','',tano)
                 self.tac = str(tano)
