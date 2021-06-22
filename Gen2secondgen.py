@@ -88,7 +88,7 @@ class SecondGen(Gen2Error):
             ##T018 Issue 1 - Rev 4:  Bit 17-30 Serial Number (previously  bit 21-30 Serial Number)
             self.SerialNum = Func.bin2dec(self.bits[17:31])
 
-            self.tablebin.append(['17-30', self.bits[17:31],'Beacon Serial Number:',str(self.SerialNum)])
+            self.tablebin.append(['17-30', self.bits[17:31],'Beacon serial number:',str(self.SerialNum)])
 
             ##BIT 31-40 Country code
             self.countryCode = Func.bin2dec(self.bits[31:41])
@@ -376,7 +376,7 @@ class SecondGen(Gen2Error):
             self.SerialNum = Func.bin2dec(self.bits[31:45])
             self.tablebin.append(['31-44',
                                   self.bits[35:45],
-                                  'Serial Number',
+                                  'Beacon serial number',
                                   str(self.SerialNum)])
 
             self.testprotocol = Func.testProtocol(self.bits[45])
@@ -651,15 +651,16 @@ class SecondGen(Gen2Error):
 
             self.operator = Func.baudotshort2str(bits[3:18], 3)
             self._id=self.operator
-            self.SerialNum = Func.bin2dec(bits[21:33])
+            self._id = 'Aircraft Operator: {} Aircraft Serial No. #{}'.format(self.operator, Func.bin2dec(bits[21:33]))
+            #self.SerialNum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,108,deduct_offset),
                                   bits[3:18],
                                   'Aircraft operator designator:',
                                   self.operator])
             self.tablebin.append([self.bitlabel(109,120,deduct_offset),
                                   bits[21:33],
-                                  'Aircraft Serial number:',
-                                  str(self.SerialNum)])
+                                  'Aircraft serial number:',
+                                  str(Func.bin2dec(bits[21:33]))])
 
 
             if Func.checkones(bits[33:50]):
