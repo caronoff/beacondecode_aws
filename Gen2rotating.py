@@ -33,7 +33,7 @@ def rotating0(bits):
     ##BIT 11-21 (165-175) Time from last encoded location (0 to 2046 minutes in 1 minute steps)
     t_encoded = Func.bin2dec(bits[11:22])
     if int(t_encoded)==2047 :
-        min_elapse = 'Default value set. Beacon has not yet obtained a location.'
+        min_elapse = 'Default value set. No encoded location is available'
     elif int(t_encoded)==2046 :
         min_elapse = '2046 minutes or more'
     else:
