@@ -1043,7 +1043,7 @@ class BeaconFGB(HexError):
                     self.tablebin.append(['76-85', str(self.bin[76:86]),  'ELT-DT Cancellation message pattern: {}'.format('1 111111010'),'Cancellation message'])
                     self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
                     if str(self.bin[107:133]) == '00111100011110000011110000': #make sure pattern is correct
-                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Cancellation message'])
+                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern valid for cancellation message', 'Cancellation message'])
                     else:
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Cancellation message wrong'])
                         self.errors.append('Invalid cancellation message')
