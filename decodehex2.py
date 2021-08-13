@@ -1045,7 +1045,7 @@ class BeaconFGB(HexError):
                     if str(self.bin[107:133]) == '00111100011110000011110000': #make sure pattern is correct
                         self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern is valid for cancellation message', 'Cancellation message'])
                     else:
-                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Cancellation message bit pattern wrong'])
+                        self.tablebin.append(['107-132', str(self.bin[107:133]), 'Bit pattern invalid','Cancellation message wrong'])
                         self.errors.append('Invalid cancellation message')
                     if int(self.bin[113:])!=0:
                         self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
