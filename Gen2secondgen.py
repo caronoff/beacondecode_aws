@@ -177,7 +177,7 @@ class SecondGen(Gen2Error):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
                                       'Spare bits',
-                                      'OK - all bits 0 and rotating field is cancellation message (unless this is a cancellation message, these bits should be set to 1'])
+                                      'OK - all bits 0 and rotating field is cancellation message (unless this is a cancellation message, these bits should be set to 1)'])
 
             elif Func.checkzeros(self.bits[141:155]) and not Func.checkones(self.bits[155:159]):
                 e= 'ERROR!- all bits 0 and rotating field is not cancellation message'
