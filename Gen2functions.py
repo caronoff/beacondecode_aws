@@ -346,7 +346,7 @@ def baudot2str(binary, chars):
         try:
             message = message + definitions.baudot[bits]
         except KeyError:
-            message = message + 'error'
+            message = message + '?'
         start += increment
         stop += increment
     return message

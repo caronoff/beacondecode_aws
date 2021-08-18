@@ -38,7 +38,7 @@ class SecondGen(Gen2Error):
         self.tablebin = []
         self.rotatingbin = []
         self.longitude=self.latitude='na'
-        self.location=(0,0)
+        self.location=('na','na')
         self.courseloc=('na','na')
         self.errors=[]
         self.warnings=[]
@@ -61,6 +61,7 @@ class SecondGen(Gen2Error):
 
             self.tablebin.append(['Left pad', pbit, '', padding])
             ##Add an additional bit to ensure that bits in array line up with bits in documentation and only include important bits 1-202
+            ## skip the ficticious first 2 bits that have no meaning other than to form 63 hex but add addtional "0" so that ranges start 1 based like documentation.
             self.bits = "0" + self.bits[2:]
             ##Add the 23 Hex ID to our table
             self.beaconHexID = self.uinSgb()
@@ -146,7 +147,7 @@ class SecondGen(Gen2Error):
             ################################
             self.vesselIDfill(0,self.bits[91:138])
 
-            ## T018 Iss.1 Rev.4 Bit 138-140 Beacon Type (previous (Bit 138-139  Beacon Type)
+            ## T018 since Iss.1 Rev.4 Bit 138-140 Beacon Type (rev.3 (Bit 138-139  Beacon Type)
             self.tablebin.append(['138-140',
                                   self.bits[138:141],
                                   'Beacon Type:',
@@ -159,7 +160,7 @@ class SecondGen(Gen2Error):
                                   Func.rls(self.bits[140])])
 
             '''
-            ##BIT 141-154 Spare bits
+            ##BIT 141-154 Spare bits These bits are all set to binary 1. For a cancellation message, these bits are all set to 0
             if Func.checkones(self.bits[141:155]) and not Func.checkones(self.bits[155:159]):
                 self.tablebin.append(['141-154',
                                       self.bits[141:155],
@@ -324,13 +325,14 @@ class SecondGen(Gen2Error):
 
 
 
-        elif len(self.bits) == 92 :
+        elif len(self.bits) == 92 or len(self.bits) == 60 :
+            ## length of 60 to permit entry of shortend 15 hex size for SGB as of version 2.03
             self.type='uin'
             ##Add an additional bit to ensure that bits in array line up with bits in documentation
             self.bits = "0" + self.bits
 
             self.latitude = self.longitude = 'No data available'
-            self.tablebin.append(['Unique ID','Second Generation','',''])
+            self.tablebin.append(['','','Bit numbers in 23 Hex Id','',definitions.moreinfo['full_message_SGB_ref']])
             self.tablebin.append(['1',
                                   self.bits[1],
                                   'SGB requires this bit value be 1',
@@ -385,14 +387,13 @@ class SecondGen(Gen2Error):
                                   'Test protocol flag:',
                                   str(self.testprotocol)])
 
-            if self.bits[45]=='1':
-                self.validhex = False
-            if self.bits[61:] == '0'*32 and self.bits[46:49]!='111':
+
+
+            if len(self.bits) == 60  and self.bits[46:49]!='111':
 
                 self.tablebin.append(['46-48', self.bits[46:49], 'Vessel ID Type',Func.getVesselid(self.bits[46:49])])
-                self.tablebin.append(['49-60', self.bits[49:61], 'Partial vessel ID', 'WARNING!! = No Identification information or truncated SGB 15 Hex  (incomplete partial vessel ID. '])
-                self.tablebin.append(['61-92', self.bits[61:], 'Remaining bits', ''])
-                #self.vesselIDfill(46, self.bits[46:93])
+                self.tablebin.append(['49-60', self.bits[49:61], 'Partial vessel ID', 'WARNING!! = Truncated SGB 15 Hex  (incomplete partial vessel ID not decoded. '])
+
             else:
             ##BIT 45-91 Aircraft / Vessel ID
                 self.vesselIDfill(45, self.bits[46:93])
@@ -481,20 +482,30 @@ class SecondGen(Gen2Error):
     def vesselIDfill(self,deduct_offset,bits):
 
 
+
         self.vesselID = bits[0:3]
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
         if self.vesselID == '111' and self.bits[43]=='0' and deduct_offset!=45:
+            # for testing message which is complete 252 bits deduct_offset is not 45
             e='ERROR! Bit 43 is 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 43 must be 1 for non-operational use.'
             self.tablebin.append(['','Vessel ID','Reserved for system testing',e])
             self.errors.append(e)
             self.validhex=False
 
         elif self.vesselID == '111' and self.bits[45] == '0' and deduct_offset == 45:
-            e = 'ERROR! Test flag bit 45 in SGB 23 Hex ID (bit 43 in full message)  set to 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 45 must be 1 for non-operational use.'
+            # for testing message which is complete 252 bits deduct_offset is 45
+            e = 'ERROR! Test flag bit 45 in SGB 23 Hex ID ( reference to bit 43 in beacon message)  set to 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 45 must be 1 for non-operational use.'
             self.tablebin.append(['', 'Vessel ID', 'Reserved for system testing', e])
             self.errors.append(e)
             self.validhex = False
 
+        # add extra zeroes if not enough bits (truncated SGB HexId)
+        #bits = bits + (47 - len(bits)) * "0"
+        if len(bits)<47:
+            self.tablebin.append([self.bitlabel(49, 60, 0),
+                                  bits[3:],
+                                  'Truncated Vessel Id field:', 'Truncated  Vessel Id cannot be decoded since Hex ID is incomplete'])
+            return
 
         ##############################################
         # Vessel 0: No aircraft or maritime identity #
@@ -508,9 +519,9 @@ class SecondGen(Gen2Error):
                 self.tablebin.append([self.bitlabel(94,137,deduct_offset),
                                       bits[3:47],
                                       'Vessel ID',
-                                      'With vessel id type set to none (000), bits 94-137 all 0. Valid'])
+                                      'For Vessel Id type value 000, bits 94-137 or bit 46-92 in 23 Hex Id normally set to zero'])
             else:
-                e='Warning: With Vessel ID type set to none (000), bits 94-137 should be all 0 (unless national assigned)'
+                e='Warning: For Vessel Id type value 000, bits 94-137 or bit 46-92 in 23 Hex Id should be set to zero'
                 self.tablebin.append([self.bitlabel(94, 137,deduct_offset),
                                       bits[3:47],
                                       'Vessel ID',
@@ -586,7 +597,7 @@ class SecondGen(Gen2Error):
                                   status_check])
 
         #########################################################
-        # Vessel 3: Aricraft Registration Marking (Tail Number) #
+        # Vessel 3: Aircraft Registration Marking (Tail Number) #
         #########################################################
         elif self.vesselID == '011':
             self.tailnum = Func.getTailNum(bits[3:45])
@@ -595,11 +606,14 @@ class SecondGen(Gen2Error):
                                   bits[3:45],
                                   'Aircraft Registration Marking:',
                                   self.tailnum])
+            if '?' in self.tailnum:
+                self.errors.append('Invalid bits in Aircraft operator')
             if bits[45:47]=='00':
                 status_check = 'OK'
             else:
                 status_check = 'ERROR'
                 self.validhex = False
+                self.errors.append('Last two bits in Aircraft Registration Marking field should be set to 00')
             self.tablebin.append([self.bitlabel(136,137,deduct_offset),
                                   bits[45:47],
                                   'Spare should be 00',
@@ -657,6 +671,8 @@ class SecondGen(Gen2Error):
                                   bits[3:18],
                                   'Aircraft operator designator:',
                                   self.operator])
+            if '?' in self.operator:
+                self.errors.append('Invalid bits in Aircraft operator')
             self.tablebin.append([self.bitlabel(109,120,deduct_offset),
                                   bits[21:33],
                                   'Aircraft serial number:',
@@ -668,9 +684,10 @@ class SecondGen(Gen2Error):
             else:
                 status_check = 'ERROR'
                 self.validhex = False
+                self.errors.append('Spare 17 bits should be 1')
             self.tablebin.append([self.bitlabel(124,137,deduct_offset),
                                   bits[33:47],
-                                  'Spare 17 bits all should be 1',
+                                  'Remaining 17 Bits are spare and be encoded all as 1 for reference bits 94-137 (bits 79-92 in 23 HexId) for Aircraft Operator Desigator type',
                                   status_check])
 
         elif self.vesselID == '111' and self.bits[43]=='1':
@@ -683,6 +700,7 @@ class SecondGen(Gen2Error):
                                   bits[3:47],
                                   'Vessel ID',
                                   'Reserved for system testing'])
+            self.errors.append('Vessel type 111 reserved for system testing and test protocol bit 43 is 0 and should be 1.')
         elif self.vesselID == '110':
             e='ERROR! Vessel ID type 110 not defined by T.018.  Should not be used'
             self.tablebin.append([self.bitlabel(94, 137, deduct_offset),

@@ -1,4 +1,116 @@
-moreinfo = {'sgb_radio_callsign': ('sgb_radio_callsign',
+moreinfo = {'full_message_SGB_ref':('full_message_SGB_ref',
+                                    '''
+<strong>23 Hex ID bits map to the respective bits in the complete beacon message per table below:</strong>
+<br>
+<br>
+<br>
+<table>
+  <tr>
+    <th>23 Hex ID Bit</th>
+    <th>No Bits</th>
+    <th>Bits Full Message</th>
+    <th>Data Content</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>1</td>
+    <td>n/a</td>
+    <td>Binary '1'</td>
+  </tr>
+  
+   <tr>
+    <td>2 to 11</td>
+    <td>10</td>
+    <td>31 to 40</td>
+    <td>Country Code</td>
+  </tr>
+  
+  
+   <tr>
+    <td>12</td>
+    <td>1</td>
+    <td>n/a</td>
+    <td>Binary '1'</td>
+  </tr>
+  
+   <tr>
+    <td>13</td>
+    <td>1</td>
+    <td>n/a</td>
+    <td>Binary '0'</td>
+  </tr>
+  
+   <tr>
+    <td>14</td>
+    <td>1</td>
+    <td>n/a</td>
+    <td>Binary '1'</td>
+  </tr>
+  
+   <tr>
+    <td>15-30</td>
+    <td>16</td>
+    <td>1-16</td>
+    <td>C/S TAC No</td>
+  </tr>
+  
+  
+   <tr>
+    <td>31-44</td>
+    <td>14</td>
+    <td>17-30</td>
+    <td>Bcn S/N</td>
+  </tr>
+  
+  
+   <tr>
+    <td>45</td>
+    <td>1</td>
+    <td>43</td>
+    <td>Test Protocol</td>
+  </tr>
+  
+  
+   <tr>
+    <td>46-48</td>
+    <td>3</td>
+    <td>91-93</td>
+    <td>Vessel Id Type</td>
+  </tr>
+  
+  
+   <tr>
+    <td>49-92</td>
+    <td>44</td>
+    <td>94-137</td>
+    <td>Vessel Id</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  
+   <tr>
+    <td>Total</td>
+    <td>92</td>
+    <td></td>
+    <td>23 Hex Id</td>
+  </tr>
+  
+</table>
+
+
+
+
+
+'''),
+
+
+
+
+    'sgb_radio_callsign': ('sgb_radio_callsign',
                                    '''The Radio call sign binary data is decoded using the modified-Baudot code shown in Table 3.1a of document T.018. This enables 7 characters to be encoded with 6 bits per character using only 42 bits (6x7=42).
                                      The two highest bits are spare and shall be coded as 00. This data will be left justified
                                     with a modified-Baudot space (100100) being used where no character exists. 

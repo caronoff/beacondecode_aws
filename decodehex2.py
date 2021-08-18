@@ -1148,14 +1148,14 @@ class BeaconFGB(HexError):
 
 class Beacon(HexError):
     def __init__(self,hexcode):
-        genmsgdic={'63':'The code consists of 63 hexadecimal characters representing a 252 bit messgage format from a second generation beacon, including 48 bits of BCH error correcting bit as defined by T.018 Issue 1 - Rev.4.',
-                   '15sgb':'The code consists of 15 hexadecimal characters representing a truncated 23 Hex ID for an SGB as defined by T.018 Issue 1 - Rev.4.',
+        genmsgdic={'63':'The code consists of 63 hexadecimal characters representing a 252 bit messgage format from a second generation beacon, including 48 bits of BCH error correcting bit as defined by T.018 Issue 1 - Rev.8.',
+                   '15sgb':'The code consists of first 15 hexadecimal characters of Hex ID for an SGB.  Due to ignored last 8 hex characters, vehicle identification cannot be decoded as per specification in T.018 - Issue 1. Rev.8. ',
                    '22':'The code consists of 22 hexadecimal characters representing a first gerneration beacon short message as defined by T.001 Issue 4 - Rev.6).',
                    '22long': 'The code consists of 22 hexadecimal characters representing a first generation beacon message with a Long format flag(30 hex trunctated to 22 excluding BCH-2).  Forrmat specifications are defined by T.001 Issue 4 - Rev.6).',
                    '30short': 'The code consists of 30 hexadecimal characters representing a first generation beacon message with format flag set to Short.   FGB short message format specifications 22 hex and truncate last 8 hex digits (as per T.001 Issue 4 - Rev.6).',
                    '15':'Hex data entered is a 15 Hex ID unique identifier based on FGB specifications (as per T.001 Issue 4 - Rev.5).',
-                   '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.4).',
-                   '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.4).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
+                   '23': 'Hex data length of 23 consistent with Hex unique identifier based on SGB specifications (as per T.018 Issue 1 - Rev.8).',
+                   '51': 'Hex data entered is a length of 51 characters representing a 204 bit (00 + 202 bit) consistent with SGB specifications, excluding BCH (as per T.018 Issue 1 - Rev.8).  The decoded message below computes the BCH portion of the message and associated hex characters for information purposes.',
                    '30':'Hex data length of 30 forms complete 30 hex message consistent with FGB long message format specifications (as per T.001 Issue 4 - Rev.6).',
                    '28': 'Hex data length of 28 character hexadecimal consistent with first generation beacon short message format specifications including 24 bit(6hex) framesynch prefix as defined by T.001 Issue 4 - Rev.6 Section 2.2.2.4.',
                    '28long': 'The code consists of 28 hexadecimal characters representing a first generation beacon message with the format flag set to Long including bit and frame synchronization pattern as defined by T.001 Issue 4 - Rev.6.',
@@ -1182,7 +1182,7 @@ class Beacon(HexError):
         elif len(hexcode) == 15:
             if Fcn.hextobin(hexcode)[0]=='1' and Fcn.hextobin(hexcode)[11:14]=='101':
                 self.gentype = 'secondtruncated'
-                beacon = Gen2.SecondGen(hexcode+8*'0')
+                beacon = Gen2.SecondGen(hexcode) # version 2.02 was padded with 8*'0' to make 23 size
                 self.genmsg = genmsgdic['15sgb']
             else:
                 self.gentype = 'first'
