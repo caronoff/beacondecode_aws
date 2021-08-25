@@ -2,6 +2,7 @@
 #print("Content-Type: text/html\n")
 #print()
 import decodefunctions as Fcn
+import Gen2functions as Func
 ### -*- coding: utf-8 -*-
 import Gen2secondgen as Gen2
 import definitions
@@ -10,6 +11,8 @@ import bch1correct as bch1
 import bch2correct as bch2
 
 
+
+UIN = 'unique hexadecimal ID'
 BCH1='BCH-1 error correcting code'
 BCH2='BCH-2 error correcting code'
 BCH_ERRORS_PRESENT ='BCH errors present in message'
@@ -132,6 +135,7 @@ class BeaconFGB(HexError):
         self.hex = str(strhex)
         self.count = 1
         self._loc = False
+        self.cancellation = False
         self.tablebin = []
         self.type=''
         self.tac=''
@@ -282,7 +286,18 @@ class BeaconFGB(HexError):
             return 'Normal b:16-24: 0 0010 1111'
         return self.bin[16:25]
 
-        
+    def bchmatch(self):
+        e='No errors'
+        e1=e2=""
+        if len(self.bin) >= 60 and (self.bch.bch1errors > 0 or self.bch.bch2errors > 0) :
+            e=''
+            if (self.bch.bch1errors > 0):
+                e1='COMPUTED BCH1 DOES NOT MATCH ENCODED BCH1!!'
+            elif (self.bch.bch2errors > 0):
+                e2='COMPUTED BCH2 DOES NOT MATCH ENCODED BCH2!!'
+        return e + e1 + ":" +e2
+
+
     def get_country(self):
         return Country(self.bin[27:37]).cname
 
@@ -938,6 +953,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','{}'.format(tano),definitions.moreinfo['rls_trunc']])
                 self.tablebin.append(['', '', 'RLS TAC included missing leading digit prefix', '{}{}'.format(trunc,tano)])
+                tano ='RLS: {}+{}'.format(trunc,tano)
                 self._sn=str(Fcn.bin2dec(self.bin[53:67])).zfill(5)
                 self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(self._sn)])
 
@@ -1039,6 +1055,7 @@ class BeaconFGB(HexError):
 
             if self.type!='uin':
                 if str(self.bin[67:86]) == '1111110101111111010': #type is ELT-DT cancellation message
+                    self.cancellation = True
                     self.tablebin.append(['67-75', str(self.bin[67:76]), 'ELT-DT Cancellation message pattern: {}'.format('1 11111010'),'Cancellation message'])
                     self.tablebin.append(['76-85', str(self.bin[76:86]),  'ELT-DT Cancellation message pattern: {}'.format('1 111111010'),'Cancellation message'])
                     self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
@@ -1138,7 +1155,7 @@ class BeaconFGB(HexError):
             self.latitude= a
             self.longitude = b
         else:
-            self.location = (0, 0)
+            self.location = ('NA', 'NA')
             self.latitude = 0
             self.longitude = 0
         self._btype=btype
@@ -1232,6 +1249,7 @@ class Beacon(HexError):
 
 
         self.beacon=beacon
+        self.cancellation = self.beacon.cancellation
         self.latitude=self.beacon.latitude
         self.longitude=self.beacon.longitude
         self.location=self.beacon.location
@@ -1251,6 +1269,18 @@ class Beacon(HexError):
         else:
             return True
 
+    def lat(self):
+        if self.has_loc():
+            return self.beacon.latitude
+        else:
+            return "n/a"
+
+    def long(self):
+        if self.has_loc():
+            return self.beacon.longitude
+        else:
+            return "n/a"
+
     def btype(self):
         return self.beacon.btype()
 
@@ -1258,7 +1288,7 @@ class Beacon(HexError):
         return self.beacon.hexuin()
 
     def bchmatch(self):
-        return self.beacon.bchmatch()
+        return  self.beacon.bchmatch()
 
     def gettac(self):
         return self.beacon.gettac()

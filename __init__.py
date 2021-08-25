@@ -10,6 +10,7 @@ from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
 import re
 import os
 import contacts
@@ -94,7 +95,6 @@ class LoginForm(Form):
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
         self.user = None
-
 
 
 class RegistrationForm(Form):
@@ -194,9 +194,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-
-
-
 @app.route("/adduser", methods=["GET", "POST"])
 def home():
     users = None
@@ -210,7 +207,6 @@ def home():
             print(e)
     users = Userlogin.query.all()
     return render_template("users.html", users=users)
-
 
 
 @app.route('/validatehex', methods=['GET'])
@@ -524,6 +520,122 @@ def decode():
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
+
+
+def decoded_beacon(hexcode,fieldlst=[]):
+
+    try:
+        beacon = decodehex2.Beacon(hexcode)
+        #res = db.get_item(Key={'id': 'counter'})
+        #value = res['Item']['counter_value'] + 1
+        #res = db.update_item(Key={'id': 'counter'}, UpdateExpression='set counter_value=:value',
+        #                     ExpressionAttributeValues={':value': value}, )
+        #hextable.put_item(Item={'entry_id': str(value), 'hexcode': hexcode, })
+    except decodehex2.HexError as err:
+        return {'error':[err.value, err.message]}
+    if beacon.errors:
+        has_errors=True
+    else:
+        has_errors=False
+
+    decodedic={    'country':beacon.get_country()
+                }
+
+
+    dispatch = {'hexcode':hexcode,
+                'has_errors':has_errors,
+                'country': beacon.get_country(),
+                'msgtype':beacon.type,
+                'tac':beacon.gettac(),
+                'lat':beacon.lat(),
+                'long':beacon.long(),
+                'beacontype':beacon.btype(),
+                'first_or_second_gen':beacon.gentype,
+                'errors' : beacon.errors,
+                'mid':beacon.get_mid(),
+                'cancellation': beacon.cancellation,
+                'msg_note':beacon.genmsg,
+                'loc_prot_fixed_bits':beacon.fbits(),
+                'protocol_type':beacon.loctype(),
+                'uin':beacon.hexuin(),
+                'location':'{}, {}'.format(beacon.location[0], beacon.location[1]),
+                'bch_match': beacon.bchmatch(),
+                'bch_correct' : bch_check(hexcode),
+                'bch_recompute' : bch_recalc(hexcode),
+                'bch1_binarycalc':bch1_binarycalc(hexcode),
+                'bch2_binarycalc':bch2_binarycalc(hexcode),
+                'kitchen_sink': beacon.tablebin
+            }
+    for fld in fieldlst:
+        if dispatch.__contains__(fld):
+            decodedic[fld]=dispatch[fld]
+        else:
+            decodedic[fld] = '{} does not exist'.format(fld)
+
+    return decodedic
+
+
+@app.route('/json', methods=['PUT'])
+def jsonhex2():
+    #start = timeit.timeit()
+    decodelst=[]
+    decodedic = {}
+    item={}
+    fieldlst= []
+    req_data = request.get_json()
+    if type(req_data)== list:
+        hexcode = req_data
+    elif type(req_data) == dict:
+        try:
+            hexcode = req_data['hexcode']
+        except KeyError:
+            return jsonify(error=['bad json header request', 'hexcode key not found'])
+        try:
+            fieldlst= req_data['decode_flds']
+            if type(fieldlst)==str:
+                fieldlst =[req_data['decode_flds']]
+
+        except KeyError:
+            pass
+
+    else:
+        return jsonify(error=['bad json header request','hexcode key not found'])
+
+    if type(hexcode)==str:
+        item=decoded_beacon(hexcode,fieldlst)
+        item['inputmessage']=hexcode
+        decodelst.append(item)
+
+
+    elif type(hexcode)==list:
+        i=0
+        for h in hexcode:
+            item={}
+
+            i+=1
+
+            try:
+                item = decoded_beacon(h, fieldlst)
+                item['inputmessage'] = h
+
+
+
+            except TypeError:
+                item = decoded_beacon(str(h), fieldlst)
+                item['inputmessage'] = str(h)
+
+            except KeyError:
+                item={}
+                item['error'] = 'bad hexcode key'
+                item['inputmessage'] = h
+
+
+            decodelst.append(item)
+
+    #end = timeit.timeit()
+    #decodelst.append({'seconds': str(end - start)})
+    #print(end,start,str(end - start))
+    return jsonify(decodelst)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'

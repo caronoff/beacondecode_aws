@@ -24,6 +24,7 @@ class SecondGen(Gen2Error):
     def __init__(self, hexCode=None):
         self.bits = '0' * 252
         self.validhex=True
+        self.cancellation = False
         if hexCode:
             self.processHex(hexCode)
 
@@ -264,7 +265,7 @@ class SecondGen(Gen2Error):
                                       'Rotating Field Type:',
                                       '(#15) Cancellation Message'])
                 self.rotatingbin = rotating.rotating15(self.bits[155:203])
-
+                self.cancellation = True
 
             ##################################
             # All other rotating fields spare #
@@ -650,9 +651,8 @@ class SecondGen(Gen2Error):
 
 
             self.operator = Func.baudotshort2str(bits[3:18], 3)
-            self._id=self.operator
-            self._id = 'Aircraft Operator: {} Aircraft Serial No. #{}'.format(self.operator, Func.bin2dec(bits[21:33]))
-            #self.SerialNum = Func.bin2dec(bits[21:33])
+            self._id='Aircraft Operator: {} Aircraft Serial No. #{}'.format(self.operator,Func.bin2dec(bits[21:33]))
+            # self.SerialNum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,108,deduct_offset),
                                   bits[3:18],
                                   'Aircraft operator designator:',
