@@ -38,6 +38,7 @@ class SecondGen(Gen2Error):
         self.bchstring = ''
         self.tablebin = []
         self.rotatingbin = []
+        self.threeletter = 'na'
         self.longitude=self.latitude='na'
         self.location=(0,0)
         self.courseloc=('na','na')
@@ -477,7 +478,7 @@ class SecondGen(Gen2Error):
         if self.type!='uin':
             return Func.getBeaconType(self.bits[138:141])
         else:
-            return 'UIN Of Type: {}'.format(Func.getVesselid(self.bits[46:49]))
+            return 'UIN of Type: {}'.format(Func.getVesselid(self.bits[46:49]))
 
     def vesselIDfill(self,deduct_offset,bits):
 
@@ -624,7 +625,7 @@ class SecondGen(Gen2Error):
                                       status_check])
 
             elif not Func.checkzeros(bits[27:47]):
-                self.operator = Func.baudotshort2str(bits[27:42], 3)
+                self.operator = self.threeletter = Func.baudotshort2str(bits[27:42], 3)
                 self.tablebin.append([self.bitlabel(138, 152, deduct_offset+20),
                                       bits[27:42],
                                       'Aircraft operator designator:',
@@ -650,7 +651,8 @@ class SecondGen(Gen2Error):
         elif self.vesselID == '101':
 
 
-            self.operator = Func.baudotshort2str(bits[3:18], 3)
+            self.operator = self.threeletter = Func.baudotshort2str(bits[3:18], 3)
+
             self._id='Aircraft Operator: {} Aircraft Serial No. #{}'.format(self.operator,Func.bin2dec(bits[21:33]))
             # self.SerialNum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,108,deduct_offset),
@@ -703,7 +705,7 @@ class SecondGen(Gen2Error):
         return self._id
 
     def loctype(self):
-        return 'SGB'
+        return 'SGB: {} '.format(Func.getVesselid(self.vesselID))
 
     def get_country(self):
         return str(self.countryCode) + ' ' + str(self.countryName)

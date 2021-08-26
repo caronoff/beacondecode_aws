@@ -562,6 +562,10 @@ def decoded_beacon(hexcode,fieldlst=[]):
                 'bch_match': beacon.bchmatch(),
                 'bch_correct' : bch_check(hexcode),
                 'bch_recompute' : bch_recalc(hexcode),
+                'beacon_id' : beacon.get_id(),
+                'vessel_id' : beacon.get_id(),
+                'beacon_sn' : beacon.get_sn(),
+                '3ld' : beacon.threeletter,
                 'bch1_binarycalc':bch1_binarycalc(hexcode),
                 'bch2_binarycalc':bch2_binarycalc(hexcode),
                 'kitchen_sink': beacon.tablebin
