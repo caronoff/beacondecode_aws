@@ -1085,8 +1085,7 @@ class BeaconFGB(HexError):
                     meansbin = str(self.bin[107:109])
                     self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
                     enc_altbin=str(self.bin[109:113])
-                    enc_altstr='altitude is greater than {} up to and including {}'.format(definitions.enc_alt[enc_altbin][0],definitions.enc_alt[enc_altbin][1])
-                    self.tablebin.append(['109-112',enc_altbin,'encoded altitude',enc_altstr])
+                    self.tablebin.append(['109-112',enc_altbin,'encoded altitude',definitions.enc_alt[enc_altbin]])
                     finallat=finallng='Not Used'
                     enc_loc_fresh = {'00':'PDF-2 rotating field indicator',
                                      '01':'Encoded location in message more than 60 seconds old or the default encoded position is transmitted',

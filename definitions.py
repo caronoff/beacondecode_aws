@@ -780,23 +780,25 @@ dataflag110 = {'0':'Result of bits 113 to 132 defined nationally',
 enc_delta_posflag = {'0':'Encoded position data is provided by an external navigation device',
                      '1':'Encoded position data is provided by an internal navigation device'}
 
+ALTGREAT='Altitude is greater than'
+ALTLESS='up to and including'
 
-enc_alt = {'0000':['0', '400 m (1312 ft)'],
-           '0001':['400 m (1312 ft)', '800 m (2625 ft)'],
-           '0010':['800 m (2625 ft)', '1200 m (3937 ft)'],
-           '0011':['1200 m (3937 ft)', '1600 m (5249 ft)'],
-           '0100':['1600 m (5249 ft)', '2200 m (7218 ft)'],
-           '0101':['2200 m (7218 ft)', '2800 m (9186 ft)'],
-           '0110':['2800 m (9186 ft)', '3400 m (11155 ft)'],
-           '0111':['3400 m (11155 ft)', '4000 m (13123 ft)'],
-           '1000':['4000 m (13123 ft)', '4800 m (15748 ft)'],
-           '1001':['4800 m (15748 ft)', '5600 m (18373 ft)'],
-           '1010':['5600 m (18373 ft)', '6600 m (21654 ft)'],
-           '1011':['6600 m (21654 ft)', '7600 m (24934 ft)'],
-           '1100':['7600 m (24934 ft)', '8800 m (28871 ft)'],
-           '1101':['8800 m (28871 ft)', '10000 m (32808 ft)'],
-           '1110':['10000 m (32808 ft)', 'greater'],
-           '1111':['not available', 'not available']
+enc_alt = {'0000':'altitude is less than or equal to 400 m (1312 ft)',
+           '0001':'{} {} {} {}'.format(ALTGREAT,'400 m (1312 ft)',ALTLESS,'800 m (2625 ft)'),
+           '0010':'{} {} {} {}'.format(ALTGREAT,'800 m (2625 ft)',ALTLESS,'1200 m (3937 ft)'),
+           '0011':'{} {} {} {}'.format(ALTGREAT,'1200 m (3937 ft)',ALTLESS,'1600 m (5249 ft)'),
+           '0100':'{} {} {} {}'.format(ALTGREAT,'1600 m (5249 ft)',ALTLESS,'2200 m (7218 ft)'),
+           '0101':'{} {} {} {}'.format(ALTGREAT,'2200 m (7218 ft)',ALTLESS,'2800 m (9186 ft)'),
+           '0110':'{} {} {} {}'.format(ALTGREAT,'2800 m (9186 ft)',ALTLESS,'3400 m (11155 ft)'),
+           '0111':'{} {} {} {}'.format(ALTGREAT,'3400 m (11155 ft)',ALTLESS,'4000 m (13123 ft)'),
+           '1000':'{} {} {} {}'.format(ALTGREAT,'4000 m (13123 ft)',ALTLESS,'4800 m (15748 ft)'),
+           '1001':'{} {} {} {}'.format(ALTGREAT,'4800 m (15748 ft)',ALTLESS,'5600 m (18373 ft)'),
+           '1010':'{} {} {} {}'.format(ALTGREAT,'5600 m (18373 ft)',ALTLESS,'6600 m (21654 ft)'),
+           '1011':'{} {} {} {}'.format(ALTGREAT,'6600 m (21654 ft)',ALTLESS,'7600 m (24934 ft)'),
+           '1100':'{} {} {} {}'.format(ALTGREAT,'7600 m (24934 ft)',ALTLESS,'8800 m (28871 ft)'),
+           '1101':'{} {} {} {}'.format(ALTGREAT,'8800 m (28871 ft)',ALTLESS,'10000 m (32808 ft)'),
+           '1110': 'altitude is greater than 10000 m (32808 ft)',
+           '1111': 'default value - altitude information is not available'
           }
 
 
