@@ -39,6 +39,7 @@ class SecondGen(Gen2Error):
         self.tablebin = []
         self.rotatingbin = []
         self.threeletter = 'na'
+        self.altitude ='na'
         self.longitude=self.latitude='na'
         self.location=(0,0)
         self.courseloc=('na','na')
@@ -230,7 +231,7 @@ class SecondGen(Gen2Error):
                                       'Rotating Field Type:',
                                       '(#1) ELT(DT) In-flight Emergency'])
                 self.rotatingbin = rotating.rotating1(self.bits[155:203])
-
+                self.altitude = Func.getaltitude(self.bits[176:186])
 
             #########################
             # Rotating Field 2: RLS  #

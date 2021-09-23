@@ -128,6 +128,7 @@ class BeaconFGB(HexError):
         self.location = ('na', 'na')
         self.latitude='na'
         self.threeletter ='na'
+        self.altitude = 'na'
         self.errors=[]
         self.warnings=[]
         self.typeapproval=('','','na')
@@ -1085,7 +1086,8 @@ class BeaconFGB(HexError):
                     meansbin = str(self.bin[107:109])
                     self.tablebin.append(['107-108',meansbin,'means of activation',means[meansbin]])
                     enc_altbin=str(self.bin[109:113])
-                    self.tablebin.append(['109-112',enc_altbin,'encoded altitude',definitions.enc_alt[enc_altbin]])
+                    self.altitude = definitions.enc_alt[enc_altbin]
+                    self.tablebin.append(['109-112',enc_altbin,'encoded altitude',self.altitude])
                     finallat=finallng='Not Used'
                     enc_loc_fresh = {'00':'PDF-2 rotating field indicator',
                                      '01':'Encoded location in message more than 60 seconds old or the default encoded position is transmitted',
@@ -1262,6 +1264,7 @@ class Beacon(HexError):
         self.type = self.beacon.type
         self.errors = self.beacon.errors
         self.threeletter = self.beacon.threeletter
+        self.altitude = self.beacon.altitude
         self.warnings = self.beacon.warnings
 
     def has_loc(self):
