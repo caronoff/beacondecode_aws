@@ -495,9 +495,10 @@ class BeaconFGB(HexError):
             """
             self.tablebin.append(['40-81',str(self.bin[40:82]), orbitspec,Fcn.baudot(self.bin,40,82)])
             self.tablebin.append(['82-85', str(self.bin[82:86]), 'Defined as 4 binary 0 by T.006', ''])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
-            self.tablebin.append(['107', str(self.bin[107]), 'National use defined by T.006', 'Set bit to 0'])
-            self.tablebin.append(['108-112', str(self.bin[108:113]), 'National use defined by T.006', 'National use'])
+            if self.type!='uin':
+                self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+                self.tablebin.append(['107', str(self.bin[107]), 'National use defined by T.006', 'Set bit to 0'])
+                self.tablebin.append(['108-112', str(self.bin[108:113]), 'National use defined by T.006', 'National use'])
             if self.type not in ['uin','Short Msg']:
                 self.tablebin.append(['113-144',str(self.bin[113:]),'Optional long message','Reserved for national use'])
                 #if int(self.bin[113:])!=0 :
