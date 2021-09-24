@@ -849,6 +849,12 @@ beacon_distress_type = {'00':'Distress',
                '10':'Distress',
                '11':'RLS Test Protocol'}
 
+system_beacon_type = {65535:'Calibration beadon',
+                      65534: 'QMS beacon',
+                      65533: 'reference beacon (other than QMS beacon)',
+                      65532: 'beacon simulator'
+
+}
 
 beacon_type = {'000':'ELT (excludes ELT(DT))',
                '001':'EPIRB',

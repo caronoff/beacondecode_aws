@@ -11,6 +11,8 @@ import writebch
 import definitions
 
 
+
+
 class Gen2Error(Exception):
     def __init__(self, value, message):
         self.value = value
@@ -44,6 +46,7 @@ class SecondGen(Gen2Error):
         self.location=(0,0)
         self.courseloc=('na','na')
         self.errors=[]
+        self.systembeacon=False
         self.warnings=[]
         self.fixedbits = ''
         self.testprotocol=''
@@ -75,14 +78,8 @@ class SecondGen(Gen2Error):
 
             self.tac = Func.bin2dec(self.bits[1:17])
 
-            if self.tac<10000:
-                warn='# {} Warning:  SGB specifications stipulate TAC No should be greater than 10,000'.format(self.tac)
-                self.warnings.append('TAC ' + warn)
-            elif self.tac> 65520:
-                warn='# {} - System beacon'.format(self.tac)
+            warn = self.check_tac()
 
-            else:
-                warn='# {}'.format(self.tac)
             self.tablebin.append(['1-16',
                                   self.bits[1:17],
                                   'Type Approval Cert No: ',
@@ -365,12 +362,7 @@ class SecondGen(Gen2Error):
                                   status_check])
             ##BIT 15-30  Type Approval Certificate #
             self.tac = Func.bin2dec(self.bits[15:31])
-            if self.tac<10000:
-                warn='Type Approval # {} :: WARNING! SGB specifications requires TAC No >=10,000'.format(self.tac)
-                self.validhex = False
-                self.errors.append(warn)
-            else:
-                warn=str(self.tac)
+            warn = self.check_tac()
             self.tablebin.append(['15-30',
                                   self.bits[15:31],
                                   'Type Approval Cert No: ',
@@ -418,6 +410,25 @@ class SecondGen(Gen2Error):
                          + '\nLength of First Gen Beacon Hex String must be 15, 22 or 30'
                          + '\nLength of Second Gen Beacon Bit String must be 204 or 252 bits')
             raise Gen2Error('LengthError', self.type)
+
+    def check_tac(self):
+        if self.tac < 10000:
+            msg = 'TAC # {} Warning:  SGB specifications stipulate TAC No should be greater than 10,000'.format(self.tac)
+            self.warnings.append(msg)
+
+        elif self.tac > 65531:
+            msg = 'TAC # {} - System beacon for {}'.format(self.tac, definitions.system_beacon_type[self.tac])
+            self.systembeacon = True
+            self.warnings.append(msg)
+            if len(self.bits)>93:
+                if self.bits[138:141] != '111':
+                    self.errors.append('Beacon type bits 138-140 not 111 - required for System Beacon')
+                if self.bits[141:155] != '11111111111111':
+                    self.errors.append('Spare bits 141-154 not 11111111111111 - required for System Beacon')
+        else:
+            msg = 'TAC # {}'.format(self.tac)
+        return msg
+
 
     def testmsg(self):
         return (Func.selfTest(self.bits[42]),Func.testProtocol(self.bits[43]))
@@ -498,6 +509,10 @@ class SecondGen(Gen2Error):
             self.errors.append(e)
             self.validhex = False
 
+        elif self.vesselID == '111' and not self.systembeacon:
+            e = 'ERROR! Vessel ID bits are set to 111 requires TAC in Sysetm Beacon range 65,532 or higher'
+            self.errors.append(e)
+            self.validhex = False
 
         ##############################################
         # Vessel 0: No aircraft or maritime identity #

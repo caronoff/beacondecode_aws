@@ -263,13 +263,15 @@ class BeaconFGB(HexError):
             self.userProtocol()
 
         if protocolflag == '0' and self.type == SHORT_MSG:
-            self.tablebin.append(['Inconsistent', 'Error', 'Incomplete', 'Location protocol bit pattern with short message not allowed'])
+            e='Location protocol (bit 26 is 0) for short message not allowed'
+            self.errors.append(e)
+            #self.tablebin.append(['Inconsistent', 'Error', 'Incomplete', e])
             self.type=SHORT_OR_LONG_MSG
             self.bch = Bch(self.bin, self.type)
             self.locationProtocol()
 
         elif protocolflag == '1' and self.type == SHORT_MSG:
-            self.tablebin.append(['Short Message type', '', '', ''])
+            #self.tablebin.append(['Short Message type', '', '', ''])
             self.bch = Bch(self.bin, self.type)
             self.userProtocol()
 
@@ -363,7 +365,8 @@ class BeaconFGB(HexError):
         self.encpos='na'
         btype='Unknown Beacon'
         tano='na'
-        if self.bch.bch1errors > 0 or ((self.bch.bch2errors>0) and len(self.strhex)>28):
+        typeuserprotbin = self.bin[37:40]
+        if (self.bch.bch1errors > 0 or self.bch.bch2errors>0) and len(self.strhex)>28 and typeuserprotbin!='000':
             self.errors.append(BCH_ERRORS_PRESENT)
 
         #############################################################################
@@ -371,7 +374,7 @@ class BeaconFGB(HexError):
         #       011:    Serial User Protocol                                        #
         #############################################################################
 
-        typeuserprotbin=self.bin[37:40]
+
         self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
         self._protocol=('Protocol Flag (Bit 26) :'+ self.bin[26],
@@ -485,12 +488,20 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code',definitions.userprottype[typeuserprotbin]])
             btype='Orbitography beacon'
             self._id=str(Fcn.bin2hex(self.bin[40:88]))
-            self.tablebin.append(['40-85',str(self.bin[40:86]),'Identification',self._id])
-            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1,str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            orbitspec="""
+            Seven character orbitography beacon clear text identifier using the modified 
+            Baudot code (see C/S T.001). The seven characters shall be right justified. 
+            Characters not used shall be filled with the "space" character (100100)
+            """
+            self.tablebin.append(['40-81',str(self.bin[40:82]), orbitspec,Fcn.baudot(self.bin,40,82)])
+            self.tablebin.append(['82-85', str(self.bin[82:86]), 'Defined as 4 binary 0 by T.006', ''])
+            self.tablebin.append(['86-106',str(self.bin[86:107]),BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
+            self.tablebin.append(['107', str(self.bin[107]), 'National use defined by T.006', 'Set bit to 0'])
+            self.tablebin.append(['108-112', str(self.bin[108:113]), 'National use defined by T.006', 'National use'])
             if self.type not in ['uin','Short Msg']:
-                self.tablebin.append(['107-132',str(self.bin[107:133]),'Reserved','Reserved for national use'])
-                if int(self.bin[113:])!=0 :
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2,str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                self.tablebin.append(['113-144',str(self.bin[113:]),'Optional long message','Reserved for national use'])
+                #if int(self.bin[113:])!=0 :
+                #    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2,str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
         #############################################################################
@@ -644,7 +655,7 @@ class BeaconFGB(HexError):
         self._btype=btype
         self.tac=str(tano)
 
-        if self.type == 'Short Msg':
+        if self.type == 'Short Msg' and typeuserprotbin!='000':
             self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
             self.tablebin.append(['107-112', str(self.bin[107:113]), 'Emergency code string', 'See below'])
             emergencycodeflag=str(self.bin[107])
