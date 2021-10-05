@@ -687,9 +687,9 @@ def sign_s3():
   presigned_post = s3.generate_presigned_post(
     Bucket = S3_BUCKET,
     Key = file_name,
-    Fields = {"acl": "public-read", "Content-Type": file_type},
+    Fields = { "Content-Type": file_type}, #"acl": "public-read",
     Conditions = [
-      {"acl": "public-read"},
+      #{"acl": "public-read"},
       {"Content-Type": file_type}
     ],
     ExpiresIn = 3600
@@ -701,6 +701,28 @@ def sign_s3():
     'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
   })
 
+@app.route('/sign-s3-target/')
+def sign_s3_target():
+  # Load necessary information into the application
+  S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
+
+  # Load required data from the request
+  file_name = request.args.get('file-name')
+
+
+  # Initialise the S3 client
+  s3 = boto3.client('s3')
+
+  # Generate and return the presigned URL
+  presigned = s3.generate_presigned_url('get_object',
+                                                    Params={'Bucket': S3_BUCKET_TARGET,
+                                                            'Key': file_name},
+                                                    ExpiresIn=3600)
+
+
+  # Return the data to the client
+
+  return json.dumps(presigned)
 
 
 if __name__ == "__main__":

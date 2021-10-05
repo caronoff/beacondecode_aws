@@ -9,15 +9,16 @@
 
     <input type="file" id="file-input">
     <p id="status">Please select a file</p>
-    <img style="border:1px solid gray;width:300px;" id="preview" src="/static/media/default.png">
+
 
     <h2>Your information</h2>
 
     <form method="POST" action="/submit-form/">
-      <input type="hidden" id="avatar-url" name="avatar-url" value="/static/media/default.png">
+
       <input type="text" name="username" placeholder="Username"><br>
       <input type="text" name="full-name" placeholder="Full name"><br><br>
-
+    <a id="download-url" href="" download >
+      <h2>Download file</h2></a>
       <hr>
       <h2>Save changes</h2>
 
@@ -25,15 +26,16 @@
     </form>
 
 
+
     <script type="text/javascript">
 
     /*
       Function to carry out the actual POST request to S3 using the signed request from the Python app.
     */
-    function uploadFile(file, s3Data, url){
+    function uploadFile(file, s3Data, url,filename){
       const xhr = new XMLHttpRequest();
       xhr.open('POST', s3Data.url);
-      xhr.setRequestHeader('x-amz-acl', 'public-read');
+      /* xhr.setRequestHeader('x-amz-acl', 'public-read'); */
 
       const postData = new FormData();
       for(key in s3Data.fields){
@@ -44,8 +46,10 @@
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-            document.getElementById('preview').src = url;
-            document.getElementById('avatar-url').value = url;
+
+
+            getSignedRequestTarget(filename);
+
           }
           else{
             alert('Could not upload file.');
@@ -63,11 +67,12 @@
     function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
       xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            uploadFile(file, response.data, response.url);
+            uploadFile(file, response.data, response.url,file.name);
           }
           else{
             alert('Could not get signed URL.');
@@ -76,7 +81,25 @@
       };
       xhr.send();
     }
+function getSignedRequestTarget(filename){
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/sign-s3-target?file-name=${filename}`);
+      console.log(filename);
 
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            const response = JSON.parse(xhr.responseText);
+            alert(response);
+            document.getElementById('download-url').href =response;
+          }
+          else{
+            alert('Could not get signed URL.');
+          }
+        }
+      };
+      xhr.send();
+    }
     /*
        Function called when file input updated. If there is a file selected, then
        start upload procedure by asking for a signed request from the app.
