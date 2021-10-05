@@ -1,4 +1,4 @@
-<html>
+<html xmlns="http://www.w3.org/1999/html">
   <body>
 
     <h1>Edit your account</h1>
@@ -15,14 +15,14 @@
 
     <form method="POST" action="/submit-form/">
 
-      <input type="text" name="username" placeholder="Username"><br>
-      <input type="text" name="full-name" placeholder="Full name"><br><br>
+      <input type="text"   id="username"   name="username" placeholder="Username"><br>
+      <input type="text"   id="2"   name="full-name" placeholder="Full name"><br><br>
     <a id="download-url" href="" download >
-      <h2>Download file</h2></a>
+      <h2>Download decoded file</h2></a>
       <hr>
       <h2>Save changes</h2>
 
-      <input type="submit" value="Update profile">
+      <input type="submit" value="Decode">
     </form>
 
 
@@ -41,6 +41,7 @@
       for(key in s3Data.fields){
         postData.append(key, s3Data.fields[key]);
       }
+
       postData.append('file', file);
 
       xhr.onreadystatechange = () => {
@@ -72,7 +73,7 @@
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            uploadFile(file, response.data, response.url,file.name);
+            uploadFile(file, response.data, response.url,response.filename);
           }
           else{
             alert('Could not get signed URL.');
@@ -110,6 +111,8 @@ function getSignedRequestTarget(filename){
       if(!file){
         return alert('No file selected.');
       }
+      var username = document.getElementById('username').value;
+      console.log(username)
       getSignedRequest(file);
     }
 

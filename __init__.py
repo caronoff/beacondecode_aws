@@ -11,7 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
-import re
+import re, uuid
 import os, json, boto3
 import contacts
 import typeapproval
@@ -658,7 +658,7 @@ def submit_form():
   # Collect the data posted from the HTML form in account.html:
   username = request.form["username"]
   full_name = request.form["full-name"]
-  avatar_url = request.form["avatar-url"]
+
 
   # Provide some procedure for storing the new details
   #update_account(username, full_name, avatar_url)
@@ -677,7 +677,7 @@ def sign_s3():
   S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
 
   # Load required data from the request
-  file_name = request.args.get('file-name')
+  file_name = '{}{}'.format(uuid.uuid4(),request.args.get('file-name'))
   file_type = request.args.get('file-type')
 
   # Initialise the S3 client
@@ -687,9 +687,8 @@ def sign_s3():
   presigned_post = s3.generate_presigned_post(
     Bucket = S3_BUCKET,
     Key = file_name,
-    Fields = { "Content-Type": file_type}, #"acl": "public-read",
+    Fields = { "Content-Type": file_type},
     Conditions = [
-      #{"acl": "public-read"},
       {"Content-Type": file_type}
     ],
     ExpiresIn = 3600
@@ -698,6 +697,7 @@ def sign_s3():
   # Return the data to the client
   return json.dumps({
     'data': presigned_post,
+    'filename': file_name,
     'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
   })
 
@@ -718,8 +718,6 @@ def sign_s3_target():
                                                     Params={'Bucket': S3_BUCKET_TARGET,
                                                             'Key': file_name},
                                                     ExpiresIn=3600)
-
-
   # Return the data to the client
 
   return json.dumps(presigned)
