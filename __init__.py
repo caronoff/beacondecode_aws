@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
+from botocore.errorfactory import ClientError
 import re, uuid
 import os, json, boto3
 import contacts
@@ -709,7 +710,6 @@ def sign_s3_target():
   # Load required data from the request
   file_name = request.args.get('file-name')
 
-
   # Initialise the S3 client
   s3 = boto3.client('s3')
 
@@ -719,8 +719,21 @@ def sign_s3_target():
                                                             'Key': file_name},
                                                     ExpiresIn=3600)
   # Return the data to the client
-
   return json.dumps(presigned)
+
+
+@app.route('/exists/')
+def exists():
+    S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
+    file_name = request.args.get('file-name')
+    s3 = boto3.client('s3')
+    try:
+        response= s3.head_object(Bucket=S3_BUCKET_TARGET, Key=file_name)
+        response = jsonify( True)
+    except ClientError:
+        response = jsonify( False)
+
+    return response
 
 
 if __name__ == "__main__":

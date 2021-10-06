@@ -1,14 +1,14 @@
 <html xmlns="http://www.w3.org/1999/html">
   <body>
 
-    <h1>Edit your account</h1>
+    <h1>Batch File Decode</h1>
 
     <hr>
 
-    <h2>Your avatar</h2>
+    <h2>Select File to Upload</h2>
 
     <input type="file" id="file-input">
-    <p id="status">Please select a file</p>
+
 
 
     <h2>Your information</h2>
@@ -18,9 +18,9 @@
       <input type="text"   id="username"   name="username" placeholder="Username"><br>
       <input type="text"   id="2"   name="full-name" placeholder="Full name"><br><br>
     <a id="download-url" href="" download >
-      <h2>Download decoded file</h2></a>
+      <h2 id="working" > </h2>
+    </a>
       <hr>
-      <h2>Save changes</h2>
 
       <input type="submit" value="Decode">
     </form>
@@ -84,15 +84,18 @@
     }
 function getSignedRequestTarget(filename){
       const xhr = new XMLHttpRequest();
+      document.getElementById('download-url').href ='';
       xhr.open('GET', `/sign-s3-target?file-name=${filename}`);
       console.log(filename);
-
+      var done = '';
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            alert(response);
-            document.getElementById('download-url').href =response;
+            var done = false;
+                var idVar = setInterval(()=> {
+                UrlExists(filename,response);
+                }, 1000);
           }
           else{
             alert('Could not get signed URL.');
@@ -105,6 +108,29 @@ function getSignedRequestTarget(filename){
        Function called when file input updated. If there is a file selected, then
        start upload procedure by asking for a signed request from the app.
     */
+
+
+  function UrlExists(filename,url)  {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/exists?file-name=${filename}`);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response);
+          if(response){
+          document.getElementById("working").innerHTML = 'Download Decoded file';
+          document.getElementById('download-url').href = url;
+          }else
+          {document.getElementById("working").innerHTML = 'Please wait...';}
+        }
+      }
+    };
+    xhr.send();
+
+}
+
     function initUpload(){
       const files = document.getElementById('file-input').files;
       const file = files[0];
