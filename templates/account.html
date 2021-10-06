@@ -22,7 +22,7 @@
     </a>
       <hr>
 
-      <input type="submit" value="Decode">
+      <input type="submit" value="Return">
     </form>
 
 
@@ -35,11 +35,13 @@
     function uploadFile(file, s3Data, url,filename){
       const xhr = new XMLHttpRequest();
       xhr.open('POST', s3Data.url);
-      /* xhr.setRequestHeader('x-amz-acl', 'public-read'); */
+
 
       const postData = new FormData();
       for(key in s3Data.fields){
         postData.append(key, s3Data.fields[key]);
+        console.log(key)
+        console.log(s3Data.fields[key])
       }
 
       postData.append('file', file);
@@ -94,7 +96,7 @@ function getSignedRequestTarget(filename){
             const response = JSON.parse(xhr.responseText);
             var done = false;
                 var idVar = setInterval(()=> {
-                UrlExists(filename,response);
+                UrlExists(filename,response,idVar);
                 }, 1000);
           }
           else{
@@ -110,7 +112,7 @@ function getSignedRequestTarget(filename){
     */
 
 
-  function UrlExists(filename,url)  {
+  function UrlExists(filename,url,idVar)  {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', `/exists?file-name=${filename}`);
     xhr.onreadystatechange = () => {
@@ -120,10 +122,11 @@ function getSignedRequestTarget(filename){
           var response = JSON.parse(xhr.responseText);
           console.log(response);
           if(response){
-          document.getElementById("working").innerHTML = 'Download Decoded file';
+          document.getElementById("working").innerHTML = url;
           document.getElementById('download-url').href = url;
+          clearInterval(idVar);
           }else
-          {document.getElementById("working").innerHTML = 'Please wait...';}
+          {document.getElementById("working").innerHTML = 'File creation in progress...';}
         }
       }
     };
