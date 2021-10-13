@@ -422,7 +422,8 @@ class SecondGen(Gen2Error):
             self.warnings.append(msg)
             if len(self.bits)>93:
                 if self.bits[138:141] != '111' and self.tac != 65532:
-                    self.errors.append('Beacon type bits 138-140 not 111 - required for System Beacon')
+                    pass
+                    #self.errors.append('Beacon type bits 138-140 not 111 - required for System Beacon')
                 if self.bits[141:155] != '11111111111111':
                     self.errors.append('Spare bits 141-154 not 11111111111111 - required for System Beacon')
         else:
