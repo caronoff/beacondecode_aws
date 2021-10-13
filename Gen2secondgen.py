@@ -370,7 +370,7 @@ class SecondGen(Gen2Error):
             ##BIT 31-44 Beacon Serial Number
             self.SerialNum = Func.bin2dec(self.bits[31:45])
             self.tablebin.append(['31-44',
-                                  self.bits[35:45],
+                                  self.bits[31:45],
                                   'Beacon serial number',
                                   str(self.SerialNum)])
 
