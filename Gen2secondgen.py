@@ -421,7 +421,7 @@ class SecondGen(Gen2Error):
             self.systembeacon = True
             self.warnings.append(msg)
             if len(self.bits)>93:
-                if self.bits[138:141] != '111':
+                if self.bits[138:141] != '111' and self.tac != 65532:
                     self.errors.append('Beacon type bits 138-140 not 111 - required for System Beacon')
                 if self.bits[141:155] != '11111111111111':
                     self.errors.append('Spare bits 141-154 not 11111111111111 - required for System Beacon')
@@ -498,7 +498,7 @@ class SecondGen(Gen2Error):
         self.vesselID = bits[0:3]
         self.tablebin.append([self.bitlabel(91,93,deduct_offset), self.vesselID , 'Vessel ID Type', Func.getVesselid(self.vesselID)])
         if self.vesselID == '111' and self.bits[43]=='0' and deduct_offset!=45:
-            e='ERROR! Bit 43 is 0 for system testing message. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 43 must be 1 for non-operational use.'
+            e='ERROR! Bit 43 is 0. When vessel ID bits are set to 111, vessel id field is reserved for system testing and the test bit 43 must be 1 for non-operational use.'
             self.tablebin.append(['','Vessel ID','Reserved for system testing',e])
             self.errors.append(e)
             self.validhex=False

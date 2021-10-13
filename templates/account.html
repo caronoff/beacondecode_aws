@@ -49,10 +49,7 @@
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
           if(xhr.status === 200 || xhr.status === 204){
-
-
             getSignedRequestTarget(filename);
-
           }
           else{
             alert('Could not upload file.');
@@ -131,7 +128,6 @@ function getSignedRequestTarget(filename){
       }
     };
     xhr.send();
-
 }
 
     function initUpload(){
@@ -151,7 +147,6 @@ function getSignedRequestTarget(filename){
     (() => {
       document.getElementById('file-input').onchange = initUpload;
     })();
-
     </script>
   </body>
 </html>
