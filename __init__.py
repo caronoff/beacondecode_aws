@@ -648,6 +648,7 @@ def jsonhex2():
 
 # Listen for GET requests to yourdomain.com/account/
 @app.route("/account")
+@login_required
 def account():
   # Show the account-edit HTML page:
   return render_template('account.html')
@@ -702,7 +703,10 @@ def sign_s3():
     'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
   })
 
+
+
 @app.route('/sign-s3-target/')
+@login_required
 def sign_s3_target():
   # Load necessary information into the application
   S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
