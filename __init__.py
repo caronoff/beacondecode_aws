@@ -650,8 +650,13 @@ def jsonhex2():
 @app.route("/account")
 @login_required
 def account():
-  # Show the account-edit HTML page:
-  return render_template('account.html')
+    user = Userlogin.query.filter_by(uname='craig').first()
+    if user is not None:
+        return render_template('account.html')
+    else:
+
+    # Show the account-edit HTML page:
+        return redirect(url_for('decode')
 
 
 # Listen for POST requests to yourdomain.com/submit_form/
