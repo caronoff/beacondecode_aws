@@ -652,7 +652,8 @@ def jsonhex2():
 @login_required
 def account():
     user = repr(current_user)=='<User craig>'
-    print(user)
+    #user=True
+    #print(user)
     if user :
         return render_template('account.html')
     else:
