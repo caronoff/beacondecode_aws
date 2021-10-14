@@ -654,9 +654,7 @@ def account():
     if user is not None:
         return render_template('account.html')
     else:
-
-    # Show the account-edit HTML page:
-        return redirect(url_for('decode')
+        return redirect(url_for('decode'))
 
 
 # Listen for POST requests to yourdomain.com/submit_form/
