@@ -110,6 +110,7 @@ class RegistrationForm(Form):
 
     def validate_uname(self, uname):
         user = Userlogin.query.filter_by(uname=uname.data).first()
+
         if user is not None:
             raise ValidationError('Please use a different username.')
 
@@ -650,8 +651,9 @@ def jsonhex2():
 @app.route("/account")
 @login_required
 def account():
-    user = Userlogin.query.filter_by(uname='craig').first()
-    if user is not None:
+    user = repr(current_user)=='<User craig>'
+    print(user)
+    if user :
         return render_template('account.html')
     else:
         return redirect(url_for('decode'))
