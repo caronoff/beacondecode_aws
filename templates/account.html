@@ -10,35 +10,9 @@
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <style>
-.input-file {
-  position: relative;
-  display: block;
-  font-weight: 400;
-}
 
-.input-file .button {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  float: none;
-  height: 22px;
-  margin: 0;
-  padding: 0 14px;
-  font-size: 13px;
-  line-height: 22px;
-  background-color: #3276B1;
-  opacity: .8;
-  transition: opacity .2s;
-  -o-transition: opacity .2s;
-  -ms-transition: opacity .2s;
-  -moz-transition: opacity .2s;
-  -webkit-transition: opacity .2s;
-  outline: 0;
-  border: 0;
-  text-decoration: none;
-  color: #fff;
-  cursor: pointer;
-}
+
+
 body {
   margin: 0;
   padding: 0;
@@ -56,33 +30,7 @@ font-size: 32px;
   font-weight: bold;
   margin-bottom: 20px;
 }
-.input-file .button input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0;
-  font-size: 30px;
-  cursor: pointer;
-  opacity: 0;
-}
-.input input {
-    display: block;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 100%;
-    height: 28px;
-    padding: 8px 10px;
-    outline: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 0;
-    background: #fff;
-    font: 13px/16px 'Open Sans', Helvetica,Arial, sans-serif;
-    color: #404040;
-    appearance: normal;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
+
 </style>
   <body>
   <div class="container">
@@ -95,15 +43,15 @@ font-size: 32px;
   <div class="custom-file">
     <input type="file" class="custom-file-input" id="inputGroupFile01"
       aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01"> Choose file </label>
+    <label class="custom-file-label" id="labinput" for="inputGroupFile01"> Choose file </label>
 
     </div>
 </div>
 
 <br>
-    <a id="download-url" href="" download >
+    <a class="small" id="download-url" href=""  >
 
-   <h2 id="working" > </h2></a>
+   <h6 id="working"  > </h6></a>
 </div>
 
 
@@ -218,16 +166,18 @@ function getSignedRequestTarget(filename){
       if(!file){
         return alert('No file selected.');
       }
-
+        document.getElementById("labinput").innerHTML = file.name;
       getSignedRequest(file);
     }
 
-    /*
-       Bind listeners when the page loads.
-    */
-    (() => {
+
+     (() => {
       document.getElementById('inputGroupFile01').onchange = initUpload;
+
     })();
+
+
+
     </script>
   </body>
 </html>
