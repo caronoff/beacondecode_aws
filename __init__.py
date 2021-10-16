@@ -700,7 +700,15 @@ def sign_s3():
     ],
     ExpiresIn = 3600
   )
-
+  dynamodb=boto3.resource('dynamodb')
+  table = dynamodb.Table('processfile')
+  response = table.put_item(
+      Item={
+          'filename':file_name,
+          'decode' : 'mid'
+      }
+  )
+  print(response)
   # Return the data to the client
   return json.dumps({
     'data': presigned_post,
