@@ -675,17 +675,16 @@ def submit_form():
   return redirect(url_for('decode')) #redirect(url_for('profile'))
 
 
-# Listen for GET requests to yourdomain.com/sign_s3/
-#
-# Please see https://gist.github.com/RyanBalfanz/f07d827a4818fda0db81 for an example using
-# Python 3 for this view.
+
+# Please see https://gist.github.com/RyanBalfanz/f07d827a4818fda0db81 for an example using Python 3 for this view.
 @app.route('/sign-s3/')
+@login_required
 def sign_s3():
   # Load necessary information into the application
   S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
-
+  uid=uuid.uuid4()
   # Load required data from the request
-  file_name = '{}{}'.format(uuid.uuid4(),request.args.get('file-name'))
+  file_name = '{}{}'.format(uid,request.args.get('file-name'))
   file_type = request.args.get('file-type')
 
   # Initialise the S3 client

@@ -121,7 +121,6 @@ function getSignedRequestTarget(filename){
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            var done = false;
                 var idVar = setInterval(()=> {
                 UrlExists(filename,response,idVar);
                 }, 1000);
@@ -169,14 +168,9 @@ function getSignedRequestTarget(filename){
         document.getElementById("labinput").innerHTML = file.name;
       getSignedRequest(file);
     }
-
-
      (() => {
       document.getElementById('inputGroupFile01').onchange = initUpload;
-
     })();
-
-
 
     </script>
   </body>
