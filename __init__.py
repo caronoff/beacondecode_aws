@@ -700,7 +700,7 @@ def sign_s3():
     ],
     ExpiresIn = 3600
   )
-  dynamodb=boto3.resource('dynamodb')
+  dynamodb=boto3.resource('dynamodb',region_name='us-east-1')
   table = dynamodb.Table('processfile')
   response = table.put_item(
       Item={
