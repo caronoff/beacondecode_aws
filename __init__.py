@@ -668,15 +668,14 @@ def submit_form():
       decode_list = request.form["decode_list"].split(',')
       file_name = request.form["filename"]
       dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-      table = dynamodb.Table('processfile')
-      for e in decode_list:
-          response = table.put_item(
-              Item={
-                  'filename': file_name,
-                  'decode': e
-              }
-          )
-          print(response)
+
+      tableraw=dynamodb.Table('rawfile')
+      response= tableraw.put_item(Item={
+          'filenameid' : file_name,
+          'decodeflds': decode_list
+      })
+      print(response)
+
       return redirect(url_for('decode'))
 
 
