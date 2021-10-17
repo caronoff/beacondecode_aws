@@ -663,16 +663,21 @@ def account():
 # Listen for POST requests to yourdomain.com/submit_form/
 @app.route("/submit-form/", methods = ["POST"])
 def submit_form():
-  # Collect the data posted from the HTML form in account.html:
-  username = request.form["username"]
-  full_name = request.form["full-name"]
-
-
-  # Provide some procedure for storing the new details
-  #update_account(username, full_name, avatar_url)
-
-  # Redirect to the user's profile page, if appropriate
-  return redirect(url_for('decode')) #redirect(url_for('profile'))
+      # Collect the data posted from the HTML form in account.html:
+      username = request.form["username"]
+      decode_list = request.form["decode_list"].split(',')
+      file_name = request.form["filename"]
+      dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+      table = dynamodb.Table('processfile')
+      for e in decode_list:
+          response = table.put_item(
+              Item={
+                  'filename': file_name,
+                  'decode': e
+              }
+          )
+          print(response)
+      return redirect(url_for('decode'))
 
 
 
@@ -700,15 +705,7 @@ def sign_s3():
     ],
     ExpiresIn = 3600
   )
-  dynamodb=boto3.resource('dynamodb',region_name='us-east-1')
-  table = dynamodb.Table('processfile')
-  response = table.put_item(
-      Item={
-          'filename':file_name,
-          'decode' : 'mid'
-      }
-  )
-  print(response)
+
   # Return the data to the client
   return json.dumps({
     'data': presigned_post,

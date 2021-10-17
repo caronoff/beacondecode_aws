@@ -46,12 +46,28 @@ font-size: 32px;
     <label class="custom-file-label" id="labinput" for="inputGroupFile01"> Choose file </label>
 
     </div>
+
+
+
 </div>
 
 <br>
     <a class="small" id="download-url" href=""  >
 
    <h6 id="working"  > </h6></a>
+
+
+      <h2>Your information</h2>
+
+    <form method="POST" action="/submit-form/">
+        <input type="hidden"   id="filename"   name="filename" value="" >
+      <input type="text"   id="username"   name="username" placeholder="Username"><br>
+      <input type="text"   id="2"   name="decode_list" placeholder=""><br><br>
+
+      <hr>
+
+      <input type="submit" value="Return">
+    </form>
 </div>
 
 
@@ -103,6 +119,8 @@ font-size: 32px;
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
             uploadFile(file, response.data, response.url,response.filename);
+            document.getElementById('filename').value=response.filename
+
           }
           else{
             alert('Could not get signed URL.');
