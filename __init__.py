@@ -675,8 +675,8 @@ def submit_form():
           'decodeflds': decode_list
       })
       print(response)
-
-      return redirect(url_for('decode'))
+      print(file_name)
+      return redirect(url_for('signs3target',fname=file_name))
 
 
 
@@ -714,25 +714,26 @@ def sign_s3():
 
 
 
-@app.route('/sign-s3-target/')
+@app.route('/signs3target')
 @login_required
-def sign_s3_target():
+def signs3target():
   # Load necessary information into the application
   S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
 
   # Load required data from the request
-  file_name = request.args.get('file-name')
-
+  filename = request.args.get('fname')
+  print(filename)
   # Initialise the S3 client
   s3 = boto3.client('s3')
 
   # Generate and return the presigned URL
   presigned = s3.generate_presigned_url('get_object',
                                                     Params={'Bucket': S3_BUCKET_TARGET,
-                                                            'Key': file_name},
+                                                            'Key': filename},
                                                     ExpiresIn=3600)
   # Return the data to the client
-  return json.dumps(presigned)
+  #return json.dumps(presigned)
+  return render_template('decodefile.html',presigned=presigned,filename=filename)
 
 
 @app.route('/exists/')
