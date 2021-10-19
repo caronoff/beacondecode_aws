@@ -55,13 +55,22 @@ font-size: 32px;
    <h6 id="working"  > </h6></a>
 
 
-      <h2>Your information</h2>
+      <h2>Select Fields to Decode</h2>
 
     <form method="POST" action="/submit-form/">
         <input type="hidden"   id="filename"   name="filename" value="" >
         <input type="hidden"   id="presignurl"   name="presignurl" value="" >
-      <input type="text"   id="username"   name="username" placeholder="Username"><br>
-      <input type="text"   id="2"   name="decode_list" placeholder=""><br><br>
+
+
+        <div><input type="checkbox" name="choices" value="country" > </div>
+        <div><input type="checkbox" name="choices"  value="mid"> </div>
+        <div><input type="checkbox" name="choices"  value="beacontype"> </div>
+        <div><input type="checkbox" name="choices"  value="cancellation"> </div>
+        <div><input type="checkbox" name="choices"  value="msg_note"> </div>
+        <div><input type="checkbox" name="choices"  value="location"> </div>
+         <div><input type="checkbox" name="choices"  value="vessel_id"> </div>
+        <div><input type="checkbox" name="choices"  value="threeLD"> </div>
+        <div><input type="checkbox" name="choices"  value="altitude"> </div>
 
       <hr>
 

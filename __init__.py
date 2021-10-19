@@ -664,9 +664,11 @@ def account():
 @app.route("/submit-form/", methods = ["POST"])
 def submit_form():
       # Collect the data posted from the HTML form in account.html:
-      username = request.form["username"]
-      decode_list = request.form["decode_list"].split(',')
+
+
       file_name = request.form["filename"]
+      decode_list=request.form.getlist("choices")
+
       dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
       tableraw=dynamodb.Table('rawfile')
@@ -675,7 +677,7 @@ def submit_form():
           'decodeflds': decode_list
       })
       print(response)
-      print(file_name)
+      print(file_name,decode_list)
       return redirect(url_for('signs3target',fname=file_name))
 
 
