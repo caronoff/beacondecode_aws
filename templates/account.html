@@ -1,7 +1,10 @@
-<html xmlns="http://www.w3.org/1999/html">
 
+{% extends "layout.html" %}
+{% block title %}Decoded Beacon{% endblock %}
+{% block head %}
+  {{ super() }}
 <head>
-  <title> Bootstrap 4 File upload Example </title>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -9,45 +12,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>
    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<style>
 
 
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.125rem;
-  justify-content: center;
-  align-items: center;
-}
-h1 {
-font-family: 'Indie Flower', cursive;
-font-size: 32px;
-  color: #03A9F4;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-</style>
+{% endblock %}
+ {% block content %}
   <body>
   <div class="container">
   <br>
   <h1> Batch File Decoder </h1>
-<div class="input-group">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroupFileAddon01"> File Upload </span>
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01"
-      aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" id="labinput" for="inputGroupFile01"> Choose file </label>
 
-    </div>
-
-
-
-</div>
 
 <br>
     <a class="small" id="download-url" href=""  >
@@ -55,7 +28,10 @@ font-size: 32px;
    <h6 id="working"  > </h6></a>
 
 
-      <h2>Select Fields to Decode</h2>
+      <h3>Select Fields to Decode</h3>
+      {% for message in get_flashed_messages() %}
+<h2>{{ message }}</h2>
+{% endfor %}
 
     <form method="POST" action="/submit-form/">
         <input type="hidden"   id="filename"   name="filename" value="" >
@@ -73,11 +49,28 @@ font-size: 32px;
         <div><input type="checkbox" name="choices"  value="altitude"> Altitude </div>
 
       <hr>
+        <br>
+ <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroupFileAddon01"> File Upload </span>
+  </div>
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" id="labinput" for="inputGroupFile01"> Choose file </label>
 
-      <input type="submit" value="Compute">
-    </form>
+    </div>
+
+
+
 </div>
+        <br>
+        <hr>
+      <input type="submit" value="Compute">
 
+    </form>
+
+</div>
 
 
 
@@ -200,3 +193,4 @@ function getSignedRequestTarget(filename){
     </script>
   </body>
 </html>
+{% endblock %}

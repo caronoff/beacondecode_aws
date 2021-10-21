@@ -651,9 +651,8 @@ def jsonhex2():
 @app.route("/account")
 @login_required
 def account():
-    user = repr(current_user)=='<User craig>'
+    #user = repr(current_user)=='<User craig>'
     user=True
-    #print(user)
     if user :
         return render_template('account.html')
     else:
@@ -661,24 +660,25 @@ def account():
 
 
 # Listen for POST requests to yourdomain.com/submit_form/
-@app.route("/submit-form/", methods = ["POST"])
+@app.route("/submit-form/", methods = ["POST","GET"])
 def submit_form():
-      # Collect the data posted from the HTML form in account.html:
+    if request.method == "POST" and request.form["filename"] and request.form.getlist("choices"):
+        # Collect the data posted from the HTML form in account.html:
 
+        file_name = request.form["filename"]
+        decode_list=request.form.getlist("choices")
 
-      file_name = request.form["filename"]
-      decode_list=request.form.getlist("choices")
+        dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 
-      dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-
-      tableraw=dynamodb.Table('rawfile')
-      response= tableraw.put_item(Item={
+        tableraw=dynamodb.Table('rawfile')
+        response= tableraw.put_item(Item={
           'filenameid' : file_name,
           'decodeflds': decode_list
-      })
-      print(response)
-      print(file_name,decode_list)
-      return redirect(url_for('signs3target',fname=file_name))
+        })
+
+        return redirect(url_for('signs3target',fname=file_name))
+    flash("You must upload a file and select at least one field to process")
+    return render_template('account.html',flashType="danger")
 
 
 
