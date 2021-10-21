@@ -98,6 +98,7 @@ class SecondGen(Gen2Error):
                                   'Country code:',
                                   str(self.countryCode)+' '+str(self.countryName),definitions.moreinfo['country_code']])
 
+
             ##BIT 41 Status of homing device
             self.status = Func.homing(self.bits[41])
             self.tablebin.append(['41',
@@ -349,6 +350,8 @@ class SecondGen(Gen2Error):
                                   self.bits[2:12],
                                   'Country code:',
                                   str(self.countryCode) + ' ' + str(self.countryName),definitions.moreinfo['country_code']])
+
+
             ##BIT 12-14 Should be 101 status check for SGB
             if self.bits[12:15] == '101':
                 status_check = 'OK'
