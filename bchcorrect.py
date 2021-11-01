@@ -149,6 +149,23 @@ if __name__ == "__main__":
     if errors:
         print(errors)
 
+    _pdf1 = (Fcn.hextobin(strhex))[:61]
+    print(len(_pdf1))
+    _bch1 = (Fcn.hextobin(strhex))[61:82]
+    bitflips1, newpdf1, newbch1 = bch1.pdf1_to_bch1(_pdf1, _bch1)
+    _pdf2 = (Fcn.hextobin(strhex))[82:108]
+    _bch2 = (Fcn.hextobin(strhex))[108:]
+    bitflips2, newpdf2, newbch2 = bch2.pdf2_to_bch2(_pdf2, _bch2)
+    if bitflips1 == -1 or bitflips2 == -1:
+        print('Too many bit errors to correct')
+    elif bitflips1 > 0 or bitflips2 > 0:
+        _newbin = newpdf1 + newbch1 + newpdf2 + newbch2
+        print(' {} bad pdf1 bit and {} bad pdf2 bit'.format(bitflips1, bitflips2))
+        print('Corrected Message: {} '.format(Fcn.bin2hex(_newbin)))
+        print(_newbin, len(_newbin), len(newpdf1), len(newbch1), len(newpdf2), len(newbch2))
+    else:
+        print('bch1 and bch2 encoded match recalculated')
+    print('-'*50)
     print(bch1_binarycalc(strhex))
     print(bch2_binarycalc(strhex))
 
