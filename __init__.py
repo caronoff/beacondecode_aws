@@ -19,6 +19,7 @@ import typeapproval
 import decodehex2
 import definitions
 import bchlib
+import bchsgbcorrect
 import testbchSGB
 # version 2.0 April 14, 2021
 from datetime import datetime
@@ -359,6 +360,18 @@ def longfirstgen():
 def long():
     hexcode=str(request.args.get('hex_code'))
     return redirect(url_for('decoded', hexcode=hexcode))
+
+## correctbch
+@app.route("/correctbch/<hexcode>")
+def correctbch(hexcode):
+    #bcn=decodehex2.Beacon(hexcode)
+    #print(bcn.type)
+    return jsonify(bchsgbcorrect.correct_bchsgb(hexcode))
+
+@app.route("/randomsgb/")
+def randomsgb():
+    return jsonify(bchsgbcorrect.test63hex()[1:])
+
 
 ## Decoder
 @app.route("/decodedjson/<hexcode>")
