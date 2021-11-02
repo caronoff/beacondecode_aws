@@ -667,6 +667,7 @@ def account():
     #user = repr(current_user)=='<User craig>'
     user=True
     if user :
+        session.clear()
         return render_template('account.html')
     else:
         return redirect(url_for('decode'))
