@@ -44,7 +44,7 @@ font-size: 32px;
 
 
 
-    <form method="GET" action="/account">
+    <form method="GET" id='done' action="/account">
         <input type="hidden"   id="filename"   name="filename" value="{{filename}}" >
         <input type="hidden"   id="presignurl"   name="presignurl" value="{{presigned}}" >
 
@@ -146,7 +146,11 @@ function getSignedRequestTarget(){
           if(response){
           document.getElementById("working").innerHTML = 'Download here';
           document.getElementById('download-url').href = url;
+          const link = document.createElement("a");
+          link.href = url;
+          link.click()
           clearInterval(idVar);
+          document.getElementById("done").submit()
           }else
           {document.getElementById("working").innerHTML = 'File creation in progress...';}
         }
@@ -155,21 +159,7 @@ function getSignedRequestTarget(){
     xhr.send();
 }
 
-/*
-    function initUpload(){
-      const file = document.getElementById('filename').value;
 
-      if(!file){
-        return alert('No file selected.');
-      }
-        document.getElementById("labinput").innerHTML = file.name;
-      getSignedRequest(file);
-    }
-     (() => {
-      document.getElementById('inputGroupFile01').onchange = initUpload;
-    })();
-
-*/
 
     </script>
   </body>
