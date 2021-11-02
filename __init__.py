@@ -692,7 +692,7 @@ def submit_form():
 
         return redirect(url_for('signs3target',fname=file_name))
 
-    elif request.method == "POST" and not (request.form["filename"] or request.form.getlist("choices")):
+    elif request.method == "GET" :
         flash("You must upload a file and select at least one field to process")
         return render_template('account.html',flashType="danger")
     else:
