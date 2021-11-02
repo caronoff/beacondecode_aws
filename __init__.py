@@ -667,6 +667,7 @@ def account():
     #user = repr(current_user)=='<User craig>'
     user=True
     if user :
+        session.clear()
         return render_template('account.html')
     else:
         return redirect(url_for('decode'))
@@ -691,8 +692,13 @@ def submit_form():
 
 
         return redirect(url_for('signs3target',fname=file_name))
-    flash("You must upload a file and select at least one field to process")
-    return render_template('account.html',flashType="danger")
+
+    elif request.method == "POST" :
+        flash("You must upload a file and select at least one field to process")
+        return render_template('account.html',flashType="danger")
+    else:
+        return redirect(url_for('account'))
+
 
 
 
