@@ -689,6 +689,7 @@ def submit_form():
           'decodeflds': decode_list
         })
 
+
         return redirect(url_for('signs3target',fname=file_name))
     flash("You must upload a file and select at least one field to process")
     return render_template('account.html',flashType="danger")
