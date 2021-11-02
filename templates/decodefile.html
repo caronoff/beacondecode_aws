@@ -146,9 +146,8 @@ function getSignedRequestTarget(){
           if(response){
           document.getElementById("working").innerHTML = 'Download here';
           document.getElementById('download-url').href = url;
-          const link = document.createElement("a");
-          link.href = url;
-          link.click()
+
+          document.getElementById('download-url').click()
           clearInterval(idVar);
           document.getElementById("done").submit()
           }else
