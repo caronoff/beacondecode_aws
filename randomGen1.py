@@ -24,15 +24,20 @@ def random_error(hexvalid,pdf1err,pdf2err,sgberr):
     #print(scramble)
     b=Fcn.hextobin(hexvalid)
     if pdf1err or pdf2err:
-        for i in range(pdf1err):
-            epos=random.randint(0,81)
+        for i in range(int(pdf1err)):
+            print('i',i)
+            ipos=random.randint(0,82)
 
-            scramble[epos] = str(int(not int(scramble[epos])))
+            scramble[ipos] = str(int(not int(scramble[ipos])))
 
-        for j in range(pdf2err):
-            epos = random.randint(82, 119)
+        for j in range(int(pdf2err)):
+            print('j',j)
+            jpos = random.randint(85, 119)
+            print(scramble[82:])
+            scramble[jpos] = str(int(not int(scramble[jpos])))
+            print(scramble[82:])
+            print(hexvalid)
 
-            scramble[epos] = str(int(not scramble[epos]))
     elif sgberr:
         for i in range(sgberr):
             epos = random.randint(0, 251)
@@ -46,7 +51,7 @@ short_long='1'
 user_location='1'
 countrycode='0100111100'  #316 - Canada
 
-def fgb(f,r):
+def fgbcompute(f,r):
     for n in range(r):
         ident=randombinary(49)
         while ident[:4]=='101' and user_location=='1':
@@ -67,9 +72,11 @@ def fgb(f,r):
             print(len('_'+newbin+supdata+'0'*12))
         finalbin=newbin+supdata+bch2
 
-        hexcheck=Fcn.bin2hex(finalbin[24:])
-
-        f.write(random_error(hexcheck,random.randint(0,4),random.randint(0,3),0)+'\n')
+        hexvalid=Fcn.bin2hex(finalbin[24:])
+        r1=str(random.randint(0,4))
+        r2= str(random.randint(0,3))
+        hexbad=random_error(hexvalid,r1,r2,0)
+        f.writelines(['{},{},{},{}'.format(hexvalid,r1,r2,hexbad),'\n'])
 
 
 
@@ -90,5 +97,5 @@ def sgbcompute(f,r):
 
 if __name__ == "__main__":
     f = open('samplehex.csv', 'a')
-    sgbcompute(f,500)
+    fgbcompute(f,50)
     f.close()
