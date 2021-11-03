@@ -681,9 +681,7 @@ def submit_form():
 
         file_name = request.form["filename"]
         decode_list=request.form.getlist("choices")
-
         dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
-
         tableraw=dynamodb.Table('rawfile')
         response= tableraw.put_item(Item={
           'filenameid' : file_name,
