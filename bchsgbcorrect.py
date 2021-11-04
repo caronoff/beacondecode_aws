@@ -41,40 +41,21 @@ def correct_bchsgb(testhex):
     bch = bchlibcaronoff.BCH(BCH_BITS,m=8, prim_poly=BCH_POLYNOMIAL)
     max_data_len = bch.n // 8 - (bch.ecc_bits + 7) // 8 + 1
     data = bytearray(bch1correct.bitstring_to_bytes(binary_data_pdf))
-    print('len in bytes of data',len(data))
-
-
-    print('ecc_bits: {}  ecc_bytes:  {} '.format(bch.ecc_bits,bch.ecc_bytes))
-    print('m:', bch.m)
-    print('n: {}  bytes: {}'.format(bch.n,bch.n // 8 ))
-    print('max data length:', max_data_len)
-    print('t: {}'.format(bch.t))
-    print('length of data in bytes:', len(data))
     rebuildpdf=''
-    print('---Per Byte'+'-' * 40)
+
     for e in range(len(data)):
         segment=decodefunctions.dec2bin(data[e]).zfill(8)
         rebuildpdf=rebuildpdf+segment
 
-
     rebuildpdf=rebuildpdf.zfill(204)
-
-
-    #data = bytearray(bch1correct.bitstring_to_bytes(rebuildpdf))
     ecc = bch.encode(data)
-
     bchstring = ''
 
     for e in ecc:
         binchar = decodefunctions.dec2bin(e).zfill(8)
         bchstring = bchstring + binchar
 
-    print(bchsgb)
-    print(bchstring)
-    print(bchsgb==bchstring)
-    #print(calcBCH(pdf, 2, 204, 252)==bchsgb)
-    print(decodefunctions.bin2hex(rebuildpdf+bchstring))
-    # create array of ecc provide by bch
+
     ecc_provided = bytearray(bch1correct.bitstring_to_bytes(bchsgb))
 
 
@@ -83,37 +64,16 @@ def correct_bchsgb(testhex):
 
 
 
-
-    print(len(data),len(ecc),len(packet))
-    print('ecc included:',ecc_provided,len(ecc_provided),type(ecc_provided))
-    print('ecc calc:', ecc,len(ecc),type(ecc))
-
-
-
-
-    print('provided',bchsgb,len(bchsgb),decodefunctions.bin2hex(bchsgb))
-    print('calculated',bchstring,len(bchstring),decodefunctions.bin2hex(bchstring))
-
-    #
-    print(bch.ecc_bytes,bch.ecc_bits,len(packet),type(packet))
-    print(data)
-    print(packet[:-bch.ecc_bytes])
     if ecc!=ecc_provided:
 
          data, ecc = packet[:-bch.ecc_bytes], packet[-bch.ecc_bytes:]
-
          bch.data_len = max_data_len
          nerr = bch.decode(data, ecc)
 
 
-         print('nerr:', nerr)
-         print('errorloc:', bch.errloc)
-
          bitflips = nerr
          bch.correct(data, ecc)
 
-
-         print('bitflips: %d' % (bitflips))
 
          newdata=decodefunctions.dec2bin(data[0])
          for e in data[1:]:

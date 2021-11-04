@@ -364,9 +364,7 @@ def long():
 ## correctbch
 @app.route("/correctbch/<hexcode>")
 def correctbch(hexcode):
-    #bcn=decodehex2.Beacon(hexcode)
-    #print(bcn.type)
-    return jsonify(bchsgbcorrect.correct_bchsgb(hexcode))
+    return jsonify(decoded_beacon(hexcode,['bch_valid']))
 
 @app.route("/randomsgb/")
 def randomsgb():
@@ -585,6 +583,7 @@ def decoded_beacon(hexcode,fieldlst=[]):
                 'altitude': beacon.beacon.altitude,
                 'bch1_binarycalc':bch1_binarycalc(hexcode),
                 'bch2_binarycalc':bch2_binarycalc(hexcode),
+                'bch_valid':beacon.beacon.bch_valid,
                 'kitchen_sink': beacon.tablebin
             }
     for fld in fieldlst:
@@ -632,14 +631,11 @@ def jsonhex2():
         i=0
         for h in hexcode:
             item={}
-
             i+=1
 
             try:
                 item = decoded_beacon(h, fieldlst)
                 item['inputmessage'] = h
-
-
 
             except TypeError:
                 item = decoded_beacon(str(h), fieldlst)
@@ -653,9 +649,7 @@ def jsonhex2():
 
             decodelst.append(item)
 
-    #end = timeit.timeit()
-    #decodelst.append({'seconds': str(end - start)})
-    #print(end,start,str(end - start))
+
     return jsonify(decodelst)
 
 

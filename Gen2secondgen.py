@@ -8,6 +8,7 @@
 import Gen2functions as Func
 import Gen2rotating as rotating
 import writebch
+import bchsgbcorrect
 import definitions
 
 
@@ -41,6 +42,7 @@ class SecondGen(Gen2Error):
         self.tablebin = []
         self.rotatingbin = []
         self.threeletter = 'na'
+        self.bch_valid = 'na'
         self.altitude ='na'
         self.longitude=self.latitude='na'
         self.location=(0,0)
@@ -53,6 +55,14 @@ class SecondGen(Gen2Error):
         self._id='na'
         self.SerialNum=0
         self.tac=0
+        if len(strhex)==63:
+            bitflips, newdata, correctedbch, newhex = bchsgbcorrect.correct_bchsgb(strhex)
+            if bitflips == -1 :
+                self.bch_valid = 'Message has too many bit errors to correct on bch'
+            elif bitflips > 0 :
+                self.bch_valid = '{} bit errors corrected.  Corrected Msg ,{}'.format(bitflips,newhex)
+            else:
+                self.bch_valid = 'Message has no bch errors'
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
