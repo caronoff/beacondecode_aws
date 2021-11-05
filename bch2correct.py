@@ -17,7 +17,7 @@ def pdf2_to_bch2(pdf2,bch2):
     bitflips=0
     #bch = bchlib.BCH(BCH_POLYNOMIAL, BCH_BITS)
     bch=bchlibcaronoff.BCH(2,prim_poly=67)
-    max_data_len = bcn.n // 8 - (bch.ecc_bits + 7) // 8
+    max_data_len = bch.n // 8 - (bch.ecc_bits + 7) // 8
     data = bytearray(bch1correct.bitstring_to_bytes(binary_data_pdf2))
 
     rebuildpdf2=''
