@@ -1,7 +1,7 @@
 import decodefunctions as Fcn
 import Gen2functions as sgb
 import random
-import decodehex2
+
 import bchlib
 import bch1correct
 
@@ -23,15 +23,13 @@ def random_error(hexvalid,pdf1err,pdf2err,sgberr):
     scramble=list( Fcn.hextobin(hexvalid))
     #print(scramble)
     b=Fcn.hextobin(hexvalid)
-    d = random.sample(range(0, 82), pdf1err)
-    e = random.sample(range(0, 38), pdf2err)
+
 
     if pdf1err or pdf2err:
-        for ipos in d: #in range(int(pdf1err)):
+        for ipos in random.sample(range(0, 82), pdf1err):
             scramble[ipos] = str(int(not int(scramble[ipos])))
-        for j in e: #j in range(int(pdf2err)):
-
-            scramble[j+82] = str(int(not int(scramble[j+82])))
+        for j in random.sample(range(82, 120), pdf2err):
+            scramble[j] = str(int(not int(scramble[j])))
 
     elif sgberr:
         for i in range(int(sgberr)):
@@ -69,7 +67,7 @@ def fgbcompute(f,r):
 
         hexvalid=Fcn.bin2hex(finalbin[24:])
         r1=3 # str(random.randint(0,4))
-        r2= 2 # str(random.randint(0,3))
+        r2= 3 # str(random.randint(0,3))
         hexbad=random_error(hexvalid,r1,r2,0)
         f.writelines(['{},{},{},{}'.format(hexvalid,r1,r2,hexbad),'\n'])
 
@@ -139,7 +137,7 @@ def samplepdf2(f,r):
 
 
 if __name__ == "__main__":
-    f = open('samplebin.csv', 'a')
+    f = open('samplebin2.csv', 'a')
     fgbcompute(f,250)
     #samplepdf2(f,5000)
     f.close()
