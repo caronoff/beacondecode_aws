@@ -1,4 +1,4 @@
-import bchlibcaronoff as bchlib
+import bchlibcaronoff
 import decodefunctions
 import bch1correct
 
@@ -16,7 +16,7 @@ def pdf2_to_bch2(pdf2,bch2):
     BCH_BITS = 2
     bitflips=0
     #bch = bchlib.BCH(BCH_POLYNOMIAL, BCH_BITS)
-    bch=bchlib.BCH(2,prim_poly=67)
+    bch=bchlibcaronoff.BCH(2,prim_poly=67)
     max_data_len = bcn.n // 8 - (bch.ecc_bits + 7) // 8
     data = bytearray(bch1correct.bitstring_to_bytes(binary_data_pdf2))
 
@@ -44,6 +44,7 @@ def pdf2_to_bch2(pdf2,bch2):
          bitflips = nerr
          #bitflips = bch.decode_inplace(data,ecc)
          bch.correct(data,ecc)
+         packet=data+ecc
          newdata=decodefunctions.dec2bin(data[0]) #.zfill(2)
          for e in data[1:]:
              binchar = decodefunctions.dec2bin(e).zfill(8)
