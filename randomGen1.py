@@ -66,7 +66,7 @@ def fgbcompute(f,r):
         finalbin=newbin+supdata+bch2
 
         hexvalid=Fcn.bin2hex(finalbin[24:])
-        r1=3 # str(random.randint(0,4))
+        r1=0 # str(random.randint(0,4))
         r2= 3 # str(random.randint(0,3))
         hexbad=random_error(hexvalid,r1,r2,0)
         f.writelines(['{},{},{},{}'.format(hexvalid,r1,r2,hexbad),'\n'])
@@ -84,7 +84,7 @@ def sgbcompute(f,r):
         hexvalid = Fcn.bin2hex(finalbin)
 
         r1 = random.randint(0, 8)
-
+        r1= 6
         hexbad = random_error(hexvalid, 0, 0, r1)
 
         f.writelines(['{},{},{}'.format(hexvalid, str(r1), hexbad), '\n'])
@@ -93,12 +93,14 @@ def sgbcompute(f,r):
 def samplepdf2(f,r):
     for n in range(r):
         pdf2 = randombinary(26).zfill(26)
-        bch2 =  Fcn.calcbch('0'*107+pdf2, '1010100111001', 107, 133, 145) +'0000'
+        bch2 =  Fcn.calcbch('0'*107+pdf2, '1010100111001', 107, 133, 145)+'0000'
         bch = bchlib.BCH(67, 2)
         data = bytearray(bch1correct.bitstring_to_bytes(pdf2))
         ecc = bch.encode(data)
-        bchstring=(Fcn.dec2bin(ecc[0]).zfill(8)+Fcn.dec2bin(ecc[1]).zfill(8))[:12] +'0000'
-        e=random.sample(range(0,38),2)
+        bchstring=(Fcn.dec2bin(ecc[0]).zfill(8)+Fcn.dec2bin(ecc[1]).zfill(8))[:12]+'0000'
+
+
+        e=random.sample(range(0,38),3)
 
 
         scramble = list(pdf2+bch2)
@@ -137,7 +139,8 @@ def samplepdf2(f,r):
 
 
 if __name__ == "__main__":
-    f = open('samplebin2.csv', 'a')
-    fgbcompute(f,250)
-    #samplepdf2(f,5000)
+    f = open('samplehexSGB.csv', 'w')
+    #fgbcompute(f,250)
+    #samplepdf2(f,50)
+    sgbcompute(f,250)
     f.close()
