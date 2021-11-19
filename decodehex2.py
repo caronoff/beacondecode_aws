@@ -762,12 +762,9 @@ class BeaconFGB(HexError):
             default = '011111111101111111111'
             if self.bch.bch1errors>0 or (self.bch.bch2errors>0 and int(self.bin[113:])!=0):
                 self.errors.append(BCH_ERRORS_PRESENT)
-
-
             self._loctype = "Location: {}".format(definitions.locprottype[typelocprotbin])
             self._loc = False
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code', definitions.locprottype[typelocprotbin]])
-
 
             #self.tablebin.append(['26-85',self.bin[26:65]+default,UIN,self.hex15])
             latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,133)
@@ -835,10 +832,10 @@ class BeaconFGB(HexError):
                                           '121.5 Mhz Homing Device',
                                           definitions.homer[self.bin[112]]])
                 self.encpos=str(self.bin[111])
-                if int(self.bin[113:]) != 0:
-                    self.tablebin.append(['113-122',str(self.bin[113:123]),'Latitude offset', ltoffset])
-                    self.tablebin.append(['123-132', str(self.bin[123:133]),'Longitude offset', lgoffset])
-                    self.tablebin.append(['133-144', str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                #if int(self.bin[113:]) != 0 :
+                self.tablebin.append(['113-122',str(self.bin[113:123]),'Latitude offset', ltoffset])
+                self.tablebin.append(['123-132', str(self.bin[123:133]),'Longitude offset', lgoffset])
+                self.tablebin.append(['133-144', str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             
             elif self.type=='uin':
                 if default==str(self.bin[65:86]):
@@ -926,10 +923,10 @@ class BeaconFGB(HexError):
                                           str(self.bin[112]),
                                           'Aux device',
                                           definitions.homer[self.bin[112]]])
-                    if int(self.bin[113:]) != 0:
-                        self.tablebin.append(['113-119',str(self.bin[113:120]),'Latitude offset',ltoffset])
-                        self.tablebin.append(['120-126',str(self.bin[120:127]),'Longitude offset',lgoffset])
-                        self.tablebin.append(['127-132',str(self.bin[127:133]), 'National use',''])
+                    #if int(self.bin[113:]) != 0:
+                    self.tablebin.append(['113-119',str(self.bin[113:120]),'Latitude offset',ltoffset])
+                    self.tablebin.append(['120-126',str(self.bin[120:127]),'Longitude offset',lgoffset])
+                    self.tablebin.append(['127-132',str(self.bin[127:133]), 'National use',''])
 
                 if int(self.bin[113:]) != 0:
                     self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
@@ -1001,13 +998,13 @@ class BeaconFGB(HexError):
                                       ['RLM Type-2 (manual) not received by this beacon',
                                        'RLM Type-2 (manual) received by this beacon'][int(self.bin[112])]])
                 finallat = finallng = 'Not Used'
-                if int(self.bin[113:]) != 0:
-                    self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider Identification', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
+                #if int(self.bin[113:]) != 0:
+                self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider Identification', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
 
-                    latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
-                    self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                    self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
-                    self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+                self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             elif self.type=='uin':
                 if default == str(self.bin[67:86]):
                     valid = 'Valid'
@@ -1112,38 +1109,38 @@ class BeaconFGB(HexError):
                                      '11':'Encoded location in message is current (i.e., the encoded location freshness is less or equal to 2 seconds)'
                                      }
                     enc_freshbin=str(self.bin[113:115])
-                    if int(self.bin[113:]) != 0 :
-                        self.tablebin.append(['113-114', enc_freshbin, 'Encoded location freshness or PDF-2 rotating field indicator', enc_loc_fresh[enc_freshbin]])
+                    #if int(self.bin[113:]) != 0 :
+                    self.tablebin.append(['113-114', enc_freshbin, 'Encoded location freshness or PDF-2 rotating field indicator', enc_loc_fresh[enc_freshbin]])
 
-                        if enc_freshbin!='00':
+                    if enc_freshbin!='00':
 
-                            latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
-                            self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
-                            self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
+                        latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                        self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
+                        self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
 
-                        elif enc_freshbin=='00':
-                            # for rotating field designator
-                            if str(self.bin[115:118])=='000':
-                                op3ld = ''
-                                for e in [(118, 123), (123, 128), (128, 133)]:
-                                    try:
-                                        l = definitions.baudot['1' + str(self.bin[e[0]:e[1]])]
-                                    except KeyError:
-                                        l = '*'
-                                    op3ld = op3ld + l
-                                    if '*' in op3ld:
-                                        self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
-                                ldtype='Aircraft operator 3LD designation'
-                                self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare', ldtype])
-                                self.tablebin.append(['118-132', str(self.bin[118:133]), 'Aircraft operator 3LD', op3ld])
-                                self.warnings.append('WARNING: Location is a coarse position only, and hence has less resolution/accuracy than a message without the rotating field')
-                                self.threeletter = op3ld
-                            else:
-                                ldtype = 'Spare'
-                                self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare',ldtype])
-                                self.tablebin.append(['118-132', str(self.bin[118:133]), 'Spare','Reserved for future development'])
+                    elif enc_freshbin=='00':
+                        # for rotating field designator
+                        if str(self.bin[115:118])=='000':
+                            op3ld = ''
+                            for e in [(118, 123), (123, 128), (128, 133)]:
+                                try:
+                                    l = definitions.baudot['1' + str(self.bin[e[0]:e[1]])]
+                                except KeyError:
+                                    l = '*'
+                                op3ld = op3ld + l
+                                if '*' in op3ld:
+                                    self.errors.append('Unable to decode Aircraft 3LD in bits 115-132 (See * )')
+                            ldtype='Aircraft operator 3LD designation'
+                            self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare', ldtype])
+                            self.tablebin.append(['118-132', str(self.bin[118:133]), 'Aircraft operator 3LD', op3ld])
+                            self.warnings.append('WARNING: Location is a coarse position only, and hence has less resolution/accuracy than a message without the rotating field')
+                            self.threeletter = op3ld
+                        else:
+                            ldtype = 'Spare'
+                            self.tablebin.append(['115-117', str(self.bin[115:118]), 'Aircraft operator 3LD designator or Spare',ldtype])
+                            self.tablebin.append(['118-132', str(self.bin[118:133]), 'Spare','Reserved for future development'])
 
-                        self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
+                    self.tablebin.append(['133-144', str(self.bin[133:145]), BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
 
 
             elif self.type=='uin':
