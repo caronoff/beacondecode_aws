@@ -337,6 +337,7 @@ def longfirstgen():
     print(ptype)
     forms={'User': (FirstGenForm(request.form),'encodelongfirstentryform.html'),
            'Standard Location':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
+           'Location: Standard Location Protocol - ELT (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
            'Standard Location Protocol - Test':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - PLB (Serial)':(FirstGenStd(request.form),'encodelongfirstentryform.html'),
            'Standard Location Protocol - EPIRB (Serial)': (FirstGenStd(request.form), 'encodelongfirstentryform.html'),
