@@ -10,13 +10,16 @@ from decodefunctions import is_number, dec2bin
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
-import re
-import os
+from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
+from botocore.errorfactory import ClientError
+import re, uuid
+import os, json, boto3
 import contacts
 import typeapproval
 import decodehex2
 import definitions
 import bchlib
+import bchsgbcorrect
 import testbchSGB
 # version 2.0 April 14, 2021
 from datetime import datetime
@@ -96,7 +99,6 @@ class LoginForm(Form):
         self.user = None
 
 
-
 class RegistrationForm(Form):
 
     uname = StringField('Username', validators=[DataRequired()])
@@ -109,6 +111,7 @@ class RegistrationForm(Form):
 
     def validate_uname(self, uname):
         user = Userlogin.query.filter_by(uname=uname.data).first()
+
         if user is not None:
             raise ValidationError('Please use a different username.')
 
@@ -194,9 +197,6 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-
-
-
 @app.route("/adduser", methods=["GET", "POST"])
 def home():
     users = None
@@ -210,7 +210,6 @@ def home():
             print(e)
     users = Userlogin.query.all()
     return render_template("users.html", users=users)
-
 
 
 @app.route('/validatehex', methods=['GET'])
@@ -361,6 +360,16 @@ def longfirstgen():
 def long():
     hexcode=str(request.args.get('hex_code'))
     return redirect(url_for('decoded', hexcode=hexcode))
+
+## correctbch
+@app.route("/correctbch/<hexcode>")
+def correctbch(hexcode):
+    return jsonify(decoded_beacon(hexcode,['bch_valid']))
+
+@app.route("/randomsgb/")
+def randomsgb():
+    return jsonify(bchsgbcorrect.test63hex()[1:])
+
 
 ## Decoder
 @app.route("/decodedjson/<hexcode>")
@@ -524,6 +533,236 @@ def decode():
         hexcode = str(request.form['hexcode']).strip()
         return redirect(url_for('decoded',hexcode=hexcode))
     return render_template('decodehex.html', title='Home', user='',showmenu=MENU)
+
+
+def decoded_beacon(hexcode,fieldlst=[]):
+
+    try:
+        beacon = decodehex2.Beacon(hexcode)
+        #res = db.get_item(Key={'id': 'counter'})
+        #value = res['Item']['counter_value'] + 1
+        #res = db.update_item(Key={'id': 'counter'}, UpdateExpression='set counter_value=:value',
+        #                     ExpressionAttributeValues={':value': value}, )
+        #hextable.put_item(Item={'entry_id': str(value), 'hexcode': hexcode, })
+    except decodehex2.HexError as err:
+        return {'error':[err.value, err.message]}
+    if beacon.errors:
+        has_errors=True
+    else:
+        has_errors=False
+
+    decodedic={    'country':beacon.get_country()
+                }
+
+
+    dispatch = {'hexcode':hexcode,
+                'has_errors':has_errors,
+                'country': beacon.get_country(),
+                'msgtype':beacon.type,
+                'tac':beacon.gettac(),
+                'lat':beacon.lat(),
+                'long':beacon.long(),
+                'beacontype':beacon.btype(),
+                'first_or_second_gen':beacon.gentype,
+                'errors' : beacon.errors,
+                'mid':beacon.get_mid(),
+                'cancellation': beacon.cancellation,
+                'msg_note':beacon.genmsg,
+                'loc_prot_fixed_bits':beacon.fbits(),
+                'protocol_type':beacon.loctype(),
+                'uin':beacon.hexuin(),
+                'location':'{}, {}'.format(beacon.location[0], beacon.location[1]),
+                'bch_match': beacon.bchmatch(),
+                'bch_correct' : bch_check(hexcode),
+                'bch_recompute' : bch_recalc(hexcode),
+                'beacon_id' : beacon.get_id(),
+                'vessel_id' : beacon.get_id(),
+                'beacon_sn' : beacon.get_sn(),
+                '3ld' : beacon.threeletter,
+                'threeLD' : beacon.threeletter,
+                'altitude': beacon.beacon.altitude,
+                'bch1_binarycalc':bch1_binarycalc(hexcode),
+                'bch2_binarycalc':bch2_binarycalc(hexcode),
+                'bch_valid':beacon.beacon.bch_valid,
+                'kitchen_sink': beacon.tablebin
+            }
+    for fld in fieldlst:
+        if dispatch.__contains__(fld):
+            decodedic[fld]=dispatch[fld]
+        else:
+            decodedic[fld] = '{} does not exist'.format(fld)
+
+    return decodedic
+
+
+@app.route('/json', methods=['PUT'])
+def jsonhex2():
+    #start = timeit.timeit()
+    decodelst=[]
+    decodedic = {}
+    item={}
+    fieldlst= []
+    req_data = request.get_json()
+    if type(req_data)== list:
+        hexcode = req_data
+    elif type(req_data) == dict:
+        try:
+            hexcode = req_data['hexcode']
+        except KeyError:
+            return jsonify(error=['bad json header request', 'hexcode key not found'])
+        try:
+            fieldlst= req_data['decode_flds']
+            if type(fieldlst)==str:
+                fieldlst =[req_data['decode_flds']]
+
+        except KeyError:
+            pass
+
+    else:
+        return jsonify(error=['bad json header request','hexcode key not found'])
+
+    if type(hexcode)==str:
+        item=decoded_beacon(hexcode,fieldlst)
+        item['inputmessage']=hexcode
+        decodelst.append(item)
+
+
+    elif type(hexcode)==list:
+        i=0
+        for h in hexcode:
+            item={}
+            i+=1
+
+            try:
+                item = decoded_beacon(h, fieldlst)
+                item['inputmessage'] = h
+
+            except TypeError:
+                item = decoded_beacon(str(h), fieldlst)
+                item['inputmessage'] = str(h)
+
+            except KeyError:
+                item={}
+                item['error'] = 'bad hexcode key'
+                item['inputmessage'] = h
+
+
+            decodelst.append(item)
+
+
+    return jsonify(decodelst)
+
+
+
+# Listen for GET requests to yourdomain.com/account/
+@app.route("/account")
+@login_required
+def account():
+    #user = repr(current_user)=='<User craig>'
+    user=True
+    if user :
+        session.clear()
+        return render_template('account.html')
+    else:
+        return redirect(url_for('decode'))
+
+
+# Listen for POST requests to yourdomain.com/submit_form/
+@app.route("/submit-form/", methods = ["POST","GET"])
+def submit_form():
+    if request.method == "POST" and request.form["filename"] and request.form.getlist("choices"):
+        # Collect the data posted from the HTML form in account.html:
+
+        file_name = request.form["filename"]
+        decode_list=request.form.getlist("choices")
+        dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
+        tableraw=dynamodb.Table('rawfile')
+        response= tableraw.put_item(Item={
+          'filenameid' : file_name,
+          'decodeflds': decode_list
+        })
+
+
+        return redirect(url_for('signs3target',fname=file_name))
+
+    elif request.method == "POST" :
+        flash("You must upload a file and select at least one field to process")
+        return render_template('account.html',flashType="danger")
+    else:
+        return redirect(url_for('account'))
+
+
+
+
+# Please see https://gist.github.com/RyanBalfanz/f07d827a4818fda0db81 for an example using Python 3 for this view.
+@app.route('/sign-s3/')
+@login_required
+def sign_s3():
+  # Load necessary information into the application
+  S3_BUCKET = os.environ.get('S3_BUCKET_NAME')
+  uid=uuid.uuid4()
+  # Load required data from the request
+  file_name = '{}{}'.format(uid,request.args.get('file-name'))
+  file_type = request.args.get('file-type')
+
+  # Initialise the S3 client
+  s3 = boto3.client('s3')
+
+  # Generate and return the presigned URL
+  presigned_post = s3.generate_presigned_post(
+    Bucket = S3_BUCKET,
+    Key = file_name,
+    Fields = { "Content-Type": file_type},
+    Conditions = [
+      {"Content-Type": file_type}
+    ],
+    ExpiresIn = 3600
+  )
+
+  # Return the data to the client
+  return json.dumps({
+    'data': presigned_post,
+    'filename': file_name,
+    'url': 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, file_name)
+  })
+
+
+
+@app.route('/signs3target')
+@login_required
+def signs3target():
+  # Load necessary information into the application
+  S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
+
+  # Load required data from the request
+  filename = request.args.get('fname')
+  print(filename)
+  # Initialise the S3 client
+  s3 = boto3.client('s3')
+
+  # Generate and return the presigned URL
+  presigned = s3.generate_presigned_url('get_object',
+                                                    Params={'Bucket': S3_BUCKET_TARGET,
+                                                            'Key': filename},
+                                                    ExpiresIn=3600)
+  # Return the data to the client
+  #return json.dumps(presigned)
+  return render_template('decodefile.html',presigned=presigned,filename=filename)
+
+
+@app.route('/exists/')
+def exists():
+    S3_BUCKET_TARGET = os.environ.get('S3_BUCKET_TARGET')
+    file_name = request.args.get('file-name')
+    s3 = boto3.client('s3')
+    try:
+        response= s3.head_object(Bucket=S3_BUCKET_TARGET, Key=file_name)
+        response = jsonify( True)
+    except ClientError:
+        response = jsonify( False)
+
+    return response
+
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'

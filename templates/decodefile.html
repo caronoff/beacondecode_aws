@@ -1,0 +1,165 @@
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <title> Bootstrap 4 File upload Example </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"> </script>
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<style>
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.125rem;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+font-family: 'Indie Flower', cursive;
+font-size: 32px;
+  color: #03A9F4;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+</style>
+  <body onload="getSignedRequestTarget()">
+  <div class="container">
+  <br>
+
+
+
+<br>
+    <a class="small" id="download-url" href=""  >
+
+   <h6 id="working"  > </h6></a>
+
+
+
+
+    <form method="GET" id='done' action="/account">
+        <input type="hidden"   id="filename"   name="filename" value="{{filename}}" >
+        <input type="hidden"   id="presignurl"   name="presignurl" value="{{presigned}}" >
+
+
+
+      <hr>
+
+      <input type="submit" value="Done">
+    </form>
+</div>
+
+
+
+
+    <script type="text/javascript">
+
+    /*
+      Function to carry out the actual POST request to S3 using the signed request from the Python app.
+
+
+    function uploadFile(file, s3Data, url,filename){
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', s3Data.url);
+
+
+      const postData = new FormData();
+      for(key in s3Data.fields){
+        postData.append(key, s3Data.fields[key]);
+        console.log(key)
+        console.log(s3Data.fields[key])
+      }
+
+      postData.append('file', file);
+
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200 || xhr.status === 204){
+            getSignedRequestTarget(filename);
+              console.log(filename);
+          }
+          else{
+            alert('Could not upload file.');
+          }
+        }
+      };
+      xhr.send(postData);
+    }
+    */
+
+    /*
+      Function to get the temporary signed request from the Python app.
+      If request successful, continue to upload the file using this signed
+      request.
+
+    function getSignedRequest(file){
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            const response = JSON.parse(xhr.responseText);
+            document.getElementById('filename').value=response.filename;
+            uploadFile(file, response.data, response.url,response.filename);
+
+
+          }
+          else{
+            alert('Could not get signed URL.');
+          }
+        }
+      };
+      xhr.send();
+    }
+     */
+
+
+
+function getSignedRequestTarget(){
+
+      const filename = document.getElementById('filename').value;
+      const response =  document.getElementById('presignurl').value;
+      console.log(filename);
+      console.log(response);
+      var idVar = setInterval(()=> {
+              UrlExists(filename,response,idVar);
+              }, 1000);
+    }
+
+
+  function UrlExists(filename,url,idVar)  {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/exists?file-name=${filename}`);
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response);
+          if(response){
+          document.getElementById("working").innerHTML = 'Download here';
+          document.getElementById('download-url').href = url;
+
+          document.getElementById('download-url').click()
+          clearInterval(idVar);
+          /* document.getElementById("done").submit() */
+          }else
+          {document.getElementById("working").innerHTML = 'File creation in progress...';}
+        }
+      }
+    };
+    xhr.send();
+}
+
+
+
+    </script>
+  </body>
+</html>
