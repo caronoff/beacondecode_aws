@@ -274,7 +274,7 @@ def latlongresolution(binary,startpos,endpos):
     return  (signlat*(float(latminutes/60)+float(latseconds/3600)),
              signlong*(float(longminutes/60)+float(longseconds/3600)),             
              latoffset,
-             longoffset)
+             longoffset,signlat,signlong)
 
 
 def latitudeRLS(latsono,latdeg):    

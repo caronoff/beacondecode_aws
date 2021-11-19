@@ -749,7 +749,7 @@ class BeaconFGB(HexError):
             self._loc = False
             self.tablebin.append(['37-40', str(self.bin[37:41]), 'Protocol Code', definitions.locprottype[typelocprotbin]])
             self.tablebin.append(['41-85', str(self.bin[41:86]), 'Undefined - Spare ', 'Undefined for undefined location type'])
-            latdelta, longdelta, ltoffset, lgoffset = Fcn.latlongresolution(self.bin, 113, 133)
+            latdelta, longdelta, ltoffset, lgoffset,signlat,signlong = Fcn.latlongresolution(self.bin, 113, 133)
             lat, declat, latdir, ltminutes = Fcn.latitude(self.bin[65], self.bin[66:73], self.bin[73:75])
             lng, declng, lngdir, lgminutes = Fcn.longitude(self.bin[75], self.bin[76:84], self.bin[84:86])
             self.courseloc = (declat, declng)
@@ -767,7 +767,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code', definitions.locprottype[typelocprotbin]])
 
             #self.tablebin.append(['26-85',self.bin[26:65]+default,UIN,self.hex15])
-            latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,133)
+            latdelta,longdelta,ltoffset,lgoffset,signlat,signlong = Fcn.latlongresolution(self.bin,113,133)
             lat,declat, latdir,ltminutes=Fcn.latitude(self.bin[65],self.bin[66:73],self.bin[73:75])
             lng,declng, lngdir,lgminutes=Fcn.longitude(self.bin[75],self.bin[76:84],self.bin[84:86])          
             self.courseloc=(declat,declng)
@@ -910,7 +910,7 @@ class BeaconFGB(HexError):
                     if int(self.bin[113:]) != 0:
                         self.tablebin.append(['113-132',str(self.bin[113:133]),'National use',''])
                 else :
-                    latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,113,127)
+                    latdelta,longdelta,ltoffset,lgoffset,signlat,signlong = Fcn.latlongresolution(self.bin,113,127)
                     self.tablebin.append(['110',str(self.bin[110]),
                                           'Location check',
                                           'bits 113-126 for location.\n 127-132 for national use'])
@@ -1001,7 +1001,7 @@ class BeaconFGB(HexError):
                 #if int(self.bin[113:]) != 0:
                 self.tablebin.append(['113-114', str(self.bin[113:115]), 'RLS Provider Identification', {'00':'Spare','11':'Spare','01':'GALILEO Return Link Service Provider','10':'GLONASS Return Link Service Provider'}[str(self.bin[113:115])]])
 
-                latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                latdelta,longdelta,ltoffset,lgoffset,signlat,signlong = Fcn.latlongresolution(self.bin,115,133)
                 self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                 self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
                 self.tablebin.append(['133-144',str(self.bin[133:145]),BCH2, str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
@@ -1114,7 +1114,7 @@ class BeaconFGB(HexError):
 
                     if enc_freshbin!='00':
 
-                        latdelta,longdelta,ltoffset,lgoffset = Fcn.latlongresolution(self.bin,115,133)
+                        latdelta,longdelta,ltoffset,lgoffset,signlat,signlong = Fcn.latlongresolution(self.bin,115,133)
                         self.tablebin.append(['115-123',str(self.bin[115:124]),'Latitude offset',ltoffset])
                         self.tablebin.append(['124-132',str(self.bin[124:133]),'Longitude offset',lgoffset])
 
@@ -1160,12 +1160,12 @@ class BeaconFGB(HexError):
 
         if Fcn.is_number(declat) and Fcn.is_number(latdelta) and Fcn.is_number(declng) and Fcn.is_number(longdelta):
             self._loc=True
-            if latdelta==0 and latdir!='positive' and self.type!='uin':
+            if latdelta==0 and signlat <0 and self.type!='uin':
                 self.warnings.append('Latitude offset minutes and seconds are all zeroes.  Delta bit 113 in pdf-2 should be 1')
-            print('hey',latdir,lngdir)
-            if longdelta==0 and lngdir!='positive' and self.type!='uin':
+
+            if longdelta==0 and signlong<0 and self.type!='uin':
                 self.warnings.append('Longitude offset minutes and seconds are all zeroes.  Delta bit 123 in pdf-2 should be 1')
-            a=self.update_locd((abs(declat)+latdelta),latdir)         
+            a=self.update_locd((abs(declat)+latdelta),latdir)
             b=self.update_locd((abs(declng)+longdelta),lngdir)
         else:
             self._loc=False
