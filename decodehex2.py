@@ -1160,9 +1160,9 @@ class BeaconFGB(HexError):
 
         if Fcn.is_number(declat) and Fcn.is_number(latdelta) and Fcn.is_number(declng) and Fcn.is_number(longdelta):
             self._loc=True
-            if latdelta==0 and latdir!=1 and self.type!='uin':
+            if latdelta==0 and latdir!='positive' and self.type!='uin':
                 self.warnings.append('Latitude offset minutes and seconds are all zeroes.  Delta bit 113 in pdf-2 should be 1')
-            if longdelta==0 and lngdir!=1 and self.type!='uin':
+            if longdelta==0 and lngdir!='positive' and self.type!='uin':
                 self.warnings.append('Longitude offset minutes and seconds are all zeroes.  Delta bit 123 in pdf-2 should be 1')
             a=self.update_locd((abs(declat)+latdelta),latdir)         
             b=self.update_locd((abs(declng)+longdelta),lngdir)
