@@ -95,7 +95,8 @@ def encodelongFGB(hex_code, formdata):
             binstr = binstr + bch2
 
 
-        elif c.protocolflag() == 'Location' and c.loctype()  in ['Standard Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)','Standard Location Protocol - EPIRB (Serial)','Std Loc. Serial ELT - Aircraft Operator Designator Protocol']:
+        elif c.protocolflag() == 'Location' and c.loctype()  in \
+                ['Location: Standard Location Protocol - ELT (Serial)','Standard Location','Standard Location Protocol - Test','Standard Location Protocol - PLB (Serial)','Standard Location Protocol - EPIRB (Serial)','Std Loc. Serial ELT - Aircraft Operator Designator Protocol']:
             bincoord = stdloc(latitude, longitude)
             suppdata = '1101' + formdata['encodepos'] + formdata['auxdevice']
             binstr = pad24 + '1' + c.bin[26:65] + str(southnorth) + bincoord[0] + str(eastwest) + bincoord[1]
