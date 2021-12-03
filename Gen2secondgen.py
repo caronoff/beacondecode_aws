@@ -28,6 +28,7 @@ class SecondGen(Gen2Error):
         self.bits = '0' * 252
         self.validhex=True
         self.cancellation = False
+        self.sgb_spare_bits = 'na'
         if hexCode:
             self.processHex(hexCode)
 
@@ -434,6 +435,7 @@ class SecondGen(Gen2Error):
             self.systembeacon = True
             self.warnings.append(msg)
             if len(self.bits)>93:
+                self.sgb_spare_bits = self.bits[141:155]
                 if self.bits[138:141] != '111' and self.tac != 65532:
                     pass
                     #self.errors.append('Beacon type bits 138-140 not 111 - required for System Beacon')

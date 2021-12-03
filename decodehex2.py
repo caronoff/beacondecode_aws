@@ -139,6 +139,7 @@ class BeaconFGB(HexError):
         self.count = 1
         self._loc = False
         self.cancellation = False
+        self.sgb_spare_bits = 'na'
         self.tablebin = []
         self.type=''
         self.tac=''
@@ -1274,6 +1275,7 @@ class Beacon(HexError):
 
         self.beacon=beacon
         self.cancellation = self.beacon.cancellation
+        self.sgb_spare_bits = self.beacon.sgb_spare_bits
         self.latitude=self.beacon.latitude
         self.longitude=self.beacon.longitude
         self.location=self.beacon.location

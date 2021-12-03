@@ -568,6 +568,7 @@ def decoded_beacon(hexcode,fieldlst=[]):
                 'errors' : beacon.errors,
                 'mid':beacon.get_mid(),
                 'cancellation': beacon.cancellation,
+                'sgb_spare_bits' : beacon.sgb_spare_bits,
                 'msg_note':beacon.genmsg,
                 'loc_prot_fixed_bits':beacon.fbits(),
                 'protocol_type':beacon.loctype(),
