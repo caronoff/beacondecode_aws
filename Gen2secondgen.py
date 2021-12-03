@@ -67,6 +67,7 @@ class SecondGen(Gen2Error):
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
+            self.sgb_spare_bits = self.bits[141:155]
             pbit=self.bits[0:2]
             if pbit=='00':
                 padding='Normal mode transmission (i.e., operational mode)'
