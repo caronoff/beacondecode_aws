@@ -872,7 +872,7 @@ class BeaconFGB(HexError):
             self._sn=str(Fcn.bin2dec(self.bin[41:59]))
 
             self.tablebin.append(['41-58',str(self.bin[41:59]),'Identification Data (decimal)','#{}'.format(self._sn),definitions.moreinfo['natloc']])
-            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0, 0, 0, 0, 0, 0, 0, 0)
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset,signlat,signlong =(0, 0, 0, 0, 0, 0, 0, 0,0,0)
             lat,declat,latdir,ltminutes =  Fcn.latitude(self.bin[59],self.bin[60:67],self.bin[67:72])
             lng,declng,lngdir,lgminutes =  Fcn.longitude(self.bin[72],self.bin[73:81],self.bin[81:86])
             self.courseloc=(declat,declng)
@@ -975,7 +975,7 @@ class BeaconFGB(HexError):
                 self._sn=str(Fcn.bin2dec(self.bin[53:67])).zfill(5)
                 self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(self._sn)])
 
-            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset,signlat,signlong =(0,0,0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             self.courseloc=(declat,declng)
@@ -1061,7 +1061,7 @@ class BeaconFGB(HexError):
             #elif str(self.bin[41:43])=='11' prior to CSC-62:
             # ELT(DT) Location Test Protocol
 
-            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset =(0,0,0,0,0,0,0,0)
+            latdelta,longdelta,ltmin,ltsec,lgmin,lgsec,ltoffset,lgoffset,signlat,signlong =(0,0,0,0,0,0,0,0,0,0)
             lat,declat,latdir =  Fcn.latitudeRLS(self.bin[67],self.bin[68:76])           
             lng,declng,lngdir =  Fcn.longitudeRLS(self.bin[76],self.bin[77:86])
             if 'Error' in lat:
