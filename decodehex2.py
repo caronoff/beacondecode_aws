@@ -848,7 +848,8 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['65-85', str(self.bin[65:86]), 'Default bits in hex', valid])
                 self._loc=False
             if self.errors:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) #+ INVALID_UIN
+                self.errors.append(Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN)
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:65] + default )
 
@@ -859,8 +860,9 @@ class BeaconFGB(HexError):
             self._loctype='Location: National Location'
             default = '011111110000001111111100000'
             if self.bch.bch1errors > 0 or self.bch.bch2errors > 0:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) #+ INVALID_UIN
                 self.errors.append(BCH_ERRORS_PRESENT)
+                self.errors.append(Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN)
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:59] + default)
 
@@ -949,8 +951,9 @@ class BeaconFGB(HexError):
         elif typelocprotbin =='1101':
             default='0111111110111111111' #67-85 default 19 bit binary (to construct 15 Hex)
             if self.bch.bch1errors > 0 or self.bch.bch2errors > 0:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) #+ INVALID_UIN
                 self.errors.append(BCH_ERRORS_PRESENT)
+                self.errors.append(Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN)
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default)
 
@@ -1155,7 +1158,8 @@ class BeaconFGB(HexError):
 
                 self._loc = False
             if self.errors:
-                self.hex15 = Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN
+                self.hex15 = Fcn.bin2hex(self.bin[26:86]) #+ INVALID_UIN
+                self.errors.append(Fcn.bin2hex(self.bin[26:86]) + INVALID_UIN )
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default )
 
