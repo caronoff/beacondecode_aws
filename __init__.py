@@ -560,7 +560,7 @@ def decoded_beacon(hexcode,fieldlst=[]):
                 'has_errors':has_errors,
                 'country': beacon.get_country(),
                 'msgtype':beacon.type,
-                'tac':beacon.gettac(),
+                'tac':str(beacon.gettac()),
                 'lat':beacon.lat(),
                 'long':beacon.long(),
                 'beacontype':beacon.btype(),
