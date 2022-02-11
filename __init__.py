@@ -583,6 +583,8 @@ def decoded_beacon(hexcode,fieldlst=[]):
                 '3ld' : beacon.threeletter,
                 'threeLD' : beacon.threeletter,
                 'altitude': beacon.beacon.altitude,
+                'testcoded':beacon.beacon.testprotocol,
+                'selftest' : beacon.beacon.selftest,
                 'bch1_binarycalc':bch1_binarycalc(hexcode),
                 'bch2_binarycalc':bch2_binarycalc(hexcode),
                 'bch_valid':beacon.beacon.bch_valid,

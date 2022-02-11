@@ -134,6 +134,8 @@ class BeaconFGB(HexError):
         self.warnings=[]
         self.typeapproval=('','','na')
         self.longitude='na'
+        self.testprotocol='na'
+        self.selftest='Normal mode transmission (not self-test i.e., operational mode)'
         self.fixedbits = ''
         self.hex = str(strhex)
         self.count = 1
@@ -210,13 +212,13 @@ class BeaconFGB(HexError):
             framesynch = self.bin[16:25]
             self.tablebin.append(['1-15', bitsynch, 'Bit-synchronization pattern consisting of "1"s shall occupy the first 15-bit positions', str(bitsynch=='111111111111111')])
             if self.bin[16:25]== '011010000':
-                self.testm='1'
-                self.tablebin.append(['16-24', framesynch,'Frame Synchronization Pattern','Correct. Self-Test Message'])
+                self.selftest='Test protocol message coded for non-operational use'
+                self.tablebin.append(['16-24', framesynch,'Frame Synchronization Pattern',self.selftest])
             elif self.bin[16:25]== '000101111':
-                self.testm='0'
-                self.tablebin.append(['16-24', framesynch, 'Frame Synchronization Pattern', 'Correct. Operational Message'])
+                self.selftest='Normal beacon operation'
+                self.tablebin.append(['16-24', framesynch, 'Frame Synchronization Pattern', self.selftest])
             else:
-                self.testm=''
+                self.selftest='INVALID FRAME SYNCHRONIZATION'
                 self.tablebin.append(['16-24', framesynch, 'Frame Synchronization Pattern', 'Error. Normal Mode: 000101111'])
                 self.tablebin.append(['', '', '', 'Self-Test: 011010000'])
         self.id=()
@@ -530,6 +532,7 @@ class BeaconFGB(HexError):
             self.tablebin.append(['37-39',str(self.bin[37:40]),'Protocol Code','Test user'])
             self.tablebin.append(['40-85',str(self.bin[40:86]),'Test Beacon Data',''])
             btype = 'Test'
+            self.testprotocol ='test protocol mode transmission'
 
             if self.type!='uin':
                 self.tablebin.append(['86-106', str(self.bin[86:107]), BCH1, str(self.bch.bch1calc()),definitions.moreinfo['bch1']])
@@ -688,7 +691,8 @@ class BeaconFGB(HexError):
 
     def locationProtocol(self):      
         
-        typelocprotbin=self.bin[37:41]        
+        typelocprotbin=self.bin[37:41]
+
         self._locd=dict(lat='not provided',long='not provided',comp='')                          
         tano='na'
         self.encpos='na'
@@ -716,6 +720,7 @@ class BeaconFGB(HexError):
                     trunc='3'
                 elif self.bin[41:43] == '11':
                     btype='RLS Location unknown beacon type (Spare or Test)'
+                    self.testprotocol = 'test protocol mode transmission ' + btype
                     trunc='[Unkown beacon type]'  # beacon type unknown so therefor indeterminable leading digit
             else:
                 if self.bin[41:43] == '00':
@@ -726,9 +731,13 @@ class BeaconFGB(HexError):
                     btype='PLB'
                 elif self.bin[41:43]=='11':
                     btype = 'RLS Test Location'
+                    self.testprotocol = 'test protocol mode transmission ' + btype
                 
         else:
             btype='Unknown'
+
+        if typelocprotbin[:3]=='111':
+            self.testprotocol = 'test protocol mode transmission ' + btype
 
         self._protocold={'pflag':definitions.protocol[self.bin[26]],
                        'ptype' :definitions.locprottype[typelocprotbin],'serial':''                     
@@ -1038,6 +1047,7 @@ class BeaconFGB(HexError):
 
             if (str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24) and str(self.bin[41:43]) != '11':
                 self.tablebin.append(['43-66', str(self.bin[43:67]), 'ELT(DT) test beacon','Test beacon type since bits 43-66 are all 0 or All 1, designates Test Protocol'])
+                self.testprotocol = 'test protocol mode transmission ' + btype
             else:
                 if str(self.bin[41:43])=='10':
                 # 10 bit TAC & Serial No
@@ -1061,6 +1071,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['43-66', str(self.bin[43:67]), 'Identification data','Undefined for ELT Identity type - Spare'])
                 if str(self.bin[43:67]) == '0' * 24 or str(self.bin[43:67]) == '1' * 24:
                     self.tablebin.append(['-', '-', 'ELT(DT) test beacon','Test beacon type since bits 43-66 are all 0 or All 1, designates Test Protocol'])
+                    self.testprotocol = 'test protocol mode transmission '
             #elif str(self.bin[41:43])=='11' prior to CSC-62:
             # ELT(DT) Location Test Protocol
 

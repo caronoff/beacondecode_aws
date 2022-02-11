@@ -52,7 +52,8 @@ class SecondGen(Gen2Error):
         self.systembeacon=False
         self.warnings=[]
         self.fixedbits = ''
-        self.testprotocol=''
+        self.testprotocol='na'
+        self.selftest='na'
         self._id='na'
         self.SerialNum=0
         self.tac=0
@@ -70,11 +71,12 @@ class SecondGen(Gen2Error):
             self.sgb_spare_bits = self.bits[141:155]
             pbit=self.bits[0:2]
             if pbit=='00':
-                padding='Normal mode transmission (i.e., operational mode)'
+                self.selftest=padding='Normal mode transmission (i.e., operational mode)'
             elif pbit=='10':
-                padding='Self-test mode transmission'
+                self.selftest= padding='Self-test mode transmission'
+
             else:
-                padding='ERROR! first two bits not 00 nor 10'
+                self.selftest=padding='ERROR! first two bits not 00 nor 10'
                 self.errors.append(padding)
 
             self.tablebin.append(['Left pad', pbit, '', padding])
