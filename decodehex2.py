@@ -755,7 +755,7 @@ class BeaconFGB(HexError):
             default = '011111111101111111111'
             if self.bch.bch1errors > 0 or (self.bch.bch2errors > 0 and int(self.bin[113:]) != 0):
                 self.errors.append(BCH_ERRORS_PRESENT)
-            self._loctype = "Location: {}".format(definitions.locprottype[typelocprotbin])
+            self._loctype = "{}".format(definitions.locprottype[typelocprotbin])
             self._loc = False
             self.tablebin.append(['37-40', str(self.bin[37:41]), 'Protocol Code', definitions.locprottype[typelocprotbin]])
             self.tablebin.append(['41-85', str(self.bin[41:86]), 'Undefined - Spare ', 'Undefined for undefined location type'])
@@ -772,7 +772,7 @@ class BeaconFGB(HexError):
             default = '011111111101111111111'
             if self.bch.bch1errors>0 or (self.bch.bch2errors>0 and int(self.bin[113:])!=0):
                 self.errors.append(BCH_ERRORS_PRESENT)
-            self._loctype = "Location: {}".format(definitions.locprottype[typelocprotbin])
+            self._loctype = "{}".format(definitions.locprottype[typelocprotbin])
             self._loc = False
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code', definitions.locprottype[typelocprotbin]])
 
@@ -966,7 +966,7 @@ class BeaconFGB(HexError):
             else:
                 self.hex15 = Fcn.bin2hex(self.bin[26:67] + default)
 
-            self._loctype = "Location: {}".format(definitions.locprottype[typelocprotbin])
+            self._loctype = "{}".format(definitions.locprottype[typelocprotbin])
 
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{}'.format(self._loctype)])
             tano=str(Fcn.bin2dec(self.bin[43:53])).zfill(3)
@@ -1041,7 +1041,7 @@ class BeaconFGB(HexError):
 
             #self.tablebin.append(['26-85',self.bin[26:67]+default,UIN,self.hex15])
             #'ELT-DT Location'
-            self._loctype = "Location: {}".format(definitions.locprottype[typelocprotbin])
+            self._loctype = "{}".format(definitions.locprottype[typelocprotbin])
             self.tablebin.append(['37-40',str(self.bin[37:41]),'Protocol Code','{} - {}'.format(btype,self._loctype)])
             self.tablebin.append(['41-42',str(self.bin[41:43]),'ELT Identity Type',definitions.eltdt[str(self.bin[41:43])]])
 
