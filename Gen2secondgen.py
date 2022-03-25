@@ -65,7 +65,7 @@ class SecondGen(Gen2Error):
                 self.bch_valid = '{} bit errors corrected.  Corrected Msg ,{}'.format(bitflips,newhex)
             else:
                 self.bch_valid = 'Message has no bch errors'
-
+            self.errors.append(self.bch_valid)
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
             self.sgb_spare_bits = self.bits[141:155]
