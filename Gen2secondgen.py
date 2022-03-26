@@ -312,7 +312,7 @@ class SecondGen(Gen2Error):
                 self.calculatedBCH = Func.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
-                self.tablebin.append(['Calculated',
+                self.tablebin.append(['Calculated '+ self.bits[1:203],
                                       self.calculatedBCH,
                                       'Computed',
                                       ''])
