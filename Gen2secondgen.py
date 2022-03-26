@@ -57,8 +57,14 @@ class SecondGen(Gen2Error):
         self._id='na'
         self.SerialNum=0
         self.tac=0
-        if len(strhex)==63:
-            bitflips, newdata, correctedbch, newhex = bchsgbcorrect.correct_bchsgb(strhex)
+        self.correctbch='na'
+        if len(strhex)==63 or len(strhex)==51:
+            if len(strhex)==51:
+                strhex1=strhex+'0'*12
+            else:
+                strhex1=strhex
+            bitflips, newdata, correctedbch, newhex = bchsgbcorrect.correct_bchsgb(strhex1)
+            self.correctbch = correctedbch
             if bitflips == -1 :
                 self.bch_valid = 'Message has too many bit errors to correct on bch'
             elif bitflips > 0 :
@@ -66,6 +72,7 @@ class SecondGen(Gen2Error):
             else:
                 self.bch_valid = 'Message has no bch errors'
             #self.errors.append(self.bch_valid)
+
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
             self.sgb_spare_bits = self.bits[141:155]
@@ -312,13 +319,13 @@ class SecondGen(Gen2Error):
                 self.calculatedBCH = Func.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
-                self.tablebin.append(['Calculated '+ self.bits[1:203],
-                                      self.calculatedBCH,
+                self.tablebin.append(['Calculated ',
+                                      self.correctbch,
                                       'Computed',
                                       ''])
                 #self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {} {}'.format(self.calculatedBCH,self.bchstring,self.calculatedBCH==self.bchstring)])
                 ##Compare to the BCH in the beacon message
-                bcherr= self.BCHerrors = Func.errors(self.calculatedBCH, self.bits[203:])
+                bcherr= self.BCHerrors = Func.errors(self.correctbch, self.bits[203:])
                 if bcherr > 0 :
                     bcherror='ERROR! COMPUTED BCH DOES NOT MATCH ENCODED BCH!!'
                     self.errors.append(bcherror)
