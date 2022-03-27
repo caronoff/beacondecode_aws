@@ -319,10 +319,10 @@ class SecondGen(Gen2Error):
                                       'Encoded BCH'])
                 ##Calculate the BCH
                 x = self.pbit+ self.bits[1:203]
-                print(len(x))
+
                 self.calculatedBCH = Func.calcBCH(x, 0, 204, 252)
 
-                print(x,len(x))
+
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
                 self.tablebin.append(['Calculated ',
@@ -342,7 +342,8 @@ class SecondGen(Gen2Error):
             elif len(self.bits)==203:
                 # if user enters a hex 51 excluding bch, then this ,means 202 information bits plus stub 0 minues the 2 digits of front padding
                 self.tablebin.append(['203-250','NA','Encoded BCH','Not provided in a 51 Hex.  Computed below'])
-                self.calculatedBCH =Func.calcBCH(self.bits[1:], 0, 202, 250)
+                x = self.pbit + self.bits[1:203]
+                self.calculatedBCH =Func.calcBCH(x, 0, 204, 252)
                 hexBCH= Func.bin2hex(self.calculatedBCH)
                 self.tablebin.append(['203-250', self.calculatedBCH, 'Calculated BCH', 'Hex Value: {}'.format(hexBCH)])
                 self.tablebin.append(['Complete Message', '', 'Hex Value: {}{}'.format(self.inputhex,hexBCH),''])
