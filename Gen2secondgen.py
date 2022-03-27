@@ -57,26 +57,28 @@ class SecondGen(Gen2Error):
         self._id='na'
         self.SerialNum=0
         self.tac=0
+        self.pbit='00'
         self.correctbch='na'
         if len(strhex)==63 or len(strhex)==51:
             if len(strhex)==51:
                 strhex1=strhex+'0'*12
             else:
                 strhex1=strhex
-            bitflips, newdata, correctedbch, newhex = bchsgbcorrect.correct_bchsgb(strhex1)
-            self.correctbch = correctedbch
-            if bitflips == -1 :
-                self.bch_valid = 'Message has too many bit errors to correct on bch'
-            elif bitflips > 0 :
-                self.bch_valid = '{} bit errors corrected.  Corrected Msg ,{}'.format(bitflips,newhex)
-            else:
-                self.bch_valid = 'Message has no bch errors'
-            #self.errors.append(self.bch_valid)
+            # bitflips, newdata, correctedbch, newhex = bchsgbcorrect.correct_bchsgb(strhex1)
+            # self.correctbch = correctedbch
+            # if bitflips == -1 :
+            #     self.bch_valid = 'Message has too many bit errors to correct on bch'
+            # elif bitflips > 0 :
+            #     self.bch_valid = '{} bit errors corrected.  Corrected Msg ,{}'.format(bitflips,newhex)
+            # else:
+            #     self.bch_valid = 'Message has no bch errors'
+            # #self.errors.append(self.bch_valid)
 
         if len(self.bits) == 252 or len(self.bits) == 204 :
             self.type="Complete SGB message"
             self.sgb_spare_bits = self.bits[141:155]
             pbit=self.bits[0:2]
+            self.pbit=pbit
             if pbit=='00':
                 self.selftest=padding='Normal mode transmission (i.e., operational mode)'
             elif pbit=='10':
@@ -316,7 +318,11 @@ class SecondGen(Gen2Error):
                                       'Encoded BCH',
                                       'Encoded BCH'])
                 ##Calculate the BCH
-                self.calculatedBCH = Func.calcBCH(self.bits.zfill(208), 0, 209, 257)
+                x = self.pbit+ self.bits[1:203]
+                print(len(x))
+                self.calculatedBCH = Func.calcBCH(x, 0, 204, 252)
+
+                print(x,len(x))
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
                 self.tablebin.append(['Calculated ',
