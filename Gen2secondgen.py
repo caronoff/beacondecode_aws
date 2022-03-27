@@ -316,11 +316,11 @@ class SecondGen(Gen2Error):
                                       'Encoded BCH',
                                       'Encoded BCH'])
                 ##Calculate the BCH
-                self.calculatedBCH = Func.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)
+                self.calculatedBCH = Func.calcBCH(self.bits.zfill(208), 0, 209, 257)
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
                 self.tablebin.append(['Calculated ',
-                                      self.correctbch,
+                                      self.calculatedBCH,
                                       'Computed',
                                       ''])
                 #self.tablebin.append(['','','','self.calculatedBCH {} : self.bchstring {} {}'.format(self.calculatedBCH,self.bchstring,self.calculatedBCH==self.bchstring)])
