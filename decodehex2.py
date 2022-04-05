@@ -627,7 +627,9 @@ class BeaconFGB(HexError):
                                           str(self.bch.bch2calc()),definitions.moreinfo['bch2']])
             #self._loctype = 'User: {}'.format(definitions.userprottype[typeuserprotbin])
 
+        elif typeuserprotbin == '101':
 
+            self.errors.append('User protocol code bits 37-39 cannot be 101')
         if typeuserprotbin not in ['100','000','111'] and self.has_loc(): # and self.bch.complete=='1':
             location_data = 'Check for location'
 
