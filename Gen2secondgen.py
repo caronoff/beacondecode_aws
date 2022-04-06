@@ -436,10 +436,9 @@ class SecondGen(Gen2Error):
                                       status_check])
             '''
         else:
-            self.type = ('Hex string length of ' + str(len(strhex)) + '.'
-                         + '\nBit string length of ' + str(len(self.bits)) + '.'
-                         + '\nLength of First Gen Beacon Hex String must be 15, 22 or 30'
-                         + '\nLength of Second Gen Beacon Bit String must be 204 or 252 bits')
+            self.type = ('Beacon Protocol is for Second Generation beacons.\nHex string length of ' + str(len(strhex))
+                         + '\nLength of Second Generation unique identifier must be 22 hexidecimal characters.'
+                         + '\nLength of Second Generation complete message  51 or 63 hexidecimal characters')
             raise Gen2Error('LengthError', self.type)
 
     def check_tac(self):

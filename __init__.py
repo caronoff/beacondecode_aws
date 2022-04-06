@@ -480,7 +480,7 @@ def decoded(hexcode):
                                tacflds=tflds,
                                showmenu=MENU,
                                gmap_key=gmap_key)
-    except decodehex2.HexError as err:
+    except (decodehex2.Gen2.Gen2Error or decodehex2.HexError) as err:  # decodehex2.HexError or
         print(err.value,err.message)
         return render_template('badhex.html',errortype=err.value,errormsg=err.message)
 
