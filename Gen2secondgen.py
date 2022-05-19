@@ -320,8 +320,8 @@ class SecondGen(Gen2Error):
                 ##Calculate the BCH
                 x = self.pbit+ self.bits[1:203]
 
-                self.calculatedBCH = Func.calcBCH(x, 0, 204, 252)
-
+                #self.calculatedBCH = Func.calcBCH(x, 0, 204, 252)
+                self.calculatedBCH = Func.calcBCH(x, 2, 204, 252)
 
                 #self.bchstring=writebch.calcBCH(self.bits[1:203]+"0"*48, 0, 202, 250)[1]
 
