@@ -780,7 +780,7 @@ def moffset(hexcode):
         toinsert=int(last,16)
         bytelist=[toinsert]+bytelist
 
-    h=crc16(bytearray(bytelist))
+    h=crc16(bytearray(bytelist))%60
     return jsonify(h)
 
 if __name__ == "__main__":
