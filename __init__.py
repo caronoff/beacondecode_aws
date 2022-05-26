@@ -768,6 +768,9 @@ def exists():
 
     return response
 
+@app.route('/moffset/<hexcode>')
+def moffset(hexcode):
+    return jsonify(hexcode)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
