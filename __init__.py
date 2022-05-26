@@ -780,8 +780,8 @@ def moffset(hexcode):
         toinsert=int(last,16)
         bytelist=[toinsert]+bytelist
 
-    h=crc16('123'.encode('utf-8'))
-    return jsonify(bytelist)
+    h=crc16(bytearray(bytelist))
+    return jsonify(h)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
