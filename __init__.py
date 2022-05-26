@@ -771,8 +771,10 @@ def exists():
 @app.route('/moffset/<hexcode>')
 def moffset(hexcode):
     crc16=crcmod.predefined.mkPredefinedCrcFun('crc-16-buypass')
-    h=crc16('123')
-    return jsonify(h)
+    last=hexcode[len(hexcode)-2:]
+
+    h=crc16('123'.encode('utf-8'))
+    return jsonify(int(last,16))
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
