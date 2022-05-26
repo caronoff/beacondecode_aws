@@ -12,7 +12,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
 from botocore.errorfactory import ClientError
-import crcmod
+import crcmod.predefined
 import re, uuid
 import os, json, boto3
 import contacts
@@ -770,7 +770,9 @@ def exists():
 
 @app.route('/moffset/<hexcode>')
 def moffset(hexcode):
-    return jsonify(hexcode)
+    crc16=crcmod.predefined.mkPredefinedCrcFun('crc-16-buypass')
+    h=crc16('123')
+    return jsonify(h)
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
