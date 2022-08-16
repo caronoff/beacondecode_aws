@@ -721,7 +721,7 @@ class BeaconFGB(HexError):
                     btype='PLB'
                     trunc='3'
                 elif self.bin[41:43] == '11':
-                    btype='RLS Location unknown beacon type (Spare or Test)'
+                    btype='RLS Location Test Protocol'
                     self.testprotocol = 'test protocol mode transmission ' + btype
                     trunc='[Unkown beacon type]'  # beacon type unknown so therefor indeterminable leading digit
             else:
@@ -985,7 +985,7 @@ class BeaconFGB(HexError):
                 self.tablebin.append(['43-46', str(self.bin[43:47]), 'Identification type', idtype])
                 self.tablebin.append(['43-52',str(self.bin[43:53]),'RLS TAC# truncated or national assigned RLS','{}'.format(tano),definitions.moreinfo['rls_trunc']])
                 self.tablebin.append(['', '', 'RLS TAC included missing leading digit prefix', '{}{}'.format(trunc,tano)])
-                tano ='RLS: {}+{}'.format(trunc,tano)
+                tano = 'na' #'RLS: {}+{}'.format(trunc,tano)
                 self._sn=str(Fcn.bin2dec(self.bin[53:67])).zfill(5)
                 self.tablebin.append(['53-66',str(self.bin[53:67]),'Production or National assigned serial No','{}'.format(self._sn)])
 
