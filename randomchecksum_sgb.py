@@ -50,7 +50,7 @@ def realrandom23hex():
     return definitions.bin2hex('1' + midbin + '101' + tac + sn + '0' + IdBits)
 
 
-def collisions(limitrealhex,testperhex, randomchar,collisionfile,testedfile,infile=''):
+#def collisions(limitrealhex,testperhex, randomchar,collisionfile,testedfile,infile=''):
 
 
 if __name__ == "__main__":

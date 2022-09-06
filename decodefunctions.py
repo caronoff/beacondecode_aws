@@ -56,7 +56,7 @@ def getFiveCharChecksum(bcnId):
 	##	 all computations are designed to remain within this value (no overflows)
     i=0
     for char in bcnId:
-        decimalValue=int(ord(char))
+        decimalValue=int(ord(char.upper()))
         tmpLongValue =  (runningSum * modifier) + decimalValue
         # on last character here use the higher resolution result as input to final truncation
         if i==len(bcnId)-1:
