@@ -705,12 +705,12 @@ class SecondGen(Gen2Error):
             # self.SerialNum = Func.bin2dec(bits[21:33])
             self.tablebin.append([self.bitlabel(94,108,deduct_offset),
                                   bits[3:18],
-                                  'Aircraft operator designator:',
+                                  'Aircraft Operator Designator:',
                                   self.operator])
             self.tablebin.append([self.bitlabel(109,120,deduct_offset),
-                                  bits[21:33],
-                                  'Aircraft serial number:',
-                                  str(Func.bin2dec(bits[21:33]))])
+                                  bits[18:30],                                     #21:33
+                                  'Aircraft Serial Number:',
+                                  str(Func.bin2dec(bits[18:30]))])                 #21:33
 
 
             if Func.checkones(bits[33:50]):
@@ -718,8 +718,8 @@ class SecondGen(Gen2Error):
             else:
                 status_check = 'ERROR'
                 self.validhex = False
-            self.tablebin.append([self.bitlabel(124,137,deduct_offset),
-                                  bits[33:47],
+            self.tablebin.append([self.bitlabel(121,137,deduct_offset),        #124,137
+                                  bits[30:47],                                  #33:47
                                   'Spare 17 bits all should be 1',
                                   status_check])
 
