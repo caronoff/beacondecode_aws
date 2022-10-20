@@ -86,7 +86,7 @@ class HexError(Exception):
         self.message = message
 
     def __str__(self):
-        return repr(self.value, self.message)
+        return self.message#repr(self.value, self.message)
 
 class Country:
     def __init__(self, midbin):
@@ -205,7 +205,8 @@ class BeaconFGB(HexError):
         if self.bin[37:40] =='101' and self.bin[26]=='1':
         # illegal protocol for FGB user protocol
             self.type = 'Bits 37-39 are 101 which is reserved for SGB but the valid hex length should be 51 or 63'
-            raise HexError('Beacon Generation conflict', self.type)
+            self.errors.append(self.type)
+            #raise HexError('Beacon Generation conflict', self.type)
 
         if pad=='':
             bitsynch = self.bin[1:16]
@@ -629,7 +630,9 @@ class BeaconFGB(HexError):
 
         elif typeuserprotbin == '101':
 
-            self.errors.append('User protocol code bits 37-39 cannot be 101')
+            self.errors.append('User protocol code bits 37-39 cannot be 101 for first generation beacon')
+            self.tablebin.append(['37-39',self.bin[37:40],'Protocol Code',self.type])
+
         if typeuserprotbin not in ['100','000','111'] and self.has_loc(): # and self.bch.complete=='1':
             location_data = 'Check for location'
 
