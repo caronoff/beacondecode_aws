@@ -10,7 +10,7 @@ itsdangerous==0.24
 Jinja2==2.10.1
 python-dotenv==0.10.2
 MarkupSafe==1.1.1
-Werkzeug==1.0.0
+Werkzeug==2.2.3
 WTForms==2.1
 requests==2.26.0
 alembic==1.0.10
