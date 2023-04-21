@@ -21,7 +21,7 @@ import definitions
 import bchlib
 import bchsgbcorrect
 import testbchSGB
-# version 2.0 April 14, 2021
+# version testing 2.0 April 14, 2021
 from datetime import datetime
 import requests
 from dotenv import load_dotenv
