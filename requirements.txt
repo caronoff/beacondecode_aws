@@ -1,12 +1,12 @@
 bchlib==0.14.0
 click==6.7
 crcmod==1.7
-Flask==1.1.1
+Flask==2.2.1
 gunicorn==19.7.1
 Flask-WTF==0.14.2
 Flask-Login==0.4.1
 Flask-Migrate==2.5.1
-itsdangerous==0.24
+itsdangerous==2.0
 Jinja2==2.10.1
 python-dotenv==0.10.2
 MarkupSafe==1.1.1
@@ -16,7 +16,7 @@ requests==2.26.0
 alembic==1.0.10
 psycopg2==2.7.5
 urllib3==1.25.4
-Flask-SQLAlchemy==2.4.0
-SQLAlchemy==1.3.13
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy==1.4.44
 boto3==1.18.53
 bchlibcaronoff==1.0.4
