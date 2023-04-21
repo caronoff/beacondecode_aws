@@ -404,7 +404,7 @@ class BeaconFGB(HexError):
             self._loctype = 'User: {}'.format(serialtype)
             #   Bit 43 value 1 - Yes for type approval certificate
             if self.bin[43]=='1':  
-                tacert='Bit 43 assisgned. Type Approval at bits 74-84.'
+                tacert='Bit 43 assigned. Type Approval at bits 74-83.'
                 #   Bits 64-73 all 0 or national use
                 #   Bits 74-83 is the Type Approval Certificate Number
                 tano=str(Fcn.bin2dec((self.bin)[74:84]))
