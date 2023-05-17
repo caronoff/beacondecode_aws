@@ -7,7 +7,7 @@ from sgbform import SGB, SGB_g008, SGB_emergency, SGB_national, SGB_rls, SGB_can
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT,FirstGenNatLoc
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
-#from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 #from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
