@@ -1,4 +1,4 @@
-import bchlibcaronoff
+#import bchlibcaronoff
 import decodefunctions
 import bch1correct
 
