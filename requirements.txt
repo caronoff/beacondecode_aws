@@ -14,7 +14,7 @@ Werkzeug==2.0.0
 WTForms==2.1
 requests==2.26.0
 alembic==1.0.10
-psycopg2==2.7.5
+psycopg2==2.9.6
 urllib3==1.25.4
 Flask-SQLAlchemy==2.5.1
 SQLAlchemy==1.4.44
