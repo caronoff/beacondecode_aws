@@ -1,4 +1,4 @@
-import bchlib
+#import bchlib
 import hashlib
 import os
 import random

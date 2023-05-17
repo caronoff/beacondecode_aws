@@ -7,20 +7,20 @@ from sgbform import SGB, SGB_g008, SGB_emergency, SGB_national, SGB_rls, SGB_can
 from fgbform import FirstGenForm,FirstGenStd,FirstGenRLS, FirstGenELTDT,FirstGenNatLoc
 from longfirstgenmsg import encodelongFGB
 from decodefunctions import is_number, dec2bin
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+#from flask_sqlalchemy import SQLAlchemy
+#from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from bchcorrect import bch_check, bch_recalc, bch1_binarycalc, bch2_binarycalc
-from botocore.errorfactory import ClientError
-import crcmod.predefined
+#from botocore.errorfactory import ClientError
+#import crcmod.predefined
 import re, uuid
-import os, json, boto3
+import os, json #, boto3
 import contacts
 
 import typeapproval
 import decodehex2
 import definitions
-import bchlib
+#import bchlib
 import bchsgbcorrect
 import testbchSGB
 # version 2.0 April 14, 2021
@@ -32,9 +32,9 @@ load_dotenv('.env')
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', 'Optional default value')
 gmap_key = os.getenv('GMAP_KEY', 'Optional default value')
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
+#app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ['DATABASE_URL']
+#db = SQLAlchemy(app)
+#migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -47,49 +47,49 @@ for line in country.readlines():
     COUNTRIES.append(line)
 COUNTRIES.sort()
 
-class Userlogin(db.Model):
-    __tablename__ = 'userlogin'
-    u_id = db.Column(db.Integer,primary_key=True)
-    uname = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), index=True, unique=True)
-    lastname = db.Column(db.String(120), index=True, unique=False)
-    firstname = db.Column(db.String(120), index=True, unique=False)
-    password_hash = db.Column(db.String(128))
-    def __repr__(self):
-        return '<User {}>'.format(self.uname)
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+# class Userlogin(db.Model):
+#     __tablename__ = 'userlogin'
+#     u_id = db.Column(db.Integer,primary_key=True)
+#     uname = db.Column(db.String(80), unique=True, nullable=False)
+#     email = db.Column(db.String(120), index=True, unique=True)
+#     lastname = db.Column(db.String(120), index=True, unique=False)
+#     firstname = db.Column(db.String(120), index=True, unique=False)
+#     password_hash = db.Column(db.String(128))
+#     def __repr__(self):
+#         return '<User {}>'.format(self.uname)
+#     def set_password(self, password):
+#         self.password_hash = generate_password_hash(password)
+#
+#     def set_uid(self,uid):
+#         self.u_id = uid
+#
+#     def check_password(self, password):
+#         return check_password_hash(self.password_hash, password)
+#
+#     @property
+#     def is_active(self):
+#         return True
+#
+#     @property
+#     def is_authenticated(self):
+#         return True
+#
+#     @property
+#     def is_anonymous(self):
+#         return False
+#
+#     def get_id(self):
+#         """Return the username to satisfy Flask-Login's requirements."""
+#         return str(self.u_id)
 
-    def set_uid(self,uid):
-        self.u_id = uid
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
-
-    @property
-    def is_active(self):
-        return True
-
-    @property
-    def is_authenticated(self):
-        return True
-
-    @property
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        """Return the username to satisfy Flask-Login's requirements."""
-        return str(self.u_id)
-
-class Hexdecodes(db.Model):
-    __tablename__ = 'hexdecodes'
-    h_entryid = db.Column(db.Integer,primary_key=True)
-    hex = db.Column(db.String(80), unique=False, nullable=True)
-    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    ipaddress=db.Column(db.String(30), nullable=True)
-    def __repr__(self):
-        return '<Hex {}>'.format(self.hex)
+# class Hexdecodes(db.Model):
+#     __tablename__ = 'hexdecodes'
+#     h_entryid = db.Column(db.Integer,primary_key=True)
+#     hex = db.Column(db.String(80), unique=False, nullable=True)
+#     timestamp = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+#     ipaddress=db.Column(db.String(30), nullable=True)
+#     def __repr__(self):
+#         return '<Hex {}>'.format(self.hex)
 
 class LoginForm(Form):
     """User Login Form."""
@@ -200,18 +200,18 @@ def register():
 
 
 @app.route("/adduser", methods=["GET", "POST"])
-def home():
-    users = None
-    if request.form:
-        try:
-            user = Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
-            db.session.add(user)
-            db.session.commit()
-        except Exception as e:
-            print("Failed to add user")
-            print(e)
-    users = Userlogin.query.all()
-    return render_template("users.html", users=users)
+# def home():
+#     users = None
+#     if request.form:
+#         try:
+#             user = Userlogin(u_id=request.form.get("u_id"),uname=request.form.get("uname"))
+#             db.session.add(user)
+#             db.session.commit()
+#         except Exception as e:
+#             print("Failed to add user")
+#             print(e)
+#     users = Userlogin.query.all()
+#     return render_template("users.html", users=users)
 
 
 @app.route('/validatehex', methods=['GET'])
@@ -461,10 +461,10 @@ def decoded(hexcode):
             for l in taclist:
                 k=l['id']
                 tacdic[k]=l
-        hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
+        #hexsave=Hexdecodes(hex=hexcode,ipaddress=ipaddress)
 
-        db.session.add(hexsave)
-        db.session.commit()
+        #db.session.add(hexsave)
+        #db.session.commit()
 
         return render_template(tmp, hexcode=hexcode.upper(),
                                decoded=beacon.tablebin,
@@ -786,4 +786,6 @@ def moffset(hexcode):
 
 if __name__ == "__main__":
     app.secret_key = 'my secret'
+    import sys
+    print(sys.version)
     app.run(debug=True,host='0.0.0.0', port=5555, threaded=True)

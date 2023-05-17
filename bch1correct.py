@@ -1,4 +1,4 @@
-import bchlib
+#import bchlib
 import decodefunctions
 
 
