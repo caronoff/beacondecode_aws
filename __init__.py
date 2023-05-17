@@ -16,6 +16,7 @@ import crcmod.predefined
 import re, uuid
 import os, json, boto3
 import contacts
+
 import typeapproval
 import decodehex2
 import definitions
